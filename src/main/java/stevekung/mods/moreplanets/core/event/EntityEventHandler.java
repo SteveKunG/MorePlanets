@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.core.event;
 
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import micdoodle8.mods.galacticraft.api.event.oxygen.GCCoreOxygenSuffocationEvent;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
@@ -145,7 +146,7 @@ public class EntityEventHandler
             }
             this.runPortalTickClient(player);
         }
-        if (living instanceof EntityPlayerMP)
+        else if (living instanceof EntityPlayerMP)
         {
             EntityPlayerMP player = (EntityPlayerMP)living;
 
@@ -165,13 +166,16 @@ public class EntityEventHandler
             }
             if (world.provider instanceof WorldProviderNibiru)
             {
-                if (world.isRainingAt(player.getPosition()) && !this.isGodPlayer(player) && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !(world.getBiome(player.getPosition()) instanceof BiomeGreenVeinFields))
+                if (!this.isGodPlayer(player) && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !(world.getBiome(player.getPosition()) instanceof BiomeGreenVeinFields))
                 {
-                    player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 40));
-                }
-                if (player.ticksExisted % 128 == 0 && !this.isGodPlayer(player) && !this.isInOxygen(world, player) && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !(world.getBiome(player.getPosition()) instanceof BiomeGreenVeinFields))
-                {
-                    player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80));
+                    if (world.isRainingAt(player.getPosition()))
+                    {
+                        player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 40));
+                    }
+                    if (player.ticksExisted % 128 == 0 && !this.isInOxygen(world, player))
+                    {
+                        player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80));
+                    }
                 }
             }
             if (!world.isRemote && world.provider instanceof IMeteorType)
@@ -179,30 +183,33 @@ public class EntityEventHandler
                 this.spawnMeteors(world, player, (IMeteorType)world.provider);
             }
         }
-        if (ConfigManagerMP.moreplanets_planet_settings.enableInfectedSporeForMobs && world.provider instanceof WorldProviderNibiru)
+        else
         {
-            if (!(living instanceof EntityPlayer) && !EntityEffectUtils.isGalacticraftMob(living) && !(living instanceof EntityJuicer))
+            if (ConfigManagerMP.moreplanets_planet_settings.enableInfectedSporeForMobs && world.provider instanceof WorldProviderNibiru)
             {
-                if (living.ticksExisted % 128 == 0 && !(world.getBiome(living.getPosition()) instanceof BiomeGreenVeinFields))
+                if (!EntityEffectUtils.isGalacticraftMob(living) && !(living instanceof EntityJuicer) && !(world.getBiome(living.getPosition()) instanceof BiomeGreenVeinFields))
                 {
-                    living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80));
-                }
-                if (world.isRainingAt(living.getPosition()) && !(world.getBiome(living.getPosition()) instanceof BiomeGreenVeinFields))
-                {
-                    living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 40));
+                    if (living.ticksExisted % 128 == 0)
+                    {
+                        living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80));
+                    }
+                    else if (world.isRainingAt(living.getPosition()))
+                    {
+                        living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 40));
+                    }
                 }
             }
         }
 
-        for (TileEntity tile : event.getEntityLiving().world.tickableTileEntities)
+        for (TileEntity tile : world.tickableTileEntities.stream().filter(tile -> tile instanceof TileEntityShieldGenerator).collect(Collectors.toList()))
         {
-            if (!tile.getWorld().isRemote && tile instanceof TileEntityShieldGenerator)
+            if (!tile.getWorld().isRemote)
             {
                 TileEntityShieldGenerator shield = (TileEntityShieldGenerator)tile;
 
                 if (living instanceof IMob)
                 {
-                    if (!shield.disabled && shield.enableShield && shield.shieldCapacity > 0 && shield.isInRangeOfShield(event.getEntity().getPosition()))
+                    if (!shield.disabled && shield.enableShield && shield.shieldCapacity > 0 && shield.isInRangeOfShield(living.getPosition()))
                     {
                         if (!shield.enableDamage)
                         {
@@ -327,9 +334,9 @@ public class EntityEventHandler
             return;
         }
 
-        for (TileEntity tile : event.getWorld().tickableTileEntities)
+        for (TileEntity tile : event.getWorld().tickableTileEntities.stream().filter(tile -> tile instanceof TileEntityShieldGenerator).collect(Collectors.toList()))
         {
-            if (!tile.getWorld().isRemote && tile instanceof TileEntityShieldGenerator)
+            if (!tile.getWorld().isRemote)
             {
                 TileEntityShieldGenerator shield = (TileEntityShieldGenerator)tile;
 
@@ -344,13 +351,13 @@ public class EntityEventHandler
     @SubscribeEvent
     public void onEnderTeleport(EnderTeleportEvent event)
     {
-        for (TileEntity tile : event.getEntityLiving().world.tickableTileEntities)
+        for (TileEntity tile : event.getEntityLiving().world.tickableTileEntities.stream().filter(tile -> tile instanceof TileEntityShieldGenerator).collect(Collectors.toList()))
         {
-            if (!tile.getWorld().isRemote && tile instanceof TileEntityShieldGenerator)
+            if (!tile.getWorld().isRemote)
             {
                 TileEntityShieldGenerator shield = (TileEntityShieldGenerator)tile;
 
-                if (!shield.disabled && shield.isInRangeOfShield(event.getEntity().getPosition()))
+                if (!shield.disabled && shield.isInRangeOfShield(event.getEntityLiving().getPosition()))
                 {
                     event.setCanceled(true);
                 }

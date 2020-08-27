@@ -5,7 +5,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -51,10 +50,9 @@ public class WorldTickEventHandler
             {
                 if (this.canBeamStrike(world, pos) && world.rand.nextInt(75000) == 0)
                 {
-                    EntityAlienBeam beam = new EntityAlienBeam(world, pos.getX(), pos.getY(), pos.getZ());
-
                     if (world.isBlockLoaded(pos))
                     {
+                        EntityAlienBeam beam = new EntityAlienBeam(world, pos.getX(), pos.getY(), pos.getZ());
                         beam.spawnWeather();
                     }
                 }
@@ -64,17 +62,15 @@ public class WorldTickEventHandler
         {
             if (world.provider instanceof WorldProviderNibiru)
             {
-                Chunk chunk = new Chunk(world, event.getChunkX(), event.getChunkZ());
                 boolean raining = world.isRaining();
                 boolean thunder = world.isThundering();
                 Biome biome = world.getBiome(pos);
-                EntityNibiruLightningBolt bolt = new EntityNibiruLightningBolt(world, pos.getX(), pos.getY(), pos.getZ(), false);
-                EntityNibiruLightningBolt boltFire = new EntityNibiruLightningBolt(world, pos.getX(), pos.getY(), pos.getZ(), true);
 
-                if (world.provider.canDoLightning(chunk) && raining && thunder && world.rand.nextInt(1000) == 0)
+                if (world.provider.canDoLightning(event.getChunk()) && raining && thunder && world.rand.nextInt(1000) == 0)
                 {
                     if (world.isRainingAt(pos))
                     {
+                        EntityNibiruLightningBolt boltFire = new EntityNibiruLightningBolt(world, pos.getX(), pos.getY(), pos.getZ(), true);
                         boltFire.spawnWeather();
                     }
                 }
@@ -105,6 +101,7 @@ public class WorldTickEventHandler
                 {
                     if (world.rand.nextInt(250000) == 0)
                     {
+                        EntityNibiruLightningBolt bolt = new EntityNibiruLightningBolt(world, pos.getX(), pos.getY(), pos.getZ(), false);
                         bolt.spawnWeather();
                     }
                 }
