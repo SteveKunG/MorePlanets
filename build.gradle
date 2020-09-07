@@ -32,7 +32,6 @@ minecraft {
     mappings = "${mcp_mapping}"
     makeObfSourceJar = false
 
-    replace "@FINGERPRINT@", project.sha1
     replace "4.0.1.-1", project.gc_require_version
     replaceIn "MorePlanetsMod.java"
 }
@@ -144,16 +143,4 @@ curseforge {
     }
 }
 
-task signJar(type: SignJar, dependsOn: reobfJar) {
-    if (project.hasProperty('upload_api_key')) {
-        keyStore = project.keystore_path
-        alias = project.alias
-        storePass = project.keystore_pass
-        keyPass = project.keystore_pass
-        inputFile = jar.archivePath
-        outputFile = jar.archivePath
-    }
-}
-
-build.dependsOn signJar
 tasks.curseforge.dependsOn(build)

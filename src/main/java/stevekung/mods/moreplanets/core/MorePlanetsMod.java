@@ -20,7 +20,10 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import stevekung.mods.moreplanets.core.capability.CapabilityHandlerMP;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
@@ -43,19 +46,18 @@ import stevekung.mods.stevekunglib.utils.VersionChecker;
 import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
 import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 
-@Mod(modid = MorePlanetsMod.MOD_ID, name = MorePlanetsMod.NAME, version = MorePlanetsMod.VERSION, dependencies = MorePlanetsMod.MAIN_DEPENDENCIES, updateJSON = MorePlanetsMod.JSON_URL, certificateFingerprint = MorePlanetsMod.CERTIFICATE)
+@Mod(modid = MorePlanetsMod.MOD_ID, name = MorePlanetsMod.NAME, version = MorePlanetsMod.VERSION, dependencies = MorePlanetsMod.MAIN_DEPENDENCIES, updateJSON = MorePlanetsMod.JSON_URL)
 public class MorePlanetsMod
 {
     public static final String NAME = "More Planets";
     public static final String MOD_ID = "moreplanets";
     private static final int MAJOR_VERSION = 2;
     private static final int MINOR_VERSION = 1;
-    private static final int BUILD_VERSION = 13;
+    private static final int BUILD_VERSION = 14;
     public static final String VERSION = MorePlanetsMod.MAJOR_VERSION + "." + MorePlanetsMod.MINOR_VERSION + "." + MorePlanetsMod.BUILD_VERSION;
     private static final String FORGE_VERSION = "after:forge@[14.23.5.2768,); ";
     private static final String DEPENDENCIES = "after:jei@[4.15.0.268,); ";
     protected static final String MAIN_DEPENDENCIES = "required-after:stevekung's_lib@[1.1.7,); required-after:galacticraftcore@[4.0.1.-1,); required-after:galacticraftplanets@[4.0.1.-1,); required-after:micdoodlecore; " + MorePlanetsMod.FORGE_VERSION + MorePlanetsMod.DEPENDENCIES;
-    protected static final String CERTIFICATE = "@FINGERPRINT@";
     public static final String URL = "https://minecraft.curseforge.com/projects/galacticraft-add-on-more-planets";
     protected static final String JSON_URL = "https://raw.githubusercontent.com/SteveKunG/VersionCheckLibrary/master/more_planets_version.json";
     public static boolean isDevelopment;
@@ -155,19 +157,6 @@ public class MorePlanetsMod
     public void serverAboutToStart(FMLServerAboutToStartEvent event)
     {
         WorldTickEventHandler.survivalPlanetData = null;
-    }
-
-    @EventHandler
-    public void onFingerprintViolation(FMLFingerprintViolationEvent event)
-    {
-        if (MorePlanetsMod.isDevelopment)
-        {
-            LoggerMP.info("Development environment detected! Ignore certificate check.");
-        }
-        else
-        {
-            throw new RuntimeException("Invalid fingerprint detected! This version will NOT be supported by the author!");
-        }
     }
 
     @SubscribeEvent
