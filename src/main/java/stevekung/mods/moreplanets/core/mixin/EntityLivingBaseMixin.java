@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.core.mixin;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -30,7 +31,14 @@ public class EntityLivingBaseMixin implements IInfectedPurlonite
     @Override
     public boolean isInfectedPurlonite()
     {
-        return this.that.getDataManager().get(EntityEventHandler.INFECTED_PURLONITE);
+        try
+        {
+            return BooleanUtils.isTrue(this.that.getDataManager().get(EntityEventHandler.INFECTED_PURLONITE));
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
     }
 
     @Override
