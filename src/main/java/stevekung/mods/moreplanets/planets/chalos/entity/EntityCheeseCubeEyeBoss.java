@@ -425,6 +425,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
         return true;
     }
 
+    @SuppressWarnings("rawtypes")
     @Override
     public void onBossSpawned(TileEntityDungeonSpawner spawner)
     {

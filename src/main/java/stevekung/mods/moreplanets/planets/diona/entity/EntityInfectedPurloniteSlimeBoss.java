@@ -401,6 +401,7 @@ public class EntityInfectedPurloniteSlimeBoss extends EntitySlimeBaseMP implemen
         }
     }
 
+    @SuppressWarnings("rawtypes")
     @Override
     public void onBossSpawned(TileEntityDungeonSpawner spawner)
     {

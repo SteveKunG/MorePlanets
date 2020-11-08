@@ -15,6 +15,7 @@ import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
 public class GenLayerChalosBiomes extends GenLayer
 {
+    @SuppressWarnings("unchecked")
     private final List<BiomeManager.BiomeEntry>[] biomes = new ArrayList[CachedEnum.biomeValues.length];
     private final ArrayList<BiomeManager.BiomeEntry>[] biomesList = this.setupBiomes();
 
@@ -54,6 +55,7 @@ public class GenLayerChalosBiomes extends GenLayer
         return dest;
     }
 
+    @SuppressWarnings("unchecked")
     private ArrayList<BiomeManager.BiomeEntry>[] setupBiomes()
     {
         ArrayList<BiomeManager.BiomeEntry>[] currentBiomes = new ArrayList[CachedEnum.biomeValues.length];

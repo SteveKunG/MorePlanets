@@ -22,6 +22,7 @@ public abstract class BlockBreakableMP extends BlockBaseMP
         return false;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing facing)

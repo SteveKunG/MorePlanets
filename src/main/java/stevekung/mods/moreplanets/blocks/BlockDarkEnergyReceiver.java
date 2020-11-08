@@ -294,6 +294,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription
         return super.canHarvestBlock(world, pos, player);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos)
     {

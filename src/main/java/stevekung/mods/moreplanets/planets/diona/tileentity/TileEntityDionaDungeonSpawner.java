@@ -11,6 +11,7 @@ public class TileEntityDionaDungeonSpawner extends TileEntityDungeonSpawnerMP<En
         super(EntityInfectedPurloniteSlimeBoss.class);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void readFromNBT(NBTTagCompound nbt)
     {

@@ -131,6 +131,7 @@ public class BlockSnowLayerMP extends BlockBaseMP
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
@@ -182,6 +183,7 @@ public class BlockSnowLayerMP extends BlockBaseMP
         return state.getValue(BlockStateProperty.LAYERS) + 1;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean isSideSolid(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
     {

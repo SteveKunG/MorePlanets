@@ -22,6 +22,7 @@ public class BlockInfectedTorch extends BlockTorchMP
         this.setSoundType(SoundType.WOOD);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {

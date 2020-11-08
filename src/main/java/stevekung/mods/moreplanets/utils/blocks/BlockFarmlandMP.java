@@ -143,6 +143,7 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing facing)

@@ -207,6 +207,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos)
     {

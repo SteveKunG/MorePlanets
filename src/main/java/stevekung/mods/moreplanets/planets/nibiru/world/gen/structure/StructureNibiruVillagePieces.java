@@ -239,6 +239,7 @@ public class StructureNibiruVillagePieces
             return this.structureType == 2 ? MPBlocks.TERRABERRY : MPBlocks.INFECTED_WHEAT;
         }
 
+        @SuppressWarnings("deprecation")
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox box)
         {
@@ -334,6 +335,7 @@ public class StructureNibiruVillagePieces
             return this.structureType == 2 ? MPBlocks.TERRABERRY : MPBlocks.INFECTED_WHEAT;
         }
 
+        @SuppressWarnings("deprecation")
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox box)
         {
@@ -391,6 +393,7 @@ public class StructureNibiruVillagePieces
             this.boundingBox = box;
         }
 
+        @SuppressWarnings("deprecation")
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox box)
         {
@@ -655,6 +658,7 @@ public class StructureNibiruVillagePieces
             this.hasMadeChest = nbt.getBoolean("Chest");
         }
 
+        @SuppressWarnings("deprecation")
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox box)
         {
@@ -1511,6 +1515,7 @@ public class StructureNibiruVillagePieces
             return currentVillagerProfession;
         }
 
+        @SuppressWarnings("deprecation")
         protected IBlockState getBiomeSpecificBlockState(IBlockState state)
         {
             Block block = state.getBlock();
@@ -2054,6 +2059,7 @@ public class StructureNibiruVillagePieces
     {
         private Stones() {}
 
+        @SuppressWarnings("deprecation")
         @Override
         public void selectBlocks(Random rand, int x, int y, int z, boolean wall)
         {
@@ -2093,6 +2099,7 @@ public class StructureNibiruVillagePieces
     {
         private Planks() {}
 
+        @SuppressWarnings("deprecation")
         @Override
         public void selectBlocks(Random rand, int x, int y, int z, boolean wall)
         {
@@ -2132,6 +2139,7 @@ public class StructureNibiruVillagePieces
     {
         private Logs() {}
 
+        @SuppressWarnings("deprecation")
         @Override
         public void selectBlocks(Random rand, int x, int y, int z, boolean wall)
         {

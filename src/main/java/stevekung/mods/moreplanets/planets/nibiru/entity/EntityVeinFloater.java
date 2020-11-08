@@ -465,6 +465,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
         super.setDead();
     }
 
+    @SuppressWarnings("rawtypes")
     @Override
     public void onBossSpawned(TileEntityDungeonSpawner spawner)
     {

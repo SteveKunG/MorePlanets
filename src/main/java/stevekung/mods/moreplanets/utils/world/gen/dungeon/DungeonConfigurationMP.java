@@ -61,6 +61,7 @@ public class DungeonConfigurationMP
         tagCompound.setString("ChestRoom", this.chestRoom.getName());
     }
 
+    @SuppressWarnings("unchecked")
     public void readFromNBT(NBTTagCompound tagCompound)
     {
         try

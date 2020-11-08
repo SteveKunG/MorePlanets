@@ -27,6 +27,7 @@ public abstract class BlockTileMP extends BlockAdvancedMP
         super.breakBlock(world, pos, state);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean eventReceived(IBlockState state, World world, BlockPos pos, int eventID, int eventParam)
     {

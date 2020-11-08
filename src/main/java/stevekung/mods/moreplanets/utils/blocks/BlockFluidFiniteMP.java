@@ -33,6 +33,7 @@ public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements IIt
         return super.setUnlocalizedName(name);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     @Nullable
     public Boolean isEntityInsideMaterial(IBlockAccess world, BlockPos pos, IBlockState state, Entity entity, double yToTest, Material material, boolean testingHead)

@@ -375,6 +375,7 @@ public class ClientEventHandler
         }
     }
 
+    @SuppressWarnings("deprecation")
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onRenderBlockOverlay(RenderBlockOverlayEvent event)
@@ -412,6 +413,7 @@ public class ClientEventHandler
         }
     }
 
+    @SuppressWarnings("deprecation")
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onRenderFog(FogColors event)

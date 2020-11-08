@@ -300,6 +300,7 @@ public abstract class TileEntityChestMP extends TileEntityLockableLoot implement
         return true;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     @Nullable
     public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)

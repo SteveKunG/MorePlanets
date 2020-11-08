@@ -159,6 +159,7 @@ public class ComponentCrashedAlienShipPieces extends StructureComponent
         }
     }
 
+    @SuppressWarnings("deprecation")
     private static void replaceDataBlocks2(World world, Random rand, Rotation rotation, Template template, BlockPos pos, PlacementSettings settings)
     {
         Map<BlockPos, String> map = template.getDataBlocks(pos, settings);

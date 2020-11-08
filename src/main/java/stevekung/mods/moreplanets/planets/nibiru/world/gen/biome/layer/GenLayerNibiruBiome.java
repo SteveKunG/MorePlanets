@@ -15,6 +15,7 @@ import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
 public class GenLayerNibiruBiome extends GenLayer
 {
+    @SuppressWarnings("unchecked")
     private final List<BiomeManager.BiomeEntry>[] biomes = new ArrayList[CachedEnum.biomeValues.length];
     private final ArrayList<BiomeManager.BiomeEntry>[] biomesList = this.setupBiomes();
 
@@ -120,6 +121,7 @@ public class GenLayerNibiruBiome extends GenLayer
         return aint1;
     }
 
+    @SuppressWarnings("unchecked")
     private ArrayList<BiomeManager.BiomeEntry>[] setupBiomes()
     {
         ArrayList<BiomeManager.BiomeEntry>[] currentBiomes = new ArrayList[CachedEnum.biomeValues.length];

@@ -480,6 +480,7 @@ public class StructureNibiruStrongholdPieces
             }
         }
 
+        @SuppressWarnings("deprecation")
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox box)
         {
