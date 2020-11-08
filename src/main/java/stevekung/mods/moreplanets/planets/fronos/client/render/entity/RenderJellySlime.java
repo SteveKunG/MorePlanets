@@ -25,7 +25,7 @@ public class RenderJellySlime extends RenderLiving<EntityJellySlime>
     public RenderJellySlime(RenderManager render)
     {
         super(render, new ModelSlime(16), 0.25F);
-        this.addLayer(new LayerBaseSlimeGel(this));
+        this.addLayer(new LayerBaseSlimeGel<>(this));
     }
 
     @Override

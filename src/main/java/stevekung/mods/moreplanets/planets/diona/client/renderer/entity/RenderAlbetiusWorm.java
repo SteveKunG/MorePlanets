@@ -17,7 +17,7 @@ public class RenderAlbetiusWorm extends RenderLiving<EntityAlbetiusWorm>
     public RenderAlbetiusWorm(RenderManager manager)
     {
         super(manager, new ModelSludgeling(), 0.2F);
-        this.addLayer(new LayerGlowingTexture(this, "albetius_worm_eye", true));
+        this.addLayer(new LayerGlowingTexture<>(this, "albetius_worm_eye", true));
     }
 
     @Override

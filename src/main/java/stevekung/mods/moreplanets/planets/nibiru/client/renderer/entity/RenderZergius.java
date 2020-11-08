@@ -18,7 +18,7 @@ public class RenderZergius extends RenderLiving<EntityZergius>
     public RenderZergius(RenderManager manager)
     {
         super(manager, new ModelZergius(), 0.15F);
-        this.addLayer(new LayerGlowingTexture(this, "zergius_glow", false));
+        this.addLayer(new LayerGlowingTexture<>(this, "zergius_glow", false));
     }
 
     @Override

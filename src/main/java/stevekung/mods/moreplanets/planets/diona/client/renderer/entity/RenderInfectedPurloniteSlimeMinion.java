@@ -18,7 +18,7 @@ public class RenderInfectedPurloniteSlimeMinion extends RenderLiving<EntityInfec
     public RenderInfectedPurloniteSlimeMinion(RenderManager manager)
     {
         super(manager, new ModelInfectedPurloniteSlimeBoss(), 1.0F);
-        this.addLayer(new LayerGlowingTexture(this, "infected_purlonite_slime_boss_glow", true));
+        this.addLayer(new LayerGlowingTexture<>(this, "infected_purlonite_slime_boss_glow", true));
     }
 
     @Override

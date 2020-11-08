@@ -19,7 +19,7 @@ public class RenderInfectedPurloniteSpider extends RenderLiving<EntityInfectedPu
     {
         super(manager, new ModelSpider(), 1.0F);
         this.shadowSize *= 0.7F;
-        this.addLayer(new LayerGlowingTexture(this, "infected_purlonite_spider_eyes", true));
+        this.addLayer(new LayerGlowingTexture<>(this, "infected_purlonite_spider_eyes", true));
     }
 
     @Override

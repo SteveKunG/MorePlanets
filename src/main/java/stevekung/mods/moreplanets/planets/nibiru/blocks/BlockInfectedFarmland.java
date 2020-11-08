@@ -49,7 +49,7 @@ public class BlockInfectedFarmland extends BlockFarmlandMP
     @Override
     protected boolean hasWater(World world, BlockPos pos)
     {
-        Iterator iterator = BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4)).iterator();
+        Iterator<BlockPos.MutableBlockPos> iterator = BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4)).iterator();
         MutableBlockPos mutableblockpos;
 
         do
@@ -58,7 +58,7 @@ public class BlockInfectedFarmland extends BlockFarmlandMP
             {
                 return false;
             }
-            mutableblockpos = (MutableBlockPos)iterator.next();
+            mutableblockpos = iterator.next();
         }
         while (world.getBlockState(mutableblockpos).getBlock() != MPBlocks.INFECTED_WATER_FLUID_BLOCK && world.getBlockState(mutableblockpos).getBlock() != MPBlocks.PURIFIED_WATER_FLUID_BLOCK);
         return true;

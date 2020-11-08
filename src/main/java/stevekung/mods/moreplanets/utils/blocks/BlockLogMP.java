@@ -105,11 +105,11 @@ public class BlockLogMP extends BlockBaseMP
 
             if (world.isAreaLoaded(pos.add(-i, -i, -i), pos.add(i, i, i)))
             {
-                Iterator iterator = BlockPos.getAllInBox(pos.add(-b0, -b0, -b0), pos.add(b0, b0, b0)).iterator();
+                Iterator<BlockPos> iterator = BlockPos.getAllInBox(pos.add(-b0, -b0, -b0), pos.add(b0, b0, b0)).iterator();
 
                 while (iterator.hasNext())
                 {
-                    BlockPos blockpos1 = (BlockPos)iterator.next();
+                    BlockPos blockpos1 = iterator.next();
                     IBlockState iblockstate1 = world.getBlockState(blockpos1);
 
                     if (iblockstate1.getBlock().isLeaves(iblockstate1, world, blockpos1))

@@ -22,7 +22,7 @@ public class RenderInfectedPurloniteSlimeBoss extends RenderLiving<EntityInfecte
     public RenderInfectedPurloniteSlimeBoss(RenderManager manager)
     {
         super(manager, new ModelInfectedPurloniteSlimeBoss(), 1.0F);
-        this.addLayer(new LayerGlowingTexture(this, "infected_purlonite_slime_boss_glow", true));
+        this.addLayer(new LayerGlowingTexture<>(this, "infected_purlonite_slime_boss_glow", true));
         this.addLayer(new LayerInfectedCrystallizeSlimeBossDeath());
         this.addLayer(new LayerInfectedPurloniteSlimeBossBarrier(this));
     }

@@ -18,8 +18,8 @@ public class RenderTerrasquid extends RenderLiving<EntityTerrasquid>
     public RenderTerrasquid(RenderManager manager)
     {
         super(manager, new ModelSquid(), 0.7F);
-        this.addLayer(new LayerGlowingTexture(this, "terrasquid_glow_0", true));
-        this.addLayer(new LayerGlowingTexture(this, "terrasquid_glow_1", false));
+        this.addLayer(new LayerGlowingTexture<>(this, "terrasquid_glow_0", true));
+        this.addLayer(new LayerGlowingTexture<>(this, "terrasquid_glow_1", false));
     }
 
     @Override

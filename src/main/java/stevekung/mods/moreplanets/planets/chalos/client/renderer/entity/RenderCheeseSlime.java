@@ -18,7 +18,7 @@ public class RenderCheeseSlime extends RenderLiving<EntityCheeseSlime>
     public RenderCheeseSlime(RenderManager manager)
     {
         super(manager, new ModelSlime(16), 0.25F);
-        this.addLayer(new LayerBaseSlimeGel(this));
+        this.addLayer(new LayerBaseSlimeGel<>(this));
     }
 
     @Override

@@ -527,11 +527,11 @@ public class EntityInfectedPurloniteSlimeBoss extends EntitySlimeBaseMP implemen
         List<EntityInfectedPurloniteTentacle> list = this.world.getEntitiesWithinAABB(EntityInfectedPurloniteTentacle.class, this.getEntityBoundingBox().grow(32.0D));
         EntityInfectedPurloniteTentacle tentacle = null;
         double distance1 = Double.MAX_VALUE;
-        Iterator iterator = list.iterator();
+        Iterator<EntityInfectedPurloniteTentacle> iterator = list.iterator();
 
         while (iterator.hasNext())
         {
-            EntityInfectedPurloniteTentacle tentacle1 = (EntityInfectedPurloniteTentacle)iterator.next();
+            EntityInfectedPurloniteTentacle tentacle1 = iterator.next();
             double distance = tentacle1.getDistanceSq(this);
 
             if (distance < distance1)

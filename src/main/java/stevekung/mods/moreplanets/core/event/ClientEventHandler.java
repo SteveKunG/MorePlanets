@@ -148,7 +148,7 @@ public class ClientEventHandler
                     Class<?> starter = Class.forName("mezz.jei.startup.JeiStarter");
                     Object obj = starter.newInstance();
                     Method method = obj.getClass().getDeclaredMethod("start", List.class);
-                    method.invoke(obj, (ArrayList<Object>) pluginsField.get(proxy));
+                    method.invoke(obj, (ArrayList<?>) pluginsField.get(proxy));
                 }
                 catch (Exception e)
                 {

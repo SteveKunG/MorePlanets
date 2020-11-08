@@ -111,7 +111,7 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
     {
         if (this.getSourceBlock() != null)
         {
-            Iterator iterator = BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4)).iterator();
+            Iterator<BlockPos.MutableBlockPos> iterator = BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4)).iterator();
             MutableBlockPos mutableblockpos;
 
             do
@@ -120,14 +120,14 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
                 {
                     return false;
                 }
-                mutableblockpos = (MutableBlockPos)iterator.next();
+                mutableblockpos = iterator.next();
             }
             while (world.getBlockState(mutableblockpos).getBlock() != this.getSourceBlock());
             return true;
         }
         else
         {
-            Iterator iterator = BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4)).iterator();
+            Iterator<BlockPos.MutableBlockPos> iterator = BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4)).iterator();
             MutableBlockPos mutableblockpos;
 
             do
@@ -136,7 +136,7 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
                 {
                     return false;
                 }
-                mutableblockpos = (MutableBlockPos)iterator.next();
+                mutableblockpos = iterator.next();
             }
             while (world.getBlockState(mutableblockpos).getMaterial() != Material.WATER);
             return true;

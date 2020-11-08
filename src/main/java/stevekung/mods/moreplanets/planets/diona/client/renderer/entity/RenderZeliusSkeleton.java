@@ -20,7 +20,7 @@ public class RenderZeliusSkeleton extends RenderBiped<EntityZeliusSkeleton>
     public RenderZeliusSkeleton(RenderManager manager)
     {
         super(manager, new ModelSkeleton(), 0.5F);
-        this.addLayer(new LayerGlowingTexture(this, "zelius_skeleton_glow", true));
+        this.addLayer(new LayerGlowingTexture<>(this, "zelius_skeleton_glow", true));
         this.addLayer(new LayerHeldItem(this));
         this.addLayer(new LayerBipedArmor(this)
         {

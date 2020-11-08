@@ -10,18 +10,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.utils.entity.EntitySlimeBaseMP;
 
 @SideOnly(Side.CLIENT)
-public class LayerBaseSlimeGel implements LayerRenderer<EntitySlimeBaseMP>
+public class LayerBaseSlimeGel<E extends EntitySlimeBaseMP> implements LayerRenderer<E>
 {
-    private final RenderLiving render;
+    private final RenderLiving<E> render;
     private final ModelBase model = new ModelSlime(0);
 
-    public LayerBaseSlimeGel(RenderLiving render)
+    public LayerBaseSlimeGel(RenderLiving<E> render)
     {
         this.render = render;
     }
 
     @Override
-    public void doRenderLayer(EntitySlimeBaseMP entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
+    public void doRenderLayer(E entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
         if (!entity.isInvisible())
         {

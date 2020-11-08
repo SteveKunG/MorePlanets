@@ -5,7 +5,6 @@ import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
-import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
@@ -13,7 +12,7 @@ import stevekung.mods.moreplanets.integration.jei.JEIRegistryHelper;
 import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class BlackHoleStorageRecipeCategory implements IRecipeCategory
+public class BlackHoleStorageRecipeCategory implements IRecipeCategory<BlackHoleStorageRecipeWrapper>
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/gui/jei/black_hole_storage.png");
 
@@ -42,7 +41,7 @@ public class BlackHoleStorageRecipeCategory implements IRecipeCategory
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients)
+    public void setRecipe(IRecipeLayout recipeLayout, BlackHoleStorageRecipeWrapper recipeWrapper, IIngredients ingredients)
     {
         IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
         int x = 24;

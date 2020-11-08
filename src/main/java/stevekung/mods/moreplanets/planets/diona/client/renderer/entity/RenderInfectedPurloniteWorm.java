@@ -17,7 +17,7 @@ public class RenderInfectedPurloniteWorm extends RenderLiving<EntityInfectedPurl
     public RenderInfectedPurloniteWorm(RenderManager manager)
     {
         super(manager, new ModelInfectedPurloniteWorm(), 0.4F);
-        this.addLayer(new LayerGlowingTexture(this, "infected_purlonite_worm_eyes", true));
+        this.addLayer(new LayerGlowingTexture<>(this, "infected_purlonite_worm_eyes", true));
     }
 
     @Override

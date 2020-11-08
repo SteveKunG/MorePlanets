@@ -31,7 +31,6 @@ public class GuiShieldGeneratorEntityFilter extends GuiContainerMP
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/gui/shield_generator_config.png");
     private final TileEntityShieldGenerator tile;
-    private GuiButton buttonBack;
     private GuiButton buttonAdd;
     private GuiTextField entityTextbox;
     private GuiListEntityFilter selectionList;
@@ -65,7 +64,7 @@ public class GuiShieldGeneratorEntityFilter extends GuiContainerMP
         this.infoRegions.add(new GuiElementInfoRegionMP(x + 60, y + 70, 13, 13, Collections.singletonList(LangUtils.translate("gui.shield_visible.desc")), this.width, this));
         this.infoRegions.add(new GuiElementInfoRegionMP(x + 80, y + 70, 13, 13, Collections.singletonList(LangUtils.translate("gui.enable_shield.desc")), this.width, this));
         this.infoRegions.add(new GuiElementInfoRegionMP(x + 100, y + 70, 13, 13, Collections.singletonList(LangUtils.translate("gui.enable_shield_damage.desc")), this.width, this));
-        this.buttonList.add(this.buttonBack = new GuiButton(0, this.width / 2 - 76, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.button.back.name")));
+        this.buttonList.add(new GuiButton(0, this.width / 2 - 76, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.button.back.name")));
         this.buttonList.add(this.buttonAdd = new GuiButton(1, this.width / 2 - 160, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.button.add.name")));
         this.buttonAdd.enabled = false;
 

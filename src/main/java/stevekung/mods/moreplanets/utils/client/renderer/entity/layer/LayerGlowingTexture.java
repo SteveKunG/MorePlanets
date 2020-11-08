@@ -12,14 +12,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class LayerGlowingTexture implements LayerRenderer<EntityLiving>
+public class LayerGlowingTexture<E extends EntityLiving> implements LayerRenderer<E>
 {
-    private final RenderLiving render;
+    private final RenderLiving<E> render;
     private final String textureToRender;
     private final boolean light;
     private final ResourceLocation texture;
 
-    public LayerGlowingTexture(RenderLiving render, String textureToRender, boolean light)
+    public LayerGlowingTexture(RenderLiving<E> render, String textureToRender, boolean light)
     {
         this.render = render;
         this.textureToRender = textureToRender;
@@ -28,7 +28,7 @@ public class LayerGlowingTexture implements LayerRenderer<EntityLiving>
     }
 
     @Override
-    public void doRenderLayer(EntityLiving entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
+    public void doRenderLayer(E entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
         this.render.bindTexture(this.texture);
         GlStateManager.enableBlend();

@@ -57,7 +57,7 @@ public class BlockInfectedSponge extends BlockBaseMP
     {
         Queue<Tuple<BlockPos, Integer>> queue = new LinkedList<>();
         List<BlockPos> list = new ArrayList<>();
-        queue.add(new Tuple(pos, Integer.valueOf(0)));
+        queue.add(new Tuple<>(pos, Integer.valueOf(0)));
         int i = 0;
 
         while (!queue.isEmpty())
@@ -78,7 +78,7 @@ public class BlockInfectedSponge extends BlockBaseMP
 
                     if (j < 6)
                     {
-                        queue.add(new Tuple(blockpos1, j + 1));
+                        queue.add(new Tuple<>(blockpos1, j + 1));
                     }
                 }
             }

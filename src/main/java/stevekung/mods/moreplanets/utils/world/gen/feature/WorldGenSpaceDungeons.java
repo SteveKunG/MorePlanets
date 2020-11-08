@@ -136,11 +136,11 @@ public class WorldGenSpaceDungeons extends WorldGenerator
                         if (world.isAirBlock(blockpos2))
                         {
                             int k2 = 0;
-                            Iterator iterator = EnumFacing.Plane.HORIZONTAL.iterator();
+                            Iterator<EnumFacing> iterator = EnumFacing.Plane.HORIZONTAL.iterator();
 
                             while (iterator.hasNext())
                             {
-                                EnumFacing enumfacing = (EnumFacing)iterator.next();
+                                EnumFacing enumfacing = iterator.next();
 
                                 if (world.getBlockState(blockpos2.offset(enumfacing)).getMaterial().isSolid())
                                 {

@@ -16,6 +16,7 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -23,7 +24,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.internal.FMLMessage;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry.EntityRegistration;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.renderer.*;
@@ -292,10 +292,10 @@ public class ClientProxyMP extends ServerProxyMP
 
             try
             {
-                entityID = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "throwerId", null).getInt(input);
-                posX = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawX", null).getDouble(input);
-                posY = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawY", null).getDouble(input);
-                posZ = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawZ", null).getDouble(input);
+                entityID = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "throwerId").getInt(input);
+                posX = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawX").getDouble(input);
+                posY = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawY").getDouble(input);
+                posZ = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawZ").getDouble(input);
             }
             catch (Exception e)
             {
@@ -326,12 +326,12 @@ public class ClientProxyMP extends ServerProxyMP
 
             try
             {
-                posX = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawX", null).getDouble(input);
-                posY = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawY", null).getDouble(input);
-                posZ = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawZ", null).getDouble(input);
-                speedScaledX = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledX", null).getDouble(input);
-                speedScaledY = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledY", null).getDouble(input);
-                speedScaledZ = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledZ", null).getDouble(input);
+                posX = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawX").getDouble(input);
+                posY = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawY").getDouble(input);
+                posZ = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawZ").getDouble(input);
+                speedScaledX = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledX").getDouble(input);
+                speedScaledY = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledY").getDouble(input);
+                speedScaledZ = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledZ").getDouble(input);
             }
             catch (Exception e)
             {
@@ -355,12 +355,12 @@ public class ClientProxyMP extends ServerProxyMP
 
             try
             {
-                posX = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawX", null).getDouble(input);
-                posY = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawY", null).getDouble(input);
-                posZ = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawZ", null).getDouble(input);
-                speedScaledX = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledX", null).getDouble(input);
-                speedScaledY = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledY", null).getDouble(input);
-                speedScaledZ = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledZ", null).getDouble(input);
+                posX = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawX").getDouble(input);
+                posY = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawY").getDouble(input);
+                posZ = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawZ").getDouble(input);
+                speedScaledX = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledX").getDouble(input);
+                speedScaledY = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledY").getDouble(input);
+                speedScaledZ = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledZ").getDouble(input);
             }
             catch (Exception e)
             {
@@ -384,12 +384,12 @@ public class ClientProxyMP extends ServerProxyMP
 
             try
             {
-                posX = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawX", null).getDouble(input);
-                posY = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawY", null).getDouble(input);
-                posZ = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawZ", null).getDouble(input);
-                speedScaledX = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledX", null).getDouble(input);
-                speedScaledY = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledY", null).getDouble(input);
-                speedScaledZ = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledZ", null).getDouble(input);
+                posX = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawX").getDouble(input);
+                posY = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawY").getDouble(input);
+                posZ = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawZ").getDouble(input);
+                speedScaledX = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledX").getDouble(input);
+                speedScaledY = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledY").getDouble(input);
+                speedScaledZ = ObfuscationReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledZ").getDouble(input);
             }
             catch (Exception e)
             {

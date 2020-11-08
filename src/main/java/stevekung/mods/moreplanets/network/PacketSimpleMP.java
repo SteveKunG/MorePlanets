@@ -312,10 +312,10 @@ public class PacketSimpleMP extends PacketBase
         ;
 
         private Side targetSide;
-        private Class[] decodeAs;
+        private Class<?>[] decodeAs;
         public static final EnumSimplePacketMP[] values = EnumSimplePacketMP.values();
 
-        private EnumSimplePacketMP(Side targetSide, Class... decodeAs)
+        private EnumSimplePacketMP(Side targetSide, Class<?>... decodeAs)
         {
             this.targetSide = targetSide;
             this.decodeAs = decodeAs;
@@ -326,7 +326,7 @@ public class PacketSimpleMP extends PacketBase
             return this.targetSide;
         }
 
-        public Class[] getDecodeClasses()
+        public Class<?>[] getDecodeClasses()
         {
             return this.decodeAs;
         }

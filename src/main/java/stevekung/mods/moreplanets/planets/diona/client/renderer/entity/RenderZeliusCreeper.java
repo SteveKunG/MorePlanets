@@ -20,7 +20,7 @@ public class RenderZeliusCreeper extends RenderLiving<EntityZeliusCreeper>
     public RenderZeliusCreeper(RenderManager manager)
     {
         super(manager, new ModelCreeper(), 0.5F);
-        this.addLayer(new LayerGlowingTexture(this, "zelius_creeper_glow", true));
+        this.addLayer(new LayerGlowingTexture<>(this, "zelius_creeper_glow", true));
         this.addLayer(new LayerZeliusCreeperCharge(this));
     }
 

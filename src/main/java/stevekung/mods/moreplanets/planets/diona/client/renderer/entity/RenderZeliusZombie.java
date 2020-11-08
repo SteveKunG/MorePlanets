@@ -18,7 +18,7 @@ public class RenderZeliusZombie extends RenderBiped<EntityZeliusZombie>
     public RenderZeliusZombie(RenderManager manager)
     {
         super(manager, new ModelZombie(), 0.5F);
-        this.addLayer(new LayerGlowingTexture(this, "zelius_zombie_glow", true));
+        this.addLayer(new LayerGlowingTexture<>(this, "zelius_zombie_glow", true));
         LayerBipedArmor layerbipedarmor = new LayerBipedArmor(this)
         {
             @Override

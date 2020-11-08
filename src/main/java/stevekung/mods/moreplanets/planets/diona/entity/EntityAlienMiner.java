@@ -74,7 +74,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
     }
 
     @Override
-    public void notifyDataManagerChange(DataParameter key)
+    public void notifyDataManagerChange(DataParameter<?> key)
     {
         super.notifyDataManagerChange(key);
 

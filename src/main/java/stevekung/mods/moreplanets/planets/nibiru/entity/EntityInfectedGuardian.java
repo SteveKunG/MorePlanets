@@ -128,7 +128,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     }
 
     @Override
-    public void notifyDataManagerChange(DataParameter key)
+    public void notifyDataManagerChange(DataParameter<?> key)
     {
         super.notifyDataManagerChange(key);
 

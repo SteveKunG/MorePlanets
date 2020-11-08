@@ -660,7 +660,7 @@ public class StructureNibiruOceanMonumentPieces
                 {
                     if (!roomdefinition.claimed && !roomdefinition.isSpecial())
                     {
-                        Iterator iterator = list1.iterator();
+                        Iterator<MonumentRoomFitHelper> iterator = list1.iterator();
                         MonumentRoomFitHelper helper;
 
                         while (true)
@@ -670,7 +670,7 @@ public class StructureNibiruOceanMonumentPieces
                                 continue label294;
                             }
 
-                            helper = (MonumentRoomFitHelper)iterator.next();
+                            helper = iterator.next();
 
                             if (helper.fits(roomdefinition))
                             {

@@ -115,7 +115,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
     }
 
     @Override
-    public void notifyDataManagerChange(DataParameter key)
+    public void notifyDataManagerChange(DataParameter<?> key)
     {
         if (SLIME_SIZE.equals(key))
         {

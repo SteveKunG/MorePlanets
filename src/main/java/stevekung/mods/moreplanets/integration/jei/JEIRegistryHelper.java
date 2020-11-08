@@ -20,12 +20,12 @@ public class JEIRegistryHelper
     public static IRecipeCategoryRegistration categoryRegistration;
     public static IVanillaRecipeFactory vanillaRecipe;
 
-    public static void registerRecipe(Collection recipes, String recipe)
+    public static void registerRecipe(Collection<?> recipes, String recipe)
     {
         JEIRegistryHelper.registry.addRecipes(recipes, recipe);
     }
 
-    public static void registerRecipeCategories(IRecipeCategory recipe)
+    public static void registerRecipeCategories(IRecipeCategory<?> recipe)
     {
         JEIRegistryHelper.categoryRegistration.addRecipeCategories(recipe);
     }

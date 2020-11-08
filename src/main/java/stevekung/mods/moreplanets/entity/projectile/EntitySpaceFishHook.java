@@ -130,7 +130,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
     }
 
     @Override
-    public void notifyDataManagerChange(DataParameter key)
+    public void notifyDataManagerChange(DataParameter<?> key)
     {
         if (DATA_HOOKED_ENTITY.equals(key))
         {
