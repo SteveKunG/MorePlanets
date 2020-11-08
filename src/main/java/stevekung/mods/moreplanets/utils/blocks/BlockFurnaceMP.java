@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.utils.blocks;
 
+import java.util.Locale;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -273,7 +274,7 @@ public class BlockFurnaceMP extends BlockContainerMP
         @Override
         public String toString()
         {
-            return this.name().toLowerCase();
+            return this.name().toLowerCase(Locale.ROOT);
         }
     }
 }

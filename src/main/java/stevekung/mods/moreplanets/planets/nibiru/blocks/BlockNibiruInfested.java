@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.planets.nibiru.blocks;
 
+import java.util.Locale;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -137,7 +138,7 @@ public class BlockNibiruInfested extends BlockBaseMP
         @Override
         public String toString()
         {
-            return this.name().toLowerCase();
+            return this.name().toLowerCase(Locale.ROOT);
         }
     }
 }

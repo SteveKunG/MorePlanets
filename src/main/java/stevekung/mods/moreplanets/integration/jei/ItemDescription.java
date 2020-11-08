@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.integration.jei;
 
+import java.util.Locale;
+
 import net.minecraft.util.text.TextFormatting;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
@@ -22,9 +24,9 @@ public class ItemDescription
     {
         for (TextFormatting formatting : CachedEnum.textFormatValues)
         {
-            if (original.contains("%" + formatting.getFriendlyName().toLowerCase() + "%"))
+            if (original.contains("%" + formatting.getFriendlyName().toLowerCase(Locale.ROOT) + "%"))
             {
-                original = original.replace("%" + formatting.getFriendlyName().toLowerCase() + "%", formatting.toString());
+                original = original.replace("%" + formatting.getFriendlyName().toLowerCase(Locale.ROOT) + "%", formatting.toString());
             }
         }
         return original;

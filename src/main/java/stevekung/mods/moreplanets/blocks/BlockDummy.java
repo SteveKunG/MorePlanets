@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.blocks;
 
 import java.util.Collection;
+import java.util.Locale;
 import java.util.Random;
 
 import javax.annotation.Nullable;
@@ -314,7 +315,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         @Override
         public String toString()
         {
-            return this.name().toLowerCase();
+            return this.name().toLowerCase(Locale.ROOT);
         }
     }
 }

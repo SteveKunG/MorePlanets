@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.blocks;
 
+import java.util.Locale;
 import java.util.Random;
 
 import net.minecraft.block.ITileEntityProvider;
@@ -124,7 +125,7 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntity
         @Override
         public String toString()
         {
-            return this.name().toLowerCase();
+            return this.name().toLowerCase(Locale.ROOT);
         }
     }
 }

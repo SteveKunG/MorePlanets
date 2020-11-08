@@ -80,7 +80,7 @@ public class JSONRecipe
 
         while (i < components.length && components[i] instanceof String)
         {
-            pattern.add(((String) components[i]).toUpperCase());
+            pattern.add(((String) components[i]).toUpperCase(Locale.ROOT));
             i++;
         }
 

@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.planets.fronos.blocks;
 
+import java.util.Locale;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -128,13 +129,13 @@ public class BlockFronosGrass extends BlockGrassBlockMP
         @Override
         public String toString()
         {
-            return this.getName().toLowerCase();
+            return this.getName().toLowerCase(Locale.ROOT);
         }
 
         @Override
         public String getName()
         {
-            return this.name().toLowerCase();
+            return this.name().toLowerCase(Locale.ROOT);
         }
     }
 }

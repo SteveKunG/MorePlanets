@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.blocks.decoration;
 
+import java.util.Locale;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -64,7 +66,7 @@ public class BlockAllWall extends BlockWallMP
         @Override
         public String toString()
         {
-            return this.name().toLowerCase();
+            return this.name().toLowerCase(Locale.ROOT);
         }
 
         public boolean isDungeonBrick()

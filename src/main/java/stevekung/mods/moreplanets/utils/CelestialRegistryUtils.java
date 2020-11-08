@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.utils;
 
+import java.util.Locale;
+
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.*;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody.ScalableDistance;
@@ -80,8 +82,8 @@ public class CelestialRegistryUtils
 
     public static void registerProvider(String name, int id, int staticId, Class<? extends WorldProvider> provider)
     {
-        GalacticraftRegistry.registerDimension(name, "_" + name.toLowerCase(), id, provider, false);
-        GalacticraftRegistry.registerDimension(name, "_" + name.toLowerCase(), staticId, provider, true);
+        GalacticraftRegistry.registerDimension(name, "_" + name.toLowerCase(Locale.ROOT), id, provider, false);
+        GalacticraftRegistry.registerDimension(name, "_" + name.toLowerCase(Locale.ROOT), staticId, provider, true);
     }
 
     public static void registerSolarSystem(SolarSystem solarSystem)

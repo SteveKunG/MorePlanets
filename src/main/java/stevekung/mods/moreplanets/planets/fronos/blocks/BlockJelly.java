@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.planets.fronos.blocks;
 
 import java.util.EnumMap;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.annotation.Nullable;
@@ -150,7 +151,7 @@ public class BlockJelly extends BlockBreakableMP
         @Override
         public String toString()
         {
-            return this.name().toLowerCase();
+            return this.name().toLowerCase(Locale.ROOT);
         }
     }
 }

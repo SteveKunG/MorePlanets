@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.planets.chalos.entity;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.UUID;
 
@@ -353,7 +354,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     @Override
     public boolean attackEntityFrom(DamageSource source, float damage)
     {
-        if (source.getDamageType().toLowerCase().contains("arrow"))
+        if (source.getDamageType().toLowerCase(Locale.ROOT).contains("arrow"))
         {
             if (!this.world.isRemote && this.world instanceof WorldServer)
             {

@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.planets.nibiru.blocks;
 
+import java.util.Locale;
 import java.util.Random;
 
 import javax.annotation.Nullable;
@@ -271,13 +272,13 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
         @Override
         public String toString()
         {
-            return this.name().toLowerCase();
+            return this.name().toLowerCase(Locale.ROOT);
         }
 
         @Override
         public String getName()
         {
-            return this.name().toLowerCase();
+            return this.name().toLowerCase(Locale.ROOT);
         }
     }
 }

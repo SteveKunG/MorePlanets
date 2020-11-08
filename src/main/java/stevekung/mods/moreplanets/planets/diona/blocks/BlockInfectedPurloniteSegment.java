@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.planets.diona.blocks;
 
+import java.util.Locale;
 import java.util.Random;
 
 import net.minecraft.block.ITileEntityProvider;
@@ -194,7 +195,7 @@ public class BlockInfectedPurloniteSegment extends BlockBaseMP implements ITileE
         @Override
         public String toString()
         {
-            return this.name().toLowerCase();
+            return this.name().toLowerCase(Locale.ROOT);
         }
     }
 }

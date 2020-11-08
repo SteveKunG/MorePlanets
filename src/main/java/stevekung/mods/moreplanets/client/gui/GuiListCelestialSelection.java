@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.client.gui;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.Nullable;
 
@@ -51,7 +52,7 @@ public class GuiListCelestialSelection extends GuiListExtended
 
         for (CelestialBody body : this.listCelestial)
         {
-            if (body.getName().toLowerCase().contains(text.toLowerCase()))
+            if (body.getName().toLowerCase(Locale.ROOT).contains(text.toLowerCase(Locale.ROOT)))
             {
                 listCelestialTemp.add(body);
             }

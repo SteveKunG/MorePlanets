@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.blocks.decoration;
 
+import java.util.Locale;
+
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -153,7 +155,7 @@ public class BlockAllHalfSlab extends BlockSlabMP
         @Override
         public String toString()
         {
-            return this.name().toLowerCase();
+            return this.name().toLowerCase(Locale.ROOT);
         }
 
         public boolean isDungeonBrick()

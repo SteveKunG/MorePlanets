@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.utils.blocks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -121,6 +122,6 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
     public static enum BlockType    {        CHEESE_TALL_GRASS(true),        INFECTED_ORANGE_ROSE_BUSH(false),        INFECTED_TALL_GRASS(true),        INFECTED_LARGE_FERN(true),        GREEN_VEIN_TALL_GRASS(true);
         private boolean isGrass;
         BlockType(boolean isGrass)        {            this.isGrass = isGrass;        }
-        @Override        public String toString()        {            return this.name().toLowerCase();        }
+        @Override        public String toString()        {            return this.name().toLowerCase(Locale.ROOT);        }
         public boolean isGrass()        {            return this.isGrass;        }    }
 }

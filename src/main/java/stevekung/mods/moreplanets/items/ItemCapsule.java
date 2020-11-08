@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.items;
 
+import java.util.Locale;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -116,7 +118,7 @@ public class ItemCapsule extends ItemFoodMP
         @Override
         public String toString()
         {
-            return this.name().toLowerCase();
+            return this.name().toLowerCase(Locale.ROOT);
         }
 
         public int getColor()

@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.blocks;
 
+import java.util.Locale;
+
 import micdoodle8.mods.galacticraft.core.tile.IMachineSides;
 import micdoodle8.mods.galacticraft.core.tile.IMachineSidesProperties;
 import micdoodle8.mods.galacticraft.core.tile.IMachineSidesProperties.MachineSidesModel;
@@ -193,7 +195,7 @@ public class BlockTieredEnergyStorageCluster extends BlockTileMP implements IDes
         @Override
         public String toString()
         {
-            return this.name().toLowerCase();
+            return this.name().toLowerCase(Locale.ROOT);
         }
     }
 }

@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.utils.blocks;
 
+import java.util.Locale;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
@@ -154,7 +155,7 @@ public class BlockDropableOre extends BlockBasicMP implements IDetectableResourc
         @Override
         public String toString()
         {
-            return this.name().toLowerCase();
+            return this.name().toLowerCase(Locale.ROOT);
         }
     }
 }
