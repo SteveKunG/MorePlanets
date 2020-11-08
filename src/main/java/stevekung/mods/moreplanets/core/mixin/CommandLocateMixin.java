@@ -8,17 +8,20 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+import com.google.common.collect.Lists;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandLocate;
 
 @Mixin(CommandLocate.class)
-public abstract class CommandLocateMixin extends CommandBase
+public class CommandLocateMixin
 {
     @Redirect(method = "getTabCompletions(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/command/ICommandSender;[Ljava/lang/String;Lnet/minecraft/util/math/BlockPos;)Ljava/util/List;", at = @At(value = "INVOKE", target = "net/minecraft/command/CommandLocate.getListOfStringsMatchingLastWord([Ljava/lang/String;[Ljava/lang/String;)Ljava/util/List;"))
     private List<String> addMorePlanetsStructures(String[] args, String... possibilities)
     {
-        List<String> list = CommandBase.getListOfStringsMatchingLastWord(args, "CrashedAlienShip", "AbandonedSatellite", "DionaMineshaft", "CheeseSporeHut", "NibiruDungeon", "NibiruVillage", "NibiruStronghold", "NibiruPyramid", "NibiruOceanMonument", "NibiruMineshaft", "NibiruJungleTemple", "NibiruIgloo");
-        list.addAll(Arrays.stream(possibilities).collect(Collectors.toList()));
-        return CommandBase.getListOfStringsMatchingLastWord(args, list);
+        List<String> newLoc = Lists.newArrayList("CrashedAlienShip", "AbandonedSatellite", "DionaMineshaft", "CheeseSporeHut", "NibiruDungeon", "NibiruVillage", "NibiruStronghold", "NibiruPyramid", "NibiruOceanMonument", "NibiruMineshaft", "NibiruJungleTemple", "NibiruIgloo");
+        List<String> mod = Arrays.stream(possibilities).collect(Collectors.toList());
+        mod.addAll(newLoc);
+        return CommandBase.getListOfStringsMatchingLastWord(args, mod);
     }
 }

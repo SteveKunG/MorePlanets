@@ -6,8 +6,11 @@
     "refmap": "mixins.more_planets.refmap.json",
     "target": "@env(DEFAULT)",
     "mixins": [
-        "EntityLivingBaseMixin",
-        "CommandLocateMixin"
+        "CommandLocateMixin",
+        "EntityLivingBaseMixin"
+    ],
+    "client": [
+    	"client.EntityRendererMixin"
     ],
     "injectors": {
         "defaultRequire": 1
