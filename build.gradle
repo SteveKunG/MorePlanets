@@ -49,8 +49,8 @@ dependencies {
     compile "redstone-flux:RedstoneFlux-1.12:2.1.0.6:universal"
     compile "industrial-craft:industrialcraft-2-2.8.157:ex112:api"
     compile "player-api:PlayerAPI:1.12.1:1.0"
-    compile "actually-additions:ActuallyAdditions:1.12.2:r144"
-    compile "applied-energistics-2:appliedenergistics2-rv6:stable:6"
+    compile "actually-additions:ActuallyAdditions:1.12.2-r144:api"
+    compile "applied-energistics-2:appliedenergistics2-rv6:stable-6:api"
     compile files(
 		"libs/GalacticraftCore-Dev-" + gcDevVersion + ".jar",
 		"libs/Galacticraft-Planets-Dev-" + gcDevVersion + ".jar",
@@ -60,7 +60,7 @@ dependencies {
     deobfCompile "team.chisel.ctm:CTM:MC${ctm_version}"
     deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
     deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
-    deobfCompile "stevekungs-lib:SteveKunG's-Lib-1.12.2:1.1.7:deobf"
+    deobfCompile "stevekungs-lib:SteveKunG's-Lib-1.12.2:1.1.9:deobf"
     deobfCompile "indicatia:Indicatia-1.12.2:1.3.3:deobf"
     runtime "mezz.jei:jei_${mc_version}:${jei_version}"
     embed("org.spongepowered:mixin:0.7.11-SNAPSHOT") { transitive = false }
