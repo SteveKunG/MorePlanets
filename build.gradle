@@ -74,9 +74,6 @@ repositories {
         url "https://dvs1.progwml6.com/files/maven/"
     }
     maven {
-        url "https://modmaven.k-4u.nl"
-    }
-    maven {
         url "http://chickenbones.net/maven/"
     }
     maven {
