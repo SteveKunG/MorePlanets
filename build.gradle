@@ -49,8 +49,8 @@ dependencies {
     compile "redstone-flux:RedstoneFlux-1.12:2.1.0.6:universal"
     compile "industrial-craft:industrialcraft-2-2.8.157:ex112:api"
     compile "player-api:PlayerAPI:1.12.1:1.0"
-    compile "de.ellpeck.actuallyadditions:ActuallyAdditions:1.12.2-r144:api"
-    compile "appeng:appliedenergistics2:rv6-stable-6:api"
+    compile "actually-additions:ActuallyAdditions:1.12.2:r144"
+    compile "applied-energistics-2:appliedenergistics2-rv6:stable:6"
     compile files(
 		"libs/GalacticraftCore-Dev-" + gcDevVersion + ".jar",
 		"libs/Galacticraft-Planets-Dev-" + gcDevVersion + ".jar",
@@ -68,31 +68,36 @@ dependencies {
 
 repositories {
     maven {
-        url "https://maven.tehnut.info"
-    }
-    maven {
-        url "https://dvs1.progwml6.com/files/maven/"
-    }
-    maven {
-        url "http://chickenbones.net/maven/"
-    }
-    maven {
-        url "https://plugins.gradle.org/m2/"
-    }
-    maven {
+        name "CTM"
         url "http://maven.tterrag.com/"
     }
     maven {
+        name "SpongePowered"
+        url "https://repo.spongepowered.org/maven"
+    }
+    maven {
+        name "CodeChickenLib"
+        url "http://chickenbones.net/maven/"
+    }
+    maven {
+        name "Hwyla"
+        url "https://maven.tehnut.info"
+    }
+    maven {
+        name "Baubles"
         url "http://maven.thiakil.com/"
     }
     maven {
+        name "CurseForge"
         url "https://minecraft.curseforge.com/api/maven/"
     }
     maven {
-        url "https://mod-buildcraft.com/maven/"
+        name "JEI"
+        url "http://dvs1.progwml6.com/files/maven"
     }
     maven {
-        url "http://repo.spongepowered.org/maven/"
+        name "Buildcraft"
+        url "https://mod-buildcraft.com/maven/"
     }
 }
 
@@ -118,13 +123,13 @@ jar {
 }
 
 curseforge {
-    if (project.hasProperty('upload_api_key')) {
+    if (project.hasProperty("upload_api_key")) {
         apiKey = project.upload_api_key
         project {
             id = "261990"
             changelog = file("CHANGE_LOG.md")
             changelogType = "markdown"
-            releaseType = "beta"
+            releaseType = "release"
             addGameVersion mcVersion
 
             mainArtifact(jar) {
