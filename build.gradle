@@ -49,13 +49,14 @@ dependencies {
     compile "redstone-flux:RedstoneFlux-1.12:2.1.0.6:universal"
     compile "industrial-craft:industrialcraft-2-2.8.157:ex112:api"
     compile "player-api:PlayerAPI:1.12.1:1.0"
-    compile "actually-additions:ActuallyAdditions:1.12.2-r144:api"
-    compile "applied-energistics-2:appliedenergistics2-rv6:stable-6:api"
+    compile "de.ellpeck.actuallyadditions:ActuallyAdditions_1.12.2:1.12.2-r151:api"
+    compile "appeng:appliedenergistics2:rv6-stable-6:api"
+
     compile files(
-		"libs/GalacticraftCore-Dev-" + gcDevVersion + ".jar",
-		"libs/Galacticraft-Planets-Dev-" + gcDevVersion + ".jar",
-		"libs/MicdoodleCore-Dev-" + gcDevVersion + ".jar"
-	)
+        "libs/GalacticraftCore-Dev-" + gcDevVersion + ".jar",
+        "libs/Galacticraft-Planets-Dev-" + gcDevVersion + ".jar",
+        "libs/MicdoodleCore-Dev-" + gcDevVersion + ".jar"
+    )
     deobfCompile "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
     deobfCompile "team.chisel.ctm:CTM:MC${ctm_version}"
     deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
@@ -98,6 +99,14 @@ repositories {
     maven {
         name "Buildcraft"
         url "https://mod-buildcraft.com/maven/"
+    }
+    maven {
+        name "AA"
+        url "https://maven.ellpeck.de/"
+    }
+    maven {
+        name "Modmaven"
+        url "https://modmaven.dev/"
     }
 }
 
