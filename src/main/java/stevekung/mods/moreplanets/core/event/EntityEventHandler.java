@@ -20,8 +20,6 @@ import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
@@ -62,17 +60,7 @@ import stevekung.mods.moreplanets.world.IMeteorType;
 
 public class EntityEventHandler
 {
-    public static final DataParameter<Boolean> INFECTED_PURLONITE = new DataParameter<>(122, DataSerializers.BOOLEAN);
     private boolean openCelestialGui;
-
-    @SubscribeEvent
-    public void onEntityConstruct(EntityEvent.EntityConstructing event)
-    {
-        if (event.getEntity() instanceof EntityLivingBase)
-        {
-            event.getEntity().getDataManager().register(INFECTED_PURLONITE, false);
-        }
-    }
 
     @SubscribeEvent
     public void onZombieSummonAid(SummonAidEvent event)
