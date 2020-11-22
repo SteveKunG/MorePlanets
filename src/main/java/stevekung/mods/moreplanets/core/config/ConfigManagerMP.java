@@ -100,6 +100,10 @@ public class ConfigManagerMP
         @Config.RequiresMcRestart
         public int planetNibiruTier = 3;
 
+        @Config.Name(value = "Fronos Planet Tier")
+        @Config.RequiresMcRestart
+        public int planetFronosTier = 3;
+
         @Config.Name(value = "Enable Nibiru Infected Spore suffocation for mobs")
         public boolean enableInfectedSporeForMobs = true;
     }
@@ -127,6 +131,9 @@ public class ConfigManagerMP
 
         @Config.Name(value = "Enable Common Ore on Nibiru")
         public boolean enableCommonNibiruOre = true;
+
+        @Config.Name(value = "Enable Common Ore on Fronos")
+        public boolean enableCommonFronosOre = true;
     }
 
     // Others

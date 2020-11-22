@@ -8,6 +8,9 @@ import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeChalosMout
 import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeChalosPlains;
 import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeSlimelyStream;
 import stevekung.mods.moreplanets.planets.diona.world.gen.BiomeDiona;
+import stevekung.mods.moreplanets.planets.fronos.world.gen.biome.BiomeFronos;
+import stevekung.mods.moreplanets.planets.fronos.world.gen.biome.BiomeFronosBeach;
+import stevekung.mods.moreplanets.planets.fronos.world.gen.biome.BiomeFronosMellow;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.*;
 import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeMP;
 
@@ -58,6 +61,10 @@ public class MPBiomes
     public static Biome INFECTED_BADLANDS = new BiomeInfectedBadlands(new Biome.BiomeProperties("Infected Badlands").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), false, false);
     public static Biome INFECTED_WOODED_BADLANDS_PLATEAU = new BiomeInfectedBadlands(new Biome.BiomeProperties("Infected Wooded Badlands Plateau").setBaseHeight(1.5F).setHeightVariation(0.025F).setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), false, true);
     public static Biome INFECTED_BADLANDS_PLATEAU = new BiomeInfectedBadlands(new Biome.BiomeProperties("Infected Badlands Plateau").setBaseHeight(1.5F).setHeightVariation(0.025F).setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), false, false);
+    public static Biome FRONOS_MELLOW = new BiomeFronosMellow(new Biome.BiomeProperties("Fronos Mellow").setTemperature(0.8F).setRainfall(0.4F).setBaseHeight(0.01F).setHeightVariation(0.05F));
+    public static Biome FRONOS_PLAINS = new BiomeFronosMellow(new Biome.BiomeProperties("Fronos Plains").setTemperature(0.8F).setRainfall(0.4F).setBaseHeight(0.125F).setHeightVariation(0.05F));
+    public static Biome FRONOS_RIVER = new BiomeFronos(new Biome.BiomeProperties("Fronos River").setBaseHeight(-0.5F).setHeightVariation(0.0F));
+    public static Biome FRONOS_BEACHES = new BiomeFronosBeach(new Biome.BiomeProperties("Fronos Beach").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.8F).setRainfall(0.4F));
 
     public static void init()
     {
@@ -105,6 +112,10 @@ public class MPBiomes
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_BADLANDS, "infected_badlands");
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_WOODED_BADLANDS_PLATEAU, "infected_wooded_badlands_plateau");
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_BADLANDS_PLATEAU, "infected_badlands_plateau");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.FRONOS_MELLOW, "fronos_mellow");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.FRONOS_PLAINS, "fronos_plains");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.FRONOS_RIVER, "fronos_river");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.FRONOS_BEACHES, "fronos_beaches");
     }
 
     public static void registerTypes()
@@ -153,5 +164,9 @@ public class MPBiomes
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_BADLANDS, MESA, DEAD, SANDY, DRY);
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_WOODED_BADLANDS_PLATEAU, MESA, DEAD, SANDY, DRY, SPARSE);
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_BADLANDS_PLATEAU, MESA, DEAD, DRY, SANDY);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.FRONOS_MELLOW, PLAINS);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.FRONOS_PLAINS, PLAINS);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.FRONOS_RIVER, RIVER);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.FRONOS_BEACHES, BEACH);
     }
 }

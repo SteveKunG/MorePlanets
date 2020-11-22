@@ -365,6 +365,9 @@ tile.lime_jelly_block.name=Lime Jelly Block
 tile.green_jelly_block.name=Green Jelly Block
 tile.orange_jelly_block.name=Orange Jelly Block
 tile.lemon_jelly_block.name=Lemon Jelly Block
+tile.fronos_grass.name=Fronos Grass
+tile.nemophila.name=Nemophila
+tile.pink_blechnum.name=Pink Blechnum
 
 # FLUIDS
 fluid.xpjuice=XP
@@ -807,6 +810,7 @@ planet.space_nether=Space Nether
 planet.diona=Diona
 planet.chalos=Chalos
 planet.nibiru=Nibiru
+planet.fronos=Fronos
 
 # MOONS
 moon.koentus=Koentus

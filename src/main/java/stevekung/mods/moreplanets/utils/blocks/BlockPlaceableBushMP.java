@@ -160,6 +160,10 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
             {
                 drops.add(new ItemStack(MPItems.INFECTED_WHEAT_SEEDS));
             }
+            else if (this.type == BlockType.FRONOS_GRASS)
+            {
+                drops.add(new ItemStack(Items.WHEAT_SEEDS));
+            }
         }
         if (this.type == BlockType.GREEN_VEIN_GRASS && RANDOM.nextInt(24) == 0)
         {
@@ -198,7 +202,14 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
     @Override
     public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer)
     {
-        return this.type == BlockType.TERRAPUFF_HERB && CompatibilityManagerMP.isCTMLoaded ? layer == BlockRenderLayer.CUTOUT : this.type == BlockType.TERRASHROOM ? layer == BlockRenderLayer.TRANSLUCENT : super.canRenderInLayer(state, layer);
+        if (CompatibilityManagerMP.isCTMLoaded)
+        {
+            if (this.type == BlockType.TERRAPUFF_HERB || this.type == BlockType.NEMOPHILA)
+            {
+                return layer == BlockRenderLayer.CUTOUT;
+            }
+        }
+        return this.type == BlockType.TERRASHROOM ? layer == BlockRenderLayer.TRANSLUCENT : super.canRenderInLayer(state, layer);
     }
 
     @Override
@@ -266,6 +277,10 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         else if (this.type == BlockType.TERRASHROOM)
         {
             return block == MPBlocks.GREEN_VEIN_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT || block == MPBlocks.TERRASTONE || block == MPBlocks.PURIFIED_GRAVEL;
+        }
+        else if (this.type == BlockType.FRONOS_GRASS || this.type == BlockType.NEMOPHILA || this.type == BlockType.PINK_BLECHNUM)
+        {
+            return block == MPBlocks.FRONOS_GRASS_BLOCK || block == MPBlocks.FRONOS_DIRT || block == MPBlocks.FRONOS_COARSE_DIRT || block == MPBlocks.FRONOS_FARMLAND;
         }
         return false;
     }
@@ -387,7 +402,11 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         WHITE_TAIL(true),
         VEALIUM_VINES(true),
         TERRASHROOM(true),
-        CREEP_VINES(true);
+        CREEP_VINES(true),
+        FRONOS_GRASS(false),
+        NEMOPHILA(true),
+        PINK_BLECHNUM(true),
+        ;
 
         private boolean isFlower;
 

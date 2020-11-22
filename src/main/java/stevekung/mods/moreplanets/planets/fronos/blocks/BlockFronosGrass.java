@@ -11,6 +11,7 @@ import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -118,6 +119,18 @@ public class BlockFronosGrass extends BlockGrassBlockMP
     public int getMetaFromState(IBlockState state)
     {
         return 0;
+    }
+
+    @Override
+    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)
+    {
+        IBlockState plant = plantable.getPlant(world, pos.offset(direction));
+
+        if (plant.getBlock() == Blocks.REEDS)
+        {
+            return true;
+        }
+        return false;
     }
 
     public static enum BlockType implements IStringSerializable

@@ -1,0 +1,6 @@
+{
+    "parent": "block/tinted_cross",
+    "textures": {
+        "cross": "moreplanets:blocks/fronos_grass_2"
+    }
+}

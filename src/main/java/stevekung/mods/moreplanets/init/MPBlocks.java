@@ -399,6 +399,8 @@ public class MPBlocks
     public static Block WHITE_TAIL;
     public static Block VEALIUM_VINES;
     public static Block TERRASHROOM;
+    public static Block NEMOPHILA;
+    public static Block PINK_BLECHNUM;
 
     // Others
     public static Block INFECTED_CRAFTING_TABLE;
@@ -494,6 +496,7 @@ public class MPBlocks
     public static Block FRONOS_CRACKED_STONE_BRICKS;
     public static Block FRONOS_CHISELED_STONE_BRICKS;
     public static Block FRONOS_DUNGEON_BRICK;
+    public static Block FRONOS_GRASS;
 
     // Fronos Ore
     public static Block FRONOS_IRON_ORE;
@@ -859,6 +862,8 @@ public class MPBlocks
         MPBlocks.WHITE_TAIL = new BlockPlaceableBushMP("white_tail", BlockPlaceableBushMP.BlockType.WHITE_TAIL);
         MPBlocks.VEALIUM_VINES = new BlockPlaceableBushMP("vealium_vines", BlockPlaceableBushMP.BlockType.VEALIUM_VINES);
         MPBlocks.TERRASHROOM = new BlockPlaceableBushMP("terrashroom", BlockPlaceableBushMP.BlockType.TERRASHROOM);
+        MPBlocks.NEMOPHILA = new BlockPlaceableBushMP("nemophila", BlockPlaceableBushMP.BlockType.NEMOPHILA);
+        MPBlocks.PINK_BLECHNUM = new BlockPlaceableBushMP("pink_blechnum", BlockPlaceableBushMP.BlockType.PINK_BLECHNUM);
 
         // Others
         MPBlocks.INFECTED_CRAFTING_TABLE = new BlockCraftingTableMP("infected_crafting_table");
@@ -971,7 +976,8 @@ public class MPBlocks
         MPBlocks.FRONOS_CRACKED_STONE_BRICKS = new BlockBaseMP("fronos_cracked_stone_bricks", Material.ROCK).setHardness(1.5F);
         MPBlocks.FRONOS_CHISELED_STONE_BRICKS = new BlockBaseMP("fronos_chiseled_stone_bricks", Material.ROCK).setHardness(1.5F);
         MPBlocks.FRONOS_DUNGEON_BRICK = new BlockBaseMP("fronos_dungeon_brick", Material.ROCK).setSortCategory(EnumSortCategoryBlock.DUNGEON_BRICK).setHardness(4.0F).setResistance(40.0F);
-
+        MPBlocks.FRONOS_GRASS = new BlockPlaceableBushMP("fronos_grass", BlockPlaceableBushMP.BlockType.FRONOS_GRASS);
+        
         // Fronos Ore
         MPBlocks.FRONOS_IRON_ORE = new BlockMineableOre("fronos_iron_ore").setHardness(3.0F);
         MPBlocks.FRONOS_GOLD_ORE = new BlockMineableOre("fronos_gold_ore").setHardness(3.0F);
@@ -1254,6 +1260,8 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.WHITE_TAIL);
         BlocksItemsRegistry.registerBlock(MPBlocks.VEALIUM_VINES);
         BlocksItemsRegistry.registerBlock(MPBlocks.TERRASHROOM);
+        BlocksItemsRegistry.registerBlock(MPBlocks.NEMOPHILA);
+        BlocksItemsRegistry.registerBlock(MPBlocks.PINK_BLECHNUM);
 
         // Other
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRAFTING_TABLE);
@@ -1487,6 +1495,7 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_CRACKED_STONE_BRICKS);
         BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_CHISELED_STONE_BRICKS);
         BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_DUNGEON_BRICK);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_GRASS);
 
         // Fronos Ore
         BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_IRON_ORE);
@@ -1865,6 +1874,7 @@ public class MPBlocks
         BlockUtils.setFireBurn(MPBlocks.CHEESE_SPORE_STAIRS, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.CHEESE_SPORE_FENCE, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.CHEESE_SPORE_FENCE_GATE, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.FRONOS_GRASS, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_GRASS, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_FERN, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.GREEN_VEIN_GRASS, 60, 100);
@@ -1880,6 +1890,8 @@ public class MPBlocks
         BlockUtils.setFireBurn(MPBlocks.WHITE_TAIL, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.VEALIUM_VINES, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.TERRASHROOM, 60, 100);
+        BlockUtils.setFireBurn(MPBlocks.NEMOPHILA, 60, 100);
+        BlockUtils.setFireBurn(MPBlocks.PINK_BLECHNUM, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_OAK_LOG, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_DEADWOOD_LOG, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_JUNGLE_LOG, 5, 20);
