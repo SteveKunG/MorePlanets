@@ -64,7 +64,7 @@ public class GeneralEventHandler
         Item item = event.getItemStack().getItem();
         Block block = Block.getBlockFromItem(item);
 
-        if (block == MPBlocks.CHEESE_SPORE_FLOWER || block == MPBlocks.INFECTED_OAK_SAPLING || block == MPBlocks.INFECTED_JUNGLE_SAPLING || block == MPBlocks.INFECTED_SPRUCE_SAPLING || block == MPBlocks.ALIEN_BERRY_OAK_SAPLING)
+        if (block == MPBlocks.CHEESE_SPORE_FLOWER || block == MPBlocks.INFECTED_OAK_SAPLING || block == MPBlocks.INFECTED_JUNGLE_SAPLING || block == MPBlocks.INFECTED_SPRUCE_SAPLING || block == MPBlocks.ALIEN_BERRY_OAK_SAPLING || block == MPBlocks.OSCALEA_SAPLING || block == MPBlocks.FROLIA_SAPLING)
         {
             event.setBurnTime(100);
         }

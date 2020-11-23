@@ -399,8 +399,6 @@ public class MPBlocks
     public static Block WHITE_TAIL;
     public static Block VEALIUM_VINES;
     public static Block TERRASHROOM;
-    public static Block NEMOPHILA;
-    public static Block PINK_BLECHNUM;
 
     // Others
     public static Block INFECTED_CRAFTING_TABLE;
@@ -497,6 +495,13 @@ public class MPBlocks
     public static Block FRONOS_CHISELED_STONE_BRICKS;
     public static Block FRONOS_DUNGEON_BRICK;
     public static Block FRONOS_GRASS;
+    public static Block OSCALEA_LOG;
+    public static Block OSCALEA_LEAVES;
+    public static Block OSCALEA_PLANKS;
+    public static Block FROLIA_LOG;
+    public static Block FROLIA_LEAVES;
+    public static Block FROLIA_FLOWERED_LEAVES;
+    public static Block FROLIA_PLANKS;
 
     // Fronos Ore
     public static Block FRONOS_IRON_ORE;
@@ -533,6 +538,12 @@ public class MPBlocks
     public static Block ORANGE_JELLY_BLOCK;
     public static Block GREEN_JELLY_BLOCK;
     public static Block LEMON_JELLY_BLOCK;
+
+    // Flowers/Sapling
+    public static Block OSCALEA_SAPLING;
+    public static Block FROLIA_SAPLING;
+    public static Block NEMOPHILA;
+    public static Block PINK_BLECHNUM;
 
     public static void init()
     {
@@ -847,6 +858,9 @@ public class MPBlocks
         MPBlocks.INFECTED_SPRUCE_LEAVES = new BlockLeavesMP("infected_spruce_leaves", BlockLeavesMP.BlockType.INFECTED_SPRUCE_LEAVES);
         MPBlocks.INFECTED_JUNGLE_LEAVES = new BlockLeavesMP("infected_jungle_leaves", BlockLeavesMP.BlockType.INFECTED_JUNGLE_LEAVES);
         MPBlocks.ALIEN_BERRY_OAK_LEAVES = new BlockLeavesMP("alien_berry_oak_leaves", BlockLeavesMP.BlockType.ALIEN_BERRY_OAK_LEAVES);
+        MPBlocks.OSCALEA_LEAVES = new BlockLeavesMP("oscalea_leaves", BlockLeavesMP.BlockType.OSCALEA_LEAVES);
+        MPBlocks.FROLIA_LEAVES = new BlockLeavesMP("frolia_leaves", BlockLeavesMP.BlockType.FROLIA_LEAVES);
+        MPBlocks.FROLIA_FLOWERED_LEAVES = new BlockLeavesMP("frolia_flowered_leaves", BlockLeavesMP.BlockType.FROLIA_LEAVES);
 
         MPBlocks.INFECTED_OAK_SAPLING = new BlockSaplingMP("infected_oak_sapling", BlockSaplingMP.BlockType.INFECTED_OAK_SAPLING);
         MPBlocks.INFECTED_SPRUCE_SAPLING = new BlockSaplingMP("infected_spruce_sapling", BlockSaplingMP.BlockType.INFECTED_SPRUCE_SAPLING);
@@ -862,8 +876,6 @@ public class MPBlocks
         MPBlocks.WHITE_TAIL = new BlockPlaceableBushMP("white_tail", BlockPlaceableBushMP.BlockType.WHITE_TAIL);
         MPBlocks.VEALIUM_VINES = new BlockPlaceableBushMP("vealium_vines", BlockPlaceableBushMP.BlockType.VEALIUM_VINES);
         MPBlocks.TERRASHROOM = new BlockPlaceableBushMP("terrashroom", BlockPlaceableBushMP.BlockType.TERRASHROOM);
-        MPBlocks.NEMOPHILA = new BlockPlaceableBushMP("nemophila", BlockPlaceableBushMP.BlockType.NEMOPHILA);
-        MPBlocks.PINK_BLECHNUM = new BlockPlaceableBushMP("pink_blechnum", BlockPlaceableBushMP.BlockType.PINK_BLECHNUM);
 
         // Others
         MPBlocks.INFECTED_CRAFTING_TABLE = new BlockCraftingTableMP("infected_crafting_table");
@@ -977,7 +989,11 @@ public class MPBlocks
         MPBlocks.FRONOS_CHISELED_STONE_BRICKS = new BlockBaseMP("fronos_chiseled_stone_bricks", Material.ROCK).setHardness(1.5F);
         MPBlocks.FRONOS_DUNGEON_BRICK = new BlockBaseMP("fronos_dungeon_brick", Material.ROCK).setSortCategory(EnumSortCategoryBlock.DUNGEON_BRICK).setHardness(4.0F).setResistance(40.0F);
         MPBlocks.FRONOS_GRASS = new BlockPlaceableBushMP("fronos_grass", BlockPlaceableBushMP.BlockType.FRONOS_GRASS);
-        
+        MPBlocks.OSCALEA_LOG = new BlockLogMP("oscalea_log");
+        MPBlocks.FROLIA_LOG = new BlockLogMP("frolia_log");
+        MPBlocks.OSCALEA_PLANKS = new BlockBaseMP("oscalea_planks", Material.WOOD).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
+        MPBlocks.FROLIA_PLANKS = new BlockBaseMP("frolia_planks", Material.WOOD).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
+
         // Fronos Ore
         MPBlocks.FRONOS_IRON_ORE = new BlockMineableOre("fronos_iron_ore").setHardness(3.0F);
         MPBlocks.FRONOS_GOLD_ORE = new BlockMineableOre("fronos_gold_ore").setHardness(3.0F);
@@ -1013,6 +1029,12 @@ public class MPBlocks
         MPBlocks.ORANGE_JELLY_BLOCK = new BlockJelly("orange_jelly_block", BlockJelly.BlockType.ORANGE_JELLY_BLOCK);
         MPBlocks.GREEN_JELLY_BLOCK = new BlockJelly("green_jelly_block", BlockJelly.BlockType.GREEN_JELLY_BLOCK);
         MPBlocks.LEMON_JELLY_BLOCK = new BlockJelly("lemon_jelly_block", BlockJelly.BlockType.LEMON_JELLY_BLOCK);
+
+        // Flowers/Sapling
+        MPBlocks.NEMOPHILA = new BlockPlaceableBushMP("nemophila", BlockPlaceableBushMP.BlockType.NEMOPHILA);
+        MPBlocks.PINK_BLECHNUM = new BlockPlaceableBushMP("pink_blechnum", BlockPlaceableBushMP.BlockType.PINK_BLECHNUM);
+        MPBlocks.OSCALEA_SAPLING = new BlockSaplingMP("oscalea_sapling", BlockSaplingMP.BlockType.OSCALEA_SAPLING);
+        MPBlocks.FROLIA_SAPLING = new BlockSaplingMP("frolia_sapling", BlockSaplingMP.BlockType.FROLIA_SAPLING);
 
         //////////////////////// FLUID STUFF ////////////////////////
 
@@ -1236,6 +1258,10 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_SPRUCE_LOG);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_JUNGLE_LOG);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_LOG);
+        BlocksItemsRegistry.registerBlock(MPBlocks.OSCALEA_LOG);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_LOG);
+        BlocksItemsRegistry.registerBlock(MPBlocks.OSCALEA_PLANKS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_PLANKS);
 
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_PLANKS);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_SPRUCE_PLANKS);
@@ -1245,6 +1271,9 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_SPRUCE_LEAVES, ItemBlockSingleLeaves::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_JUNGLE_LEAVES, ItemBlockSingleLeaves::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_LEAVES, ItemBlockSingleLeaves::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.OSCALEA_LEAVES, ItemBlockSingleLeaves::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_LEAVES, ItemBlockSingleLeaves::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_FLOWERED_LEAVES, ItemBlockSingleLeaves::new);
 
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_SAPLING);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_SPRUCE_SAPLING);
@@ -1262,6 +1291,8 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.TERRASHROOM);
         BlocksItemsRegistry.registerBlock(MPBlocks.NEMOPHILA);
         BlocksItemsRegistry.registerBlock(MPBlocks.PINK_BLECHNUM);
+        BlocksItemsRegistry.registerBlock(MPBlocks.OSCALEA_SAPLING);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_SAPLING);
 
         // Other
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRAFTING_TABLE);
@@ -1732,6 +1763,10 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_DEADWOOD_LOG, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_JUNGLE_LOG, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_BERRY_OAK_LOG, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.OSCALEA_LOG, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.FROLIA_LOG, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.OSCALEA_PLANKS, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.FROLIA_PLANKS, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_OAK_PLANKS, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_BERRY_OAK_PLANKS, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_CRAFTING_TABLE, EnumHarvestLevel.AXE, 0);
@@ -1892,10 +1927,16 @@ public class MPBlocks
         BlockUtils.setFireBurn(MPBlocks.TERRASHROOM, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.NEMOPHILA, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.PINK_BLECHNUM, 60, 100);
+        BlockUtils.setFireBurn(MPBlocks.OSCALEA_SAPLING, 60, 100);
+        BlockUtils.setFireBurn(MPBlocks.FROLIA_SAPLING, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_OAK_LOG, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_DEADWOOD_LOG, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_JUNGLE_LOG, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.ALIEN_BERRY_OAK_LOG, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.OSCALEA_LOG, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.FROLIA_LOG, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.OSCALEA_PLANKS, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.FROLIA_PLANKS, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_OAK_PLANKS, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.ALIEN_BERRY_OAK_PLANKS, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_OAK_BOOKSHELF, 5, 20);
@@ -1906,6 +1947,9 @@ public class MPBlocks
         BlockUtils.setFireBurn(MPBlocks.INFECTED_OAK_LEAVES, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_JUNGLE_LEAVES, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.ALIEN_BERRY_OAK_LEAVES, 60, 100);
+        BlockUtils.setFireBurn(MPBlocks.OSCALEA_LEAVES, 60, 100);
+        BlockUtils.setFireBurn(MPBlocks.FROLIA_LEAVES, 60, 100);
+        BlockUtils.setFireBurn(MPBlocks.FROLIA_FLOWERED_LEAVES, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_VINES, 15, 100);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_OAK_STAIRS, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.ALIEN_BERRY_OAK_STAIRS, 5, 20);

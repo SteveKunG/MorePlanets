@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.planets.fronos.world.gen.biome.layer;
 
-import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
@@ -35,34 +34,15 @@ public class GenLayerFronosRiverMix extends GenLayer
 
         for (int i = 0; i < areaWidth * areaHeight; ++i)
         {
-            if (aint[i] != Biome.getIdForBiome(Biomes.OCEAN) && aint[i] != Biome.getIdForBiome(Biomes.DEEP_OCEAN))
+            if (aint1[i] == Biome.getIdForBiome(MPBiomes.FRONOS_RIVER))
             {
-                if (aint1[i] == Biome.getIdForBiome(MPBiomes.FRONOS_RIVER))
-                {
-                    if (aint[i] == Biome.getIdForBiome(Biomes.ICE_PLAINS))
-                    {
-                        aint2[i] = Biome.getIdForBiome(Biomes.FROZEN_RIVER);
-                    }
-                    else if (aint[i] != Biome.getIdForBiome(Biomes.MUSHROOM_ISLAND) && aint[i] != Biome.getIdForBiome(Biomes.MUSHROOM_ISLAND_SHORE))
-                    {
-                        aint2[i] = aint1[i] & 255;
-                    }
-                    else
-                    {
-                        aint2[i] = Biome.getIdForBiome(Biomes.MUSHROOM_ISLAND_SHORE);
-                    }
-                }
-                else
-                {
-                    aint2[i] = aint[i];
-                }
+                aint2[i] = aint1[i] & 255;
             }
             else
             {
                 aint2[i] = aint[i];
             }
         }
-
         return aint2;
     }
 }

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
@@ -48,9 +49,9 @@ public class BiomeFronosMellow extends BiomeFronos
         super.decorate(world, rand, pos);
     }
 
-    //    @Override
-    //    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
-    //    {
-    //        return rand.nextInt(3) == 0 ? BiomeNibiru.BIG_TREE : BiomeNibiru.TREE;
-    //    }
+    @Override
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
+    {
+        return this == MPBiomes.FRONOS_MELLOW ? FROLIA : rand.nextInt(3) == 0 ? FROLIA : OSCALEA;
+    }
 }

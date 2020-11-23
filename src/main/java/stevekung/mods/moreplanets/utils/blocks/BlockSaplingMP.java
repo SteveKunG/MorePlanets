@@ -17,6 +17,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.chalos.world.gen.feature.WorldGenCheeseSporeTree;
+import stevekung.mods.moreplanets.planets.fronos.world.gen.feature.WorldGenFroliaTree;
+import stevekung.mods.moreplanets.planets.fronos.world.gen.feature.WorldGenOscaleaTrees;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.*;
 
 public class BlockSaplingMP extends BlockBushMP implements IGrowable
@@ -54,6 +56,10 @@ public class BlockSaplingMP extends BlockBushMP implements IGrowable
         else if (this.type == BlockType.CHEESE_SPORE_FLOWER)
         {
             return block == MPBlocks.CHEESE_GRASS_BLOCK || block == MPBlocks.CHEESE_DIRT || block == MPBlocks.CHEESE_COARSE_DIRT || block == MPBlocks.CHEESE_FARMLAND;
+        }
+        else if (this.type == BlockType.OSCALEA_SAPLING || this.type == BlockType.FROLIA_SAPLING)
+        {
+            return block == MPBlocks.FRONOS_GRASS_BLOCK || block == MPBlocks.FRONOS_DIRT || block == MPBlocks.FRONOS_COARSE_DIRT || block == MPBlocks.FRONOS_FARMLAND;
         }
         return super.validBlock(block);
     }
@@ -162,6 +168,12 @@ public class BlockSaplingMP extends BlockBushMP implements IGrowable
             case ALIEN_BERRY_OAK_SAPLING:
                 worldGen = rand.nextInt(10) == 0 ? new WorldGenAlienBerryBigTree() : new WorldGenAlienBerryTree();
                 break;
+            case OSCALEA_SAPLING:
+                worldGen = new WorldGenOscaleaTrees();
+                break;
+            case FROLIA_SAPLING:
+                worldGen = new WorldGenFroliaTree();
+                break;
             case CHEESE_SPORE_FLOWER:
                 if (!state.getValue(NATURAL_GEN))
                 {
@@ -252,7 +264,9 @@ public class BlockSaplingMP extends BlockBushMP implements IGrowable
         INFECTED_OAK_SAPLING,
         INFECTED_SPRUCE_SAPLING,
         INFECTED_JUNGLE_SAPLING,
-        ALIEN_BERRY_OAK_SAPLING;
+        ALIEN_BERRY_OAK_SAPLING,
+        OSCALEA_SAPLING,
+        FROLIA_SAPLING;
 
         @Override
         public String toString()

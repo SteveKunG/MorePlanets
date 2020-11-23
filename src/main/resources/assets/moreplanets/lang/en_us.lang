@@ -47,6 +47,7 @@ tile.alien_ship_decoration_slab.name=Alien Ship Decoration Slab
 tile.diona_dungeon_brick_slab.name=Diona Dungeon Brick Slab
 tile.chalos_dungeon_brick_slab.name=Chalos Dungeon Brick Slab
 tile.nibiru_dungeon_brick_slab.name=Nibiru Dungeon Brick Slab
+tile.alien_ship_decoration_stairs.name=Alien Ship Decoration Stairs
 tile.dark_energy_storage_cluster.name=Dark Energy Storage Cluster
 tile.nuclear_waste_energy_storage_cluster.name=Nuclear Waste Energy Storage Cluster
 tile.diona_cobblestone_slab.name=Diona Cobblestone Slab
@@ -368,6 +369,15 @@ tile.lemon_jelly_block.name=Lemon Jelly Block
 tile.fronos_grass.name=Fronos Grass
 tile.nemophila.name=Nemophila
 tile.pink_blechnum.name=Pink Blechnum
+tile.oscalea_log.name=Oscalea Log
+tile.oscalea_leaves.name=Oscalea Leaves
+tile.oscalea_sapling.name=Oscalea Sapling
+tile.oscalea_planks.name=Oscalea Planks
+tile.frolia_log.name=Frolia Log
+tile.frolia_leaves.name=Frolia Leaves
+tile.frolia_flowered_leaves.name=Frolia Flowered Leaves
+tile.frolia_sapling.name=Frolia Sapling
+tile.frolia_planks.name=Frolia Planks
 
 # FLUIDS
 fluid.xpjuice=XP

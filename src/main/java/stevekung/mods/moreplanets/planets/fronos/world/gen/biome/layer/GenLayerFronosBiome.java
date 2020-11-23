@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 
-import net.minecraft.init.Biomes;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
@@ -39,12 +38,6 @@ public class GenLayerFronosBiome extends GenLayer
                 this.biomes[idx].addAll(biomesToAdd);
             }
         }
-
-        int desertIdx = BiomeManager.BiomeType.DESERT.ordinal();
-        //        this.biomes[desertIdx].add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_DESERT, 30));
-        //        this.biomes[desertIdx].add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_DEAD_SAVANNA, 20));
-        this.biomes[desertIdx].add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_MELLOW, 10));
-        this.biomes[desertIdx].add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_PLAINS, 10));
     }
 
     @Override
@@ -59,69 +52,8 @@ public class GenLayerFronosBiome extends GenLayer
             {
                 this.initChunkSeed(j + areaX, i + areaY);
                 int k = aint[j + i * areaWidth];
-                int l = (k & 3840) >> 8;
-            k = k & -3841;
-
-            if (this.isOcean(k))
-            {
-                aint1[j + i * areaWidth] = k;
-            }
-            //            else
-            //            {
-            //                aint1[j + i * areaWidth] = Biome.getIdForBiome(this.getWeightedBiomeEntry(BiomeManager.BiomeType.DESERT).biome);
-            //            }
-            //            else if (k == Biome.getIdForBiome(MPBiomes.GREEN_VEIN_FIELDS))
-            //            {
-            //                aint1[j + i * areaWidth] = k;
-            //            }
-            else if (k == 1)
-            {
-//                if (l > 0)
-//                {
-//                    if (this.nextInt(3) == 0)
-//                    {
-//                        aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_BADLANDS_PLATEAU);
-//                    }
-//                    else
-//                    {
-//                        aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_WOODED_BADLANDS_PLATEAU);
-//                    }
-//                }
-//                else
-                {
-                    aint1[j + i * areaWidth] = Biome.getIdForBiome(this.getWeightedBiomeEntry(BiomeManager.BiomeType.DESERT).biome);
-                }
-            }
-                        else if (k == 2)
-                        {
-//                            if (l > 0)
-//                            {
-//                                aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE);
-//                            }
-//                            else
-                            {
-                                aint1[j + i * areaWidth] = Biome.getIdForBiome(this.getWeightedBiomeEntry(BiomeManager.BiomeType.WARM).biome);
-                            }
-                        }
-            //            else if (k == 3)
-            //            {
-            //                if (l > 0)
-            //                {
-            //                    aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_GIANT_TREE_TAIGA);
-            //                }
-            //                else
-            //                {
-            //                    aint1[j + i * areaWidth] = Biome.getIdForBiome(this.getWeightedBiomeEntry(BiomeManager.BiomeType.COOL).biome);
-            //                }
-            //            }
-            //            else if (k == 4)
-            //            {
-            //                aint1[j + i * areaWidth] = Biome.getIdForBiome(this.getWeightedBiomeEntry(BiomeManager.BiomeType.ICY).biome);
-            //            }
-            //            else
-            //            {
-            //                aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.GREEN_VEIN_FIELDS);
-            //            }
+                k = k & -3841;
+                aint1[j + i * areaWidth] = Biome.getIdForBiome(this.getWeightedBiomeEntry(BiomeManager.BiomeType.WARM).biome);
             }
         }
         return aint1;
@@ -132,26 +64,14 @@ public class GenLayerFronosBiome extends GenLayer
     {
         ArrayList<BiomeManager.BiomeEntry>[] currentBiomes = new ArrayList[CachedEnum.biomeValues.length];
         List<BiomeManager.BiomeEntry> list = new ArrayList<>();
-        //        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_FOREST, 10));
-        //        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_DEAD_DARK_FOREST, 10));
-        //        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_MOUNTAINS, 10));
-        list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_MELLOW, 10));
-        list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_PLAINS, 10));
-        //        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_SWAMP, 10));
+        list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_MELLOW, 30));
+        list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_PLAINS, 20));
+        list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_FOREST, 20));
         currentBiomes[BiomeManager.BiomeType.WARM.ordinal()] = new ArrayList<>(list);
         list.clear();
-        //        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_FOREST, 10));
-        //        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_MOUNTAINS, 10));
-        //        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_TAIGA, 10));
-        list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_MELLOW, 10));
-        list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_PLAINS, 10));
-        //        currentBiomes[BiomeManager.BiomeType.COOL.ordinal()] = new ArrayList<>(list);
-        //        list.clear();
-        //        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_ICE_SPIKES, 30));
-        //        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_SNOWY_TAIGA, 10));
-        //        currentBiomes[BiomeManager.BiomeType.ICY.ordinal()] = new ArrayList<>(list);
-        //        list.clear();
-        //        currentBiomes[BiomeManager.BiomeType.DESERT.ordinal()] = new ArrayList<>(list);
+        list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_MELLOW, 30));
+        list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_PLAINS, 20));
+        list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_FOREST, 20));
         return currentBiomes;
     }
 
@@ -168,10 +88,5 @@ public class GenLayerFronosBiome extends GenLayer
         int totalWeight = WeightedRandom.getTotalWeight(biomeList);
         int weight = this.nextInt(totalWeight / 10) * 10;
         return WeightedRandom.getRandomItem(biomeList, weight);
-    }
-
-    private boolean isOcean(int id)
-    {
-        return Biome.getBiome(id) == Biomes.OCEAN || Biome.getBiome(id) == Biomes.DEEP_OCEAN;
     }
 }

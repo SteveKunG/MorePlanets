@@ -19,7 +19,7 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 
 public class BiomeDecoratorFronos extends BiomeDecoratorMP
 {
-    //    public int orangeBushPerChunk;
+    public int largeWheatPerChunk;
 
     @Override
     protected void generate(Biome biome, World world, Random rand)
@@ -52,14 +52,6 @@ public class BiomeDecoratorFronos extends BiomeDecoratorMP
                 }
             }
         }
-        //        for (int i = 0; i < this.cactiPerChunk; ++i)
-        //        {
-        //            WorldDecorateUtils.generatePlants(new WorldGenInfectedCactus(), world, rand, this.chunkPos);
-        //        }
-        //        for (int i = 0; i < this.deadBushPerChunk; ++i)
-        //        {
-        //            WorldDecorateUtils.generatePlants(new WorldGenDeadBush(), world, rand, this.chunkPos);
-        //        }
         //        for (int i = 0; i < this.waterlilyPerChunk; ++i)
         //        {
         //            int x = rand.nextInt(16) + 8;
@@ -128,35 +120,23 @@ public class BiomeDecoratorFronos extends BiomeDecoratorMP
             }
         }
 
-        //        if (rand.nextInt(1000) == 0)
-        //        {
-        //            int x = rand.nextInt(16) + 8;
-        //            int z = rand.nextInt(16) + 8;
-        //            new WorldGenCrystalObelisk().generate(world, rand, world.getTopSolidOrLiquidBlock(this.chunkPos.add(x, 0, z)));
-        //        }
+        if (this.largeWheatPerChunk > 0)
+        {
+            /*int roseBushPerChunk = rand.nextInt(5) - this.largeWheatPerChunk;TODO
 
-        //        if (this.orangeBushPerChunk > 0)
-        //        {
-        //            int roseBushPerChunk = rand.nextInt(5) - this.orangeBushPerChunk;
-        //
-        //            for (int i = 0; i < roseBushPerChunk; ++i)
-        //            {
-        //                for (int i2 = 0; i2 < 5; ++i2)
-        //                {
-        //                    int y = rand.nextInt(world.getHeight(this.chunkPos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8)).getY() + 32);
-        //                    WorldGenDoublePlantMP worldgen = new WorldGenDoublePlantMP(MPBlocks.INFECTED_ORANGE_ROSE_BUSH);
-        //
-        //                    if (worldgen.generate(world, rand, new BlockPos(this.chunkPos.getX() + rand.nextInt(16) + 8, y, this.chunkPos.getZ() + rand.nextInt(16) + 8)))
-        //                    {
-        //                        break;
-        //                    }
-        //                }
-        //            }
-        //        }
-        //
-        //        for (int i = 0; i < 4; i++)
-        //        {
-        //            new WorldGenMultalicCrystal().generate(world, rand, this.chunkPos.add(rand.nextInt(16) + 8, rand.nextInt(36), rand.nextInt(16) + 8));
-        //        }
+            for (int i = 0; i < roseBushPerChunk; ++i)
+            {
+                for (int i2 = 0; i2 < 5; ++i2)
+                {
+                    int y = rand.nextInt(world.getHeight(this.chunkPos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8)).getY() + 32);
+                    WorldGenDoublePlantMP worldgen = new WorldGenDoublePlantMP(MPBlocks.INFECTED_ORANGE_ROSE_BUSH);
+
+                    if (worldgen.generate(world, rand, new BlockPos(this.chunkPos.getX() + rand.nextInt(16) + 8, y, this.chunkPos.getZ() + rand.nextInt(16) + 8)))
+                    {
+                        break;
+                    }
+                }
+            }*/
+        }
     }
 }

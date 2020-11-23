@@ -11,10 +11,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.planets.fronos.entity.EntityBearry;
+import stevekung.mods.moreplanets.planets.fronos.entity.EntityGiantBlueberry;
+import stevekung.mods.moreplanets.planets.fronos.entity.EntityJellySlime;
+import stevekung.mods.moreplanets.planets.fronos.entity.EntityMarshmallow;
 import stevekung.mods.moreplanets.planets.fronos.world.gen.BiomeDecoratorFronos;
+import stevekung.mods.moreplanets.planets.fronos.world.gen.feature.WorldGenFroliaTree;
+import stevekung.mods.moreplanets.planets.fronos.world.gen.feature.WorldGenOscaleaTrees;
 import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
@@ -24,12 +31,8 @@ public class BiomeFronos extends BiomeMP
     protected IBlockState stoneBlock;
     protected IBlockState liquidBlock;
     protected final BiomeDecoratorFronos decorator = new BiomeDecoratorFronos();
-    //    protected static final WorldGenInfectedBigTree BIG_TREE = new WorldGenInfectedBigTree(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
-    //    protected static final WorldGenInfectedBigTree BIG_TREE_NO_LEAVES = new WorldGenInfectedBigTree(false, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
-    //    protected static final WorldGenInfectedTrees TREE = new WorldGenInfectedTrees(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
-    //    protected static final WorldGenInfectedTrees TREE_NO_LEAVES = new WorldGenInfectedTrees(false, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
-    //    protected static final WorldGenInfectedVinesDirt SCATTERED_DIRT = new WorldGenInfectedVinesDirt();
-    //    protected static final WorldGenNibiruFossils FOSSILS = new WorldGenNibiruFossils();
+    protected static final WorldGenOscaleaTrees OSCALEA = new WorldGenOscaleaTrees();
+    protected static final WorldGenFroliaTree FROLIA = new WorldGenFroliaTree();
     protected static final WorldGenFlowersBase GRASS = new WorldGenFlowersBase(MPBlocks.FRONOS_GRASS.getDefaultState());
 
     public BiomeFronos(BiomeProperties prop)
@@ -42,27 +45,17 @@ public class BiomeFronos extends BiomeMP
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
-        //        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntitySheep.class, 12, 4, 4));
-        //        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityPig.class, 10, 4, 4));
-        //        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityChicken.class, 10, 4, 4));
-        //        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityCow.class, 8, 4, 4));
+        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityBearry.class, 10, 4, 4));
+        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityMarshmallow.class, 10, 4, 4));
+        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityGiantBlueberry.class, 8, 4, 4));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySpider.class, 100, 4, 4));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombie.class, 95, 4, 4));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySkeleton.class, 100, 4, 4));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityCreeper.class, 100, 4, 4));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySlime.class, 100, 4, 4));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityJellySlime.class, 5, 4, 4));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 1, 4));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWitch.class, 5, 1, 1));
         this.spawnableWaterCreatureList.add(new Biome.SpawnListEntry(EntitySquid.class, 10, 4, 4));
-
-        //        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityInfectedZombie.class, 100, 4, 4));
-        //        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityInfectedSkeleton.class, 100, 4, 4));
-        //        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityInfectedCreeper.class, 100, 4, 4));
-        //        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGiantWorm.class, 20, 2, 4));
-        //        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityInfectedChicken.class, 10, 4, 4));
-        //        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityInfectedCow.class, 8, 4, 4));
-        //        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityShlime.class, 12, 4, 4));
-        //        this.spawnableWaterCreatureList.add(new Biome.SpawnListEntry(EntityInfectedSquid.class, 10, 4, 4));
     }
 
     @Override
@@ -77,11 +70,11 @@ public class BiomeFronos extends BiomeMP
         this.decorator.decorate(world, rand, this, pos);
     }
 
-    //    @Override
-    //    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
-    //    {
-    //        return rand.nextInt(10) == 0 ? BiomeFronos.BIG_TREE : BiomeFronos.TREE;
-    //    }
+    @Override
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
+    {
+        return rand.nextInt(10) == 0 ? FROLIA : OSCALEA;
+    }
 
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand)

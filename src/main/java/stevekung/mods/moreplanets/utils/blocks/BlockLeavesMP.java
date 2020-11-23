@@ -11,6 +11,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
@@ -317,6 +318,14 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
         {
             return Item.getItemFromBlock(MPBlocks.ALIEN_BERRY_OAK_SAPLING);
         }
+        else if (this.type == BlockType.OSCALEA_LEAVES)
+        {
+            return Item.getItemFromBlock(MPBlocks.OSCALEA_SAPLING);
+        }
+        else if (this.type == BlockType.FROLIA_LEAVES)
+        {
+            return Item.getItemFromBlock(MPBlocks.FROLIA_SAPLING);
+        }
         return Item.getItemFromBlock(this);
     }
 
@@ -380,6 +389,10 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
             {
                 Block.spawnAsEntity(world, pos, new ItemStack(MPItems.ALIEN_BERRY));
             }
+            else if (this.type == BlockType.FROLIA_LEAVES)
+            {
+                Block.spawnAsEntity(world, pos, new ItemStack(Items.APPLE));//TODO
+            }
         }
     }
 
@@ -394,7 +407,9 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
         INFECTED_OAK_LEAVES,
         INFECTED_SPRUCE_LEAVES,
         INFECTED_JUNGLE_LEAVES,
-        ALIEN_BERRY_OAK_LEAVES;
+        ALIEN_BERRY_OAK_LEAVES,
+        OSCALEA_LEAVES,
+        FROLIA_LEAVES;
 
         @Override
         public String toString()

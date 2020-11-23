@@ -28,6 +28,9 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_SPRUCE_LEAVES, EnumStateMapper.LEAVES);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_JUNGLE_LEAVES, EnumStateMapper.LEAVES);
         ClientRegistryUtils.registerStateMapper(MPBlocks.ALIEN_BERRY_OAK_LEAVES, EnumStateMapper.LEAVES);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.OSCALEA_LEAVES, EnumStateMapper.LEAVES);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.FROLIA_LEAVES, EnumStateMapper.LEAVES);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.FROLIA_FLOWERED_LEAVES, EnumStateMapper.LEAVES);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CACTUS, EnumStateMapper.PLANT_AGE_15);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_OAK_FENCE_GATE, EnumStateMapper.FENCE_GATE);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_OAK_DOOR, EnumStateMapper.DOOR);
@@ -47,6 +50,8 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_JUNGLE_SAPLING, BlockSaplingMP.STAGE, BlockSaplingMP.NATURAL_GEN);
         ClientRegistryUtils.registerStateMapper(MPBlocks.CHEESE_SPORE_FLOWER, BlockSaplingMP.STAGE, BlockSaplingMP.NATURAL_GEN);
         ClientRegistryUtils.registerStateMapper(MPBlocks.ALIEN_BERRY_OAK_SAPLING, BlockSaplingMP.STAGE, BlockSaplingMP.NATURAL_GEN);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.OSCALEA_SAPLING, BlockSaplingMP.STAGE, BlockSaplingMP.NATURAL_GEN);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.FROLIA_SAPLING, BlockSaplingMP.STAGE, BlockSaplingMP.NATURAL_GEN);
         ClientRegistryUtils.registerStateMapper(MPBlocks.FRONOS_REDSTONE_ORE, BlockDropableLitOre.LIT);
 
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_MELON_STEM, new StateMapperType("stem"));
