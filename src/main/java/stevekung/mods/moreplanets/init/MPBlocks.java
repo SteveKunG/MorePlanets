@@ -544,6 +544,8 @@ public class MPBlocks
     public static Block FROLIA_SAPLING;
     public static Block NEMOPHILA;
     public static Block PINK_BLECHNUM;
+    public static BlockDoublePlantMP LARGE_WHEAT;
+    public static BlockDoublePlantMP FRONOS_TALL_GRASS;
 
     public static void init()
     {
@@ -1035,6 +1037,8 @@ public class MPBlocks
         MPBlocks.PINK_BLECHNUM = new BlockPlaceableBushMP("pink_blechnum", BlockPlaceableBushMP.BlockType.PINK_BLECHNUM);
         MPBlocks.OSCALEA_SAPLING = new BlockSaplingMP("oscalea_sapling", BlockSaplingMP.BlockType.OSCALEA_SAPLING);
         MPBlocks.FROLIA_SAPLING = new BlockSaplingMP("frolia_sapling", BlockSaplingMP.BlockType.FROLIA_SAPLING);
+        MPBlocks.LARGE_WHEAT = new BlockDoublePlantMP("large_wheat", BlockDoublePlantMP.BlockType.LARGE_WHEAT);
+        MPBlocks.FRONOS_TALL_GRASS = new BlockDoublePlantMP("fronos_tall_grass", BlockDoublePlantMP.BlockType.FRONOS_TALL_GRASS);
 
         //////////////////////// FLUID STUFF ////////////////////////
 
@@ -1527,6 +1531,8 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_CHISELED_STONE_BRICKS);
         BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_DUNGEON_BRICK);
         BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_GRASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.LARGE_WHEAT);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_TALL_GRASS);
 
         // Fronos Ore
         BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_IRON_ORE);
@@ -1903,7 +1909,9 @@ public class MPBlocks
         BlockUtils.setFireBurn(MPBlocks.CHEESE_SPORE_FLOWER, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.CHEESE_SPORE, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.CHEESE_GRASS, 60, 100);
+        BlockUtils.setFireBurn(MPBlocks.FRONOS_TALL_GRASS, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.CHEESE_TALL_GRASS, 60, 100);
+        BlockUtils.setFireBurn(MPBlocks.LARGE_WHEAT, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.CHEESE_SPORE_STEM, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.CHEESE_SPORE_PLANKS, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.CHEESE_SPORE_STAIRS, 5, 20);

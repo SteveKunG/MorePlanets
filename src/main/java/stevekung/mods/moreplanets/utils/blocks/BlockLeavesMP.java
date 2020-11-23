@@ -11,7 +11,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
@@ -391,7 +390,7 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
             }
             else if (this.type == BlockType.FROLIA_LEAVES)
             {
-                Block.spawnAsEntity(world, pos, new ItemStack(Items.APPLE));//TODO
+                Block.spawnAsEntity(world, pos, new ItemStack(MPItems.BLUE_PEAR));
             }
         }
     }

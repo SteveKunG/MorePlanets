@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "moreplanets:blocks/oscalea_leaves"
+        },
+        "model": "leaves"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

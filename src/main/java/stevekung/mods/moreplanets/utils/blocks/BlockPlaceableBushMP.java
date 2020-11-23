@@ -304,6 +304,10 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         {
             return MPBlocks.GREEN_VEIN_TALL_GRASS.canPlaceBlockAt(world, pos);
         }
+        else if (this.type == BlockType.FRONOS_GRASS)
+        {
+            return MPBlocks.FRONOS_TALL_GRASS.canPlaceBlockAt(world, pos);
+        }
         return this.type == BlockType.TERRASHROOM;
     }
 
@@ -325,6 +329,10 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         else if (this.type == BlockType.GREEN_VEIN_GRASS)
         {
             return MPBlocks.GREEN_VEIN_TALL_GRASS.canPlaceBlockAt(world, pos);
+        }
+        else if (this.type == BlockType.FRONOS_GRASS)
+        {
+            return MPBlocks.FRONOS_TALL_GRASS.canPlaceBlockAt(world, pos);
         }
         return this.type == BlockType.TERRASHROOM && rand.nextFloat() < 0.4D;
     }
@@ -358,6 +366,13 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
             if (MPBlocks.GREEN_VEIN_TALL_GRASS.canPlaceBlockAt(world, pos))
             {
                 MPBlocks.GREEN_VEIN_TALL_GRASS.placeAt(world, pos, MPBlocks.GREEN_VEIN_TALL_GRASS, 2);
+            }
+        }
+        else if (this.type == BlockType.FRONOS_GRASS)
+        {
+            if (MPBlocks.FRONOS_TALL_GRASS.canPlaceBlockAt(world, pos))
+            {
+                MPBlocks.FRONOS_TALL_GRASS.placeAt(world, pos, MPBlocks.FRONOS_TALL_GRASS, 2);
             }
         }
         else if (this.type == BlockType.TERRASHROOM)

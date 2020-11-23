@@ -175,7 +175,8 @@ public class ItemAllFood extends ItemFoodMP
         LIME_JELLY(4, 0.35F),
         ORANGE_JELLY(4, 0.35F),
         GREEN_JELLY(4, 0.35F),
-        LEMON_JELLY(4, 0.35F);
+        LEMON_JELLY(4, 0.35F),
+        BLUE_PEAR(4, 0.025F);
 
         private int hunger;
         private float saturation;

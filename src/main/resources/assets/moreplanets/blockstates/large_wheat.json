@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=lower": { "model": "moreplanets:large_wheat_lower" },
+        "half=upper": { "model": "moreplanets:large_wheat_upper" }
+    }
+}

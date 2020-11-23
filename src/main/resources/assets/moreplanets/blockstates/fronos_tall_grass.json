@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=lower": { "model": "moreplanets:fronos_tall_grass_lower" },
+        "half=upper": { "model": "moreplanets:fronos_tall_grass_upper" }
+    }
+}

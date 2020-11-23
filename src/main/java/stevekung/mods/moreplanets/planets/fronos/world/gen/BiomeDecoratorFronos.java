@@ -9,11 +9,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.fronos.world.gen.feature.WorldGenFronosClay;
 import stevekung.mods.moreplanets.planets.fronos.world.gen.feature.WorldGenFronosSand;
 import stevekung.mods.moreplanets.planets.fronos.world.gen.feature.WorldGenFronosSugarCane;
 import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeMP;
 import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
+import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 
@@ -122,21 +124,18 @@ public class BiomeDecoratorFronos extends BiomeDecoratorMP
 
         if (this.largeWheatPerChunk > 0)
         {
-            /*int roseBushPerChunk = rand.nextInt(5) - this.largeWheatPerChunk;TODO
+            int wheatPerChunk = rand.nextInt(3) - this.largeWheatPerChunk;
 
-            for (int i = 0; i < roseBushPerChunk; ++i)
+            for (int i = 0; i < wheatPerChunk; ++i)
             {
-                for (int i2 = 0; i2 < 5; ++i2)
-                {
-                    int y = rand.nextInt(world.getHeight(this.chunkPos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8)).getY() + 32);
-                    WorldGenDoublePlantMP worldgen = new WorldGenDoublePlantMP(MPBlocks.INFECTED_ORANGE_ROSE_BUSH);
+                int y = rand.nextInt(world.getHeight(this.chunkPos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8)).getY() + 32);
+                WorldGenDoublePlantMP worldgen = new WorldGenDoublePlantMP(MPBlocks.LARGE_WHEAT);
 
-                    if (worldgen.generate(world, rand, new BlockPos(this.chunkPos.getX() + rand.nextInt(16) + 8, y, this.chunkPos.getZ() + rand.nextInt(16) + 8)))
-                    {
-                        break;
-                    }
+                if (worldgen.generate(world, rand, new BlockPos(this.chunkPos.getX() + rand.nextInt(16) + 8, y, this.chunkPos.getZ() + rand.nextInt(16) + 8)))
+                {
+                    break;
                 }
-            }*/
+            }
         }
     }
 }

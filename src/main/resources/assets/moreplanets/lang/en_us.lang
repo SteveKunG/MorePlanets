@@ -378,6 +378,8 @@ tile.frolia_leaves.name=Frolia Leaves
 tile.frolia_flowered_leaves.name=Frolia Flowered Leaves
 tile.frolia_sapling.name=Frolia Sapling
 tile.frolia_planks.name=Frolia Planks
+tile.large_wheat.name=Large Wheat
+tile.fronos_tall_grass.name=Fronos Tall Grass
 
 # FLUIDS
 fluid.xpjuice=XP
@@ -550,6 +552,7 @@ item.pink_candy_cane_stick.name=Pink Candy Cane Stick
 item.yellow_candy_cane_stick.name=Yellow Candy Cane Stick
 item.purple_candy_cane_stick.name=Purple Candy Cane Stick
 item.rainbow_candy_cane_stick.name=Rainbow Candy Cane Stick
+item.blue_pear.name=Blue Pear
 
 # FLUID
 fluid.infected_purlonite_water_fluid=Infected Purlonite Water

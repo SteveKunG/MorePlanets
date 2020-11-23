@@ -249,6 +249,9 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.FRONOS_COARSE_DIRT, 4), "coarse_dirt", new Object[] { "DG", "GD", 'D', MPBlocks.FRONOS_DIRT, 'G', "gravel" });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ALIEN_SHIP_DECORATION_1, 4), new Object[] { "XX", "XX", 'X', MPBlocks.ALIEN_SHIP_DECORATION_0 });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ALIEN_CHEST), new Object[] { "XXX", "X X", "XXX", 'X', MPBlocks.ALIEN_SHIP_DECORATION_1 });
+        
+        RecipeHelper.addShapelessRecipe(new ItemStack(MPBlocks.OSCALEA_PLANKS, 4), "planks", MPBlocks.OSCALEA_LOG );
+        RecipeHelper.addShapelessRecipe(new ItemStack(MPBlocks.FROLIA_PLANKS, 4), "planks", MPBlocks.FROLIA_LOG );
     }
 
     @Deprecated //TEMP

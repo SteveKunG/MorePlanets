@@ -6,11 +6,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.init.MPBiomes;
+import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
+import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 
 public class BiomeFronosMellow extends BiomeFronos
 {
-    //    private static final WorldGenDoublePlantMP TALL_GRASS = new WorldGenDoublePlantMP(MPBlocks.INFECTED_TALL_GRASS);
+    private static final WorldGenDoublePlantMP TALL_GRASS = new WorldGenDoublePlantMP(MPBlocks.FRONOS_TALL_GRASS);
 
     public BiomeFronosMellow(BiomeProperties prop)
     {
@@ -19,6 +22,7 @@ public class BiomeFronosMellow extends BiomeFronos
         this.decorator.extraTreeChance = 0.05F;
         this.decorator.flowersPerChunk = 2;
         this.decorator.grassPerChunk = 120;
+        this.decorator.largeWheatPerChunk = 1;
     }
 
     @Override
@@ -31,7 +35,7 @@ public class BiomeFronosMellow extends BiomeFronos
     public void decorate(World world, Random rand, BlockPos pos)
     {
         int base = this == MPBiomes.FRONOS_MELLOW ? 200 : 100;
-        double grassColorNoise = GRASS_COLOR_NOISE.getValue((pos.getX() + 8) / 200.0D, (pos.getZ() + 8) / 200.0D);
+        double grassColorNoise = GRASS_COLOR_NOISE.getValue((pos.getX() + 8) / 250.0D, (pos.getZ() + 8) / 250.0D);
 
         if (grassColorNoise < -0.8D)
         {
@@ -41,10 +45,10 @@ public class BiomeFronosMellow extends BiomeFronos
         {
             this.decorator.grassPerChunk = base + 20;
 
-            //            for (int i = 0; i < 7; ++i)
-            //            {
-            //                BiomeFronosMellow.TALL_GRASS.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
-            //            }
+            for (int i = 0; i < 7; ++i)
+            {
+                BiomeFronosMellow.TALL_GRASS.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
+            }
         }
         super.decorate(world, rand, pos);
     }

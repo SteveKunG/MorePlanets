@@ -166,6 +166,7 @@ public class MPItems
     public static Item JELLY_BEANS;
     public static Item MARSHMALLOW;
     public static Item COOKED_MARSHMALLOW;
+    public static Item BLUE_PEAR;
 
     // Candy Cane
     public static Item RED_CANDY_CANE_STICK;
@@ -395,6 +396,7 @@ public class MPItems
         MPItems.JELLY_BEANS = new ItemAllFood("jelly_beans", ItemAllFood.ItemType.JELLY_BEANS);
         MPItems.MARSHMALLOW = new ItemAllFood("marshmallow", ItemAllFood.ItemType.MARSHMALLOW);
         MPItems.COOKED_MARSHMALLOW = new ItemAllFood("cooked_marshmallow", ItemAllFood.ItemType.COOKED_MARSHMALLOW);
+        MPItems.BLUE_PEAR = new ItemAllFood("blue_pear", ItemAllFood.ItemType.BLUE_PEAR);
 
         // Candy Cane
         MPItems.RED_CANDY_CANE_STICK = new ItemAllFood("red_candy_cane_stick", ItemAllFood.ItemType.RED_CANDY_CANE_STICK);
@@ -622,6 +624,7 @@ public class MPItems
         BlocksItemsRegistry.registerItem(MPItems.JELLY_BEANS);
         BlocksItemsRegistry.registerItem(MPItems.MARSHMALLOW);
         BlocksItemsRegistry.registerItem(MPItems.COOKED_MARSHMALLOW);
+        BlocksItemsRegistry.registerItem(MPItems.BLUE_PEAR);
 
         // Candy Cane
         BlocksItemsRegistry.registerItem(MPItems.RED_CANDY_CANE_STICK);

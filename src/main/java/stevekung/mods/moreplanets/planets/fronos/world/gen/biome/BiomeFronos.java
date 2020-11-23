@@ -23,6 +23,7 @@ import stevekung.mods.moreplanets.planets.fronos.world.gen.BiomeDecoratorFronos;
 import stevekung.mods.moreplanets.planets.fronos.world.gen.feature.WorldGenFroliaTree;
 import stevekung.mods.moreplanets.planets.fronos.world.gen.feature.WorldGenOscaleaTrees;
 import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeMP;
+import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 
@@ -34,6 +35,7 @@ public class BiomeFronos extends BiomeMP
     protected static final WorldGenOscaleaTrees OSCALEA = new WorldGenOscaleaTrees();
     protected static final WorldGenFroliaTree FROLIA = new WorldGenFroliaTree();
     protected static final WorldGenFlowersBase GRASS = new WorldGenFlowersBase(MPBlocks.FRONOS_GRASS.getDefaultState());
+    protected static final WorldGenDoublePlantMP LARGE_WHEAT = new WorldGenDoublePlantMP(MPBlocks.LARGE_WHEAT);
 
     public BiomeFronos(BiomeProperties prop)
     {
