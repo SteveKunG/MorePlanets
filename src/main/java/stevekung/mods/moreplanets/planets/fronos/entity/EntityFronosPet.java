@@ -7,6 +7,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -208,14 +209,14 @@ public abstract class EntityFronosPet extends EntityTameable
     @Override
     public boolean isBreedingItem(ItemStack itemStack)
     {
-        return !itemStack.isEmpty() && itemStack.getItem() == MPItems.CHOCOLATE_BAR;
+        return !itemStack.isEmpty() && itemStack.getItem() == MPItems.BLUE_PEAR;
     }
 
     @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand)
     {
         ItemStack itemStack = player.getHeldItem(hand);
-        boolean isTamedItem = !itemStack.isEmpty() && itemStack.getItem() == MPItems.JELLY_BEANS;
+        boolean isTamedItem = !itemStack.isEmpty() && itemStack.getItem() == Items.WHEAT;
 
         if (this.isTamed())
         {
@@ -230,6 +231,11 @@ public abstract class EntityFronosPet extends EntityTameable
                 if (this.aiSit != null)
                 {
                     this.aiSit.setSitting(!this.isSitting());
+
+                    if (this instanceof EntityMarshmallow)
+                    {
+                        this.playSound(SoundEvents.BLOCK_CLOTH_PLACE, 0.5F, 1.0F);
+                    }
                 }
                 return true;
             }
@@ -241,6 +247,11 @@ public abstract class EntityFronosPet extends EntityTameable
                     this.aiSit.setSitting(!this.isSitting());
                     this.isJumping = false;
                     this.navigator.clearPath();
+
+                    if (this instanceof EntityMarshmallow)
+                    {
+                        this.playSound(SoundEvents.BLOCK_CLOTH_PLACE, 0.5F, 1.0F);
+                    }
                 }
             }
         }

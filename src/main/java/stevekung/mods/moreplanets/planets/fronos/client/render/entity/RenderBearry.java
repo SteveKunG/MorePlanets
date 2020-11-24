@@ -24,18 +24,21 @@ public class RenderBearry extends RenderLiving<EntityBearry>
     @Override
     protected ResourceLocation getEntityTexture(EntityBearry entity)
     {
-        if (entity.isCloseEye())
-        {
-            return RenderBearry.CLOSE_EYE;
-        }
-        if (entity.isHungry())
-        {
-            return RenderBearry.HUNGRY;
-        }
         if (entity.isPanic())
         {
             return RenderBearry.PANIC;
         }
-        return RenderBearry.TEXTURE;
+        else
+        {
+            if (entity.isCloseEye())
+            {
+                return RenderBearry.CLOSE_EYE;
+            }
+            if (entity.isHungry())
+            {
+                return RenderBearry.HUNGRY;
+            }
+            return RenderBearry.TEXTURE;
+        }
     }
 }

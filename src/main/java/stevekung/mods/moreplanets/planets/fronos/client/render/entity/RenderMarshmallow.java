@@ -25,19 +25,22 @@ public class RenderMarshmallow extends RenderLiving<EntityMarshmallow>
     @Override
     protected ResourceLocation getEntityTexture(EntityMarshmallow entity)
     {
-        if (entity.isCloseEye())
-        {
-            return RenderMarshmallow.CLOSE_EYE;
-        }
-        if (entity.isHungry())
-        {
-            return RenderMarshmallow.HUNGRY;
-        }
         if (entity.isPanic())
         {
             return RenderMarshmallow.PANIC;
         }
-        return RenderMarshmallow.TEXTURE;
+        else
+        {
+            if (entity.isCloseEye())
+            {
+                return RenderMarshmallow.CLOSE_EYE;
+            }
+            if (entity.isHungry())
+            {
+                return RenderMarshmallow.HUNGRY;
+            }
+            return RenderMarshmallow.TEXTURE;
+        }
     }
 
     @Override

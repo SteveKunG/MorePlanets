@@ -24,18 +24,21 @@ public class RenderGiantBlueberry extends RenderLiving<EntityGiantBlueberry>
     @Override
     protected ResourceLocation getEntityTexture(EntityGiantBlueberry entity)
     {
-        if (entity.isCloseEye())
-        {
-            return RenderGiantBlueberry.CLOSE_EYE;
-        }
-        if (entity.isHungry())
-        {
-            return RenderGiantBlueberry.HUNGRY;
-        }
         if (entity.isPanic())
         {
             return RenderGiantBlueberry.PANIC;
         }
-        return RenderGiantBlueberry.TEXTURE;
+        else
+        {
+            if (entity.isCloseEye())
+            {
+                return RenderGiantBlueberry.CLOSE_EYE;
+            }
+            if (entity.isHungry())
+            {
+                return RenderGiantBlueberry.HUNGRY;
+            }
+            return RenderGiantBlueberry.TEXTURE;
+        }
     }
 }

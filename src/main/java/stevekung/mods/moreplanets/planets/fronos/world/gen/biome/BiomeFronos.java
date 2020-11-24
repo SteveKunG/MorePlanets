@@ -87,7 +87,8 @@ public class BiomeFronos extends BiomeMP
     @Override
     public void addDefaultFlowers()
     {
-        this.addFlower(MPBlocks.NEMOPHILA.getDefaultState(), 10);
+        this.addFlower(MPBlocks.NEMOPHILA.getDefaultState(), 20);
+        this.addFlower(MPBlocks.PINK_BLECHNUM.getDefaultState(), 10);
     }
 
     @Override
