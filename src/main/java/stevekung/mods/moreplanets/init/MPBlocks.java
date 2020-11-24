@@ -20,7 +20,7 @@ import stevekung.mods.moreplanets.planets.chalos.blocks.fluid.FluidGaseousCheese
 import stevekung.mods.moreplanets.planets.diona.blocks.*;
 import stevekung.mods.moreplanets.planets.diona.itemblocks.ItemBlockDarkEnergyGenerator;
 import stevekung.mods.moreplanets.planets.fronos.blocks.BlockFronosFarmland;
-import stevekung.mods.moreplanets.planets.fronos.blocks.BlockFronosGrass;
+import stevekung.mods.moreplanets.planets.fronos.blocks.BlockFronosGrassBlock;
 import stevekung.mods.moreplanets.planets.fronos.blocks.BlockJelly;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.*;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.fluid.FluidHeliumGas;
@@ -979,7 +979,7 @@ public class MPBlocks
         //////////////////////// FRONOS STUFF ////////////////////////
 
         // Fronos Block
-        MPBlocks.FRONOS_GRASS_BLOCK = new BlockFronosGrass("fronos_grass_block");
+        MPBlocks.FRONOS_GRASS_BLOCK = new BlockFronosGrassBlock("fronos_grass_block");
         MPBlocks.FRONOS_DIRT = new BlockTerraformable("fronos_dirt", Material.GROUND).setSoundType(SoundType.GROUND).setHardness(0.55F);
         MPBlocks.FRONOS_COARSE_DIRT = new BlockTerraformable("fronos_coarse_dirt", Material.GROUND).setSoundType(SoundType.GROUND).setHardness(0.55F);
         MPBlocks.FRONOS_FARMLAND = new BlockFronosFarmland("fronos_farmland");

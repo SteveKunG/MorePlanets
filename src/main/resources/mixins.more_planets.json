@@ -10,7 +10,8 @@
         "EntityLivingBaseMixin"
     ],
     "client": [
-    	"client.EntityRendererMixin"
+    	"client.EntityRendererMixin",
+    	"client.ParticleDiggingMixin"
     ],
     "injectors": {
         "defaultRequire": 1

@@ -4,30 +4,28 @@ import java.util.Locale;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.utils.ClientRendererUtils;
 import stevekung.mods.moreplanets.utils.blocks.BlockGrassBlockMP;
 
-public class BlockFronosGrass extends BlockGrassBlockMP
+public class BlockFronosGrassBlock extends BlockGrassBlockMP implements IGrowable
 {
     private static final PropertyEnum<BlockType> HAS_LAYER = PropertyEnum.create("layer", BlockType.class);
 
-    public BlockFronosGrass(String name)
+    public BlockFronosGrassBlock(String name)
     {
         this.setUnlocalizedName(name);
         this.setDefaultState(this.getDefaultState().withProperty(HAS_LAYER, BlockType.NONE));
@@ -88,22 +86,6 @@ public class BlockFronosGrass extends BlockGrassBlockMP
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public boolean addHitEffects(IBlockState state, World world, RayTraceResult target, ParticleManager manager)
-    {
-        ClientRendererUtils.addBlockHitEffects(world, target.getBlockPos(), target.sideHit, manager);
-        return true;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean addDestroyEffects(World world, BlockPos pos, ParticleManager manager)
-    {
-        ClientRendererUtils.addBlockDestroyEffects(world, pos, this.getDefaultState(), manager);
-        return true;
-    }
-
-    @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
         return Item.getItemFromBlock(MPBlocks.FRONOS_DIRT);
@@ -131,6 +113,60 @@ public class BlockFronosGrass extends BlockGrassBlockMP
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient)
+    {
+        return true;
+    }
+
+    @Override
+    public boolean canUseBonemeal(World world, Random rand, BlockPos pos, IBlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    public void grow(World world, Random rand, BlockPos pos, IBlockState state)
+    {
+        BlockPos blockpos = pos.up();
+
+        for (int i = 0; i < 128; ++i)
+        {
+            BlockPos blockpos1 = blockpos;
+            int j = 0;
+
+            while (true)
+            {
+                if (j >= i / 16)
+                {
+                    if (world.isAirBlock(blockpos1))
+                    {
+                        if (rand.nextInt(8) == 0)
+                        {
+                            world.getBiome(blockpos1).plantFlower(world, rand, blockpos1);
+                        }
+                        else
+                        {
+                            if (MPBlocks.FRONOS_GRASS.canPlaceBlockAt(world, blockpos1))
+                            {
+                                world.setBlockState(blockpos1, MPBlocks.FRONOS_GRASS.getDefaultState(), 3);
+                            }
+                        }
+                    }
+                    break;
+                }
+
+                blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
+
+                if (world.getBlockState(blockpos1.down()).getBlock() != MPBlocks.FRONOS_GRASS_BLOCK || world.getBlockState(blockpos1).isNormalCube())
+                {
+                    break;
+                }
+                ++j;
+            }
+        }
     }
 
     public static enum BlockType implements IStringSerializable
