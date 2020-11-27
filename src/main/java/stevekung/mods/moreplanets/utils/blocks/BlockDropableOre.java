@@ -73,7 +73,7 @@ public class BlockDropableOre extends BlockBasicMP implements IDetectableResourc
     }
 
     @Override
-    @Deprecated //TODO Remove 1.13
+    @Deprecated
     public int damageDropped(IBlockState state)
     {
         if (this.type == BlockType.LAPIS_ORE)

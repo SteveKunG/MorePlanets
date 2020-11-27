@@ -35,7 +35,7 @@ public class CreativeTabsMP extends CreativeTabs
 
     @Override
     @SideOnly(Side.CLIENT)
-    public String getTranslatedTabLabel()//TODO 1.13
+    public String getTranslatedTabLabel()
     {
         return "item_group." + this.getTabLabel();
     }

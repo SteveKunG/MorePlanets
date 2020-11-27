@@ -64,17 +64,17 @@ public class EntityFallingKoentusMeteor extends EntityFallingBlock
 
                 if (this.rand.nextInt(16) == 0)
                 {
-                    Block.spawnAsEntity(this.world, this.getPosition(), new ItemStack(Items.REDSTONE));//TODO
+                    Block.spawnAsEntity(this.world, this.getPosition(), new ItemStack(Items.REDSTONE));
                 }
 
-                if (this.world.getBlockState(this.getPosition().down()).getMaterial() == Material.GLASS)//TODO
+                if (this.world.getBlockState(this.getPosition().down()).getMaterial() == Material.GLASS)
                 {
                     this.world.destroyBlock(this.getPosition().down(), false);
                     int chance = this.rand.nextInt(3);
 
                     for (int i = 0; i < chance; ++i)
                     {
-                        Block.spawnAsEntity(this.world, this.getPosition(), new ItemStack(Items.DIAMOND));//TODO
+                        Block.spawnAsEntity(this.world, this.getPosition(), new ItemStack(Items.DIAMOND));
                     }
                 }
                 this.setDead();

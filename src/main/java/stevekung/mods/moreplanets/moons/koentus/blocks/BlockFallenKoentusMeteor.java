@@ -62,7 +62,7 @@ public class BlockFallenKoentusMeteor extends BlockFallingMP
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(this);//KoentusItems.koentus_item;TODO
+        return Item.getItemFromBlock(this);
     }
 
     @Override

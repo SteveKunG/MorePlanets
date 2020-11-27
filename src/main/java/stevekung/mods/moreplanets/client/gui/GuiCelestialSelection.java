@@ -146,7 +146,7 @@ public class GuiCelestialSelection extends GuiScreen
 
                                 try
                                 {
-                                    thermal = String.valueOf(String.format("%.2f", 1.8F * space.getThermalLevelModifier() * 32)) + "\u2103";//TODO fahrenheit to celsius??
+                                    thermal = String.valueOf(String.format("%.2f", 1.8F * space.getThermalLevelModifier() * 32)) + "\u2103";
                                 }
                                 catch (Exception e)
                                 {
@@ -205,7 +205,7 @@ public class GuiCelestialSelection extends GuiScreen
 
                                 if (!planet.atmosphere.composition.isEmpty())
                                 {
-                                    infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Gas:", String.valueOf(planet.atmosphere.composition)));//TODO Get official name of gases
+                                    infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Gas:", String.valueOf(planet.atmosphere.composition)));
                                 }
                                 infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Solar System:", planet.getParentSolarSystem().getLocalizedName()));
                                 infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Galaxy:", planet.getParentSolarSystem().getLocalizedParentGalaxyName()));
@@ -221,7 +221,7 @@ public class GuiCelestialSelection extends GuiScreen
 
                                 if (!moon.atmosphere.composition.isEmpty())
                                 {
-                                    infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Gas:", String.valueOf(moon.atmosphere.composition)));//TODO Get official name of gases
+                                    infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Gas:", String.valueOf(moon.atmosphere.composition)));
                                 }
                                 infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Solar System:", moon.getParentPlanet().getParentSolarSystem().getLocalizedName()));
                                 infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Galaxy:", moon.getParentPlanet().getParentSolarSystem().getLocalizedParentGalaxyName()));

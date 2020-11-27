@@ -34,7 +34,6 @@ public class TileEntityGravityExtractor extends TileEntity implements ITickable
             }
             if (this.lifeTime == 0)
             {
-                //TODO
             }
         }
     }

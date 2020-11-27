@@ -9,7 +9,7 @@ import net.minecraftforge.fluids.IFluidBlock;
 
 public class LiquidUtils
 {
-    @Deprecated //TODO Remove 1.13
+    @Deprecated
     public static boolean checkInsideBlock(EntityPlayer player, Block blockInside)
     {
         double eyeHeight = player.posY + player.getEyeHeight();
@@ -27,7 +27,7 @@ public class LiquidUtils
         }
     }
 
-    @Deprecated //TODO Remove 1.13
+    @Deprecated
     private static boolean isInsideLiquid(EntityPlayer player, BlockPos pos)
     {
         IBlockState state = player.world.getBlockState(pos);

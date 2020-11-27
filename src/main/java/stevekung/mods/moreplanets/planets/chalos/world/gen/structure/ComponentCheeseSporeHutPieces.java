@@ -154,11 +154,11 @@ public abstract class ComponentCheeseSporeHutPieces extends StructureComponent
                         world.setBlockState(pos2, Blocks.AIR.getDefaultState(), 3);
                         TileEntity tileDown = world.getTileEntity(pos2.down());
 
-                        if (tileDown instanceof TileEntityChestMP)//TODO
+                        if (tileDown instanceof TileEntityChestMP)
                         {
                             ((TileEntityChestMP)tileDown).setLootTable(MPLootTables.COMMON_SPACE_DUNGEON, rand.nextLong());
                         }
-                        if (tileDown instanceof TileEntityShulkerBox)//TODO
+                        if (tileDown instanceof TileEntityShulkerBox)
                         {
                             ((TileEntityShulkerBox)tileDown).setLootTable(MPLootTables.COMMON_SPACE_DUNGEON, rand.nextLong());
                         }

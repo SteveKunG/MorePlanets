@@ -44,7 +44,7 @@ public class RenderVeinFloater extends RenderLiving<EntityVeinFloater>
             {
                 Tessellator tessellator = Tessellator.getInstance();
                 BufferBuilder worldrenderer = tessellator.getBuffer();
-                this.bindTexture(new ResourceLocation("moreplanets:textures/blocks/infected_vines.png"));//TODO Remove this
+                this.bindTexture(new ResourceLocation("moreplanets:textures/blocks/infected_vines.png"));
                 GlStateManager.glTexParameterf(3553, 10242, 10497.0F);
                 GlStateManager.glTexParameterf(3553, 10243, 10497.0F);
                 GlStateManager.disableLighting();

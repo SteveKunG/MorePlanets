@@ -320,7 +320,7 @@ public class TeleportUtils
             player.inventory.addItemStackToInventory(new ItemStack(AsteroidsItems.canisterLOX));
             player.inventory.addItemStackToInventory(new ItemStack(AsteroidsItems.canisterLOX));
         }
-        else if (targetWorld.provider instanceof WorldProviderAsteroids)//TODO Fix can't /kill??
+        else if (targetWorld.provider instanceof WorldProviderAsteroids)
         {
             LoggerMP.info("Setting up default survival player gear for Asteroids");
             ITeleportType type = GalacticraftRegistry.getTeleportTypeForDimension(targetWorld.provider.getClass());

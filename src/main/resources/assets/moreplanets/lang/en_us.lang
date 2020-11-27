@@ -380,6 +380,16 @@ tile.frolia_sapling.name=Frolia Sapling
 tile.frolia_planks.name=Frolia Planks
 tile.large_wheat.name=Large Wheat
 tile.fronos_tall_grass.name=Fronos Tall Grass
+tile.oscalea_slab.name=Oscalea Slab
+tile.frolia_slab.name=Frolia Slab
+tile.oscalea_stairs.name=Oscalea Stairs
+tile.frolia_stairs.name=Frolia Stairs
+tile.oscalea_fence.name=Oscalea Fence
+tile.frolia_fence.name=Frolia Fence
+tile.oscalea_fence_gate.name=Oscalea Fence Gate
+tile.frolia_fence_gate.name=Frolia Fence Gate
+tile.oscalea_pressure_plate.name=Oscalea Pressure Plate
+tile.frolia_pressure_plate.name=Frolia Pressure Plate
 
 # FLUIDS
 fluid.xpjuice=XP

@@ -154,7 +154,7 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
             GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
             GlStateManager.rotate(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
             GlStateManager.rotate(-19.0F, 0.0F, 1.0F, 0.0F);
-            this.renderStars(starBrightness);//TODO Fix star alpha
+            this.renderStars(starBrightness);
             GlStateManager.callList(this.starList);
             GlStateManager.popMatrix();
         }

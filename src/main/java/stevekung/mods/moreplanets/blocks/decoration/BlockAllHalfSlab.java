@@ -130,6 +130,8 @@ public class BlockAllHalfSlab extends BlockSlabMP
         CHEESE_SPORE_SLAB(false, true),
         INFECTED_OAK_SLAB(false, true),
         ALIEN_BERRY_OAK_SLAB(false, true),
+        OSCALEA_SLAB(false, true),
+        FROLIA_SLAB(false, true),
         INFECTED_PRISMARINE_SLAB,
         INFECTED_PRISMARINE_BRICKS_SLAB,
         INFECTED_DARK_PRISMARINE_SLAB,

@@ -77,7 +77,7 @@ public class BlockKoentusIce extends BlockIceMP
 
             if (material.blocksMovement() || material.isLiquid())
             {
-                world.setBlockState(pos, Blocks.FLOWING_WATER.getDefaultState());//TODO Custom fluid
+                world.setBlockState(pos, Blocks.FLOWING_WATER.getDefaultState());
             }
         }
     }
@@ -100,7 +100,7 @@ public class BlockKoentusIce extends BlockIceMP
         else
         {
             this.dropBlockAsItem(worldIn, pos, worldIn.getBlockState(pos), 0);
-            worldIn.setBlockState(pos, Blocks.WATER.getDefaultState());//TODO Custom fluid
+            worldIn.setBlockState(pos, Blocks.WATER.getDefaultState());
             worldIn.neighborChanged(pos, Blocks.WATER, pos);
         }
     }

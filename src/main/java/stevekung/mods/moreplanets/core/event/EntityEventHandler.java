@@ -89,7 +89,7 @@ public class EntityEventHandler
         }
     }
 
-    @SubscribeEvent //TODO Fix fall damage
+    @SubscribeEvent
     public void onLivingFall(LivingFallEvent event)
     {
         if (!CompatibilityManagerMP.isBaubleLoaded)

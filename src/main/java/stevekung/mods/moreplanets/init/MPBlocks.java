@@ -76,6 +76,8 @@ public class MPBlocks
     public static BlockAllHalfSlab CHEESE_SPORE_SLAB;
     public static BlockAllHalfSlab INFECTED_OAK_SLAB;
     public static BlockAllHalfSlab ALIEN_BERRY_OAK_SLAB;
+    public static BlockAllHalfSlab OSCALEA_SLAB;
+    public static BlockAllHalfSlab FROLIA_SLAB;
 
     @Deprecated public static BlockAllHalfSlab DOUBLE_DIONA_COBBLESTONE_SLAB;
     @Deprecated public static BlockAllHalfSlab DOUBLE_CHALOS_COBBLESTONE_SLAB;
@@ -97,10 +99,14 @@ public class MPBlocks
     @Deprecated public static BlockAllHalfSlab DOUBLE_CHEESE_SPORE_SLAB;
     @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_OAK_SLAB;
     @Deprecated public static BlockAllHalfSlab DOUBLE_ALIEN_BERRY_OAK_SLAB;
+    @Deprecated public static BlockAllHalfSlab DOUBLE_OSCALEA_SLAB;
+    @Deprecated public static BlockAllHalfSlab DOUBLE_FROLIA_SLAB;
 
     // Pressure Plate
     public static Block INFECTED_OAK_PRESSURE_PLATE;
     public static Block ALIEN_BERRY_OAK_PRESSURE_PLATE;
+    public static Block OSCALEA_PRESSURE_PLATE;
+    public static Block FROLIA_PRESSURE_PLATE;
 
     // Energy Storage
     public static Block DARK_ENERGY_STORAGE_CLUSTER;
@@ -502,6 +508,12 @@ public class MPBlocks
     public static Block FROLIA_LEAVES;
     public static Block FROLIA_FLOWERED_LEAVES;
     public static Block FROLIA_PLANKS;
+    public static Block OSCALEA_STAIRS;
+    public static Block FROLIA_STAIRS;
+    public static Block OSCALEA_FENCE;
+    public static Block FROLIA_FENCE;
+    public static Block OSCALEA_FENCE_GATE;
+    public static Block FROLIA_FENCE_GATE;
 
     // Fronos Ore
     public static Block FRONOS_IRON_ORE;
@@ -577,6 +589,8 @@ public class MPBlocks
         MPBlocks.CHEESE_SPORE_SLAB = new BlockAllHalfSlab("cheese_spore_slab", BlockAllHalfSlab.BlockType.CHEESE_SPORE_SLAB, Material.WOOD);
         MPBlocks.INFECTED_OAK_SLAB = new BlockAllHalfSlab("infected_oak_slab", BlockAllHalfSlab.BlockType.INFECTED_OAK_SLAB, Material.WOOD);
         MPBlocks.ALIEN_BERRY_OAK_SLAB = new BlockAllHalfSlab("alien_berry_oak_slab", BlockAllHalfSlab.BlockType.ALIEN_BERRY_OAK_SLAB, Material.WOOD);
+        MPBlocks.OSCALEA_SLAB = new BlockAllHalfSlab("oscalea_slab", BlockAllHalfSlab.BlockType.OSCALEA_SLAB, Material.WOOD);
+        MPBlocks.FROLIA_SLAB = new BlockAllHalfSlab("frolia_slab", BlockAllHalfSlab.BlockType.FROLIA_SLAB, Material.WOOD);
 
         MPBlocks.DOUBLE_DIONA_COBBLESTONE_SLAB = new BlockAllDoubleSlab("double_diona_cobblestone_slab", BlockAllHalfSlab.BlockType.DIONA_COBBLESTONE_SLAB);
         MPBlocks.DOUBLE_CHALOS_COBBLESTONE_SLAB = new BlockAllDoubleSlab("double_chalos_cobblestone_slab", BlockAllHalfSlab.BlockType.CHALOS_COBBLESTONE_SLAB);
@@ -589,10 +603,14 @@ public class MPBlocks
         MPBlocks.DOUBLE_CHEESE_SPORE_SLAB = new BlockAllDoubleSlab("double_cheese_spore_slab", BlockAllHalfSlab.BlockType.CHEESE_SPORE_SLAB, Material.WOOD);
         MPBlocks.DOUBLE_INFECTED_OAK_SLAB = new BlockAllDoubleSlab("double_infected_oak_slab", BlockAllHalfSlab.BlockType.INFECTED_OAK_SLAB, Material.WOOD);
         MPBlocks.DOUBLE_ALIEN_BERRY_OAK_SLAB = new BlockAllDoubleSlab("double_alien_berry_oak_slab", BlockAllHalfSlab.BlockType.ALIEN_BERRY_OAK_SLAB, Material.WOOD);
+        MPBlocks.DOUBLE_OSCALEA_SLAB = new BlockAllDoubleSlab("double_oscalea_slab", BlockAllHalfSlab.BlockType.OSCALEA_SLAB, Material.WOOD);
+        MPBlocks.DOUBLE_FROLIA_SLAB = new BlockAllDoubleSlab("double_frolia_slab", BlockAllHalfSlab.BlockType.FROLIA_SLAB, Material.WOOD);
 
         // Pressure Plate
         MPBlocks.INFECTED_OAK_PRESSURE_PLATE = new BlockPressurePlateMP("infected_oak_pressure_plate");
         MPBlocks.ALIEN_BERRY_OAK_PRESSURE_PLATE = new BlockPressurePlateMP("alien_berry_oak_pressure_plate");
+        MPBlocks.OSCALEA_PRESSURE_PLATE = new BlockPressurePlateMP("oscalea_pressure_plate");
+        MPBlocks.FROLIA_PRESSURE_PLATE = new BlockPressurePlateMP("frolia_pressure_plate");
 
         // Energy Storage
         MPBlocks.DARK_ENERGY_STORAGE_CLUSTER = new BlockTieredEnergyStorageCluster("dark_energy_storage_cluster", BlockTieredEnergyStorageCluster.BlockType.DARK_ENERGY_STORAGE_CLUSTER);
@@ -995,6 +1013,12 @@ public class MPBlocks
         MPBlocks.FROLIA_LOG = new BlockLogMP("frolia_log");
         MPBlocks.OSCALEA_PLANKS = new BlockBaseMP("oscalea_planks", Material.WOOD).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
         MPBlocks.FROLIA_PLANKS = new BlockBaseMP("frolia_planks", Material.WOOD).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
+        MPBlocks.OSCALEA_STAIRS = new BlockStairsMP("oscalea_stairs", EnumStairsType.WOODEN).setSortCategory(EnumSortCategoryBlock.STAIRS_WOODEN);
+        MPBlocks.FROLIA_STAIRS = new BlockStairsMP("frolia_stairs", EnumStairsType.WOODEN).setSortCategory(EnumSortCategoryBlock.STAIRS_WOODEN);
+        MPBlocks.OSCALEA_FENCE = new BlockFenceMP("oscalea_fence");
+        MPBlocks.FROLIA_FENCE = new BlockFenceMP("frolia_fence");
+        MPBlocks.OSCALEA_FENCE_GATE = new BlockFenceGateMP("oscalea_fence_gate");
+        MPBlocks.FROLIA_FENCE_GATE = new BlockFenceGateMP("frolia_fence_gate");
 
         // Fronos Ore
         MPBlocks.FRONOS_IRON_ORE = new BlockMineableOre("fronos_iron_ore").setHardness(3.0F);
@@ -1430,6 +1454,8 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.CHEESE_SPORE_SLAB, ItemBlockSlabMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_SLAB, ItemBlockSlabMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_SLAB, ItemBlockSlabMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.OSCALEA_SLAB, ItemBlockSlabMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_SLAB, ItemBlockSlabMP::new);
 
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_DIONA_COBBLESTONE_SLAB, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_CHALOS_COBBLESTONE_SLAB, null);
@@ -1442,10 +1468,14 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_CHEESE_SPORE_SLAB, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_INFECTED_OAK_SLAB, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_ALIEN_BERRY_OAK_SLAB, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_OSCALEA_SLAB, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_FROLIA_SLAB, null);
 
         // Pressure Plate
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_PRESSURE_PLATE);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_PRESSURE_PLATE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.OSCALEA_PRESSURE_PLATE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_PRESSURE_PLATE);
 
         // Energy Storage
         BlocksItemsRegistry.registerBlock(MPBlocks.DARK_ENERGY_STORAGE_CLUSTER, ItemBlockDescription::new);
@@ -1533,6 +1563,12 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_GRASS);
         BlocksItemsRegistry.registerBlock(MPBlocks.LARGE_WHEAT);
         BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_TALL_GRASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.OSCALEA_FENCE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_FENCE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.OSCALEA_FENCE_GATE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_FENCE_GATE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.OSCALEA_STAIRS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_STAIRS);
 
         // Fronos Ore
         BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_IRON_ORE);
@@ -1604,11 +1640,17 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.CHEESE_SPORE_SLAB, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_OAK_SLAB, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_BERRY_OAK_SLAB, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.OSCALEA_SLAB, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.FROLIA_SLAB, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_CHEESE_SPORE_SLAB, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_INFECTED_OAK_SLAB, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_ALIEN_BERRY_OAK_SLAB, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_OSCALEA_SLAB, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_FROLIA_SLAB, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_OAK_PRESSURE_PLATE, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_BERRY_OAK_PRESSURE_PLATE, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.OSCALEA_PRESSURE_PLATE, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.FROLIA_PRESSURE_PLATE, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DIONA_COBBLESTONE_WALL, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.CHALOS_COBBLESTONE_WALL, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.NIBIRU_COBBLESTONE_WALL, EnumHarvestLevel.PICKAXE, 0);
@@ -1702,7 +1744,11 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.CHEESE_SPORE_CHEST, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.CHEESE_SPORE_STAIRS, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.CHEESE_SPORE_FENCE, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.OSCALEA_FENCE, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.FROLIA_FENCE, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.CHEESE_SPORE_FENCE_GATE, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.OSCALEA_FENCE_GATE, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.FROLIA_FENCE_GATE, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.CHEESE_SPORE_DOOR, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_GRASS_BLOCK, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_DIRT, EnumHarvestLevel.SHOVEL, 0);
@@ -1858,9 +1904,13 @@ public class MPBlocks
         MPBlocks.CHEESE_SPORE_SLAB.setHalf(MPBlocks.CHEESE_SPORE_SLAB);
         MPBlocks.INFECTED_OAK_SLAB.setHalf(MPBlocks.INFECTED_OAK_SLAB);
         MPBlocks.ALIEN_BERRY_OAK_SLAB.setHalf(MPBlocks.ALIEN_BERRY_OAK_SLAB);
+        MPBlocks.OSCALEA_SLAB.setHalf(MPBlocks.OSCALEA_SLAB);
+        MPBlocks.FROLIA_SLAB.setHalf(MPBlocks.FROLIA_SLAB);
         MPBlocks.CHEESE_SPORE_SLAB.setDouble(MPBlocks.DOUBLE_CHEESE_SPORE_SLAB);
         MPBlocks.INFECTED_OAK_SLAB.setDouble(MPBlocks.DOUBLE_INFECTED_OAK_SLAB);
         MPBlocks.ALIEN_BERRY_OAK_SLAB.setDouble(MPBlocks.DOUBLE_ALIEN_BERRY_OAK_SLAB);
+        MPBlocks.OSCALEA_SLAB.setDouble(MPBlocks.DOUBLE_OSCALEA_SLAB);
+        MPBlocks.FROLIA_SLAB.setDouble(MPBlocks.DOUBLE_FROLIA_SLAB);
 
         MPBlocks.DOUBLE_DIONA_COBBLESTONE_SLAB.setHalf(MPBlocks.DIONA_COBBLESTONE_SLAB);
         MPBlocks.DOUBLE_CHALOS_COBBLESTONE_SLAB.setHalf(MPBlocks.CHALOS_COBBLESTONE_SLAB);
@@ -1873,6 +1923,8 @@ public class MPBlocks
         MPBlocks.DOUBLE_CHEESE_SPORE_SLAB.setHalf(MPBlocks.CHEESE_SPORE_SLAB);
         MPBlocks.DOUBLE_INFECTED_OAK_SLAB.setHalf(MPBlocks.INFECTED_OAK_SLAB);
         MPBlocks.DOUBLE_ALIEN_BERRY_OAK_SLAB.setHalf(MPBlocks.ALIEN_BERRY_OAK_SLAB);
+        MPBlocks.DOUBLE_OSCALEA_SLAB.setHalf(MPBlocks.OSCALEA_SLAB);
+        MPBlocks.DOUBLE_FROLIA_SLAB.setHalf(MPBlocks.FROLIA_SLAB);
 
         MPBlocks.INFECTED_PRISMARINE_SLAB.setHalf(MPBlocks.INFECTED_PRISMARINE_SLAB);
         MPBlocks.INFECTED_PRISMARINE_BRICK_SLAB.setHalf(MPBlocks.INFECTED_PRISMARINE_BRICK_SLAB);
@@ -1917,6 +1969,12 @@ public class MPBlocks
         BlockUtils.setFireBurn(MPBlocks.CHEESE_SPORE_STAIRS, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.CHEESE_SPORE_FENCE, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.CHEESE_SPORE_FENCE_GATE, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.OSCALEA_STAIRS, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.OSCALEA_FENCE, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.OSCALEA_FENCE_GATE, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.FROLIA_FENCE, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.FROLIA_FENCE_GATE, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.FROLIA_STAIRS, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.FRONOS_GRASS, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_GRASS, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_FERN, 60, 100);
