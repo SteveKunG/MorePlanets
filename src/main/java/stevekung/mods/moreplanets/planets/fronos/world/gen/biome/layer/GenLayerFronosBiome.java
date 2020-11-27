@@ -64,12 +64,12 @@ public class GenLayerFronosBiome extends GenLayer
     {
         ArrayList<BiomeManager.BiomeEntry>[] currentBiomes = new ArrayList[CachedEnum.biomeValues.length];
         List<BiomeManager.BiomeEntry> list = new ArrayList<>();
-        list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_MELLOW, 30));
+        list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_MEADOW, 30));
         list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_PLAINS, 20));
         list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_FOREST, 20));
         currentBiomes[BiomeManager.BiomeType.WARM.ordinal()] = new ArrayList<>(list);
         list.clear();
-        list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_MELLOW, 30));
+        list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_MEADOW, 30));
         list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_PLAINS, 20));
         list.add(new BiomeManager.BiomeEntry(MPBiomes.FRONOS_FOREST, 20));
         return currentBiomes;

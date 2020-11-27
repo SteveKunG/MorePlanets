@@ -11,11 +11,11 @@ import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 
-public class BiomeFronosMellow extends BiomeFronos
+public class BiomeFronosMeadow extends BiomeFronos
 {
     private static final WorldGenDoublePlantMP TALL_GRASS = new WorldGenDoublePlantMP(MPBlocks.FRONOS_TALL_GRASS);
 
-    public BiomeFronosMellow(BiomeProperties prop)
+    public BiomeFronosMeadow(BiomeProperties prop)
     {
         super(prop);
         this.decorator.treesPerChunk = 0;
@@ -28,13 +28,13 @@ public class BiomeFronosMellow extends BiomeFronos
     @Override
     public int getGrassColorAtPos(BlockPos pos)
     {
-        return this == MPBiomes.FRONOS_MELLOW ? ColorUtils.rgbToDecimal(100, 173, 54) : ColorUtils.rgbToDecimal(124, 173, 38);
+        return this == MPBiomes.FRONOS_MEADOW ? ColorUtils.rgbToDecimal(100, 173, 54) : ColorUtils.rgbToDecimal(124, 173, 38);
     }
 
     @Override
     public void decorate(World world, Random rand, BlockPos pos)
     {
-        int base = this == MPBiomes.FRONOS_MELLOW ? 200 : 100;
+        int base = this == MPBiomes.FRONOS_MEADOW ? 200 : 100;
         double grassColorNoise = GRASS_COLOR_NOISE.getValue((pos.getX() + 8) / 250.0D, (pos.getZ() + 8) / 250.0D);
 
         if (grassColorNoise < -0.8D)
@@ -47,7 +47,7 @@ public class BiomeFronosMellow extends BiomeFronos
 
             for (int i = 0; i < 7; ++i)
             {
-                BiomeFronosMellow.TALL_GRASS.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
+                BiomeFronosMeadow.TALL_GRASS.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
             }
         }
         super.decorate(world, rand, pos);
@@ -56,6 +56,6 @@ public class BiomeFronosMellow extends BiomeFronos
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
-        return this == MPBiomes.FRONOS_MELLOW ? FROLIA : rand.nextInt(3) == 0 ? FROLIA : OSCALEA;
+        return this == MPBiomes.FRONOS_MEADOW ? FROLIA : rand.nextInt(3) == 0 ? FROLIA : OSCALEA;
     }
 }

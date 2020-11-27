@@ -18,7 +18,7 @@ public class BiomeProviderFronos extends BiomeProvider
     {
         this.biomeCache = new BiomeCache(this);
         this.getBiomesToSpawnIn().clear();
-        this.getBiomesToSpawnIn().add(MPBiomes.FRONOS_MELLOW);
+        this.getBiomesToSpawnIn().add(MPBiomes.FRONOS_MEADOW);
         this.getBiomesToSpawnIn().add(MPBiomes.FRONOS_PLAINS);
         this.getBiomesToSpawnIn().add(MPBiomes.FRONOS_FOREST);
         this.initLayers(seed);
