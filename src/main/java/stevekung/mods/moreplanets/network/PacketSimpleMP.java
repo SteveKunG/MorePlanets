@@ -12,13 +12,9 @@ import micdoodle8.mods.galacticraft.core.network.PacketBase;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
-import net.minecraft.client.audio.ISound;
-import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemRecord;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
@@ -32,7 +28,6 @@ import stevekung.mods.moreplanets.client.gui.GuiShieldGenerator;
 import stevekung.mods.moreplanets.client.gui.GuiShieldGeneratorConfig;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
-import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.inventory.ContainerShieldGeneratorConfig;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
@@ -133,11 +128,8 @@ public class PacketSimpleMP extends PacketBase
             player.sendMessage(JsonUtils.create("You select " + TextFormatting.AQUA + name + TextFormatting.RESET + " as survival planet, Good Luck!"));
             break;
         case C_PLAY_VEIN_FLOATER_MUSIC:
-            FMLClientHandler.instance().getClient().getSoundHandler().playSound(new PositionedSoundRecord(MPSounds.A_PLANET_TO_CONQUER.getRegistryName(), SoundCategory.PLAYERS, 1.0F, 1.0F, false, 0, ISound.AttenuationType.NONE, 0.0F, 0.0F, 0.0F));
-            FMLClientHandler.instance().getClient().ingameGUI.setRecordPlayingMessage(((ItemRecord)MPItems.VEIN_FLOATER_DISC).getRecordNameLocal());
             break;
         case C_STOP_VEIN_FLOATER_MUSIC:
-            FMLClientHandler.instance().getClient().getSoundHandler().stop(MPSounds.A_PLANET_TO_CONQUER.getRegistryName().toString(), SoundCategory.PLAYERS);
             break;
         case C_PLAY_CREATED_BLACK_HOLE_SOUND:
             player.playSound(MPSounds.BLACK_HOLE_CREATED, 5.0F, 0.8F);

@@ -54,7 +54,7 @@ public class BiomeDecoratorFronos extends BiomeDecoratorMP
                 }
             }
         }
-        //        for (int i = 0; i < this.waterlilyPerChunk; ++i)
+        //        for (int i = 0; i < this.waterlilyPerChunk; ++i)TODO
         //        {
         //            int x = rand.nextInt(16) + 8;
         //            int z = rand.nextInt(16) + 8;

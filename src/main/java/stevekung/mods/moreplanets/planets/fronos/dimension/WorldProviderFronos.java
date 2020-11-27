@@ -19,6 +19,8 @@ import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPDimensions;
 import stevekung.mods.moreplanets.init.MPPlanets;
+import stevekung.mods.moreplanets.planets.fronos.client.renderer.FronosCloudRenderer;
+import stevekung.mods.moreplanets.planets.fronos.client.renderer.SkyProviderFronos;
 import stevekung.mods.moreplanets.planets.fronos.world.gen.BiomeProviderFronos;
 import stevekung.mods.moreplanets.planets.fronos.world.gen.ChunkGeneratorFronos;
 import stevekung.mods.moreplanets.utils.dimension.WorldProviderMP;
@@ -28,14 +30,14 @@ public class WorldProviderFronos extends WorldProviderMP
     @Override
     public Vector3 getFogColor()
     {
-        float f = 1.0F - this.getStarBrightness(1.0F);
+        float f = 0.8F - this.getStarBrightness(1.0F);
         return new Vector3(149 / 255F * f, 210 / 255F * f, 245 / 255F * f);
     }
 
     @Override
     public Vector3 getSkyColor()
     {
-        float f = 1.0F - this.getStarBrightness(1.0F);
+        float f = 1.8F - this.getStarBrightness(1.0F);
         return new Vector3(83 / 255F * f, 186 / 255F * f, 245 / 255F * f);
     }
 
@@ -76,8 +78,8 @@ public class WorldProviderFronos extends WorldProviderMP
     {
         float angle = this.world.getCelestialAngle(partialTicks);
         float value = 1.0F - (MathHelper.cos(angle * ((float)Math.PI * 2.0F)) * 2.0F + 0.25F);
-        value = MathHelper.clamp(value, 0.0F, 0.85F);
-        return value * value * 0.35F;
+        value = MathHelper.clamp(value, 0.0F, 0.9F);
+        return value * value * 1.0F;
     }
 
     @Override
@@ -144,23 +146,17 @@ public class WorldProviderFronos extends WorldProviderMP
     @Override
     public void setup(EntityPlayerMP player) {}
 
-    //    @Override
-    //    protected void renderSky()
-    //    {
-    //        this.setSkyRenderer(new SkyProviderNibiru(this.getSolarSize()));
-    //    }
+    @Override
+    protected void renderSky()
+    {
+        this.setSkyRenderer(new SkyProviderFronos(this.getSolarSize()));
+    }
 
-    //    @Override
-    //    protected void renderCloud()
-    //    {
-    //        this.setCloudRenderer(new CloudRendererNibiru());
-    //    }
-
-    //    @Override
-    //    protected void renderWeather()
-    //    {
-    //        this.setWeatherRenderer(new WeatherRendererNibiru());
-    //    }
+    @Override
+    protected void renderCloud()
+    {
+        this.setCloudRenderer(new FronosCloudRenderer());
+    }
 
     @Override
     public void init()

@@ -8,11 +8,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class ItemRecordMP extends ItemRecord implements ISortableItem, IItemModelRender
+public class ItemRecordMP extends ItemRecord implements IItemModelRender
 {
     private final String name;
 
@@ -33,13 +32,7 @@ public class ItemRecordMP extends ItemRecord implements ISortableItem, IItemMode
     @Override
     public CreativeTabs getCreativeTab()
     {
-        return MorePlanetsMod.ITEM_TAB;
-    }
-
-    @Override
-    public EnumSortCategoryItem getItemCategory()
-    {
-        return EnumSortCategoryItem.RECORD;
+        return null;
     }
 
     @Override
