@@ -1,0 +1,14 @@
+{
+    "result": {
+        "item": "moreplanets:frolia_pressure_plate"
+    },
+    "pattern": [
+        "XX"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "X": {
+            "item": "moreplanets:frolia_planks"
+        }
+    }
+}

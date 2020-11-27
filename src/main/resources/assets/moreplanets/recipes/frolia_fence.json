@@ -1,0 +1,20 @@
+{
+    "result": {
+        "item": "moreplanets:frolia_fence",
+        "count": 3
+    },
+    "pattern": [
+        "XSX",
+        "XSX"
+    ],
+    "type": "forge:ore_shaped",
+    "key": {
+        "S": {
+            "item": "#STICKWOOD"
+        },
+        "X": {
+            "item": "moreplanets:frolia_planks"
+        }
+    },
+    "group": "wooden_fence"
+}

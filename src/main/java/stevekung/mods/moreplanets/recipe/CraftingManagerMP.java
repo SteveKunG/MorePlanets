@@ -87,6 +87,8 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.CHEESE_SPORE_SLAB, 6), "wooden_slab", new Object[] { "XXX", 'X', MPBlocks.CHEESE_SPORE_PLANKS });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_OAK_SLAB, 6), "wooden_slab", new Object[] { "XXX", 'X', MPBlocks.INFECTED_OAK_PLANKS });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ALIEN_BERRY_OAK_SLAB, 6), "wooden_slab", new Object[] { "XXX", 'X', MPBlocks.ALIEN_BERRY_OAK_PLANKS });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.OSCALEA_SLAB, 6), "wooden_slab", new Object[] { "XXX", 'X', MPBlocks.OSCALEA_PLANKS });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.FROLIA_SLAB, 6), "wooden_slab", new Object[] { "XXX", 'X', MPBlocks.FROLIA_PLANKS });
 
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.WHITE_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', "dyeWhite"});
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ORANGE_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', "dyeOrange"});
@@ -249,9 +251,20 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.FRONOS_COARSE_DIRT, 4), "coarse_dirt", new Object[] { "DG", "GD", 'D', MPBlocks.FRONOS_DIRT, 'G', "gravel" });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ALIEN_SHIP_DECORATION_1, 4), new Object[] { "XX", "XX", 'X', MPBlocks.ALIEN_SHIP_DECORATION_0 });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ALIEN_CHEST), new Object[] { "XXX", "X X", "XXX", 'X', MPBlocks.ALIEN_SHIP_DECORATION_1 });
-        
+
         RecipeHelper.addShapelessRecipe(new ItemStack(MPBlocks.OSCALEA_PLANKS, 4), "planks", MPBlocks.OSCALEA_LOG );
         RecipeHelper.addShapelessRecipe(new ItemStack(MPBlocks.FROLIA_PLANKS, 4), "planks", MPBlocks.FROLIA_LOG );
+
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.OSCALEA_FENCE, 3), "wooden_fence", new Object[] { "XSX", "XSX", 'X', MPBlocks.OSCALEA_PLANKS, 'S', "stickWood" });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.FROLIA_FENCE, 3), "wooden_fence", new Object[] { "XSX", "XSX", 'X', MPBlocks.FROLIA_PLANKS, 'S', "stickWood" });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.OSCALEA_FENCE_GATE), "wooden_fence_gate", new Object[] { "SXS", "SXS", 'X', MPBlocks.OSCALEA_PLANKS, 'S', "stickWood" });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.FROLIA_FENCE_GATE), "wooden_fence_gate", new Object[] { "SXS", "SXS", 'X', MPBlocks.FROLIA_PLANKS, 'S', "stickWood" });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.OSCALEA_PRESSURE_PLATE), new Object[] { "XX", 'X', MPBlocks.OSCALEA_PLANKS });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.FROLIA_PRESSURE_PLATE), new Object[] { "XX", 'X', MPBlocks.FROLIA_PLANKS });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.OSCALEA_STAIRS, 4), "wooden_stairs", new Object[] { "X  ", "XX ", "XXX", 'X', MPBlocks.OSCALEA_PLANKS });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.FROLIA_STAIRS, 4), "wooden_stairs", new Object[] { "X  ", "XX ", "XXX", 'X', MPBlocks.FROLIA_PLANKS });
+        RecipeHelper.addShapelessRecipe(new ItemStack(Items.DYE, 1, 12), null, "light_blue_dye_from_nemophila", MPBlocks.NEMOPHILA );
+        RecipeHelper.addShapelessRecipe(new ItemStack(Items.DYE, 1, 9), null, "pink_dye_from_blechnum", MPBlocks.PINK_BLECHNUM );
     }
 
     @Deprecated //TEMP

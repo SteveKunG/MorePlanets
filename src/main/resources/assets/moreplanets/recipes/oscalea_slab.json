@@ -1,0 +1,16 @@
+{
+    "result": {
+        "item": "moreplanets:oscalea_slab",
+        "count": 6
+    },
+    "pattern": [
+        "XXX"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "X": {
+            "item": "moreplanets:oscalea_planks"
+        }
+    },
+    "group": "wooden_slab"
+}

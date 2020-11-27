@@ -1,0 +1,14 @@
+{
+    "result": {
+        "item": "moreplanets:oscalea_pressure_plate"
+    },
+    "pattern": [
+        "XX"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "X": {
+            "item": "moreplanets:oscalea_planks"
+        }
+    }
+}

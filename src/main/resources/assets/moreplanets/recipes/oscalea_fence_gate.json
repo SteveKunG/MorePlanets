@@ -1,0 +1,19 @@
+{
+    "result": {
+        "item": "moreplanets:oscalea_fence_gate"
+    },
+    "pattern": [
+        "SXS",
+        "SXS"
+    ],
+    "type": "forge:ore_shaped",
+    "key": {
+        "S": {
+            "item": "#STICKWOOD"
+        },
+        "X": {
+            "item": "moreplanets:oscalea_planks"
+        }
+    },
+    "group": "wooden_fence_gate"
+}

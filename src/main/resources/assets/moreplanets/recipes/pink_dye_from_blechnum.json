@@ -1,0 +1,12 @@
+{
+    "result": {
+        "item": "minecraft:dye",
+        "data": 9
+    },
+    "ingredients": [
+        {
+            "item": "moreplanets:pink_blechnum"
+        }
+    ],
+    "type": "minecraft:crafting_shapeless"
+}
