@@ -1975,6 +1975,16 @@ public class MPBlocks
         BlockUtils.setFireBurn(MPBlocks.FROLIA_FENCE, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.FROLIA_FENCE_GATE, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.FROLIA_STAIRS, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.CHEESE_SPORE_SLAB, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.INFECTED_OAK_SLAB, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.ALIEN_BERRY_OAK_SLAB, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.OSCALEA_SLAB, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.FROLIA_SLAB, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.DOUBLE_CHEESE_SPORE_SLAB, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.DOUBLE_INFECTED_OAK_SLAB, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.DOUBLE_ALIEN_BERRY_OAK_SLAB, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.DOUBLE_OSCALEA_SLAB, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.DOUBLE_FROLIA_SLAB, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.FRONOS_GRASS, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_GRASS, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_FERN, 60, 100);
