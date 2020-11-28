@@ -5,11 +5,11 @@
         "XYX"
     ],
     "key": {
-        "X": {
-            "item": "moreplanets:compressed_illenium"
-        },
         "Y": {
             "item": "galacticraftcore:oxygen_mask"
+        },
+        "X": {
+            "item": "moreplanets:compressed_illenium"
         }
     },
     "result": {

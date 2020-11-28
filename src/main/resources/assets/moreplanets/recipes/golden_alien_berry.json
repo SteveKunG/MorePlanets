@@ -6,11 +6,11 @@
         "XXX"
     ],
     "key": {
-        "A": {
-            "item": "moreplanets:alien_berry"
-        },
         "X": {
             "item": "#INGOTGOLD"
+        },
+        "A": {
+            "item": "moreplanets:alien_berry"
         }
     },
     "result": {

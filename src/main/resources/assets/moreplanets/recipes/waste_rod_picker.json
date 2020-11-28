@@ -6,11 +6,11 @@
         "T  "
     ],
     "key": {
-        "P": {
-            "item": "moreplanets:compressed_zyptorium"
-        },
         "T": {
             "item": "moreplanets:shlime_tail"
+        },
+        "P": {
+            "item": "moreplanets:compressed_zyptorium"
         }
     },
     "result": {

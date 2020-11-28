@@ -6,11 +6,11 @@
         " V "
     ],
     "key": {
-        "V": {
-            "item": "moreplanets:infected_vines"
-        },
         "X": {
             "item": "minecraft:ender_eye"
+        },
+        "V": {
+            "item": "moreplanets:infected_vines"
         }
     },
     "result": {

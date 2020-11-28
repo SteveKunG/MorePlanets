@@ -6,6 +6,10 @@
         "ITI"
     ],
     "key": {
+        "H": {
+            "item": "galacticraftplanets:item_basic_asteroids",
+            "data": 5
+        },
         "P": {
             "item": "galacticraftcore:steel_pole"
         },
@@ -16,16 +20,12 @@
         "C": {
             "item": "moreplanets:space_warper_core"
         },
+        "I": {
+            "item": "#INGOTIRON"
+        },
         "T": {
             "item": "galacticraftplanets:item_basic_asteroids",
             "data": 5
-        },
-        "H": {
-            "item": "galacticraftplanets:item_basic_asteroids",
-            "data": 5
-        },
-        "I": {
-            "item": "#INGOTIRON"
         }
     },
     "result": {

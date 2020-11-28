@@ -1,14 +1,10 @@
 {
-    "result": {
-        "item": "moreplanets:desh_frame",
-        "count": 8
-    },
+    "type": "forge:ore_shaped",
     "pattern": [
         "DID",
         "I I",
         "DID"
     ],
-    "type": "forge:ore_shaped",
     "key": {
         "D": {
             "item": "#COMPRESSEDDESH"
@@ -16,5 +12,9 @@
         "I": {
             "item": "minecraft:iron_bars"
         }
+    },
+    "result": {
+        "item": "moreplanets:desh_frame",
+        "count": 8
     }
 }

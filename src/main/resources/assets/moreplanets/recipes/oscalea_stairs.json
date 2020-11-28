@@ -1,18 +1,18 @@
 {
-    "result": {
-        "item": "moreplanets:oscalea_stairs",
-        "count": 4
-    },
+    "group": "wooden_stairs",
+    "type": "minecraft:crafting_shaped",
     "pattern": [
         "X  ",
         "XX ",
         "XXX"
     ],
-    "type": "minecraft:crafting_shaped",
     "key": {
         "X": {
             "item": "moreplanets:oscalea_planks"
         }
     },
-    "group": "wooden_stairs"
+    "result": {
+        "item": "moreplanets:oscalea_stairs",
+        "count": 4
+    }
 }

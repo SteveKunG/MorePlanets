@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.util.*;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -29,7 +32,7 @@ public class JSONRecipe
 
     private static File RECIPE_DIR = null;
     private static File ADVANCE_DIR = null;
-    private static final Set<String> USED_OD_NAMES = new TreeSet<>();
+    private static final Set<String> USED_OD_NAMES = Sets.newTreeSet();
     public static final boolean ENABLE = false;
 
     private static void setupDir()
@@ -74,8 +77,8 @@ public class JSONRecipe
         }
 
         setupDir();
-        Map<String, Object> json = new HashMap<>();
-        List<String> pattern = new ArrayList<>();
+        Map<String, Object> json = Maps.newLinkedHashMap();
+        List<String> pattern = Lists.newArrayList();
         int i = 0;
 
         while (i < components.length && components[i] instanceof String)
@@ -85,9 +88,9 @@ public class JSONRecipe
         }
 
         boolean isOreDict = false;
-        Map<String, Map<String, Object>> key = new HashMap<>();
+        Map<String, Map<String, Object>> key = Maps.newLinkedHashMap();
         Character curKey = null;
-        List<Map<String, Object>> ingredients = new ArrayList<>();
+        List<Map<String, Object>> ingredients = Lists.newArrayList();
 
         for (; i < components.length; i++)
         {
@@ -162,10 +165,10 @@ public class JSONRecipe
         }
 
         setupDir();
-        Map<String, Object> json = new HashMap<>();
+        Map<String, Object> json = Maps.newLinkedHashMap();
         boolean isOreDict = false;
-        List<Map<String, Object>> ingredients = new ArrayList<>();
-        List<Map<String, Object>> ingredients2 = new ArrayList<>();
+        List<Map<String, Object>> ingredients = Lists.newArrayList();
+        List<Map<String, Object>> ingredients2 = Lists.newArrayList();
 
         for (Object obj : components)
         {
@@ -216,7 +219,7 @@ public class JSONRecipe
         if (obj instanceof ItemStack)
         {
             ItemStack itemStack = (ItemStack) obj;
-            Map<String, Object> ret = new HashMap<>();
+            Map<String, Object> ret = Maps.newLinkedHashMap();
 
             if (itemStack.hasTagCompound())
             {
@@ -241,7 +244,7 @@ public class JSONRecipe
         }
         if (obj instanceof String)
         {
-            Map<String, Object> ret = new HashMap<>();
+            Map<String, Object> ret = Maps.newLinkedHashMap();
             USED_OD_NAMES.add((String) obj);
             ret.put("item", "#" + ((String) obj).toUpperCase(Locale.ROOT));
             return ret;
@@ -262,7 +265,7 @@ public class JSONRecipe
         if (obj instanceof ItemStack)
         {
             ItemStack itemStack = (ItemStack) obj;
-            Map<String, Object> ret = new HashMap<>();
+            Map<String, Object> ret = Maps.newLinkedHashMap();
 
             ret.put("item", itemStack.getItem().getRegistryName().toString());
 
@@ -300,16 +303,16 @@ public class JSONRecipe
         }
 
         setupAdvDir();
-        Map<String, Object> json = new HashMap<>();
-        Map<String, Object> rewards = new HashMap<>();
-        List<String> recipes = new ArrayList<>();
-        Map<String, Map<String, Object>> criteria = new HashMap<>();
-        Map<String, Object> has_item = new HashMap<>();
-        Map<String, Object> conditions = new HashMap<>();
-        Map<String, Object> conditions2 = new HashMap<>();
-        Map<String, Object> has_the_recipe = new HashMap<>();
-        ArrayList<ArrayList<String>> requirements = new ArrayList<>();
-        ArrayList<String> reqs = new ArrayList<>();
+        Map<String, Object> json = Maps.newLinkedHashMap();
+        Map<String, Object> rewards = Maps.newLinkedHashMap();
+        List<String> recipes = Lists.newArrayList();
+        Map<String, Map<String, Object>> criteria = Maps.newLinkedHashMap();
+        Map<String, Object> has_item = Maps.newLinkedHashMap();
+        Map<String, Object> conditions = Maps.newLinkedHashMap();
+        Map<String, Object> conditions2 = Maps.newLinkedHashMap();
+        Map<String, Object> has_the_recipe = Maps.newLinkedHashMap();
+        ArrayList<ArrayList<String>> requirements = Lists.newArrayList();
+        ArrayList<String> reqs = Lists.newArrayList();
 
         json.put("parent", "minecraft:recipes/root");
         recipes.add("moreplanets:" + name);
@@ -354,11 +357,11 @@ public class JSONRecipe
         }
 
         setupDir();
-        List<Map<String, Object>> json = new ArrayList<>();
+        List<Map<String, Object>> json = Lists.newArrayList();
 
         for (String name : USED_OD_NAMES)
         {
-            Map<String, Object> entry = new HashMap<>();
+            Map<String, Object> entry = Maps.newLinkedHashMap();
             entry.put("name", name.toUpperCase(Locale.ROOT));
             entry.put("ingredient", ImmutableMap.of("type", "forge:ore_dict", "ore", name));
             json.add(entry);
@@ -385,7 +388,7 @@ public class JSONRecipe
     public static void addSmelting(ItemStack in, ItemStack result, float xp, int cookTime)
     {
         setupDir();
-        Map<String, Object> json = new HashMap<>();
+        Map<String, Object> json = Maps.newLinkedHashMap();
         json.put("type", "minecraft:smelting");
         json.put("ingredient", serializeItem(in));
         json.put("result", serializeItem(result)); // vanilla jsons just have a string?

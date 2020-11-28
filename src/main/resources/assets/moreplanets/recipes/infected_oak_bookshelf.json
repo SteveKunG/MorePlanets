@@ -6,11 +6,11 @@
         "WWW"
     ],
     "key": {
-        "B": {
-            "item": "minecraft:book"
-        },
         "W": {
             "item": "moreplanets:infected_oak_planks"
+        },
+        "B": {
+            "item": "minecraft:book"
         }
     },
     "result": {

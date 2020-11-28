@@ -7,11 +7,11 @@
         "III"
     ],
     "key": {
-        "D": {
-            "item": "#DYEMAGENTA"
-        },
         "I": {
             "item": "moreplanets:tinted_glass"
+        },
+        "D": {
+            "item": "#DYEMAGENTA"
         }
     },
     "result": {

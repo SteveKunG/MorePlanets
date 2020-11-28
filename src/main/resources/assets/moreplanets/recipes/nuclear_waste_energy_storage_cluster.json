@@ -6,11 +6,11 @@
         "EAE"
     ],
     "key": {
-        "A": {
-            "item": "moreplanets:alien_miner_part"
-        },
         "E": {
             "item": "moreplanets:dark_energy_storage_cluster"
+        },
+        "A": {
+            "item": "moreplanets:alien_miner_part"
         },
         "N": {
             "item": "moreplanets:nuclear_waste_tank"

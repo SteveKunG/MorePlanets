@@ -6,12 +6,12 @@
         "EAE"
     ],
     "key": {
-        "A": {
-            "item": "moreplanets:alien_miner_part"
-        },
         "E": {
             "item": "galacticraftcore:machine_tiered",
             "data": 8
+        },
+        "A": {
+            "item": "moreplanets:alien_miner_part"
         },
         "W": {
             "item": "galacticraftcore:basic_item",

@@ -1,13 +1,13 @@
 {
-    "result": {
-        "item": "moreplanets:oscalea_planks",
-        "count": 4
-    },
+    "group": "planks",
+    "type": "minecraft:crafting_shapeless",
     "ingredients": [
         {
             "item": "moreplanets:oscalea_log"
         }
     ],
-    "type": "minecraft:crafting_shapeless",
-    "group": "planks"
+    "result": {
+        "item": "moreplanets:oscalea_planks",
+        "count": 4
+    }
 }

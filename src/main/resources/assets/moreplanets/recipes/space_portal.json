@@ -6,11 +6,11 @@
         "OOO"
     ],
     "key": {
-        "F": {
-            "item": "minecraft:flint_and_steel"
-        },
         "O": {
             "item": "#OBSIDIAN"
+        },
+        "F": {
+            "item": "minecraft:flint_and_steel"
         }
     },
     "result": {

@@ -6,11 +6,11 @@
         "SXS"
     ],
     "key": {
-        "S": {
-            "item": "#STICKWOOD"
-        },
         "X": {
             "item": "moreplanets:alien_berry_oak_planks"
+        },
+        "S": {
+            "item": "#STICKWOOD"
         }
     },
     "result": {

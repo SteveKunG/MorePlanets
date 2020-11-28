@@ -6,15 +6,15 @@
         "Y"
     ],
     "key": {
-        "S": {
-            "item": "galacticraftplanets:item_basic_mars",
-            "data": 1
+        "Y": {
+            "item": "#FEATHER"
         },
         "X": {
             "item": "moreplanets:infected_purlonite_shard"
         },
-        "Y": {
-            "item": "#FEATHER"
+        "S": {
+            "item": "galacticraftplanets:item_basic_mars",
+            "data": 1
         }
     },
     "result": {

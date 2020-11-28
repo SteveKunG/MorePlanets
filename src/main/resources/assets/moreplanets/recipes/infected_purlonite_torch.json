@@ -5,11 +5,11 @@
         "S"
     ],
     "key": {
-        "S": {
-            "item": "#STICKWOOD"
-        },
         "I": {
             "item": "moreplanets:infected_purlonite_shard"
+        },
+        "S": {
+            "item": "#STICKWOOD"
         }
     },
     "result": {

@@ -1,20 +1,20 @@
 {
-    "result": {
-        "item": "moreplanets:oscalea_fence",
-        "count": 3
-    },
+    "group": "wooden_fence",
+    "type": "forge:ore_shaped",
     "pattern": [
         "XSX",
         "XSX"
     ],
-    "type": "forge:ore_shaped",
     "key": {
-        "S": {
-            "item": "#STICKWOOD"
-        },
         "X": {
             "item": "moreplanets:oscalea_planks"
+        },
+        "S": {
+            "item": "#STICKWOOD"
         }
     },
-    "group": "wooden_fence"
+    "result": {
+        "item": "moreplanets:oscalea_fence",
+        "count": 3
+    }
 }

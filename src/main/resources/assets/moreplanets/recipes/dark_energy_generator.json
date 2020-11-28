@@ -6,6 +6,10 @@
         "WFW"
     ],
     "key": {
+        "H": {
+            "item": "galacticraftplanets:item_basic_asteroids",
+            "data": 5
+        },
         "P": {
             "item": "moreplanets:dark_energy_pearl"
         },
@@ -22,10 +26,6 @@
         "W": {
             "item": "galacticraftcore:aluminum_wire",
             "data": 1
-        },
-        "H": {
-            "item": "galacticraftplanets:item_basic_asteroids",
-            "data": 5
         }
     },
     "result": {

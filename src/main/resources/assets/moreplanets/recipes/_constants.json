@@ -1,254 +1,254 @@
 [
     {
+        "name": "BLOCKGLASSLIGHTGRAY",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "blockGlassLightGray"
-        },
-        "name": "BLOCKGLASSLIGHTGRAY"
+        }
     },
     {
+        "name": "BLOCKGOLD",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "blockGold"
-        },
-        "name": "BLOCKGOLD"
+        }
     },
     {
+        "name": "BLOCKREDSTONE",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "blockRedstone"
-        },
-        "name": "BLOCKREDSTONE"
+        }
     },
     {
+        "name": "COMPRESSEDDESH",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "compressedDesh"
-        },
-        "name": "COMPRESSEDDESH"
+        }
     },
     {
+        "name": "COMPRESSEDTITANIUM",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "compressedTitanium"
-        },
-        "name": "COMPRESSEDTITANIUM"
+        }
     },
     {
+        "name": "DUSTREDSTONE",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "dustRedstone"
-        },
-        "name": "DUSTREDSTONE"
+        }
     },
     {
+        "name": "DYEBLACK",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "dyeBlack"
-        },
-        "name": "DYEBLACK"
+        }
     },
     {
+        "name": "DYEBLUE",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "dyeBlue"
-        },
-        "name": "DYEBLUE"
+        }
     },
     {
+        "name": "DYEBROWN",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "dyeBrown"
-        },
-        "name": "DYEBROWN"
+        }
     },
     {
+        "name": "DYECYAN",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "dyeCyan"
-        },
-        "name": "DYECYAN"
+        }
     },
     {
+        "name": "DYEGRAY",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "dyeGray"
-        },
-        "name": "DYEGRAY"
+        }
     },
     {
+        "name": "DYEGREEN",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "dyeGreen"
-        },
-        "name": "DYEGREEN"
+        }
     },
     {
+        "name": "DYELIGHTBLUE",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "dyeLightBlue"
-        },
-        "name": "DYELIGHTBLUE"
+        }
     },
     {
+        "name": "DYELIGHTGRAY",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "dyeLightGray"
-        },
-        "name": "DYELIGHTGRAY"
+        }
     },
     {
+        "name": "DYELIME",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "dyeLime"
-        },
-        "name": "DYELIME"
+        }
     },
     {
+        "name": "DYEMAGENTA",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "dyeMagenta"
-        },
-        "name": "DYEMAGENTA"
+        }
     },
     {
+        "name": "DYEORANGE",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "dyeOrange"
-        },
-        "name": "DYEORANGE"
+        }
     },
     {
+        "name": "DYEPINK",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "dyePink"
-        },
-        "name": "DYEPINK"
+        }
     },
     {
+        "name": "DYEPURPLE",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "dyePurple"
-        },
-        "name": "DYEPURPLE"
+        }
     },
     {
+        "name": "DYERED",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "dyeRed"
-        },
-        "name": "DYERED"
+        }
     },
     {
+        "name": "DYEWHITE",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "dyeWhite"
-        },
-        "name": "DYEWHITE"
+        }
     },
     {
+        "name": "DYEYELLOW",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "dyeYellow"
-        },
-        "name": "DYEYELLOW"
+        }
     },
     {
+        "name": "FEATHER",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "feather"
-        },
-        "name": "FEATHER"
+        }
     },
     {
+        "name": "GEMDIAMOND",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "gemDiamond"
-        },
-        "name": "GEMDIAMOND"
+        }
     },
     {
+        "name": "GLASS",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "glass"
-        },
-        "name": "GLASS"
+        }
     },
     {
+        "name": "GRAVEL",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "gravel"
-        },
-        "name": "GRAVEL"
+        }
     },
     {
+        "name": "GUNPOWDER",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "gunpowder"
-        },
-        "name": "GUNPOWDER"
+        }
     },
     {
+        "name": "INFECTEDPLANK",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "infectedPlank"
-        },
-        "name": "INFECTEDPLANK"
+        }
     },
     {
+        "name": "INGOTGOLD",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "ingotGold"
-        },
-        "name": "INGOTGOLD"
+        }
     },
     {
+        "name": "INGOTIRON",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "ingotIron"
-        },
-        "name": "INGOTIRON"
+        }
     },
     {
+        "name": "NETHERSTAR",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "netherStar"
-        },
-        "name": "NETHERSTAR"
+        }
     },
     {
+        "name": "OBSIDIAN",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "obsidian"
-        },
-        "name": "OBSIDIAN"
+        }
     },
     {
+        "name": "SANDSTONENIBIRU",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "sandstoneNibiru"
-        },
-        "name": "SANDSTONENIBIRU"
+        }
     },
     {
+        "name": "STICKWOOD",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "stickWood"
-        },
-        "name": "STICKWOOD"
+        }
     },
     {
+        "name": "STRING",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "string"
-        },
-        "name": "STRING"
+        }
     },
     {
+        "name": "VINE",
         "ingredient": {
             "type": "forge:ore_dict",
             "ore": "vine"
-        },
-        "name": "VINE"
+        }
     }
 ]

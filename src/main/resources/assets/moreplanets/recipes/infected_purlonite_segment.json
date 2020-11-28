@@ -6,11 +6,11 @@
         "BSB"
     ],
     "key": {
-        "B": {
-            "item": "moreplanets:infected_purlonite_slimeball"
-        },
         "S": {
             "item": "moreplanets:infected_purlonite_shard"
+        },
+        "B": {
+            "item": "moreplanets:infected_purlonite_slimeball"
         }
     },
     "result": {

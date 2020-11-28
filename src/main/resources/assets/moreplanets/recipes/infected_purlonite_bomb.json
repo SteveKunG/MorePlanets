@@ -6,11 +6,11 @@
         "III"
     ],
     "key": {
-        "G": {
-            "item": "#GUNPOWDER"
-        },
         "I": {
             "item": "moreplanets:infected_purlonite_shard"
+        },
+        "G": {
+            "item": "#GUNPOWDER"
         }
     },
     "result": {

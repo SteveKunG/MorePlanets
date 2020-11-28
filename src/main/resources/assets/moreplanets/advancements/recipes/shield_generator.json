@@ -1,11 +1,10 @@
 {
     "parent": "minecraft:recipes/root",
-    "requirements": [
-        [
-            "has_item",
-            "has_the_recipe"
+    "rewards": {
+        "recipes": [
+            "moreplanets:shield_generator"
         ]
-    ],
+    },
     "criteria": {
         "has_item": {
             "trigger": "minecraft:inventory_changed",
@@ -41,9 +40,10 @@
             }
         }
     },
-    "rewards": {
-        "recipes": [
-            "moreplanets:shield_generator"
+    "requirements": [
+        [
+            "has_item",
+            "has_the_recipe"
         ]
-    }
+    ]
 }

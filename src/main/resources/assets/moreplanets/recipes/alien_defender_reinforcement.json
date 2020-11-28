@@ -6,11 +6,11 @@
         "I"
     ],
     "key": {
-        "C": {
-            "item": "moreplanets:space_warper_core"
-        },
         "I": {
             "item": "moreplanets:glowing_iron_ingot"
+        },
+        "C": {
+            "item": "moreplanets:space_warper_core"
         }
     },
     "result": {

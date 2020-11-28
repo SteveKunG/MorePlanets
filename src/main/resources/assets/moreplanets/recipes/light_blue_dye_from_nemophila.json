@@ -1,12 +1,12 @@
 {
-    "result": {
-        "item": "minecraft:dye",
-        "data": 12
-    },
+    "type": "minecraft:crafting_shapeless",
     "ingredients": [
         {
             "item": "moreplanets:nemophila"
         }
     ],
-    "type": "minecraft:crafting_shapeless"
+    "result": {
+        "item": "minecraft:dye",
+        "data": 12
+    }
 }

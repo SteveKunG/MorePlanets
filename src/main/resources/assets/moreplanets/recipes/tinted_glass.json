@@ -7,11 +7,11 @@
         "III"
     ],
     "key": {
-        "D": {
-            "item": "#COMPRESSEDDESH"
-        },
         "I": {
             "item": "#GLASS"
+        },
+        "D": {
+            "item": "#COMPRESSEDDESH"
         }
     },
     "result": {

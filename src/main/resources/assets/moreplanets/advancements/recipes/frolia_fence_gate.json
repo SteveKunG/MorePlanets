@@ -1,11 +1,10 @@
 {
     "parent": "minecraft:recipes/root",
-    "requirements": [
-        [
-            "has_item",
-            "has_the_recipe"
+    "rewards": {
+        "recipes": [
+            "moreplanets:frolia_fence_gate"
         ]
-    ],
+    },
     "criteria": {
         "has_item": {
             "trigger": "minecraft:inventory_changed",
@@ -27,9 +26,10 @@
             }
         }
     },
-    "rewards": {
-        "recipes": [
-            "moreplanets:frolia_fence_gate"
+    "requirements": [
+        [
+            "has_item",
+            "has_the_recipe"
         ]
-    }
+    ]
 }

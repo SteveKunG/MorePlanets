@@ -6,11 +6,11 @@
         "XXX"
     ],
     "key": {
-        "A": {
-            "item": "moreplanets:infected_apple"
-        },
         "X": {
             "item": "#INGOTGOLD"
+        },
+        "A": {
+            "item": "moreplanets:infected_apple"
         }
     },
     "result": {

@@ -6,11 +6,11 @@
         "I "
     ],
     "key": {
-        "R": {
-            "item": "moreplanets:infected_purlonite_shard"
-        },
         "I": {
             "item": "#INGOTIRON"
+        },
+        "R": {
+            "item": "moreplanets:infected_purlonite_shard"
         }
     },
     "result": {

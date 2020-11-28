@@ -6,11 +6,11 @@
         "I "
     ],
     "key": {
-        "R": {
-            "item": "#DUSTREDSTONE"
-        },
         "I": {
             "item": "#INGOTIRON"
+        },
+        "R": {
+            "item": "#DUSTREDSTONE"
         }
     },
     "result": {

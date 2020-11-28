@@ -6,11 +6,11 @@
         "SXS"
     ],
     "key": {
-        "S": {
-            "item": "#STICKWOOD"
-        },
         "X": {
             "item": "moreplanets:cheese_spore_planks"
+        },
+        "S": {
+            "item": "#STICKWOOD"
         }
     },
     "result": {

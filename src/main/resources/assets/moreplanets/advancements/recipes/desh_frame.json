@@ -1,11 +1,10 @@
 {
     "parent": "minecraft:recipes/root",
-    "requirements": [
-        [
-            "has_item",
-            "has_the_recipe"
+    "rewards": {
+        "recipes": [
+            "moreplanets:desh_frame"
         ]
-    ],
+    },
     "criteria": {
         "has_item": {
             "trigger": "minecraft:inventory_changed",
@@ -28,9 +27,10 @@
             }
         }
     },
-    "rewards": {
-        "recipes": [
-            "moreplanets:desh_frame"
+    "requirements": [
+        [
+            "has_item",
+            "has_the_recipe"
         ]
-    }
+    ]
 }

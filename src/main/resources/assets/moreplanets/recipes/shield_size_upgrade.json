@@ -7,12 +7,12 @@
         "FFF"
     ],
     "key": {
-        "T": {
-            "item": "moreplanets:upgrade_template"
-        },
         "F": {
             "item": "minecraft:fish",
             "data": 3
+        },
+        "T": {
+            "item": "moreplanets:upgrade_template"
         }
     },
     "result": {

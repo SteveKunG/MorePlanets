@@ -6,11 +6,11 @@
         "XSX"
     ],
     "key": {
-        "S": {
-            "item": "#STICKWOOD"
-        },
         "X": {
             "item": "moreplanets:infected_oak_planks"
+        },
+        "S": {
+            "item": "#STICKWOOD"
         }
     },
     "result": {
