@@ -132,7 +132,7 @@ public class MPOreDictionary
         OreDictionaryUtils.registerOreDictionary("treeLeaves", MPBlocks.ALIEN_BERRY_OAK_LEAVES);
         OreDictionaryUtils.registerOreDictionary("treeLeaves", MPBlocks.OSCALEA_LEAVES);
         OreDictionaryUtils.registerOreDictionary("treeLeaves", MPBlocks.FROLIA_LEAVES);
-        OreDictionaryUtils.registerOreDictionary("treeLeaves", MPBlocks.FROLIA_FLOWERED_LEAVES);
+        OreDictionaryUtils.registerOreDictionary("treeLeaves", MPBlocks.FLOWERING_FROLIA_LEAVES);
         OreDictionaryUtils.registerOreDictionary("treeSapling", MPBlocks.INFECTED_OAK_SAPLING);
         OreDictionaryUtils.registerOreDictionary("treeSapling", MPBlocks.INFECTED_SPRUCE_SAPLING);
         OreDictionaryUtils.registerOreDictionary("treeSapling", MPBlocks.INFECTED_JUNGLE_SAPLING);

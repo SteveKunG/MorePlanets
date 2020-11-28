@@ -506,7 +506,7 @@ public class MPBlocks
     public static Block OSCALEA_PLANKS;
     public static Block FROLIA_LOG;
     public static Block FROLIA_LEAVES;
-    public static Block FROLIA_FLOWERED_LEAVES;
+    public static Block FLOWERING_FROLIA_LEAVES;
     public static Block FROLIA_PLANKS;
     public static Block OSCALEA_STAIRS;
     public static Block FROLIA_STAIRS;
@@ -882,7 +882,7 @@ public class MPBlocks
         MPBlocks.ALIEN_BERRY_OAK_LEAVES = new BlockLeavesMP("alien_berry_oak_leaves", BlockLeavesMP.BlockType.ALIEN_BERRY_OAK_LEAVES);
         MPBlocks.OSCALEA_LEAVES = new BlockLeavesMP("oscalea_leaves", BlockLeavesMP.BlockType.OSCALEA_LEAVES);
         MPBlocks.FROLIA_LEAVES = new BlockLeavesMP("frolia_leaves", BlockLeavesMP.BlockType.FROLIA_LEAVES);
-        MPBlocks.FROLIA_FLOWERED_LEAVES = new BlockLeavesMP("frolia_flowered_leaves", BlockLeavesMP.BlockType.FROLIA_LEAVES);
+        MPBlocks.FLOWERING_FROLIA_LEAVES = new BlockLeavesMP("flowering_frolia_leaves", BlockLeavesMP.BlockType.FROLIA_LEAVES);
 
         MPBlocks.INFECTED_OAK_SAPLING = new BlockSaplingMP("infected_oak_sapling", BlockSaplingMP.BlockType.INFECTED_OAK_SAPLING);
         MPBlocks.INFECTED_SPRUCE_SAPLING = new BlockSaplingMP("infected_spruce_sapling", BlockSaplingMP.BlockType.INFECTED_SPRUCE_SAPLING);
@@ -1305,7 +1305,7 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_LEAVES, ItemBlockSingleLeaves::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.OSCALEA_LEAVES, ItemBlockSingleLeaves::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_LEAVES, ItemBlockSingleLeaves::new);
-        BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_FLOWERED_LEAVES, ItemBlockSingleLeaves::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FLOWERING_FROLIA_LEAVES, ItemBlockSingleLeaves::new);
 
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_SAPLING);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_SPRUCE_SAPLING);
@@ -2033,7 +2033,7 @@ public class MPBlocks
         BlockUtils.setFireBurn(MPBlocks.ALIEN_BERRY_OAK_LEAVES, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.OSCALEA_LEAVES, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.FROLIA_LEAVES, 60, 100);
-        BlockUtils.setFireBurn(MPBlocks.FROLIA_FLOWERED_LEAVES, 60, 100);
+        BlockUtils.setFireBurn(MPBlocks.FLOWERING_FROLIA_LEAVES, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_VINES, 15, 100);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_OAK_STAIRS, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.ALIEN_BERRY_OAK_STAIRS, 5, 20);

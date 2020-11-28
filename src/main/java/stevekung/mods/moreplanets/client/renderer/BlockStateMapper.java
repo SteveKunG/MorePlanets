@@ -34,7 +34,7 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(MPBlocks.ALIEN_BERRY_OAK_LEAVES, EnumStateMapper.LEAVES);
         ClientRegistryUtils.registerStateMapper(MPBlocks.OSCALEA_LEAVES, EnumStateMapper.LEAVES);
         ClientRegistryUtils.registerStateMapper(MPBlocks.FROLIA_LEAVES, EnumStateMapper.LEAVES);
-        ClientRegistryUtils.registerStateMapper(MPBlocks.FROLIA_FLOWERED_LEAVES, EnumStateMapper.LEAVES);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.FLOWERING_FROLIA_LEAVES, EnumStateMapper.LEAVES);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CACTUS, EnumStateMapper.PLANT_AGE_15);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_OAK_FENCE_GATE, EnumStateMapper.FENCE_GATE);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_OAK_DOOR, EnumStateMapper.DOOR);

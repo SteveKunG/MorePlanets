@@ -12,7 +12,7 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenAbstractTree;
 
 public class WorldGenFroliaTree extends WorldGenAbstractTree
 {
-    private static final IBlockState FLOWERED = MPBlocks.FROLIA_FLOWERED_LEAVES.getDefaultState().withProperty(BlockStateProperty.CHECK_DECAY, false);
+    private static final IBlockState FLOWERING = MPBlocks.FLOWERING_FROLIA_LEAVES.getDefaultState().withProperty(BlockStateProperty.CHECK_DECAY, false);
 
     public WorldGenFroliaTree()
     {
@@ -101,7 +101,7 @@ public class WorldGenFroliaTree extends WorldGenAbstractTree
 
                                     if (state2.getBlock().isAir(state2, worldIn, blockpos) || state2.getBlock().isAir(state2, worldIn, blockpos))
                                     {
-                                        this.setBlockAndNotifyAdequately(worldIn, blockpos, rand.nextInt(10) == 0 ? FLOWERED : this.leaves);
+                                        this.setBlockAndNotifyAdequately(worldIn, blockpos, rand.nextInt(10) == 0 ? FLOWERING : this.leaves);
                                     }
                                 }
                             }

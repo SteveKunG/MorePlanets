@@ -563,6 +563,8 @@ item.yellow_candy_cane_stick.name=Yellow Candy Cane Stick
 item.purple_candy_cane_stick.name=Purple Candy Cane Stick
 item.rainbow_candy_cane_stick.name=Rainbow Candy Cane Stick
 item.blue_pear.name=Blue Pear
+item.oscalea_door.name=Oscalea Door
+item.frolia_door.name=Frolia Door
 
 # FLUID
 fluid.infected_purlonite_water_fluid=Infected Purlonite Water
