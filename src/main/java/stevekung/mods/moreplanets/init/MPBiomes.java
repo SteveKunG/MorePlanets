@@ -61,8 +61,8 @@ public class MPBiomes
     public static Biome INFECTED_BADLANDS = new BiomeInfectedBadlands(new Biome.BiomeProperties("Infected Badlands").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), false, false);
     public static Biome INFECTED_WOODED_BADLANDS_PLATEAU = new BiomeInfectedBadlands(new Biome.BiomeProperties("Infected Wooded Badlands Plateau").setBaseHeight(1.5F).setHeightVariation(0.025F).setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), false, true);
     public static Biome INFECTED_BADLANDS_PLATEAU = new BiomeInfectedBadlands(new Biome.BiomeProperties("Infected Badlands Plateau").setBaseHeight(1.5F).setHeightVariation(0.025F).setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), false, false);
-    public static Biome FRONOS_MEADOW = new BiomeFronosMeadow(new Biome.BiomeProperties("Fronos Meadow").setTemperature(0.8F).setRainfall(0.4F).setBaseHeight(0.01F).setHeightVariation(0.05F));
-    public static Biome FRONOS_PLAINS = new BiomeFronosMeadow(new Biome.BiomeProperties("Fronos Plains").setTemperature(0.8F).setRainfall(0.4F).setBaseHeight(0.125F).setHeightVariation(0.05F));
+    public static Biome FRONOS_MEADOW = new BiomeFronosMeadow(new Biome.BiomeProperties("Fronos Meadow").setTemperature(0.8F).setRainfall(0.4F).setBaseHeight(0.01F).setHeightVariation(0.05F), true);
+    public static Biome FRONOS_PLAINS = new BiomeFronosMeadow(new Biome.BiomeProperties("Fronos Plains").setTemperature(0.8F).setRainfall(0.4F).setBaseHeight(0.125F).setHeightVariation(0.05F), false);
     public static Biome FRONOS_RIVER = new BiomeFronos(new Biome.BiomeProperties("Fronos River").setBaseHeight(-0.45F).setHeightVariation(0.0F));
     public static Biome FRONOS_FOREST = new BiomeFronosForest(new Biome.BiomeProperties("Fronos Forest").setTemperature(0.7F).setRainfall(0.8F).setBaseHeight(0.1F).setHeightVariation(0.05F));
 

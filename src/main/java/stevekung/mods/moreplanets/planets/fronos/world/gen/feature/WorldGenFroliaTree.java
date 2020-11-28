@@ -12,7 +12,7 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenAbstractTree;
 
 public class WorldGenFroliaTree extends WorldGenAbstractTree
 {
-    private static final IBlockState FLOWERING = MPBlocks.FLOWERING_FROLIA_LEAVES.getDefaultState().withProperty(BlockStateProperty.CHECK_DECAY, false);
+    public static final IBlockState FLOWERING = MPBlocks.FLOWERING_FROLIA_LEAVES.getDefaultState().withProperty(BlockStateProperty.CHECK_DECAY, false);
 
     public WorldGenFroliaTree()
     {
