@@ -514,6 +514,8 @@ public class MPBlocks
     public static Block FROLIA_FENCE;
     public static Block OSCALEA_FENCE_GATE;
     public static Block FROLIA_FENCE_GATE;
+    public static BlockDoorMP OSCALEA_DOOR;
+    public static BlockDoorMP FROLIA_DOOR;
 
     // Fronos Ore
     public static Block FRONOS_IRON_ORE;
@@ -1019,6 +1021,8 @@ public class MPBlocks
         MPBlocks.FROLIA_FENCE = new BlockFenceMP("frolia_fence");
         MPBlocks.OSCALEA_FENCE_GATE = new BlockFenceGateMP("oscalea_fence_gate");
         MPBlocks.FROLIA_FENCE_GATE = new BlockFenceGateMP("frolia_fence_gate");
+        MPBlocks.OSCALEA_DOOR = new BlockDoorMP("oscalea_door");
+        MPBlocks.FROLIA_DOOR = new BlockDoorMP("frolia_door");
 
         // Fronos Ore
         MPBlocks.FRONOS_IRON_ORE = new BlockMineableOre("fronos_iron_ore").setHardness(3.0F);
@@ -1569,6 +1573,8 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_FENCE_GATE);
         BlocksItemsRegistry.registerBlock(MPBlocks.OSCALEA_STAIRS);
         BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_STAIRS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.OSCALEA_DOOR, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_DOOR, null);
 
         // Fronos Ore
         BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_IRON_ORE);
@@ -1750,6 +1756,8 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.OSCALEA_FENCE_GATE, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.FROLIA_FENCE_GATE, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.CHEESE_SPORE_DOOR, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.OSCALEA_DOOR, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.FROLIA_DOOR, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_GRASS_BLOCK, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_DIRT, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_COARSE_DIRT, EnumHarvestLevel.SHOVEL, 0);

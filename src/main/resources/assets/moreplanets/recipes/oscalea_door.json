@@ -1,0 +1,18 @@
+{
+    "result": {
+        "item": "moreplanets:oscalea_door",
+        "count": 3
+    },
+    "pattern": [
+        "XX",
+        "XX",
+        "XX"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "X": {
+            "item": "moreplanets:oscalea_planks"
+        }
+    },
+    "group": "wooden_door"
+}

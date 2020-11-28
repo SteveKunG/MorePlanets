@@ -388,6 +388,9 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPItems.SHIELD_CAPACITY_UPGRADE), "upgrade", new Object[] { "SAS", "ATA", "SAS", 'A', VenusItems.atomicBattery, 'S', "netherStar", 'T', MPItems.UPGRADE_TEMPLATE });
         ItemStack speedPotion = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.STRONG_SWIFTNESS);
         RecipeHelper.addRecipe(new ItemStack(MPItems.MACHINE_SPEED_UPGRADE), "upgrade", new Object[] { "RSR", "STS", "RSR", 'R', "blockRedstone", 'S', speedPotion, 'T', MPItems.UPGRADE_TEMPLATE });
+
+        RecipeHelper.addRecipe(new ItemStack(MPItems.OSCALEA_DOOR, 3), "wooden_door", new Object[] { "XX", "XX", "XX", 'X', MPBlocks.OSCALEA_PLANKS });
+        RecipeHelper.addRecipe(new ItemStack(MPItems.FROLIA_DOOR, 3), "wooden_door", new Object[] { "XX", "XX", "XX", 'X', MPBlocks.FROLIA_PLANKS });
     }
 
     private static void addOtherRecipe()

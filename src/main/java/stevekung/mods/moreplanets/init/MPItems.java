@@ -158,6 +158,8 @@ public class MPItems
     // Fronos Item
     public static Item EXTRAILONITE_INGOT;
     public static Item COMPRESSED_EXTRAILONITE;
+    public static Item OSCALEA_DOOR;
+    public static Item FROLIA_DOOR;
 
     // Food
     public static Item STRAWBERRY;
@@ -388,6 +390,8 @@ public class MPItems
         // Fronos Item
         MPItems.EXTRAILONITE_INGOT = new ItemBaseMP("extrailonite_ingot").setSortCategory(EnumSortCategoryItem.INGOT);
         MPItems.COMPRESSED_EXTRAILONITE = new ItemBaseMP("compressed_extrailonite").setSortCategory(EnumSortCategoryItem.PLATE);
+        MPItems.OSCALEA_DOOR = new ItemDoorMP("oscalea_door", MPBlocks.OSCALEA_DOOR);
+        MPItems.FROLIA_DOOR = new ItemDoorMP("frolia_door", MPBlocks.FROLIA_DOOR);
 
         // Food
         MPItems.STRAWBERRY = new ItemAllFood("strawberry", ItemAllFood.ItemType.STRAWBERRY);
@@ -616,6 +620,8 @@ public class MPItems
         // Fronos Item
         BlocksItemsRegistry.registerItem(MPItems.EXTRAILONITE_INGOT);
         BlocksItemsRegistry.registerItem(MPItems.COMPRESSED_EXTRAILONITE);
+        BlocksItemsRegistry.registerItem(MPItems.OSCALEA_DOOR);
+        BlocksItemsRegistry.registerItem(MPItems.FROLIA_DOOR);
 
         // Food
         BlocksItemsRegistry.registerItem(MPItems.STRAWBERRY);
@@ -723,6 +729,8 @@ public class MPItems
         MPBlocks.CHEESE_SPORE_DOOR.setDoorItem(MPItems.CHEESE_SPORE_DOOR);
         MPBlocks.INFECTED_OAK_DOOR.setDoorItem(MPItems.INFECTED_OAK_DOOR);
         MPBlocks.ALIEN_BERRY_OAK_DOOR.setDoorItem(MPItems.ALIEN_BERRY_OAK_DOOR);
+        MPBlocks.OSCALEA_DOOR.setDoorItem(MPItems.OSCALEA_DOOR);
+        MPBlocks.FROLIA_DOOR.setDoorItem(MPItems.FROLIA_DOOR);
         MPBlocks.INFECTED_SNOW_LAYER.setSnowball(MPItems.INFECTED_SNOWBALL);
         MPBlocks.PURIFIED_SNOW_LAYER.setSnowball(MPItems.PURIFIED_SNOWBALL);
     }
