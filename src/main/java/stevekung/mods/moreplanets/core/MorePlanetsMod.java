@@ -2,6 +2,8 @@ package stevekung.mods.moreplanets.core;
 
 import java.util.Collections;
 
+import com.google.common.collect.Lists;
+
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.item.ItemStack;
@@ -186,9 +188,9 @@ public class MorePlanetsMod
         info.modId = MorePlanetsMod.MOD_ID;
         info.name = MorePlanetsMod.NAME;
         info.version = MorePlanetsMod.VERSION;
-        info.description = "An add-on exploration with custom planets for Galacticraft!";
+        info.description = "An add-on adds new exotic planets into Galacticraft!";
         info.url = MorePlanetsMod.URL;
-        info.credits = "All credits to Galacticraft Sources/API and some people who helped.";
-        info.authorList = Collections.singletonList("SteveKunG");
+        info.credits = "All credits goes to Galacticraft Sources/API, Translators and some people who helped.";
+        info.authorList = Lists.newArrayList("SteveKunG", "PloyiinGz");
     }
 }
