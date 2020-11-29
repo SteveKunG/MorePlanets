@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "moreplanets:purple_bush"
+        }
+    ],
+    "result": {
+        "item": "minecraft:dye",
+        "data": 5
+    }
+}

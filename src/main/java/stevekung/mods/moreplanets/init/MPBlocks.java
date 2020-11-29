@@ -19,9 +19,9 @@ import stevekung.mods.moreplanets.planets.chalos.blocks.*;
 import stevekung.mods.moreplanets.planets.chalos.blocks.fluid.FluidGaseousCheeseMilk;
 import stevekung.mods.moreplanets.planets.diona.blocks.*;
 import stevekung.mods.moreplanets.planets.diona.itemblocks.ItemBlockDarkEnergyGenerator;
-import stevekung.mods.moreplanets.planets.fronos.blocks.BlockFronosFarmland;
-import stevekung.mods.moreplanets.planets.fronos.blocks.BlockFronosGrassBlock;
-import stevekung.mods.moreplanets.planets.fronos.blocks.BlockJelly;
+import stevekung.mods.moreplanets.planets.fronos.blocks.*;
+import stevekung.mods.moreplanets.planets.fronos.item.ItemBlockFronosLilyPad;
+import stevekung.mods.moreplanets.planets.fronos.item.ItemBlockFronosMushroom;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.*;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.fluid.FluidHeliumGas;
 import stevekung.mods.moreplanets.planets.nibiru.itemblocks.ItemBlockInfectedSnow;
@@ -560,6 +560,10 @@ public class MPBlocks
     public static Block PINK_BLECHNUM;
     public static BlockDoublePlantMP LARGE_WHEAT;
     public static BlockDoublePlantMP FRONOS_TALL_GRASS;
+    public static Block PURPLE_BUSH;
+    public static Block FRONOS_FERN;
+    public static Block FRONOS_LILY_PAD;
+    public static Block FRONOS_MUSHROOM;
 
     public static void init()
     {
@@ -1063,6 +1067,10 @@ public class MPBlocks
         // Flowers/Sapling
         MPBlocks.NEMOPHILA = new BlockPlaceableBushMP("nemophila", BlockPlaceableBushMP.BlockType.NEMOPHILA);
         MPBlocks.PINK_BLECHNUM = new BlockPlaceableBushMP("pink_blechnum", BlockPlaceableBushMP.BlockType.PINK_BLECHNUM);
+        MPBlocks.PURPLE_BUSH = new BlockPlaceableBushMP("purple_bush", BlockPlaceableBushMP.BlockType.PURPLE_BUSH);
+        MPBlocks.FRONOS_FERN = new BlockPlaceableBushMP("fronos_fern", BlockPlaceableBushMP.BlockType.FRONOS_FERN);
+        MPBlocks.FRONOS_LILY_PAD = new BlockFronosLilyPad("fronos_lily_pad");
+        MPBlocks.FRONOS_MUSHROOM = new BlockSidedFronosMushroom("fronos_mushroom");
         MPBlocks.OSCALEA_SAPLING = new BlockSaplingMP("oscalea_sapling", BlockSaplingMP.BlockType.OSCALEA_SAPLING);
         MPBlocks.FROLIA_SAPLING = new BlockSaplingMP("frolia_sapling", BlockSaplingMP.BlockType.FROLIA_SAPLING);
         MPBlocks.LARGE_WHEAT = new BlockDoublePlantMP("large_wheat", BlockDoublePlantMP.BlockType.LARGE_WHEAT);
@@ -1323,6 +1331,10 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.TERRASHROOM);
         BlocksItemsRegistry.registerBlock(MPBlocks.NEMOPHILA);
         BlocksItemsRegistry.registerBlock(MPBlocks.PINK_BLECHNUM);
+        BlocksItemsRegistry.registerBlock(MPBlocks.PURPLE_BUSH);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_FERN);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_LILY_PAD, ItemBlockFronosLilyPad::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_MUSHROOM, ItemBlockFronosMushroom::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.OSCALEA_SAPLING);
         BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_SAPLING);
 
@@ -2011,6 +2023,8 @@ public class MPBlocks
         BlockUtils.setFireBurn(MPBlocks.TERRASHROOM, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.NEMOPHILA, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.PINK_BLECHNUM, 60, 100);
+        BlockUtils.setFireBurn(MPBlocks.PURPLE_BUSH, 60, 100);
+        BlockUtils.setFireBurn(MPBlocks.FRONOS_FERN, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.OSCALEA_SAPLING, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.FROLIA_SAPLING, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_OAK_LOG, 5, 20);

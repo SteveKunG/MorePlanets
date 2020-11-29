@@ -1,0 +1,12 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "texture": "moreplanets:blocks/fronos_lily_pad"
+        },
+        "model": "moreplanets:lilyplant"
+    },
+    "variants": {
+        "normal": [{ "y": 90 }, { "y": 180 }, { "y": 270 }]
+    }
+}

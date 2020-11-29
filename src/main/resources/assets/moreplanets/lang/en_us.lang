@@ -390,6 +390,10 @@ tile.oscalea_fence_gate.name=Oscalea Fence Gate
 tile.frolia_fence_gate.name=Frolia Fence Gate
 tile.oscalea_pressure_plate.name=Oscalea Pressure Plate
 tile.frolia_pressure_plate.name=Frolia Pressure Plate
+tile.purple_bush.name=Purple Bush
+tile.fronos_fern.name=Fronos Fern
+tile.fronos_lily_pad.name=Fronos Lily Pad
+tile.fronos_mushroom.name=Fronos Mushroom
 
 # FLUIDS
 fluid.xpjuice=XP

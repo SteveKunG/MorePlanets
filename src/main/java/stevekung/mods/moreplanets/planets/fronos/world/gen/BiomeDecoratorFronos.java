@@ -11,6 +11,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.fronos.world.gen.feature.WorldGenFronosClay;
+import stevekung.mods.moreplanets.planets.fronos.world.gen.feature.WorldGenFronosLilyPad;
 import stevekung.mods.moreplanets.planets.fronos.world.gen.feature.WorldGenFronosSand;
 import stevekung.mods.moreplanets.planets.fronos.world.gen.feature.WorldGenFronosSugarCane;
 import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeMP;
@@ -54,30 +55,30 @@ public class BiomeDecoratorFronos extends BiomeDecoratorMP
                 }
             }
         }
-        //        for (int i = 0; i < this.waterlilyPerChunk; ++i)TODO
-        //        {
-        //            int x = rand.nextInt(16) + 8;
-        //            int z = rand.nextInt(16) + 8;
-        //            int y = world.getHeight(this.chunkPos.add(x, 0, z)).getY() * 2;
-        //
-        //            if (y > 0)
-        //            {
-        //                int y1 = rand.nextInt(y);
-        //                BlockPos blockpos4;
-        //                BlockPos blockpos7;
-        //
-        //                for (blockpos4 = this.chunkPos.add(x, y1, z); blockpos4.getY() > 0; blockpos4 = blockpos7)
-        //                {
-        //                    blockpos7 = blockpos4.down();
-        //
-        //                    if (!world.isAirBlock(blockpos7))
-        //                    {
-        //                        break;
-        //                    }
-        //                }
-        //                new WorldGenSporelily().generate(world, rand, blockpos4);
-        //            }
-        //        }
+        for (int i = 0; i < this.waterlilyPerChunk; ++i)
+        {
+            int x = rand.nextInt(16) + 8;
+            int z = rand.nextInt(16) + 8;
+            int y = world.getHeight(this.chunkPos.add(x, 0, z)).getY() * 2;
+
+            if (y > 0)
+            {
+                int y1 = rand.nextInt(y);
+                BlockPos blockpos4;
+                BlockPos blockpos7;
+
+                for (blockpos4 = this.chunkPos.add(x, y1, z); blockpos4.getY() > 0; blockpos4 = blockpos7)
+                {
+                    blockpos7 = blockpos4.down();
+
+                    if (!world.isAirBlock(blockpos7))
+                    {
+                        break;
+                    }
+                }
+                new WorldGenFronosLilyPad().generate(world, rand, blockpos4);
+            }
+        }
         for (int i = 0; i < this.clayPerChunk; ++i)
         {
             int l1 = rand.nextInt(16) + 8;

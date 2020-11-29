@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=south": { "model": "moreplanets:fronos_mushroom" },
+        "facing=west": { "model": "moreplanets:fronos_mushroom", "y": 90 },
+        "facing=north": { "model": "moreplanets:fronos_mushroom", "y": 180 },
+        "facing=east": { "model": "moreplanets:fronos_mushroom", "y": 270 }
+    }
+}

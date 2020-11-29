@@ -34,6 +34,7 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
     private static final AxisAlignedBB WHITE_TAIL = new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 0.9D, 0.75D);
     private static final AxisAlignedBB VEALIUM_VINES = new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 1.0D, 0.75D);
     private static final AxisAlignedBB TERRASHROOM = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.6D, 0.7D);
+    private static final AxisAlignedBB PURPLE_BUSH = new AxisAlignedBB(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
     private BlockType type;
 
     public BlockPlaceableBushMP(String name, BlockType type)
@@ -85,6 +86,10 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         else if (this.type == BlockType.CREEP_VINES)
         {
             return Block.FULL_BLOCK_AABB;
+        }
+        else if (this.type == BlockType.PURPLE_BUSH)
+        {
+            return PURPLE_BUSH;
         }
         return BlockPlaceableBushMP.FLOWER;
     }
@@ -160,7 +165,7 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
             {
                 drops.add(new ItemStack(MPItems.INFECTED_WHEAT_SEEDS));
             }
-            else if (this.type == BlockType.FRONOS_GRASS)
+            else if (this.type == BlockType.FRONOS_GRASS || this.type == BlockType.PURPLE_BUSH || this.type == BlockType.FRONOS_FERN)
             {
                 drops.add(new ItemStack(Items.WHEAT_SEEDS));
             }
@@ -278,7 +283,7 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         {
             return block == MPBlocks.GREEN_VEIN_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT || block == MPBlocks.TERRASTONE || block == MPBlocks.PURIFIED_GRAVEL;
         }
-        else if (this.type == BlockType.FRONOS_GRASS || this.type == BlockType.NEMOPHILA || this.type == BlockType.PINK_BLECHNUM)
+        else if (this.type == BlockType.FRONOS_GRASS || this.type == BlockType.NEMOPHILA || this.type == BlockType.PINK_BLECHNUM || this.type == BlockType.PURPLE_BUSH || this.type == BlockType.FRONOS_FERN)
         {
             return block == MPBlocks.FRONOS_GRASS_BLOCK || block == MPBlocks.FRONOS_DIRT || block == MPBlocks.FRONOS_COARSE_DIRT || block == MPBlocks.FRONOS_FARMLAND;
         }
@@ -421,6 +426,8 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         FRONOS_GRASS(false),
         NEMOPHILA(true),
         PINK_BLECHNUM(true),
+        PURPLE_BUSH(false),
+        FRONOS_FERN(false),
         ;
 
         private boolean isFlower;

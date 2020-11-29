@@ -58,7 +58,7 @@ public class MPPlanets
         CelestialRegistryUtils.setChecklistKeys(MPPlanets.NIBIRU, "equip_oxygen_suit", "thermal_padding_t2", "equip_shield_controller", "craft_infected_spore_protection_capsule");
 
         CelestialRegistryUtils.setAtmosphereComponentList(MPPlanets.FRONOS, EnumAtmosphericGas.OXYGEN, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.WATER, EnumAtmosphericGas.CO2);
-        CelestialRegistryUtils.setAtmosphere(MPPlanets.FRONOS, true, true, false, 1.0F, 1.0F, 10.0F);
+        CelestialRegistryUtils.setAtmosphere(MPPlanets.FRONOS, true, true, false, 0.0F, 1.0F, 2.0F);
 
         // Moons
         CelestialRegistryUtils.setAtmosphereComponentList(MPPlanets.KOENTUS, EnumAtmosphericGas.HYDROGEN, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.HELIUM);

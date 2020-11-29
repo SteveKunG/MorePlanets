@@ -26,6 +26,11 @@ public class BiomeFronosMeadow extends BiomeFronos
         this.decorator.grassPerChunk = 120;
         this.decorator.largeWheatPerChunk = 1;
         this.isMeadow = isMeadow;
+
+        if (isMeadow)
+        {
+            this.decorator.waterlilyPerChunk = 2;
+        }
     }
 
     @Override

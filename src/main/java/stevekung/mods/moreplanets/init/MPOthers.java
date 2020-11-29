@@ -54,6 +54,8 @@ public class MPOthers
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(MPBlocks.TERRAPUFF_HERB);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(MPBlocks.NEMOPHILA);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(MPBlocks.PINK_BLECHNUM);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(MPBlocks.PURPLE_BUSH);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(MPBlocks.FRONOS_FERN);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(MPBlocks.BATASIA_DANDELION);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(MPBlocks.PYOLONIA);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(MPBlocks.PHILIPY);

@@ -263,8 +263,9 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.FROLIA_PRESSURE_PLATE), new Object[] { "XX", 'X', MPBlocks.FROLIA_PLANKS });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.OSCALEA_STAIRS, 4), "wooden_stairs", new Object[] { "X  ", "XX ", "XXX", 'X', MPBlocks.OSCALEA_PLANKS });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.FROLIA_STAIRS, 4), "wooden_stairs", new Object[] { "X  ", "XX ", "XXX", 'X', MPBlocks.FROLIA_PLANKS });
-        RecipeHelper.addShapelessRecipe(new ItemStack(Items.DYE, 1, 12), null, "light_blue_dye_from_nemophila", MPBlocks.NEMOPHILA );
-        RecipeHelper.addShapelessRecipe(new ItemStack(Items.DYE, 1, 9), null, "pink_dye_from_blechnum", MPBlocks.PINK_BLECHNUM );
+        RecipeHelper.addShapelessRecipe(new ItemStack(Items.DYE, 1, EnumDyeColor.LIGHT_BLUE.getDyeDamage()), null, "light_blue_dye_from_nemophila", MPBlocks.NEMOPHILA );
+        RecipeHelper.addShapelessRecipe(new ItemStack(Items.DYE, 1, EnumDyeColor.PINK.getDyeDamage()), null, "pink_dye_from_blechnum", MPBlocks.PINK_BLECHNUM );
+        RecipeHelper.addShapelessRecipe(new ItemStack(Items.DYE, 1, EnumDyeColor.PURPLE.getDyeDamage()), null, "purple_dye_from_bush", MPBlocks.PURPLE_BUSH );
     }
 
     @Deprecated //TEMP

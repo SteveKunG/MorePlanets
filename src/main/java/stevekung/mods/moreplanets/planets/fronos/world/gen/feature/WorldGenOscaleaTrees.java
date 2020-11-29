@@ -5,9 +5,11 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 import stevekung.mods.stevekunglib.world.gen.WorldGenAbstractTree;
 
 public class WorldGenOscaleaTrees extends WorldGenAbstractTree
@@ -116,6 +118,27 @@ public class WorldGenOscaleaTrees extends WorldGenAbstractTree
                         if (state.getBlock().isAir(state, world, upN) || state.getBlock().isLeaves(state, world, upN) || state.getMaterial() == Material.VINE)
                         {
                             this.setBlockAndNotifyAdequately(world, pos.up(j3), this.log);
+                        }
+
+                        if (rand.nextInt(5) == 0 && j3 == 0)
+                        {
+                            for (int l3 = 0; l3 < 2; ++l3)
+                            {
+                                for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
+                                {
+                                    if (rand.nextInt(4 - l3) == 0)
+                                    {
+                                        EnumFacing enumfacing1 = enumfacing.getOpposite();
+                                        BlockPos pos3 = pos.add(enumfacing1.getFrontOffsetX(), j3 + l3, enumfacing1.getFrontOffsetZ());
+                                        state = world.getBlockState(pos3);
+
+                                        if (state.getBlock().isAir(state, world, pos3))
+                                        {
+                                            this.setBlockAndNotifyAdequately(world, pos3, MPBlocks.FRONOS_MUSHROOM.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, enumfacing));
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                     return true;
