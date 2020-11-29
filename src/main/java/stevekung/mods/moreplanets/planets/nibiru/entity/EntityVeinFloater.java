@@ -62,7 +62,6 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     private MultiPartEntityPart partHoodS;
     private final BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
     private UUID bossInfoUUID = this.bossInfo.getUniqueId();
-    private boolean playMusic;
 
     public EntityVeinFloater(World world)
     {
@@ -215,22 +214,6 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
                     this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - 1.0D, this.posY - 1.0D, this.posZ - 1.0D, this.posX + 5.0D, this.posY + 12.5D, this.posZ + 5.0D)).forEach(near -> near.attackEntityFrom(DamageSource.causeMobDamage(this), 8.0F));
                 }
             }
-        }
-
-        if (!this.playMusic && !this.isDead && this.ticksExisted > 20)
-        {
-            int range = 256;
-            List<EntityPlayer> players = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
-
-            for (EntityPlayer player : players)
-            {
-                if (player != null && player instanceof EntityPlayerMP)
-                {
-                    EntityPlayerMP playerMP = (EntityPlayerMP)player;
-                    GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_PLAY_VEIN_FLOATER_MUSIC, playerMP.dimension), playerMP);
-                }
-            }
-            this.playMusic = true;
         }
     }
 
@@ -446,18 +429,6 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
             this.spawner.spawned = false;
         }
 
-        this.playMusic = false;
-        int range = 256;
-        List<EntityPlayer> players = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
-
-        for (EntityPlayer player : players)
-        {
-            if (player != null && player instanceof EntityPlayerMP)
-            {
-                EntityPlayerMP playerMP = (EntityPlayerMP)player;
-                GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_STOP_VEIN_FLOATER_MUSIC, playerMP.dimension), playerMP);
-            }
-        }
         if (this.world.isRemote)
         {
             MorePlanetsMod.PROXY.removeBoss(this);

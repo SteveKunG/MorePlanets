@@ -127,10 +127,6 @@ public class PacketSimpleMP extends PacketBase
             String name = (String)this.data.get(0);
             player.sendMessage(JsonUtils.create("You select " + TextFormatting.AQUA + name + TextFormatting.RESET + " as survival planet, Good Luck!"));
             break;
-        case C_PLAY_VEIN_FLOATER_MUSIC:
-            break;
-        case C_STOP_VEIN_FLOATER_MUSIC:
-            break;
         case C_PLAY_CREATED_BLACK_HOLE_SOUND:
             player.playSound(MPSounds.BLACK_HOLE_CREATED, 5.0F, 0.8F);
             player.playSound(MPSounds.BLACK_HOLE_AMBIENT, 5.0F, 1.0F);
@@ -298,8 +294,6 @@ public class PacketSimpleMP extends PacketBase
         C_REMOVE_GENERATOR_GUIDE_POS(Side.CLIENT, BlockPos.class),
         C_OPEN_SURVIVAL_PLANET_GUI(Side.CLIENT),
         C_MESSAGE_SURVIVAL_PLANET(Side.CLIENT, String.class),
-        C_PLAY_VEIN_FLOATER_MUSIC(Side.CLIENT),
-        C_STOP_VEIN_FLOATER_MUSIC(Side.CLIENT),
         C_PLAY_CREATED_BLACK_HOLE_SOUND(Side.CLIENT),
         ;
 
