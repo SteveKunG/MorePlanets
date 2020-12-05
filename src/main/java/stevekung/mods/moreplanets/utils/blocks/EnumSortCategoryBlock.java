@@ -15,6 +15,7 @@ public enum EnumSortCategoryBlock
     SLAB_STONE,
     SLAB_DUNGEON_BRICK,
     SLAB_WOODEN,
+    TRAPDOOR,
     FENCE,
     FENCE_GATE,
     WALL,

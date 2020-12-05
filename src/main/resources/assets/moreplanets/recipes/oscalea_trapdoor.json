@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XXX",
+        "XXX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:oscalea_planks"
+        }
+    },
+    "result": {
+        "item": "moreplanets:oscalea_trapdoor"
+    }
+}

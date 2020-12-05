@@ -266,6 +266,8 @@ public class CraftingManagerMP
         RecipeHelper.addShapelessRecipe(new ItemStack(Items.DYE, 1, EnumDyeColor.LIGHT_BLUE.getDyeDamage()), null, "light_blue_dye_from_nemophila", MPBlocks.NEMOPHILA );
         RecipeHelper.addShapelessRecipe(new ItemStack(Items.DYE, 1, EnumDyeColor.PINK.getDyeDamage()), null, "pink_dye_from_blechnum", MPBlocks.PINK_BLECHNUM );
         RecipeHelper.addShapelessRecipe(new ItemStack(Items.DYE, 1, EnumDyeColor.PURPLE.getDyeDamage()), null, "purple_dye_from_bush", MPBlocks.PURPLE_BUSH );
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.OSCALEA_TRAPDOOR), new Object[] { "XXX", "XXX", 'X', MPBlocks.OSCALEA_PLANKS });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.FROLIA_TRAPDOOR), new Object[] { "XXX", "XXX", 'X', MPBlocks.FROLIA_PLANKS });
     }
 
     @Deprecated //TEMP

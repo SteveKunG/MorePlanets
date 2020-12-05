@@ -394,6 +394,8 @@ tile.purple_bush.name=Purple Bush
 tile.fronos_fern.name=Fronos Fern
 tile.fronos_lily_pad.name=Fronos Lily Pad
 tile.fronos_mushroom.name=Fronos Mushroom
+tile.oscalea_trapdoor.name=Oscalea Trapdoor
+tile.frolia_trapdoor.name=Frolia Trapdoor
 
 # FLUIDS
 fluid.xpjuice=XP

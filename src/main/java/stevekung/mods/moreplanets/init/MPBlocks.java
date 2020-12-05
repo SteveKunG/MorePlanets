@@ -54,6 +54,10 @@ public class MPBlocks
     public static Block CHALOS_DUNGEON_SPAWNER;
     public static Block NIBIRU_DUNGEON_SPAWNER;
 
+    // Trapdoor
+    public static Block OSCALEA_TRAPDOOR;
+    public static Block FROLIA_TRAPDOOR;
+
     // Slab
     public static BlockAllHalfSlab DIONA_COBBLESTONE_SLAB;
     public static BlockAllHalfSlab CHALOS_COBBLESTONE_SLAB;
@@ -1027,6 +1031,8 @@ public class MPBlocks
         MPBlocks.FROLIA_FENCE_GATE = new BlockFenceGateMP("frolia_fence_gate");
         MPBlocks.OSCALEA_DOOR = new BlockDoorMP("oscalea_door");
         MPBlocks.FROLIA_DOOR = new BlockDoorMP("frolia_door");
+        MPBlocks.OSCALEA_TRAPDOOR = new BlockTrapdoorMP("oscalea_trapdoor");
+        MPBlocks.FROLIA_TRAPDOOR = new BlockTrapdoorMP("frolia_trapdoor");
 
         // Fronos Ore
         MPBlocks.FRONOS_IRON_ORE = new BlockMineableOre("fronos_iron_ore").setHardness(3.0F);
@@ -1587,6 +1593,8 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_STAIRS);
         BlocksItemsRegistry.registerBlock(MPBlocks.OSCALEA_DOOR, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_DOOR, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.OSCALEA_TRAPDOOR);
+        BlocksItemsRegistry.registerBlock(MPBlocks.FROLIA_TRAPDOOR);
 
         // Fronos Ore
         BlocksItemsRegistry.registerBlock(MPBlocks.FRONOS_IRON_ORE);
