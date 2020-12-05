@@ -64,7 +64,7 @@ public class BlockElectricalFire extends BlockFire implements IFireBlock
             }
             else
             {
-                int i = state.getValue(AGE).intValue();
+                int i = state.getValue(AGE);
 
                 if (i < 15)
                 {

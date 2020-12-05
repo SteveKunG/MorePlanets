@@ -125,7 +125,7 @@ public class BlockNibiruInfested extends BlockBaseMP
         }
     }
 
-    public static enum BlockType
+    public enum BlockType
     {
         NIBIRU_ROCK,
         NIBIRU_COBBLESTONE,

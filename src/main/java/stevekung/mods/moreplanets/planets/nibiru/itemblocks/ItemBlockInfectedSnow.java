@@ -43,7 +43,7 @@ public class ItemBlockInfectedSnow extends ItemBlockMP
 
             if (block == this.block)
             {
-                int i = iblockstate.getValue(BlockStateProperty.LAYERS).intValue();
+                int i = iblockstate.getValue(BlockStateProperty.LAYERS);
 
                 if (i <= 7)
                 {

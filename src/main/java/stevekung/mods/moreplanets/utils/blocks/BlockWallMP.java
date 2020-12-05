@@ -99,19 +99,19 @@ public class BlockWallMP extends BlockBaseMP
     {
         int i = 0;
 
-        if (state.getValue(NORTH).booleanValue())
+        if (state.getValue(NORTH))
         {
             i |= 1 << EnumFacing.NORTH.getHorizontalIndex();
         }
-        if (state.getValue(EAST).booleanValue())
+        if (state.getValue(EAST))
         {
             i |= 1 << EnumFacing.EAST.getHorizontalIndex();
         }
-        if (state.getValue(SOUTH).booleanValue())
+        if (state.getValue(SOUTH))
         {
             i |= 1 << EnumFacing.SOUTH.getHorizontalIndex();
         }
-        if (state.getValue(WEST).booleanValue())
+        if (state.getValue(WEST))
         {
             i |= 1 << EnumFacing.WEST.getHorizontalIndex();
         }

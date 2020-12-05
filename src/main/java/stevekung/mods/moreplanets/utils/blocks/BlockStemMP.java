@@ -43,7 +43,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return STEM_AABB[state.getValue(BlockStateProperty.AGE_7).intValue()];
+        return STEM_AABB[state.getValue(BlockStateProperty.AGE_7)];
     }
 
     @Override
@@ -83,7 +83,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
 
             if (rand.nextInt((int)(25.0F / f) + 1) == 0)
             {
-                int i = state.getValue(BlockStateProperty.AGE_7).intValue();
+                int i = state.getValue(BlockStateProperty.AGE_7);
 
                 if (i < 7)
                 {
@@ -179,7 +179,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
 
             if (item != null)
             {
-                int i = state.getValue(BlockStateProperty.AGE_7).intValue();
+                int i = state.getValue(BlockStateProperty.AGE_7);
 
                 for (int j = 0; j < 3; ++j)
                 {
@@ -237,7 +237,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(BlockStateProperty.AGE_7).intValue();
+        return state.getValue(BlockStateProperty.AGE_7);
     }
 
     @Override

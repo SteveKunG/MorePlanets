@@ -138,7 +138,7 @@ public class BlockDropableOre extends BlockBasicMP implements IDetectableResourc
         return EnumSortCategoryBlock.ORE;
     }
 
-    public static enum BlockType
+    public enum BlockType
     {
         COAL_ORE,
         LAPIS_ORE,

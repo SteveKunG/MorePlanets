@@ -301,7 +301,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         return false;
     }
 
-    public static enum BlockType
+    public enum BlockType
     {
         WARP_PAD,
         DARK_ENERGY_SOLAR1,

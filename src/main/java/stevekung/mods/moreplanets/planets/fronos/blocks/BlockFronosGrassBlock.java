@@ -169,7 +169,7 @@ public class BlockFronosGrassBlock extends BlockGrassBlockMP implements IGrowabl
         }
     }
 
-    public static enum BlockType implements IStringSerializable
+    public enum BlockType implements IStringSerializable
     {
         NONE,
         SNOW,

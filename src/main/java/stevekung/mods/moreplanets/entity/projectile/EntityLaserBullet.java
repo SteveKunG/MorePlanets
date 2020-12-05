@@ -437,7 +437,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         }
     }
 
-    public static enum LaserType
+    public enum LaserType
     {
         NORMAL,
         INFECTED_PURLONITE;

@@ -274,7 +274,7 @@ public class PacketSimpleMP extends PacketBase
         }
     }
 
-    public static enum EnumSimplePacketMP
+    public enum EnumSimplePacketMP
     {
         // SERVER
         S_BLACK_HOLE_STORAGE_OPTION(Side.SERVER, BlockPos.class, String.class),

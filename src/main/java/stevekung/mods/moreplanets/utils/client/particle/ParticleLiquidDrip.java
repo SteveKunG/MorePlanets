@@ -92,7 +92,7 @@ public class ParticleLiquidDrip extends Particle
 
             if (state.getBlock() instanceof BlockLiquid)
             {
-                percent = BlockLiquid.getLiquidHeightPercent(state.getValue(BlockLiquid.LEVEL).intValue());
+                percent = BlockLiquid.getLiquidHeightPercent(state.getValue(BlockLiquid.LEVEL));
             }
 
             double posUnder = MathHelper.floor(this.posY) + 1 - percent;

@@ -68,7 +68,7 @@ public class EntityInfectedPurloniteWorm extends EntityMob implements IEntityBre
         {
             if (this.rand.nextInt(5) == 0)
             {
-                this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - 2.5D, this.posY - 1.5D, this.posZ - 2.5D, this.posX + 2.5D, this.posY + 1.5D, this.posZ + 2.5D)).forEach(player -> player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_PURLONITE, 24, 0)));;
+                this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - 2.5D, this.posY - 1.5D, this.posZ - 2.5D, this.posX + 2.5D, this.posY + 1.5D, this.posZ + 2.5D)).forEach(player -> player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_PURLONITE, 24, 0)));
                 EntityAlbetiusWorm worm = new EntityAlbetiusWorm(this.world);
                 this.world.playSound(null, this.getPosition(), MPSounds.INFECTED_MOB_EXPLODE, SoundCategory.HOSTILE, 1.0F, 1.0F);
                 this.world.createExplosion(this, this.posX, this.posY, this.posZ, 0.5F + this.rand.nextInt(2), this.world.getGameRules().getBoolean("mobGriefing"));

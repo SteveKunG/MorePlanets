@@ -49,7 +49,7 @@ public class BlockCrashedAlienProbe extends BlockTileMP
     {
         if (!world.isRemote)
         {
-            if (state.getValue(HAS_ALIEN).booleanValue())
+            if (state.getValue(HAS_ALIEN))
             {
                 EntityAlienMiner miner = new EntityAlienMiner(world);
                 miner.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, world.rand.nextFloat() * 360.0F, 0.0F);
@@ -87,7 +87,7 @@ public class BlockCrashedAlienProbe extends BlockTileMP
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(HAS_ALIEN).booleanValue() ? 1 : 0;
+        return state.getValue(HAS_ALIEN) ? 1 : 0;
     }
 
     @Override

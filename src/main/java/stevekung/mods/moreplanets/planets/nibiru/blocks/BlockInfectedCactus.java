@@ -56,7 +56,7 @@ public class BlockInfectedCactus extends BlockBushMP
 
             if (i < 3)
             {
-                int j = state.getValue(BlockStateProperty.AGE_15).intValue();
+                int j = state.getValue(BlockStateProperty.AGE_15);
 
                 if (j == 15)
                 {
@@ -165,7 +165,7 @@ public class BlockInfectedCactus extends BlockBushMP
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(BlockStateProperty.AGE_15).intValue();
+        return state.getValue(BlockStateProperty.AGE_15);
     }
 
     @Override

@@ -1665,7 +1665,7 @@ public class StructureNibiruStrongholdPieces
             }
         }
 
-        public static enum Door
+        public enum Door
         {
             OPENING,
             WOOD_DOOR,

@@ -8,7 +8,7 @@ import stevekung.mods.moreplanets.init.MPLootTables;
 public interface IFishableLiquidBlock
 {
     @Nullable
-    public default ResourceLocation getLootTable()
+    default ResourceLocation getLootTable()
     {
         return MPLootTables.SPACE_FISHING;
     }

@@ -186,7 +186,7 @@ public class BlockCreep extends BlockFallingMP implements ITileEntityProvider, I
         }
     }
 
-    public static enum BlockType
+    public enum BlockType
     {
         CREEP_BLOCK,
         GRAVITY_CREEP_BLOCK,

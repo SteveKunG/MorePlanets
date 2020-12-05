@@ -139,7 +139,7 @@ public class ItemAllFood extends ItemFoodMP
         return this.type.getSaturation();
     }
 
-    public static enum ItemType
+    public enum ItemType
     {
         CHEESE_MILK_CURD(3, 0.35F),
         RAW_CHEESE_BEEF(3, 0.2F),

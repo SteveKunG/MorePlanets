@@ -146,7 +146,7 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
         }        return ret;    }
     public void placeAt(World world, BlockPos lowerPos, Block block, int flags)    {        world.setBlockState(lowerPos, block.getDefaultState().withProperty(BlockDoublePlant.HALF, BlockDoublePlant.EnumBlockHalf.LOWER), flags);        world.setBlockState(lowerPos.up(), block.getDefaultState().withProperty(BlockDoublePlant.HALF, BlockDoublePlant.EnumBlockHalf.UPPER), flags);    }
     private boolean onHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)    {        if (this.type.isGrass())        {            return false;        }        else        {            player.addStat(StatList.getBlockStats(this));            return true;        }    }
-    public static enum BlockType    {        CHEESE_TALL_GRASS(true),        INFECTED_ORANGE_ROSE_BUSH(false),        INFECTED_TALL_GRASS(true),        INFECTED_LARGE_FERN(true),        GREEN_VEIN_TALL_GRASS(true),        LARGE_WHEAT(false),
+    public enum BlockType    {        CHEESE_TALL_GRASS(true),        INFECTED_ORANGE_ROSE_BUSH(false),        INFECTED_TALL_GRASS(true),        INFECTED_LARGE_FERN(true),        GREEN_VEIN_TALL_GRASS(true),        LARGE_WHEAT(false),
         FRONOS_TALL_GRASS(true);
         private boolean isGrass;
         BlockType(boolean isGrass)        {            this.isGrass = isGrass;        }

@@ -187,7 +187,7 @@ public class BlockTieredEnergyStorageCluster extends BlockTileMP implements IDes
         return ColorUtils.stringToRGB(IItemRarity.MACHINE);
     }
 
-    public static enum BlockType
+    public enum BlockType
     {
         DARK_ENERGY_STORAGE_CLUSTER,
         NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER;

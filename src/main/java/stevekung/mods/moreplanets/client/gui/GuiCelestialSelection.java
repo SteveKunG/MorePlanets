@@ -284,7 +284,7 @@ public class GuiCelestialSelection extends GuiScreen
         return key + " " + TextFormatting.RESET + (value ? TextFormatting.GREEN : TextFormatting.RED) + value;
     }
 
-    static enum SortType implements Comparator<CelestialBody>
+    enum SortType implements Comparator<CelestialBody>
     {
         A_TO_Z(1),
         Z_TO_A(2)

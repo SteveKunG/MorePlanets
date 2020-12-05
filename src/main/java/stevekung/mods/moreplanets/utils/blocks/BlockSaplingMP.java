@@ -258,7 +258,7 @@ public class BlockSaplingMP extends BlockBushMP implements IGrowable
         return iblockstate.getBlock() == this && this.type == type;
     }
 
-    public static enum BlockType
+    public enum BlockType
     {
         CHEESE_SPORE_FLOWER,
         INFECTED_OAK_SAPLING,

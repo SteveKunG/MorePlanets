@@ -50,7 +50,7 @@ public class ItemBlockFronosLilyPad extends ItemBlockMP
                 BlockPos pos1 = pos.up();
                 IBlockState state = world.getBlockState(pos);
 
-                if (state.getMaterial() == Material.WATER && ((Integer)state.getValue(BlockLiquid.LEVEL)).intValue() == 0 && world.isAirBlock(pos1))
+                if (state.getMaterial() == Material.WATER && state.getValue(BlockLiquid.LEVEL) == 0 && world.isAirBlock(pos1))
                 {
                     BlockSnapshot blocksnapshot = BlockSnapshot.getBlockSnapshot(world, pos1);
                     world.setBlockState(pos1, MPBlocks.FRONOS_LILY_PAD.getDefaultState());

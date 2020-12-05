@@ -84,7 +84,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     @Override
     public boolean isMoving()
     {
-        return this.dataManager.get(MOVING).booleanValue();
+        return this.dataManager.get(MOVING);
     }
 
     @Override
@@ -108,7 +108,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
             }
             else
             {
-                Entity entity = this.world.getEntityByID(this.dataManager.get(TARGET_ENTITY).intValue());
+                Entity entity = this.world.getEntityByID(this.dataManager.get(TARGET_ENTITY));
 
                 if (entity instanceof EntityLivingBase)
                 {

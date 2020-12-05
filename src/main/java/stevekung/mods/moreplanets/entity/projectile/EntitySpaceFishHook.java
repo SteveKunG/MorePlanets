@@ -134,7 +134,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
     {
         if (DATA_HOOKED_ENTITY.equals(key))
         {
-            int i = this.getDataManager().get(DATA_HOOKED_ENTITY).intValue();
+            int i = this.getDataManager().get(DATA_HOOKED_ENTITY);
             this.caughtEntity = i > 0 ? this.world.getEntityByID(i - 1) : null;
         }
     }
@@ -600,7 +600,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
         }
     }
 
-    static enum State
+    enum State
     {
         FLYING,
         HOOKED_IN_ENTITY,

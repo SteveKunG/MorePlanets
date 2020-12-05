@@ -72,7 +72,7 @@ public class ParticleCustomRain extends Particle
 
             if (state.getBlock() instanceof BlockLiquid)
             {
-                d0 = 1.0F - BlockLiquid.getLiquidHeightPercent(state.getValue(BlockLiquid.LEVEL).intValue());
+                d0 = 1.0F - BlockLiquid.getLiquidHeightPercent(state.getValue(BlockLiquid.LEVEL));
             }
             else
             {

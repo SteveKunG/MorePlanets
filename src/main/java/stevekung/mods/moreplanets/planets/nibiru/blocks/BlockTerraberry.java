@@ -69,7 +69,7 @@ public class BlockTerraberry extends BlockCropsMP
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        int age = state.getValue(BlockStateProperty.AGE_7).intValue();
+        int age = state.getValue(BlockStateProperty.AGE_7);
         Random rand = world instanceof World ? ((World)world).rand : new Random();
 
         if (age >= 7)

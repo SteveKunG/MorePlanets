@@ -45,7 +45,7 @@ public class BlockAllWall extends BlockWallMP
         return EnumSortCategoryBlock.WALL;
     }
 
-    public static enum BlockType
+    public enum BlockType
     {
         DIONA_COBBLESTONE_WALL,
         CHALOS_COBBLESTONE_WALL,

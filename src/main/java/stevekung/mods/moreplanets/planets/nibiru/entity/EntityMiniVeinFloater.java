@@ -79,7 +79,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
     {
         super.writeEntityToNBT(nbt);
 
-        if (this.dataManager.get(VINE_PULL).booleanValue())
+        if (this.dataManager.get(VINE_PULL))
         {
             nbt.setBoolean("VinePull", true);
         }

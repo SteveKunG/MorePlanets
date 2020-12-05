@@ -116,7 +116,7 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntity
         return 0;
     }
 
-    public static enum DungeonType
+    public enum DungeonType
     {
         DIONA,
         CHALOS,

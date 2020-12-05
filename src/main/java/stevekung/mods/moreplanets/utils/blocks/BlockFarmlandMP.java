@@ -65,7 +65,7 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        int i = state.getValue(BlockStateProperty.MOISTURE).intValue();
+        int i = state.getValue(BlockStateProperty.MOISTURE);
 
         if (!this.hasWater(world, pos) && !world.isRainingAt(pos.up()))
         {
@@ -203,7 +203,7 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(BlockStateProperty.MOISTURE).intValue();
+        return state.getValue(BlockStateProperty.MOISTURE);
     }
 
     @Override

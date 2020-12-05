@@ -54,7 +54,7 @@ public class BlockInfectedSugarCane extends BlockBushMP
 
                 if (i < 3)
                 {
-                    int j = state.getValue(BlockStateProperty.AGE_15).intValue();
+                    int j = state.getValue(BlockStateProperty.AGE_15);
 
                     if (j == 15)
                     {

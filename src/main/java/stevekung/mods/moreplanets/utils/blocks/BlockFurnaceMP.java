@@ -266,7 +266,7 @@ public class BlockFurnaceMP extends BlockContainerMP
         }
     }
 
-    public static enum BlockType
+    public enum BlockType
     {
         INFECTED,
         TERRASTONE;

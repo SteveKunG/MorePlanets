@@ -119,7 +119,7 @@ public class BlockAllHalfSlab extends BlockSlabMP
         return this;
     }
 
-    public static enum BlockType
+    public enum BlockType
     {
         DIONA_COBBLESTONE_SLAB,
         CHALOS_COBBLESTONE_SLAB,

@@ -23,7 +23,7 @@ public class BlockInfectedWheat extends BlockCropsMP
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return BlockInfectedWheat.CROPS_AABB[state.getValue(BlockStateProperty.AGE_7).intValue()];
+        return BlockInfectedWheat.CROPS_AABB[state.getValue(BlockStateProperty.AGE_7)];
     }
 
     @Override

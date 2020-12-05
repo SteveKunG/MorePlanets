@@ -7,8 +7,8 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 public interface IMorePlanetsBoss extends IBoss, IEntityAdditionalSpawnData
 {
-    public UUID getBossUUID();
-    public String getBossName();
-    public BossType getBossType();
-    public int getBossTextColor();
+    UUID getBossUUID();
+    String getBossName();
+    BossType getBossType();
+    int getBossTextColor();
 }

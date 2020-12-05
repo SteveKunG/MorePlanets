@@ -251,7 +251,7 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
         }
     }
 
-    public static enum BlockType implements IStringSerializable
+    public enum BlockType implements IStringSerializable
     {
         ALL_INSIDE,
         NORTH_WEST,

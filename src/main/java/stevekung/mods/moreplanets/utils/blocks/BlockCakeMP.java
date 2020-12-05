@@ -40,7 +40,7 @@ public abstract class BlockCakeMP extends BlockBaseMP
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return BlockCakeMP.CAKE_AABB[state.getValue(BlockStateProperty.BITES).intValue()];
+        return BlockCakeMP.CAKE_AABB[state.getValue(BlockStateProperty.BITES)];
     }
 
     @Override
@@ -128,7 +128,7 @@ public abstract class BlockCakeMP extends BlockBaseMP
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(BlockStateProperty.BITES).intValue();
+        return state.getValue(BlockStateProperty.BITES);
     }
 
     @Override
@@ -163,7 +163,7 @@ public abstract class BlockCakeMP extends BlockBaseMP
         }
 
         player.getFoodStats().addStats(this.getFoodAmount(), this.getSaturationAmount());
-        int i = state.getValue(BlockStateProperty.BITES).intValue();
+        int i = state.getValue(BlockStateProperty.BITES);
 
         if (i < 6)
         {

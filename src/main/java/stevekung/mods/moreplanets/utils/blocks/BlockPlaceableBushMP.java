@@ -408,7 +408,7 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         }
     }
 
-    public static enum BlockType
+    public enum BlockType
     {
         CHEESE_GRASS(false),
         INFECTED_GRASS(false),

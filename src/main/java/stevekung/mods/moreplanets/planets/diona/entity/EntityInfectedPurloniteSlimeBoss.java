@@ -87,7 +87,7 @@ public class EntityInfectedPurloniteSlimeBoss extends EntitySlimeBaseMP implemen
     {
         super.writeEntityToNBT(nbt);
 
-        if (this.dataManager.get(BARRIER).booleanValue())
+        if (this.dataManager.get(BARRIER))
         {
             nbt.setBoolean("Barrier", true);
         }

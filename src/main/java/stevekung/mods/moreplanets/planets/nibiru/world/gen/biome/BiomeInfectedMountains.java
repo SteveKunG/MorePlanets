@@ -83,7 +83,7 @@ public class BiomeInfectedMountains extends BiomeNibiru
         super.genTerrainBlocks(world, rand, primer, chunkX, chunkZ, noiseVal);
     }
 
-    public static enum Type
+    public enum Type
     {
         NORMAL,
         EXTRA_TREES,

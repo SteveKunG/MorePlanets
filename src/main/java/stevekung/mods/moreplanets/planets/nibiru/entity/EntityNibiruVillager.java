@@ -829,7 +829,7 @@ public class EntityNibiruVillager extends EntityAgeable implements INpc, IMercha
 
     public int getProfession()
     {
-        return Math.max(this.dataManager.get(PROFESSION).intValue(), 0);
+        return Math.max(this.dataManager.get(PROFESSION), 0);
     }
 
     public boolean isMating()

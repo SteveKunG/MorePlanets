@@ -128,7 +128,7 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelR
         return this;
     }
 
-    public static enum ArrowType
+    public enum ArrowType
     {
         INFECTED_PURLONITE,
         INFECTED,

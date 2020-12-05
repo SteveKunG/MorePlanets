@@ -4,5 +4,5 @@ import net.minecraft.entity.player.EntityPlayerMP;
 
 public interface IStartedDimension
 {
-    public void setup(EntityPlayerMP player);
+    void setup(EntityPlayerMP player);
 }

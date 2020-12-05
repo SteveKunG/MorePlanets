@@ -84,27 +84,27 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
         int i = 0;
         AxisAlignedBB axisalignedbb = FULL_BLOCK_AABB;
 
-        if (state.getValue(BlockVine.UP).booleanValue())
+        if (state.getValue(BlockVine.UP))
         {
             axisalignedbb = UP_AABB;
             ++i;
         }
-        if (state.getValue(BlockVine.NORTH).booleanValue())
+        if (state.getValue(BlockVine.NORTH))
         {
             axisalignedbb = NORTH_AABB;
             ++i;
         }
-        if (state.getValue(BlockVine.EAST).booleanValue())
+        if (state.getValue(BlockVine.EAST))
         {
             axisalignedbb = EAST_AABB;
             ++i;
         }
-        if (state.getValue(BlockVine.SOUTH).booleanValue())
+        if (state.getValue(BlockVine.SOUTH))
         {
             axisalignedbb = SOUTH_AABB;
             ++i;
         }
-        if (state.getValue(BlockVine.WEST).booleanValue())
+        if (state.getValue(BlockVine.WEST))
         {
             axisalignedbb = WEST_AABB;
             ++i;
@@ -248,8 +248,8 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
                         {
                             EnumFacing enumfacing2 = enumfacing1.rotateY();
                             EnumFacing enumfacing4 = enumfacing1.rotateYCCW();
-                            boolean flag1 = state.getValue(getPropertyFor(enumfacing2)).booleanValue();
-                            boolean flag2 = state.getValue(getPropertyFor(enumfacing4)).booleanValue();
+                            boolean flag1 = state.getValue(getPropertyFor(enumfacing2));
+                            boolean flag2 = state.getValue(getPropertyFor(enumfacing4));
                             BlockPos blockpos4 = blockpos3.offset(enumfacing2);
                             BlockPos blockpos = blockpos3.offset(enumfacing4);
 
@@ -367,19 +367,19 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
     {
         int i = 0;
 
-        if (state.getValue(BlockVine.SOUTH).booleanValue())
+        if (state.getValue(BlockVine.SOUTH))
         {
             i |= 1;
         }
-        if (state.getValue(BlockVine.WEST).booleanValue())
+        if (state.getValue(BlockVine.WEST))
         {
             i |= 2;
         }
-        if (state.getValue(BlockVine.NORTH).booleanValue())
+        if (state.getValue(BlockVine.NORTH))
         {
             i |= 4;
         }
-        if (state.getValue(BlockVine.EAST).booleanValue())
+        if (state.getValue(BlockVine.EAST))
         {
             i |= 8;
         }
@@ -417,7 +417,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
 
         for (PropertyBool propertybool : BlockVine.ALL_FACES)
         {
-            if (state.getValue(propertybool).booleanValue())
+            if (state.getValue(propertybool))
             {
                 ++i;
             }

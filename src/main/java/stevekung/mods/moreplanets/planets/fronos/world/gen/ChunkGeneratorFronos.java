@@ -21,7 +21,7 @@ public class ChunkGeneratorFronos extends ChunkGeneratorBaseMP
 {
     private final MapGenCavesBase caveGenerator = new MapGenCavesBase(Sets.newHashSet(MPBlocks.FRONOS_GRASS_BLOCK), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.FRONOS_DIRT, MPBlocks.FRONOS_STONE), Sets.newHashSet(Blocks.WATER));
     private final MapGenRavineBase ravineGenerator = new MapGenRavineBase(Sets.newHashSet(MPBlocks.FRONOS_GRASS_BLOCK), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.FRONOS_DIRT, MPBlocks.FRONOS_STONE), Sets.newHashSet(Blocks.WATER));
-    //    private final MapGenNibiruStronghold strongholdGenerator = new MapGenNibiruStronghold();TODO
+    //    private final MapGenNibiruStronghold strongholdGenerator = new MapGenStronghold();TODO
     private final BiomeDecoratorFronosOre decorator = new BiomeDecoratorFronosOre();
 
     public ChunkGeneratorFronos(World world, long seed)

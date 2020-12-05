@@ -5,7 +5,7 @@ public interface IMeteorType
     EnumMeteorType getMeteorType();
     double getMeteorSpawnFrequency();
 
-    public static enum EnumMeteorType
+    public enum EnumMeteorType
     {
         KOENTUS;
     }

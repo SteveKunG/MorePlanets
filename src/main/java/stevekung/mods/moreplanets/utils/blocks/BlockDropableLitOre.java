@@ -226,7 +226,7 @@ public class BlockDropableLitOre extends BlockBasicMP implements IDetectableReso
         }
     }
 
-    public static enum BlockType
+    public enum BlockType
     {
         REDSTONE_ORE;
 

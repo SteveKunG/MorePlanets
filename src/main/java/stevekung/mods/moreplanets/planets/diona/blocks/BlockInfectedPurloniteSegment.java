@@ -186,7 +186,7 @@ public class BlockInfectedPurloniteSegment extends BlockBaseMP implements ITileE
         return ColorUtils.stringToRGB(IItemRarity.ALIEN);
     }
 
-    public static enum BlockType
+    public enum BlockType
     {
         INFECTED_PURLONITE_SEGMENT,
         INFECTED_PURLONITE_EYE_CORE,

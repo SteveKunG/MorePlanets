@@ -53,7 +53,7 @@ public class BlockSnowLayerMP extends BlockBaseMP
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return BlockSnowLayerMP.SNOW_AABB[state.getValue(BlockStateProperty.LAYERS).intValue()];
+        return BlockSnowLayerMP.SNOW_AABB[state.getValue(BlockStateProperty.LAYERS)];
     }
 
     @Override

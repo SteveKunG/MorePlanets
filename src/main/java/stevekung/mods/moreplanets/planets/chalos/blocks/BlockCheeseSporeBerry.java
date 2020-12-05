@@ -31,7 +31,7 @@ public class BlockCheeseSporeBerry extends BlockCropsMP
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return BlockCheeseSporeBerry.CARROT_AABB[state.getValue(BlockStateProperty.AGE_7).intValue()];
+        return BlockCheeseSporeBerry.CARROT_AABB[state.getValue(BlockStateProperty.AGE_7)];
     }
 
     @Override
@@ -74,7 +74,7 @@ public class BlockCheeseSporeBerry extends BlockCropsMP
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        int age = state.getValue(BlockStateProperty.AGE_7).intValue();
+        int age = state.getValue(BlockStateProperty.AGE_7);
         Random rand = world instanceof World ? ((World)world).rand : RANDOM;
 
         if (age >= 7)

@@ -32,7 +32,7 @@ public class ItemSpaceFish extends ItemFoodMP
         return this.type.getSaturation();
     }
 
-    public static enum ItemType
+    public enum ItemType
     {
         ZELIUS_FISH(2, 0.1F),
         GLOWING_ALIEN_FISH(2, 0.1F),

@@ -508,7 +508,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
 
     public void setFleeceColor(EnumDyeColor color)
     {
-        byte b0 = this.dataManager.get(DYE_COLOR).byteValue();
+        byte b0 = this.dataManager.get(DYE_COLOR);
         this.dataManager.set(DYE_COLOR, (byte)(b0 & 240 | color.getMetadata() & 15));
     }
 
@@ -532,7 +532,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
 
     private void setSheared(boolean sheared)
     {
-        byte b0 = this.dataManager.get(DYE_COLOR).byteValue();
+        byte b0 = this.dataManager.get(DYE_COLOR);
 
         if (sheared)
         {

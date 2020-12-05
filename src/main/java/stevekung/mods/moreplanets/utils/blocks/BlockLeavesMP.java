@@ -401,7 +401,7 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
         world.setBlockToAir(pos);
     }
 
-    public static enum BlockType
+    public enum BlockType
     {
         INFECTED_OAK_LEAVES,
         INFECTED_SPRUCE_LEAVES,

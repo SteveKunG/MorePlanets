@@ -62,7 +62,7 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
 
         if (world.getLightFromNeighbors(pos.up()) >= 9)
         {
-            int i = state.getValue(BlockStateProperty.AGE_7).intValue();
+            int i = state.getValue(BlockStateProperty.AGE_7);
 
             if (i < 7)
             {
@@ -128,7 +128,7 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(BlockStateProperty.AGE_7).intValue();
+        return state.getValue(BlockStateProperty.AGE_7);
     }
 
     @Override
@@ -140,7 +140,7 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        int age = state.getValue(BlockStateProperty.AGE_7).intValue();
+        int age = state.getValue(BlockStateProperty.AGE_7);
         Random rand = world instanceof World ? ((World)world).rand : RANDOM;
 
         if (age >= 7)

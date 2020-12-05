@@ -137,7 +137,7 @@ public class BlockJelly extends BlockBreakableMP
         return true;
     }
 
-    public static enum BlockType
+    public enum BlockType
     {
         GRAPE_JELLY_BLOCK,
         RASPBERRY_JELLY_BLOCK,

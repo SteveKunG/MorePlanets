@@ -102,7 +102,7 @@ public class ItemCapsule extends ItemFoodMP
         return 0.0F;
     }
 
-    public static enum CapsuleType
+    public enum CapsuleType
     {
         EMPTY(-1),
         INFECTED_SPORE(ColorUtils.rgbToDecimal(232, 62, 19)),

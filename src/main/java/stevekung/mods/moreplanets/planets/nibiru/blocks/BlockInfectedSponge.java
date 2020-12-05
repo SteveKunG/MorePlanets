@@ -57,14 +57,14 @@ public class BlockInfectedSponge extends BlockBaseMP
     {
         Queue<Tuple<BlockPos, Integer>> queue = new LinkedList<>();
         List<BlockPos> list = new ArrayList<>();
-        queue.add(new Tuple<>(pos, Integer.valueOf(0)));
+        queue.add(new Tuple<>(pos, 0));
         int i = 0;
 
         while (!queue.isEmpty())
         {
             Tuple<BlockPos, Integer> tuple = queue.poll();
             BlockPos blockpos = tuple.getFirst();
-            int j = tuple.getSecond().intValue();
+            int j = tuple.getSecond();
 
             for (EnumFacing facing : CachedEnum.facingValues)
             {
