@@ -11,7 +11,9 @@
     ],
     "client": [
     	"client.EntityRendererMixin",
-    	"client.ParticleDiggingMixin"
+    	"client.ParticleDiggingMixin",
+    	"client.RenderPaintingMixin",
+    	"client.RenderWolfMixin"
     ],
     "injectors": {
         "defaultRequire": 1

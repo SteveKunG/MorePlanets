@@ -21,7 +21,7 @@ public class ChunkGeneratorFronos extends ChunkGeneratorBaseMP
 {
     private final MapGenCavesBase caveGenerator = new MapGenCavesBase(Sets.newHashSet(MPBlocks.FRONOS_GRASS_BLOCK), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.FRONOS_DIRT, MPBlocks.FRONOS_STONE), Sets.newHashSet(Blocks.WATER));
     private final MapGenRavineBase ravineGenerator = new MapGenRavineBase(Sets.newHashSet(MPBlocks.FRONOS_GRASS_BLOCK), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.FRONOS_DIRT, MPBlocks.FRONOS_STONE), Sets.newHashSet(Blocks.WATER));
-    //    private final MapGenNibiruStronghold strongholdGenerator = new MapGenStronghold();TODO
+    private final MapGenRongHouse rongHouseGenerator = new MapGenRongHouse();
     private final BiomeDecoratorFronosOre decorator = new BiomeDecoratorFronosOre();
 
     public ChunkGeneratorFronos(World world, long seed)
@@ -38,14 +38,14 @@ public class ChunkGeneratorFronos extends ChunkGeneratorBaseMP
     {
         this.caveGenerator.generate(this.world, chunkX, chunkZ, primer);
         this.ravineGenerator.generate(this.world, chunkX, chunkZ, primer);
-        //        this.mineshaftGenerator.generate(this.world, chunkX, chunkZ, primer);
+        this.rongHouseGenerator.generate(this.world, chunkX, chunkZ, primer);
     }
 
     @Override
     protected void populate(BlockPos pos, ChunkPos chunkpos, Biome biome, int chunkX, int chunkZ, int x, int z)
     {
         this.decorator.decorate(this.world, this.rand, biome, pos);
-        //        this.mineshaftGenerator.generateStructure(this.world, this.rand, chunkpos);
+        this.rongHouseGenerator.generateStructure(this.world, this.rand, chunkpos);
 
         if (this.rand.nextInt(4) == 0)
         {
@@ -95,26 +95,26 @@ public class ChunkGeneratorFronos extends ChunkGeneratorBaseMP
     @Override
     public BlockPos getNearestStructurePos(World world, String name, BlockPos pos, boolean findUnexplored)
     {
+        if ("RongHouse".equals(name) && this.rongHouseGenerator != null)
+        {
+            return this.rongHouseGenerator.getNearestStructurePos(world, pos, findUnexplored);
+        }
         return null;
-        //        if ("NibiruStronghold".equals(name) && this.strongholdGenerator != null)
-        //        {
-        //            return this.strongholdGenerator.getNearestStructurePos(world, pos, findUnexplored);
-        //        }
     }
 
     @Override
     public boolean isInsideStructure(World world, String name, BlockPos pos)
     {
+        if ("RongHouse".equals(name) && this.rongHouseGenerator != null)
+        {
+            return this.rongHouseGenerator.isInsideStructure(pos);
+        }
         return false;
-        //        if ("NibiruStronghold".equals(name) && this.strongholdGenerator != null)
-        //        {
-        //            return this.strongholdGenerator.isInsideStructure(pos);
-        //        }
     }
 
     @Override
     public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
-        //        this.mineshaftGenerator.generate(this.world, chunkX, chunkZ, null);
+        this.rongHouseGenerator.generate(this.world, chunkX, chunkZ, null);
     }
 }

@@ -19,7 +19,7 @@ public class CommandLocateMixin
     @Redirect(method = "getTabCompletions(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/command/ICommandSender;[Ljava/lang/String;Lnet/minecraft/util/math/BlockPos;)Ljava/util/List;", at = @At(value = "INVOKE", target = "net/minecraft/command/CommandLocate.getListOfStringsMatchingLastWord([Ljava/lang/String;[Ljava/lang/String;)Ljava/util/List;"))
     private List<String> addMorePlanetsStructures(String[] args, String... possibilities)
     {
-        List<String> newLoc = Lists.newArrayList("CrashedAlienShip", "AbandonedSatellite", "DionaMineshaft", "CheeseSporeHut", "NibiruDungeon", "NibiruVillage", "NibiruStronghold", "NibiruPyramid", "NibiruOceanMonument", "NibiruMineshaft", "NibiruJungleTemple", "NibiruIgloo");
+        List<String> newLoc = Lists.newArrayList("CrashedAlienShip", "AbandonedSatellite", "DionaMineshaft", "CheeseSporeHut", "NibiruDungeon", "NibiruVillage", "NibiruStronghold", "NibiruPyramid", "NibiruOceanMonument", "NibiruMineshaft", "NibiruJungleTemple", "NibiruIgloo", "RongHouse");
         List<String> mod = Arrays.stream(possibilities).collect(Collectors.toList());
         mod.addAll(newLoc);
         return CommandBase.getListOfStringsMatchingLastWord(args, mod);
