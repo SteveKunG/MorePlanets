@@ -189,70 +189,65 @@ public class EntityEventHandler
             }
         }
 
-        for (TileEntity tile : world.tickableTileEntities.stream().filter(tile -> tile instanceof TileEntityShieldGenerator).collect(Collectors.toList()))
+        if (living instanceof IMob)
         {
-            if (!tile.getWorld().isRemote)
+            for (TileEntityShieldGenerator tile : world.tickableTileEntities.stream().filter(tile -> tile instanceof TileEntityShieldGenerator).map(tile -> (TileEntityShieldGenerator)tile).collect(Collectors.toList()))
             {
-                TileEntityShieldGenerator shield = (TileEntityShieldGenerator)tile;
-
-                if (living instanceof IMob)
+                if (!living.world.isRemote && !tile.disabled && tile.enableShield && tile.shieldCapacity > 0 && tile.isInRangeOfShield(living.getPosition()))
                 {
-                    if (!shield.disabled && shield.enableShield && shield.shieldCapacity > 0 && shield.isInRangeOfShield(living.getPosition()))
+                    if (!tile.enableDamage)
                     {
-                        if (!shield.enableDamage)
-                        {
-                            double d4 = living.getDistance(shield.getPos().getX(), shield.getPos().getY(), shield.getPos().getZ());
-                            double d6 = living.posX - shield.getPos().getX();
-                            double d8 = living.posY - shield.getPos().getY();
-                            double d10 = living.posZ - shield.getPos().getZ();
-                            double d11 = MathHelper.sqrt(d6 * d6 + d8 * d8 + d10 * d10);
-                            d6 /= d11;
-                            d8 /= d11;
-                            d10 /= d11;
-                            double d13 = (0.0D - d4) * 2.0D / 10.0D;
-                            double d14 = d13;
-                            double knockSpeed = 10.0D;
-                            living.motionX -= d6 * d14 / knockSpeed;
-                            living.motionY -= d8 * d14 / knockSpeed;
-                            living.motionZ -= d10 * d14 / knockSpeed;
-                        }
-
-                        UUID uuid;
-
-                        try
-                        {
-                            uuid = UUID.fromString(shield.ownerUUID);
-                        }
-                        catch (Exception e)
-                        {
-                            uuid = UUID.fromString("eef3a603-1c1b-4c98-8264-d2f04b231ef4"); //default uuid :)
-                        }
-
-                        if (uuid != null && shield.getWorld().getPlayerEntityByUUID(uuid) != null)
-                        {
-                            if (living.ticksExisted % 8 == 0 && shield.getWorld() instanceof WorldServer)
-                            {
-                                ((WorldServer)shield.getWorld()).spawnParticle(EnumParticleTypes.CRIT_MAGIC, living.posX, living.posY, living.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
-                            }
-                            if (shield.enableDamage)
-                            {
-                                living.attackEntityFrom(DamageSource.causePlayerDamage(shield.getWorld().getPlayerEntityByUUID(uuid)), shield.shieldDamage);
-                            }
-                        }
-                        else
-                        {
-                            if (living.ticksExisted % 8 == 0 && shield.getWorld() instanceof WorldServer)
-                            {
-                                ((WorldServer)shield.getWorld()).spawnParticle(EnumParticleTypes.CRIT_MAGIC, living.posX, living.posY, living.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
-                            }
-                            if (shield.enableDamage)
-                            {
-                                living.attackEntityFrom(DamageSource.GENERIC, shield.shieldDamage);
-                            }
-                        }
-                        float motion = MathHelper.sqrt(living.motionX * living.motionX + living.motionZ * living.motionZ);
-                        shield.shieldCapacity -= motion * 2;
+                        double d4 = living.getDistance(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ());
+                        double d6 = living.posX - tile.getPos().getX();
+                        double d8 = living.posY - tile.getPos().getY();
+                        double d10 = living.posZ - tile.getPos().getZ();
+                        double d11 = MathHelper.sqrt(d6 * d6 + d8 * d8 + d10 * d10);
+                        d6 /= d11;
+                        d8 /= d11;
+                        d10 /= d11;
+                        double d13 = (0.0D - d4) * 2.0D / 10.0D;
+                        double d14 = d13;
+                        double knockSpeed = 10.0D;
+                        living.motionX -= d6 * d14 / knockSpeed;
+                        living.motionY -= d8 * d14 / knockSpeed;
+                        living.motionZ -= d10 * d14 / knockSpeed;
                     }
+
+                    UUID uuid;
+
+                    try
+                    {
+                        uuid = UUID.fromString(tile.ownerUUID);
+                    }
+                    catch (Exception e)
+                    {
+                        uuid = UUID.fromString("eef3a603-1c1b-4c98-8264-d2f04b231ef4"); //default uuid :)
+                    }
+
+                    if (living.world.getPlayerEntityByUUID(uuid) != null)
+                    {
+                        if (living.ticksExisted % 8 == 0)
+                        {
+                            ((WorldServer)living.world).spawnParticle(EnumParticleTypes.CRIT_MAGIC, living.posX, living.posY, living.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
+                        }
+                        if (tile.enableDamage)
+                        {
+                            living.attackEntityFrom(DamageSource.causePlayerDamage(living.world.getPlayerEntityByUUID(uuid)), tile.shieldDamage);
+                        }
+                    }
+                    else
+                    {
+                        if (living.ticksExisted % 8 == 0)
+                        {
+                            ((WorldServer)living.world).spawnParticle(EnumParticleTypes.CRIT_MAGIC, living.posX, living.posY, living.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
+                        }
+                        if (tile.enableDamage)
+                        {
+                            living.attackEntityFrom(DamageSource.GENERIC, tile.shieldDamage);
+                        }
+                    }
+                    float motion = MathHelper.sqrt(living.motionX * living.motionX + living.motionZ * living.motionZ);
+                    tile.shieldCapacity -= motion * 2;
                 }
             }
         }
