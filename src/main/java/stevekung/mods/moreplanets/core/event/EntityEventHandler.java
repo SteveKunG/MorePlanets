@@ -1,11 +1,12 @@
 package stevekung.mods.moreplanets.core.event;
 
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import micdoodle8.mods.galacticraft.api.event.oxygen.GCCoreOxygenSuffocationEvent;
+import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
@@ -191,63 +192,73 @@ public class EntityEventHandler
 
         if (living instanceof IMob)
         {
-            for (TileEntityShieldGenerator tile : world.tickableTileEntities.stream().filter(tile -> tile instanceof TileEntityShieldGenerator).map(tile -> (TileEntityShieldGenerator)tile).collect(Collectors.toList()))
+            for (BlockVec3Dim vec : TileEntityShieldGenerator.LOADED_GENERATORS)
             {
-                if (!living.world.isRemote && !tile.disabled && tile.enableShield && tile.shieldCapacity > 0 && tile.isInRangeOfShield(living.getPosition()))
+                if (vec != null && vec.dim == GCCoreUtil.getDimensionID(world))
                 {
-                    if (!tile.enableDamage)
-                    {
-                        double d4 = living.getDistance(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ());
-                        double d6 = living.posX - tile.getPos().getX();
-                        double d8 = living.posY - tile.getPos().getY();
-                        double d10 = living.posZ - tile.getPos().getZ();
-                        double d11 = MathHelper.sqrt(d6 * d6 + d8 * d8 + d10 * d10);
-                        d6 /= d11;
-                        d8 /= d11;
-                        d10 /= d11;
-                        double d13 = (0.0D - d4) * 2.0D / 10.0D;
-                        double d14 = d13;
-                        double knockSpeed = 10.0D;
-                        living.motionX -= d6 * d14 / knockSpeed;
-                        living.motionY -= d8 * d14 / knockSpeed;
-                        living.motionZ -= d10 * d14 / knockSpeed;
-                    }
+                    TileEntity tile = vec.getTileEntity();
 
-                    UUID uuid;
+                    if (tile instanceof TileEntityShieldGenerator)
+                    {
+                        TileEntityShieldGenerator shield = (TileEntityShieldGenerator)tile;
 
-                    try
-                    {
-                        uuid = UUID.fromString(tile.ownerUUID);
-                    }
-                    catch (Exception e)
-                    {
-                        uuid = UUID.fromString("eef3a603-1c1b-4c98-8264-d2f04b231ef4"); //default uuid :)
-                    }
+                        if (!living.world.isRemote && !living.isDead && shield.isInsideShield(living.getPosition()) && !shield.disabled && shield.enableShield && shield.shieldCapacity > 0)
+                        {
+                            if (!shield.enableDamage)
+                            {
+                                double d4 = living.getDistance(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ());
+                                double d6 = living.posX - tile.getPos().getX();
+                                double d8 = living.posY - tile.getPos().getY();
+                                double d10 = living.posZ - tile.getPos().getZ();
+                                double d11 = MathHelper.sqrt(d6 * d6 + d8 * d8 + d10 * d10);
+                                d6 /= d11;
+                                d8 /= d11;
+                                d10 /= d11;
+                                double d13 = (0.0D - d4) * 2.0D / 10.0D;
+                                double d14 = d13;
+                                double knockback = 10.0D;
+                                living.motionX -= d6 * d14 / knockback;
+                                living.motionY -= d8 * d14 / knockback;
+                                living.motionZ -= d10 * d14 / knockback;
+                            }
 
-                    if (living.world.getPlayerEntityByUUID(uuid) != null)
-                    {
-                        if (living.ticksExisted % 8 == 0)
-                        {
-                            ((WorldServer)living.world).spawnParticle(EnumParticleTypes.CRIT_MAGIC, living.posX, living.posY, living.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
-                        }
-                        if (tile.enableDamage)
-                        {
-                            living.attackEntityFrom(DamageSource.causePlayerDamage(living.world.getPlayerEntityByUUID(uuid)), tile.shieldDamage);
+                            UUID uuid;
+
+                            try
+                            {
+                                uuid = UUID.fromString(shield.ownerUUID);
+                            }
+                            catch (Exception e)
+                            {
+                                uuid = UUID.fromString("eef3a603-1c1b-4c98-8264-d2f04b231ef4"); //default uuid :)
+                            }
+
+                            if (living.world.getPlayerEntityByUUID(uuid) != null)
+                            {
+                                if (living.ticksExisted % 8 == 0)
+                                {
+                                    ((WorldServer)living.world).spawnParticle(EnumParticleTypes.CRIT_MAGIC, living.posX, living.posY, living.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
+                                }
+                                if (shield.enableDamage)
+                                {
+                                    living.attackEntityFrom(DamageSource.causePlayerDamage(living.world.getPlayerEntityByUUID(uuid)), shield.shieldDamage);
+                                }
+                            }
+                            else
+                            {
+                                if (living.ticksExisted % 8 == 0)
+                                {
+                                    ((WorldServer)living.world).spawnParticle(EnumParticleTypes.CRIT_MAGIC, living.posX, living.posY, living.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
+                                }
+                                if (shield.enableDamage)
+                                {
+                                    living.attackEntityFrom(DamageSource.GENERIC, shield.shieldDamage);
+                                }
+                            }
+                            float motion = MathHelper.sqrt(living.motionX * living.motionX + living.motionZ * living.motionZ);
+                            shield.shieldCapacity -= motion * 2;
                         }
                     }
-                    else
-                    {
-                        if (living.ticksExisted % 8 == 0)
-                        {
-                            ((WorldServer)living.world).spawnParticle(EnumParticleTypes.CRIT_MAGIC, living.posX, living.posY, living.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
-                        }
-                        if (tile.enableDamage)
-                        {
-                            living.attackEntityFrom(DamageSource.GENERIC, tile.shieldDamage);
-                        }
-                    }
-                    float motion = MathHelper.sqrt(living.motionX * living.motionX + living.motionZ * living.motionZ);
-                    tile.shieldCapacity -= motion * 2;
                 }
             }
         }
@@ -317,15 +328,20 @@ public class EntityEventHandler
             return;
         }
 
-        for (TileEntity tile : event.getWorld().tickableTileEntities.stream().filter(tile -> tile instanceof TileEntityShieldGenerator).collect(Collectors.toList()))
+        for (BlockVec3Dim vec : TileEntityShieldGenerator.LOADED_GENERATORS)
         {
-            if (!tile.getWorld().isRemote)
+            if (vec != null && vec.dim == GCCoreUtil.getDimensionID(event.getWorld()))
             {
-                TileEntityShieldGenerator shield = (TileEntityShieldGenerator)tile;
+                TileEntity tile = vec.getTileEntity();
 
-                if (!shield.disabled && shield.isInRangeOfShield(event.getEntity().getPosition()))
+                if (tile instanceof TileEntityShieldGenerator)
                 {
-                    event.setResult(Result.DENY);
+                    TileEntityShieldGenerator shield = (TileEntityShieldGenerator)tile;
+
+                    if (!shield.disabled && shield.isInsideShield(event.getEntityLiving().getPosition()))
+                    {
+                        event.setResult(Result.DENY);
+                    }
                 }
             }
         }
@@ -334,15 +350,20 @@ public class EntityEventHandler
     @SubscribeEvent
     public void onEnderTeleport(EnderTeleportEvent event)
     {
-        for (TileEntity tile : event.getEntityLiving().world.tickableTileEntities.stream().filter(tile -> tile instanceof TileEntityShieldGenerator).collect(Collectors.toList()))
+        for (BlockVec3Dim vec : TileEntityShieldGenerator.LOADED_GENERATORS)
         {
-            if (!tile.getWorld().isRemote)
+            if (vec != null && vec.dim == GCCoreUtil.getDimensionID(event.getEntityLiving().getEntityWorld()))
             {
-                TileEntityShieldGenerator shield = (TileEntityShieldGenerator)tile;
+                TileEntity tile = vec.getTileEntity();
 
-                if (!shield.disabled && shield.isInRangeOfShield(event.getEntityLiving().getPosition()))
+                if (tile instanceof TileEntityShieldGenerator)
                 {
-                    event.setCanceled(true);
+                    TileEntityShieldGenerator shield = (TileEntityShieldGenerator)tile;
+
+                    if (!shield.disabled && shield.isInsideShield(event.getEntityLiving().getPosition()))
+                    {
+                        event.setCanceled(true);
+                    }
                 }
             }
         }

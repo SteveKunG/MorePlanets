@@ -1,9 +1,14 @@
 package stevekung.mods.moreplanets.tileentity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.google.common.collect.Sets;
+
+import io.netty.buffer.ByteBuf;
+import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
 import micdoodle8.mods.galacticraft.core.Constants;
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
@@ -76,6 +81,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     @NetworkedField(targetSide = Side.CLIENT)
     public String ownerUUID = "";
     private boolean initialize;
+    public static final HashSet<BlockVec3Dim> LOADED_GENERATORS = Sets.newHashSet();
 
     public TileEntityShieldGenerator()
     {
@@ -83,6 +89,97 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         this.inventory = NonNullList.withSize(4, ItemStack.EMPTY);
         this.storage.setMaxExtract(250);
         this.storage.setCapacity(100000.0F);
+    }
+
+    @Override
+    public void onLoad()
+    {
+        if (!this.world.isRemote)
+        {
+            LOADED_GENERATORS.add(new BlockVec3Dim(this));
+        }
+    }
+
+    @Override
+    public void onChunkUnload()
+    {
+        if (!this.world.isRemote)
+        {
+            LOADED_GENERATORS.remove(new BlockVec3Dim(this));
+        }
+        super.onChunkUnload();
+    }
+
+    @Override
+    public void invalidate()
+    {
+        if (!this.world.isRemote)
+        {
+            LOADED_GENERATORS.remove(new BlockVec3Dim(this));
+        }
+        super.invalidate();
+    }
+
+    @Override
+    public void addExtraNetworkedData(List<Object> networkedList)
+    {
+        if (!this.world.isRemote && !this.isInvalid())
+        {
+            if (this.world.getMinecraftServer().isDedicatedServer())
+            {
+                networkedList.add(LOADED_GENERATORS.size());
+
+                for (BlockVec3Dim vec3 : LOADED_GENERATORS)
+                {
+                    if (vec3 == null)
+                    {
+                        networkedList.add(-1);
+                        networkedList.add(-1);
+                        networkedList.add(-1);
+                        networkedList.add(-1);
+                    }
+                    else
+                    {
+                        networkedList.add(vec3.x);
+                        networkedList.add(vec3.y);
+                        networkedList.add(vec3.z);
+                        networkedList.add(vec3.dim);
+                    }
+                }
+            }
+            else
+            {
+                networkedList.add(-1); // Signal integrated server, do not clear LOADED_GENERATORS
+            }
+        }
+    }
+
+    @Override
+    public void readExtraNetworkedData(ByteBuf dataStream)
+    {
+        if (this.world.isRemote)
+        {
+            int size = dataStream.readInt();
+
+            if (size >= 0)
+            {
+                LOADED_GENERATORS.clear();
+
+                for (int i = 0; i < size; ++i)
+                {
+                    int i1 = dataStream.readInt();
+                    int i2 = dataStream.readInt();
+                    int i3 = dataStream.readInt();
+                    int i4 = dataStream.readInt();
+
+                    if (i1 == -1 && i2 == -1 && i3 == -1 && i4 == -1)
+                    {
+                        continue;
+                    }
+                    LOADED_GENERATORS.add(new BlockVec3Dim(i1, i2, i3, i4));
+                }
+            }
+        }
     }
 
     @Override
@@ -465,7 +562,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         return TextFormatting.GREEN + LangUtils.translate("gui.status.active.name");
     }
 
-    public boolean isInRangeOfShield(BlockPos pos)
+    public boolean isInsideShield(BlockPos pos)
     {
         double dx = this.pos.getX() - pos.getX();
         double dy = Math.abs(this.pos.getY() - pos.getY());
