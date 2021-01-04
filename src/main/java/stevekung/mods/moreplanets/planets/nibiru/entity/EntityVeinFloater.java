@@ -313,7 +313,6 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     @Override
     protected void onDeathUpdate()
     {
-        this.world.playEvent(1010, this.getPosition(), 0);
         ++this.deathTicks;
 
         if (this.deathTicks >= 180 && this.deathTicks <= 200)
