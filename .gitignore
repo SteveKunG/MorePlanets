@@ -8,8 +8,8 @@ libs
 run
 
 # file
-!gradlew.bat
 *.bat
 *.launch
 .classpath
 .project
+!gradlew.bat
