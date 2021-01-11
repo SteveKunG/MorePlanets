@@ -82,6 +82,8 @@ public class MPOreDictionary
         OreDictionaryUtils.registerOreDictionary("paneGlassBlack", MPBlocks.BLACK_TINTED_GLASS_PANE);
         OreDictionaryUtils.registerOreDictionary("plankWood", MPBlocks.INFECTED_PURLONITE_PLANKS);
         OreDictionaryUtils.registerOreDictionary("stone", MPBlocks.DIONA_ROCK);
+        OreDictionaryUtils.registerOreDictionary("stone", MPBlocks.FRONOS_STONE);
+        OreDictionaryUtils.registerOreDictionary("cobblestone", MPBlocks.FRONOS_COBBLESTONE);
         OreDictionaryUtils.registerOreDictionary("cobblestone", MPBlocks.DIONA_COBBLESTONE);
         OreDictionaryUtils.registerOreDictionary("blockSlime", MPBlocks.INFECTED_PURLONITE_SLIME_BLOCK);
         OreDictionaryUtils.registerOreDictionary("chestWood", MPBlocks.DIONA_ANCIENT_CHEST);
@@ -91,6 +93,8 @@ public class MPOreDictionary
         OreDictionaryUtils.registerOreDictionary("logWood", MPBlocks.CHEESE_SPORE_STEM);
         OreDictionaryUtils.registerOreDictionary("stairWood", MPBlocks.CHEESE_SPORE_STAIRS);
         OreDictionaryUtils.registerOreDictionary("dirt", MPBlocks.CHEESE_DIRT);
+        OreDictionaryUtils.registerOreDictionary("dirt", MPBlocks.FRONOS_DIRT);
+        OreDictionaryUtils.registerOreDictionary("grass", MPBlocks.FRONOS_GRASS_BLOCK);
         OreDictionaryUtils.registerOreDictionary("grass", MPBlocks.CHEESE_GRASS_BLOCK);
         OreDictionaryUtils.registerOreDictionary("stone", MPBlocks.CHALOS_ROCK);
         OreDictionaryUtils.registerOreDictionary("cobblestone", MPBlocks.CHALOS_COBBLESTONE);
