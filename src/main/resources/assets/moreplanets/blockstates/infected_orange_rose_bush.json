@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "half=lower": { "model": "moreplanets:infected_orange_rose_bush_lower" },
-        "half=upper": { "model": "moreplanets:infected_orange_rose_bush_upper" }
-    }
-}

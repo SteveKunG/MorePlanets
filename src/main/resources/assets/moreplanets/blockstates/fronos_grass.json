@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "normal": [
-            { "model": "moreplanets:fronos_grass_1" },
-            { "model": "moreplanets:fronos_grass_2" }
-        ]
-    }
-}

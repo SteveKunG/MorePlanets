@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "moreplanets:blocks/alien_ship_base_0",
-        "top": "moreplanets:blocks/alien_ship_base_0",
-        "side": "moreplanets:blocks/alien_ship_base_0"
-    }
-}

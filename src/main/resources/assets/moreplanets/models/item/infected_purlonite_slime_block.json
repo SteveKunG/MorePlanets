@@ -1,6 +1,0 @@
-{
-    "parent": "moreplanets:item/slime",
-    "textures": {
-        "texture": "moreplanets:blocks/infected_purlonite_slime_block"
-    }
-}

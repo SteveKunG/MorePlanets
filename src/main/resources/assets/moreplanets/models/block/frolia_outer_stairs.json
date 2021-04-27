@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "moreplanets:blocks/frolia_planks",
-        "top": "moreplanets:blocks/frolia_planks",
-        "side": "moreplanets:blocks/frolia_planks"
-    }
-}

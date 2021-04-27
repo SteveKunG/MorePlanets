@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "moreplanets:blocks/infected_sandstone_bottom",
-        "top": "moreplanets:blocks/infected_sandstone_top",
-        "side": "moreplanets:blocks/infected_sandstone"
-    }
-}

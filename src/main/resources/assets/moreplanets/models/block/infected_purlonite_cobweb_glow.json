@@ -1,7 +1,0 @@
-{
-    "parent": "moreplanets:block/cross_glow",
-    "textures": {
-        "cross": "moreplanets:blocks/infected_purlonite_cobweb",
-        "glow": "moreplanets:blocks/infected_purlonite_cobweb_glow"
-    }
-}

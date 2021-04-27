@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "half=lower": { "model": "moreplanets:cheese_tall_grass_lower" },
-        "half=upper": { "model": "moreplanets:cheese_tall_grass_upper" }
-    }
-}

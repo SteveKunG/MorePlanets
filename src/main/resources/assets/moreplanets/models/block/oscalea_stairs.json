@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "moreplanets:blocks/oscalea_planks",
-        "top": "moreplanets:blocks/oscalea_planks",
-        "side": "moreplanets:blocks/oscalea_planks"
-    }
-}

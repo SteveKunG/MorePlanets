@@ -1,7 +1,0 @@
-{
-    "parent": "block/door_top_rh",
-    "textures": {
-        "bottom": "moreplanets:blocks/door_frolia_lower",
-        "top": "moreplanets:blocks/door_frolia_upper"
-    }
-}

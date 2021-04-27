@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "half=lower": { "model": "moreplanets:infected_large_fern_lower" },
-        "half=upper": { "model": "moreplanets:infected_large_fern_upper" }
-    }
-}
