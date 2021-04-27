@@ -1,15 +1,17 @@
 # folder
-.gradle
 .settings
+.gradle
+.idea
+.vscode
 bin
 build
-eclipse
 libs
 run
 
 # file
 *.bat
 *.launch
+.metadata
 .classpath
 .project
 !gradlew.bat

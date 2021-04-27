@@ -1,0 +1,43 @@
+modLoader = "javafml"
+loaderVersion = "[35,)"
+issueTrackerURL = "https://github.com/SteveKunG/MorePlanets/issues"
+license = "MIT License"
+
+[[mods]]
+modId = "moreplanets"
+version = "${version}"
+displayName = "More Planets"
+description = "An add-on adds new exotic planets into Galacticraft!"
+credits = "All credits goes to Galacticraft Sources/API, Translators and some people who helped."
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/more-planets-gc-addon"
+updateJSONURL = "https://raw.githubusercontent.com/SteveKunG/VersionCheckLibrary/master/more_planets_version.json"
+authors = "SteveKunG"
+logoFile = "logo.png"
+
+[[dependencies.moreplanets]]
+modId = "forge"
+mandatory = true
+versionRange = "[35.1.0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.moreplanets]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.16.4,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.moreplanets]]
+modId = "architectury"
+mandatory = true
+versionRange = "[1.12.145,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.moreplanets]]
+modId = "stevekungs_lib"
+mandatory = true
+versionRange = "[4.1.1,)"
+ordering = "NONE"
+side = "BOTH"

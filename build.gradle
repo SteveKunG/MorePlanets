@@ -1,157 +1,54 @@
-buildscript {
-    repositories {
-        jcenter()
-        maven { url "https://files.minecraftforge.net/maven" }
-        maven { url "https://repo.spongepowered.org/maven" }
-    }
-    dependencies {
-        classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
-        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.4.0"
-        classpath "org.spongepowered:mixingradle:0.6-SNAPSHOT"
-    }
-}
-
 plugins {
-    id "com.matthewprenger.cursegradle" version "1.4.0"
+    id "architectury-plugin" version "3.1-SNAPSHOT"
+    id "forgified-fabric-loom" version "0.7.0-SNAPSHOT" apply false
+    id "com.matthewprenger.cursegradle" version "1.4.0" apply false
 }
 
-def mcVersion = project.mc_version
-def gcDevVersion = "1.12.2-4.0.2.261"
-
-apply plugin: "net.minecraftforge.gradle.forge"
-apply plugin: "org.spongepowered.mixin"
-
-version = project.version
-group = "stevekung.mods.moreplanets"
-archivesBaseName = "More-Planets-All"
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = 1.8
-
-minecraft {
-    version = "${forge_version}"
-    runDir = "run"
-    mappings = "${mcp_mapping}"
-    makeObfSourceJar = false
-
-    replace "4.0.1.-1", project.gc_require_version
-    replaceIn "MorePlanetsMod.java"
+architectury {
+    minecraft = rootProject.mc_version
 }
 
-configurations {
-    embed
-    implementation.extendsFrom(embed)
-}
+subprojects {
+    apply plugin: "forgified-fabric-loom"
 
-dependencies {
-    compile "mezz.jei:jei_${mc_version}:${jei_version}:api"
-    compile "mekanism:Mekanism-1.12.2:9.7.5.376:api"
-    compile "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.12.2-7.0.1.2441:api"
-    compile "com.mod-buildcraft:buildcraft-api:7.99.24.6"
-    compile "redstone-flux:RedstoneFlux-1.12:2.1.0.6:universal"
-    compile "industrial-craft:industrialcraft-2-2.8.157:ex112:api"
-    compile "player-api:PlayerAPI:1.12.1:1.0"
-    compile "de.ellpeck.actuallyadditions:ActuallyAdditions_1.12.2:1.12.2-r151:api"
-    compile "appeng:appliedenergistics2:rv6-stable-6:api"
+    loom {
+        silentMojangMappingsLicense()
+    }
 
-    compile files(
-        "libs/GalacticraftCore-Dev-" + gcDevVersion + ".jar",
-        "libs/Galacticraft-Planets-Dev-" + gcDevVersion + ".jar",
-        "libs/MicdoodleCore-Dev-" + gcDevVersion + ".jar"
-    )
-    deobfCompile "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
-    deobfCompile "team.chisel.ctm:CTM:MC${ctm_version}"
-    deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
-    deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
-    deobfCompile "stevekungs-lib:SteveKunG's-Lib-1.12.2:1.1.9:deobf"
-    deobfCompile "indicatia:Indicatia-1.12.2:1.3.3:deobf"
-    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
-    embed("org.spongepowered:mixin:0.7.11-SNAPSHOT") { transitive = false }
-}
-
-repositories {
-    maven {
-        name "CTM"
-        url "http://maven.tterrag.com/"
-    }
-    maven {
-        name "SpongePowered"
-        url "https://repo.spongepowered.org/maven"
-    }
-    maven {
-        name "CodeChickenLib"
-        url "http://chickenbones.net/maven/"
-    }
-    maven {
-        name "Hwyla"
-        url "https://maven.tehnut.info"
-    }
-    maven {
-        name "Baubles"
-        url "http://maven.thiakil.com/"
-    }
-    maven {
-        name "CurseForge"
-        url "https://minecraft.curseforge.com/api/maven/"
-    }
-    maven {
-        name "JEI"
-        url "http://dvs1.progwml6.com/files/maven"
-    }
-    maven {
-        name "Buildcraft"
-        url "https://mod-buildcraft.com/maven/"
-    }
-    maven {
-        name "AA"
-        url "https://maven.ellpeck.de/"
-    }
-    maven {
-        name "Modmaven"
-        url "https://modmaven.dev/"
+    dependencies {
+        minecraft "com.mojang:minecraft:${rootProject.mc_version}"
+        mappings loom.officialMojangMappings()
     }
 }
 
-sourceSets {
-    main {
-        ext.refMap = "mixins.more_planets.refmap.json"
-    }
-}
+allprojects {
+    apply plugin: "java"
+    apply plugin: "architectury-plugin"
 
-jar {
-    from(configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }) {
-        exclude "LICENSE.txt", "META-INF/*.txt", "META-INF/MANIFSET.MF", "META-INF/maven/**", "META-INF/*.RSA", "META-INF/*.SF"
-    }
-    manifest {
-        attributes("FMLAT": "moreplanets_at.cfg",
-                   "FMLCorePluginContainsFMLMod": "true",
-                   "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
-                   "MixinConfigs": "mixins.more_planets.json",
-                   "ForceLoadAsMod": "true"
-        )
-    }
-    baseName = "More-Planets-" + mcVersion
-}
+    archivesBaseName = rootProject.archives_base_name
+    version = rootProject.mod_version
+    group = rootProject.maven_group
 
-curseforge {
-    if (project.hasProperty("upload_api_key")) {
-        apiKey = project.upload_api_key
-        project {
-            id = "261990"
-            changelog = file("CHANGE_LOG.md")
-            changelogType = "markdown"
-            releaseType = "release"
-            addGameVersion mcVersion
-
-            mainArtifact(jar) {
-                displayName = "More-Planets-" + mcVersion + "-" + version
-                relations {
-                    requiredLibrary "stevekungs-lib"
-                    optionalLibrary "jei"
-                    optionalLibrary "ctm"
-                    optionalLibrary "hwyla"
-                }
+    repositories {
+        maven {
+            name "CurseMaven"
+            url "https://www.cursemaven.com/"
+            content {
+                includeGroup "curse.maven"
             }
         }
     }
-}
 
-tasks.curseforge.dependsOn(build)
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+
+        def targetVersion = 8
+        if (JavaVersion.current().isJava9Compatible()) {
+            options.release = targetVersion
+        }
+    }
+
+    java {
+        withSourcesJar()
+    }
+}
