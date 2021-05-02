@@ -16,6 +16,7 @@ public class MPBlocks
     public static final Block GLOWING_IRON_BLOCK = new Block(Block.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).sound(SoundType.METAL).lightLevel(state -> 4).requiresCorrectToolForDrops().strength(5.0F, 6.0F).emissiveRendering((blockState, blockGetter, blockPos) -> true));
     public static final Block RAW_GLOWING_IRON_BLOCK = new Block(Block.Properties.of(Material.STONE, MaterialColor.COLOR_GRAY).sound(SoundType.STONE).lightLevel(state -> 4).requiresCorrectToolForDrops().strength(5.0F, 6.0F).emissiveRendering((blockState, blockGetter, blockPos) -> true));
     public static final Block METEORIC_IRON_STABILIZER = new MeteoricIronStabilizerBlock(Block.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).sound(SoundType.METAL).lightLevel(state -> 2).requiresCorrectToolForDrops().strength(3.0F, 6.0F).emissiveRendering((blockState, blockGetter, blockPos) -> true).noOcclusion());
+    public static final Block ION_PLASMA_ROD = new IonPlasmaRodBlock(Block.Properties.of(Material.METAL, MaterialColor.COLOR_LIGHT_BLUE).sound(SoundType.METAL).lightLevel(state -> 10).requiresCorrectToolForDrops().strength(3.0F, 6.0F).emissiveRendering((blockState, blockGetter, blockPos) -> true).noOcclusion());
 
     //TODO Harvest level for blocks
 
@@ -28,5 +29,6 @@ public class MPBlocks
         MorePlanetsMod.COMMON.registerBlock("glowing_iron_block", GLOWING_IRON_BLOCK, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("raw_glowing_iron_block", RAW_GLOWING_IRON_BLOCK, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("meteoric_iron_stabilizer", METEORIC_IRON_STABILIZER, new Item.Properties().tab(MorePlanetsMod.TAB));
+        MorePlanetsMod.COMMON.registerBlock("ion_plasma_rod", ION_PLASMA_ROD, new Item.Properties().tab(MorePlanetsMod.TAB));
     }
 }

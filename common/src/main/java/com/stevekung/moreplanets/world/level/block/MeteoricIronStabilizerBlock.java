@@ -6,20 +6,24 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class MeteoricIronStabilizerBlock extends DirectionalBlock implements SimpleWaterloggedBlock
+public class MeteoricIronStabilizerBlock extends Block implements SimpleWaterloggedBlock
 {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
     protected static final VoxelShape Y_AXIS_AABB = Block.box(5.5D, 0.0D, 5.5D, 10.5D, 16.0D, 10.5D);
     protected static final VoxelShape Z_AXIS_AABB = Block.box(5.5D, 5.5D, 0.0D, 10.5D, 10.5D, 16.0D);
     protected static final VoxelShape X_AXIS_AABB = Block.box(0.0D, 5.5D, 5.5D, 16.0D, 10.5D, 10.5D);
@@ -27,25 +31,34 @@ public class MeteoricIronStabilizerBlock extends DirectionalBlock implements Sim
     public MeteoricIronStabilizerBlock(Properties properties)
     {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP).setValue(WATERLOGGED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(AXIS, Direction.Axis.Y).setValue(WATERLOGGED, false));
     }
 
     @Override
     public BlockState rotate(BlockState blockState, Rotation rotation)
     {
-        return blockState.setValue(FACING, rotation.rotate(blockState.getValue(FACING)));
-    }
-
-    @Override
-    public BlockState mirror(BlockState blockState, Mirror mirror)
-    {
-        return blockState.setValue(FACING, mirror.mirror(blockState.getValue(FACING)));
+        switch (rotation)
+        {
+            case COUNTERCLOCKWISE_90:
+            case CLOCKWISE_90:
+                switch (blockState.getValue(AXIS))
+                {
+                    case X:
+                        return blockState.setValue(AXIS, Direction.Axis.Z);
+                    case Z:
+                        return blockState.setValue(AXIS, Direction.Axis.X);
+                    default:
+                        return blockState;
+                }
+            default:
+                return blockState;
+        }
     }
 
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
     {
-        switch (blockState.getValue(FACING).getAxis())
+        switch (blockState.getValue(AXIS))
         {
             case X:
             default:
@@ -76,16 +89,14 @@ public class MeteoricIronStabilizerBlock extends DirectionalBlock implements Sim
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext)
     {
-        Direction direction = blockPlaceContext.getClickedFace();
-        BlockState blockState = blockPlaceContext.getLevel().getBlockState(blockPlaceContext.getClickedPos().relative(direction.getOpposite()));
         FluidState fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
-        return blockState.is(this) && blockState.getValue(FACING) == direction ? this.defaultBlockState().setValue(FACING, direction.getOpposite()).setValue(WATERLOGGED, fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8) : this.defaultBlockState().setValue(FACING, direction).setValue(WATERLOGGED, fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8);
+        return this.defaultBlockState().setValue(AXIS, blockPlaceContext.getClickedFace().getAxis()).setValue(WATERLOGGED, fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8);
     }
 
     @Override
     protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
     {
-        builder.add(FACING, WATERLOGGED);
+        builder.add(AXIS, WATERLOGGED);
     }
 
     @Override

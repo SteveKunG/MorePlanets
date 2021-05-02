@@ -20,5 +20,6 @@ public class BlockLootTable extends BlockLootBase
         this.dropSelf(MPBlocks.GLOWING_IRON_BLOCK);
         this.dropSelf(MPBlocks.RAW_GLOWING_IRON_BLOCK);
         this.dropSelf(MPBlocks.METEORIC_IRON_STABILIZER);
+        this.dropSelf(MPBlocks.ION_PLASMA_ROD);
     }
 }

@@ -23,9 +23,21 @@ public class Language extends LanguageProviderBase
         this.add(MPBlocks.GLOWING_IRON_BLOCK, "Glowing Iron Block");
         this.add(MPBlocks.RAW_GLOWING_IRON_BLOCK, "Raw Glowing Iron Block");
         this.add(MPBlocks.METEORIC_IRON_STABILIZER, "Meteoric Iron Stabilizer");
+        this.add(MPBlocks.ION_PLASMA_ROD, "Ion Plasma Rod");
 
         this.add(MPItems.GLOWING_IRON_INGOT, "Glowing Iron Ingot");
         this.add(MPItems.RAW_GLOWING_IRON, "Raw Glowing Iron");
+
+        this.add(MPItems.GLOWING_IRON_SWORD, "Glowing Iron Sword");
+        this.add(MPItems.GLOWING_IRON_SHOVEL, "Glowing Iron Shovel");
+        this.add(MPItems.GLOWING_IRON_PICKAXE, "Glowing Iron Pickaxe");
+        this.add(MPItems.GLOWING_IRON_AXE, "Glowing Iron Axe");
+        this.add(MPItems.GLOWING_IRON_HOE, "Glowing Iron Hoe");
+
+        this.add(MPItems.GLOWING_IRON_HELMET, "Glowing Iron Helmet");
+        this.add(MPItems.GLOWING_IRON_CHESTPLATE, "Glowing Iron Chestplate");
+        this.add(MPItems.GLOWING_IRON_LEGGINGS, "Glowing Iron Leggings");
+        this.add(MPItems.GLOWING_IRON_BOOTS, "Glowing Iron Boots");
 
         this.add(MorePlanetsMod.TAB.getDisplayName().getString(), "More Planets");
     }

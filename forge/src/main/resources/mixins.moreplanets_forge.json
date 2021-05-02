@@ -4,6 +4,7 @@
     "compatibilityLevel": "JAVA_8",
     "package": "com.stevekung.moreplanets.mixin.forge",
     "mixins": [
+        "MixinGlowingIronArmor"
     ],
     "client": [
     ],
