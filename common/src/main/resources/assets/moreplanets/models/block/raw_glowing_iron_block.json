@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "moreplanets:block/raw_glowing_iron_block"
+  }
+}

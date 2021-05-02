@@ -13,9 +13,22 @@ architectury {
 }
 
 repositories {
+    maven { url "https://jitpack.io" }
     maven {
         name "ModMenu Maven"
         url "https://maven.terraformersmc.com/releases/"
+    }
+    maven {
+        name "Canvas Renderer"
+        url "https://maven.dblsaiko.net/"
+    }
+    maven {
+        name "Cotton"
+        url "http://server.bbkr.space:8081/artifactory/libs-release/"
+    }
+    maven {
+        name "CurseForge"
+        url "https://minecraft.curseforge.com/api/maven"
     }
 }
 
@@ -28,10 +41,16 @@ dependencies {
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
     modApi "me.shedaniel:architectury-fabric:${rootProject.architectury_version}"
     modApi "com.terraformersmc:modmenu:${rootProject.modmenu_version}"
-
     modApi("me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
+//    modImplementation("grondag:canvas-mc116:${project.canvas_version}") {
+//        exclude group: "net.fabricmc"
+//        exclude group: "net.fabricmc.fabric-api"
+//        exclude group: "me.shedaniel.cloth"
+//        exclude group: "io.github.prospector"
+//    }
+
     implementation(project(path: ":common")) {
         transitive = false
     }

@@ -19,5 +19,7 @@ public class BlockStates extends BlockStateProviderBase
         this.simpleBlock(MPBlocks.DIONA_FINE_REGOLITH);
         this.simpleBlock(MPBlocks.DIONA_STONE);
         this.simpleBlock(MPBlocks.DIONA_COBBLESTONE);
+        this.simpleBlock(MPBlocks.GLOWING_IRON_BLOCK);
+        this.simpleBlock(MPBlocks.RAW_GLOWING_IRON_BLOCK);
     }
 }

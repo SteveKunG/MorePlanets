@@ -19,5 +19,8 @@ public class BlockTagsBuilder extends BlockTagsProvider
     {
         this.tag(Tags.Blocks.STONE).add(MPBlocks.DIONA_STONE);
         this.tag(Tags.Blocks.COBBLESTONE).add(MPBlocks.DIONA_COBBLESTONE);
+        this.tag(Tags.Blocks.STORAGE_BLOCKS).add(MPBlocks.GLOWING_IRON_BLOCK);
+        this.tag(Tags.Blocks.STORAGE_BLOCKS_IRON).add(MPBlocks.GLOWING_IRON_BLOCK);
+        this.tag(BlockTags.BEACON_BASE_BLOCKS).add(MPBlocks.GLOWING_IRON_BLOCK);
     }
 }

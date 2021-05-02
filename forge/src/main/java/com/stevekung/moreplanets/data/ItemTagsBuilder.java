@@ -1,5 +1,6 @@
 package com.stevekung.moreplanets.data;
 
+import com.stevekung.moreplanets.world.item.MPItems;
 import com.stevekung.moreplanets.world.level.block.MPBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
@@ -22,5 +23,8 @@ public class ItemTagsBuilder extends ItemTagsProvider
         this.tag(ItemTags.STONE_TOOL_MATERIALS).add(MPBlocks.DIONA_COBBLESTONE.asItem());
         this.tag(Tags.Items.STONE).add(MPBlocks.DIONA_STONE.asItem());
         this.tag(Tags.Items.COBBLESTONE).add(MPBlocks.DIONA_COBBLESTONE.asItem());
+        this.tag(Tags.Items.STORAGE_BLOCKS_IRON).add(MPBlocks.GLOWING_IRON_BLOCK.asItem());
+
+        this.tag(Tags.Items.INGOTS_IRON).add(MPItems.GLOWING_IRON_INGOT);
     }
 }

@@ -1,5 +1,6 @@
 package com.stevekung.moreplanets.core;
 
+import com.stevekung.moreplanets.world.item.MPItems;
 import com.stevekung.moreplanets.world.level.block.MPBlocks;
 import com.stevekung.stevekungslib.utils.CommonRegistryUtils;
 import com.stevekung.stevekungslib.utils.LoggerBase;
@@ -20,5 +21,6 @@ public class MorePlanetsMod
     {
         COMMON.registerAll();
         MPBlocks.init();
+        MPItems.init();
     }
 }
