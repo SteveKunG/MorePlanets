@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "moreplanets:block/meteoric_iron_stabilizer",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "moreplanets:block/meteoric_iron_stabilizer",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "moreplanets:block/meteoric_iron_stabilizer",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "moreplanets:block/meteoric_iron_stabilizer",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "moreplanets:block/meteoric_iron_stabilizer"
+    },
+    "facing=west": {
+      "model": "moreplanets:block/meteoric_iron_stabilizer",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -19,5 +19,6 @@ public class BlockLootTable extends BlockLootBase
         this.add(MPBlocks.DIONA_STONE, (block) -> createSingleItemTableWithSilkTouch(block, MPBlocks.DIONA_COBBLESTONE));
         this.dropSelf(MPBlocks.GLOWING_IRON_BLOCK);
         this.dropSelf(MPBlocks.RAW_GLOWING_IRON_BLOCK);
+        this.dropSelf(MPBlocks.METEORIC_IRON_STABILIZER);
     }
 }

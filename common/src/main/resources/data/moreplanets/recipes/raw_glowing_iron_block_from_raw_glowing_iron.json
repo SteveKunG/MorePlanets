@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "moreplanets:raw_glowing_iron_block"
+    }
+  ],
+  "result": {
+    "item": "moreplanets:raw_glowing_iron",
+    "count": 9
+  }
+}
