@@ -14,8 +14,8 @@ public class MorePlanetsForgeMod
 
     public MorePlanetsForgeMod()
     {
-        MorePlanetsMod.init();
         EventBuses.registerModEventBus(MorePlanetsMod.MOD_ID, ForgeCommonUtils.getModEventBus());
+        MorePlanetsMod.init();
 //        ForgeCommonUtils.registerConfig(ModConfig.Type.COMMON, SkyBlockcatiaConfig.GENERAL_BUILDER);
 //        ForgeCommonUtils.registerConfigScreen(() -> (mc, screen) -> ForgeCommonUtils.openConfigFile(screen, MorePlanetsMod.MOD_ID, ModConfig.Type.MOD_ID));
 

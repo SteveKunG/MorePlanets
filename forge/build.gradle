@@ -12,8 +12,24 @@ architectury {
     forge()
 }
 
+def username = project.username
+def password = project.password
+
 loom {
     mixinConfigs = ["mixins.moreplanets.json", "mixins.moreplanets_forge.json"]
+
+    dataGen {
+        mod "moreplanets"
+    }
+
+    launches {
+        client {
+            arg "--username", username, "--password", password
+        }
+        data {
+            arg "--existing", file("../common/src/main/resources/").absolutePath
+        }
+    }
 }
 
 dependencies {
