@@ -1,7 +1,21 @@
 {
   "variants": {
-    "": {
-      "model": "moreplanets:block/diona_regolith"
-    }
+    "": [
+      {
+        "model": "moreplanets:block/diona_regolith"
+      },
+      {
+        "model": "moreplanets:block/diona_regolith",
+        "y": 90
+      },
+      {
+        "model": "moreplanets:block/diona_regolith",
+        "y": 180
+      },
+      {
+        "model": "moreplanets:block/diona_regolith",
+        "y": 270
+      }
+    ]
   }
 }
