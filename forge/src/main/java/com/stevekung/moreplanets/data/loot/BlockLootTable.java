@@ -4,6 +4,7 @@ import com.stevekung.moreplanets.world.item.MPItems;
 import com.stevekung.moreplanets.world.level.block.MPBlocks;
 import com.stevekung.stevekungslib.data.loot.BlockLootBase;
 import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.storage.loot.ConstantIntValue;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -35,5 +36,6 @@ public class BlockLootTable extends BlockLootBase
         this.dropWhenSilkTouch(MPBlocks.LARGE_PURLONITE_BUD);
         this.dropWhenSilkTouch(MPBlocks.MEDIUM_PURLONITE_BUD);
         this.dropWhenSilkTouch(MPBlocks.SMALL_PURLONITE_BUD);
+        this.add(MPBlocks.PURLONITE_CRYSTAL_LANTERN, BlockLoot::createSingleItemTable);
     }
 }

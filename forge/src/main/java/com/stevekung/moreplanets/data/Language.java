@@ -30,6 +30,7 @@ public class Language extends LanguageProviderBase
         this.add(MPBlocks.LARGE_PURLONITE_BUD, "Large Purlonite Bud");
         this.add(MPBlocks.MEDIUM_PURLONITE_BUD, "Medium Purlonite Bud");
         this.add(MPBlocks.SMALL_PURLONITE_BUD, "Small Purlonite Bud");
+        this.add(MPBlocks.PURLONITE_CRYSTAL_LANTERN, "Purlonite Crystal Lantern");
 
         this.add(MPItems.GLOWING_IRON_INGOT, "Glowing Iron Ingot");
         this.add(MPItems.RAW_GLOWING_IRON, "Raw Glowing Iron");

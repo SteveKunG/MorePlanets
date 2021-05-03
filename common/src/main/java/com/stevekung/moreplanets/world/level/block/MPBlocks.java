@@ -7,6 +7,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Lantern;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,6 +24,7 @@ public class MPBlocks
     public static final Block RAW_GLOWING_IRON_BLOCK = new Block(BlockPropertiesUtils.pickaxeLevel(Block.Properties.of(Material.STONE, MaterialColor.COLOR_GRAY).sound(SoundType.STONE), 2).lightLevel(state -> 4).requiresCorrectToolForDrops().strength(5.0F, 6.0F).emissiveRendering(MPBlocks::always));
     public static final Block PURLONITE_BLOCK = new PurloniteBlock(Block.Properties.of(Material.GLASS, MaterialColor.COLOR_PURPLE).strength(1.5F).lightLevel(state -> 5).sound(SoundType.GLASS).requiresCorrectToolForDrops().noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
     public static final Block BUDDING_PURLONITE = new BuddingPurloniteBlock(Block.Properties.of(Material.GLASS).strength(1.5F).sound(SoundType.GLASS).lightLevel(state -> 5).randomTicks().strength(1.5F).sound(SoundType.GLASS).requiresCorrectToolForDrops().noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
+    public static final Block PURLONITE_CRYSTAL_LANTERN = new Lantern(Block.Properties.of(Material.METAL).sound(SoundType.METAL).lightLevel(state -> 8).requiresCorrectToolForDrops().strength(3.5F).emissiveRendering(MPBlocks::always));
     public static final Block METEORIC_IRON_STABILIZER = new MeteoricIronStabilizerBlock(Block.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).sound(SoundType.METAL).lightLevel(state -> 2).requiresCorrectToolForDrops().strength(3.0F, 6.0F).emissiveRendering(MPBlocks::always).noOcclusion());
     public static final Block ION_PLASMA_ROD = new IonPlasmaRodBlock(Block.Properties.of(Material.METAL, MaterialColor.COLOR_LIGHT_BLUE).sound(SoundType.METAL).lightLevel(state -> 10).requiresCorrectToolForDrops().strength(3.0F, 6.0F).emissiveRendering(MPBlocks::always).noOcclusion());
     public static final Block PURLONITE_CLUSTER = new PurloniteClusterBlock(7, 3, BlockBehaviour.Properties.of(Material.GLASS).noOcclusion().randomTicks().sound(SoundType.GLASS).strength(1.5F).lightLevel(state -> 5).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
@@ -42,6 +44,7 @@ public class MPBlocks
         MorePlanetsMod.COMMON.registerBlock("budding_purlonite", BUDDING_PURLONITE, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("glowing_iron_block", GLOWING_IRON_BLOCK, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("raw_glowing_iron_block", RAW_GLOWING_IRON_BLOCK, new Item.Properties().tab(MorePlanetsMod.TAB));
+        MorePlanetsMod.COMMON.registerBlock("purlonite_crystal_lantern", PURLONITE_CRYSTAL_LANTERN, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("meteoric_iron_stabilizer", METEORIC_IRON_STABILIZER, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("ion_plasma_rod", ION_PLASMA_ROD, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("purlonite_cluster", PURLONITE_CLUSTER, new Item.Properties().tab(MorePlanetsMod.TAB));

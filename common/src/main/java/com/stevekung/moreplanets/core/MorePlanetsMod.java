@@ -37,5 +37,6 @@ public class MorePlanetsMod
         RenderTypes.register(RenderType.translucent(), MPBlocks.LARGE_PURLONITE_BUD);
         RenderTypes.register(RenderType.translucent(), MPBlocks.MEDIUM_PURLONITE_BUD);
         RenderTypes.register(RenderType.translucent(), MPBlocks.SMALL_PURLONITE_BUD);
+        RenderTypes.register(RenderType.translucent(), MPBlocks.PURLONITE_CRYSTAL_LANTERN);
     }
 }

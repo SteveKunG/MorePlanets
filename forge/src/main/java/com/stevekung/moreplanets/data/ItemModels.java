@@ -31,6 +31,7 @@ public class ItemModels extends ItemModelProviderBase
         this.itemGenerated(MPBlocks.LARGE_PURLONITE_BUD);
         this.itemGenerated(MPBlocks.MEDIUM_PURLONITE_BUD);
         this.itemGenerated(MPBlocks.SMALL_PURLONITE_BUD);
+        this.itemGenerated(MPBlocks.PURLONITE_CRYSTAL_LANTERN.asItem());
 
         this.itemGenerated(MPItems.GLOWING_IRON_INGOT);
         this.itemGenerated(MPItems.RAW_GLOWING_IRON);
