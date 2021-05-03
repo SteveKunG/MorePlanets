@@ -43,9 +43,11 @@ public class PurloniteClusterBlock extends Block implements SimpleWaterloggedBlo
         this.westAabb = Block.box(16 - i, j, j, 16.0D, 16 - j, 16 - j);
     }
 
+    @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
     {
         Direction direction = blockState.getValue(FACING);
+
         switch (direction)
         {
             case NORTH:
@@ -64,6 +66,7 @@ public class PurloniteClusterBlock extends Block implements SimpleWaterloggedBlo
         }
     }
 
+    @Override
     public boolean canSurvive(BlockState blockState, LevelReader levelReader, BlockPos blockPos)
     {
         Direction direction = blockState.getValue(FACING);
@@ -71,6 +74,7 @@ public class PurloniteClusterBlock extends Block implements SimpleWaterloggedBlo
         return levelReader.getBlockState(blockPos2).isFaceSturdy(levelReader, blockPos2, direction);
     }
 
+    @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2)
     {
         if (blockState.getValue(WATERLOGGED))
@@ -80,6 +84,7 @@ public class PurloniteClusterBlock extends Block implements SimpleWaterloggedBlo
         return direction == blockState.getValue(FACING).getOpposite() && !blockState.canSurvive(levelAccessor, blockPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(blockState, direction, blockState2, levelAccessor, blockPos, blockPos2);
     }
 
+    @Override
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext)
     {
@@ -88,26 +93,31 @@ public class PurloniteClusterBlock extends Block implements SimpleWaterloggedBlo
         return this.defaultBlockState().setValue(WATERLOGGED, levelAccessor.getFluidState(blockPos).getType() == Fluids.WATER).setValue(FACING, blockPlaceContext.getClickedFace());
     }
 
+    @Override
     public BlockState rotate(BlockState blockState, Rotation rotation)
     {
         return blockState.setValue(FACING, rotation.rotate(blockState.getValue(FACING)));
     }
 
+    @Override
     public BlockState mirror(BlockState blockState, Mirror mirror)
     {
         return blockState.rotate(mirror.getRotation(blockState.getValue(FACING)));
     }
 
+    @Override
     public FluidState getFluidState(BlockState blockState)
     {
         return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
         builder.add(WATERLOGGED, FACING);
     }
 
+    @Override
     public PushReaction getPistonPushReaction(BlockState blockState)
     {
         return PushReaction.DESTROY;

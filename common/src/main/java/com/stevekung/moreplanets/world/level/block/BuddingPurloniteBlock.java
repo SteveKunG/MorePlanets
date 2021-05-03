@@ -5,7 +5,6 @@ import java.util.Random;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.block.AbstractGlassBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -13,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.PushReaction;
 
-public class BuddingPurloniteBlock extends AbstractGlassBlock
+public class BuddingPurloniteBlock extends PurloniteBlock
 {
     private static final Direction[] DIRECTIONS = Direction.values();
 
@@ -22,11 +21,13 @@ public class BuddingPurloniteBlock extends AbstractGlassBlock
         super(properties);
     }
 
+    @Override
     public PushReaction getPistonPushReaction(BlockState blockState)
     {
         return PushReaction.DESTROY;
     }
 
+    @Override
     public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random)
     {
         if (random.nextInt(5) == 0)
@@ -35,6 +36,7 @@ public class BuddingPurloniteBlock extends AbstractGlassBlock
             BlockPos blockPos2 = blockPos.relative(direction);
             BlockState blockState2 = serverLevel.getBlockState(blockPos2);
             Block block = null;
+
             if (canClusterGrowAtState(blockState2))
             {
                 block = MPBlocks.SMALL_PURLONITE_BUD;
@@ -60,7 +62,7 @@ public class BuddingPurloniteBlock extends AbstractGlassBlock
         }
     }
 
-    public static boolean canClusterGrowAtState(BlockState blockState)
+    private static boolean canClusterGrowAtState(BlockState blockState)
     {
         return blockState.isAir() || blockState.is(Blocks.WATER) && blockState.getFluidState().getAmount() == 8;
     }
