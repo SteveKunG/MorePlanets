@@ -22,6 +22,8 @@ public class ItemModels extends ItemModelProviderBase
         this.parentedBlock(MPBlocks.DIONA_COBBLESTONE);
         this.parentedBlock(MPBlocks.GLOWING_IRON_BLOCK);
         this.parentedBlock(MPBlocks.RAW_GLOWING_IRON_BLOCK);
+        this.parentedBlock(MPBlocks.METEORIC_IRON_STABILIZER);
+        this.parentedBlock(MPBlocks.ION_PLASMA_ROD);
 
         this.itemGenerated(MPItems.GLOWING_IRON_INGOT);
         this.itemGenerated(MPItems.RAW_GLOWING_IRON);
