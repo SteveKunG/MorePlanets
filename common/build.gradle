@@ -4,6 +4,18 @@ dependencies {
     compile files("libs/SteveKunG's-Lib-common-dev.jar")
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["src/main/resources/", "src/generated/resources/"]
+        }
+    }
+}
+
+jar {
+    exclude ".cache"
+}
+
 architectury {
     common()
 }
