@@ -1,12 +1,18 @@
 {
+  "block.moreplanets.budding_purlonite": "Budding Purlonite",
   "block.moreplanets.diona_cobblestone": "Diona Cobblestone",
   "block.moreplanets.diona_fine_regolith": "Diona Fine Regolith",
   "block.moreplanets.diona_regolith": "Diona Regolith",
   "block.moreplanets.diona_stone": "Diona Stone",
   "block.moreplanets.glowing_iron_block": "Glowing Iron Block",
   "block.moreplanets.ion_plasma_rod": "Ion Plasma Rod",
+  "block.moreplanets.large_purlonite_bud": "Large Purlonite Bud",
+  "block.moreplanets.medium_purlonite_bud": "Medium Purlonite Bud",
   "block.moreplanets.meteoric_iron_stabilizer": "Meteoric Iron Stabilizer",
+  "block.moreplanets.purlonite_block": "Purlonite Block",
+  "block.moreplanets.purlonite_cluster": "Purlonite Cluster",
   "block.moreplanets.raw_glowing_iron_block": "Raw Glowing Iron Block",
+  "block.moreplanets.small_purlonite_bud": "Small Purlonite Bud",
   "item.moreplanets.glowing_iron_axe": "Glowing Iron Axe",
   "item.moreplanets.glowing_iron_boots": "Glowing Iron Boots",
   "item.moreplanets.glowing_iron_chestplate": "Glowing Iron Chestplate",
@@ -17,6 +23,7 @@
   "item.moreplanets.glowing_iron_pickaxe": "Glowing Iron Pickaxe",
   "item.moreplanets.glowing_iron_shovel": "Glowing Iron Shovel",
   "item.moreplanets.glowing_iron_sword": "Glowing Iron Sword",
+  "item.moreplanets.purlonite_shard": "Purlonite Shard",
   "item.moreplanets.raw_glowing_iron": "Raw Glowing Iron",
   "itemGroup.moreplanets.main": "More Planets"
 }

@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "moreplanets:block/purlonite_cluster",
+      "x": 180
+    },
+    "facing=up": {
+      "model": "moreplanets:block/purlonite_cluster"
+    },
+    "facing=north": {
+      "model": "moreplanets:block/purlonite_cluster",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "moreplanets:block/purlonite_cluster",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west": {
+      "model": "moreplanets:block/purlonite_cluster",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east": {
+      "model": "moreplanets:block/purlonite_cluster",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

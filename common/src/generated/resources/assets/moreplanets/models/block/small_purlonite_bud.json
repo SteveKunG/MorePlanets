@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "moreplanets:block/small_purlonite_bud"
+  }
+}

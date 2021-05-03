@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "moreplanets:block/medium_purlonite_bud"
+  }
+}

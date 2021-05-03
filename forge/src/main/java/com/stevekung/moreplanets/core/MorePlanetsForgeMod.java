@@ -4,6 +4,7 @@ import com.stevekung.stevekungslib.utils.ForgeCommonUtils;
 import com.stevekung.stevekungslib.utils.ModVersionChecker;
 import me.shedaniel.architectury.platform.forge.EventBuses;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 
@@ -16,12 +17,13 @@ public class MorePlanetsForgeMod
     {
         EventBuses.registerModEventBus(MorePlanetsMod.MOD_ID, ForgeCommonUtils.getModEventBus());
         MorePlanetsMod.init();
-//        ForgeCommonUtils.registerConfig(ModConfig.Type.COMMON, SkyBlockcatiaConfig.GENERAL_BUILDER);
-//        ForgeCommonUtils.registerConfigScreen(() -> (mc, screen) -> ForgeCommonUtils.openConfigFile(screen, MorePlanetsMod.MOD_ID, ModConfig.Type.MOD_ID));
+        //        ForgeCommonUtils.registerConfig(ModConfig.Type.COMMON, SkyBlockcatiaConfig.GENERAL_BUILDER);
+        //        ForgeCommonUtils.registerConfigScreen(() -> (mc, screen) -> ForgeCommonUtils.openConfigFile(screen, MorePlanetsMod.MOD_ID, ModConfig.Type.MOD_ID));
 
-//        ForgeCommonUtils.registerModEventBus(SkyBlockcatiaConfig.class);
+        //        ForgeCommonUtils.registerModEventBus(SkyBlockcatiaConfig.class);
         ForgeCommonUtils.addModListener(this::phaseOne);
         ForgeCommonUtils.addModListener(this::loadComplete);
+        ForgeCommonUtils.addModListener(this::clientSetup);
     }
 
     private void phaseOne(FMLCommonSetupEvent event)
@@ -32,5 +34,10 @@ public class MorePlanetsForgeMod
     private void loadComplete(FMLLoadCompleteEvent event)
     {
         MorePlanetsForgeMod.CHECKER.startCheck();
+    }
+
+    private void clientSetup(FMLClientSetupEvent event)
+    {
+        MorePlanetsMod.initClient();
     }
 }

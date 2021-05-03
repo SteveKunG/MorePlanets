@@ -24,9 +24,16 @@ public class Language extends LanguageProviderBase
         this.add(MPBlocks.RAW_GLOWING_IRON_BLOCK, "Raw Glowing Iron Block");
         this.add(MPBlocks.METEORIC_IRON_STABILIZER, "Meteoric Iron Stabilizer");
         this.add(MPBlocks.ION_PLASMA_ROD, "Ion Plasma Rod");
+        this.add(MPBlocks.PURLONITE_BLOCK, "Purlonite Block");
+        this.add(MPBlocks.BUDDING_PURLONITE, "Budding Purlonite");
+        this.add(MPBlocks.PURLONITE_CLUSTER, "Purlonite Cluster");
+        this.add(MPBlocks.LARGE_PURLONITE_BUD, "Large Purlonite Bud");
+        this.add(MPBlocks.MEDIUM_PURLONITE_BUD, "Medium Purlonite Bud");
+        this.add(MPBlocks.SMALL_PURLONITE_BUD, "Small Purlonite Bud");
 
         this.add(MPItems.GLOWING_IRON_INGOT, "Glowing Iron Ingot");
         this.add(MPItems.RAW_GLOWING_IRON, "Raw Glowing Iron");
+        this.add(MPItems.PURLONITE_SHARD, "Purlonite Shard");
 
         this.add(MPItems.GLOWING_IRON_SWORD, "Glowing Iron Sword");
         this.add(MPItems.GLOWING_IRON_SHOVEL, "Glowing Iron Shovel");
