@@ -1,6 +1,7 @@
 package com.stevekung.moreplanets.world.level.block;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.utils.BlockPropertiesUtils;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -13,12 +14,10 @@ public class MPBlocks
     public static final Block DIONA_FINE_REGOLITH = new Block(Block.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F));
     public static final Block DIONA_STONE = new Block(Block.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F));
     public static final Block DIONA_COBBLESTONE = new Block(Block.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(2.0F, 6.0F));
-    public static final Block GLOWING_IRON_BLOCK = new Block(Block.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).sound(SoundType.METAL).lightLevel(state -> 4).requiresCorrectToolForDrops().strength(5.0F, 6.0F).emissiveRendering((blockState, blockGetter, blockPos) -> true));
-    public static final Block RAW_GLOWING_IRON_BLOCK = new Block(Block.Properties.of(Material.STONE, MaterialColor.COLOR_GRAY).sound(SoundType.STONE).lightLevel(state -> 4).requiresCorrectToolForDrops().strength(5.0F, 6.0F).emissiveRendering((blockState, blockGetter, blockPos) -> true));
+    public static final Block GLOWING_IRON_BLOCK = new Block(BlockPropertiesUtils.pickaxeLevel(Block.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY), 2).sound(SoundType.METAL).lightLevel(state -> 4).requiresCorrectToolForDrops().strength(5.0F, 6.0F).emissiveRendering((blockState, blockGetter, blockPos) -> true));
+    public static final Block RAW_GLOWING_IRON_BLOCK = new Block(BlockPropertiesUtils.pickaxeLevel(Block.Properties.of(Material.STONE, MaterialColor.COLOR_GRAY).sound(SoundType.STONE), 2).lightLevel(state -> 4).requiresCorrectToolForDrops().strength(5.0F, 6.0F).emissiveRendering((blockState, blockGetter, blockPos) -> true));
     public static final Block METEORIC_IRON_STABILIZER = new MeteoricIronStabilizerBlock(Block.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).sound(SoundType.METAL).lightLevel(state -> 2).requiresCorrectToolForDrops().strength(3.0F, 6.0F).emissiveRendering((blockState, blockGetter, blockPos) -> true).noOcclusion());
     public static final Block ION_PLASMA_ROD = new IonPlasmaRodBlock(Block.Properties.of(Material.METAL, MaterialColor.COLOR_LIGHT_BLUE).sound(SoundType.METAL).lightLevel(state -> 10).requiresCorrectToolForDrops().strength(3.0F, 6.0F).emissiveRendering((blockState, blockGetter, blockPos) -> true).noOcclusion());
-
-    //TODO Harvest level for blocks
 
     public static void init()
     {

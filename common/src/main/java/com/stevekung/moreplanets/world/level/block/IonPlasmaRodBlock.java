@@ -2,6 +2,7 @@ package com.stevekung.moreplanets.world.level.block;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.utils.BlockPropertiesUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -31,7 +32,7 @@ public class IonPlasmaRodBlock extends DirectionalBlock implements SimpleWaterlo
 
     public IonPlasmaRodBlock(BlockBehaviour.Properties properties)
     {
-        super(properties);
+        super(BlockPropertiesUtils.pickaxeLevel(properties, 2));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP).setValue(WATERLOGGED, false).setValue(POWERED, false));
     }
 
