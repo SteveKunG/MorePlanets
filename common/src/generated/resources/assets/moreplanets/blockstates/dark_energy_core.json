@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "state=partial": {
+      "model": "moreplanets:block/partial_dark_energy_core"
+    },
+    "state=full": {
+      "model": "moreplanets:block/full_dark_energy_core"
+    }
+  }
+}

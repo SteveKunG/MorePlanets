@@ -1,6 +1,7 @@
 package com.stevekung.moreplanets.data;
 
 import com.google.common.collect.ObjectArrays;
+import com.stevekung.moreplanets.world.level.block.DarkEnergyCoreBlock;
 import com.stevekung.moreplanets.world.level.block.MPBlocks;
 import com.stevekung.moreplanets.world.level.block.PurloniteClusterBlock;
 import com.stevekung.stevekungslib.data.BlockStateProviderBase;
@@ -34,6 +35,8 @@ public class BlockStates extends BlockStateProviderBase
         this.generateCrystalModel(MPBlocks.MEDIUM_PURLONITE_BUD);
         this.generateCrystalModel(MPBlocks.SMALL_PURLONITE_BUD);
         this.getVariantBuilder(MPBlocks.PURLONITE_CRYSTAL_LANTERN).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(this.models().withExistingParent(state.getValue(Lantern.HANGING) ? "hanging_purlonite_crystal_lantern" : "purlonite_crystal_lantern", this.mcLoc(state.getValue(Lantern.HANGING) ? "block/template_hanging_lantern" : "block/template_lantern")).texture("lantern", this.modLoc("block/purlonite_crystal_lantern"))).build(), Lantern.WATERLOGGED);
+        this.getVariantBuilder(MPBlocks.DARK_ENERGY_CORE).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(this.models().getExistingFile(this.modLoc("block/" + state.getValue(DarkEnergyCoreBlock.STATE).getSerializedName() + "_" + this.toString(MPBlocks.DARK_ENERGY_CORE)))).build(), DarkEnergyCoreBlock.WATERLOGGED);
+        this.simpleBlock(MPBlocks.ZELIUS_EGG, this.models().getExistingFile(this.modLoc("block/zelius_egg")));
     }
 
     private void generateCrystalModel(Block block)

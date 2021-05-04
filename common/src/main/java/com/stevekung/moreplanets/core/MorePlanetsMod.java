@@ -2,6 +2,7 @@ package com.stevekung.moreplanets.core;
 
 import com.stevekung.moreplanets.world.item.MPItems;
 import com.stevekung.moreplanets.world.level.block.MPBlocks;
+import com.stevekung.moreplanets.world.level.block.MPSoundEvents;
 import com.stevekung.stevekungslib.utils.CommonRegistryUtils;
 import com.stevekung.stevekungslib.utils.LoggerBase;
 import me.shedaniel.architectury.registry.CreativeTabs;
@@ -24,6 +25,7 @@ public class MorePlanetsMod
         COMMON.registerAll();
         MPBlocks.init();
         MPItems.init();
+        MPSoundEvents.init();
     }
 
     public static void initClient()
@@ -35,5 +37,7 @@ public class MorePlanetsMod
         RenderTypes.register(RenderType.translucent(), MPBlocks.MEDIUM_PURLONITE_BUD);
         RenderTypes.register(RenderType.translucent(), MPBlocks.SMALL_PURLONITE_BUD);
         RenderTypes.register(RenderType.translucent(), MPBlocks.PURLONITE_CRYSTAL_LANTERN);
+        RenderTypes.register(RenderType.cutout(), MPBlocks.DARK_ENERGY_CORE);
+        RenderTypes.register(RenderType.cutout(), MPBlocks.ZELIUS_EGG);
     }
 }

@@ -31,11 +31,12 @@ public class BlockLootTable extends BlockLootBase
         this.dropSelf(MPBlocks.METEORIC_IRON_STABILIZER);
         this.dropSelf(MPBlocks.ION_PLASMA_ROD);
         this.dropSelf(MPBlocks.PURLONITE_BLOCK);
-        this.add(MPBlocks.BUDDING_PURLONITE, noDrop());
         this.add(MPBlocks.PURLONITE_CLUSTER, block -> createSilkTouchDispatchTable(block, LootItem.lootTableItem(MPItems.PURLONITE_SHARD).apply(SetItemCountFunction.setCount(ConstantIntValue.exactly(4))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)).when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(MPItems.GLOWING_IRON_PICKAXE))).otherwise(applyExplosionDecay(block, LootItem.lootTableItem(MPItems.PURLONITE_SHARD).apply(SetItemCountFunction.setCount(ConstantIntValue.exactly(2)))))));
         this.dropWhenSilkTouch(MPBlocks.LARGE_PURLONITE_BUD);
         this.dropWhenSilkTouch(MPBlocks.MEDIUM_PURLONITE_BUD);
         this.dropWhenSilkTouch(MPBlocks.SMALL_PURLONITE_BUD);
         this.add(MPBlocks.PURLONITE_CRYSTAL_LANTERN, BlockLoot::createSingleItemTable);
+        this.dropSelf(MPBlocks.DARK_ENERGY_CORE);
+        this.dropWhenSilkTouch(MPBlocks.ZELIUS_EGG);
     }
 }

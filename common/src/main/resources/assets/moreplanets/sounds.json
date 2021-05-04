@@ -1,0 +1,9 @@
+{
+    "alien_destroyed": {
+        "category": "block",
+        "sounds": [
+            "moreplanets:block/alien_destroyed"
+        ],
+        "subtitle": "subtitles.block.generic.break"
+    }
+}

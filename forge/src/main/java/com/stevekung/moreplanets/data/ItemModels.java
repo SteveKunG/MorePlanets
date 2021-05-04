@@ -26,6 +26,8 @@ public class ItemModels extends ItemModelProviderBase
         this.parentedBlock(MPBlocks.ION_PLASMA_ROD);
         this.parentedBlock(MPBlocks.PURLONITE_BLOCK);
         this.parentedBlock(MPBlocks.BUDDING_PURLONITE);
+        this.parentedBlock(MPBlocks.DARK_ENERGY_CORE, "block/full_dark_energy_core");
+        this.parentedBlock(MPBlocks.ZELIUS_EGG);
 
         this.itemGenerated(MPBlocks.PURLONITE_CLUSTER);
         this.itemGenerated(MPBlocks.LARGE_PURLONITE_BUD);
