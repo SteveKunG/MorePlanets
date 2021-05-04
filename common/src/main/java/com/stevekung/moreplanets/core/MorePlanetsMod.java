@@ -1,14 +1,11 @@
 package com.stevekung.moreplanets.core;
 
-import com.stevekung.moreplanets.proxy.ClientProxyMP;
-import com.stevekung.moreplanets.proxy.CommonProxyMP;
 import com.stevekung.moreplanets.world.item.MPItems;
 import com.stevekung.moreplanets.world.level.block.MPBlocks;
 import com.stevekung.stevekungslib.utils.CommonRegistryUtils;
 import com.stevekung.stevekungslib.utils.LoggerBase;
 import me.shedaniel.architectury.registry.CreativeTabs;
 import me.shedaniel.architectury.registry.RenderTypes;
-import me.shedaniel.architectury.utils.EnvExecutor;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
