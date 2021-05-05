@@ -1,61 +1,54 @@
 {
+	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"ambientocclusion": false,
-	"display": {
-		"head": {
-			"rotation": [ -60, 0, 0 ],
-			"translation": [ 0, 5, -9],
-			"scale":[ 1, 1, 1]
-		},
-		"thirdperson_righthand": {
-			"rotation": [ 0, 0, 0 ],
-			"translation": [ 0, 0, 0],
-			"scale": [ 0.375, 0.375, 0.375 ]
-		}
-	},
 	"textures": {
-		"rod": "moreplanets:block/meteoric_iron_stabilizer",
-		"particle": "moreplanets:block/meteoric_iron_stabilizer"
+		"particle": "moreplanets:block/meteoric_iron_stabilizer",
+		"rod": "moreplanets:block/meteoric_iron_stabilizer"
 	},
 	"elements": [
 		{
-			"name": "rod",
 			"from": [7, 1, 7],
 			"to": [9, 15, 9],
 			"faces": {
 				"north": {"uv": [0, 0, 2, 14], "texture": "#rod"},
 				"east": {"uv": [0, 0, 2, 14], "texture": "#rod"},
 				"south": {"uv": [0, 0, 2, 14], "texture": "#rod"},
-				"west": {"uv": [0, 0, 2, 14], "texture": "#rod"},
-				"up": {"uv": [4, 2, 2, 0], "texture": "#rod"},
-				"down": {"uv": [4, 0, 2, 2], "texture": "#rod"}
+				"west": {"uv": [0, 0, 2, 14], "texture": "#rod"}
 			}
 		},
 		{
-			"name": "top",
 			"from": [5.5, 15, 5.5],
 			"to": [10.5, 16, 10.5],
 			"faces": {
-				"north": {"uv": [2, 2, 7, 3], "texture": "#rod"},
-				"east": {"uv": [2, 2, 7, 3], "texture": "#rod"},
-				"south": {"uv": [2, 2, 7, 3], "texture": "#rod"},
-				"west": {"uv": [2, 2, 7, 3], "texture": "#rod"},
-				"up": {"uv": [7, 8, 2, 3], "texture": "#rod"},
-				"down": {"uv": [7, 3, 2, 8], "texture": "#rod"}
+				"north": {"uv": [2, 0, 7, 1], "texture": "#rod"},
+				"east": {"uv": [2, 0, 7, 1], "texture": "#rod"},
+				"south": {"uv": [2, 0, 7, 1], "texture": "#rod"},
+				"west": {"uv": [2, 0, 7, 1], "texture": "#rod"},
+				"up": {"uv": [7, 6, 2, 1], "texture": "#rod"},
+				"down": {"uv": [7, 6, 2, 1], "texture": "#rod"}
 			}
 		},
 		{
-			"name": "bottom",
 			"from": [5.5, 0, 5.5],
 			"to": [10.5, 1, 10.5],
 			"faces": {
-				"north": {"uv": [2, 2, 7, 3], "texture": "#rod"},
-				"east": {"uv": [2, 2, 7, 3], "texture": "#rod"},
-				"south": {"uv": [2, 2, 7, 3], "texture": "#rod"},
-				"west": {"uv": [2, 2, 7, 3], "texture": "#rod"},
-				"up": {"uv": [7, 8, 2, 3], "texture": "#rod"},
-				"down": {"uv": [7, 3, 2, 8], "texture": "#rod"}
+				"north": {"uv": [2, 0, 7, 1], "texture": "#rod"},
+				"east": {"uv": [2, 0, 7, 1], "texture": "#rod"},
+				"south": {"uv": [2, 0, 7, 1], "texture": "#rod"},
+				"west": {"uv": [2, 0, 7, 1], "texture": "#rod"},
+				"up": {"uv": [7, 6, 2, 1], "texture": "#rod"},
+				"down": {"uv": [7, 6, 2, 1], "texture": "#rod"}
 			}
 		}
-	]
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"head": {
+			"rotation": [-60, 0, 0],
+			"translation": [0, 5, -9]
+		}
+	}
 }
