@@ -1,0 +1,6 @@
+{
+  "parent": "moreplanets:block/template_hanging_translucent_lantern",
+  "textures": {
+    "lantern": "moreplanets:block/purlonite_crystal_lantern"
+  }
+}

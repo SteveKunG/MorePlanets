@@ -34,7 +34,8 @@ public class BlockStates extends BlockStateProviderBase
         this.generateCrystalModel(MPBlocks.LARGE_PURLONITE_BUD);
         this.generateCrystalModel(MPBlocks.MEDIUM_PURLONITE_BUD);
         this.generateCrystalModel(MPBlocks.SMALL_PURLONITE_BUD);
-        this.getVariantBuilder(MPBlocks.PURLONITE_CRYSTAL_LANTERN).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(this.models().getExistingFile(this.modLoc(state.getValue(Lantern.HANGING) ? "hanging_purlonite_crystal_lantern" : "purlonite_crystal_lantern"))).build(), Lantern.WATERLOGGED);
+        this.generateTranslucentLanternModel(MPBlocks.PURLONITE_CRYSTAL_LANTERN);
+        this.generateTranslucentLanternModel(MPBlocks.DARK_CRYSTAL_LANTERN);
         this.getVariantBuilder(MPBlocks.DARK_ENERGY_CORE).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(this.models().getExistingFile(this.modLoc("block/" + state.getValue(DarkEnergyCoreBlock.STATE).getSerializedName() + "_" + this.toString(MPBlocks.DARK_ENERGY_CORE)))).build(), DarkEnergyCoreBlock.WATERLOGGED);
         this.simpleBlock(MPBlocks.ZELIUS_EGG, this.models().getExistingFile(this.modLoc("block/zelius_egg")));
     }
@@ -46,5 +47,10 @@ public class BlockStates extends BlockStateProviderBase
             Direction dir = state.getValue(PurloniteClusterBlock.FACING);
             return ConfiguredModel.builder().modelFile(this.models().cross(this.toString(block), this.modLoc("block/" + this.toString(block)))).rotationX(dir == Direction.DOWN ? 180 : dir.getAxis().isHorizontal() ? 90 : 0).rotationY(dir.getAxis().isVertical() ? 0 : ((int)dir.toYRot() + 180) % 360).build();
         }, PurloniteClusterBlock.WATERLOGGED);
+    }
+
+    private void generateTranslucentLanternModel(Block block)
+    {
+        this.getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(this.models().withExistingParent((state.getValue(Lantern.HANGING) ? "hanging_" : "") + this.toString(block), this.modLoc("block/template_" + (state.getValue(Lantern.HANGING) ? "hanging_" : "") + "translucent_lantern")).texture("lantern", this.modLoc("block/" + this.toString(block)))).build(), Lantern.WATERLOGGED);
     }
 }

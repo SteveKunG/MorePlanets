@@ -1,5 +1,6 @@
 {
   "block.moreplanets.budding_purlonite": "Budding Purlonite",
+  "block.moreplanets.dark_crystal_lantern": "Dark Crystal Lantern",
   "block.moreplanets.dark_energy_core": "Dark Energy Core",
   "block.moreplanets.diona_cobblestone": "Diona Cobblestone",
   "block.moreplanets.diona_fine_regolith": "Diona Fine Regolith",
@@ -16,6 +17,7 @@
   "block.moreplanets.raw_glowing_iron_block": "Raw Glowing Iron Block",
   "block.moreplanets.small_purlonite_bud": "Small Purlonite Bud",
   "block.moreplanets.zelius_egg": "Zelius Egg",
+  "item.moreplanets.dark_crystal_shard": "Dark Crystal Shard",
   "item.moreplanets.glowing_iron_axe": "Glowing Iron Axe",
   "item.moreplanets.glowing_iron_boots": "Glowing Iron Boots",
   "item.moreplanets.glowing_iron_chestplate": "Glowing Iron Chestplate",

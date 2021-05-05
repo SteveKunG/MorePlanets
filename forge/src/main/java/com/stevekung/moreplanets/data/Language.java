@@ -31,12 +31,14 @@ public class Language extends LanguageProviderBase
         this.add(MPBlocks.MEDIUM_PURLONITE_BUD, "Medium Purlonite Bud");
         this.add(MPBlocks.SMALL_PURLONITE_BUD, "Small Purlonite Bud");
         this.add(MPBlocks.PURLONITE_CRYSTAL_LANTERN, "Purlonite Crystal Lantern");
+        this.add(MPBlocks.DARK_CRYSTAL_LANTERN, "Dark Crystal Lantern");
         this.add(MPBlocks.DARK_ENERGY_CORE, "Dark Energy Core");
         this.add(MPBlocks.ZELIUS_EGG, "Zelius Egg");
 
         this.add(MPItems.GLOWING_IRON_INGOT, "Glowing Iron Ingot");
         this.add(MPItems.RAW_GLOWING_IRON, "Raw Glowing Iron");
         this.add(MPItems.PURLONITE_SHARD, "Purlonite Shard");
+        this.add(MPItems.DARK_CRYSTAL_SHARD, "Dark Crystal Shard");
 
         this.add(MPItems.GLOWING_IRON_SWORD, "Glowing Iron Sword");
         this.add(MPItems.GLOWING_IRON_SHOVEL, "Glowing Iron Shovel");

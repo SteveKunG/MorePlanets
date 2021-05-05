@@ -36,6 +36,7 @@ public class BlockLootTable extends BlockLootBase
         this.dropWhenSilkTouch(MPBlocks.MEDIUM_PURLONITE_BUD);
         this.dropWhenSilkTouch(MPBlocks.SMALL_PURLONITE_BUD);
         this.add(MPBlocks.PURLONITE_CRYSTAL_LANTERN, BlockLoot::createSingleItemTable);
+        this.add(MPBlocks.DARK_CRYSTAL_LANTERN, BlockLoot::createSingleItemTable);
         this.dropSelf(MPBlocks.DARK_ENERGY_CORE);
         this.dropWhenSilkTouch(MPBlocks.ZELIUS_EGG);
     }

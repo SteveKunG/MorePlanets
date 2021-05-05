@@ -37,6 +37,7 @@ public class MorePlanetsMod
         RenderTypes.register(RenderType.translucent(), MPBlocks.MEDIUM_PURLONITE_BUD);
         RenderTypes.register(RenderType.translucent(), MPBlocks.SMALL_PURLONITE_BUD);
         RenderTypes.register(RenderType.translucent(), MPBlocks.PURLONITE_CRYSTAL_LANTERN);
+        RenderTypes.register(RenderType.translucent(), MPBlocks.DARK_CRYSTAL_LANTERN);
         RenderTypes.register(RenderType.cutout(), MPBlocks.DARK_ENERGY_CORE);
         RenderTypes.register(RenderType.cutout(), MPBlocks.ZELIUS_EGG);
     }

@@ -2,8 +2,7 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"particle": "moreplanets:block/purlonite_crystal_lantern",
-		"lantern": "moreplanets:block/purlonite_crystal_lantern"
+		"particle": "#lantern"
 	},
 	"elements": [
 		{
