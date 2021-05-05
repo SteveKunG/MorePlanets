@@ -13,6 +13,7 @@ public class ItemModels extends ItemModelProviderBase
         super(generator, modid, helper);
     }
 
+    //TODO 1.17 Update Purlonite to use Amethyst models
     @Override
     protected void registerModels()
     {
@@ -29,10 +30,6 @@ public class ItemModels extends ItemModelProviderBase
         this.parentedBlock(MPBlocks.DARK_ENERGY_CORE, "block/full_dark_energy_core");
         this.parentedBlock(MPBlocks.ZELIUS_EGG);
 
-        this.itemGenerated(MPBlocks.PURLONITE_CLUSTER);
-        this.itemGenerated(MPBlocks.LARGE_PURLONITE_BUD);
-        this.itemGenerated(MPBlocks.MEDIUM_PURLONITE_BUD);
-        this.itemGenerated(MPBlocks.SMALL_PURLONITE_BUD);
         this.itemGenerated(MPBlocks.PURLONITE_CRYSTAL_LANTERN.asItem());
         this.itemGenerated(MPBlocks.DARK_CRYSTAL_LANTERN.asItem());
 

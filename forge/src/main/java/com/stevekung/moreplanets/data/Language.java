@@ -20,11 +20,11 @@ public class Language extends LanguageProviderBase
         this.add(MPBlocks.DIONA_FINE_REGOLITH, "Diona Fine Regolith");
         this.add(MPBlocks.DIONA_STONE, "Diona Stone");
         this.add(MPBlocks.DIONA_COBBLESTONE, "Diona Cobblestone");
-        this.add(MPBlocks.GLOWING_IRON_BLOCK, "Glowing Iron Block");
-        this.add(MPBlocks.RAW_GLOWING_IRON_BLOCK, "Raw Glowing Iron Block");
+        this.add(MPBlocks.GLOWING_IRON_BLOCK, "Block of Glowing Iron");
+        this.add(MPBlocks.RAW_GLOWING_IRON_BLOCK, "Block of  Raw Glowing Iron");
         this.add(MPBlocks.METEORIC_IRON_STABILIZER, "Meteoric Iron Stabilizer");
         this.add(MPBlocks.ION_PLASMA_ROD, "Ion Plasma Rod");
-        this.add(MPBlocks.PURLONITE_BLOCK, "Purlonite Block");
+        this.add(MPBlocks.PURLONITE_BLOCK, "Block of Purlonite");
         this.add(MPBlocks.BUDDING_PURLONITE, "Budding Purlonite");
         this.add(MPBlocks.PURLONITE_CLUSTER, "Purlonite Cluster");
         this.add(MPBlocks.LARGE_PURLONITE_BUD, "Large Purlonite Bud");

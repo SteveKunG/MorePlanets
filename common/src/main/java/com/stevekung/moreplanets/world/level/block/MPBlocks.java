@@ -31,9 +31,9 @@ public class MPBlocks
     public static final Block ZELIUS_EGG = new ZeliusEggBlock(Block.Properties.of(Material.CLAY, MaterialColor.COLOR_PURPLE).friction(0.8F).sound(MPSoundType.ALIEN).lightLevel(state -> 5).strength(0.5F).noOcclusion().isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
     public static final Block DARK_ENERGY_CORE = new DarkEnergyCoreBlock(Block.Properties.of(Material.CLAY, MaterialColor.COLOR_BLACK).friction(0.8F).sound(MPSoundType.ALIEN).lightLevel(state -> 5).strength(0.5F).noOcclusion().isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
     public static final Block PURLONITE_CLUSTER = new PurloniteClusterBlock(7, 3, BlockBehaviour.Properties.of(Material.GLASS).noOcclusion().randomTicks().sound(SoundType.GLASS).strength(1.5F).lightLevel(state -> 5).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
-    public static final Block LARGE_PURLONITE_BUD = new PurloniteClusterBlock(5, 3, BlockBehaviour.Properties.copy(PURLONITE_CLUSTER).sound(SoundType.GLASS).lightLevel(state -> 4).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
-    public static final Block MEDIUM_PURLONITE_BUD = new PurloniteClusterBlock(4, 3, BlockBehaviour.Properties.copy(PURLONITE_CLUSTER).sound(SoundType.GLASS).lightLevel(state -> 3).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
     public static final Block SMALL_PURLONITE_BUD = new PurloniteClusterBlock(3, 4, BlockBehaviour.Properties.copy(PURLONITE_CLUSTER).sound(SoundType.GLASS).lightLevel(state -> 2).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
+    public static final Block MEDIUM_PURLONITE_BUD = new PurloniteClusterBlock(4, 3, BlockBehaviour.Properties.copy(PURLONITE_CLUSTER).sound(SoundType.GLASS).lightLevel(state -> 3).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
+    public static final Block LARGE_PURLONITE_BUD = new PurloniteClusterBlock(5, 3, BlockBehaviour.Properties.copy(PURLONITE_CLUSTER).sound(SoundType.GLASS).lightLevel(state -> 4).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
 
     //TODO Amethyst material and sound
 
@@ -53,10 +53,10 @@ public class MPBlocks
         MorePlanetsMod.COMMON.registerBlock("ion_plasma_rod", ION_PLASMA_ROD, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("dark_energy_core", DARK_ENERGY_CORE, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("zelius_egg", ZELIUS_EGG, new Item.Properties().tab(MorePlanetsMod.TAB));
-        MorePlanetsMod.COMMON.registerBlock("purlonite_cluster", PURLONITE_CLUSTER, new Item.Properties().tab(MorePlanetsMod.TAB));
-        MorePlanetsMod.COMMON.registerBlock("large_purlonite_bud", LARGE_PURLONITE_BUD, new Item.Properties().tab(MorePlanetsMod.TAB));
-        MorePlanetsMod.COMMON.registerBlock("medium_purlonite_bud", MEDIUM_PURLONITE_BUD, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("small_purlonite_bud", SMALL_PURLONITE_BUD, new Item.Properties().tab(MorePlanetsMod.TAB));
+        MorePlanetsMod.COMMON.registerBlock("medium_purlonite_bud", MEDIUM_PURLONITE_BUD, new Item.Properties().tab(MorePlanetsMod.TAB));
+        MorePlanetsMod.COMMON.registerBlock("large_purlonite_bud", LARGE_PURLONITE_BUD, new Item.Properties().tab(MorePlanetsMod.TAB));
+        MorePlanetsMod.COMMON.registerBlock("purlonite_cluster", PURLONITE_CLUSTER, new Item.Properties().tab(MorePlanetsMod.TAB));
     }
 
     private static Boolean never(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, EntityType<?> entityType)
