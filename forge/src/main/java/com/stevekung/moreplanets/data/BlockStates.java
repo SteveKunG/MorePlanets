@@ -34,7 +34,7 @@ public class BlockStates extends BlockStateProviderBase
         this.generateCrystalModel(MPBlocks.LARGE_PURLONITE_BUD);
         this.generateCrystalModel(MPBlocks.MEDIUM_PURLONITE_BUD);
         this.generateCrystalModel(MPBlocks.SMALL_PURLONITE_BUD);
-        this.getVariantBuilder(MPBlocks.PURLONITE_CRYSTAL_LANTERN).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(this.models().withExistingParent(state.getValue(Lantern.HANGING) ? "hanging_purlonite_crystal_lantern" : "purlonite_crystal_lantern", this.mcLoc(state.getValue(Lantern.HANGING) ? "block/template_hanging_lantern" : "block/template_lantern")).texture("lantern", this.modLoc("block/purlonite_crystal_lantern"))).build(), Lantern.WATERLOGGED);
+        this.getVariantBuilder(MPBlocks.PURLONITE_CRYSTAL_LANTERN).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(this.models().getExistingFile(this.modLoc(state.getValue(Lantern.HANGING) ? "hanging_purlonite_crystal_lantern" : "purlonite_crystal_lantern"))).build(), Lantern.WATERLOGGED);
         this.getVariantBuilder(MPBlocks.DARK_ENERGY_CORE).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(this.models().getExistingFile(this.modLoc("block/" + state.getValue(DarkEnergyCoreBlock.STATE).getSerializedName() + "_" + this.toString(MPBlocks.DARK_ENERGY_CORE)))).build(), DarkEnergyCoreBlock.WATERLOGGED);
         this.simpleBlock(MPBlocks.ZELIUS_EGG, this.models().getExistingFile(this.modLoc("block/zelius_egg")));
     }
