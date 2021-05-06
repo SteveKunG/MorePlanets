@@ -1,6 +1,7 @@
 package com.stevekung.moreplanets.data.loot;
 
 import com.stevekung.moreplanets.world.item.MPItems;
+import com.stevekung.moreplanets.world.level.block.DarkEnergyCoreBlock;
 import com.stevekung.moreplanets.world.level.block.MPBlocks;
 import com.stevekung.stevekungslib.data.loot.BlockLootBase;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -38,6 +39,7 @@ public class BlockLootTable extends BlockLootBase
         this.add(MPBlocks.PURLONITE_CRYSTAL_LANTERN, BlockLoot::createSingleItemTable);
         this.add(MPBlocks.DARK_CRYSTAL_LANTERN, BlockLoot::createSingleItemTable);
         this.dropSelf(MPBlocks.DARK_ENERGY_CORE);
+        this.add(MPBlocks.DARK_ENERGY_CORE, block -> createSinglePropConditionTable(block, DarkEnergyCoreBlock.STATE, DarkEnergyCoreBlock.State.FULL));
         this.dropWhenSilkTouch(MPBlocks.ZELIUS_EGG);
     }
 }

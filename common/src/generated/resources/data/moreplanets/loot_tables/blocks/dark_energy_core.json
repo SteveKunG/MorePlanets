@@ -6,6 +6,15 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "moreplanets:dark_energy_core",
+              "properties": {
+                "state": "full"
+              }
+            }
+          ],
           "name": "moreplanets:dark_energy_core"
         }
       ],

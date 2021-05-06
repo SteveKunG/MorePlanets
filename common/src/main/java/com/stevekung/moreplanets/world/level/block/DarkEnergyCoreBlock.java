@@ -1,5 +1,7 @@
 package com.stevekung.moreplanets.world.level.block;
 
+import org.jetbrains.annotations.Nullable;
+import com.stevekung.moreplanets.world.level.block.entity.DarkEnergyCoreBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
@@ -11,8 +13,10 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.HalfTransparentBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -25,7 +29,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class DarkEnergyCoreBlock extends HalfTransparentBlock implements SimpleWaterloggedBlock
+public class DarkEnergyCoreBlock extends HalfTransparentBlock implements SimpleWaterloggedBlock, EntityBlock
 {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final EnumProperty<State> STATE = EnumProperty.create("state", State.class);
@@ -109,6 +113,13 @@ public class DarkEnergyCoreBlock extends HalfTransparentBlock implements SimpleW
             entity.setDeltaMovement(entity.getDeltaMovement().multiply(e, 1.0D, e));
         }
         super.stepOn(level, blockPos, entity);
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockGetter blockGetter)
+    {
+        return new DarkEnergyCoreBlockEntity();
     }
 
     private void bounceUp(Entity entity)
