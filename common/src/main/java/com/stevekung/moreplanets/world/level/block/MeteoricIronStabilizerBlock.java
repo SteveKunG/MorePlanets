@@ -1,6 +1,5 @@
 package com.stevekung.moreplanets.world.level.block;
 
-import com.stevekung.moreplanets.utils.BlockPropertiesUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
@@ -31,7 +30,7 @@ public class MeteoricIronStabilizerBlock extends Block implements SimpleWaterlog
 
     public MeteoricIronStabilizerBlock(Properties properties)
     {
-        super(BlockPropertiesUtils.pickaxeLevel(properties, 2));
+        super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(AXIS, Direction.Axis.Y).setValue(WATERLOGGED, false));
     }
 

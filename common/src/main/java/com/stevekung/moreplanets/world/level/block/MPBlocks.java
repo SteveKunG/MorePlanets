@@ -1,7 +1,8 @@
 package com.stevekung.moreplanets.world.level.block;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.BlockPropertiesUtils;
+import me.shedaniel.architectury.registry.BlockProperties;
+import me.shedaniel.architectury.registry.ToolType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -9,31 +10,30 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Lantern;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 
 public class MPBlocks
 {
-    public static final Block DIONA_REGOLITH = new Block(Block.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F));
-    public static final Block DIONA_FINE_REGOLITH = new Block(Block.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F));
-    public static final Block DIONA_STONE = new Block(Block.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F));
-    public static final Block DIONA_COBBLESTONE = new Block(Block.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(2.0F, 6.0F));
-    public static final Block GLOWING_IRON_BLOCK = new Block(BlockPropertiesUtils.pickaxeLevel(Block.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY), 2).sound(SoundType.METAL).lightLevel(state -> 4).requiresCorrectToolForDrops().strength(5.0F, 6.0F));
-    public static final Block RAW_GLOWING_IRON_BLOCK = new Block(BlockPropertiesUtils.pickaxeLevel(Block.Properties.of(Material.STONE, MaterialColor.COLOR_GRAY).sound(SoundType.STONE), 2).lightLevel(state -> 4).requiresCorrectToolForDrops().strength(5.0F, 6.0F));
-    public static final Block PURLONITE_BLOCK = new PurloniteBlock(Block.Properties.of(Material.GLASS, MaterialColor.COLOR_PURPLE).strength(1.5F).lightLevel(state -> 5).sound(SoundType.GLASS).requiresCorrectToolForDrops().noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
-    public static final Block BUDDING_PURLONITE = new BuddingPurloniteBlock(Block.Properties.of(Material.GLASS).strength(1.5F).sound(SoundType.GLASS).lightLevel(state -> 5).randomTicks().strength(1.5F).sound(SoundType.GLASS).requiresCorrectToolForDrops().noOcclusion().noDrops().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
-    public static final Block PURLONITE_CRYSTAL_LANTERN = new Lantern(Block.Properties.of(Material.METAL).sound(SoundType.METAL).lightLevel(state -> 8).requiresCorrectToolForDrops().strength(3.5F));
-    public static final Block DARK_CRYSTAL_LANTERN = new Lantern(Block.Properties.of(Material.METAL).sound(SoundType.METAL).lightLevel(state -> 5).requiresCorrectToolForDrops().strength(3.5F));
-    public static final Block METEORIC_IRON_STABILIZER = new MeteoricIronStabilizerBlock(Block.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).sound(SoundType.METAL).lightLevel(state -> 2).requiresCorrectToolForDrops().strength(3.0F, 6.0F).noOcclusion());
-    public static final Block ION_PLASMA_ROD = new IonPlasmaRodBlock(Block.Properties.of(Material.METAL, MaterialColor.COLOR_LIGHT_BLUE).sound(SoundType.METAL).lightLevel(state -> 10).requiresCorrectToolForDrops().strength(3.0F, 6.0F).noOcclusion());
-    public static final Block ZELIUS_EGG = new ZeliusEggBlock(Block.Properties.of(Material.CLAY, MaterialColor.COLOR_PURPLE).friction(0.8F).sound(MPSoundType.ALIEN).lightLevel(state -> 5).strength(0.5F).noOcclusion().isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
-    public static final Block DARK_ENERGY_CORE = new DarkEnergyCoreBlock(Block.Properties.of(Material.CLAY, MaterialColor.COLOR_BLACK).friction(0.8F).sound(MPSoundType.ALIEN).lightLevel(state -> 5).strength(0.5F).noOcclusion().isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
-    public static final Block PURLONITE_CLUSTER = new PurloniteClusterBlock(7, 3, BlockBehaviour.Properties.of(Material.GLASS).noOcclusion().randomTicks().sound(SoundType.GLASS).strength(1.5F).lightLevel(state -> 5).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
-    public static final Block SMALL_PURLONITE_BUD = new PurloniteClusterBlock(3, 4, BlockBehaviour.Properties.copy(PURLONITE_CLUSTER).sound(SoundType.GLASS).lightLevel(state -> 2).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
-    public static final Block MEDIUM_PURLONITE_BUD = new PurloniteClusterBlock(4, 3, BlockBehaviour.Properties.copy(PURLONITE_CLUSTER).sound(SoundType.GLASS).lightLevel(state -> 3).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
-    public static final Block LARGE_PURLONITE_BUD = new PurloniteClusterBlock(5, 3, BlockBehaviour.Properties.copy(PURLONITE_CLUSTER).sound(SoundType.GLASS).lightLevel(state -> 4).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
+    public static final Block DIONA_REGOLITH = new Block(BlockProperties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F));
+    public static final Block DIONA_FINE_REGOLITH = new Block(BlockProperties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F));
+    public static final Block DIONA_STONE = new Block(BlockProperties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F));
+    public static final Block DIONA_COBBLESTONE = new Block(BlockProperties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(2.0F, 6.0F));
+    public static final Block GLOWING_IRON_BLOCK = new Block(BlockProperties.of(Material.METAL, MaterialColor.COLOR_GRAY).tool(ToolType.PICKAXE, 2).sound(SoundType.METAL).lightLevel(state -> 4).requiresCorrectToolForDrops().strength(5.0F, 6.0F));
+    public static final Block RAW_GLOWING_IRON_BLOCK = new Block(BlockProperties.of(Material.STONE, MaterialColor.COLOR_GRAY).tool(ToolType.PICKAXE, 2).sound(SoundType.STONE).lightLevel(state -> 4).requiresCorrectToolForDrops().strength(5.0F, 6.0F));
+    public static final Block PURLONITE_BLOCK = new PurloniteBlock(BlockProperties.of(Material.GLASS, MaterialColor.COLOR_PURPLE).tool(ToolType.PICKAXE).strength(1.5F).lightLevel(state -> 5).sound(SoundType.GLASS).requiresCorrectToolForDrops().noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
+    public static final Block BUDDING_PURLONITE = new BuddingPurloniteBlock(BlockProperties.of(Material.GLASS).tool(ToolType.PICKAXE).strength(1.5F).sound(SoundType.GLASS).lightLevel(state -> 5).randomTicks().strength(1.5F).sound(SoundType.GLASS).requiresCorrectToolForDrops().noOcclusion().noDrops().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
+    public static final Block PURLONITE_CRYSTAL_LANTERN = new Lantern(BlockProperties.of(Material.METAL).sound(SoundType.LANTERN).lightLevel(state -> 8).requiresCorrectToolForDrops().strength(3.5F));
+    public static final Block DARK_CRYSTAL_LANTERN = new Lantern(BlockProperties.of(Material.METAL).sound(SoundType.LANTERN).lightLevel(state -> 5).requiresCorrectToolForDrops().strength(3.5F));
+    public static final Block METEORIC_IRON_STABILIZER = new MeteoricIronStabilizerBlock(BlockProperties.of(Material.METAL, MaterialColor.COLOR_BROWN).tool(ToolType.PICKAXE, 2).sound(SoundType.METAL).lightLevel(state -> 2).requiresCorrectToolForDrops().strength(3.0F, 6.0F).noOcclusion());
+    public static final Block ION_PLASMA_ROD = new IonPlasmaRodBlock(BlockProperties.of(Material.METAL, MaterialColor.COLOR_LIGHT_BLUE).tool(ToolType.PICKAXE, 2).sound(SoundType.METAL).lightLevel(state -> 10).requiresCorrectToolForDrops().strength(3.0F, 6.0F).noOcclusion());
+    public static final Block ZELIUS_EGG = new ZeliusEggBlock(BlockProperties.of(Material.CLAY, MaterialColor.COLOR_PURPLE).tool(ToolType.HOE).friction(0.8F).sound(MPSoundType.ALIEN).lightLevel(state -> 5).strength(0.5F).noOcclusion().isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
+    public static final Block DARK_ENERGY_CORE = new DarkEnergyCoreBlock(BlockProperties.of(Material.CLAY, MaterialColor.COLOR_BLACK).tool(ToolType.HOE).friction(0.8F).sound(MPSoundType.ALIEN).lightLevel(state -> 5).strength(0.5F).noOcclusion().isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
+    public static final Block PURLONITE_CLUSTER = new PurloniteClusterBlock(7, 3, BlockProperties.of(Material.GLASS).tool(ToolType.PICKAXE).noOcclusion().randomTicks().sound(SoundType.GLASS).strength(1.5F).lightLevel(state -> 5).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
+    public static final Block SMALL_PURLONITE_BUD = new PurloniteClusterBlock(3, 4, BlockProperties.copy(PURLONITE_CLUSTER).tool(ToolType.PICKAXE).sound(SoundType.GLASS).lightLevel(state -> 2).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
+    public static final Block MEDIUM_PURLONITE_BUD = new PurloniteClusterBlock(4, 3, BlockProperties.copy(PURLONITE_CLUSTER).tool(ToolType.PICKAXE).sound(SoundType.GLASS).lightLevel(state -> 3).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
+    public static final Block LARGE_PURLONITE_BUD = new PurloniteClusterBlock(5, 3, BlockProperties.copy(PURLONITE_CLUSTER).tool(ToolType.PICKAXE).sound(SoundType.GLASS).lightLevel(state -> 4).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
 
     //TODO Amethyst material and sound
 
