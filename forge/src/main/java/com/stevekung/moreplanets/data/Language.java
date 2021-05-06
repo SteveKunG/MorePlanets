@@ -21,7 +21,7 @@ public class Language extends LanguageProviderBase
         this.add(MPBlocks.DIONA_STONE, "Diona Stone");
         this.add(MPBlocks.DIONA_COBBLESTONE, "Diona Cobblestone");
         this.add(MPBlocks.GLOWING_IRON_BLOCK, "Block of Glowing Iron");
-        this.add(MPBlocks.RAW_GLOWING_IRON_BLOCK, "Block of  Raw Glowing Iron");
+        this.add(MPBlocks.RAW_GLOWING_IRON_BLOCK, "Block of Raw Glowing Iron");
         this.add(MPBlocks.METEORIC_IRON_STABILIZER, "Meteoric Iron Stabilizer");
         this.add(MPBlocks.ION_PLASMA_ROD, "Ion Plasma Rod");
         this.add(MPBlocks.PURLONITE_BLOCK, "Block of Purlonite");

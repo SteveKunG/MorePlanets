@@ -2,14 +2,17 @@ package com.stevekung.moreplanets.world.level.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Silverfish;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HalfTransparentBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
@@ -17,7 +20,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
@@ -72,6 +74,24 @@ public class ZeliusEggBlock extends HalfTransparentBlock implements SimpleWaterl
     }
 
     @Override
+    public void spawnAfterBreak(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, ItemStack itemStack)
+    {
+        if (serverLevel.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, itemStack) == 0)
+        {
+            this.spawnInfestation(serverLevel, blockPos);
+        }
+    }
+
+    @Override
+    public void wasExploded(Level level, BlockPos blockPos, Explosion explosion)
+    {
+        if (level instanceof ServerLevel)
+        {
+            this.spawnInfestation((ServerLevel)level, blockPos);
+        }
+    }
+
+    @Override
     public void fallOn(Level level, BlockPos blockPos, Entity entity, float fallDistance)
     {
         if (entity.isSuppressingBounce())
@@ -119,5 +139,14 @@ public class ZeliusEggBlock extends HalfTransparentBlock implements SimpleWaterl
             double d = entity instanceof LivingEntity ? 1.0D : 0.8D;
             entity.setDeltaMovement(vec3.x, -vec3.y * d, vec3.z);
         }
+    }
+
+    //TODO New mob
+    private void spawnInfestation(ServerLevel serverLevel, BlockPos blockPos)
+    {
+        Silverfish silverfish = EntityType.SILVERFISH.create(serverLevel);
+        silverfish.moveTo(blockPos.getX() + 0.5D, blockPos.getY(), blockPos.getZ() + 0.5D, 0.0F, 0.0F);
+        serverLevel.addFreshEntity(silverfish);
+        silverfish.spawnAnim();
     }
 }
