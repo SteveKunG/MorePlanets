@@ -41,5 +41,6 @@ public class BlockLootTable extends BlockLootBase
         this.dropSelf(MPBlocks.DARK_ENERGY_CORE);
         this.add(MPBlocks.DARK_ENERGY_CORE, block -> createSinglePropConditionTable(block, DarkEnergyCoreBlock.STATE, DarkEnergyCoreBlock.State.FULL));
         this.dropWhenSilkTouch(MPBlocks.ZELIUS_EGG);
+        this.dropSelf(MPBlocks.DARK_ENERGY_GENERATOR);
     }
 }

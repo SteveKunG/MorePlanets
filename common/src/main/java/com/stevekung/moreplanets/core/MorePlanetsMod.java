@@ -1,7 +1,5 @@
 package com.stevekung.moreplanets.core;
 
-import java.util.function.Consumer;
-
 import com.stevekung.moreplanets.client.renderer.blockentity.DarkEnergyCoreRenderer;
 import com.stevekung.moreplanets.world.item.MPItems;
 import com.stevekung.moreplanets.world.level.block.MPBlocks;
@@ -14,7 +12,6 @@ import me.shedaniel.architectury.registry.BlockEntityRenderers;
 import me.shedaniel.architectury.registry.CreativeTabs;
 import me.shedaniel.architectury.registry.RenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -48,10 +45,11 @@ public class MorePlanetsMod
         RenderTypes.register(RenderType.translucent(), MPBlocks.DARK_CRYSTAL_LANTERN);
         RenderTypes.register(RenderType.cutout(), MPBlocks.DARK_ENERGY_CORE);
         RenderTypes.register(RenderType.cutout(), MPBlocks.ZELIUS_EGG);
+        RenderTypes.register(RenderType.cutout(), MPBlocks.DARK_ENERGY_GENERATOR);
 
         BlockEntityRenderers.registerRenderer(MPBlockEntities.DARK_ENERGY_CORE, DarkEnergyCoreRenderer::new);
 
-        TextureStitchEvent.PRE.register((TextureAtlas atlas, Consumer<ResourceLocation> spriteAdder) -> spriteAdder.accept(new ResourceLocation(MOD_ID, "entity/dark_energy_ball")));
-        TextureStitchEvent.PRE.register((TextureAtlas atlas, Consumer<ResourceLocation> spriteAdder) -> spriteAdder.accept(new ResourceLocation(MOD_ID, "entity/dark_energy_egg")));
+        TextureStitchEvent.PRE.register((atlas, consumer) -> consumer.accept(new ResourceLocation(MOD_ID, "entity/dark_energy_ball")));
+        TextureStitchEvent.PRE.register((atlas, consumer) -> consumer.accept(new ResourceLocation(MOD_ID, "entity/dark_energy_egg")));
     }
 }

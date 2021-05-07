@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "moreplanets:block/dark_energy_generator"
+    },
+    "active=true": {
+      "model": "moreplanets:block/dark_energy_generator_on"
+    }
+  }
+}
