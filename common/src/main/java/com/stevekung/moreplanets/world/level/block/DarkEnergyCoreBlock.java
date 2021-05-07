@@ -25,6 +25,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -33,7 +34,7 @@ public class DarkEnergyCoreBlock extends HalfTransparentBlock implements SimpleW
 {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final EnumProperty<State> STATE = EnumProperty.create("state", State.class);
-    private static final VoxelShape SHAPE = Shapes.or(Block.box(4, 0.0D, 4, 12, 1, 12), Block.box(3, 1, 3, 13, 3, 13), Block.box(2, 3, 2, 14, 5, 14), Block.box(1, 5, 1, 15, 7, 15), Block.box(2, 7, 2, 14, 8, 14), Block.box(5, 8, 5, 11, 9, 11));
+    private static final VoxelShape SHAPE = Shapes.join(Block.box(4, 0, 4, 12, 1, 12), Shapes.or(Block.box(3, 1, 3, 13, 3, 13), Block.box(2, 3, 2, 14, 5, 14), Block.box(1, 5, 1, 15, 7, 15), Block.box(2, 7, 2, 14, 8, 14), Block.box(5, 8, 5, 11, 9, 11)), BooleanOp.OR);
 
     public DarkEnergyCoreBlock(Properties properties)
     {
