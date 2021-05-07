@@ -6,8 +6,8 @@ import net.minecraft.world.item.Item;
 
 public class MPItems
 {
-    public static final Item GLOWING_IRON_INGOT = new Item(new Item.Properties().tab(MorePlanetsMod.TAB));
     public static final Item RAW_GLOWING_IRON = new Item(new Item.Properties().tab(MorePlanetsMod.TAB));
+    public static final Item GLOWING_IRON_INGOT = new Item(new Item.Properties().tab(MorePlanetsMod.TAB));
     public static final Item PURLONITE_SHARD = new Item(new Item.Properties().tab(MorePlanetsMod.TAB));
     public static final Item DARK_CRYSTAL_SHARD = new Item(new Item.Properties().tab(MorePlanetsMod.TAB));
 
@@ -24,8 +24,8 @@ public class MPItems
 
     public static void init()
     {
-        MorePlanetsMod.COMMON.registerItem("glowing_iron_ingot", GLOWING_IRON_INGOT);
         MorePlanetsMod.COMMON.registerItem("raw_glowing_iron", RAW_GLOWING_IRON);
+        MorePlanetsMod.COMMON.registerItem("glowing_iron_ingot", GLOWING_IRON_INGOT);
         MorePlanetsMod.COMMON.registerItem("purlonite_shard", PURLONITE_SHARD);
         MorePlanetsMod.COMMON.registerItem("dark_crystal_shard", DARK_CRYSTAL_SHARD);
 

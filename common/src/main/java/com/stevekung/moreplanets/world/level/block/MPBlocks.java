@@ -20,10 +20,11 @@ public class MPBlocks
     public static final Block DIONA_FINE_REGOLITH = new Block(BlockProperties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F));
     public static final Block DIONA_STONE = new Block(BlockProperties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F));
     public static final Block DIONA_COBBLESTONE = new Block(BlockProperties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(2.0F, 6.0F));
-    public static final Block GLOWING_IRON_BLOCK = new Block(BlockProperties.of(Material.METAL, MaterialColor.COLOR_GRAY).tool(ToolType.PICKAXE, 2).sound(SoundType.METAL).lightLevel(state -> 4).requiresCorrectToolForDrops().strength(5.0F, 6.0F));
     public static final Block RAW_GLOWING_IRON_BLOCK = new Block(BlockProperties.of(Material.STONE, MaterialColor.COLOR_GRAY).tool(ToolType.PICKAXE, 2).sound(SoundType.STONE).lightLevel(state -> 4).requiresCorrectToolForDrops().strength(5.0F, 6.0F));
+    public static final Block GLOWING_IRON_BLOCK = new Block(BlockProperties.of(Material.METAL, MaterialColor.COLOR_GRAY).tool(ToolType.PICKAXE, 2).sound(SoundType.METAL).lightLevel(state -> 4).requiresCorrectToolForDrops().strength(5.0F, 6.0F));
     public static final Block PURLONITE_BLOCK = new PurloniteBlock(BlockProperties.of(Material.GLASS, MaterialColor.COLOR_PURPLE).tool(ToolType.PICKAXE).strength(1.5F).lightLevel(state -> 5).sound(SoundType.GLASS).requiresCorrectToolForDrops().noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
     public static final Block BUDDING_PURLONITE = new BuddingPurloniteBlock(BlockProperties.of(Material.GLASS).tool(ToolType.PICKAXE).strength(1.5F).sound(SoundType.GLASS).lightLevel(state -> 5).randomTicks().requiresCorrectToolForDrops().noOcclusion().noDrops().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
+    public static final Block COMPACTED_PURLONITE_BLOCK = new CompactedBlock(BlockProperties.of(Material.STONE).tool(ToolType.PICKAXE).strength(2.0F).requiresCorrectToolForDrops().noOcclusion());
     public static final Block DARK_ENERGY_GENERATOR = new DarkEnergyGeneratorBlock(BlockProperties.of(Material.METAL).tool(ToolType.PICKAXE).strength(2.0F).lightLevel(DarkEnergyGeneratorBlock::getLightLevel).sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion());
     public static final Block PURLONITE_CRYSTAL_LANTERN = new Lantern(BlockProperties.of(Material.METAL).sound(SoundType.LANTERN).lightLevel(state -> 8).requiresCorrectToolForDrops().strength(3.5F));
     public static final Block DARK_CRYSTAL_LANTERN = new Lantern(BlockProperties.of(Material.METAL).sound(SoundType.LANTERN).lightLevel(state -> 5).requiresCorrectToolForDrops().strength(3.5F));
@@ -46,8 +47,9 @@ public class MPBlocks
         MorePlanetsMod.COMMON.registerBlock("diona_cobblestone", DIONA_COBBLESTONE, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("purlonite_block", PURLONITE_BLOCK, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("budding_purlonite", BUDDING_PURLONITE, new Item.Properties().tab(MorePlanetsMod.TAB));
-        MorePlanetsMod.COMMON.registerBlock("glowing_iron_block", GLOWING_IRON_BLOCK, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("raw_glowing_iron_block", RAW_GLOWING_IRON_BLOCK, new Item.Properties().tab(MorePlanetsMod.TAB));
+        MorePlanetsMod.COMMON.registerBlock("glowing_iron_block", GLOWING_IRON_BLOCK, new Item.Properties().tab(MorePlanetsMod.TAB));
+        MorePlanetsMod.COMMON.registerBlock("compacted_purlonite_block", COMPACTED_PURLONITE_BLOCK, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("dark_energy_generator", DARK_ENERGY_GENERATOR, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("purlonite_crystal_lantern", PURLONITE_CRYSTAL_LANTERN, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("dark_crystal_lantern", DARK_CRYSTAL_LANTERN, new Item.Properties().tab(MorePlanetsMod.TAB));

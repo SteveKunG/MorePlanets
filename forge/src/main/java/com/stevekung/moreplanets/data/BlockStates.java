@@ -1,10 +1,7 @@
 package com.stevekung.moreplanets.data;
 
 import com.google.common.collect.ObjectArrays;
-import com.stevekung.moreplanets.world.level.block.DarkEnergyCoreBlock;
-import com.stevekung.moreplanets.world.level.block.DarkEnergyGeneratorBlock;
-import com.stevekung.moreplanets.world.level.block.MPBlocks;
-import com.stevekung.moreplanets.world.level.block.PurloniteClusterBlock;
+import com.stevekung.moreplanets.world.level.block.*;
 import com.stevekung.stevekungslib.data.BlockStateProviderBase;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
@@ -40,6 +37,30 @@ public class BlockStates extends BlockStateProviderBase
         this.getVariantBuilder(MPBlocks.DARK_ENERGY_CORE).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(this.models().getExistingFile(this.modLoc("block/" + state.getValue(DarkEnergyCoreBlock.STATE).getSerializedName() + "_" + this.toString(MPBlocks.DARK_ENERGY_CORE)))).build(), DarkEnergyCoreBlock.WATERLOGGED);
         this.simpleBlock(MPBlocks.ZELIUS_EGG, this.models().getExistingFile(this.modLoc("block/zelius_egg")));
         this.getVariantBuilder(MPBlocks.DARK_ENERGY_GENERATOR).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(DarkEnergyGeneratorBlock.ACTIVE) ? this.models().getExistingFile(this.modLoc("block/dark_energy_generator_on")) : this.models().getExistingFile(this.modLoc("block/dark_energy_generator"))).build());
+        this.generateCompactedCrystal(MPBlocks.COMPACTED_PURLONITE_BLOCK, "purlonite_block");
+    }
+
+    private void generateCompactedCrystal(Block block, String texture)
+    {
+        this.getVariantBuilder(block).forAllStates(state ->
+        {
+            CompactedBlock.Type type = state.getValue(CompactedBlock.TYPE);
+            String typeS = "";
+
+            switch (type)
+            {
+                case TOP:
+                    typeS = "_top";
+                    break;
+                case MIDDLE:
+                    typeS = "_middle";
+                    break;
+                case BOTTOM:
+                    typeS = "_bottom";
+                    break;
+            }
+            return ConfiguredModel.builder().modelFile(this.models().withExistingParent(this.toString(block) + typeS, this.modLoc("block/compacted_crystal" + typeS)).texture("crystal", this.modLoc("block/" + texture))).build();
+        });
     }
 
     private void generateCrystalModel(Block block)

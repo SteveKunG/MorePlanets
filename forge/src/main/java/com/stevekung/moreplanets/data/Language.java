@@ -35,6 +35,7 @@ public class Language extends LanguageProviderBase
         this.add(MPBlocks.DARK_ENERGY_CORE, "Dark Energy Core");
         this.add(MPBlocks.ZELIUS_EGG, "Zelius Egg");
         this.add(MPBlocks.DARK_ENERGY_GENERATOR, "Dark Energy Generator");
+        this.add(MPBlocks.COMPACTED_PURLONITE_BLOCK, "Compacted Block of Purlonite");
 
         this.add(MPItems.GLOWING_IRON_INGOT, "Glowing Iron Ingot");
         this.add(MPItems.RAW_GLOWING_IRON, "Raw Glowing Iron");
