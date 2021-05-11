@@ -7,8 +7,8 @@ import com.stevekung.moreplanets.world.level.block.MPSoundEvents;
 import com.stevekung.moreplanets.world.level.block.entity.MPBlockEntities;
 import com.stevekung.stevekungslib.utils.CommonRegistryUtils;
 import com.stevekung.stevekungslib.utils.LoggerBase;
+import com.stevekung.stevekungslib.utils.client.ClientRegistryUtils;
 import me.shedaniel.architectury.event.events.TextureStitchEvent;
-import me.shedaniel.architectury.registry.BlockEntityRenderers;
 import me.shedaniel.architectury.registry.CreativeTabs;
 import me.shedaniel.architectury.registry.RenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -48,7 +48,7 @@ public class MorePlanetsMod
         RenderTypes.register(RenderType.cutout(), MPBlocks.ZELIUS_EGG);
         RenderTypes.register(RenderType.cutout(), MPBlocks.DARK_ENERGY_GENERATOR);
 
-        BlockEntityRenderers.registerRenderer(MPBlockEntities.DARK_ENERGY_CORE, DarkEnergyCoreRenderer::new);
+        ClientRegistryUtils.registerTileEntityRendering(MPBlockEntities.DARK_ENERGY_CORE, DarkEnergyCoreRenderer::new);
 
         TextureStitchEvent.PRE.register((atlas, consumer) -> consumer.accept(new ResourceLocation(MOD_ID, "entity/dark_energy_ball")));
         TextureStitchEvent.PRE.register((atlas, consumer) -> consumer.accept(new ResourceLocation(MOD_ID, "entity/dark_energy_egg")));

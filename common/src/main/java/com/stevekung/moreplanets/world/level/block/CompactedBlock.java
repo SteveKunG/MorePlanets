@@ -20,12 +20,6 @@ public class CompactedBlock extends Block
         this.registerDefaultState(this.stateDefinition.any().setValue(TYPE, Type.NONE));
     }
 
-    //    @Override
-    //    public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
-    //    {
-    //        return SHAPE;
-    //    }
-
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context)
     {

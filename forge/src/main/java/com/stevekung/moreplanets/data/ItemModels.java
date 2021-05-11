@@ -40,11 +40,11 @@ public class ItemModels extends ItemModelProviderBase
         this.itemGenerated(MPItems.PURLONITE_SHARD);
         this.itemGenerated(MPItems.DARK_CRYSTAL_SHARD);
 
-        this.itemHandheld(MPItems.GLOWING_IRON_SWORD, "glowing_iron_sword");
-        this.itemHandheld(MPItems.GLOWING_IRON_SHOVEL, "glowing_iron_shovel");
-        this.itemHandheld(MPItems.GLOWING_IRON_PICKAXE, "glowing_iron_pickaxe");
-        this.itemHandheld(MPItems.GLOWING_IRON_AXE, "glowing_iron_axe");
-        this.itemHandheld(MPItems.GLOWING_IRON_HOE, "glowing_iron_hoe");
+        this.itemHandheld(MPItems.GLOWING_IRON_SWORD);
+        this.itemHandheld(MPItems.GLOWING_IRON_SHOVEL);
+        this.itemHandheld(MPItems.GLOWING_IRON_PICKAXE);
+        this.itemHandheld(MPItems.GLOWING_IRON_AXE);
+        this.itemHandheld(MPItems.GLOWING_IRON_HOE);
 
         this.itemGenerated(MPItems.GLOWING_IRON_HELMET);
         this.itemGenerated(MPItems.GLOWING_IRON_CHESTPLATE);
