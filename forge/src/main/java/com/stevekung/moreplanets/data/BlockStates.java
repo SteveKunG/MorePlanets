@@ -36,7 +36,7 @@ public class BlockStates extends BlockStateProviderBase
         this.generateTranslucentLanternModel(MPBlocks.DARK_CRYSTAL_LANTERN);
         this.getVariantBuilder(MPBlocks.DARK_ENERGY_CORE).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(this.models().getExistingFile(this.modLoc("block/" + state.getValue(DarkEnergyCoreBlock.STATE).getSerializedName() + "_" + this.toString(MPBlocks.DARK_ENERGY_CORE)))).build(), DarkEnergyCoreBlock.WATERLOGGED);
         this.simpleBlock(MPBlocks.ZELIUS_EGG, this.models().getExistingFile(this.modLoc("block/zelius_egg")));
-        this.getVariantBuilder(MPBlocks.DARK_ENERGY_GENERATOR).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(DarkEnergyGeneratorBlock.ACTIVE) ? this.models().getExistingFile(this.modLoc("block/dark_energy_generator_on")) : this.models().getExistingFile(this.modLoc("block/dark_energy_generator"))).build());
+        this.getVariantBuilder(MPBlocks.DARK_ENERGY_GENERATOR).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(state.getValue(DarkEnergyGeneratorBlock.ACTIVE) ? this.models().getExistingFile(this.modLoc("block/dark_energy_generator_on")) : this.models().getExistingFile(this.modLoc("block/dark_energy_generator"))).build(), DarkEnergyGeneratorBlock.WATERLOGGED);
         this.generateCompactedCrystal(MPBlocks.COMPACTED_PURLONITE_BLOCK, "purlonite_block");
     }
 
