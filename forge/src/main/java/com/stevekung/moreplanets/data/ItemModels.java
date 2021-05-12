@@ -31,6 +31,9 @@ public class ItemModels extends ItemModelProviderBase
         this.parentedBlock(MPBlocks.ZELIUS_EGG);
         this.parentedBlock(MPBlocks.DARK_ENERGY_GENERATOR);
         this.parentedBlock(MPBlocks.COMPACTED_PURLONITE_BLOCK);
+        this.parentedBlock(MPBlocks.SPACE_JAR);
+        this.parentedBlock(MPBlocks.PURLONITE_WORM_JAR);
+        this.parentedBlock(MPBlocks.CHALOS_SPORE_JAR);
 
         this.itemGenerated(MPBlocks.PURLONITE_CRYSTAL_LANTERN.asItem());
         this.itemGenerated(MPBlocks.DARK_CRYSTAL_LANTERN.asItem());

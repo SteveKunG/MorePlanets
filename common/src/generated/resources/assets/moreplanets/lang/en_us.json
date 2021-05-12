@@ -1,5 +1,6 @@
 {
   "block.moreplanets.budding_purlonite": "Budding Purlonite",
+  "block.moreplanets.chalos_spore_jar": "Chalos Spore Jar",
   "block.moreplanets.compacted_purlonite_block": "Compacted Block of Purlonite",
   "block.moreplanets.dark_crystal_lantern": "Dark Crystal Lantern",
   "block.moreplanets.dark_energy_core": "Dark Energy Core",
@@ -16,8 +17,10 @@
   "block.moreplanets.purlonite_block": "Block of Purlonite",
   "block.moreplanets.purlonite_cluster": "Purlonite Cluster",
   "block.moreplanets.purlonite_crystal_lantern": "Purlonite Crystal Lantern",
+  "block.moreplanets.purlonite_worm_jar": "Purlonite Worm Jar",
   "block.moreplanets.raw_glowing_iron_block": "Block of Raw Glowing Iron",
   "block.moreplanets.small_purlonite_bud": "Small Purlonite Bud",
+  "block.moreplanets.space_jar": "Space Jar",
   "block.moreplanets.zelius_egg": "Zelius Egg",
   "item.moreplanets.dark_crystal_shard": "Dark Crystal Shard",
   "item.moreplanets.glowing_iron_axe": "Glowing Iron Axe",

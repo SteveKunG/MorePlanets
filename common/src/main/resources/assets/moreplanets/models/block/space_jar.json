@@ -1,0 +1,35 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"particle": "moreplanets:block/space_jar_side",
+		"side": "moreplanets:block/space_jar_side",
+		"part": "moreplanets:block/space_jar_part"
+	},
+	"elements": [
+		{
+			"from": [3, 0, 3],
+			"to": [13, 12, 13],
+			"faces": {
+				"north": {"uv": [3, 4, 13, 16], "texture": "#side"},
+				"east": {"uv": [3, 4, 13, 16], "texture": "#side"},
+				"south": {"uv": [3, 4, 13, 16], "texture": "#side"},
+				"west": {"uv": [3, 4, 13, 16], "texture": "#side"},
+				"up": {"uv": [0, 0, 10, 10], "texture": "#part"},
+				"down": {"uv": [0, 0, 10, 10], "texture": "#part"}
+			}
+		},
+		{
+			"from": [5, 12, 5],
+			"to": [11, 14, 11],
+			"faces": {
+				"north": {"uv": [6, 10, 12, 12], "texture": "#part"},
+				"east": {"uv": [6, 10, 12, 12], "texture": "#part"},
+				"south": {"uv": [6, 10, 12, 12], "texture": "#part"},
+				"west": {"uv": [6, 10, 12, 12], "texture": "#part"},
+				"up": {"uv": [6, 16, 0, 10], "texture": "#part"},
+				"down": {"uv": [6, 16, 0, 10], "texture": "#part"}
+			}
+		}
+	]
+}

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "moreplanets:block/purlonite_worm_jar"
+      },
+      {
+        "model": "moreplanets:block/purlonite_worm_jar",
+        "y": 90
+      },
+      {
+        "model": "moreplanets:block/purlonite_worm_jar",
+        "y": 180
+      },
+      {
+        "model": "moreplanets:block/purlonite_worm_jar",
+        "y": 270
+      }
+    ]
+  }
+}

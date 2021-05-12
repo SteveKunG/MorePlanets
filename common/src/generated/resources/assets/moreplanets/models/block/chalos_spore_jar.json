@@ -1,0 +1,6 @@
+{
+  "parent": "moreplanets:block/terrarium_jar",
+  "textures": {
+    "terrarium": "moreplanets:block/chalos_spore"
+  }
+}
