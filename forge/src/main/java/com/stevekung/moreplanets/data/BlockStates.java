@@ -7,7 +7,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Lantern;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class BlockStates extends BlockStateProviderBase
@@ -41,6 +43,15 @@ public class BlockStates extends BlockStateProviderBase
         this.simpleBlock(MPBlocks.SPACE_JAR, ConfiguredModel.allYRotations(this.models().getExistingFile(this.modLoc("block/space_jar")), 0, false));
         this.simpleBlock(MPBlocks.PURLONITE_WORM_JAR, ConfiguredModel.allYRotations(this.models().getExistingFile(this.modLoc("block/purlonite_worm_jar")), 0, false));
         this.simpleBlock(MPBlocks.CHALOS_SPORE_JAR, ConfiguredModel.allYRotations(this.models().withExistingParent("chalos_spore_jar", this.modLoc("block/terrarium_jar")).texture("terrarium", this.modLoc("block/chalos_spore")), 0, false));
+
+        ModelFile misModel = this.models().getExistingFile(this.modLoc("block/meteoric_iron_stabilizer"));
+        this.getVariantBuilder(MPBlocks.METEORIC_IRON_STABILIZER).partialState().with(MeteoricIronStabilizerBlock.AXIS, Direction.Axis.Y).modelForState().modelFile(misModel).addModel().partialState().with(MeteoricIronStabilizerBlock.AXIS, Direction.Axis.Z).modelForState().modelFile(misModel).rotationX(90).addModel().partialState().with(MeteoricIronStabilizerBlock.AXIS, Direction.Axis.X).modelForState().modelFile(misModel).rotationX(90).rotationY(90).addModel();
+
+        this.getVariantBuilder(MPBlocks.ION_PLASMA_ROD).forAllStatesExcept(state ->
+        {
+            Direction dir = state.getValue(BlockStateProperties.FACING);
+            return ConfiguredModel.builder().modelFile(this.models().getExistingFile(this.modLoc(state.getValue(IonPlasmaRodBlock.POWERED) ? "block/ion_plasma_rod_on" : "block/ion_plasma_rod"))).rotationX(dir == Direction.DOWN ? 180 : (dir.getAxis().isHorizontal() ? 90 : 0)).rotationY(dir.getAxis().isVertical() ? 0 : ((int)dir.toYRot() + 180) % 360).build();
+        }, IonPlasmaRodBlock.WATERLOGGED);
     }
 
     private void generateCompactedCrystal(Block block, String texture)

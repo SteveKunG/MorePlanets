@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "moreplanets:block/meteoric_iron_stabilizer",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "moreplanets:block/meteoric_iron_stabilizer"
+    },
+    "axis=z": {
+      "model": "moreplanets:block/meteoric_iron_stabilizer",
+      "x": 90
+    }
+  }
+}
