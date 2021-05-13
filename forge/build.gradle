@@ -75,6 +75,7 @@ shadowJar {
     classifier "dev"
     version "v${project.version}"
     baseName fileName
+    exclude "**/fabric/**/*.*"
 }
 
 sourcesJar {
