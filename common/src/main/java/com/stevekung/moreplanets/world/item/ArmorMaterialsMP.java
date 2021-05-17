@@ -11,9 +11,9 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 public enum ArmorMaterialsMP implements ArmorMaterial
 {
-    GLOWING_IRON("glowing_iron", 16, new int[]{3, 6, 7, 3}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(MPItems.GLOWING_IRON_INGOT));
+    GLOWING_IRON("glowing_iron", 16, new int[] {3, 6, 7, 3}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(MPItems.GLOWING_IRON_INGOT));
 
-    private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
+    private static final int[] HEALTH_PER_SLOT = new int[] {13, 15, 16, 11};
     private final String name;
     private final int durabilityMultiplier;
     private final int[] slotProtections;

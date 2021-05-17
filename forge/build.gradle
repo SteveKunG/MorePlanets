@@ -18,8 +18,8 @@ repositories {
     }
 }
 
-def username = project.username
-def password = project.password
+String username = project.username
+String password = project.password
 
 loom {
     mixinConfigs = ["mixins.moreplanets.json", "mixins.moreplanets_forge.json"]
