@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "moreplanets:block/display_jar"
+      },
+      {
+        "model": "moreplanets:block/display_jar",
+        "y": 90
+      },
+      {
+        "model": "moreplanets:block/display_jar",
+        "y": 180
+      },
+      {
+        "model": "moreplanets:block/display_jar",
+        "y": 270
+      }
+    ]
+  }
+}

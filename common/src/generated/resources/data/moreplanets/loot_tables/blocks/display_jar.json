@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "moreplanets:space_jar"
+          "name": "moreplanets:display_jar"
         }
       ],
       "conditions": [

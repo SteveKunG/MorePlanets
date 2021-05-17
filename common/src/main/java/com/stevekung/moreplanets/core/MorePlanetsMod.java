@@ -47,7 +47,7 @@ public class MorePlanetsMod
         RenderTypes.register(RenderType.cutout(), MPBlocks.DARK_ENERGY_CORE);
         RenderTypes.register(RenderType.cutout(), MPBlocks.ZELIUS_EGG);
         RenderTypes.register(RenderType.cutout(), MPBlocks.DARK_ENERGY_GENERATOR);
-        RenderTypes.register(RenderType.cutout(), MPBlocks.SPACE_JAR);
+        RenderTypes.register(RenderType.cutout(), MPBlocks.DISPLAY_JAR);
         RenderTypes.register(RenderType.cutout(), MPBlocks.PURLONITE_WORM_JAR);
         RenderTypes.register(RenderType.cutout(), MPBlocks.CHALOS_SPORE_JAR);
 

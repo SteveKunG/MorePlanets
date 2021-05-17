@@ -32,9 +32,9 @@ public class MPBlocks
     public static final Block ION_PLASMA_ROD = new IonPlasmaRodBlock(BlockProperties.of(Material.METAL, MaterialColor.COLOR_LIGHT_BLUE).tool(ToolType.PICKAXE, 2).sound(SoundType.METAL).lightLevel(state -> 10).requiresCorrectToolForDrops().strength(3.0F, 6.0F).noOcclusion());
     public static final Block ZELIUS_EGG = new ZeliusEggBlock(BlockProperties.of(Material.CLAY, MaterialColor.COLOR_PURPLE).tool(ToolType.HOE).friction(0.8F).sound(MPSoundType.ALIEN).lightLevel(state -> 5).strength(0.5F).noOcclusion().isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
     public static final Block DARK_ENERGY_CORE = new DarkEnergyCoreBlock(BlockProperties.of(Material.CLAY, MaterialColor.COLOR_BLACK).tool(ToolType.HOE).friction(0.8F).sound(MPSoundType.ALIEN).lightLevel(state -> 5).strength(0.5F).noOcclusion().isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
-    public static final Block SPACE_JAR = new SpaceJarBlock(BlockProperties.of(Material.GLASS).sound(SoundType.GLASS).strength(0.5F).noOcclusion());
-    public static final Block PURLONITE_WORM_JAR = new SpaceJarBlock(BlockProperties.copy(SPACE_JAR).lightLevel(state -> 5));
-    public static final Block CHALOS_SPORE_JAR = new SpaceJarBlock(BlockProperties.copy(SPACE_JAR));
+    public static final Block DISPLAY_JAR = new DisplayJarBlock(BlockProperties.of(Material.GLASS).sound(SoundType.GLASS).strength(0.5F).noOcclusion());
+    public static final Block PURLONITE_WORM_JAR = new DisplayJarBlock(BlockProperties.copy(DISPLAY_JAR).lightLevel(state -> 5));
+    public static final Block CHALOS_SPORE_JAR = new DisplayJarBlock(BlockProperties.copy(DISPLAY_JAR));
     public static final Block PURLONITE_CLUSTER = new PurloniteClusterBlock(7, 3, BlockProperties.of(Material.GLASS).tool(ToolType.PICKAXE).noOcclusion().randomTicks().sound(SoundType.GLASS).strength(1.5F).lightLevel(state -> 5).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
     public static final Block SMALL_PURLONITE_BUD = new PurloniteClusterBlock(3, 4, BlockProperties.copy(PURLONITE_CLUSTER).tool(ToolType.PICKAXE).sound(SoundType.GLASS).lightLevel(state -> 2).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
     public static final Block MEDIUM_PURLONITE_BUD = new PurloniteClusterBlock(4, 3, BlockProperties.copy(PURLONITE_CLUSTER).tool(ToolType.PICKAXE).sound(SoundType.GLASS).lightLevel(state -> 3).noOcclusion().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
@@ -60,7 +60,7 @@ public class MPBlocks
         MorePlanetsMod.COMMON.registerBlock("ion_plasma_rod", ION_PLASMA_ROD, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("dark_energy_core", DARK_ENERGY_CORE, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("zelius_egg", ZELIUS_EGG, new Item.Properties().tab(MorePlanetsMod.TAB));
-        MorePlanetsMod.COMMON.registerBlock("space_jar", SPACE_JAR, new Item.Properties().tab(MorePlanetsMod.TAB));
+        MorePlanetsMod.COMMON.registerBlock("display_jar", DISPLAY_JAR, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("purlonite_worm_jar", PURLONITE_WORM_JAR, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("chalos_spore_jar", CHALOS_SPORE_JAR, new Item.Properties().tab(MorePlanetsMod.TAB));
         MorePlanetsMod.COMMON.registerBlock("small_purlonite_bud", SMALL_PURLONITE_BUD, new Item.Properties().tab(MorePlanetsMod.TAB));

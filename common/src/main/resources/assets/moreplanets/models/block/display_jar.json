@@ -2,9 +2,9 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"particle": "moreplanets:block/space_jar_side",
-		"side": "moreplanets:block/space_jar_side",
-		"part": "moreplanets:block/space_jar_part"
+		"particle": "moreplanets:block/display_jar_side",
+		"side": "moreplanets:block/display_jar_side",
+		"part": "moreplanets:block/display_jar_part"
 	},
 	"elements": [
 		{

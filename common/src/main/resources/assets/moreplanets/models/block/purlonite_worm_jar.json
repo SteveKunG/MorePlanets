@@ -2,10 +2,10 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"particle": "moreplanets:block/space_jar_side",
-		"side": "moreplanets:block/space_jar_side",
-		"part": "moreplanets:block/space_jar_part",
-		"worm": "moreplanets:block/space_jar_purlonite_worm"
+		"particle": "moreplanets:block/display_jar_side",
+		"side": "moreplanets:block/display_jar_side",
+		"part": "moreplanets:block/display_jar_part",
+		"worm": "moreplanets:block/display_jar_purlonite_worm"
 	},
 	"elements": [
 		{

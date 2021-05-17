@@ -43,7 +43,7 @@ public class BlockLootTable extends BlockLootBase
         this.dropWhenSilkTouch(MPBlocks.ZELIUS_EGG);
         this.dropSelf(MPBlocks.DARK_ENERGY_GENERATOR);
         this.dropSelf(MPBlocks.COMPACTED_PURLONITE_BLOCK);
-        this.dropSelf(MPBlocks.SPACE_JAR);
+        this.dropSelf(MPBlocks.DISPLAY_JAR);
         this.dropSelf(MPBlocks.PURLONITE_WORM_JAR);
         this.dropSelf(MPBlocks.CHALOS_SPORE_JAR);
     }

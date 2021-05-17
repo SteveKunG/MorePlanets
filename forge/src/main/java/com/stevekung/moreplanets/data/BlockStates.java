@@ -40,7 +40,7 @@ public class BlockStates extends BlockStateProviderBase
         this.simpleBlock(MPBlocks.ZELIUS_EGG, this.models().getExistingFile(this.modLoc("block/zelius_egg")));
         this.getVariantBuilder(MPBlocks.DARK_ENERGY_GENERATOR).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(state.getValue(DarkEnergyGeneratorBlock.ACTIVE) ? this.models().getExistingFile(this.modLoc("block/dark_energy_generator_on")) : this.models().getExistingFile(this.modLoc("block/dark_energy_generator"))).build(), DarkEnergyGeneratorBlock.WATERLOGGED);
         this.generateCompactedCrystal(MPBlocks.COMPACTED_PURLONITE_BLOCK, "purlonite_block");
-        this.simpleBlock(MPBlocks.SPACE_JAR, ConfiguredModel.allYRotations(this.models().getExistingFile(this.modLoc("block/space_jar")), 0, false));
+        this.simpleBlock(MPBlocks.DISPLAY_JAR, ConfiguredModel.allYRotations(this.models().getExistingFile(this.modLoc("block/display_jar")), 0, false));
         this.simpleBlock(MPBlocks.PURLONITE_WORM_JAR, ConfiguredModel.allYRotations(this.models().getExistingFile(this.modLoc("block/purlonite_worm_jar")), 0, false));
         this.simpleBlock(MPBlocks.CHALOS_SPORE_JAR, ConfiguredModel.allYRotations(this.models().withExistingParent("chalos_spore_jar", this.modLoc("block/terrarium_jar")).texture("terrarium", this.modLoc("block/chalos_spore")), 0, false));
 

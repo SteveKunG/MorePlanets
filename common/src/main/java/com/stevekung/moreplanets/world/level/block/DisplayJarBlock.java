@@ -9,11 +9,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class SpaceJarBlock extends Block
+public class DisplayJarBlock extends Block
 {
     private static final VoxelShape SHAPE = Shapes.join(Block.box(3, 0, 3, 13, 12, 13), Block.box(5, 12, 5, 11, 14, 11), BooleanOp.OR);
 
-    public SpaceJarBlock(Properties properties)
+    public DisplayJarBlock(Properties properties)
     {
         super(properties);
     }
