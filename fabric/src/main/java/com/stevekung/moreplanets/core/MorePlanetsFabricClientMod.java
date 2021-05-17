@@ -10,8 +10,7 @@ public class MorePlanetsFabricClientMod implements ClientModInitializer
     @Override
     public void onInitializeClient()
     {
-        ArmorRenderingRegistry.registerSimpleTexture(new ResourceLocation(MorePlanetsMod.MOD_ID, "glowing_iron"), MPItems.GLOWING_IRON_HELMET, MPItems.GLOWING_IRON_CHESTPLATE);
-        ArmorRenderingRegistry.registerSimpleTexture(new ResourceLocation(MorePlanetsMod.MOD_ID, "glowing_iron"), MPItems.GLOWING_IRON_LEGGINGS, MPItems.GLOWING_IRON_BOOTS);
+        ArmorRenderingRegistry.registerSimpleTexture(new ResourceLocation(MorePlanetsMod.MOD_ID, "glowing_iron"), MPItems.GLOWING_IRON_HELMET, MPItems.GLOWING_IRON_CHESTPLATE, MPItems.GLOWING_IRON_LEGGINGS, MPItems.GLOWING_IRON_BOOTS);
         MorePlanetsMod.initClient();
     }
 }
