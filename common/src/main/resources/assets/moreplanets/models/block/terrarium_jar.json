@@ -54,10 +54,10 @@
 			}
 		},
 		{
-			"from": [8.5, 5, 2],
-			"to": [8.5, 11, 10],
+			"from": [7.5, 5, 6],
+			"to": [7.5, 11, 14],
 			"shade": false,
-			"rotation": {"angle": -45, "axis": "y", "origin": [6, 5, 6]},
+			"rotation": {"angle": -45, "axis": "y", "origin": [10, 5, 10]},
 			"faces": {
 				"east": {"uv": [8, 4, 16, 10], "texture": "#terrarium"},
 				"west": {"uv": [16, 4, 8, 10], "texture": "#terrarium"}
