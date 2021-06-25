@@ -48,12 +48,12 @@ dependencies {
     modApi("me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
-//    modImplementation("grondag:canvas-mc116:${project.canvas_version}") {
-//        exclude group: "net.fabricmc"
-//        exclude group: "net.fabricmc.fabric-api"
-//        exclude group: "me.shedaniel.cloth"
-//        exclude group: "io.github.prospector"
-//    }
+    modImplementation("grondag:canvas-mc116:${project.canvas_version}") {
+        exclude group: "net.fabricmc"
+        exclude group: "net.fabricmc.fabric-api"
+        exclude group: "me.shedaniel.cloth"
+        exclude group: "io.github.prospector"
+    }
 
     implementation(project(path: ":common")) {
         transitive = false

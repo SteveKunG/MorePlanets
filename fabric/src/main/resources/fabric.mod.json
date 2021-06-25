@@ -31,8 +31,8 @@
         "fabricloader": ">=0.11",
         "fabric": "*",
         "minecraft": ">=1.16.4",
-        "stevekungs_lib": ">=4.1.1",
-        "architectury": ">=1.12.145"
+        "stevekungs_lib": ">=4.1.3",
+        "architectury": ">=1.17"
     },
     "mixins": [
         "mixins.moreplanets.json",
