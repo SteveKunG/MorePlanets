@@ -57,7 +57,7 @@
 				"south": {"uv": [0, 8, 6, 9], "texture": "#lantern"},
 				"west": {"uv": [0, 8, 6, 9], "texture": "#lantern"},
 				"up": {"uv": [0, 9, 6, 15], "texture": "#lantern"},
-				"down": {"uv": [0, 9, 6, 15], "texture": "#lantern"}
+				"down": {"uv": [0, 9, 6, 15], "texture": "#lantern", "cullface": "down"}
 			}
 		},
 		{

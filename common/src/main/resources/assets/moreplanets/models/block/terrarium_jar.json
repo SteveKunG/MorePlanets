@@ -16,7 +16,7 @@
 				"south": {"uv": [3, 4, 13, 16], "texture": "#side"},
 				"west": {"uv": [3, 4, 13, 16], "texture": "#side"},
 				"up": {"uv": [0, 0, 10, 10], "texture": "#part"},
-				"down": {"uv": [0, 0, 10, 10], "texture": "#part"}
+				"down": {"uv": [0, 0, 10, 10], "texture": "#part", "cullface": "down"}
 			}
 		},
 		{
@@ -50,7 +50,7 @@
 			"rotation": {"angle": -45, "axis": "y", "origin": [10, 5, 10]},
 			"faces": {
 				"north": {"uv": [8, 4, 16, 10], "texture": "#terrarium"},
-				"south": {"uv": [16, 4, 8, 10], "texture": "#terrarium"}
+				"south": {"uv": [8, 4, 16, 10], "texture": "#terrarium"}
 			}
 		},
 		{
@@ -60,7 +60,7 @@
 			"rotation": {"angle": -45, "axis": "y", "origin": [10, 5, 10]},
 			"faces": {
 				"east": {"uv": [8, 4, 16, 10], "texture": "#terrarium"},
-				"west": {"uv": [16, 4, 8, 10], "texture": "#terrarium"}
+				"west": {"uv": [8, 4, 16, 10], "texture": "#terrarium"}
 			}
 		}
 	]
