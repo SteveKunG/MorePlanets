@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -93,15 +94,15 @@ public class ZeliusEggBlock extends HalfTransparentBlock implements SimpleWaterl
     }
 
     @Override
-    public void fallOn(Level level, BlockPos blockPos, Entity entity, float fallDistance)
+    public void fallOn(Level level, BlockState blockState, BlockPos blockPos, Entity entity, float fallDistance)
     {
         if (entity.isSuppressingBounce())
         {
-            super.fallOn(level, blockPos, entity, fallDistance);
+            super.fallOn(level, blockState, blockPos, entity, fallDistance);
         }
         else
         {
-            entity.causeFallDamage(fallDistance, 0.0F);
+            entity.causeFallDamage(fallDistance, 0.0F, DamageSource.FALL);
         }
     }
 
@@ -119,7 +120,7 @@ public class ZeliusEggBlock extends HalfTransparentBlock implements SimpleWaterl
     }
 
     @Override
-    public void stepOn(Level level, BlockPos blockPos, Entity entity)
+    public void stepOn(Level level, BlockPos blockPos, BlockState blockState, Entity entity)
     {
         double d = Math.abs(entity.getDeltaMovement().y);
 
@@ -128,7 +129,7 @@ public class ZeliusEggBlock extends HalfTransparentBlock implements SimpleWaterl
             double e = 0.4D + d * 0.2D;
             entity.setDeltaMovement(entity.getDeltaMovement().multiply(e, 1.0D, e));
         }
-        super.stepOn(level, blockPos, entity);
+        super.stepOn(level, blockPos, blockState, entity);
     }
 
     private void bounceUp(Entity entity)

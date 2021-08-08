@@ -1,27 +1,27 @@
 package com.stevekung.moreplanets.world.level.block.entity;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.TickableBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
-public class TickableRendererBlockEntity extends BlockEntity implements TickableBlockEntity
+public class TickableRendererBlockEntity extends BlockEntity
 {
     public int ticks;
     protected boolean initialize;
 
-    public TickableRendererBlockEntity(BlockEntityType<?> blockEntityType)
+    public TickableRendererBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState)
     {
-        super(blockEntityType);
+        super(blockEntityType, blockPos, blockState);
     }
 
-    @Override
-    public void tick()
+    public static void clientTick(TickableRendererBlockEntity tickableRendererBlockEntity)
     {
-        if (!this.initialize)
+        if (!tickableRendererBlockEntity.initialize)
         {
-            this.ticks = this.ticks + this.level.random.nextInt(100);
-            this.initialize = true;
+            tickableRendererBlockEntity.ticks = tickableRendererBlockEntity.ticks + tickableRendererBlockEntity.level.random.nextInt(100);
+            tickableRendererBlockEntity.initialize = true;
         }
-        this.ticks++;
+        tickableRendererBlockEntity.ticks++;
     }
 }

@@ -1,5 +1,5 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "5.2.0"
+    id "com.github.johnrengelman.shadow" version "7.0.0"
     id "com.matthewprenger.cursegradle"
 }
 
@@ -40,15 +40,20 @@ loom {
     mixinConfigs = ["mixins.moreplanets.json", "mixins.moreplanets_fabric.json"]
 }
 
+minecraft {
+    accessWidener = file("../common/src/main/resources/moreplanets.accesswidener")
+}
+
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
-    modApi "me.shedaniel:architectury-fabric:${rootProject.architectury_version}"
+    modApi "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
     modApi "com.terraformersmc:modmenu:${rootProject.modmenu_version}"
-    modApi("me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}") {
+    modImplementation("me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
-    modImplementation("grondag:canvas-mc116:${project.canvas_version}") {
+    include "me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}"
+    modImplementation("grondag:canvas-mc117-1.17:${project.canvas_version}") {
         exclude group: "net.fabricmc"
         exclude group: "net.fabricmc.fabric-api"
         exclude group: "me.shedaniel.cloth"
@@ -67,9 +72,10 @@ dependencies {
 
     if (file("libs/SteveKunG's-Lib-mc${mc_version}-dev.jar").exists()) {
         modImplementation(":SteveKunG's-Lib-mc${mc_version}-dev")
+        include ":SteveKunG's-Lib-mc${mc_version}-dev"
         println("Use existing deobf artifact")
     } else {
-        modCompile("curse.maven:stevekungs-lib-296019:${rootProject.stevekung_lib_fabric_deobf}")
+        modImplementation("curse.maven:stevekungs-lib-296019:${rootProject.stevekung_lib_fabric_deobf}")
         println("Use CurseForge deobf artifact")
     }
 }
@@ -135,8 +141,11 @@ curseforge {
             }
             relations {
                 requiredDependency "architectury-fabric"
-                requiredDependency "stevekungs-lib"
                 requiredDependency "fabric-api"
+                embeddedLibrary "stevekungs-lib"
+                embeddedLibrary "auto-config-updated-api"
+                embeddedLibrary "cloth-config"
+                optionalDependency "modmenu"
                 optionalDependency "indicatia"
             }
             afterEvaluate {

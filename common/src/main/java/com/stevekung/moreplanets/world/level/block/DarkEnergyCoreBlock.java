@@ -2,21 +2,22 @@ package com.stevekung.moreplanets.world.level.block;
 
 import org.jetbrains.annotations.Nullable;
 import com.stevekung.moreplanets.world.level.block.entity.DarkEnergyCoreBlockEntity;
+import com.stevekung.moreplanets.world.level.block.entity.MPBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.HalfTransparentBlock;
-import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -78,15 +79,15 @@ public class DarkEnergyCoreBlock extends HalfTransparentBlock implements SimpleW
     }
 
     @Override
-    public void fallOn(Level level, BlockPos blockPos, Entity entity, float fallDistance)
+    public void fallOn(Level level, BlockState blockState, BlockPos blockPos, Entity entity, float fallDistance)
     {
         if (entity.isSuppressingBounce())
         {
-            super.fallOn(level, blockPos, entity, fallDistance);
+            super.fallOn(level, blockState, blockPos, entity, fallDistance);
         }
         else
         {
-            entity.causeFallDamage(fallDistance, 0.0F);
+            entity.causeFallDamage(fallDistance, 0.0F, DamageSource.FALL);
         }
     }
 
@@ -104,7 +105,7 @@ public class DarkEnergyCoreBlock extends HalfTransparentBlock implements SimpleW
     }
 
     @Override
-    public void stepOn(Level level, BlockPos blockPos, Entity entity)
+    public void stepOn(Level level, BlockPos blockPos, BlockState blockState, Entity entity)
     {
         double d = Math.abs(entity.getDeltaMovement().y);
 
@@ -113,14 +114,20 @@ public class DarkEnergyCoreBlock extends HalfTransparentBlock implements SimpleW
             double e = 0.4D + d * 0.2D;
             entity.setDeltaMovement(entity.getDeltaMovement().multiply(e, 1.0D, e));
         }
-        super.stepOn(level, blockPos, entity);
+        super.stepOn(level, blockPos, blockState, entity);
+    }
+
+    @Override
+    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState)
+    {
+        return new DarkEnergyCoreBlockEntity(blockPos, blockState);
     }
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockGetter blockGetter)
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> type)
     {
-        return new DarkEnergyCoreBlockEntity();
+        return level.isClientSide ? BaseEntityBlock.createTickerHelper(type, MPBlockEntities.DARK_ENERGY_CORE, (levelx, blockPos, blockStatex, blockEntity) -> DarkEnergyCoreBlockEntity.clientTick(blockEntity)) : null;
     }
 
     private void bounceUp(Entity entity)

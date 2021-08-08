@@ -6,6 +6,7 @@
     "mixins": [
     ],
     "client": [
+        "client.MixinLayerDefinitions"
     ],
     "injectors": {
         "defaultRequire": 1

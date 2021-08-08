@@ -9,27 +9,28 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
 import com.stevekung.moreplanets.client.entity.models.DarkEnergyBallModel;
+import com.stevekung.moreplanets.client.models.geom.MPModelLayers;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.world.level.block.DarkEnergyCoreBlock;
 import com.stevekung.moreplanets.world.level.block.entity.DarkEnergyCoreBlockEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-public class DarkEnergyCoreRenderer extends BlockEntityRenderer<DarkEnergyCoreBlockEntity>
+public class DarkEnergyCoreRenderer implements BlockEntityRenderer<DarkEnergyCoreBlockEntity>
 {
     public static final Material BALL_MATERIAL = new Material(TextureAtlas.LOCATION_BLOCKS, new ResourceLocation(MorePlanetsMod.MOD_ID, "entity/dark_energy_ball"));
     public static final Material EGG_MATERIAL = new Material(TextureAtlas.LOCATION_BLOCKS, new ResourceLocation(MorePlanetsMod.MOD_ID, "entity/dark_energy_egg"));
-    private final DarkEnergyBallModel ballModel = new DarkEnergyBallModel();
+    private final DarkEnergyBallModel ballModel;
 
-    public DarkEnergyCoreRenderer(BlockEntityRenderDispatcher blockEntityRenderDispatcher)
+    public DarkEnergyCoreRenderer(BlockEntityRendererProvider.Context context)
     {
-        super(blockEntityRenderDispatcher);
+        this.ballModel = new DarkEnergyBallModel(context.bakeLayer(MPModelLayers.DARK_ENERGY_BALL));
     }
 
     @Override
@@ -76,7 +77,7 @@ public class DarkEnergyCoreRenderer extends BlockEntityRenderer<DarkEnergyCoreBl
             float height = random.nextFloat() * -1.0F;
             float width = random.nextFloat() * 2.0F + alpha;
             Matrix4f matrix4f = poseStack.last().pose();
-            int alphaVal = (int)(255.0F * (1.0F - alpha));
+            int alphaVal = (int) (255.0F * (1.0F - alpha));
             vertex01(vertexConsumer5, matrix4f, alphaVal);
             vertex2(vertexConsumer5, matrix4f, height, width);
             vertex3(vertexConsumer5, matrix4f, height, width);
@@ -98,12 +99,12 @@ public class DarkEnergyCoreRenderer extends BlockEntityRenderer<DarkEnergyCoreBl
 
     private static void vertex2(VertexConsumer vertexConsumer, Matrix4f matrix4f, float f, float g)
     {
-        vertexConsumer.vertex(matrix4f, (float)(-Math.sqrt(0.1D) * g), f, -0.5F * g).color(10, 10, 10, 0).endVertex();
+        vertexConsumer.vertex(matrix4f, (float) (-Math.sqrt(0.1D) * g), f, -0.5F * g).color(10, 10, 10, 0).endVertex();
     }
 
     private static void vertex3(VertexConsumer vertexConsumer, Matrix4f matrix4f, float f, float g)
     {
-        vertexConsumer.vertex(matrix4f, (float)(Math.sqrt(0.1D) * g), f, -0.5F * g).color(10, 10, 10, 0).endVertex();
+        vertexConsumer.vertex(matrix4f, (float) (Math.sqrt(0.1D) * g), f, -0.5F * g).color(10, 10, 10, 0).endVertex();
     }
 
     private static void vertex4(VertexConsumer vertexConsumer, Matrix4f matrix4f, float f, float g)

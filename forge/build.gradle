@@ -1,5 +1,5 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "5.2.0"
+    id "com.github.johnrengelman.shadow" version "7.0.0"
     id "com.matthewprenger.cursegradle"
 }
 
@@ -40,7 +40,7 @@ loom {
 
 dependencies {
     forge "net.minecraftforge:forge:${rootProject.mc_version}-${rootProject.forge_version}"
-    modApi "me.shedaniel:architectury-forge:${rootProject.architectury_version}"
+    modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
 
     implementation(project(path: ":common")) {
         transitive = false
@@ -56,7 +56,7 @@ dependencies {
         modImplementation(":SteveKunG's-Lib-mc${mc_version}-dev")
         println("Use existing deobf artifact")
     } else {
-        modCompile("curse.maven:stevekungs-lib-296019:${rootProject.stevekung_lib_forge_deobf}")
+        modImplementation("curse.maven:stevekungs-lib-296019:${rootProject.stevekung_lib_forge_deobf}")
         println("Use CurseForge deobf artifact")
     }
 }

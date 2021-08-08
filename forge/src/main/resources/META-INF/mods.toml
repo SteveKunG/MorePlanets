@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[36,)"
+loaderVersion = "[37,)"
 issueTrackerURL = "https://github.com/SteveKunG/MorePlanets/issues"
 license = "MIT License"
 
@@ -17,27 +17,27 @@ logoFile = "logo.png"
 [[dependencies.moreplanets]]
 modId = "forge"
 mandatory = true
-versionRange = "[36.1.0,)"
+versionRange = "[37.0.0,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.moreplanets]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.16.5,)"
+versionRange = "[1.17.1,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.moreplanets]]
 modId = "architectury"
 mandatory = true
-versionRange = "[1.17,)"
+versionRange = "[2.3,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.moreplanets]]
 modId = "stevekungs_lib"
 mandatory = true
-versionRange = "[4.1.3,)"
+versionRange = "[5.0.0,)"
 ordering = "NONE"
 side = "BOTH"

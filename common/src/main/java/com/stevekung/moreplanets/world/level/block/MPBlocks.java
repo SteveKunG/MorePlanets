@@ -1,14 +1,14 @@
 package com.stevekung.moreplanets.world.level.block;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import me.shedaniel.architectury.registry.BlockProperties;
-import me.shedaniel.architectury.registry.ToolType;
+import dev.architectury.registry.block.BlockProperties;
+import dev.architectury.registry.block.ToolType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Lantern;
+import net.minecraft.world.level.block.LanternBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
@@ -26,8 +26,8 @@ public class MPBlocks
     public static final Block BUDDING_PURLONITE = new BuddingPurloniteBlock(BlockProperties.of(Material.GLASS).tool(ToolType.PICKAXE).strength(1.5F).sound(SoundType.GLASS).lightLevel(state -> 5).randomTicks().requiresCorrectToolForDrops().noOcclusion().noDrops().isValidSpawn(MPBlocks::never).isRedstoneConductor(MPBlocks::never).isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));
     public static final Block COMPACTED_PURLONITE_BLOCK = new CompactedBlock(BlockProperties.of(Material.STONE).tool(ToolType.PICKAXE).strength(2.0F).requiresCorrectToolForDrops().noOcclusion());
     public static final Block DARK_ENERGY_GENERATOR = new DarkEnergyGeneratorBlock(BlockProperties.of(Material.METAL).tool(ToolType.PICKAXE).strength(2.0F).lightLevel(DarkEnergyGeneratorBlock::getLightLevel).sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion());
-    public static final Block PURLONITE_CRYSTAL_LANTERN = new Lantern(BlockProperties.of(Material.METAL).sound(SoundType.LANTERN).lightLevel(state -> 8).requiresCorrectToolForDrops().strength(3.5F));
-    public static final Block DARK_CRYSTAL_LANTERN = new Lantern(BlockProperties.of(Material.METAL).sound(SoundType.LANTERN).lightLevel(state -> 5).requiresCorrectToolForDrops().strength(3.5F));
+    public static final Block PURLONITE_CRYSTAL_LANTERN = new LanternBlock(BlockProperties.of(Material.METAL).sound(SoundType.LANTERN).lightLevel(state -> 8).requiresCorrectToolForDrops().strength(3.5F));
+    public static final Block DARK_CRYSTAL_LANTERN = new LanternBlock(BlockProperties.of(Material.METAL).sound(SoundType.LANTERN).lightLevel(state -> 5).requiresCorrectToolForDrops().strength(3.5F));
     public static final Block METEORIC_IRON_STABILIZER = new MeteoricIronStabilizerBlock(BlockProperties.of(Material.METAL, MaterialColor.COLOR_BROWN).tool(ToolType.PICKAXE, 2).sound(SoundType.METAL).lightLevel(state -> 2).requiresCorrectToolForDrops().strength(3.0F, 6.0F).noOcclusion());
     public static final Block ION_PLASMA_ROD = new IonPlasmaRodBlock(BlockProperties.of(Material.METAL, MaterialColor.COLOR_LIGHT_BLUE).tool(ToolType.PICKAXE, 2).sound(SoundType.METAL).lightLevel(state -> 10).requiresCorrectToolForDrops().strength(3.0F, 6.0F).noOcclusion());
     public static final Block ZELIUS_EGG = new ZeliusEggBlock(BlockProperties.of(Material.CLAY, MaterialColor.COLOR_PURPLE).tool(ToolType.HOE).friction(0.8F).sound(MPSoundType.ALIEN).lightLevel(state -> 5).strength(0.5F).noOcclusion().isSuffocating(MPBlocks::never).isViewBlocking(MPBlocks::never));

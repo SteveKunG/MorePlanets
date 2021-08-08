@@ -6,7 +6,7 @@ import com.stevekung.stevekungslib.data.BlockStateProviderBase;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Lantern;
+import net.minecraft.world.level.block.LanternBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -88,6 +88,6 @@ public class BlockStates extends BlockStateProviderBase
 
     private void generateTranslucentLanternModel(Block block)
     {
-        this.getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(this.models().withExistingParent((state.getValue(Lantern.HANGING) ? "hanging_" : "") + this.toString(block), this.modLoc("block/template_" + (state.getValue(Lantern.HANGING) ? "hanging_" : "") + "translucent_lantern")).texture("lantern", this.modLoc("block/" + this.toString(block)))).build(), Lantern.WATERLOGGED);
+        this.getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(this.models().withExistingParent((state.getValue(LanternBlock.HANGING) ? "hanging_" : "") + this.toString(block), this.modLoc("block/template_" + (state.getValue(LanternBlock.HANGING) ? "hanging_" : "") + "translucent_lantern")).texture("lantern", this.modLoc("block/" + this.toString(block)))).build(), LanternBlock.WATERLOGGED);
     }
 }

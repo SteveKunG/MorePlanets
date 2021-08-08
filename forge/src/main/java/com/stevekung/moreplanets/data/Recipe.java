@@ -19,7 +19,7 @@ public class Recipe extends RecipeProviderBase
     }
 
     @Override
-    protected void buildShapelessRecipes(Consumer<FinishedRecipe> consumer)
+    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer)
     {
         ShapedRecipeBuilder.shaped(MPBlocks.GLOWING_IRON_BLOCK).define('#', MPItems.GLOWING_IRON_INGOT).pattern("###").pattern("###").pattern("###").unlockedBy(this.toCriterion(MPItems.GLOWING_IRON_INGOT), has(MPItems.GLOWING_IRON_INGOT)).save(consumer);
         ShapedRecipeBuilder.shaped(MPBlocks.RAW_GLOWING_IRON_BLOCK).define('#', MPItems.RAW_GLOWING_IRON).pattern("###").pattern("###").pattern("###").unlockedBy(this.toCriterion(MPItems.RAW_GLOWING_IRON), has(MPItems.RAW_GLOWING_IRON)).save(consumer);
