@@ -25,7 +25,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -52,7 +51,7 @@ public class DarkEnergyCoreBlock extends HalfTransparentBlock implements SimpleW
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext)
     {
-        FluidState fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
+        var fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
         return this.defaultBlockState().setValue(WATERLOGGED, fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8).setValue(STATE, State.FULL);
     }
 
@@ -107,11 +106,11 @@ public class DarkEnergyCoreBlock extends HalfTransparentBlock implements SimpleW
     @Override
     public void stepOn(Level level, BlockPos blockPos, BlockState blockState, Entity entity)
     {
-        double d = Math.abs(entity.getDeltaMovement().y);
+        var d = Math.abs(entity.getDeltaMovement().y);
 
         if (d < 0.1D && !entity.isSteppingCarefully())
         {
-            double e = 0.4D + d * 0.2D;
+            var e = 0.4D + d * 0.2D;
             entity.setDeltaMovement(entity.getDeltaMovement().multiply(e, 1.0D, e));
         }
         super.stepOn(level, blockPos, blockState, entity);
@@ -132,11 +131,11 @@ public class DarkEnergyCoreBlock extends HalfTransparentBlock implements SimpleW
 
     private void bounceUp(Entity entity)
     {
-        Vec3 vec3 = entity.getDeltaMovement();
+        var vec3 = entity.getDeltaMovement();
 
         if (vec3.y < 0.0D)
         {
-            double d = entity instanceof LivingEntity ? 1.0D : 0.8D;
+            var d = entity instanceof LivingEntity ? 1.0D : 0.8D;
             entity.setDeltaMovement(vec3.x, -vec3.y * d, vec3.z);
         }
     }

@@ -32,9 +32,9 @@ public class BuddingPurloniteBlock extends PurloniteBlock
     {
         if (random.nextInt(5) == 0)
         {
-            Direction direction = DIRECTIONS[random.nextInt(DIRECTIONS.length)];
-            BlockPos blockPos2 = blockPos.relative(direction);
-            BlockState blockState2 = serverLevel.getBlockState(blockPos2);
+            var direction = DIRECTIONS[random.nextInt(DIRECTIONS.length)];
+            var blockPos2 = blockPos.relative(direction);
+            var blockState2 = serverLevel.getBlockState(blockPos2);
             Block block = null;
 
             if (canClusterGrowAtState(blockState2))
@@ -56,7 +56,7 @@ public class BuddingPurloniteBlock extends PurloniteBlock
 
             if (block != null)
             {
-                BlockState blockState3 = block.defaultBlockState().setValue(PurloniteClusterBlock.FACING, direction).setValue(PurloniteClusterBlock.WATERLOGGED, blockState2.getFluidState().getType() == Fluids.WATER);
+                var blockState3 = block.defaultBlockState().setValue(PurloniteClusterBlock.FACING, direction).setValue(PurloniteClusterBlock.WATERLOGGED, blockState2.getFluidState().getType() == Fluids.WATER);
                 serverLevel.setBlockAndUpdate(blockPos2, blockState3);
             }
         }

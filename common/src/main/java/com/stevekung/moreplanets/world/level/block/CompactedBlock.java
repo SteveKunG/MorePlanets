@@ -40,8 +40,8 @@ public class CompactedBlock extends Block
 
     private BlockState getCompactedState(LevelAccessor level, BlockPos pos)
     {
-        BlockState stateTop = level.getBlockState(pos.above());
-        BlockState stateBottom = level.getBlockState(pos.below());
+        var stateTop = level.getBlockState(pos.above());
+        var stateBottom = level.getBlockState(pos.below());
         return this.defaultBlockState().setValue(TYPE, stateTop.getBlock() == this && stateBottom.getBlock() == this ? Type.MIDDLE : stateTop.getBlock() == this ? Type.TOP : stateBottom.getBlock() == this ? Type.BOTTOM : Type.NONE);
     }
 

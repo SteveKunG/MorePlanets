@@ -8,7 +8,6 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
-import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.RenderType;
 
 public class DarkEnergyBallModel extends Model
@@ -23,9 +22,9 @@ public class DarkEnergyBallModel extends Model
 
     public static LayerDefinition createBodyLayer()
     {
-        MeshDefinition meshDefinition = new MeshDefinition();
-        PartDefinition partDefinition = meshDefinition.getRoot();
-        partDefinition.addOrReplaceChild("ball", CubeListBuilder.create().texOffs(32, 32).addBox(-2.5F, -5.0F, -2.5F, 5.0F, 5.0F, 5.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+        var meshDefinition = new MeshDefinition();
+        var partDefinition = meshDefinition.getRoot();
+        partDefinition.addOrReplaceChild("ball", CubeListBuilder.create().texOffs(32, 32).addBox(-2.5F, -5.0F, -2.5F, 5.0F, 5.0F, 5.0F), PartPose.ZERO);
         return LayerDefinition.create(meshDefinition, 32, 32);
     }
 

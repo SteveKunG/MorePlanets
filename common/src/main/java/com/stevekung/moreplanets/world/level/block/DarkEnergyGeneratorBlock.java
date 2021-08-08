@@ -34,7 +34,7 @@ public class DarkEnergyGeneratorBlock extends Block implements SimpleWaterlogged
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext)
     {
-        FluidState fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
+        var fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
         return this.defaultBlockState().setValue(WATERLOGGED, fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8);
     }
 

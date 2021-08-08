@@ -38,16 +38,12 @@ public class IonPlasmaRodBlock extends DirectionalBlock implements SimpleWaterlo
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
     {
-        switch (blockState.getValue(FACING).getAxis())
-        {
-            case X:
-            default:
-                return X_AXIS_AABB;
-            case Z:
-                return Z_AXIS_AABB;
-            case Y:
-                return Y_AXIS_AABB;
-        }
+        return switch (blockState.getValue(FACING).getAxis())
+                {
+                    default -> X_AXIS_AABB;
+                    case Z -> Z_AXIS_AABB;
+                    case Y -> Y_AXIS_AABB;
+                };
     }
 
     @Override
@@ -71,8 +67,8 @@ public class IonPlasmaRodBlock extends DirectionalBlock implements SimpleWaterlo
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext)
     {
-        FluidState fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
-        boolean bl = fluidState.getType() == Fluids.WATER;
+        var fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
+        var bl = fluidState.getType() == Fluids.WATER;
         return this.defaultBlockState().setValue(FACING, blockPlaceContext.getClickedFace()).setValue(WATERLOGGED, bl);
     }
 

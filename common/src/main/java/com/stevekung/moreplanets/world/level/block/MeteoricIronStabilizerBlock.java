@@ -37,37 +37,27 @@ public class MeteoricIronStabilizerBlock extends Block implements SimpleWaterlog
     @Override
     public BlockState rotate(BlockState blockState, Rotation rotation)
     {
-        switch (rotation)
-        {
-            case COUNTERCLOCKWISE_90:
-            case CLOCKWISE_90:
-                switch (blockState.getValue(AXIS))
+        return switch (rotation)
                 {
-                    case X:
-                        return blockState.setValue(AXIS, Direction.Axis.Z);
-                    case Z:
-                        return blockState.setValue(AXIS, Direction.Axis.X);
-                    default:
-                        return blockState;
-                }
-            default:
-                return blockState;
-        }
+                    case COUNTERCLOCKWISE_90, CLOCKWISE_90 -> switch (blockState.getValue(AXIS))
+                            {
+                                case X -> blockState.setValue(AXIS, Direction.Axis.Z);
+                                case Z -> blockState.setValue(AXIS, Direction.Axis.X);
+                                default -> blockState;
+                            };
+                    default -> blockState;
+                };
     }
 
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
     {
-        switch (blockState.getValue(AXIS))
-        {
-            case X:
-            default:
-                return X_AXIS_AABB;
-            case Z:
-                return Z_AXIS_AABB;
-            case Y:
-                return Y_AXIS_AABB;
-        }
+        return switch (blockState.getValue(AXIS))
+                {
+                    default -> X_AXIS_AABB;
+                    case Z -> Z_AXIS_AABB;
+                    case Y -> Y_AXIS_AABB;
+                };
     }
 
     @Override
@@ -89,7 +79,7 @@ public class MeteoricIronStabilizerBlock extends Block implements SimpleWaterlog
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext)
     {
-        FluidState fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
+        var fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
         return this.defaultBlockState().setValue(AXIS, blockPlaceContext.getClickedFace().getAxis()).setValue(WATERLOGGED, fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8);
     }
 

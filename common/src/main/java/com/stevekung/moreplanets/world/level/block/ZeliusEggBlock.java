@@ -8,7 +8,6 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.monster.Silverfish;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -23,7 +22,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -49,7 +47,7 @@ public class ZeliusEggBlock extends HalfTransparentBlock implements SimpleWaterl
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext)
     {
-        FluidState fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
+        var fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
         return this.defaultBlockState().setValue(WATERLOGGED, fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8);
     }
 
@@ -87,9 +85,9 @@ public class ZeliusEggBlock extends HalfTransparentBlock implements SimpleWaterl
     @Override
     public void wasExploded(Level level, BlockPos blockPos, Explosion explosion)
     {
-        if (level instanceof ServerLevel)
+        if (level instanceof ServerLevel serverLevel)
         {
-            this.spawnInfestation((ServerLevel)level, blockPos);
+            this.spawnInfestation(serverLevel, blockPos);
         }
     }
 
@@ -122,11 +120,11 @@ public class ZeliusEggBlock extends HalfTransparentBlock implements SimpleWaterl
     @Override
     public void stepOn(Level level, BlockPos blockPos, BlockState blockState, Entity entity)
     {
-        double d = Math.abs(entity.getDeltaMovement().y);
+        var d = Math.abs(entity.getDeltaMovement().y);
 
         if (d < 0.1D && !entity.isSteppingCarefully())
         {
-            double e = 0.4D + d * 0.2D;
+            var e = 0.4D + d * 0.2D;
             entity.setDeltaMovement(entity.getDeltaMovement().multiply(e, 1.0D, e));
         }
         super.stepOn(level, blockPos, blockState, entity);
@@ -134,11 +132,11 @@ public class ZeliusEggBlock extends HalfTransparentBlock implements SimpleWaterl
 
     private void bounceUp(Entity entity)
     {
-        Vec3 vec3 = entity.getDeltaMovement();
+        var vec3 = entity.getDeltaMovement();
 
         if (vec3.y < 0.0D)
         {
-            double d = entity instanceof LivingEntity ? 1.0D : 0.8D;
+            var d = entity instanceof LivingEntity ? 1.0D : 0.8D;
             entity.setDeltaMovement(vec3.x, -vec3.y * d, vec3.z);
         }
     }
@@ -146,7 +144,7 @@ public class ZeliusEggBlock extends HalfTransparentBlock implements SimpleWaterl
     //TODO New mob
     private void spawnInfestation(ServerLevel serverLevel, BlockPos blockPos)
     {
-        Silverfish silverfish = EntityType.SILVERFISH.create(serverLevel);
+        var silverfish = EntityType.SILVERFISH.create(serverLevel);
         silverfish.moveTo(blockPos.getX() + 0.5D, blockPos.getY(), blockPos.getZ() + 0.5D, 0.0F, 0.0F);
         serverLevel.addFreshEntity(silverfish);
         silverfish.spawnAnim();

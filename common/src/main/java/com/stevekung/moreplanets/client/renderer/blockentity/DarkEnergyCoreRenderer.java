@@ -36,12 +36,12 @@ public class DarkEnergyCoreRenderer implements BlockEntityRenderer<DarkEnergyCor
     @Override
     public void render(DarkEnergyCoreBlockEntity be, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int packedLight, int packedOverlay)
     {
-        boolean isFull = be.getBlockState().getValue(DarkEnergyCoreBlock.STATE) == DarkEnergyCoreBlock.State.FULL;
+        var isFull = be.getBlockState().getValue(DarkEnergyCoreBlock.STATE) == DarkEnergyCoreBlock.State.FULL;
         poseStack.pushPose();
         poseStack.translate(0.5D, 0.75D, 0.5D);
-        float ticks = be.ticks + partialTicks;
+        var ticks = be.ticks + partialTicks;
         poseStack.translate(0.0D, 0.3F + Mth.sin(ticks * 0.1F) * 0.05F, 0.0D);
-        VertexConsumer vertexConsumer = isFull ? BALL_MATERIAL.buffer(multiBufferSource, RenderType::entitySolid) : EGG_MATERIAL.buffer(multiBufferSource, RenderType::entitySolid);
+        var vertexConsumer = isFull ? BALL_MATERIAL.buffer(multiBufferSource, RenderType::entitySolid) : EGG_MATERIAL.buffer(multiBufferSource, RenderType::entitySolid);
         this.ballModel.renderToBuffer(poseStack, vertexConsumer, packedLight, packedOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
 
         if (isFull)
@@ -60,13 +60,13 @@ public class DarkEnergyCoreRenderer implements BlockEntityRenderer<DarkEnergyCor
 
     private void renderDarkBeam(PoseStack poseStack, MultiBufferSource multiBufferSource, float ticks)
     {
-        float alpha = 0.35F;
-        Random random = new Random(432L);
-        VertexConsumer vertexConsumer5 = multiBufferSource.getBuffer(RenderType.lightning());
+        var alpha = 0.35F;
+        var random = new Random(432L);
+        var vertexConsumer5 = multiBufferSource.getBuffer(RenderType.lightning());
         poseStack.pushPose();
         poseStack.translate(0, -0.2D, 0);
 
-        for (int n = 0; n < 12; ++n)
+        for (var n = 0; n < 12; ++n)
         {
             poseStack.mulPose(Vector3f.XP.rotationDegrees(random.nextFloat() * 360.0F));
             poseStack.mulPose(Vector3f.YP.rotationDegrees(random.nextFloat() * 360.0F));
@@ -74,10 +74,10 @@ public class DarkEnergyCoreRenderer implements BlockEntityRenderer<DarkEnergyCor
             poseStack.mulPose(Vector3f.XP.rotationDegrees(random.nextFloat() * 360.0F));
             poseStack.mulPose(Vector3f.YP.rotationDegrees(random.nextFloat() * 360.0F));
             poseStack.mulPose(Vector3f.ZP.rotationDegrees(random.nextFloat() * 360.0F + ticks * 90.0F));
-            float height = random.nextFloat() * -1.0F;
-            float width = random.nextFloat() * 2.0F + alpha;
-            Matrix4f matrix4f = poseStack.last().pose();
-            int alphaVal = (int) (255.0F * (1.0F - alpha));
+            var height = random.nextFloat() * -1.0F;
+            var width = random.nextFloat() * 2.0F + alpha;
+            var matrix4f = poseStack.last().pose();
+            var alphaVal = (int) (255.0F * (1.0F - alpha));
             vertex01(vertexConsumer5, matrix4f, alphaVal);
             vertex2(vertexConsumer5, matrix4f, height, width);
             vertex3(vertexConsumer5, matrix4f, height, width);

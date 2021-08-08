@@ -46,31 +46,22 @@ public class PurloniteClusterBlock extends Block implements SimpleWaterloggedBlo
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
     {
-        Direction direction = blockState.getValue(FACING);
-
-        switch (direction)
-        {
-            case NORTH:
-                return this.northAabb;
-            case SOUTH:
-                return this.southAabb;
-            case EAST:
-                return this.eastAabb;
-            case WEST:
-                return this.westAabb;
-            case DOWN:
-                return this.downAabb;
-            case UP:
-            default:
-                return this.upAabb;
-        }
+        return switch (blockState.getValue(FACING))
+                {
+                    case NORTH -> this.northAabb;
+                    case SOUTH -> this.southAabb;
+                    case EAST -> this.eastAabb;
+                    case WEST -> this.westAabb;
+                    case DOWN -> this.downAabb;
+                    default -> this.upAabb;
+                };
     }
 
     @Override
     public boolean canSurvive(BlockState blockState, LevelReader levelReader, BlockPos blockPos)
     {
-        Direction direction = blockState.getValue(FACING);
-        BlockPos blockPos2 = blockPos.relative(direction.getOpposite());
+        var direction = blockState.getValue(FACING);
+        var blockPos2 = blockPos.relative(direction.getOpposite());
         return levelReader.getBlockState(blockPos2).isFaceSturdy(levelReader, blockPos2, direction);
     }
 
@@ -88,8 +79,8 @@ public class PurloniteClusterBlock extends Block implements SimpleWaterloggedBlo
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext)
     {
-        LevelAccessor levelAccessor = blockPlaceContext.getLevel();
-        BlockPos blockPos = blockPlaceContext.getClickedPos();
+        var levelAccessor = blockPlaceContext.getLevel();
+        var blockPos = blockPlaceContext.getClickedPos();
         return this.defaultBlockState().setValue(WATERLOGGED, levelAccessor.getFluidState(blockPos).getType() == Fluids.WATER).setValue(FACING, blockPlaceContext.getClickedFace());
     }
 
