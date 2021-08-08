@@ -4,6 +4,7 @@ import com.stevekung.moreplanets.world.item.MPItems;
 import com.stevekung.moreplanets.world.level.block.MPBlocks;
 import com.stevekung.stevekungslib.data.ItemModelProviderBase;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ItemModels extends ItemModelProviderBase
@@ -13,7 +14,6 @@ public class ItemModels extends ItemModelProviderBase
         super(generator, modid, helper);
     }
 
-    //TODO 1.17 Update Purlonite to use Amethyst models
     @Override
     protected void registerModels()
     {
@@ -37,6 +37,11 @@ public class ItemModels extends ItemModelProviderBase
 
         this.itemGenerated(MPBlocks.PURLONITE_CRYSTAL_LANTERN.asItem());
         this.itemGenerated(MPBlocks.DARK_CRYSTAL_LANTERN.asItem());
+
+        this.itemGenerated(MPBlocks.PURLONITE_CLUSTER.asItem(), new ResourceLocation("amethyst_cluster")).texture("layer0", "moreplanets:block/purlonite_cluster");
+        this.itemGenerated(MPBlocks.SMALL_PURLONITE_BUD.asItem(), new ResourceLocation("small_amethyst_bud")).texture("layer0", "moreplanets:block/small_purlonite_bud");
+        this.itemGenerated(MPBlocks.MEDIUM_PURLONITE_BUD.asItem(), new ResourceLocation("medium_amethyst_bud")).texture("layer0", "moreplanets:block/medium_purlonite_bud");
+        this.itemGenerated(MPBlocks.LARGE_PURLONITE_BUD.asItem(), new ResourceLocation("large_amethyst_bud")).texture("layer0", "moreplanets:block/large_purlonite_bud");
 
         this.itemGenerated(MPItems.GLOWING_IRON_INGOT);
         this.itemGenerated(MPItems.RAW_GLOWING_IRON);

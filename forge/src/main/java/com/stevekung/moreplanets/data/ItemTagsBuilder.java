@@ -34,7 +34,9 @@ public class ItemTagsBuilder extends ItemTagsProvider
         this.tag(Tags.Items.COBBLESTONE).add(MPBlocks.DIONA_COBBLESTONE.asItem());
         this.tag(Tags.Items.STORAGE_BLOCKS_IRON).add(MPBlocks.GLOWING_IRON_BLOCK.asItem());
 
+        this.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(MPItems.GLOWING_IRON_INGOT);
         this.tag(Tags.Items.INGOTS_IRON).add(MPItems.GLOWING_IRON_INGOT);
+        this.tag(ItemTags.CLUSTER_MAX_HARVESTABLES).add(MPItems.GLOWING_IRON_PICKAXE);
 
         this.tag(FABRIC_AXES).add(MPItems.GLOWING_IRON_AXE);
         this.tag(FABRIC_HOES).add(MPItems.GLOWING_IRON_HOE);
