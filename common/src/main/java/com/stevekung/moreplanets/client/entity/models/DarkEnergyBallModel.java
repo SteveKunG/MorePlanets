@@ -24,7 +24,7 @@ public class DarkEnergyBallModel extends Model
     {
         var meshDefinition = new MeshDefinition();
         var partDefinition = meshDefinition.getRoot();
-        partDefinition.addOrReplaceChild("ball", CubeListBuilder.create().texOffs(32, 32).addBox(-2.5F, -5.0F, -2.5F, 5.0F, 5.0F, 5.0F), PartPose.ZERO);
+        partDefinition.addOrReplaceChild("ball", CubeListBuilder.create().texOffs(0, 0).addBox(-2.5F, -5.0F, -2.5F, 5.0F, 5.0F, 5.0F), PartPose.ZERO);
         return LayerDefinition.create(meshDefinition, 32, 32);
     }
 

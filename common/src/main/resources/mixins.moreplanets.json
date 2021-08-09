@@ -6,7 +6,7 @@
     "mixins": [
     ],
     "client": [
-        "client.MixinLayerDefinitions"
+        "client.model.geom.MixinLayerDefinitions"
     ],
     "injectors": {
         "defaultRequire": 1

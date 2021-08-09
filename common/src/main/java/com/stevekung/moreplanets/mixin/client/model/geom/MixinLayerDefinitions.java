@@ -1,4 +1,4 @@
-package com.stevekung.moreplanets.mixin.client;
+package com.stevekung.moreplanets.mixin.client.model.geom;
 
 import java.util.Map;
 
