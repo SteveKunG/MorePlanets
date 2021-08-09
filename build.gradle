@@ -31,6 +31,8 @@ minecraft {
     runDir = "run"
     mappings = "${mcp_mapping}"
     makeObfSourceJar = false
+    clientJvmArgs += "-Dfml.coreMods.load=micdoodle8.mods.miccore.MicdoodlePlugin -Dmixin.debug.export=true -Dmixin.debug.verbose=true"
+    clientRunArgs += "--username ${project.username} --password ${project.password} --mixin mixins.more_planets.json --tweakClass org.spongepowered.asm.launch.MixinTweaker"
 
     replace "4.0.1.-1", project.gc_require_version
     replaceIn "MorePlanetsMod.java"
