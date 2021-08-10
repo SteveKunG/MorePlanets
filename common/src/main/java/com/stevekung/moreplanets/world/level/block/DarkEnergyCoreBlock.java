@@ -3,6 +3,7 @@ package com.stevekung.moreplanets.world.level.block;
 import org.jetbrains.annotations.Nullable;
 import com.stevekung.moreplanets.world.level.block.entity.DarkEnergyCoreBlockEntity;
 import com.stevekung.moreplanets.world.level.block.entity.MPBlockEntities;
+import com.stevekung.moreplanets.world.level.block.state.properties.MPBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
@@ -33,7 +34,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class DarkEnergyCoreBlock extends HalfTransparentBlock implements SimpleWaterloggedBlock, EntityBlock
 {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public static final EnumProperty<State> STATE = EnumProperty.create("state", State.class);
+    public static final EnumProperty<State> STATE = MPBlockStateProperties.STATE;
     private static final VoxelShape SHAPE = Shapes.join(Block.box(4, 0, 4, 12, 1, 12), Shapes.or(Block.box(3, 1, 3, 13, 3, 13), Block.box(2, 3, 2, 14, 5, 14), Block.box(1, 5, 1, 15, 7, 15), Block.box(2, 7, 2, 14, 8, 14), Block.box(5, 8, 5, 11, 9, 11)), BooleanOp.OR);
 
     public DarkEnergyCoreBlock(Properties properties)

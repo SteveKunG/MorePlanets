@@ -1,5 +1,6 @@
 package com.stevekung.moreplanets.world.level.block;
 
+import com.stevekung.moreplanets.world.level.block.state.properties.MPBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
@@ -21,7 +22,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class DarkEnergyGeneratorBlock extends Block implements SimpleWaterloggedBlock
 {
-    public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
+    public static final BooleanProperty ACTIVE = MPBlockStateProperties.ACTIVE;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     private static final VoxelShape SHAPE = Shapes.join(Block.box(1, 0, 1, 15, 4, 15), Shapes.or(Block.box(2, 4, 2, 14, 6, 14), Block.box(5, 6, 5, 11, 7, 11), Block.box(6, 0, 13, 10, 7, 16), Block.box(6, 0, 0, 10, 7, 3), Block.box(13, 0, 6, 16, 7, 10), Block.box(0, 0, 6, 3, 7, 10)), BooleanOp.OR);
 

@@ -1,5 +1,6 @@
 package com.stevekung.moreplanets.world.level.block;
 
+import com.stevekung.moreplanets.world.level.block.state.properties.MPBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.StringRepresentable;
@@ -12,7 +13,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 public class CompactedBlock extends Block
 {
-    public static final EnumProperty<Type> TYPE = EnumProperty.create("type", Type.class);
+    public static final EnumProperty<Type> TYPE = MPBlockStateProperties.TYPE;
 
     public CompactedBlock(Properties properties)
     {
