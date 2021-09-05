@@ -9,6 +9,7 @@ import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.common.util.EnumHelper;
@@ -25,6 +26,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import stevekung.mods.moreplanets.command.CommandOpenCelestialScreen;
 import stevekung.mods.moreplanets.core.capability.CapabilityHandlerMP;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
@@ -115,6 +117,7 @@ public class MorePlanetsMod
         }
         EnumHelper.addEnum(FrameType.class, "TASK_PURPLE", new Class[] { String.class, Integer.TYPE, TextFormatting.class }, "task_purple", 0, TextFormatting.DARK_PURPLE);
         PaintingMP.RONG = EnumHelper.addArt("RONG", "rong", 32, 32, 0, 128);
+        ClientCommandHandler.instance.registerCommand(new CommandOpenCelestialScreen());
     }
 
     @EventHandler

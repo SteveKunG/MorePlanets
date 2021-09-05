@@ -32,7 +32,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.event.ClickEvent;
+import net.minecraft.util.text.event.ClickEvent.Action;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
@@ -40,10 +45,12 @@ import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent.OverlayType;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.renderer.MultiblockRendererUtils;
@@ -65,6 +72,9 @@ import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.utils.blocks.fluid.LiquidUtils;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
+import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 import stevekung.mods.stevekunglib.utils.client.GLConstants;
 import stevekung.mods.stevekunglib.utils.client.event.AddRainParticleEvent;
 import stevekung.mods.stevekunglib.utils.client.event.CameraTransformEvent;
@@ -75,6 +85,7 @@ public class ClientEventHandler
 {
     private final Map<BlockPos, Integer> beamList = new HashMap<>();
     private Minecraft mc;
+    private boolean firstWorldJoin;
     private boolean initVersionCheck;
     public static final List<BlockPos> RECEIVER_RENDER_POS = new ArrayList<>();
     public static final List<BlockPos> WASTE_RENDER_POS = new ArrayList<>();
@@ -84,6 +95,27 @@ public class ClientEventHandler
     public ClientEventHandler()
     {
         this.mc = Minecraft.getMinecraft();
+    }
+
+    @SubscribeEvent
+    public void onDisconnect(FMLNetworkEvent.ClientDisconnectionFromServerEvent event)
+    {
+        this.firstWorldJoin = false;
+    }
+
+    @SubscribeEvent
+    public void onEntityJoinWorld(EntityJoinWorldEvent event)
+    {
+        if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && event.getEntity() == this.mc.player && !this.firstWorldJoin && !WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData && !WorldTickEventHandler.survivalPlanetData.disableMessage)
+        {
+            ITextComponent component = new TextComponentString(ColorUtils.stringToRGB(IItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(new TextComponentString("Want to start survival on other planets? Click here to open ").appendSibling(new TextComponentString("Celestial Selection Screen").setStyle(new Style().setColor(TextFormatting.AQUA))).appendText(" to get start over there!").setStyle(new Style().setColor(TextFormatting.YELLOW)));
+            component.getStyle().setClickEvent(new ClickEvent(Action.RUN_COMMAND, "/mpcelestial"));
+            ClientUtils.printClientMessage(component);
+            ITextComponent component2 = new TextComponentString("Or if you don't want to go.").appendSibling(new TextComponentString(" Click here to disable this message").setStyle(new Style().setColor(TextFormatting.RED))).setStyle(new Style().setColor(TextFormatting.YELLOW));
+            component2.getStyle().setClickEvent(new ClickEvent(Action.RUN_COMMAND, "/mpcelestial disable"));
+            ClientUtils.printClientMessage(component2);
+            this.firstWorldJoin = true;
+        }
     }
 
     @SubscribeEvent

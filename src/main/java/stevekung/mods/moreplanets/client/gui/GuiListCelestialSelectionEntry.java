@@ -11,7 +11,6 @@ import net.minecraft.client.gui.GuiListExtended;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
@@ -38,15 +37,9 @@ public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListE
     public void drawEntry(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY, boolean isSelected, float partialTicks)
     {
         String name = this.celestial.getLocalizedName();
-        String reach = this.celestial.getReachable() ? TextFormatting.DARK_GREEN + "Reachable" : TextFormatting.DARK_RED + "Unreachable";
         String tier = String.valueOf(this.celestial.getTierRequirement());
         this.mc.fontRenderer.drawString(name, x + 35, y + 1, 16777215);
-        this.mc.fontRenderer.drawString(reach, x + 35, y + this.mc.fontRenderer.FONT_HEIGHT + 3, 8421504);
-
-        if (this.celestial.getReachable())
-        {
-            this.mc.fontRenderer.drawString("Tier " + tier, x + 35, y + this.mc.fontRenderer.FONT_HEIGHT + 14, 8421504);
-        }
+        this.mc.fontRenderer.drawString("Tier " + tier, x + 35, y + this.mc.fontRenderer.FONT_HEIGHT + 3, 8421504);
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(this.celestialIcon);

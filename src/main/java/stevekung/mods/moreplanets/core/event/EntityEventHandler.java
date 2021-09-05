@@ -26,9 +26,16 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.event.ClickEvent;
+import net.minecraft.util.text.event.ClickEvent.Action;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
@@ -57,12 +64,13 @@ import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.EntityEffectUtils;
 import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.moreplanets.utils.TeleporterSpaceNether;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
 import stevekung.mods.moreplanets.world.IMeteorType;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
+import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 
 public class EntityEventHandler
 {
-    private boolean openCelestialGui;
-
     @SubscribeEvent
     public void onZombieSummonAid(SummonAidEvent event)
     {
@@ -114,12 +122,6 @@ public class EntityEventHandler
     }
 
     @SubscribeEvent
-    public void onDisconnect(FMLNetworkEvent.ClientDisconnectionFromServerEvent event)
-    {
-        this.openCelestialGui = false;
-    }
-
-    @SubscribeEvent
     public void onLivingUpdate(LivingEvent.LivingUpdateEvent event)
     {
         EntityLivingBase living = event.getEntityLiving();
@@ -138,12 +140,6 @@ public class EntityEventHandler
         else if (living instanceof EntityPlayerMP)
         {
             EntityPlayerMP player = (EntityPlayerMP)living;
-
-            if (player.ticksExisted > 100 && ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && !WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData && !this.openCelestialGui)
-            {
-                GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_OPEN_SURVIVAL_PLANET_GUI, player.dimension), player);
-                this.openCelestialGui = true;
-            }
 
             if (player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) || this.isInOxygen(world, player))
             {

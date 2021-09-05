@@ -34,6 +34,8 @@ import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.moreplanets.utils.TeleportUtils;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
@@ -125,7 +127,7 @@ public class PacketSimpleMP extends PacketBase
             break;
         case C_MESSAGE_SURVIVAL_PLANET:
             String name = (String)this.data.get(0);
-            player.sendMessage(JsonUtils.create("You select " + TextFormatting.AQUA + name + TextFormatting.RESET + " as survival planet, Good Luck!"));
+            player.sendMessage(new TextComponentString(ColorUtils.stringToRGB(IItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(JsonUtils.create("You select " + TextFormatting.AQUA + LangUtils.translate(name) + TextFormatting.RESET + " as survival planet, Good Luck!")));
             break;
         case C_PLAY_CREATED_BLACK_HOLE_SOUND:
             player.playSound(MPSounds.BLACK_HOLE_CREATED, 5.0F, 0.8F);

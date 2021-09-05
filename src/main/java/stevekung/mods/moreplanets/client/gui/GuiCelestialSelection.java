@@ -42,19 +42,19 @@ public class GuiCelestialSelection extends GuiScreen
     public void initGui()
     {
         this.listCelestial.clear();
-        this.listCelestial.addAll(GalaxyRegistry.getRegisteredPlanets().values().stream().filter(planet -> planet.getDimensionID() != 0 && planet.getDimensionID() != ConfigManagerMP.moreplanets_dimension.idDimensionSpaceNether).collect(Collectors.toList()));
+        this.listCelestial.addAll(GalaxyRegistry.getRegisteredPlanets().values().stream().filter(planet -> planet.getDimensionID() != 0 && planet.getDimensionID() != ConfigManagerMP.moreplanets_dimension.idDimensionSpaceNether && planet.getReachable()).collect(Collectors.toList()));
         this.listCelestial.addAll(GalaxyRegistry.getRegisteredMoons().values());
         this.selectionList = new GuiListCelestialSelection(this, this.listCelestial, this.width, this.height, 48, this.height - 32, 36);
-        this.doneButton = this.addButton(new GuiButton(0, this.width / 2 - 32, this.height - 26, 150, 20, LangUtils.translate("gui.done")));
+        this.doneButton = this.addButton(new GuiButton(0, this.width / 2 - 28, this.height - 26, 100, 20, LangUtils.translate("gui.done")));
+        this.addButton(new GuiButton(1, this.width / 2 + 80, this.height - 26, 100, 20, LangUtils.translate("gui.cancel")));
         this.doneButton.enabled = false;
 
-        this.addButton(this.azButton = new GuiButton(SortType.A_TO_Z.id, this.width / 2 - 205, 26, 40, 20, "A-Z"));
+        this.addButton(this.azButton = new GuiButton(SortType.A_TO_Z.id, this.width / 2 - 183, 26, 45, 20, "A-Z"));
         this.azButton.enabled = false;
-        this.addButton(new GuiButton(SortType.Z_TO_A.id, this.width / 2 - 164, 26, 40, 20, "Z-A"));
-        this.addButton(new GuiButton(SortType.REACHALBLE.id, this.width / 2 - 123, 26, 60, 20, "Reachable"));
-        this.addButton(new GuiButton(SortType.TIER.id, this.width / 2 - 62, 26, 40, 20, "Tier"));
+        this.addButton(new GuiButton(SortType.Z_TO_A.id, this.width / 2 - 136, 26, 45, 20, "Z-A"));
+        this.addButton(new GuiButton(SortType.TIER.id, this.width / 2 - 89, 26, 45, 20, "Tier"));
 
-        this.searchField = new GuiTextField(0, this.fontRenderer, this.width / 2 - 150, this.height - 26, 100, 14);
+        this.searchField = new GuiTextField(0, this.fontRenderer, this.width / 2 - 150, this.height - 23, 100, 14);
         this.searchField.setFocused(true);
         this.searchField.setCanLoseFocus(true);
     }
@@ -82,6 +82,7 @@ public class GuiCelestialSelection extends GuiScreen
     @Override
     protected void keyTyped(char typedChar, int keyCode) throws IOException
     {
+        super.keyTyped(typedChar, keyCode);
         this.searchField.textboxKeyTyped(typedChar, keyCode);
     }
 
@@ -95,6 +96,10 @@ public class GuiCelestialSelection extends GuiScreen
             if (button.id == 0 && entry != null)
             {
                 entry.teleport();
+                this.mc.displayGuiScreen(null);
+            }
+            if (button.id == 1)
+            {
                 this.mc.displayGuiScreen(null);
             }
 
@@ -123,8 +128,8 @@ public class GuiCelestialSelection extends GuiScreen
         if (this.selectionList != null)
         {
             this.selectionList.drawScreen(mouseX, mouseY, partialTicks);
-            this.drawCenteredString(this.fontRenderer, "Select Celestial", this.width / 2, 15, 16777215);
-            this.drawCenteredString(this.fontRenderer, LangUtils.translate("fml.menu.mods.search"), this.width / 2 - 173, this.height - 23, 16777215);
+            this.drawCenteredString(this.fontRenderer, "Select Celestial", this.width / 2, 12, 16777215);
+            this.drawCenteredString(this.fontRenderer, LangUtils.translate("fml.menu.mods.search"), this.width / 2 - 173, this.height - 21, 16777215);
 
             for (int i = 0; i < this.selectionList.getSize(); ++i)
             {
@@ -286,8 +291,8 @@ public class GuiCelestialSelection extends GuiScreen
 
     enum SortType implements Comparator<CelestialBody>
     {
-        A_TO_Z(1),
-        Z_TO_A(2)
+        A_TO_Z(10),
+        Z_TO_A(11)
         {
             @Override
             public int compare(CelestialBody celestial1, CelestialBody celestial2)
@@ -295,20 +300,12 @@ public class GuiCelestialSelection extends GuiScreen
                 return celestial2.getName().compareTo(celestial1.getName());
             }
         },
-        REACHALBLE(3)
+        TIER(12)
         {
             @Override
             public int compare(CelestialBody celestial1, CelestialBody celestial2)
             {
-                return Boolean.compare(celestial2.getReachable(), celestial1.getReachable());
-            }
-        },
-        TIER(4)
-        {
-            @Override
-            public int compare(CelestialBody celestial1, CelestialBody celestial2)
-            {
-                return Integer.compare(celestial2.getTierRequirement(), celestial1.getTierRequirement());
+                return Integer.compare(celestial1.getTierRequirement(), celestial2.getTierRequirement());
             }
         };
 
