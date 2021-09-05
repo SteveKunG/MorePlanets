@@ -52,7 +52,7 @@ dependencies {
     compile "industrial-craft:industrialcraft-2-2.8.157:ex112:api"
     compile "player-api:PlayerAPI:1.12.1:1.0"
     compile "de.ellpeck.actuallyadditions:ActuallyAdditions_1.12.2:1.12.2-r151:api"
-    compile "appeng:appliedenergistics2:rv6-stable-6:api"
+    //compile "appeng:appliedenergistics2:rv6-stable-6:api"
 
     compile files(
         "libs/GalacticraftCore-Dev-" + gcDevVersion + ".jar",
