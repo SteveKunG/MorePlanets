@@ -41,8 +41,6 @@ public class MPSounds
     public static final SoundEvent SLIME_SMALL_DESTROYED = MorePlanetsMod.COMMON_REGISTRY.registerSound("slime_small_destroy");
     public static final SoundEvent SMALL_SLIME_JUMP = MorePlanetsMod.COMMON_REGISTRY.registerSound("slime_small_jump");
 
-    public static final SoundEvent A_PLANET_TO_CONQUER = MorePlanetsMod.COMMON_REGISTRY.registerRecord("a_planet_to_conquer");
-
     public static final SoundType ALIEN_EGG = new SoundType(1.0F, 1.0F, MPSounds.ALIEN_EGG_DESTROYED, SoundEvents.BLOCK_SLIME_STEP, SoundEvents.BLOCK_SLIME_PLACE, SoundEvents.BLOCK_SLIME_HIT, SoundEvents.BLOCK_SLIME_FALL);
     public static final SoundType SMALL_SLIME = new SoundType(1.0F, 1.0F, MPSounds.SLIME_SMALL_DESTROYED, SoundEvents.BLOCK_SLIME_STEP, MPSounds.SLIME_SMALL_PLACE, SoundEvents.BLOCK_SLIME_HIT, SoundEvents.BLOCK_SLIME_FALL);
     public static final SoundType LILYPAD = new SoundType(1.0F, 1.0F, SoundEvents.BLOCK_GRASS_BREAK, SoundEvents.BLOCK_GRASS_STEP, MPSounds.LILYPAD_PLACE, SoundEvents.BLOCK_GRASS_HIT, SoundEvents.BLOCK_GRASS_FALL);

@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.init;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -58,7 +59,7 @@ public class MPItems
     public static Item LASER_GUN;
     public static Item ALIEN_DEFENDER_REINFORCEMENT;
     public static Item CREATIVE_SPACE_KIT;
-    public static Item VEIN_FLOATER_DISC;
+    @Deprecated public static Item VEIN_FLOATER_DISC;
     public static Item UPGRADE_TEMPLATE;
     public static Item SHIELD_DAMAGE_UPGRADE;
     public static Item SHIELD_SIZE_UPGRADE;
@@ -290,7 +291,14 @@ public class MPItems
         MPItems.LASER_GUN = new ItemLaserGun("laser_gun").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.SPECIAL));
         MPItems.ALIEN_DEFENDER_REINFORCEMENT = new ItemAlienDefenderReinforcement("alien_defender_reinforcement");
         MPItems.CREATIVE_SPACE_KIT = new ItemCreativeSpaceKit("creative_space_kit").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.SPECIAL));
-        MPItems.VEIN_FLOATER_DISC = new ItemRecordMP("vein_floater_disc", "a_planet_to_conquer", MPSounds.A_PLANET_TO_CONQUER);
+        MPItems.VEIN_FLOATER_DISC = new ItemBaseMP("vein_floater_disc")
+        {
+            @Override
+            public CreativeTabs getCreativeTab()
+            {
+                return null;
+            }
+        };
         MPItems.UPGRADE_TEMPLATE = new ItemBaseMP("upgrade_template").setSortCategory(EnumSortCategoryItem.UPGRADE);
         MPItems.SHIELD_DAMAGE_UPGRADE = new ItemBaseMP("shield_damage_upgrade").setSortCategory(EnumSortCategoryItem.UPGRADE);
         MPItems.SHIELD_SIZE_UPGRADE = new ItemBaseMP("shield_size_upgrade").setSortCategory(EnumSortCategoryItem.UPGRADE);
