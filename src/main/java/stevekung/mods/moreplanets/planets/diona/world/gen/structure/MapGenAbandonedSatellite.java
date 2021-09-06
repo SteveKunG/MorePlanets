@@ -4,26 +4,19 @@ import java.util.Random;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureStart;
-import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.utils.LoggerMP;
 
 public class MapGenAbandonedSatellite extends MapGenStructure
 {
-    private final int maxDistanceBetweenScatteredFeatures;
+    private final int maxDistance = 96;
 
     static
     {
         MapGenStructureIO.registerStructure(MapGenAbandonedSatellite.Start.class, "AbandonedSatellite");
         MapGenStructureIO.registerStructureComponent(StructureAbandonedSatellitePieces.class, "AbandonedSatellite");
-    }
-
-    public MapGenAbandonedSatellite()
-    {
-        this.maxDistanceBetweenScatteredFeatures = 256;
     }
 
     @Override
@@ -40,33 +33,25 @@ public class MapGenAbandonedSatellite extends MapGenStructure
 
         if (chunkX < 0)
         {
-            chunkX -= this.maxDistanceBetweenScatteredFeatures - 1;
-        }
-        if (chunkZ < 0)
-        {
-            chunkZ -= this.maxDistanceBetweenScatteredFeatures - 1;
+            chunkX -= this.maxDistance - 1;
         }
 
-        int k = chunkX / this.maxDistanceBetweenScatteredFeatures;
-        int l = chunkZ / this.maxDistanceBetweenScatteredFeatures;
-        Random rand = this.world.setRandomSeed(k, l, 19029028);
-        k = k * this.maxDistanceBetweenScatteredFeatures;
-        l = l * this.maxDistanceBetweenScatteredFeatures;
-        k = k + rand.nextInt(this.maxDistanceBetweenScatteredFeatures - 8);
-        l = l + rand.nextInt(this.maxDistanceBetweenScatteredFeatures - 8);
+        if (chunkZ < 0)
+        {
+            chunkZ -= this.maxDistance - 1;
+        }
+
+        int k = chunkX / this.maxDistance;
+        int l = chunkZ / this.maxDistance;
+        Random random = this.world.setRandomSeed(k, l, 14357617);
+        k = k * this.maxDistance;
+        l = l * this.maxDistance;
+        k = k + random.nextInt(this.maxDistance - 8);
+        l = l + random.nextInt(this.maxDistance - 8);
 
         if (i == k && j == l)
         {
-            Biome biome = this.world.getBiomeProvider().getBiome(new BlockPos(i * 16 + 8, 0, j * 16 + 8));
-
-            if (biome == null)
-            {
-                return false;
-            }
-            if (biome == MPBiomes.DIONA)
-            {
-                return true;
-            }
+            return true;
         }
         return false;
     }
@@ -75,7 +60,7 @@ public class MapGenAbandonedSatellite extends MapGenStructure
     public BlockPos getNearestStructurePos(World world, BlockPos pos, boolean findUnexplored)
     {
         this.world = world;
-        return findNearestStructurePosBySpacing(world, this, pos, this.maxDistanceBetweenScatteredFeatures, 8, 19029028, false, 150, findUnexplored);
+        return findNearestStructurePosBySpacing(world, this, pos, this.maxDistance, 8, 14357617, false, 100, findUnexplored);
     }
 
     @Override
