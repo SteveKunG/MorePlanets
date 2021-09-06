@@ -271,6 +271,13 @@ public class PacketSimpleMP extends PacketBase
             worldinfo.setRaining(true);
             worldinfo.setThundering(thunder);
             break;
+        case S_SAVE_DISABLE_MESSAGE:
+            if (WorldTickEventHandler.survivalPlanetData != null && !WorldTickEventHandler.survivalPlanetData.disableMessage)
+            {
+                WorldTickEventHandler.survivalPlanetData.disableMessage = true;
+                WorldTickEventHandler.survivalPlanetData.setDirty(true);
+            }
+            break;
         default:
             break;
         }
@@ -288,6 +295,7 @@ public class PacketSimpleMP extends PacketBase
         S_FAILED_UNLOCK_CHEST(Side.SERVER, String.class),
         S_START_SURVIVAL_PLANET(Side.SERVER, Integer.class, String.class),
         S_UPDATE_NIBIRU_WEATHER(Side.SERVER, Boolean.class),
+        S_SAVE_DISABLE_MESSAGE(Side.SERVER),
 
         // CLIENT
         C_REMOVE_GUIDE_POS(Side.CLIENT, BlockPos.class),

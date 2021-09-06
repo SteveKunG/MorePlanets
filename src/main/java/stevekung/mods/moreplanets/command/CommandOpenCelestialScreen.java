@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.command;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -40,11 +41,13 @@ public class CommandOpenCelestialScreen extends CommandBase
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
     {
+        EntityPlayerMP player = PlayerUtil.getPlayerBaseServerFromPlayerUsername(sender.getName(), true);
+
         if (args.length == 1 && args[0].equals("disable"))
         {
             if (!WorldTickEventHandler.survivalPlanetData.disableMessage)
             {
-                WorldTickEventHandler.survivalPlanetData.disableMessage = true;
+                GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_SAVE_DISABLE_MESSAGE, GCCoreUtil.getDimensionID(player.world)));
                 sender.sendMessage(new TextComponentString(ColorUtils.stringToRGB(IItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(new TextComponentTranslation("command.mpcelestial.1").setStyle(new Style().setColor(TextFormatting.YELLOW))));
             }
         }
@@ -52,7 +55,6 @@ public class CommandOpenCelestialScreen extends CommandBase
         {
             if (!WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
             {
-                EntityPlayerMP player = PlayerUtil.getPlayerBaseServerFromPlayerUsername(sender.getName(), true);
                 GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_OPEN_SURVIVAL_PLANET_GUI, player.dimension), player);
             }
             else
