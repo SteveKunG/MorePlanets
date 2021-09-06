@@ -13,17 +13,12 @@ import stevekung.mods.moreplanets.planets.chalos.world.gen.structure.ComponentCh
 
 public class MapGenCheeseSporeHutFeature extends MapGenStructure
 {
+    private final int maxDistance = 32;
+
     static
     {
         MapGenStructureIO.registerStructure(MapGenCheeseSporeHutFeature.Start.class, "CheeseSporeHut");
         MapGenStructureIO.registerStructureComponent(ComponentCheeseSporeHutPieces.CheeseSporeHut.class, "ChalosHut");
-    }
-
-    private final int maxDistanceBetweenScatteredFeatures;
-
-    public MapGenCheeseSporeHutFeature()
-    {
-        this.maxDistanceBetweenScatteredFeatures = 48;
     }
 
     @Override
@@ -40,19 +35,21 @@ public class MapGenCheeseSporeHutFeature extends MapGenStructure
 
         if (chunkX < 0)
         {
-            chunkX -= this.maxDistanceBetweenScatteredFeatures - 1;
+            chunkX -= this.maxDistance - 1;
         }
+
         if (chunkZ < 0)
         {
-            chunkZ -= this.maxDistanceBetweenScatteredFeatures - 1;
+            chunkZ -= this.maxDistance - 1;
         }
-        int k = chunkX / this.maxDistanceBetweenScatteredFeatures;
-        int l = chunkZ / this.maxDistanceBetweenScatteredFeatures;
-        Random rand = this.world.setRandomSeed(k, l, 14357617);
-        k = k * this.maxDistanceBetweenScatteredFeatures;
-        l = l * this.maxDistanceBetweenScatteredFeatures;
-        k = k + rand.nextInt(this.maxDistanceBetweenScatteredFeatures - 8);
-        l = l + rand.nextInt(this.maxDistanceBetweenScatteredFeatures - 8);
+
+        int k = chunkX / this.maxDistance;
+        int l = chunkZ / this.maxDistance;
+        Random random = this.world.setRandomSeed(k, l, 14357617);
+        k = k * this.maxDistance;
+        l = l * this.maxDistance;
+        k = k + random.nextInt(this.maxDistance - 8);
+        l = l + random.nextInt(this.maxDistance - 8);
 
         if (i == k && j == l)
         {
@@ -74,7 +71,7 @@ public class MapGenCheeseSporeHutFeature extends MapGenStructure
     public BlockPos getNearestStructurePos(World world, BlockPos pos, boolean findUnexplored)
     {
         this.world = world;
-        return findNearestStructurePosBySpacing(world, this, pos, this.maxDistanceBetweenScatteredFeatures, 8, 14357617, false, 100, findUnexplored);
+        return findNearestStructurePosBySpacing(world, this, pos, this.maxDistance, 8, 14357617, false, 100, findUnexplored);
     }
 
     @Override
