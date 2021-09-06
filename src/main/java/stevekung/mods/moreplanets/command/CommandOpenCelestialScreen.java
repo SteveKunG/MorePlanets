@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
@@ -44,7 +45,7 @@ public class CommandOpenCelestialScreen extends CommandBase
             if (!WorldTickEventHandler.survivalPlanetData.disableMessage)
             {
                 WorldTickEventHandler.survivalPlanetData.disableMessage = true;
-                sender.sendMessage(new TextComponentString(ColorUtils.stringToRGB(IItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(new TextComponentString("Survival Planet Selection message disabled, you can type /mpcelestial command anytime if you want!").setStyle(new Style().setColor(TextFormatting.YELLOW))));
+                sender.sendMessage(new TextComponentString(ColorUtils.stringToRGB(IItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(new TextComponentTranslation("command.mpcelestial.1").setStyle(new Style().setColor(TextFormatting.YELLOW))));
             }
         }
         else
@@ -56,7 +57,7 @@ public class CommandOpenCelestialScreen extends CommandBase
             }
             else
             {
-                sender.sendMessage(new TextComponentString(ColorUtils.stringToRGB(IItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(new TextComponentString("Sorry. You are already choose survival planet and cannot be changed!").setStyle(new Style().setColor(TextFormatting.RED))));
+                sender.sendMessage(new TextComponentString(ColorUtils.stringToRGB(IItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(new TextComponentTranslation("command.mpcelestial.2").setStyle(new Style().setColor(TextFormatting.RED))));
             }
         }
     }

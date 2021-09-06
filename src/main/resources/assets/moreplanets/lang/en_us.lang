@@ -880,3 +880,16 @@ subtitles.entity.fronos.death=Fronos creature dies
 subtitles.player.laser_shooted=Laser zaps
 subtitles.player.unlock_treasure_chest=Unlocked treasure chest
 subtitles.weather.loud_thunder=Loud thunder strikes
+
+# MESSAGES
+message.survival_planet.1=Want to start survival on other planets? Click here to open
+message.survival_planet.2=Celestial Selection Screen
+message.survival_planet.3=to get start over there!
+message.survival_planet.4=Or if you don't want to go.
+message.survival_planet.5=Click here to disable this message
+message.survival_planet_selected.1=You select
+message.survival_planet_selected.2=as a survival planet, Good Luck!
+
+# COMMANDS
+command.mpcelestial.1=Survival Planet Selection message disabled, you can type /mpcelestial command anytime if you want!
+command.mpcelestial.2=Sorry. You are already choose survival planet and cannot be changed!

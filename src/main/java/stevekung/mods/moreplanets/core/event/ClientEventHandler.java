@@ -32,10 +32,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.*;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.ClickEvent.Action;
 import net.minecraft.world.World;
@@ -108,10 +105,10 @@ public class ClientEventHandler
     {
         if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && event.getEntity() == this.mc.player && !this.firstWorldJoin && !WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData && !WorldTickEventHandler.survivalPlanetData.disableMessage)
         {
-            ITextComponent component = new TextComponentString(ColorUtils.stringToRGB(IItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(new TextComponentString("Want to start survival on other planets? Click here to open ").appendSibling(new TextComponentString("Celestial Selection Screen").setStyle(new Style().setColor(TextFormatting.AQUA))).appendText(" to get start over there!").setStyle(new Style().setColor(TextFormatting.YELLOW)));
+            ITextComponent component = new TextComponentString(ColorUtils.stringToRGB(IItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(new TextComponentTranslation("message.survival_planet.1").appendText(" ").appendSibling(new TextComponentTranslation("message.survival_planet.2").setStyle(new Style().setColor(TextFormatting.AQUA))).appendText(" ").appendSibling(new TextComponentTranslation("message.survival_planet.3")).setStyle(new Style().setColor(TextFormatting.YELLOW)));
             component.getStyle().setClickEvent(new ClickEvent(Action.RUN_COMMAND, "/mpcelestial"));
             ClientUtils.printClientMessage(component);
-            ITextComponent component2 = new TextComponentString("Or if you don't want to go.").appendSibling(new TextComponentString(" Click here to disable this message").setStyle(new Style().setColor(TextFormatting.RED))).setStyle(new Style().setColor(TextFormatting.YELLOW));
+            ITextComponent component2 = new TextComponentTranslation("message.survival_planet.4").appendText(" ").appendSibling(new TextComponentTranslation("message.survival_planet.5").setStyle(new Style().setColor(TextFormatting.RED))).setStyle(new Style().setColor(TextFormatting.YELLOW));
             component2.getStyle().setClickEvent(new ClickEvent(Action.RUN_COMMAND, "/mpcelestial disable"));
             ClientUtils.printClientMessage(component2);
             this.firstWorldJoin = true;

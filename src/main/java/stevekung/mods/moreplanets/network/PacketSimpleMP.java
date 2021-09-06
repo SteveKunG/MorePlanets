@@ -127,7 +127,7 @@ public class PacketSimpleMP extends PacketBase
             break;
         case C_MESSAGE_SURVIVAL_PLANET:
             String name = (String)this.data.get(0);
-            player.sendMessage(new TextComponentString(ColorUtils.stringToRGB(IItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(JsonUtils.create("You select " + TextFormatting.AQUA + LangUtils.translate(name) + TextFormatting.RESET + " as survival planet, Good Luck!")));
+            player.sendMessage(new TextComponentString(ColorUtils.stringToRGB(IItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(JsonUtils.create(LangUtils.translate("message.survival_planet_selected.1") + " " + TextFormatting.AQUA + LangUtils.translate(name) + TextFormatting.RESET + " " + LangUtils.translate("message.survival_planet_selected.2"))));
             break;
         case C_PLAY_CREATED_BLACK_HOLE_SOUND:
             player.playSound(MPSounds.BLACK_HOLE_CREATED, 5.0F, 0.8F);
