@@ -5,6 +5,9 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -14,17 +17,17 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.capability.AbstractCapabilityDataMP;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
+import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
+import stevekung.mods.moreplanets.network.PacketSimpleMP;
+import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpacePortal;
 import stevekung.mods.moreplanets.utils.blocks.BlockBreakableMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
@@ -44,26 +47,26 @@ public class BlockSpacePortal extends BlockBreakableMP implements IItemModelRend
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (entity instanceof EntityPlayer)
+        if (WorldTickEventHandler.survivalPlanetData != null && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
         {
-            EntityPlayer player = (EntityPlayer)entity;
+            int netherId = ConfigManagerMP.moreplanets_dimension.idDimensionSpaceNether;
 
-            if (!player.isRiding() && !player.isBeingRidden() && player.isNonBoss())
+            if (player.dimension != netherId)
             {
-                AbstractCapabilityDataMP data = AbstractCapabilityDataMP.get(player);
-
-                if (data.getTimeUntilPortal() > 0)
-                {
-                    data.setTimeUntilPortal(player.getPortalCooldown());
-                }
-                else
-                {
-                    data.setInPortal(true);
-                }
+                GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_TRANSFER_PLAYER, GCCoreUtil.getDimensionID(player.world), new Object[] { netherId }));
+                return true;
+            }
+            else
+            {
+                String survivalPlanet = WorldTickEventHandler.survivalPlanetData.survivalPlanetName;
+                int dimID = WorldUtil.getProviderForNameServer(survivalPlanet).getDimension();
+                GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_TRANSFER_PLAYER, GCCoreUtil.getDimensionID(player.world), new Object[] { dimID }));
+                return true;
             }
         }
+        return false;
     }
 
     @Override

@@ -14,7 +14,6 @@ import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore.EventSpecialRende
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -25,8 +24,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.MobEffects;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -53,7 +50,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.renderer.MultiblockRendererUtils;
 import stevekung.mods.moreplanets.client.renderer.ShieldRenderer;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.core.capability.AbstractCapabilityDataMP;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.entity.IInfectedPurlonite;
 import stevekung.mods.moreplanets.init.MPBiomes;
@@ -74,7 +70,6 @@ import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 import stevekung.mods.stevekunglib.utils.client.GLConstants;
 import stevekung.mods.stevekunglib.utils.client.event.AddRainParticleEvent;
-import stevekung.mods.stevekunglib.utils.client.event.CameraTransformEvent;
 import stevekung.mods.stevekunglib.utils.client.event.FirstPersonViewOverlayEvent;
 import stevekung.mods.stevekunglib.utils.client.event.RenderEntityOverlayEvent;
 
@@ -311,22 +306,6 @@ public class ClientEventHandler
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
-    public void onRenderGameOverlay(RenderGameOverlayEvent event)
-    {
-        if (event.getType().equals(RenderGameOverlayEvent.ElementType.PORTAL))
-        {
-            AbstractCapabilityDataMP data = AbstractCapabilityDataMP.get(this.mc.player);
-            float f1 = data.getPrevTimeInPortal() + (data.getTimeInPortal() - data.getPrevTimeInPortal()) * event.getPartialTicks();
-
-            if (f1 > 0.0F)
-            {
-                this.renderPortal(f1, event.getResolution());
-            }
-        }
-    }
-
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
     public void onRenderFirstPersonViewOverlay(FirstPersonViewOverlayEvent event)
     {
         if (this.mc.player.isPotionActive(MPPotions.INFECTED_PURLONITE))
@@ -508,31 +487,6 @@ public class ClientEventHandler
     }
 
     @SubscribeEvent
-    public void onCameraTransform(CameraTransformEvent event)
-    {
-        AbstractCapabilityDataMP data = AbstractCapabilityDataMP.get(this.mc.player);
-        int rendererUpdateCount = event.getRendererUpdateCount();
-        float partialTicks = event.getPartialTicks();
-        float f1 = data.getPrevTimeInPortal() + (data.getTimeInPortal() - data.getPrevTimeInPortal()) * partialTicks;
-
-        if (f1 > 0.0F)
-        {
-            int i = 20;
-
-            if (this.mc.player.isPotionActive(MobEffects.NAUSEA))
-            {
-                i = 7;
-            }
-
-            float f2 = 5.0F / (f1 * f1 + 5.0F) - f1 * 0.04F;
-            f2 = f2 * f2;
-            GlStateManager.rotate((rendererUpdateCount + partialTicks) * i, 0.0F, 1.0F, 1.0F);
-            GlStateManager.scale(1.0F / f2, 1.0F, 1.0F);
-            GlStateManager.rotate(-(rendererUpdateCount + partialTicks) * i, 0.0F, 1.0F, 1.0F);
-        }
-    }
-
-    @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onAddRainParticle(AddRainParticleEvent event)
     {
@@ -611,38 +565,5 @@ public class ClientEventHandler
                 this.beamList.put(new BlockPos(posX, posY, posZ), 40);
             }
         }
-    }
-
-    private void renderPortal(float timeInPortal, ScaledResolution res)
-    {
-        if (timeInPortal < 1.0F)
-        {
-            timeInPortal = timeInPortal * timeInPortal;
-            timeInPortal = timeInPortal * timeInPortal;
-            timeInPortal = timeInPortal * 0.8F + 0.2F;
-        }
-        GlStateManager.disableAlpha();
-        GlStateManager.disableDepth();
-        GlStateManager.depthMask(false);
-        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-        GlStateManager.color(1.0F, 1.0F, 1.0F, timeInPortal);
-        this.mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-        TextureAtlasSprite textureatlassprite = this.mc.getBlockRendererDispatcher().getBlockModelShapes().getTexture(Blocks.PORTAL.getDefaultState());
-        float f = textureatlassprite.getMinU();
-        float f1 = textureatlassprite.getMinV();
-        float f2 = textureatlassprite.getMaxU();
-        float f3 = textureatlassprite.getMaxV();
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferbuilder = tessellator.getBuffer();
-        bufferbuilder.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
-        bufferbuilder.pos(0.0D, res.getScaledHeight(), -90.0D).tex(f, f3).endVertex();
-        bufferbuilder.pos(res.getScaledWidth(), res.getScaledHeight(), -90.0D).tex(f2, f3).endVertex();
-        bufferbuilder.pos(res.getScaledWidth(), 0.0D, -90.0D).tex(f2, f1).endVertex();
-        bufferbuilder.pos(0.0D, 0.0D, -90.0D).tex(f, f1).endVertex();
-        tessellator.draw();
-        GlStateManager.depthMask(true);
-        GlStateManager.enableDepth();
-        GlStateManager.enableAlpha();
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
     }
 }

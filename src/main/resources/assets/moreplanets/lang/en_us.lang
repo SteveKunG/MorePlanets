@@ -802,7 +802,7 @@ desc.bhs_slot_used.name=Slot Used
 desc.bhs_more.name=and %s more...
 desc.shift_info.name=Press <SHIFT> for more info
 desc.control_info.name=Press <CONTROL> for more info
-description.space_portal=Survival Planet enabled:
+description.space_portal=Space Portal work only if you select a planet to start survival on it.
 
 # CONTAINER
 container.space_warp_pad.name=Space Warp Pad

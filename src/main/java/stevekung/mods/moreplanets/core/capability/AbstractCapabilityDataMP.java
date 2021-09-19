@@ -13,24 +13,4 @@ public interface AbstractCapabilityDataMP
     void writeNBT(NBTTagCompound nbt);
 
     void readNBT(NBTTagCompound nbt);
-
-    void setInPortal(boolean inPortal);
-
-    boolean isInPortal();
-
-    void setTimeUntilPortal(int time);
-
-    int getTimeUntilPortal();
-
-    void setPortalCounter(int counter);
-
-    int getPortalCounter();
-
-    void setTimeInPortal(float time);
-
-    float getTimeInPortal();
-
-    void setPrevTimeInPortal(float time);
-
-    float getPrevTimeInPortal();
 }
