@@ -140,6 +140,7 @@ curseforge {
                 displayName = "More-Planets-" + mcVersion + "-" + version
                 relations {
                     requiredLibrary "stevekungs-lib"
+                    requiredLibrary "mixin-booter"
                     optionalLibrary "jei"
                     optionalLibrary "ctm"
                     optionalLibrary "hwyla"
