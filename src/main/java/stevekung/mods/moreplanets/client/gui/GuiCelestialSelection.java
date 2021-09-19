@@ -1,13 +1,14 @@
 package stevekung.mods.moreplanets.client.gui;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
@@ -36,14 +37,14 @@ public class GuiCelestialSelection extends GuiScreen
     private GuiTextField searchField;
     private GuiListCelestialSelection selectionList;
     private String lastFilterText = "";
-    private List<CelestialBody> listCelestial = new ArrayList<>();
+    private final List<CelestialBody> listCelestial = Lists.newArrayList();
 
     @Override
     public void initGui()
     {
         this.listCelestial.clear();
-        this.listCelestial.addAll(GalaxyRegistry.getRegisteredPlanets().values().stream().filter(planet -> planet.getDimensionID() != 0 && planet.getDimensionID() != ConfigManagerMP.moreplanets_dimension.idDimensionSpaceNether && planet.getReachable()).collect(Collectors.toList()));
-        this.listCelestial.addAll(GalaxyRegistry.getRegisteredMoons().values());
+        this.listCelestial.addAll(GalaxyRegistry.getRegisteredPlanets().values().stream().filter(planet -> planet.getDimensionID() != 0 && planet.getDimensionID() != ConfigManagerMP.moreplanets_dimension.idDimensionSpaceNether && planet.getReachable() && planet.getTierRequirement() > 0).collect(Collectors.toList()));
+        this.listCelestial.addAll(GalaxyRegistry.getRegisteredMoons().values().stream().filter(moon -> moon.getReachable() && moon.getTierRequirement() > 0).collect(Collectors.toList()));
         this.selectionList = new GuiListCelestialSelection(this, this.listCelestial, this.width, this.height, 48, this.height - 32, 36);
         this.doneButton = this.addButton(new GuiButton(0, this.width / 2 - 28, this.height - 26, 100, 20, LangUtils.translate("gui.done")));
         this.addButton(new GuiButton(1, this.width / 2 + 80, this.height - 26, 100, 20, LangUtils.translate("gui.cancel")));
