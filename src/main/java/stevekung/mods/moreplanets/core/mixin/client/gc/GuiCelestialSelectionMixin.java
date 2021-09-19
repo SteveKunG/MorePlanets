@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.core.mixin.client;
+package stevekung.mods.moreplanets.core.mixin.client.gc;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 import stevekung.mods.moreplanets.init.MPPlanets;
 
-@Mixin(value = GuiCelestialSelection.class, remap = false)
+@Mixin(GuiCelestialSelection.class)
 public class GuiCelestialSelectionMixin
 {
     @Shadow(remap = false)

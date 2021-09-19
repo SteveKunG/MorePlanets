@@ -5,6 +5,7 @@ bin
 build
 eclipse
 libs
+logs
 run
 
 # file
