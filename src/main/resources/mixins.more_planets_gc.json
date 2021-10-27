@@ -6,6 +6,7 @@
     "refmap": "mixins.more_planets.refmap.json",
     "target": "@env(DEFAULT)",
     "mixins": [
+    	"gc.CommandGCHoustonMixin"
     ],
     "client": [
     	"client.gc.GuiCelestialSelectionMixin",
