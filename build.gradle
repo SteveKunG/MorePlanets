@@ -1,8 +1,8 @@
 buildscript {
     repositories {
-        jcenter()
+        gradlePluginPortal()
         maven { url "https://files.minecraftforge.net/maven" }
-        maven { url "https://repo.spongepowered.org/maven" }
+        maven { url "https://repo.spongepowered.org/repository/maven-public/" }
     }
     dependencies {
         classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
@@ -15,11 +15,11 @@ plugins {
     id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 
-def mcVersion = project.mc_version
-def gcDevVersion = "1.12.2-4.0.2.261"
-
 apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: "org.spongepowered.mixin"
+
+def mcVersion = project.mc_version
+def gcDevVersion = "1.12.2-4.0.2.261"
 
 version = project.version
 group = "stevekung.mods.moreplanets"
@@ -31,52 +31,37 @@ minecraft {
     runDir = "run"
     mappings = "${mcp_mapping}"
     makeObfSourceJar = false
-    clientJvmArgs += "-Dfml.coreMods.load=micdoodle8.mods.miccore.MicdoodlePlugin -Dmixin.debug.export=true -Dmixin.debug.verbose=true"
-    clientRunArgs += "--username ${project.username} --uuid ${project.uuid} --mixin mixins.more_planets.json --tweakClass org.spongepowered.asm.launch.MixinTweaker"
+    clientJvmArgs += "-Dfml.coreMods.load=micdoodle8.mods.miccore.MicdoodlePlugin -Dmixin.checks.interfaces=true -Dmixin.hotSwap=true -Dmixin.debug.export=true -Dmixin.debug.verbose=true -javaagent:E:/Development Tools/Gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.4-SNAPSHOT/9d3e1c513ca669575aa25ddd530b379303ec0df8/mixin-0.8.4-SNAPSHOT.jar"
+    clientRunArgs += "--username ${project.username} --uuid ${project.uuid} --mixin mixins.more_planets.json"
 
     replace "4.0.1.-1", project.gc_require_version
     replaceIn "MorePlanetsMod.java"
 }
 
-dependencies {
-    compile "mezz.jei:jei_${mc_version}:${jei_version}:api"
-    compile "mekanism:Mekanism-1.12.2:9.7.5.376:api"
-    compile "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.12.2-7.0.1.2441:api"
-    compile "com.mod-buildcraft:buildcraft-api:7.99.24.6"
-    compile "redstone-flux:RedstoneFlux-1.12:2.1.0.6:universal"
-    compile "industrial-craft:industrialcraft-2-2.8.157:ex112:api"
-    compile "player-api:PlayerAPI:1.12.1:1.0"
-    compile "de.ellpeck.actuallyadditions:ActuallyAdditions_1.12.2:1.12.2-r151:api"
-    //compile "appeng:appliedenergistics2:rv6-stable-6:api"
-
-    compile files(
-        "libs/GalacticraftCore-Dev-" + gcDevVersion + ".jar",
-        "libs/Galacticraft-Planets-Dev-" + gcDevVersion + ".jar",
-        "libs/MicdoodleCore-Dev-" + gcDevVersion + ".jar",
-        "libs/mixinbooter-2.0.jar"
-    )
-    deobfCompile "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
-    deobfCompile "team.chisel.ctm:CTM:MC${ctm_version}"
-    deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
-    deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
-    deobfCompile "stevekungs-lib:SteveKunG's-Lib-1.12.2:1.1.9:deobf"
-    deobfCompile "indicatia:Indicatia-1.12.2:1.3.3:deobf"
-    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
-    provided("org.spongepowered:mixin:0.8.4-SNAPSHOT") { transitive = false }
-}
-
 repositories {
-    maven {
-        name "CTM"
-        url "http://maven.tterrag.com/"
-    }
-    maven {
-        name "SpongePowered"
-        url "https://repo.spongepowered.org/maven"
+	maven {
+		name "SpongePowered"
+		url "https://repo.spongepowered.org/repository/maven-public/"
+	}
+	maven {
+		name "CurseMaven"
+        url "https://www.cursemaven.com"
     }
     maven {
         name "CodeChickenLib"
         url "http://chickenbones.net/maven/"
+    }
+    maven {
+        name "CurseForge"
+        url "https://minecraft.curseforge.com/api/maven/"
+    }
+    maven {
+        name "JEI"
+        url "https://dvs1.progwml6.com/files/maven"
+    }
+    maven {
+        name "CTM"
+        url "http://maven.tterrag.com/"
     }
     maven {
         name "Hwyla"
@@ -85,14 +70,6 @@ repositories {
     maven {
         name "Baubles"
         url "http://maven.thiakil.com/"
-    }
-    maven {
-        name "CurseForge"
-        url "https://minecraft.curseforge.com/api/maven/"
-    }
-    maven {
-        name "JEI"
-        url "http://dvs1.progwml6.com/files/maven"
     }
     maven {
         name "Buildcraft"
@@ -106,12 +83,48 @@ repositories {
         name "Modmaven"
         url "https://modmaven.dev/"
     }
+
+    flatDir {
+        dirs "libs"
+    }
 }
 
-sourceSets {
-    main {
-        ext.refMap = "mixins.more_planets.refmap.json"
+dependencies {
+    compile "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    compile "mekanism:Mekanism-1.12.2:9.7.5.376:api"
+    compile "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.12.2-7.0.1.2441:api"
+    compile "com.mod-buildcraft:buildcraft-api:7.99.24.6"
+    compile "redstone-flux:RedstoneFlux-1.12:2.1.0.6:universal"
+    compile "industrial-craft:industrialcraft-2-2.8.157:ex112:api"
+    compile "player-api:PlayerAPI:1.12.1:1.0"
+    compile "de.ellpeck.actuallyadditions:ActuallyAdditions_1.12.2:1.12.2-r151:api"
+    compile "curse.maven:mixinBooter-419286:3321174"
+
+    deobfCompile ":GalacticraftCore-Dev-" + gcDevVersion
+    deobfCompile ":Galacticraft-Planets-Dev-" + gcDevVersion
+    deobfCompile ":MicdoodleCore-Dev-" + gcDevVersion
+
+    if (file("SteveKunG's-Lib-1.12.2-1.1.10-deobf.jar").exists()) {
+        deobfCompile ":SteveKunG's-Lib-1.12.2-1.1.10-deobf"
     }
+
+    deobfCompile "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
+    deobfCompile "team.chisel.ctm:CTM:MC${ctm_version}"
+    deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
+    deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
+    //deobfCompile "stevekungs-lib:SteveKunG's-Lib-1.12.2:1.1.10:deobf"
+    deobfCompile "indicatia:Indicatia:1.12.2:1.3.3"
+    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+
+    compile("org.spongepowered:mixin:0.8.4-SNAPSHOT") {
+        exclude module: "guava"
+        exclude module: "commons-io"
+        exclude module: "gson"
+    }
+}
+
+mixin {
+	add sourceSets.main, "mixins.more_planets.refmap.json"
 }
 
 jar {
@@ -152,3 +165,4 @@ curseforge {
 }
 
 tasks.curseforge.dependsOn(build)
+jar.finalizedBy("reobfJar")
