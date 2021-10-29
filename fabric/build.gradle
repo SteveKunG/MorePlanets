@@ -1,15 +1,23 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "7.0.0"
+    id "com.github.johnrengelman.shadow" version "7.1.0"
     id "com.matthewprenger.cursegradle"
 }
 
-configurations {
-    shadow
+loom {
+    accessWidenerPath = file("../common/src/main/resources/moreplanets.accesswidener")
 }
 
 architectury {
     platformSetupLoomIde()
     fabric()
+}
+
+configurations {
+    common
+    shadowCommon
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentFabric.extendsFrom common
 }
 
 repositories {
@@ -27,21 +35,13 @@ repositories {
     }
     maven {
         name "Cotton"
-        url "http://server.bbkr.space:8081/artifactory/libs-release/"
+        url "https://server.bbkr.space/artifactory/libs-release/"
         allowInsecureProtocol true
     }
     maven {
         name "CurseForge"
         url "https://minecraft.curseforge.com/api/maven"
     }
-}
-
-loom {
-    mixinConfigs = ["mixins.moreplanets.json", "mixins.moreplanets_fabric.json"]
-}
-
-minecraft {
-    accessWidener = file("../common/src/main/resources/moreplanets.accesswidener")
 }
 
 dependencies {
@@ -53,30 +53,27 @@ dependencies {
         exclude(group: "net.fabricmc.fabric-api")
     }
     include "me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}"
-    modImplementation("grondag:canvas-mc117-1.17:${project.canvas_version}") {
+    /*modImplementation("grondag:canvas-mc117-1.17:${project.canvas_version}") {
         exclude group: "net.fabricmc"
         exclude group: "net.fabricmc.fabric-api"
         exclude group: "me.shedaniel.cloth"
         exclude group: "io.github.prospector"
-    }
+    }*/
 
-    implementation(project(path: ":common")) {
+    common(project(path: ":common", configuration: "dev")) {
         transitive = false
     }
-    developmentFabric(project(path: ":common")) {
-        transitive = false
-    }
-    shadow(project(path: ":common", configuration: "transformProductionFabric")) {
+    shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) {
         transitive = false
     }
 
-    if (file("libs/SteveKunG's-Lib-mc${mc_version}-dev.jar").exists()) {
-        modImplementation(":SteveKunG's-Lib-mc${mc_version}-dev")
-        include ":SteveKunG's-Lib-mc${mc_version}-dev"
-        println("Use existing deobf artifact")
+    if (file("libs/SteveKunG's-Lib-mc${mc_version}-fabric.jar").exists()) {
+        modImplementation(":SteveKunG's-Lib-mc${mc_version}-fabric")
+        include ":SteveKunG's-Lib-mc${mc_version}-fabric"
+        println("Use existing artifact")
     } else {
-        modImplementation("curse.maven:stevekungs-lib-296019:${rootProject.stevekung_lib_fabric_deobf}")
-        println("Use CurseForge deobf artifact")
+        modCompile("curse.maven:stevekungs-lib-296019:${rootProject.stevekung_lib_fabric}")
+        println("Use CurseForge artifact")
     }
 }
 
@@ -91,13 +88,14 @@ processResources {
 String fileName = "${rootProject.archives_base_name}-mc${rootProject.mc_version}"
 
 jar {
+    classifier "dev"
     version "v${project.version}"
     baseName fileName
 }
 
 shadowJar {
-    configurations = [project.configurations.shadow]
-    classifier "dev"
+    configurations = [project.configurations.shadowCommon]
+    classifier "dev-shadow"
     version "v${project.version}"
     baseName fileName
     exclude "**/forge/**/*.*"
@@ -110,6 +108,7 @@ sourcesJar {
     classifier "source"
     version "v${project.version}"
     baseName fileName
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 remapJar {

@@ -1,15 +1,6 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "7.0.0"
+    id "com.github.johnrengelman.shadow" version "7.1.0"
     id "com.matthewprenger.cursegradle"
-}
-
-configurations {
-    shadow
-}
-
-architectury {
-    platformSetupLoomIde()
-    forge()
 }
 
 repositories {
@@ -18,19 +9,31 @@ repositories {
     }
 }
 
-String username = project.username
-String password = project.password
+architectury {
+    platformSetupLoomIde()
+    forge()
+}
+
+configurations {
+    common
+    shadowCommon
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentForge.extendsFrom common
+}
 
 loom {
-    mixinConfigs = ["mixins.moreplanets.json", "mixins.moreplanets_forge.json"]
+    forge {
+        mixinConfigs = ["mixins.moreplanets.json", "mixins.moreplanets_forge.json"]
 
-    dataGen {
-        mod "moreplanets"
+        dataGen {
+            mod "moreplanets"
+        }
     }
 
     launches {
         client {
-            arg "--username", username, "--password", password
+            arg "--username", "${username}", "--uuid", "${uuid}"
         }
         data {
             arg "--existing", file("../common/src/main/resources/").absolutePath
@@ -42,21 +45,18 @@ dependencies {
     forge "net.minecraftforge:forge:${rootProject.mc_version}-${rootProject.forge_version}"
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
 
-    implementation(project(path: ":common")) {
+    common(project(path: ":common", configuration: "dev")) {
         transitive = false
     }
-    developmentForge(project(path: ":common")) {
-        transitive = false
-    }
-    shadow(project(path: ":common", configuration: "transformProductionForge")) {
+    shadowCommon(project(path: ":common", configuration: "transformProductionForge")) {
         transitive = false
     }
 
-    if (file("libs/SteveKunG's-Lib-mc${mc_version}-dev.jar").exists()) {
-        modImplementation(":SteveKunG's-Lib-mc${mc_version}-dev")
+    if (file("libs/SteveKunG's-Lib-mc${mc_version}-forge.jar").exists()) {
+        modImplementation(":SteveKunG's-Lib-mc${mc_version}-forge")
         println("Use existing deobf artifact")
     } else {
-        modImplementation("curse.maven:stevekungs-lib-296019:${rootProject.stevekung_lib_forge_deobf}")
+        modCompile("curse.maven:stevekungs-lib-296019:${rootProject.stevekung_lib_forge_deobf}")
         println("Use CurseForge deobf artifact")
     }
 }
@@ -72,13 +72,14 @@ processResources {
 String fileName = "${rootProject.archives_base_name}-mc${rootProject.mc_version}"
 
 jar {
+    classifier "dev"
     version "v${project.version}"
     baseName fileName
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
 shadowJar {
-    configurations = [project.configurations.shadow]
+    configurations = [project.configurations.shadowCommon]
     classifier "dev"
     version "v${project.version}"
     baseName fileName
@@ -92,7 +93,7 @@ sourcesJar {
     classifier "source"
     version "v${project.version}"
     baseName fileName
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 remapJar {
@@ -101,6 +102,12 @@ remapJar {
     classifier "forge"
     version "v${project.version}"
     baseName fileName
+}
+
+components.java {
+    withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
+        skip()
+    }
 }
 
 artifacts {

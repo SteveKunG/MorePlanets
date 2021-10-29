@@ -7,11 +7,11 @@ repositories {
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi "dev.architectury:architectury:${rootProject.architectury_version}"
-    modImplementation(":SteveKunG's-Lib-common-dev")
+    modImplementation(":SteveKunG's-Lib-common")
 }
 
-minecraft {
-    accessWidener = file("../common/src/main/resources/moreplanets.accesswidener")
+loom {
+    accessWidenerPath = file("../common/src/main/resources/moreplanets.accesswidener")
 }
 
 sourceSets {
@@ -28,4 +28,12 @@ jar {
 
 architectury {
     common()
+}
+
+configurations {
+    dev
+}
+
+artifacts {
+    dev(jar)
 }
