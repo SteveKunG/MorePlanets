@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "moreplanets:glowing_iron_ingot"
+            "items": [
+              "moreplanets:glowing_iron_ingot"
+            ]
           }
         ]
       }

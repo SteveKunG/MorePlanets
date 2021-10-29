@@ -145,3 +145,12 @@ curseforge {
         }
     }
 }
+
+task moveDataGen(type: Exec) {
+    doFirst {
+        println "Starting move data gen..."
+        workingDir = file("M:/Modding/MorePlanets/")
+        commandLine = ["cmd", "/C", "start", "clean_generated.bat"]
+    }
+}
+runData.finalizedBy moveDataGen

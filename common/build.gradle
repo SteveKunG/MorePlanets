@@ -22,6 +22,10 @@ sourceSets {
     }
 }
 
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 jar {
     exclude ".cache"
 }

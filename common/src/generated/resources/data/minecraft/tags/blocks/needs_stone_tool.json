@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "moreplanets:glowing_iron_block",
+    "moreplanets:raw_glowing_iron_block",
+    "moreplanets:compacted_purlonite_block",
+    "moreplanets:meteoric_iron_stabilizer",
+    "moreplanets:ion_plasma_rod"
+  ]
+}
