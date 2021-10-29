@@ -1,10 +1,10 @@
-package com.stevekung.moreplanets.data;
+package com.stevekung.moreplanets.forge.data;
 
 import com.mojang.datafixers.util.Pair;
-import com.stevekung.moreplanets.data.loot.BlockLootTable;
-import com.stevekung.moreplanets.data.loot.ChestLootTables;
-import com.stevekung.moreplanets.data.loot.EntityLootTable;
-import com.stevekung.stevekungslib.data.loot.LootTableProviderBase;
+import com.stevekung.moreplanets.forge.data.loot.BlockLootTable;
+import com.stevekung.moreplanets.forge.data.loot.ChestLootTables;
+import com.stevekung.moreplanets.forge.data.loot.EntityLootTable;
+import com.stevekung.stevekungslib.forge.data.loot.LootTableProviderBase;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 

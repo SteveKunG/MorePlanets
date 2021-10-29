@@ -18,13 +18,13 @@
     "environment": "*",
     "entrypoints": {
         "main": [
-            "com.stevekung.moreplanets.core.MorePlanetsFabricMod"
+            "com.stevekung.moreplanets.fabric.core.MorePlanetsFabricMod"
         ],
         "client": [
-            "com.stevekung.moreplanets.core.MorePlanetsFabricClientMod"
+            "com.stevekung.moreplanets.fabric.core.MorePlanetsFabricClientMod"
         ],
         "modmenu": [
-            "com.stevekung.moreplanets.modmenu.ModMenuIntegrationMP"
+            "com.stevekung.moreplanets.fabric.modmenu.ModMenuIntegrationMP"
         ]
     },
     "depends": {

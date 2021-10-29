@@ -1,4 +1,4 @@
-package com.stevekung.moreplanets.data;
+package com.stevekung.moreplanets.forge.data;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

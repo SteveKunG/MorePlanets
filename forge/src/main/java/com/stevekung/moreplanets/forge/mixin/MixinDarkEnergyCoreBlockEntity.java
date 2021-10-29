@@ -1,4 +1,4 @@
-package com.stevekung.moreplanets.mixin.forge;
+package com.stevekung.moreplanets.forge.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import com.stevekung.moreplanets.world.level.block.entity.DarkEnergyCoreBlockEntity;

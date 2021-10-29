@@ -1,8 +1,8 @@
-package com.stevekung.moreplanets.data;
+package com.stevekung.moreplanets.forge.data;
 
 import com.stevekung.moreplanets.world.item.MPItems;
 import com.stevekung.moreplanets.world.level.block.MPBlocks;
-import com.stevekung.stevekungslib.data.ItemModelProviderBase;
+import com.stevekung.stevekungslib.forge.data.ItemModelProviderBase;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.data.ExistingFileHelper;

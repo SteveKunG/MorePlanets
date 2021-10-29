@@ -1,4 +1,4 @@
-package com.stevekung.moreplanets.modmenu;
+package com.stevekung.moreplanets.fabric.modmenu;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;

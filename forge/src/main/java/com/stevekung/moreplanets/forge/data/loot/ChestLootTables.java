@@ -1,4 +1,4 @@
-package com.stevekung.moreplanets.data.loot;
+package com.stevekung.moreplanets.forge.data.loot;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;

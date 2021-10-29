@@ -2,7 +2,7 @@
     "required": true,
     "minVersion": "0.8.2",
     "compatibilityLevel": "JAVA_8",
-    "package": "com.stevekung.moreplanets.mixin.forge",
+    "package": "com.stevekung.moreplanets.forge.mixin",
     "mixins": [
         "MixinGlowingIronArmor",
         "MixinDarkEnergyCoreBlockEntity"

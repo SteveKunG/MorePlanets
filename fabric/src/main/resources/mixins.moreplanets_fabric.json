@@ -2,7 +2,7 @@
     "required": true,
     "minVersion": "0.8.2",
     "compatibilityLevel": "JAVA_8",
-    "package": "com.stevekung.moreplanets.mixin.fabric",
+    "package": "com.stevekung.moreplanets.fabric.mixin",
     "mixins": [
     ],
     "client": [

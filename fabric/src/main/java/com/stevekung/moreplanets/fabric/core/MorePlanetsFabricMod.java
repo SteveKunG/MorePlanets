@@ -1,5 +1,6 @@
-package com.stevekung.moreplanets.core;
+package com.stevekung.moreplanets.fabric.core;
 
+import com.stevekung.moreplanets.core.MorePlanetsMod;
 import net.fabricmc.api.ModInitializer;
 
 public class MorePlanetsFabricMod implements ModInitializer

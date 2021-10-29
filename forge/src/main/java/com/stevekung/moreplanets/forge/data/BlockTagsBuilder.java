@@ -1,4 +1,4 @@
-package com.stevekung.moreplanets.data;
+package com.stevekung.moreplanets.forge.data;
 
 import com.stevekung.moreplanets.world.level.block.MPBlocks;
 import net.minecraft.data.DataGenerator;

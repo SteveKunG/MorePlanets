@@ -1,6 +1,6 @@
-package com.stevekung.moreplanets.data.loot;
+package com.stevekung.moreplanets.forge.data.loot;
 
-import com.stevekung.stevekungslib.data.loot.EntityLootBase;
+import com.stevekung.stevekungslib.forge.data.loot.EntityLootBase;
 
 public class EntityLootTable extends EntityLootBase
 {
