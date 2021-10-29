@@ -1,6 +1,5 @@
 package com.stevekung.moreplanets.core;
 
-import com.stevekung.moreplanets.client.models.geom.MPModelLayers;
 import com.stevekung.moreplanets.client.renderer.blockentity.DarkEnergyCoreRenderer;
 import com.stevekung.moreplanets.world.item.MPItems;
 import com.stevekung.moreplanets.world.level.block.MPBlocks;
@@ -51,7 +50,6 @@ public class MorePlanetsMod
         RenderTypeRegistry.register(RenderType.cutout(), MPBlocks.DISPLAY_JAR);
         RenderTypeRegistry.register(RenderType.cutout(), MPBlocks.PURLONITE_WORM_JAR);
         RenderTypeRegistry.register(RenderType.cutout(), MPBlocks.CHALOS_SPORE_JAR);
-        MPModelLayers.init();
 
         ClientRegistryUtils.registerTileEntityRendering(MPBlockEntities.DARK_ENERGY_CORE, DarkEnergyCoreRenderer::new);
 
