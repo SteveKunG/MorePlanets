@@ -94,7 +94,6 @@ public class DarkEnergyCoreRenderer implements BlockEntityRenderer<DarkEnergyCor
     private static void vertex01(VertexConsumer vertexConsumer, Matrix4f matrix4f, int alpha)
     {
         vertexConsumer.vertex(matrix4f, 0.0F, 0.0F, 0.0F).color(0, 0, 0, alpha).endVertex();
-        vertexConsumer.vertex(matrix4f, 0.0F, 0.0F, 0.0F).color(0, 0, 0, alpha).endVertex();
     }
 
     private static void vertex2(VertexConsumer vertexConsumer, Matrix4f matrix4f, float f, float g)

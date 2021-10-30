@@ -40,6 +40,7 @@ public class MorePlanetsFabricClientMod implements ClientModInitializer
         }, MPItems.GLOWING_IRON_HELMET, MPItems.GLOWING_IRON_CHESTPLATE, MPItems.GLOWING_IRON_LEGGINGS, MPItems.GLOWING_IRON_BOOTS);
 
         MorePlanetsMod.initClient();
+        MPModelLayers.init();
         EntityModelLayerRegistry.registerModelLayer(MPModelLayers.DARK_ENERGY_BALL, DarkEnergyBallModel::createBodyLayer);
     }
 }
