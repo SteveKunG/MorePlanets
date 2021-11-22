@@ -32,7 +32,11 @@ sourceSets {
 }
 
 processResources {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    duplicatesStrategy DuplicatesStrategy.INCLUDE
+}
+
+sourcesJar {
+    duplicatesStrategy DuplicatesStrategy.INCLUDE
 }
 
 jar {

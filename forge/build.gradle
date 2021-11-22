@@ -77,12 +77,12 @@ jar {
     classifier "dev"
     version "v${project.version}"
     baseName fileName
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    duplicatesStrategy DuplicatesStrategy.INCLUDE
 }
 
 shadowJar {
     configurations = [project.configurations.shadowCommon]
-    classifier "dev"
+    classifier "dev-shadow"
     version "v${project.version}"
     baseName fileName
     exclude "**/fabric/**/*.*"
@@ -95,7 +95,7 @@ sourcesJar {
     classifier "source"
     version "v${project.version}"
     baseName fileName
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    duplicatesStrategy DuplicatesStrategy.INCLUDE
 }
 
 remapJar {
