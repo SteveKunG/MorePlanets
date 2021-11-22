@@ -1,7 +1,7 @@
 modLoader = "javafml"
 loaderVersion = "[37,)"
 issueTrackerURL = "https://github.com/SteveKunG/MorePlanets/issues"
-license = "MIT License"
+license = "MIT"
 
 [[mods]]
 modId = "moreplanets"
@@ -31,13 +31,13 @@ side = "BOTH"
 [[dependencies.moreplanets]]
 modId = "architectury"
 mandatory = true
-versionRange = "[2.3,)"
+versionRange = "[2.6,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.moreplanets]]
-modId = "stevekungs_lib"
+modId = "stevekung_lib"
 mandatory = true
-versionRange = "[5.0.0,)"
+versionRange = "[5.0.1,)"
 ordering = "NONE"
 side = "BOTH"
