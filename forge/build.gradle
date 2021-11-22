@@ -39,26 +39,28 @@ loom {
             arg "--existing", file("../common/src/main/resources/").absolutePath
         }
     }
+
+    mixin {
+        defaultRefmapName = "mixins.moreplanets_forge.refmap.json"
+    }
 }
 
 dependencies {
     forge "net.minecraftforge:forge:${rootProject.mc_version}-${rootProject.forge_version}"
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
 
-    common(project(path: ":common", configuration: "dev")) {
-        transitive = false
-    }
-    shadowCommon(project(path: ":common", configuration: "transformProductionForge")) {
-        transitive = false
-    }
+    common(project(path: ":common", configuration: "namedElements")) { transitive false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive false }
 
-    if (file("libs/SteveKunG's-Lib-mc${mc_version}-forge.jar").exists()) {
-        modImplementation(":SteveKunG's-Lib-mc${mc_version}-forge")
-        println("Use existing deobf artifact")
+    String lib = ":stevekung-lib-forge"
+
+    if (!file("libs/stevekung-lib-forge.jar").exists()) {
+        lib = "curse.maven:stevekungs-lib-296019:${rootProject.stevekung_lib_forge}"
+        println("Use CurseForge artifact")
     } else {
-        modCompile("curse.maven:stevekungs-lib-296019:${rootProject.stevekung_lib_forge_deobf}")
-        println("Use CurseForge deobf artifact")
+        println("Use existing artifact")
     }
+    modImplementation(lib)
 }
 
 processResources {
@@ -124,10 +126,11 @@ curseforge {
             changelogType = "markdown"
             releaseType = "beta"
             addGameVersion "Forge"
+            addGameVersion "Java 16"
             addGameVersion rootProject.mc_version
 
             mainArtifact(remapJar.archiveFile) {
-                displayName = "[Forge] ${rootProject.archives_base_name}-mc${rootProject.mc_version}-v${project.version}"
+                displayName = "[Forge] " + fileName + "-v${project.version}"
             }
             relations {
                 requiredDependency "stevekungs-lib"
@@ -148,7 +151,7 @@ curseforge {
 
 task moveDataGen(type: Exec) {
     doFirst {
-        println "Starting move data gen..."
+        println "Start moving auto generated assets..."
         workingDir = file("M:/Modding/MorePlanets/")
         commandLine = ["cmd", "/C", "start", "clean_generated.bat"]
     }

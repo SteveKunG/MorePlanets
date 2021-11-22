@@ -1,13 +1,22 @@
 repositories {
     flatDir {
-        dirs "libs"
+        dirs "../fabric/libs"
     }
 }
 
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi "dev.architectury:architectury:${rootProject.architectury_version}"
-    modImplementation(":SteveKunG's-Lib-common")
+
+    String lib = ":stevekung-lib-fabric"
+
+    if (!file("../fabric/libs/stevekung-lib-fabric.jar").exists()) {
+        lib = "curse.maven:stevekungs-lib-296019:${rootProject.stevekung_lib_fabric}"
+        println("Use CurseForge artifact")
+    } else {
+        println("Use existing artifact")
+    }
+    modCompileOnly(lib)
 }
 
 loom {
@@ -32,12 +41,4 @@ jar {
 
 architectury {
     common()
-}
-
-configurations {
-    dev
-}
-
-artifacts {
-    dev(jar)
 }

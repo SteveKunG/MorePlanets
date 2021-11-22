@@ -5,6 +5,24 @@ plugins {
 
 loom {
     accessWidenerPath = file("../common/src/main/resources/moreplanets.accesswidener")
+
+    launches {
+        client {
+            arg "--username", "${username}", "--uuid", "${uuid}"
+        }
+    }
+
+    mixin {
+        defaultRefmapName = "mixins.moreplanets_fabric.refmap.json"
+    }
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["src/main/resources/", "../common/src/main/resources/"]
+        }
+    }
 }
 
 architectury {
@@ -24,7 +42,13 @@ repositories {
     flatDir {
         dirs "libs"
     }
-    maven { url "https://jitpack.io" }
+    maven {
+        url "https://jitpack.io/"
+    }
+    maven {
+        name "vram"
+        url "https://maven.vram.io/"
+    }
     maven {
         name "ModMenu Maven"
         url "https://maven.terraformersmc.com/releases/"
@@ -40,7 +64,7 @@ repositories {
     }
     maven {
         name "CurseForge"
-        url "https://minecraft.curseforge.com/api/maven"
+        url "https://minecraft.curseforge.com/api/maven/"
     }
 }
 
@@ -53,28 +77,28 @@ dependencies {
         exclude(group: "net.fabricmc.fabric-api")
     }
     include "me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}"
-    /*modImplementation("grondag:canvas-mc117-1.17:${project.canvas_version}") {
+
+    modRuntimeOnly("io.vram:special-circumstances:1.9.5")
+    modRuntimeOnly("grondag:canvas-mc117-1.17:${project.canvas_version}") {
         exclude group: "net.fabricmc"
         exclude group: "net.fabricmc.fabric-api"
         exclude group: "me.shedaniel.cloth"
         exclude group: "io.github.prospector"
-    }*/
-
-    common(project(path: ":common", configuration: "dev")) {
-        transitive = false
-    }
-    shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) {
-        transitive = false
     }
 
-    if (file("libs/SteveKunG's-Lib-mc${mc_version}-fabric.jar").exists()) {
-        modImplementation(":SteveKunG's-Lib-mc${mc_version}-fabric")
-        include ":SteveKunG's-Lib-mc${mc_version}-fabric"
-        println("Use existing artifact")
-    } else {
-        modCompile("curse.maven:stevekungs-lib-296019:${rootProject.stevekung_lib_fabric}")
+    common(project(path: ":common", configuration: "namedElements")) { transitive false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
+
+    String lib = ":stevekung-lib-fabric"
+
+    if (!file("libs/stevekung-lib-fabric.jar").exists()) {
+        lib = "curse.maven:stevekungs-lib-296019:${rootProject.stevekung_lib_fabric}"
         println("Use CurseForge artifact")
+    } else {
+        println("Use existing artifact")
     }
+    modImplementation(lib)
+    include lib
 }
 
 processResources {
@@ -133,10 +157,11 @@ curseforge {
             changelogType = "markdown"
             releaseType = "beta"
             addGameVersion "Fabric"
+            addGameVersion "Java 16"
             addGameVersion rootProject.mc_version
 
             mainArtifact(remapJar.archiveFile) {
-                displayName = "[Fabric] ${rootProject.archives_base_name}-mc${rootProject.mc_version}-v${project.version}"
+                displayName = "[Fabric] " + fileName + "-v${project.version}"
             }
             relations {
                 requiredDependency "architectury-fabric"
