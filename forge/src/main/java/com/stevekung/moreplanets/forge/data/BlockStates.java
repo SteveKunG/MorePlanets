@@ -2,7 +2,7 @@ package com.stevekung.moreplanets.forge.data;
 
 import com.google.common.collect.ObjectArrays;
 import com.stevekung.moreplanets.world.level.block.*;
-import com.stevekung.stevekungslib.forge.data.BlockStateProviderBase;
+import com.stevekung.stevekunglib.forge.data.BlockStateProviderBase;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Block;

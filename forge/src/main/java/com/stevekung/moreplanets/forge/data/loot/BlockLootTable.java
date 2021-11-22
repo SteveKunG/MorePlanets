@@ -3,7 +3,7 @@ package com.stevekung.moreplanets.forge.data.loot;
 import com.stevekung.moreplanets.world.item.MPItems;
 import com.stevekung.moreplanets.world.level.block.DarkEnergyCoreBlock;
 import com.stevekung.moreplanets.world.level.block.MPBlocks;
-import com.stevekung.stevekungslib.forge.data.loot.BlockLootBase;
+import com.stevekung.stevekunglib.forge.data.loot.BlockLootBase;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.item.enchantment.Enchantments;

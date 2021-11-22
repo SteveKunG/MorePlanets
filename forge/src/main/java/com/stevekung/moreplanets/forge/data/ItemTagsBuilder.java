@@ -2,7 +2,7 @@ package com.stevekung.moreplanets.forge.data;
 
 import com.stevekung.moreplanets.world.item.MPItems;
 import com.stevekung.moreplanets.world.level.block.MPBlocks;
-import com.stevekung.stevekungslib.utils.TagUtils;
+import com.stevekung.stevekunglib.utils.TagUtils;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;

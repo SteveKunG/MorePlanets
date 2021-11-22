@@ -1,6 +1,6 @@
 package com.stevekung.moreplanets.forge.proxy;
 
-import com.stevekung.stevekungslib.forge.utils.ForgeCommonUtils;
+import com.stevekung.stevekunglib.forge.utils.ForgeCommonUtils;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 

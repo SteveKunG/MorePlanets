@@ -3,7 +3,7 @@ package com.stevekung.moreplanets.forge.data;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.world.item.MPItems;
 import com.stevekung.moreplanets.world.level.block.MPBlocks;
-import com.stevekung.stevekungslib.forge.data.LanguageProviderBase;
+import com.stevekung.stevekunglib.forge.data.LanguageProviderBase;
 import net.minecraft.data.DataGenerator;
 
 public class Language extends LanguageProviderBase

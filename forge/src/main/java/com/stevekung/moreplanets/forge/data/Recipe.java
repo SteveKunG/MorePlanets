@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 
 import com.stevekung.moreplanets.world.item.MPItems;
 import com.stevekung.moreplanets.world.level.block.MPBlocks;
-import com.stevekung.stevekungslib.forge.data.recipes.RecipeProviderBase;
+import com.stevekung.stevekunglib.forge.data.recipes.RecipeProviderBase;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
