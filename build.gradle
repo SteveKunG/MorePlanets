@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         gradlePluginPortal()
-        maven { url "https://files.minecraftforge.net/maven" }
+        maven { url "https://maven.minecraftforge.net" }
         maven { url "https://repo.spongepowered.org/repository/maven-public/" }
     }
     dependencies {
@@ -19,7 +19,8 @@ apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: "org.spongepowered.mixin"
 
 def mcVersion = project.mc_version
-def gcDevVersion = "1.12.2-4.0.2.261"
+String gcDevBuild = "261"
+String gcDevVersion = "1.12.2-4.0.2.${gcDevBuild}"
 
 version = project.version
 group = "stevekung.mods.moreplanets"
@@ -31,7 +32,7 @@ minecraft {
     runDir = "run"
     mappings = "${mcp_mapping}"
     makeObfSourceJar = false
-    clientJvmArgs += "-Dfml.coreMods.load=micdoodle8.mods.miccore.MicdoodlePlugin -Dmixin.checks.interfaces=true -Dmixin.hotSwap=true -Dmixin.debug.export=true -Dmixin.debug.verbose=true -javaagent:E:/Development Tools/Gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.4-SNAPSHOT/9d3e1c513ca669575aa25ddd530b379303ec0df8/mixin-0.8.4-SNAPSHOT.jar"
+    clientJvmArgs += "-Dfml.coreMods.load=micdoodle8.mods.miccore.MicdoodlePlugin -Dmixin.checks.interfaces=true -Dmixin.hotSwap=true -Dmixin.debug.export=true -Dmixin.debug.verbose=true"
     clientRunArgs += "--username ${project.username} --uuid ${project.uuid} --mixin mixins.more_planets.json"
 
     replace "4.0.1.-1", project.gc_require_version
@@ -39,6 +40,15 @@ minecraft {
 }
 
 repositories {
+    ivy {
+        url "https://micdoodle8.com/new-builds/"
+        layout 'pattern', {
+            artifact "[organization]/${gcDevBuild}/[module]-[revision].jar"
+        }
+        metadataSources {
+            artifact()
+        }
+    }
     maven {
         name "SpongePowered"
         url "https://repo.spongepowered.org/repository/maven-public/"
@@ -48,28 +58,12 @@ repositories {
         url "https://www.cursemaven.com"
     }
     maven {
-        name "CodeChickenLib"
-        url "http://chickenbones.net/maven/"
-    }
-    maven {
         name "CurseForge"
         url "https://minecraft.curseforge.com/api/maven/"
     }
     maven {
         name "JEI"
         url "https://dvs1.progwml6.com/files/maven"
-    }
-    maven {
-        name "CTM"
-        url "http://maven.tterrag.com/"
-    }
-    maven {
-        name "Hwyla"
-        url "https://maven.tehnut.info"
-    }
-    maven {
-        name "Baubles"
-        url "http://maven.thiakil.com/"
     }
     maven {
         name "Buildcraft"
@@ -90,37 +84,41 @@ repositories {
 }
 
 dependencies {
+    // Galacticraft deps
     compile "mezz.jei:jei_${mc_version}:${jei_version}:api"
     compile "mekanism:Mekanism-1.12.2:9.7.5.376:api"
     compile "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.12.2-7.0.1.2441:api"
     compile "com.mod-buildcraft:buildcraft-api:7.99.24.6"
-    compile "redstone-flux:RedstoneFlux-1.12:2.1.0.6:universal"
+    compile "curse.maven:redstoneflux-1.1.1-270789:2920436"
     compile "industrial-craft:industrialcraft-2-2.8.157:ex112:api"
-    compile "player-api:PlayerAPI:1.12.1:1.0"
+    compile "curse.maven:playerapi-1.1-449521:3212872"
     compile "de.ellpeck.actuallyadditions:ActuallyAdditions_1.12.2:1.12.2-r151:api"
     compile "curse.maven:mixinBooter-419286:3321174"
 
-    deobfCompile ":GalacticraftCore-Dev-" + gcDevVersion
-    deobfCompile ":Galacticraft-Planets-Dev-" + gcDevVersion
-    deobfCompile ":MicdoodleCore-Dev-" + gcDevVersion
+    deobfCompile "GC-1.12-dev:GalacticraftCore-Dev:${gcDevVersion}"
+    deobfCompile "GC-1.12-dev:Galacticraft-Planets-Dev:${gcDevVersion}"
+    deobfCompile "GC-1.12-dev:MicdoodleCore-Dev:${gcDevVersion}"
 
-    if (file("SteveKunG's-Lib-1.12.2-1.1.10-deobf.jar").exists()) {
-        deobfCompile ":SteveKunG's-Lib-1.12.2-1.1.10-deobf"
+    // More Planets deps
+    if (file("SteveKunG's-Lib-1.12.2-${lib_version}-deobf.jar").exists()) {
+        deobfCompile ":SteveKunG's-Lib-1.12.2-${lib_version}-deobf"
+    }
+    else {
+        deobfCompile "curse.maven:stevekungs-lib-296019:3592435"
     }
 
-    deobfCompile "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
-    deobfCompile "team.chisel.ctm:CTM:MC${ctm_version}"
-    deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
-    deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
-    //deobfCompile "stevekungs-lib:SteveKunG's-Lib-1.12.2:1.1.10:deobf"
-    deobfCompile "indicatia:Indicatia:1.12.2:1.3.3"
+    compile "curse.maven:mixinBooter-419286:3321174"
+    deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    deobfCompile "curse.maven:codechicken-lib-1-8-242818:2779849"
+    deobfCompile "curse.maven:hwyla-253449:2568751"
+    deobfCompile "curse.maven:baubles-227083:2518667"
+
     runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+    runtime "curse.maven:indicatia-272146:2854909"
+    runtime "curse.maven:ctm-267602:2915363"
 
-    compile("org.spongepowered:mixin:0.8.4-SNAPSHOT") {
-        exclude module: "guava"
-        exclude module: "commons-io"
-        exclude module: "gson"
-    }
+    compile "org.spongepowered:mixin:0.8.4"
+    annotationProcessor "org.spongepowered:mixin:0.8.4:processor"
 }
 
 mixin {
