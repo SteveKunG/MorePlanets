@@ -98,6 +98,10 @@ public class ClientEventHandler
     @SubscribeEvent
     public void onEntityJoinWorld(EntityJoinWorldEvent event)
     {
+        if (WorldTickEventHandler.survivalPlanetData == null)
+        {
+            return;
+        }
         if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && event.getEntity() == this.mc.player && !this.firstWorldJoin && !WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData && !WorldTickEventHandler.survivalPlanetData.disableMessage)
         {
             ITextComponent component = new TextComponentString(ColorUtils.stringToRGB(IItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(new TextComponentTranslation("message.survival_planet.1").appendText(" ").appendSibling(new TextComponentTranslation("message.survival_planet.2").setStyle(new Style().setColor(TextFormatting.AQUA))).appendText(" ").appendSibling(new TextComponentTranslation("message.survival_planet.3")).setStyle(new Style().setColor(TextFormatting.YELLOW)));

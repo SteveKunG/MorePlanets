@@ -115,9 +115,14 @@ public class MorePlanetsMod
         {
             MorePlanetsMod.CHECKER.startCheck();
         }
+
         EnumHelper.addEnum(FrameType.class, "TASK_PURPLE", new Class[] { String.class, Integer.TYPE, TextFormatting.class }, "task_purple", 0, TextFormatting.DARK_PURPLE);
         PaintingMP.RONG = EnumHelper.addArt("RONG", "rong", 32, 32, 0, 128);
-        ClientCommandHandler.instance.registerCommand(new CommandOpenCelestialScreen());
+
+        if (ClientUtils.isClient())
+        {
+            ClientCommandHandler.instance.registerCommand(new CommandOpenCelestialScreen());
+        }
     }
 
     @EventHandler
