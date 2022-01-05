@@ -93,11 +93,11 @@ dependencies {
     compile "industrial-craft:industrialcraft-2-2.8.157:ex112:api"
     compile "curse.maven:playerapi-1.1-449521:3212872"
     compile "de.ellpeck.actuallyadditions:ActuallyAdditions_1.12.2:1.12.2-r151:api"
-    compile "curse.maven:mixinBooter-419286:3321174"
 
-    deobfCompile "GC-1.12-dev:GalacticraftCore-Dev:${gcDevVersion}"
-    deobfCompile "GC-1.12-dev:Galacticraft-Planets-Dev:${gcDevVersion}"
-    deobfCompile "GC-1.12-dev:MicdoodleCore-Dev:${gcDevVersion}"
+    compile "GC-1.12-dev:GalacticraftCore-Dev:${gcDevVersion}"
+    compile "GC-1.12-dev:Galacticraft-API:${gcDevVersion}"
+    compile "GC-1.12-dev:Galacticraft-Planets-Dev:${gcDevVersion}"
+    compile "GC-1.12-dev:MicdoodleCore-Dev:${gcDevVersion}"
 
     // More Planets deps
     if (file("SteveKunG's-Lib-1.12.2-${lib_version}-deobf.jar").exists()) {
@@ -107,7 +107,7 @@ dependencies {
         deobfCompile "curse.maven:stevekungs-lib-296019:3592435"
     }
 
-    compile "curse.maven:mixinBooter-419286:3321174"
+    deobfCompile "curse.maven:mixinBooter-419286:3575119"
     deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}:api"
     deobfCompile "curse.maven:codechicken-lib-1-8-242818:2779849"
     deobfCompile "curse.maven:hwyla-253449:2568751"
@@ -121,8 +121,10 @@ dependencies {
     annotationProcessor "org.spongepowered:mixin:0.8.4:processor"
 }
 
-mixin {
-    add sourceSets.main, "mixins.more_planets.refmap.json"
+sourceSets {
+    main {
+        ext.refMap = "mixins.more_planets.refmap.json"
+    }
 }
 
 jar {
