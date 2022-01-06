@@ -1,7 +1,12 @@
 # Change Log
 
-* * Downgrade GC Build to 280
-* * Ore Dictionary support for some Fronos Blocks
-* * Attempt to fix performance issue with Shield Generator, #104
-* * Fixed crash when Vein Floater death, closed #106
-* * Update Russian Language
+## REQUIRED MIXIN BOOTER!
+
+* Survival Planet feature is now working as expected (except for multiplayer)
+* Space Portal is now easier to use, right click to teleport
+* Added minor detail to Frolia Sapling texture
+* Increased Diona/Chalos structures spawn rate
+* Hide Space Nether from Celestial Selection Screen (GalaxySpace compatible)
+* Internal mixin update
+* Fixed Oscalea Log texture tiling
+* Fixed some crash on the server
