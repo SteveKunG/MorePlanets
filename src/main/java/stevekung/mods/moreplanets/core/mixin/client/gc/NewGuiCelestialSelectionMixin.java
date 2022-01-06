@@ -17,7 +17,7 @@ import stevekung.mods.moreplanets.init.MPPlanets;
 
 @Pseudo
 @Mixin(targets = "asmodeuscore.core.astronomy.gui.screen.NewGuiCelestialSelection")
-public abstract class NewGuiCelestialSelectionMixin extends GuiCelestialSelection
+public class NewGuiCelestialSelectionMixin extends GuiCelestialSelection
 {
     NewGuiCelestialSelectionMixin()
     {
@@ -25,7 +25,7 @@ public abstract class NewGuiCelestialSelectionMixin extends GuiCelestialSelectio
     }
 
     @Inject(method = "refreshBodies", remap = false, at = @At("TAIL"))
-    private void refreshBodies(CallbackInfo info)
+    private void moreplanets$removeSpaceNether(CallbackInfo info)
     {
         if (WorldTickEventHandler.survivalPlanetData != null && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
         {
@@ -33,8 +33,8 @@ public abstract class NewGuiCelestialSelectionMixin extends GuiCelestialSelectio
         }
     }
 
-    @Inject(method = "getChildren", remap = false, at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILSOFT)
-    private void getChildren(Object object, int start, int size, CallbackInfoReturnable<List<CelestialBody>> info, List<CelestialBody> bodyList)
+    @Inject(method = "getChildren", remap = false, at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILSOFT)
+    private void moreplanets$removeSpaceNetherChildren(Object object, int start, int size, CallbackInfoReturnable<List<CelestialBody>> info, List<CelestialBody> bodyList)
     {
         if (WorldTickEventHandler.survivalPlanetData != null && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
         {

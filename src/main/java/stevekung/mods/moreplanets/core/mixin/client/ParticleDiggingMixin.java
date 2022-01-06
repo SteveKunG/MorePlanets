@@ -19,10 +19,10 @@ public class ParticleDiggingMixin
 {
     @Shadow
     @Final
-    private IBlockState sourceState;
+    IBlockState sourceState;
 
-    @Inject(method = "multiplyColor(Lnet/minecraft/util/math/BlockPos;)V", cancellable = true, at = @At("HEAD"))
-    private void multiplyColor(@Nullable BlockPos pos, CallbackInfo info)
+    @Inject(method = "multiplyColor", cancellable = true, at = @At("HEAD"))
+    private void moreplanets$stopMultiplyColor(@Nullable BlockPos pos, CallbackInfo info)
     {
         if (this.sourceState.getBlock() == MPBlocks.FRONOS_GRASS_BLOCK)
         {

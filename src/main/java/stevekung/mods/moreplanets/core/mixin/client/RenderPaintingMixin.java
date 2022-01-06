@@ -15,8 +15,8 @@ public class RenderPaintingMixin
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/painting/paintings_more_planets.png");
 
-    @Inject(method = "getEntityTexture(Lnet/minecraft/entity/item/EntityPainting;)Lnet/minecraft/util/ResourceLocation;", cancellable = true, at = @At("HEAD"))
-    private void getEntityTexture(EntityPainting entity, CallbackInfoReturnable<ResourceLocation> info)
+    @Inject(method = "getEntityTexture", cancellable = true, at = @At("HEAD"))
+    private void moreplanets$getPaintingTexture(EntityPainting entity, CallbackInfoReturnable<ResourceLocation> info)
     {
         if (entity.art == PaintingMP.RONG)
         {

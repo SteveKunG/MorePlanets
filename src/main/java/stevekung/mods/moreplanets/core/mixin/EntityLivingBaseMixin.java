@@ -16,29 +16,28 @@ import stevekung.mods.moreplanets.init.MPPotions;
 public abstract class EntityLivingBaseMixin extends Entity implements IInfectedPurlonite
 {
     private static final DataParameter<Boolean> INFECTED_PURLONITE = new DataParameter<>(122, DataSerializers.BOOLEAN);
-    private final EntityLivingBase that = (EntityLivingBase) (Object) this;
 
-    private EntityLivingBaseMixin()
+    EntityLivingBaseMixin()
     {
         super(null);
     }
 
-    @Inject(method = "entityInit()V", at = @At("RETURN"))
-    private void entityInit(CallbackInfo info)
+    @Inject(method = "entityInit", at = @At("TAIL"))
+    private void moreplanets$addInfectedPurloniteData(CallbackInfo info)
     {
         this.dataManager.register(INFECTED_PURLONITE, false);
     }
 
-    @Inject(method = "updatePotionMetadata()V", at = @At(value = "INVOKE", target = "net/minecraft/entity/EntityLivingBase.setInvisible(Z)V", shift = At.Shift.AFTER, ordinal = 0))
-    private void updatePotionMetadataPre(CallbackInfo info)
+    @Inject(method = "updatePotionMetadata", at = @At(value = "INVOKE", target = "net/minecraft/entity/EntityLivingBase.setInvisible(Z)V", shift = At.Shift.AFTER, ordinal = 0))
+    private void moreplanets$updateInfectedPurlonitePre(CallbackInfo info)
     {
         this.setInfectedPurlonite(false);
     }
 
-    @Inject(method = "updatePotionMetadata()V", at = @At(value = "INVOKE", target = "net/minecraft/entity/EntityLivingBase.setInvisible(Z)V", shift = At.Shift.BEFORE, ordinal = 1))
-    private void updatePotionMetadataPost(CallbackInfo info)
+    @Inject(method = "updatePotionMetadata", at = @At(value = "INVOKE", target = "net/minecraft/entity/EntityLivingBase.setInvisible(Z)V", shift = At.Shift.BEFORE, ordinal = 1))
+    private void moreplanets$updateInfectedPurlonitePost(CallbackInfo info)
     {
-        this.setInfectedPurlonite(this.that.isPotionActive(MPPotions.INFECTED_PURLONITE));
+        this.setInfectedPurlonite(((EntityLivingBase)(Object)this).isPotionActive(MPPotions.INFECTED_PURLONITE));
     }
 
     @Override

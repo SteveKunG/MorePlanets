@@ -22,7 +22,7 @@ public class GuiCelestialSelectionMixin
     List<CelestialBody> bodiesToRender;
 
     @Inject(method = "initGui", at = @At("TAIL"))
-    private void initGui(CallbackInfo info)
+    private void moreplanets$removeSpaceNetherInit(CallbackInfo info)
     {
         if (WorldTickEventHandler.survivalPlanetData != null && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
         {
@@ -30,8 +30,8 @@ public class GuiCelestialSelectionMixin
         }
     }
 
-    @Inject(method = "getChildren", remap = false, at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILSOFT)
-    private void getChildren(Object object, CallbackInfoReturnable<List<CelestialBody>> info, List<CelestialBody> bodyList)
+    @Inject(method = "getChildren", remap = false, at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILSOFT)
+    private void moreplanets$removeSpaceNetherChildren(Object object, CallbackInfoReturnable<List<CelestialBody>> info, List<CelestialBody> bodyList)
     {
         if (WorldTickEventHandler.survivalPlanetData != null && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
         {

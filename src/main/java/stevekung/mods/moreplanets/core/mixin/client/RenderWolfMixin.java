@@ -14,8 +14,8 @@ public class RenderWolfMixin
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/dog/rong.png");
 
-    @Inject(method = "getEntityTexture(Lnet/minecraft/entity/passive/EntityWolf;)Lnet/minecraft/util/ResourceLocation;", cancellable = true, at = @At("HEAD"))
-    private void getEntityTexture(EntityWolf entity, CallbackInfoReturnable<ResourceLocation> info)
+    @Inject(method = "getEntityTexture", cancellable = true, at = @At("HEAD"))
+    private void moreplanets$getWolfTexture(EntityWolf entity, CallbackInfoReturnable<ResourceLocation> info)
     {
         if (entity.isTamed() && entity.hasCustomName() && entity.getCustomNameTag().equals("Rong"))
         {

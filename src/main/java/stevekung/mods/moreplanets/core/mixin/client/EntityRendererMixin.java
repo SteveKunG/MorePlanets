@@ -15,22 +15,22 @@ public class EntityRendererMixin
 {
     @Shadow
     @Final
-    private Minecraft mc;
+    Minecraft mc;
 
-    @ModifyVariable(method = "updateLightmap(F)V", at = @At(value = "CONSTANT", args = "intValue=255"), name = "f8")
-    private float addWorldRed(float f8)
+    @ModifyVariable(method = "updateLightmap", at = @At(value = "CONSTANT", args = "intValue=255"), name = "f8")
+    private float moreplanets$addWorldRed(float f8)
     {
         return f8 * (float)WorldColorUtils.getWorldColor(this.mc.world).x;
     }
 
-    @ModifyVariable(method = "updateLightmap(F)V", at = @At(value = "CONSTANT", args = "intValue=255"), name = "f9")
-    private float addWorldGreen(float f9)
+    @ModifyVariable(method = "updateLightmap", at = @At(value = "CONSTANT", args = "intValue=255"), name = "f9")
+    private float moreplanets$addWorldGreen(float f9)
     {
         return f9 * (float)WorldColorUtils.getWorldColor(this.mc.world).y;
     }
 
-    @ModifyVariable(method = "updateLightmap(F)V", at = @At(value = "CONSTANT", args = "intValue=255"), name = "f10")
-    private float addWorldBlue(float f10)
+    @ModifyVariable(method = "updateLightmap", at = @At(value = "CONSTANT", args = "intValue=255"), name = "f10")
+    private float moreplanets$addWorldBlue(float f10)
     {
         return f10 * (float)WorldColorUtils.getWorldColor(this.mc.world).z;
     }

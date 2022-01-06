@@ -21,7 +21,7 @@ import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 public class CommandGCHoustonMixin
 {
     @Inject(method = "execute", at = @At(value = "INVOKE", target = "net/minecraft/command/CommandBase.notifyCommandListener(Lnet/minecraft/command/ICommandSender;Lnet/minecraft/command/ICommand;Ljava/lang/String;[Ljava/lang/Object;)V", ordinal = 3), locals = LocalCapture.CAPTURE_FAILSOFT)
-    private void execute(MinecraftServer server, ICommandSender sender, String[] args, CallbackInfo info, EntityPlayerMP playerBase, boolean isOp, int dimID, WorldServer worldserver, BlockPos spawnPoint, BlockPos bedPos, GCPlayerStats stats, Vector3 spawnPos)
+    private void moreplanets$removeInventoryContents(MinecraftServer server, ICommandSender sender, String[] args, CallbackInfo info, EntityPlayerMP playerBase, boolean isOp, int dimID, WorldServer worldserver, BlockPos spawnPoint, BlockPos bedPos, GCPlayerStats stats, Vector3 spawnPos)
     {
         if (WorldTickEventHandler.survivalPlanetData != null && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
         {
