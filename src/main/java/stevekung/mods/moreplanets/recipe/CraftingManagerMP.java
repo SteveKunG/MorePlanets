@@ -20,7 +20,6 @@ import net.minecraftforge.fluids.FluidUtil;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.debug.JSONRecipe;
-import stevekung.mods.moreplanets.utils.debug.JSONTags;
 import stevekung.mods.moreplanets.utils.helper.RecipeHelper;
 
 public class CraftingManagerMP
@@ -34,7 +33,6 @@ public class CraftingManagerMP
             CraftingManagerMP.addBlockRecipe();
             CraftingManagerMP.addItemRecipe();
         }
-        JSONTags.init();
         JSONRecipe.generateConstants();
     }
 
