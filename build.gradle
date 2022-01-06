@@ -117,8 +117,8 @@ dependencies {
     runtime "curse.maven:indicatia-272146:2854909"
     runtime "curse.maven:ctm-267602:2915363"
 
-    compile "org.spongepowered:mixin:0.8.4"
-    annotationProcessor "org.spongepowered:mixin:0.8.4:processor"
+    compile "org.spongepowered:mixin:0.8.3"
+    annotationProcessor "org.spongepowered:mixin:0.8.3:processor"
 }
 
 sourceSets {
