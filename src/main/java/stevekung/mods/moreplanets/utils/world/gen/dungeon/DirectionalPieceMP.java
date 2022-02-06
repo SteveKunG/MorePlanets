@@ -43,7 +43,7 @@ public abstract class DirectionalPieceMP extends PieceMP
 
         if (tagCompound.hasKey("Direction"))
         {
-            this.direction = EnumFacing.getFront(tagCompound.getInteger("Direction"));
+            this.direction = EnumFacing.byIndex(tagCompound.getInteger("Direction"));
         }
         else
         {
@@ -64,7 +64,7 @@ public abstract class DirectionalPieceMP extends PieceMP
 
         do
         {
-            randomDir = EnumFacing.getHorizontal((this.getDirection().getOpposite().getHorizontalIndex() + 1 + randDir) % 4);
+            randomDir = EnumFacing.byHorizontalIndex((this.getDirection().getOpposite().getHorizontalIndex() + 1 + randDir) % 4);
             StructureBoundingBox extension = this.getExtension(randomDir, this.configuration.getHallwayLengthMin() + rand.nextInt(this.configuration.getHallwayLengthMax() - this.configuration.getHallwayLengthMin()), 3);
             blockX = extension.minX;
             blockZ = extension.minZ;

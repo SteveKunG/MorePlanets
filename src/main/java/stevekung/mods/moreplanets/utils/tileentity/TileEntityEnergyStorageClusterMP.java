@@ -174,7 +174,7 @@ public abstract class TileEntityEnergyStorageClusterMP extends TileBaseUniversal
     }
 
     @Override
-    public EnumFacing getFront()
+    public EnumFacing byIndex()
     {
         return this.world.getBlockState(this.getPos()).getValue(BlockTieredEnergyStorageCluster.FACING);
     }
@@ -185,16 +185,16 @@ public abstract class TileEntityEnergyStorageClusterMP extends TileBaseUniversal
         switch (this.getSide(MachineSide.ELECTRIC_IN))
         {
         case LEFT:
-            return this.getFront().rotateY();
+            return this.byIndex().rotateY();
         case REAR:
-            return this.getFront().getOpposite();
+            return this.byIndex().getOpposite();
         case TOP:
             return EnumFacing.UP;
         case BOTTOM:
             return EnumFacing.DOWN;
         case RIGHT:
         default:
-            return this.getFront().rotateYCCW();
+            return this.byIndex().rotateYCCW();
         }
     }
 
@@ -204,16 +204,16 @@ public abstract class TileEntityEnergyStorageClusterMP extends TileBaseUniversal
         switch (this.getSide(MachineSide.ELECTRIC_OUT))
         {
         case RIGHT:
-            return this.getFront().rotateYCCW();
+            return this.byIndex().rotateYCCW();
         case REAR:
-            return this.getFront().getOpposite();
+            return this.byIndex().getOpposite();
         case TOP:
             return EnumFacing.UP;
         case BOTTOM:
             return EnumFacing.DOWN;
         case LEFT:
         default:
-            return this.getFront().rotateY();
+            return this.byIndex().rotateY();
         }
     }
 

@@ -16,7 +16,7 @@ public abstract class BlockTorchMP extends BlockTorch implements ISortableBlock,
     }
 
     @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
+    public CreativeTabs getCreativeTab()
     {
         return MorePlanetsMod.BLOCK_TAB;
     }

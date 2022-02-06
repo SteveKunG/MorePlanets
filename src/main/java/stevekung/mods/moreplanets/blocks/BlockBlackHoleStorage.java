@@ -47,7 +47,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
         super(Material.IRON);
         this.setSoundType(SoundType.METAL);
         this.setHardness(2.0F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
@@ -276,7 +276,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getTranslationKey() + ".description"));
     }
 
     @Override

@@ -35,7 +35,7 @@ public class ItemSpaceBow extends ItemBow implements ISortableItem, IItemModelRe
         this.name = name;
         this.setMaxStackSize(1);
         this.setMaxDamage(511);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.addPropertyOverride(new ResourceLocation("pull"), (itemStack, world, living) ->
         {
             if (living == null)

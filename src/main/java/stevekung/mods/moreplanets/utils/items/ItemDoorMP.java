@@ -20,7 +20,7 @@ public class ItemDoorMP extends ItemBaseMP
     public ItemDoorMP(String name, Block door)
     {
         this.door = door;
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
@@ -50,8 +50,8 @@ public class ItemDoorMP extends ItemBaseMP
             if (player.canPlayerEdit(pos, facing, itemStack) && this.door.canPlaceBlockAt(world, pos))
             {
                 EnumFacing enumfacing = EnumFacing.fromAngle(player.rotationYaw);
-                int i = enumfacing.getFrontOffsetX();
-                int j = enumfacing.getFrontOffsetZ();
+                int i = enumfacing.getXOffset();
+                int j = enumfacing.getZOffset();
                 boolean flag = i < 0 && hitZ < 0.5F || i > 0 && hitZ > 0.5F || j < 0 && hitX > 0.5F || j > 0 && hitX < 0.5F;
                 ItemDoor.placeDoor(world, pos, enumfacing, this.door, flag);
                 SoundType soundtype = world.getBlockState(pos).getBlock().getSoundType(world.getBlockState(pos), world, pos, player);

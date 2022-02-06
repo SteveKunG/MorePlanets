@@ -24,7 +24,7 @@ public class BlockTerraberry extends BlockCropsMP
 {
     public BlockTerraberry(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

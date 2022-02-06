@@ -14,7 +14,7 @@ public class ItemInfectedWoodPickaxe extends ItemPickaxeMP
     public ItemInfectedWoodPickaxe(String name, ToolMaterial material)
     {
         super(material);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

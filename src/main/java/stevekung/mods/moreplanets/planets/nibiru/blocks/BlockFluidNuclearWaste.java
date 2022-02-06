@@ -22,7 +22,7 @@ public class BlockFluidNuclearWaste extends BlockFluidLavaBaseMP
     public BlockFluidNuclearWaste(String name)
     {
         super(MPBlocks.NUCLEAR_WASTE_FLUID);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class BlockElectricalFire extends BlockFire implements IFireBlock
     public BlockElectricalFire(String name)
     {
         this.setLightLevel(1.0F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setTickRandomly(true);
     }
 
@@ -127,7 +127,7 @@ public class BlockElectricalFire extends BlockFire implements IFireBlock
 
                                 if (k1 > 0)
                                 {
-                                    int l1 = (k1 + 40 + world.getDifficulty().getDifficultyId() * 7) / (i + 30);
+                                    int l1 = (k1 + 40 + world.getDifficulty().getId() * 7) / (i + 30);
 
                                     if (flag1)
                                     {
@@ -262,7 +262,7 @@ public class BlockElectricalFire extends BlockFire implements IFireBlock
 
             if (iblockstate.getBlock() == Blocks.TNT)
             {
-                Blocks.TNT.onBlockDestroyedByPlayer(world, pos, iblockstate.withProperty(BlockTNT.EXPLODE, true));
+                Blocks.TNT.onPlayerDestroy(world, pos, iblockstate.withProperty(BlockTNT.EXPLODE, true));
             }
         }
     }

@@ -19,12 +19,12 @@ public class BlockAlbetiusWormEgg extends BlockBaseMP
     public BlockAlbetiusWormEgg(String name)
     {
         super(Material.ROCK);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return CompatibilityManagerMP.isCTMLoaded ? BlockRenderLayer.CUTOUT : BlockRenderLayer.SOLID;
     }

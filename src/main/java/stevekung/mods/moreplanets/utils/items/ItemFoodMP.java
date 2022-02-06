@@ -24,10 +24,10 @@ public abstract class ItemFoodMP extends ItemFood implements ISortableItem, IIte
     }
 
     @Override
-    public Item setUnlocalizedName(String name)
+    public Item setTranslationKey(String name)
     {
         this.name = name;
-        return super.setUnlocalizedName(name);
+        return super.setTranslationKey(name);
     }
 
     @Override

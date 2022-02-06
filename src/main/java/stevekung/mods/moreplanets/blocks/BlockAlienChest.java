@@ -24,7 +24,7 @@ public class BlockAlienChest extends BlockChestMP implements IItemRarity
         super(Material.IRON);
         this.setHardness(2.0F);
         this.setSoundType(SoundType.METAL);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

@@ -22,14 +22,14 @@ public class ItemBaseMP extends Item implements ISortableItem, IItemModelRender,
 
     public ItemBaseMP(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
-    public Item setUnlocalizedName(String name)
+    public Item setTranslationKey(String name)
     {
         this.name = name;
-        return super.setUnlocalizedName(name);
+        return super.setTranslationKey(name);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class BlockDionaAncientChest extends BlockChestMP
 {
     public BlockDionaAncientChest(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

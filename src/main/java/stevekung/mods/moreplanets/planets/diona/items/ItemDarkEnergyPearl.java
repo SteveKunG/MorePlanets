@@ -7,7 +7,7 @@ public class ItemDarkEnergyPearl extends ItemBaseMP implements IDarkEnergyFuel
 {
     public ItemDarkEnergyPearl(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

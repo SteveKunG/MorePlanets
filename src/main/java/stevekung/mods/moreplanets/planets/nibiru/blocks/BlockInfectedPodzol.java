@@ -20,7 +20,7 @@ public class BlockInfectedPodzol extends BlockBaseMP
     public BlockInfectedPodzol(String name)
     {
         super(Material.GROUND);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setHardness(0.55F);
         this.setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, false).withProperty(BLOCK_ABOVE, false));
         this.setSoundType(SoundType.GROUND);

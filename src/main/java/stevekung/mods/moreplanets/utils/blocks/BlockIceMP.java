@@ -25,7 +25,7 @@ public class BlockIceMP extends BlockBreakableMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }
@@ -37,7 +37,7 @@ public class BlockIceMP extends BlockBreakableMP
     }
 
     @Override
-    public EnumPushReaction getMobilityFlag(IBlockState state)
+    public EnumPushReaction getPushReaction(IBlockState state)
     {
         return EnumPushReaction.NORMAL;
     }

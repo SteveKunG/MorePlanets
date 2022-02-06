@@ -9,7 +9,7 @@ public class BlockCheeseMilkCake extends BlockCakeMP implements IDescription
 {
     public BlockCheeseMilkCake(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
@@ -27,6 +27,6 @@ public class BlockCheeseMilkCake extends BlockCakeMP implements IDescription
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getTranslationKey() + ".description"));
     }
 }

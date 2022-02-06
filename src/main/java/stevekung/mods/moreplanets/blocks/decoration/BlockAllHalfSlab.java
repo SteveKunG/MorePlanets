@@ -24,7 +24,7 @@ public class BlockAllHalfSlab extends BlockSlabMP
     public BlockAllHalfSlab(String name, BlockType type, Material material)
     {
         super(material);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.useNeighborBrightness = true;
         this.type = type;
 

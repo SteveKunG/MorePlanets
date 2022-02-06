@@ -41,7 +41,7 @@ public class BlockJelly extends BlockBreakableMP
     {
         super(Material.CLOTH);
         this.setSoundType(MPSounds.SMALL_SLIME);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.type = type;
     }
 
@@ -72,7 +72,7 @@ public class BlockJelly extends BlockBreakableMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }

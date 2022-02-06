@@ -25,10 +25,10 @@ public abstract class BlockAdvancedMP extends BlockAdvanced implements ITileEnti
     }
 
     @Override
-    public Block setUnlocalizedName(String name)
+    public Block setTranslationKey(String name)
     {
         this.name = name;
-        return super.setUnlocalizedName(name);
+        return super.setTranslationKey(name);
     }
 
     @Override
@@ -39,7 +39,7 @@ public abstract class BlockAdvancedMP extends BlockAdvanced implements ITileEnti
     }
 
     @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
+    public CreativeTabs getCreativeTab()
     {
         return MorePlanetsMod.BLOCK_TAB;
     }

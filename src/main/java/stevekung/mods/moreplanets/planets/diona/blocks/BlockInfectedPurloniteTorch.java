@@ -21,7 +21,7 @@ public class BlockInfectedPurloniteTorch extends BlockTorchMP
     {
         this.setLightLevel(0.9375F);
         this.setSoundType(SoundType.WOOD);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
@@ -36,8 +36,8 @@ public class BlockInfectedPurloniteTorch extends BlockTorchMP
         if (facing.getAxis().isHorizontal())
         {
             EnumFacing facing1 = facing.getOpposite();
-            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + 0.27D * facing1.getFrontOffsetX(), d1 + 0.22D, d2 + 0.27D * facing1.getFrontOffsetZ(), 0.0D, 0.0D, 0.0D);
-            MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_PURLONITE_FLAME, d0 + 0.27D * facing1.getFrontOffsetX(), d1 + 0.22D, d2 + 0.27D * facing1.getFrontOffsetZ(), 0.0D, 0.0D, 0.0D);
+            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + 0.27D * facing1.getXOffset(), d1 + 0.22D, d2 + 0.27D * facing1.getZOffset(), 0.0D, 0.0D, 0.0D);
+            MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_PURLONITE_FLAME, d0 + 0.27D * facing1.getXOffset(), d1 + 0.22D, d2 + 0.27D * facing1.getZOffset(), 0.0D, 0.0D, 0.0D);
         }
         else
         {

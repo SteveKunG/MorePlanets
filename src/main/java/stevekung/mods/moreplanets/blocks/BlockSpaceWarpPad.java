@@ -36,7 +36,7 @@ public class BlockSpaceWarpPad extends BlockAdvancedTileMP implements IPartialSe
         this.setHardness(3.0F);
         this.setResistance(10.0F);
         this.setSoundType(SoundType.METAL);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class BlockSpaceWarpPad extends BlockAdvancedTileMP implements IPartialSe
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getTranslationKey() + ".description"));
     }
 
     @Override

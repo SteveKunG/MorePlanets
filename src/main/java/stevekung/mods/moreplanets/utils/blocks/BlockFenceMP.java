@@ -20,18 +20,18 @@ public class BlockFenceMP extends BlockFence implements ISortableBlock, IItemMod
         this.setHardness(2.0F);
         this.setResistance(5.0F);
         this.setSoundType(SoundType.WOOD);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
-    public Block setUnlocalizedName(String name)
+    public Block setTranslationKey(String name)
     {
         this.name = name;
-        return super.setUnlocalizedName(name);
+        return super.setTranslationKey(name);
     }
 
     @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
+    public CreativeTabs getCreativeTab()
     {
         return MorePlanetsMod.BLOCK_TAB;
     }

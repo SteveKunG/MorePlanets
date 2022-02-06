@@ -16,7 +16,7 @@ public class BlockStairsMP extends BlockStairs implements ISortableBlock, IItemM
     public BlockStairsMP(String name, EnumStairsType type)
     {
         super(type.getParent().getDefaultState());
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setHardness(type.getHardness());
 
         if (type == EnumStairsType.WOODEN)
@@ -35,14 +35,14 @@ public class BlockStairsMP extends BlockStairs implements ISortableBlock, IItemM
     }
 
     @Override
-    public Block setUnlocalizedName(String name)
+    public Block setTranslationKey(String name)
     {
         this.name = name;
-        return super.setUnlocalizedName(name);
+        return super.setTranslationKey(name);
     }
 
     @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
+    public CreativeTabs getCreativeTab()
     {
         return MorePlanetsMod.BLOCK_TAB;
     }

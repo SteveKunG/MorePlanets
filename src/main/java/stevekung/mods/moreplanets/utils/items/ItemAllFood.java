@@ -23,7 +23,7 @@ public class ItemAllFood extends ItemFoodMP
 
     public ItemAllFood(String name, ItemType type)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.type = type;
     }
 
@@ -80,9 +80,9 @@ public class ItemAllFood extends ItemFoodMP
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack itemStack)
+    public String getTranslationKey(ItemStack itemStack)
     {
-        return this.type == ItemType.ENCHANTED_INFECTED_GOLDEN_APPLE ? LangUtils.translate("item.infected_golden_apple") : super.getUnlocalizedName(itemStack);
+        return this.type == ItemType.ENCHANTED_INFECTED_GOLDEN_APPLE ? LangUtils.translate("item.infected_golden_apple") : super.getTranslationKey(itemStack);
     }
 
     @Override

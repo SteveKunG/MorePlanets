@@ -36,15 +36,15 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
         this.setHardness(0.5F);
         this.setResistance(20.0F);
         this.setSoundType(SoundType.GLASS);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.type = type;
     }
 
     @Override
-    public Block setUnlocalizedName(String name)
+    public Block setTranslationKey(String name)
     {
         this.name = name;
-        return super.setUnlocalizedName(name);
+        return super.setTranslationKey(name);
     }
 
     @Override
@@ -55,14 +55,14 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
     }
 
     @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
+    public CreativeTabs getCreativeTab()
     {
         return MorePlanetsMod.BLOCK_TAB;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }

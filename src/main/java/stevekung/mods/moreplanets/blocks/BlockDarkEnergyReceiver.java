@@ -49,7 +49,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription
     {
         super(Material.IRON);
         this.setSoundType(SoundType.METAL);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH));
     }
 
@@ -368,13 +368,13 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getTranslationKey() + ".description"));
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing facing = EnumFacing.getHorizontal(meta % 4);
+        EnumFacing facing = EnumFacing.byHorizontalIndex(meta % 4);
         return this.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, facing);
     }
 

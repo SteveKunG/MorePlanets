@@ -21,12 +21,12 @@ public class BlockGlowingIronBlock extends BlockBaseMP implements IDetectableRes
         this.setHardness(5.0F);
         this.setResistance(10.0F);
         this.setSoundType(SoundType.METAL);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return CompatibilityManagerMP.isCTMLoaded ? BlockRenderLayer.CUTOUT : BlockRenderLayer.SOLID;
     }

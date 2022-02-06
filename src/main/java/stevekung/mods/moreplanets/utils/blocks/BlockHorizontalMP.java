@@ -16,7 +16,7 @@ public class BlockHorizontalMP extends BlockLogMP
         this.setResistance(3.0F);
         this.setSoundType(SoundType.CLOTH);
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Y));
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

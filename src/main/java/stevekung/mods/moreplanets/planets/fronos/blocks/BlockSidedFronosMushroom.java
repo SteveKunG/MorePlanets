@@ -25,7 +25,7 @@ public class BlockSidedFronosMushroom extends BlockBushMP
     public BlockSidedFronosMushroom(String name)
     {
         super(Material.PLANTS);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH));
         this.setTickRandomly(true);
     }
@@ -78,7 +78,7 @@ public class BlockSidedFronosMushroom extends BlockBushMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }
@@ -86,7 +86,7 @@ public class BlockSidedFronosMushroom extends BlockBushMP
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.getHorizontal(meta));
+        return this.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.byHorizontalIndex(meta));
     }
 
     @Override

@@ -12,7 +12,7 @@ public class ItemBreathableDiremsium extends ItemBreathableArmor
     public ItemBreathableDiremsium(String name, ArmorMaterial material, EntityEquipmentSlot type)
     {
         super(material, type);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

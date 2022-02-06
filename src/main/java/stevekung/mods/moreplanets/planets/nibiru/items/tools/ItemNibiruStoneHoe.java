@@ -14,7 +14,7 @@ public class ItemNibiruStoneHoe extends ItemHoeMP
     public ItemNibiruStoneHoe(String name, ToolMaterial material)
     {
         super(material);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

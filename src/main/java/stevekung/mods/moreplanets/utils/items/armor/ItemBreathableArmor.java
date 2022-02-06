@@ -30,11 +30,11 @@ public abstract class ItemBreathableArmor extends ItemArmor implements IBreathab
     }
 
     @Override
-    public Item setUnlocalizedName(String name)
+    public Item setTranslationKey(String name)
     {
         this.name = name;
         MPJEIRecipes.collectAnvilList(name, this, this.getRepairItem());
-        return super.setUnlocalizedName(name);
+        return super.setTranslationKey(name);
     }
 
     @Override

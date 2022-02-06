@@ -39,7 +39,7 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelR
     {
         this.type = type;
         this.name = name;
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
@@ -85,7 +85,7 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelR
         {
             if (ClientUtils.isShiftKeyDown())
             {
-                list.addAll(BlocksItemsRegistry.getDescription(this.getUnlocalizedName() + ".description"));
+                list.addAll(BlocksItemsRegistry.getDescription(this.getTranslationKey() + ".description"));
             }
             else
             {

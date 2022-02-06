@@ -248,7 +248,7 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
 
                     if (iblockstate1.getMaterial() != Material.AIR)
                     {
-                        this.inTile.onEntityCollidedWithBlock(this.world, blockpos1, iblockstate1, this);
+                        this.inTile.onEntityCollision(this.world, blockpos1, iblockstate1, this);
                     }
                 }
             }

@@ -42,7 +42,7 @@ public class BlockAllDoubleSlab extends BlockAllHalfSlab
         {
             this.setHardness(2.0F);
         }
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

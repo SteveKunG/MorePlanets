@@ -41,7 +41,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
         this.setTickRandomly(true);
         this.setSoundType(SoundType.PLANT);
         this.setHardness(0.2F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     public BlockVinesMP()
@@ -357,7 +357,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }

@@ -39,16 +39,16 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements IIte
     }
 
     @Override
-    public Block setUnlocalizedName(String name)
+    public Block setTranslationKey(String name)
     {
         this.name = name;
-        return super.setUnlocalizedName(name);
+        return super.setTranslationKey(name);
     }
 
     @Override
     public boolean isPassable(IBlockAccess world, BlockPos pos)
     {
-        return this.blockMaterial != Material.LAVA;
+        return this.material != Material.LAVA;
     }
 
     @Override

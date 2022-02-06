@@ -20,7 +20,7 @@ public class BlockDeshFrame extends BlockBaseMP
         super(Material.IRON);
         this.setSoundType(SoundType.METAL);
         this.setHardness(3.0F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class BlockDeshFrame extends BlockBaseMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }

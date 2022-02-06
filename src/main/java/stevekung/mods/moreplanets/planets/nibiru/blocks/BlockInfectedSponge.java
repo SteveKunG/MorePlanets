@@ -28,7 +28,7 @@ public class BlockInfectedSponge extends BlockBaseMP
         super(Material.SPONGE);
         this.setHardness(0.6F);
         this.setSoundType(SoundType.PLANT);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.isWet = isWet;
     }
 

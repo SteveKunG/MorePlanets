@@ -325,7 +325,7 @@ public class TeleportUtils
             LoggerMP.info("Setting up default survival player gear for Asteroids");
             ITeleportType type = GalacticraftRegistry.getTeleportTypeForDimension(targetWorld.provider.getClass());
             Vector3 spawnPosVec = type.getPlayerSpawnLocation(targetWorld, player);
-            ChunkPos pair = targetWorld.getChunkFromChunkCoords(spawnPosVec.intX() >> 4, spawnPosVec.intZ() >> 4).getPos();
+            ChunkPos pair = targetWorld.getChunk(spawnPosVec.intX() >> 4, spawnPosVec.intZ() >> 4).getPos();
             player.setLocationAndAngles(spawnPosVec.x, spawnPosVec.y, spawnPosVec.z, player.rotationYaw, player.rotationPitch);
             player.setSpawnChunk(new BlockPos(spawnPosVec.intX(), spawnPosVec.intY(), spawnPosVec.intZ()), true, GCCoreUtil.getDimensionID(targetWorld));
             targetWorld.getChunkProvider().loadChunk(pair.x, pair.z);

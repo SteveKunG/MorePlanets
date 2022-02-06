@@ -16,7 +16,7 @@ public class ItemGravityBoots extends ItemArmorMP implements IArmorGravity, IIte
     public ItemGravityBoots(String name, ArmorMaterial material)
     {
         super(material, EntityEquipmentSlot.FEET);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

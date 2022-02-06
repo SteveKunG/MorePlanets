@@ -47,7 +47,7 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
         this.setBlockUnbreakable();
         this.setResistance(6000000.0F);
         this.setSoundType(MPSounds.ALIEN_EGG);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
@@ -118,7 +118,7 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(EYE, (meta & 4) != 0).withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.getHorizontal(meta & 3));
+        return this.getDefaultState().withProperty(EYE, (meta & 4) != 0).withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.byHorizontalIndex(meta & 3));
     }
 
     @Override

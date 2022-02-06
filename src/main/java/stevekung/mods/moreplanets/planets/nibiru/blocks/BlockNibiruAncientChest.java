@@ -18,7 +18,7 @@ public class BlockNibiruAncientChest extends BlockChestMP
 {
     public BlockNibiruAncientChest(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

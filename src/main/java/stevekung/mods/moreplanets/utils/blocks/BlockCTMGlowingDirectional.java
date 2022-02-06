@@ -18,7 +18,7 @@ public class BlockCTMGlowingDirectional extends BlockDirectionalMP
     {
         super(material);
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.FACING_ALL, EnumFacing.UP));
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class BlockCTMGlowingDirectional extends BlockDirectionalMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return CompatibilityManagerMP.isCTMLoaded ? BlockRenderLayer.CUTOUT : BlockRenderLayer.SOLID;
     }

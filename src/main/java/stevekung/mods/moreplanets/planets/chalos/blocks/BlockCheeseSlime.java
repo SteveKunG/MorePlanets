@@ -23,7 +23,7 @@ public class BlockCheeseSlime extends BlockBreakableMP implements ISortableBlock
     {
         super(Material.GLASS);
         this.setSoundType(SoundType.SLIME);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setDefaultSlipperiness(0.8F);
     }
 
@@ -36,7 +36,7 @@ public class BlockCheeseSlime extends BlockBreakableMP implements ISortableBlock
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }

@@ -32,7 +32,7 @@ public class BlockNuclearWasteGenerator extends BlockTileMP implements IDescript
     {
         super(Material.IRON);
         this.setHardness(5.0F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setSoundType(SoundType.METAL);
     }
 
@@ -107,7 +107,7 @@ public class BlockNuclearWasteGenerator extends BlockTileMP implements IDescript
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getTranslationKey() + ".description"));
     }
 
     @Override

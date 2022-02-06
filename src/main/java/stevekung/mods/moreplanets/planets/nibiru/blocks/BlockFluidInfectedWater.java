@@ -29,11 +29,11 @@ public class BlockFluidInfectedWater extends BlockFluidBaseMP implements IFishab
         this.isWater = true;
         this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
         this.setLightOpacity(3);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         if (entity instanceof EntityLivingBase && !EntityEffectUtils.isGalacticraftMob(entity) && !(entity instanceof ISpaceMob && ((ISpaceMob)entity).getMobType() == EnumMobType.NIBIRU))
         {

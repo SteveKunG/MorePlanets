@@ -6,7 +6,7 @@ public class ItemCompressedMetal extends ItemBaseMP
 {
     public ItemCompressedMetal(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

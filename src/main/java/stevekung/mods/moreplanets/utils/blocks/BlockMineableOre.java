@@ -9,7 +9,7 @@ public class BlockMineableOre extends BlockBaseMP implements IDetectableResource
     public BlockMineableOre(String name)
     {
         super(Material.ROCK);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

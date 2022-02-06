@@ -22,7 +22,7 @@ public class BlockInfectedPurloniteSlime extends BlockBreakableMP
     public BlockInfectedPurloniteSlime(String name)
     {
         super(Material.CLAY);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setDefaultSlipperiness(0.8F);
         this.setSoundType(MPSounds.ALIEN_EGG);
     }
@@ -36,7 +36,7 @@ public class BlockInfectedPurloniteSlime extends BlockBreakableMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }

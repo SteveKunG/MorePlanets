@@ -265,7 +265,7 @@ public class PacketSimpleMP extends PacketBase
         case S_UPDATE_NIBIRU_WEATHER:
             int i = (300 + world.rand.nextInt(600)) * 20;
             boolean thunder = (boolean)this.data.get(0);
-            WorldInfo worldinfo = playerMP.mcServer.worlds[0].getWorldInfo();
+            WorldInfo worldinfo = playerMP.server.worlds[0].getWorldInfo();
             worldinfo.setCleanWeatherTime(0);
             worldinfo.setRainTime(i);
             worldinfo.setThunderTime(i);
@@ -281,7 +281,7 @@ public class PacketSimpleMP extends PacketBase
             break;
         case S_TRANSFER_PLAYER:
             int dimID = (int)this.data.get(0);
-            playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, dimID, new TeleporterSpaceNether(playerMP.mcServer.getWorld(dimID), player.getPosition(), player.world.provider));
+            playerMP.server.getPlayerList().transferPlayerToDimension(playerMP, dimID, new TeleporterSpaceNether(playerMP.server.getWorld(dimID), player.getPosition(), player.world.provider));
             GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_RELOAD_RENDERER, player.dimension), playerMP);
             break;
         default:

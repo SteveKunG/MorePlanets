@@ -32,7 +32,7 @@ public class BlockInfectedSugarCane extends BlockBushMP
     {
         super(Material.PLANTS);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.AGE_15, 0));
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
@@ -134,7 +134,7 @@ public class BlockInfectedSugarCane extends BlockBushMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }

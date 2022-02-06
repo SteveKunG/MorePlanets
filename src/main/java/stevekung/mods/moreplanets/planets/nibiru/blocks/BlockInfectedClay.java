@@ -14,7 +14,7 @@ public class BlockInfectedClay extends BlockBaseMP
     public BlockInfectedClay(String name)
     {
         super(Material.CLAY);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setHardness(0.6F);
         this.setSoundType(SoundType.GROUND);
     }

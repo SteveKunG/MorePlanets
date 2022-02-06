@@ -18,7 +18,7 @@ public abstract class BlockAdvancedTileMP extends BlockAdvancedMP
     }
 
     @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
+    public CreativeTabs getCreativeTab()
     {
         return MorePlanetsMod.BLOCK_TAB;
     }

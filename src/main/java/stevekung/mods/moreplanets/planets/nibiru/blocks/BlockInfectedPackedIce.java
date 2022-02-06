@@ -15,7 +15,7 @@ public class BlockInfectedPackedIce extends BlockBaseMP implements IIce
         this.setDefaultSlipperiness(0.98F);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.GLASS);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

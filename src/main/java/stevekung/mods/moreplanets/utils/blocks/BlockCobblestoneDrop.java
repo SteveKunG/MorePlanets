@@ -14,7 +14,7 @@ public class BlockCobblestoneDrop extends BlockBaseMP
     public BlockCobblestoneDrop(String name)
     {
         super(Material.ROCK);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

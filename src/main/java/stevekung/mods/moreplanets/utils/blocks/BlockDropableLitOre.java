@@ -35,7 +35,7 @@ public class BlockDropableLitOre extends BlockBasicMP implements IDetectableReso
         this.type = type;
         this.setTickRandomly(true);
         this.setDefaultState(this.blockState.getBaseState().withProperty(LIT, false));
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

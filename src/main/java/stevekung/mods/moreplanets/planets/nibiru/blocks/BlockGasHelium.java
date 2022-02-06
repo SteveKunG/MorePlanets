@@ -22,7 +22,7 @@ public class BlockGasHelium extends BlockFluidFiniteMP
         this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockFluidBase.LEVEL, 7));
         this.setLightOpacity(0);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class BlockGasHelium extends BlockFluidFiniteMP
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         if (entity instanceof EntityLivingBase)
         {

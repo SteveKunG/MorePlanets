@@ -26,10 +26,10 @@ public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, I
     }
 
     @Override
-    public Block setUnlocalizedName(String name)
+    public Block setTranslationKey(String name)
     {
         this.name = name;
-        return super.setUnlocalizedName(name);
+        return super.setTranslationKey(name);
     }
 
     @Override
@@ -57,7 +57,7 @@ public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, I
     }
 
     @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
+    public CreativeTabs getCreativeTab()
     {
         return !this.isDouble() ? MorePlanetsMod.BLOCK_TAB : null;
     }
@@ -69,9 +69,9 @@ public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, I
     }
 
     @Override
-    public String getUnlocalizedName(int meta)
+    public String getTranslationKey(int meta)
     {
-        return super.getUnlocalizedName();
+        return super.getTranslationKey();
     }
 
     @Override

@@ -10,7 +10,7 @@ public class BlockCheeseFarmland extends BlockFarmlandMP
     public BlockCheeseFarmland(String name)
     {
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.MOISTURE, 0));
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

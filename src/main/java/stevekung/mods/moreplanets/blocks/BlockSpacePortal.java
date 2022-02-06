@@ -42,7 +42,7 @@ public class BlockSpacePortal extends BlockBreakableMP implements IItemModelRend
         super(Material.ROCK);
         this.setResistance(2000.0F);
         this.setHardness(35.0F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setLightLevel(0.75F);
     }
 

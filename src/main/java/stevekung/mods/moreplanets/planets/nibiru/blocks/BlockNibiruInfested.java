@@ -22,7 +22,7 @@ public class BlockNibiruInfested extends BlockBaseMP
     {
         super(Material.CLAY);
         this.type = type;
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

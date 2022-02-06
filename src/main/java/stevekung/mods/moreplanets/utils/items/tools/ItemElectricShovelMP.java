@@ -44,7 +44,7 @@ public class ItemElectricShovelMP extends ItemSpade implements IItemElectric, IS
         super(material);
         this.setMaxDamage(100);
         this.setNoRepair();
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.maxPower = maxPower;
     }
 

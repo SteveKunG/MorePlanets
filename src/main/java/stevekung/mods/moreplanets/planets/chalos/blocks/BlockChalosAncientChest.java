@@ -18,7 +18,7 @@ public class BlockChalosAncientChest extends BlockChestMP
 {
     public BlockChalosAncientChest(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

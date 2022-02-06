@@ -19,10 +19,10 @@ public abstract class BlockContainerMP extends BlockContainer implements ISortab
     }
 
     @Override
-    public Block setUnlocalizedName(String name)
+    public Block setTranslationKey(String name)
     {
         this.name = name;
-        return super.setUnlocalizedName(name);
+        return super.setTranslationKey(name);
     }
 
     @Override
@@ -38,7 +38,7 @@ public abstract class BlockContainerMP extends BlockContainer implements ISortab
     }
 
     @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
+    public CreativeTabs getCreativeTab()
     {
         return MorePlanetsMod.BLOCK_TAB;
     }

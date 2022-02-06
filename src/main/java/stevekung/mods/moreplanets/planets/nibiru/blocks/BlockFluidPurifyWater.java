@@ -21,11 +21,11 @@ public class BlockFluidPurifyWater extends BlockFluidBaseMP implements IFishable
         this.isWater = true;
         this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
         this.setLightOpacity(3);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         if (entity instanceof EntityLivingBase)
         {

@@ -34,7 +34,7 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.SOLID;
     }
@@ -47,7 +47,7 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
 
         if (this.canFlowingInto(world, pos.down(), world.getBlockState(pos.down())))
         {
-            if (this.blockMaterial == Material.LAVA && world.getBlockState(pos.down()).getMaterial() == Material.WATER)
+            if (this.material == Material.LAVA && world.getBlockState(pos.down()).getMaterial() == Material.WATER)
             {
                 world.setBlockState(pos.down(), this.getBlockFromWaterTo());
                 this.triggerMixEffects(world, pos.down());
@@ -239,7 +239,7 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
     private boolean canFlowingInto(World world, BlockPos pos, IBlockState state)
     {
         Material material = state.getMaterial();
-        return material != this.blockMaterial && material != Material.LAVA && !this.isBlocked(world, pos, state);
+        return material != this.material && material != Material.LAVA && !this.isBlocked(world, pos, state);
     }
 
     private boolean isBlocked(World world, BlockPos pos, IBlockState state)

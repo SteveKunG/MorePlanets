@@ -29,7 +29,7 @@ public class BlockJuicerEgg extends BlockBaseMP implements ITileEntityProvider
         super(Material.GROUND);
         this.setResistance(0.0F);
         this.setHardness(0.5F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setSoundType(MPSounds.ALIEN_EGG);
         this.setDefaultSlipperiness(0.8F);
     }
@@ -53,7 +53,7 @@ public class BlockJuicerEgg extends BlockBaseMP implements ITileEntityProvider
     }
 
     @Override
-    public void onBlockDestroyedByPlayer(World world, BlockPos pos, IBlockState state)
+    public void onPlayerDestroy(World world, BlockPos pos, IBlockState state)
     {
         if (!world.isRemote)
         {

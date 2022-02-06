@@ -43,7 +43,7 @@ public class ItemLaserGun extends ItemBaseMP implements ISortableItem, IItemMode
         this.setMaxStackSize(1);
         this.setMaxDamage(DAMAGE_RANGE);
         this.setNoRepair();
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.addPropertyOverride(new ResourceLocation("pull"), (itemStack, world, living) ->
         {
             if (living == null)

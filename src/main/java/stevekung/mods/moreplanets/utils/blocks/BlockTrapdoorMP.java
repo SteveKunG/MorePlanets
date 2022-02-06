@@ -15,20 +15,20 @@ public class BlockTrapdoorMP extends BlockTrapDoor implements ISortableBlock, II
     public BlockTrapdoorMP(String name)
     {
         super(Material.WOOD);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setSoundType(SoundType.WOOD);
         this.setHardness(3.0F);
     }
 
     @Override
-    public Block setUnlocalizedName(String name)
+    public Block setTranslationKey(String name)
     {
         this.name = name;
-        return super.setUnlocalizedName(name);
+        return super.setTranslationKey(name);
     }
 
     @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
+    public CreativeTabs getCreativeTab()
     {
         return MorePlanetsMod.BLOCK_TAB;
     }

@@ -15,7 +15,7 @@ public class BlockInfectedGravel extends BlockFallingMP
 {
     public BlockInfectedGravel(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setHardness(0.6F);
         this.setSoundType(SoundType.GROUND);
     }

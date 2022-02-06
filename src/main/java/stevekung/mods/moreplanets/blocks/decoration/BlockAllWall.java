@@ -14,7 +14,7 @@ public class BlockAllWall extends BlockWallMP
     {
         super(Material.ROCK);
         this.setDefaultState(this.blockState.getBaseState().withProperty(UP, false).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false));
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
 
         if (type.isDungeonBrick())
         {

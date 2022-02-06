@@ -23,7 +23,7 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
     public ItemAlienDefenderReinforcement(String name)
     {
         this.setMaxStackSize(1);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
         int range = 16;
         Vec3d playerEye = player.getPositionEyes(1.0F);
         Vec3d playerLook = player.getLook(1.0F);
-        Vec3d lookRange = playerEye.addVector(playerLook.x * range, playerLook.y * range, playerLook.z * range);
+        Vec3d lookRange = playerEye.add(playerLook.x * range, playerLook.y * range, playerLook.z * range);
         RayTraceResult moving = world.rayTraceBlocks(playerEye, lookRange);
         boolean disable = false;
 

@@ -70,7 +70,7 @@ public class RenderAlienMiner extends RenderLiving<EntityAlienMiner>
             Vec3d vec3 = this.getPosition(entitylivingbase, entitylivingbase.height * 0.5D, partialTicks);
             Vec3d vec31 = this.getPosition(entity, f4, partialTicks);
             Vec3d vec32 = vec3.subtract(vec31);
-            double d0 = vec32.lengthVector();
+            double d0 = vec32.length();
             vec32 = vec32.normalize();
             float f5 = (float)Math.acos(vec32.y);
             float f6 = (float)Math.atan2(vec32.z, vec32.x);

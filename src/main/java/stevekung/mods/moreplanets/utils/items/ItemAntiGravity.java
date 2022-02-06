@@ -7,7 +7,7 @@ public class ItemAntiGravity extends ItemBaseMP
 {
     public ItemAntiGravity(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

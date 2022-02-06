@@ -48,7 +48,7 @@ public class OBJLoaderMP implements ICustomModelLoader
     @Override
     public boolean accepts(ResourceLocation modelLocation)
     {
-        return this.domains.contains(modelLocation.getResourceDomain()) && modelLocation.getResourcePath().endsWith(".obj");
+        return this.domains.contains(modelLocation.getNamespace()) && modelLocation.getPath().endsWith(".obj");
     }
 
     @Override
@@ -64,7 +64,7 @@ public class OBJLoaderMP implements ICustomModelLoader
         {
             try
             {
-                ResourceLocation file = new ResourceLocation(modelLocation.getResourceDomain(), "models/obj/" + modelLocation.getResourcePath());
+                ResourceLocation file = new ResourceLocation(modelLocation.getNamespace(), "models/obj/" + modelLocation.getPath());
                 IResource resource = this.manager.getResource(file);
 
                 if (resource != null)

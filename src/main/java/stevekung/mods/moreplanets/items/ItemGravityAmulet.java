@@ -17,7 +17,7 @@ public class ItemGravityAmulet extends ItemBaseMP implements IBauble
 {
     public ItemGravityAmulet(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

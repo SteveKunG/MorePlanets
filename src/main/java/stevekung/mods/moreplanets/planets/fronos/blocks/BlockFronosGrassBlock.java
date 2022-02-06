@@ -27,13 +27,13 @@ public class BlockFronosGrassBlock extends BlockGrassBlockMP implements IGrowabl
 
     public BlockFronosGrassBlock(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setDefaultState(this.getDefaultState().withProperty(HAS_LAYER, BlockType.NONE));
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }

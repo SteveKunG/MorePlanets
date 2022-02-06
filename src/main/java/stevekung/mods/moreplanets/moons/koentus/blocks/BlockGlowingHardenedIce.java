@@ -25,7 +25,7 @@ public class BlockGlowingHardenedIce extends BlockIceMP
 
     public BlockGlowingHardenedIce(String name, EnumDyeColor color)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setLightLevel(1.0F);
         this.color = color;
     }
@@ -39,7 +39,7 @@ public class BlockGlowingHardenedIce extends BlockIceMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }

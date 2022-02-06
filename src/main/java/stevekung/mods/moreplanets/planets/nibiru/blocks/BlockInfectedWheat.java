@@ -17,7 +17,7 @@ public class BlockInfectedWheat extends BlockCropsMP
 
     public BlockInfectedWheat(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

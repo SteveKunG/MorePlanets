@@ -109,7 +109,7 @@ public class BlocksItemsRegistry
             }
             BlocksItemsRegistry.SORT_MAP_BLOCKS.get(categoryBlock).add(new StackSorted(block));
         }
-        else if (block.getCreativeTabToDisplayOn() == MorePlanetsMod.BLOCK_TAB)
+        else if (block.getCreativeTab() == MorePlanetsMod.BLOCK_TAB)
         {
             throw new RuntimeException(block.getClass() + " must inherit " + ISortableBlock.class.getSimpleName() + "!");
         }

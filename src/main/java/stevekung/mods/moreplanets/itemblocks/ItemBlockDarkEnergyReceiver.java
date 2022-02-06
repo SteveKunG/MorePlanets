@@ -27,7 +27,7 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescriptionTESR
     public boolean placeBlockAt(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, IBlockState state)
     {
         int angle = MathHelper.floor(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-        int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
+        int change = EnumFacing.byHorizontalIndex(angle).getOpposite().getHorizontalIndex();
 
         if (BlockUtils.isFluid(world, pos))
         {

@@ -26,7 +26,7 @@ public class ItemCreativeSpaceKit extends ItemBaseMP
 {
     public ItemCreativeSpaceKit(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

@@ -23,14 +23,14 @@ public class BlockBaseMP extends Block implements ISortableBlock, IItemModelRend
     public BlockBaseMP(String name, Material material)
     {
         super(material);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
-    public Block setUnlocalizedName(String name)
+    public Block setTranslationKey(String name)
     {
         this.name = name;
-        return super.setUnlocalizedName(name);
+        return super.setTranslationKey(name);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class BlockBaseMP extends Block implements ISortableBlock, IItemModelRend
     }
 
     @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
+    public CreativeTabs getCreativeTab()
     {
         return MorePlanetsMod.BLOCK_TAB;
     }

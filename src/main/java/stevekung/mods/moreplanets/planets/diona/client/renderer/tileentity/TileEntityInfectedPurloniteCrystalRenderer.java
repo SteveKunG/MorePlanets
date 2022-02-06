@@ -96,7 +96,7 @@ public class TileEntityInfectedPurloniteCrystalRenderer extends TileEntitySpecia
 
     private void translateFromDirection(int facing)
     {
-        switch (EnumFacing.getFront(facing))
+        switch (EnumFacing.byIndex(facing))
         {
         case WEST:
             GlStateManager.translate(0.0F, 0.5F, 0.7F);

@@ -19,8 +19,6 @@ apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: "org.spongepowered.mixin"
 
 def mcVersion = project.mc_version
-String gcDevBuild = "261"
-String gcDevVersion = "1.12.2-4.0.2.${gcDevBuild}"
 
 version = project.version
 group = "stevekung.mods.moreplanets"
@@ -40,15 +38,6 @@ minecraft {
 }
 
 repositories {
-    ivy {
-        url "https://micdoodle8.com/new-builds/"
-        layout 'pattern', {
-            artifact "[organization]/${gcDevBuild}/[module]-[revision].jar"
-        }
-        metadataSources {
-            artifact()
-        }
-    }
     maven {
         name "SpongePowered"
         url "https://repo.spongepowered.org/repository/maven-public/"
@@ -94,28 +83,25 @@ dependencies {
     compile "curse.maven:playerapi-1.1-449521:3212872"
     compile "de.ellpeck.actuallyadditions:ActuallyAdditions_1.12.2:1.12.2-r151:api"
 
-    compile "GC-1.12-dev:GalacticraftCore-Dev:${gcDevVersion}"
-    compile "GC-1.12-dev:Galacticraft-API:${gcDevVersion}"
-    compile "GC-1.12-dev:Galacticraft-Planets-Dev:${gcDevVersion}"
-    compile "GC-1.12-dev:MicdoodleCore-Dev:${gcDevVersion}"
+    compile "curse.maven:galacticraft-legacy-564236:3633265"
 
     // More Planets deps
-    if (file("SteveKunG's-Lib-1.12.2-${lib_version}-deobf.jar").exists()) {
+    if (file("libs/SteveKunG's-Lib-1.12.2-${lib_version}-deobf.jar").exists()) {
         deobfCompile ":SteveKunG's-Lib-1.12.2-${lib_version}-deobf"
     }
     else {
-        deobfCompile "curse.maven:stevekungs-lib-296019:3592435"
+        deobfCompile "curse.maven:stevekungs-lib-296019:3636234"
     }
 
     deobfCompile "curse.maven:mixinBooter-419286:3575119"
     deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}:api"
-    deobfCompile "curse.maven:codechicken-lib-1-8-242818:2779849"
+    deobfCompile "curse.maven:codechicken-lib-1-8-242818:2779848"
     deobfCompile "curse.maven:hwyla-253449:2568751"
     deobfCompile "curse.maven:baubles-227083:2518667"
 
     runtime "mezz.jei:jei_${mc_version}:${jei_version}"
-    runtime "curse.maven:indicatia-272146:2854909"
-    runtime "curse.maven:ctm-267602:2915363"
+    runtime "indicatia:Indicatia-1.12.2:1.3.3"
+    runtime "ctm:CTM:MC1.12.2:1.0.2.31"
 
     compile "org.spongepowered:mixin:0.8.3"
     annotationProcessor "org.spongepowered:mixin:0.8.3:processor"
@@ -152,6 +138,7 @@ curseforge {
             mainArtifact(jar) {
                 displayName = "More-Planets-" + mcVersion + "-" + version
                 relations {
+                    requiredLibrary "galacticraft-legacy"
                     requiredLibrary "stevekungs-lib"
                     requiredLibrary "mixin-booter"
                     optionalLibrary "jei"

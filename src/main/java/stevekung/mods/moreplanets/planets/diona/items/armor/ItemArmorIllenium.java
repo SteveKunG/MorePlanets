@@ -12,7 +12,7 @@ public class ItemArmorIllenium extends ItemArmorMP
     public ItemArmorIllenium(String name, ArmorMaterial material, EntityEquipmentSlot type)
     {
         super(material, type);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

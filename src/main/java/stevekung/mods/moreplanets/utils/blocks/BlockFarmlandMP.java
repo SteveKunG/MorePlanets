@@ -39,7 +39,7 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
     }
 
     @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
+    public CreativeTabs getCreativeTab()
     {
         return null;
     }

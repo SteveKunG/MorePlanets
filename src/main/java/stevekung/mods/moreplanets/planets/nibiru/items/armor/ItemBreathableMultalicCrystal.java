@@ -12,7 +12,7 @@ public class ItemBreathableMultalicCrystal extends ItemBreathableArmor
     public ItemBreathableMultalicCrystal(String name, ArmorMaterial material, EntityEquipmentSlot type)
     {
         super(material, type);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

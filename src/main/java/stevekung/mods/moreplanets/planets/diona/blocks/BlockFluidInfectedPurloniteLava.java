@@ -18,7 +18,7 @@ public class BlockFluidInfectedPurloniteLava extends BlockFluidLavaBaseMP
     public BlockFluidInfectedPurloniteLava(String name)
     {
         super(MPBlocks.INFECTED_PURLONITE_LAVA_FLUID);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

@@ -17,7 +17,7 @@ public class BlockInfectedChest extends BlockChestMP
 {
     public BlockInfectedChest(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

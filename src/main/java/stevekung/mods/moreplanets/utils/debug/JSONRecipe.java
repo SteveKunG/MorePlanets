@@ -39,7 +39,7 @@ public class JSONRecipe
     {
         if (RECIPE_DIR == null)
         {
-            RECIPE_DIR = Minecraft.getMinecraft().mcDataDir.toPath().resolve("../src/main/resources/assets/moreplanets/recipes/").toFile();
+            RECIPE_DIR = Minecraft.getMinecraft().gameDir.toPath().resolve("../src/main/resources/assets/moreplanets/recipes/").toFile();
         }
         if (!RECIPE_DIR.exists())
         {
@@ -51,7 +51,7 @@ public class JSONRecipe
     {
         if (ADVANCE_DIR == null)
         {
-            ADVANCE_DIR = Minecraft.getMinecraft().mcDataDir.toPath().resolve("../src/main/resources/assets/moreplanets/advancements/recipes/").toFile();
+            ADVANCE_DIR = Minecraft.getMinecraft().gameDir.toPath().resolve("../src/main/resources/assets/moreplanets/advancements/recipes/").toFile();
         }
         if (!ADVANCE_DIR.exists())
         {
@@ -132,7 +132,7 @@ public class JSONRecipe
         // names the json the same name as the output's registry name
         // janky I know but it works
         String suffix = output.getItem().getHasSubtypes() ? "_" + output.getItemDamage() : "";
-        String name = altName != null ? altName : output.getItem().getRegistryName().getResourcePath() + suffix;
+        String name = altName != null ? altName : output.getItem().getRegistryName().getPath() + suffix;
         File file = new File(RECIPE_DIR, name + ".json");
 
         writeAdvancements(name, ingredients);
@@ -191,7 +191,7 @@ public class JSONRecipe
         // names the json the same name as the output's registry name
         // janky I know but it works
         String suffix = output.getItem().getHasSubtypes() ? "_" + output.getItemDamage() : "";
-        String name = altName != null ? altName : output.getItem().getRegistryName().getResourcePath() + suffix;
+        String name = altName != null ? altName : output.getItem().getRegistryName().getPath() + suffix;
         File file = new File(RECIPE_DIR, name + ".json");
 
         writeAdvancements(name, ingredients2);
@@ -398,7 +398,7 @@ public class JSONRecipe
         // names the json the same name as the output's registry name
         // janky I know but it works
         String suffix = result.getItem().getHasSubtypes() ? "_" + result.getItemDamage() : "";
-        File file = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+        File file = new File(RECIPE_DIR, result.getItem().getRegistryName().getPath() + suffix + ".json");
 
         try (FileWriter writer = new FileWriter(file))
         {

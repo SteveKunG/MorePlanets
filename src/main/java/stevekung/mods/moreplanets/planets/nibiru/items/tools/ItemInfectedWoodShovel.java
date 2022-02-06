@@ -14,7 +14,7 @@ public class ItemInfectedWoodShovel extends ItemShovelMP
     public ItemInfectedWoodShovel(String name, ToolMaterial material)
     {
         super(material);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

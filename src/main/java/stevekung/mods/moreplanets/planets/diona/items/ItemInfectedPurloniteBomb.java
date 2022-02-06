@@ -18,7 +18,7 @@ public class ItemInfectedPurloniteBomb extends ItemBaseMP
     public ItemInfectedPurloniteBomb(String name)
     {
         this.setMaxStackSize(32);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

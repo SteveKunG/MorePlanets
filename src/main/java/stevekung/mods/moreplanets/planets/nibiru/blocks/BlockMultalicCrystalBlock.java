@@ -23,7 +23,7 @@ public class BlockMultalicCrystalBlock extends BlockBreakableMP
         this.setHardness(3.0F);
         this.setLightOpacity(3);
         this.setSoundType(SoundType.GLASS);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class BlockMultalicCrystalBlock extends BlockBreakableMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }

@@ -60,8 +60,8 @@ public class WorldGenInfectedRoofedTree extends WorldGenAbstractTree
                 {
                     if (j2 >= i1 && j1 > 0)
                     {
-                        k1 += enumfacing.getFrontOffsetX();
-                        l1 += enumfacing.getFrontOffsetZ();
+                        k1 += enumfacing.getXOffset();
+                        l1 += enumfacing.getZOffset();
                         --j1;
                     }
 

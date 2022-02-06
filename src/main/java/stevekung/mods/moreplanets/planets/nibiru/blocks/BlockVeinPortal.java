@@ -36,7 +36,7 @@ public class BlockVeinPortal extends BlockContainerMP
         this.setBlockUnbreakable();
         this.setLightLevel(1.0F);
         this.setResistance(6000000.0F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class BlockVeinPortal extends BlockContainerMP
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         if (!world.isRemote)
         {

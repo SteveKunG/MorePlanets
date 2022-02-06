@@ -30,7 +30,7 @@ public class BlockDarkEnergyCore extends BlockBaseMP implements ITileEntityProvi
         super(Material.GROUND);
         this.setResistance(0.0F);
         this.setHardness(0.5F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setSoundType(MPSounds.ALIEN_EGG);
         this.setDefaultSlipperiness(0.8F);
     }
@@ -122,7 +122,7 @@ public class BlockDarkEnergyCore extends BlockBaseMP implements ITileEntityProvi
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getTranslationKey() + ".description"));
     }
 
     @Override

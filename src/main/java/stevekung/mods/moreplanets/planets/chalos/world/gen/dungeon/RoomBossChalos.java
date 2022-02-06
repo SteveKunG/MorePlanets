@@ -144,7 +144,7 @@ public class RoomBossChalos extends RoomBossMP
         do
         {
             int randDir = rand.nextInt(4);
-            randomDir = EnumFacing.getHorizontal((randDir == this.getDirection().getOpposite().getHorizontalIndex() ? randDir + 1 : randDir) % 4);
+            randomDir = EnumFacing.byHorizontalIndex((randDir == this.getDirection().getOpposite().getHorizontalIndex() ? randDir + 1 : randDir) % 4);
             StructureBoundingBox extension = this.getExtension(randomDir, this.configuration.getHallwayLengthMin() + rand.nextInt(this.configuration.getHallwayLengthMax() - this.configuration.getHallwayLengthMin()), 3);
             blockX = extension.minX;
             blockZ = extension.minZ;

@@ -6,7 +6,7 @@ public class ItemBeaconPayment extends ItemBaseMP
 {
     public ItemBeaconPayment(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

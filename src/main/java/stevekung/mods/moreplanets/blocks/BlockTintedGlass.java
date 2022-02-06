@@ -33,7 +33,7 @@ public class BlockTintedGlass extends BlockBreakableMP implements IPartialSealab
         this.setHardness(0.5F);
         this.setResistance(20.0F);
         this.setSoundType(SoundType.GLASS);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.type = type;
     }
 
@@ -52,7 +52,7 @@ public class BlockTintedGlass extends BlockBreakableMP implements IPartialSealab
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }

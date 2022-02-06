@@ -18,7 +18,7 @@ public class ItemInfectedEgg extends ItemBaseMP
     public ItemInfectedEgg(String name)
     {
         this.setMaxStackSize(16);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

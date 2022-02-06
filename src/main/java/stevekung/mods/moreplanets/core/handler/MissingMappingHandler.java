@@ -84,7 +84,7 @@ public class MissingMappingHandler
     {
         event.getMappings().forEach(mappings ->
         {
-            if (mappings.key.getResourceDomain().equals(modid) && mappings.key.getResourcePath().equals(oldName))
+            if (mappings.key.getNamespace().equals(modid) && mappings.key.getPath().equals(oldName))
             {
                 mappings.remap(potion);
                 LoggerSL.info("Remapping 'Potion' from {} to {}", mappings.key, potion.getRegistryName());
@@ -96,7 +96,7 @@ public class MissingMappingHandler
     {
         event.getMappings().forEach(mappings ->
         {
-            if (mappings.key.getResourceDomain().equals(modid) && mappings.key.getResourcePath().equals(oldName))
+            if (mappings.key.getNamespace().equals(modid) && mappings.key.getPath().equals(oldName))
             {
                 mappings.remap(entity);
                 LoggerSL.info("Remapping 'Entity' from {} to {}", mappings.key, entity.getRegistryName());

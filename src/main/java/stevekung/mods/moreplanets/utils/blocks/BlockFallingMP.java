@@ -26,20 +26,20 @@ public class BlockFallingMP extends BlockFalling implements ISortableBlock, IIte
 
     public BlockFallingMP(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     public BlockFallingMP(String name, Material material)
     {
         super(material);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
-    public Block setUnlocalizedName(String name)
+    public Block setTranslationKey(String name)
     {
         this.name = name;
-        return super.setUnlocalizedName(name);
+        return super.setTranslationKey(name);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class BlockFallingMP extends BlockFalling implements ISortableBlock, IIte
     }
 
     @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
+    public CreativeTabs getCreativeTab()
     {
         return MorePlanetsMod.BLOCK_TAB;
     }

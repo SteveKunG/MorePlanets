@@ -35,7 +35,7 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntity
         this.setBlockUnbreakable();
         this.setResistance(6000001.0F);
         this.translucent = true;
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.type = type;
     }
 

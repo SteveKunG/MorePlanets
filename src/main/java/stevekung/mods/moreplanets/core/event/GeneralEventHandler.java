@@ -214,7 +214,7 @@ public class GeneralEventHandler
 
         if (sourceBlock.getRegistryName().toString().startsWith("moreplanets"))
         {
-            String sourceName = sourceBlock.getUnlocalizedName().substring(5);
+            String sourceName = sourceBlock.getTranslationKey().substring(5);
 
             if (sourceName.startsWith("infected_purlonite"))
             {

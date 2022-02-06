@@ -20,7 +20,7 @@ public class BlockInfectedSnow extends BlockBaseMP
     {
         super(Material.CRAFTED_SNOW);
         this.setTickRandomly(true);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setHardness(0.2F);
         this.setSoundType(SoundType.SNOW);
         this.isPurified = isPurified;

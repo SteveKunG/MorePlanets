@@ -15,21 +15,21 @@ public class BlockFenceGateMP extends BlockFenceGate implements ISortableBlock, 
     public BlockFenceGateMP(String name)
     {
         super(BlockPlanks.EnumType.OAK);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setSoundType(SoundType.WOOD);
         this.setHardness(2.0F);
         this.setResistance(5.0F);
     }
 
     @Override
-    public Block setUnlocalizedName(String name)
+    public Block setTranslationKey(String name)
     {
         this.name = name;
-        return super.setUnlocalizedName(name);
+        return super.setTranslationKey(name);
     }
 
     @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
+    public CreativeTabs getCreativeTab()
     {
         return MorePlanetsMod.BLOCK_TAB;
     }

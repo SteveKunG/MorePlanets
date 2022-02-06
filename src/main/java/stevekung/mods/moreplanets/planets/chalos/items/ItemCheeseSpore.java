@@ -17,7 +17,7 @@ public class ItemCheeseSpore extends ItemBaseMP
 {
     public ItemCheeseSpore(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

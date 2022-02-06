@@ -35,7 +35,7 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
         super(Material.ROCK);
         this.setHardness(1.5F);
         this.setResistance(4.0F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
     }
 
     @Override
-    public EnumPushReaction getMobilityFlag(IBlockState state)
+    public EnumPushReaction getPushReaction(IBlockState state)
     {
         return EnumPushReaction.NORMAL;
     }
@@ -97,13 +97,13 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
     }
 
     @Override
-    public void onBlockDestroyedByExplosion(World world, BlockPos pos, Explosion explosion)
+    public void onExplosionDestroy(World world, BlockPos pos, Explosion explosion)
     {
         world.setBlockState(pos, GCBlocks.crudeOil.getDefaultState());
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         entity.motionX *= 0.4D;
         entity.motionZ *= 0.4D;

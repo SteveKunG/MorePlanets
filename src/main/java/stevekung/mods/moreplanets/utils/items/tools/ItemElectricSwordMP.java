@@ -48,7 +48,7 @@ public class ItemElectricSwordMP extends ItemSword implements IItemElectric, ISo
         super(material);
         this.setMaxDamage(100);
         this.setNoRepair();
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.maxPower = maxPower;
     }
 

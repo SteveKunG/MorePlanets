@@ -32,7 +32,7 @@ public class BlockInfectedCactus extends BlockBushMP
     public BlockInfectedCactus(String name)
     {
         super(Material.CACTUS);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setHardness(0.4F);
         this.setSoundType(SoundType.CLOTH);
         this.setTickRandomly(true);
@@ -112,7 +112,7 @@ public class BlockInfectedCactus extends BlockBushMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }
@@ -144,7 +144,7 @@ public class BlockInfectedCactus extends BlockBushMP
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         entity.attackEntityFrom(DamageSourceMP.INFECTED_GAS, (int) (4.0D * 0.1D + 1.0D));
         entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);

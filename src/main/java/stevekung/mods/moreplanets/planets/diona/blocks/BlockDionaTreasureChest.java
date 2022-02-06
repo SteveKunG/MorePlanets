@@ -16,7 +16,7 @@ public class BlockDionaTreasureChest extends BlockTreasureChestMP
 {
     public BlockDionaTreasureChest(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

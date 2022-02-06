@@ -14,7 +14,7 @@ public class ItemNibiruStonePickaxe extends ItemPickaxeMP
     public ItemNibiruStonePickaxe(String name, ToolMaterial material)
     {
         super(material);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

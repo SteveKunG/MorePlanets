@@ -23,7 +23,7 @@ public class BlockLogMP extends BlockBaseMP
         this.setHardness(2.0F);
         this.setResistance(5.0F);
         this.setSoundType(SoundType.WOOD);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     public BlockLogMP(String name, Material material)
@@ -33,7 +33,7 @@ public class BlockLogMP extends BlockBaseMP
         this.setHardness(2.0F);
         this.setResistance(5.0F);
         this.setSoundType(SoundType.WOOD);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     public BlockLogMP(Material material)

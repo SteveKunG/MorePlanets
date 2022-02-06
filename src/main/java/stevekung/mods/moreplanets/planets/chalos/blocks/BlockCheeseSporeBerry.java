@@ -25,7 +25,7 @@ public class BlockCheeseSporeBerry extends BlockCropsMP
 
     public BlockCheeseSporeBerry(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

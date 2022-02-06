@@ -35,7 +35,7 @@ public class BlockSnowLayerMP extends BlockBaseMP
         this.setTickRandomly(true);
         this.setSoundType(SoundType.SNOW);
         this.setHardness(0.1F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

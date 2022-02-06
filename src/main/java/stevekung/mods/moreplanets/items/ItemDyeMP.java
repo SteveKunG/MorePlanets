@@ -13,7 +13,7 @@ public class ItemDyeMP extends ItemBaseMP
 {
     public ItemDyeMP(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

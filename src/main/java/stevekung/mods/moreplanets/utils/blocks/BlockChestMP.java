@@ -138,7 +138,7 @@ public abstract class BlockChestMP extends BlockContainerMP implements IItemRari
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack heldStack)
     {
-        EnumFacing facing = EnumFacing.getHorizontal(MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3).getOpposite();
+        EnumFacing facing = EnumFacing.byHorizontalIndex(MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3).getOpposite();
         state = state.withProperty(BlockStateProperty.FACING_HORIZON, facing);
         BlockPos blockpos = pos.north();
         BlockPos blockpos1 = pos.south();
@@ -269,7 +269,7 @@ public abstract class BlockChestMP extends BlockContainerMP implements IItemRari
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
+        EnumFacing enumfacing = EnumFacing.byIndex(meta);
 
         if (enumfacing.getAxis() == EnumFacing.Axis.Y)
         {
@@ -311,13 +311,13 @@ public abstract class BlockChestMP extends BlockContainerMP implements IItemRari
     @Override
     public EnumSortCategoryBlock getBlockCategory()
     {
-        return this.getUnlocalizedName().contains("ancient_chest") ? EnumSortCategoryBlock.ANCIENT_CHEST : EnumSortCategoryBlock.CHEST;
+        return this.getTranslationKey().contains("ancient_chest") ? EnumSortCategoryBlock.ANCIENT_CHEST : EnumSortCategoryBlock.CHEST;
     }
 
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return this.getUnlocalizedName().contains("ancient_chest") ? ColorUtils.stringToRGB(IItemRarity.COMMON) : null;
+        return this.getTranslationKey().contains("ancient_chest") ? ColorUtils.stringToRGB(IItemRarity.COMMON) : null;
     }
 
     public IBlockState checkForSurroundingChests(World world, BlockPos pos, IBlockState state)

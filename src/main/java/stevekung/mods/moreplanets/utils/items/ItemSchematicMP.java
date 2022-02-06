@@ -46,7 +46,7 @@ public class ItemSchematicMP extends ItemBaseMP implements ISchematicItem
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack itemStack)
+    public String getTranslationKey(ItemStack itemStack)
     {
         return LangUtils.translate("item.nasa_workbench_schematic");
     }

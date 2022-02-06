@@ -18,7 +18,7 @@ public class BlockFluidInfectedPurloniteWater extends BlockFluidBaseMP implement
         this.isWater = true;
         this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
         this.setLightOpacity(3);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

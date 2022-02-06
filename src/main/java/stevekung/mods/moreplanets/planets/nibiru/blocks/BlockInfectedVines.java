@@ -20,11 +20,11 @@ public class BlockInfectedVines extends BlockVinesMP
 {
     public BlockInfectedVines(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         if (entity instanceof EntityLivingBase)
         {

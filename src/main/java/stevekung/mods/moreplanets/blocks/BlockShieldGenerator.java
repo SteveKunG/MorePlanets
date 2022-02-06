@@ -38,7 +38,7 @@ public class BlockShieldGenerator extends BlockAdvancedTileMP implements IDescri
     {
         super(Material.IRON);
         this.setHardness(5.0F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setSoundType(SoundType.METAL);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH));
     }
@@ -174,7 +174,7 @@ public class BlockShieldGenerator extends BlockAdvancedTileMP implements IDescri
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing facing = EnumFacing.getHorizontal(meta % 4);
+        EnumFacing facing = EnumFacing.byHorizontalIndex(meta % 4);
         return this.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, facing);
     }
 
@@ -211,7 +211,7 @@ public class BlockShieldGenerator extends BlockAdvancedTileMP implements IDescri
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getTranslationKey() + ".description"));
     }
 
     @Override

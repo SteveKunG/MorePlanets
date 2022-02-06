@@ -14,7 +14,7 @@ public class ItemNibiruStoneSword extends ItemSwordMP
     public ItemNibiruStoneSword(String name, ToolMaterial material)
     {
         super(material);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

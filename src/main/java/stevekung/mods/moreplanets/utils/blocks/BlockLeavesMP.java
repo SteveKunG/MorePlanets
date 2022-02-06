@@ -42,7 +42,7 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
         this.setHardness(0.2F);
         this.setLightOpacity(1);
         this.setSoundType(SoundType.PLANT);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.type = type;
     }
 
@@ -194,9 +194,9 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
-        return Blocks.LEAVES.getBlockLayer();
+        return Blocks.LEAVES.getRenderLayer();
     }
 
     @Override

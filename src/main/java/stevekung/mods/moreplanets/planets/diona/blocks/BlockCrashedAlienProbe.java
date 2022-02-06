@@ -34,18 +34,18 @@ public class BlockCrashedAlienProbe extends BlockTileMP
         this.setSoundType(SoundType.METAL);
         this.setHardness(5.0F);
         this.setResistance(12.0F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return CompatibilityManagerMP.isCTMLoaded ? BlockRenderLayer.CUTOUT : BlockRenderLayer.SOLID;
     }
 
     @Override
-    public void onBlockDestroyedByPlayer(World world, BlockPos pos, IBlockState state)
+    public void onPlayerDestroy(World world, BlockPos pos, IBlockState state)
     {
         if (!world.isRemote)
         {

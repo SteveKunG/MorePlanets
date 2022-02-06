@@ -14,7 +14,7 @@ public class ItemInfectedWoodHoe extends ItemHoeMP
     public ItemInfectedWoodHoe(String name, ToolMaterial material)
     {
         super(material);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

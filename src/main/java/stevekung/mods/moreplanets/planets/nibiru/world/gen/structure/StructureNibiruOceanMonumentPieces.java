@@ -741,9 +741,9 @@ public class StructureNibiruOceanMonumentPieces
                         {
                             for (EnumFacing enumfacing : EnumFacing.VALUES)
                             {
-                                int i1 = k2 + enumfacing.getFrontOffsetX();
-                                int j1 = i4 + enumfacing.getFrontOffsetY();
-                                int k1 = j3 + enumfacing.getFrontOffsetZ();
+                                int i1 = k2 + enumfacing.getXOffset();
+                                int j1 = i4 + enumfacing.getYOffset();
+                                int k1 = j3 + enumfacing.getZOffset();
 
                                 if (i1 >= 0 && i1 < 5 && k1 >= 0 && k1 < 5 && j1 >= 0 && j1 < 3)
                                 {
@@ -813,7 +813,7 @@ public class StructureNibiruOceanMonumentPieces
 
                     if (roomdefinition3.hasOpening[l5])
                     {
-                        int i6 = EnumFacing.getFront(l5).getOpposite().getIndex();
+                        int i6 = EnumFacing.byIndex(l5).getOpposite().getIndex();
                         roomdefinition3.hasOpening[l5] = false;
                         roomdefinition3.connections[l5].hasOpening[i6] = false;
 

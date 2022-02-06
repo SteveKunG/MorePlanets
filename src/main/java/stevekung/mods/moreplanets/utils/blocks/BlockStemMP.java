@@ -36,7 +36,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.AGE_7, 0).withProperty(FACING, EnumFacing.UP));
         this.crop = crop;
         this.setTickRandomly(true);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setSoundType(SoundType.WOOD);
     }
 

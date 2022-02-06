@@ -37,7 +37,7 @@ public class BlockMultalicCrystal extends BlockDirectionalMP implements ITileEnt
         this.setResistance(1.0F);
         this.setHardness(0.4F);
         this.setSoundType(SoundType.GLASS);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_ALL, EnumFacing.UP));
     }
 

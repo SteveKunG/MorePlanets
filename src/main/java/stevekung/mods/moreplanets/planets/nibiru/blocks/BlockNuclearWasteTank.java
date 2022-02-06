@@ -33,7 +33,7 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
     {
         super(Material.IRON);
         this.setHardness(5.0F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setSoundType(SoundType.METAL);
     }
 

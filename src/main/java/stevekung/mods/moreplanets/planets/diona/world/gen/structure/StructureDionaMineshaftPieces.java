@@ -356,7 +356,7 @@ public class StructureDionaMineshaftPieces
         protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
             this.isMultipleFloors = nbt.getBoolean("tf");
-            this.corridorDirection = EnumFacing.getHorizontal(nbt.getInteger("D"));
+            this.corridorDirection = EnumFacing.byHorizontalIndex(nbt.getInteger("D"));
         }
 
         public Cross(int type, StructureBoundingBox box, @Nullable EnumFacing facing)

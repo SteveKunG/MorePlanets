@@ -29,15 +29,15 @@ public class ItemHoeMP extends ItemHoe implements ISortableItem, IItemModelRende
     {
         super(material);
         this.repairItem = item;
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         MPJEIRecipes.collectAnvilList(name, this, item);
     }
 
     @Override
-    public Item setUnlocalizedName(String name)
+    public Item setTranslationKey(String name)
     {
         this.name = name;
-        return super.setUnlocalizedName(name);
+        return super.setTranslationKey(name);
     }
 
     public ItemHoeMP(ToolMaterial material)

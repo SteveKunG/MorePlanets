@@ -45,7 +45,7 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
     }
 
     @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
+    public CreativeTabs getCreativeTab()
     {
         return null;
     }

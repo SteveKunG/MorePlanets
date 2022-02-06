@@ -21,7 +21,7 @@ public class BlockGreenVeinGrassBlock extends BlockGrassBlockMP implements IGrow
     public BlockGreenVeinGrassBlock(String name)
     {
         this.setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, false));
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

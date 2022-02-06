@@ -25,12 +25,12 @@ public class BlockAlienMinerBlood extends BlockBaseMP
         super(Material.ROCK);
         this.setTickRandomly(true);
         this.setHardness(1.25F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return CompatibilityManagerMP.isCTMLoaded ? BlockRenderLayer.CUTOUT : BlockRenderLayer.SOLID;
     }

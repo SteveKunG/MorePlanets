@@ -30,7 +30,7 @@ public class WorldGenGravityHarvester extends WorldGenerator
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        Random random = world.getChunkFromBlockCoords(pos).getRandomWithSeed(987234911L);
+        Random random = world.getChunk(pos).getRandomWithSeed(987234911L);
         MinecraftServer server = world.getMinecraftServer();
         Rotation[] arotation = CachedEnum.rotationValues;
         Rotation rotation = arotation[random.nextInt(arotation.length)];

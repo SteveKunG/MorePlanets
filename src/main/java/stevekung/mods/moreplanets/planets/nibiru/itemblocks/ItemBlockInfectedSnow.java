@@ -68,7 +68,7 @@ public class ItemBlockInfectedSnow extends ItemBlockMP
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack itemStack)
+    public String getTranslationKey(ItemStack itemStack)
     {
         return this.getBlock() == MPBlocks.PURIFIED_SNOW_LAYER ? "tile.purified_snow" : "tile.infected_snow";
     }

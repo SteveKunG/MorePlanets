@@ -129,7 +129,7 @@ public class WorldGenOscaleaTrees extends WorldGenAbstractTree
                                     if (rand.nextInt(4 - l3) == 0)
                                     {
                                         EnumFacing enumfacing1 = enumfacing.getOpposite();
-                                        BlockPos pos3 = pos.add(enumfacing1.getFrontOffsetX(), j3 + l3, enumfacing1.getFrontOffsetZ());
+                                        BlockPos pos3 = pos.add(enumfacing1.getXOffset(), j3 + l3, enumfacing1.getZOffset());
                                         state = world.getBlockState(pos3);
 
                                         if (state.getBlock().isAir(state, world, pos3))

@@ -43,7 +43,7 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IDescriptio
         this.setHardness(2.0F);
         this.setSoundType(SoundType.METAL);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH));
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
@@ -200,7 +200,7 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IDescriptio
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing facing = EnumFacing.getHorizontal(meta % 4);
+        EnumFacing facing = EnumFacing.byHorizontalIndex(meta % 4);
         return this.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, facing);
     }
 
@@ -237,7 +237,7 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IDescriptio
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getTranslationKey() + ".description"));
     }
 
     @Override

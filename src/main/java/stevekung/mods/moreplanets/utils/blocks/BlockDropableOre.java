@@ -23,7 +23,7 @@ public class BlockDropableOre extends BlockBasicMP implements IDetectableResourc
     {
         super(Material.ROCK);
         this.type = type;
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

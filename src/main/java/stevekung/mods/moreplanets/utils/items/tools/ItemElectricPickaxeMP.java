@@ -44,7 +44,7 @@ public class ItemElectricPickaxeMP extends ItemPickaxe implements IItemElectric,
         super(material);
         this.setMaxDamage(100);
         this.setNoRepair();
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.maxPower = maxPower;
     }
 

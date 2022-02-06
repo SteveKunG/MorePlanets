@@ -18,7 +18,7 @@ public class BlockCompressedMetal extends BlockBaseMP
     public BlockCompressedMetal(String name)
     {
         super(Material.IRON);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

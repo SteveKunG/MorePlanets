@@ -21,21 +21,21 @@ public class CreativeTabsMP extends CreativeTabs
 
     @Override
     @SideOnly(Side.CLIENT)
-    public ItemStack getIconItemStack()
+    public ItemStack createIcon()
     {
         return this.itemStack;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public ItemStack getTabIconItem()
+    public ItemStack getIcon()
     {
         return this.itemStack;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public String getTranslatedTabLabel()
+    public String getTranslationKey()
     {
         return "item_group." + this.getTabLabel();
     }

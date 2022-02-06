@@ -36,7 +36,7 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
         this.setHardness(0.2F);
         this.setLightOpacity(3);
         this.setSoundType(SoundType.WOOD);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }

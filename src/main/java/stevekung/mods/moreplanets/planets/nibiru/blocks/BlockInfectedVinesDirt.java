@@ -26,7 +26,7 @@ public class BlockInfectedVinesDirt extends BlockBaseMP
     public BlockInfectedVinesDirt(String name)
     {
         super(Material.GROUND);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setHardness(0.55F);
         this.setSoundType(SoundType.GROUND);
         this.setLightOpacity(255);
@@ -58,7 +58,7 @@ public class BlockInfectedVinesDirt extends BlockBaseMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }

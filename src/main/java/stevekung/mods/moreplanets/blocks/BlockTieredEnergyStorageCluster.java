@@ -51,7 +51,7 @@ public class BlockTieredEnergyStorageCluster extends BlockTileMP implements IDes
         this.setHardness(2.0F);
         this.setSoundType(SoundType.METAL);
         this.setDefaultState(this.blockState.getBaseState().withProperty(VALUE, 0).withProperty(FACING, EnumFacing.NORTH));
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.type = type;
     }
 
@@ -59,7 +59,7 @@ public class BlockTieredEnergyStorageCluster extends BlockTileMP implements IDes
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
     {
         int angle = MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-        int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
+        int change = EnumFacing.byHorizontalIndex(angle).getOpposite().getHorizontalIndex();
         world.setBlockState(pos, this.getStateFromMeta(change), 3);
 
         if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("EnergyStored"))
@@ -123,7 +123,7 @@ public class BlockTieredEnergyStorageCluster extends BlockTileMP implements IDes
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing facing = EnumFacing.getHorizontal(meta % 4);
+        EnumFacing facing = EnumFacing.byHorizontalIndex(meta % 4);
         return this.getDefaultState().withProperty(FACING, facing);
     }
 

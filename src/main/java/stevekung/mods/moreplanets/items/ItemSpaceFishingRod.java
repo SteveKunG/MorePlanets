@@ -28,7 +28,7 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
     {
         this.setMaxDamage(127);
         this.setMaxStackSize(1);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.addPropertyOverride(new ResourceLocation("cast"), (itemStack, world, living) ->
         {
             if (living == null)

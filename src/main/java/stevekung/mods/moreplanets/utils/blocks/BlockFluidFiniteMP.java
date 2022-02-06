@@ -27,10 +27,10 @@ public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements IIt
     }
 
     @Override
-    public Block setUnlocalizedName(String name)
+    public Block setTranslationKey(String name)
     {
         this.name = name;
-        return super.setUnlocalizedName(name);
+        return super.setTranslationKey(name);
     }
 
     @SuppressWarnings("deprecation")

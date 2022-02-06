@@ -23,7 +23,7 @@ public class BlockInfectedSeaLantern extends BlockBaseMP
         this.setSoundType(SoundType.GLASS);
         this.setHardness(0.3F);
         this.setLightLevel(1.0F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

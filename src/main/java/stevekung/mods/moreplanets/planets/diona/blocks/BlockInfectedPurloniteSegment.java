@@ -40,7 +40,7 @@ public class BlockInfectedPurloniteSegment extends BlockBaseMP implements ITileE
         super(Material.GROUND);
         this.setHardness(0.5F);
         this.setResistance(50.0F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setSoundType(MPSounds.ALIEN_EGG);
         this.setDefaultSlipperiness(0.8F);
         this.type = type;

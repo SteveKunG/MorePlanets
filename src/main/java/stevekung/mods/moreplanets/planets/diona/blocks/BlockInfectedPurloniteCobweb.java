@@ -32,13 +32,13 @@ public class BlockInfectedPurloniteCobweb extends BlockBaseMP
     public BlockInfectedPurloniteCobweb(String name)
     {
         super(Material.WEB);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setLightOpacity(1);
         this.setHardness(4.0F);
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         entity.setInWeb();
     }
@@ -63,7 +63,7 @@ public class BlockInfectedPurloniteCobweb extends BlockBaseMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }

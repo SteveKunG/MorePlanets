@@ -14,7 +14,7 @@ public class ItemNibiruStoneShovel extends ItemShovelMP
     public ItemNibiruStoneShovel(String name, ToolMaterial material)
     {
         super(material);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

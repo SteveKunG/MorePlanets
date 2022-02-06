@@ -19,7 +19,7 @@ public class BlockCheeseSpore extends BlockBaseMP
     {
         super(Material.WOOD);
         this.setHardness(0.2F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setSoundType(SoundType.CLOTH);
     }
 

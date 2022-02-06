@@ -27,7 +27,7 @@ public class ItemCapsule extends ItemFoodMP
     public ItemCapsule(String name, CapsuleType type)
     {
         this.setMaxStackSize(16);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.type = type;
     }
 

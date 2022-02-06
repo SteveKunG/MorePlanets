@@ -81,7 +81,7 @@ public abstract class BlockTreasureChestMP extends BlockContainerMP implements I
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
+        EnumFacing enumfacing = EnumFacing.byIndex(meta);
 
         if (enumfacing.getAxis() == EnumFacing.Axis.Y)
         {

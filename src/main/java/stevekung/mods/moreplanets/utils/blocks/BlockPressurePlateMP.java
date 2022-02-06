@@ -29,15 +29,15 @@ public class BlockPressurePlateMP extends BlockBasePressurePlate implements ISor
         super(Material.WOOD);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.WOOD);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(POWERED, false));
     }
 
     @Override
-    public Block setUnlocalizedName(String name)
+    public Block setTranslationKey(String name)
     {
         this.name = name;
-        return super.setUnlocalizedName(name);
+        return super.setTranslationKey(name);
     }
 
     @Override
@@ -102,7 +102,7 @@ public class BlockPressurePlateMP extends BlockBasePressurePlate implements ISor
     }
 
     @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
+    public CreativeTabs getCreativeTab()
     {
         return MorePlanetsMod.BLOCK_TAB;
     }

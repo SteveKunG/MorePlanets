@@ -24,7 +24,7 @@ public class BlockDoorMP extends BlockDoor
         super(Material.WOOD);
         this.setHardness(3.0F);
         this.setSoundType(SoundType.WOOD);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setDefaultState(this.getDefaultState().withProperty(FACING, EnumFacing.NORTH).withProperty(OPEN, false).withProperty(HINGE, BlockDoorMP.EnumHingePosition.LEFT).withProperty(POWERED, false).withProperty(HALF, BlockDoorMP.EnumDoorHalf.LOWER));
     }
 

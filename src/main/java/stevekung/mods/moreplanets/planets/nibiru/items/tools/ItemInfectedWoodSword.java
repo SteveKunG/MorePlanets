@@ -14,7 +14,7 @@ public class ItemInfectedWoodSword extends ItemSwordMP
     public ItemInfectedWoodSword(String name, ToolMaterial material)
     {
         super(material);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

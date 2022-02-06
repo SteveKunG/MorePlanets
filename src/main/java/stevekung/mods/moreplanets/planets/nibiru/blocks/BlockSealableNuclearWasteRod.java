@@ -40,12 +40,12 @@ public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartia
         super(Material.CLAY);
         this.setResistance(0.2F);
         this.setHardness(0.4F);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }
@@ -92,7 +92,7 @@ public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartia
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getTranslationKey() + ".description"));
     }
 
     @Override

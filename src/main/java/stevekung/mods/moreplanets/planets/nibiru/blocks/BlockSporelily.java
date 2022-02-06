@@ -24,7 +24,7 @@ public class BlockSporelily extends BlockBushMP
 
     public BlockSporelily(String name)
     {
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setSoundType(MPSounds.LILYPAD);
     }
 
@@ -38,7 +38,7 @@ public class BlockSporelily extends BlockBushMP
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         if (entity instanceof EntityBoat)
         {

@@ -40,7 +40,7 @@ public class WorldGenNibiruFossils extends WorldGenerator
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        rand = world.getChunkFromBlockCoords(pos).getRandomWithSeed(987234911L);
+        rand = world.getChunk(pos).getRandomWithSeed(987234911L);
         MinecraftServer minecraftserver = world.getMinecraftServer();
         Rotation[] arotation = CachedEnum.rotationValues;
         Rotation rotation = arotation[rand.nextInt(arotation.length)];
