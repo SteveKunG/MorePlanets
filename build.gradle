@@ -83,7 +83,7 @@ dependencies {
     compile "curse.maven:playerapi-1.1-449521:3212872"
     compile "de.ellpeck.actuallyadditions:ActuallyAdditions_1.12.2:1.12.2-r151:api"
 
-    compile "curse.maven:galacticraft-legacy-564236:3633265"
+    compile "curse.maven:galacticraft-legacy-564236:3648809"
 
     // More Planets deps
     if (file("libs/SteveKunG's-Lib-1.12.2-${lib_version}-deobf.jar").exists()) {
@@ -100,7 +100,6 @@ dependencies {
     deobfCompile "curse.maven:baubles-227083:2518667"
 
     runtime "mezz.jei:jei_${mc_version}:${jei_version}"
-    runtime "indicatia:Indicatia-1.12.2:1.3.3"
     runtime "ctm:CTM:MC1.12.2:1.0.2.31"
 
     compile "org.spongepowered:mixin:0.8.3"
