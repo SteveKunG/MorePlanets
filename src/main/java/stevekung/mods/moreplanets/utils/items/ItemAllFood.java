@@ -12,6 +12,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.IRarity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
@@ -53,9 +54,9 @@ public class ItemAllFood extends ItemFoodMP
     }
 
     @Override
-    public EnumRarity getRarity(ItemStack itemStack)
+    public IRarity getForgeRarity(ItemStack itemStack)
     {
-        return this.type == ItemType.INFECTED_GOLDEN_APPLE || this.type == ItemType.GOLDEN_ALIEN_BERRY ? EnumRarity.RARE : this.type == ItemType.ENCHANTED_INFECTED_GOLDEN_APPLE ? EnumRarity.EPIC : super.getRarity(itemStack);
+        return this.type == ItemType.INFECTED_GOLDEN_APPLE || this.type == ItemType.GOLDEN_ALIEN_BERRY ? EnumRarity.RARE : this.type == ItemType.ENCHANTED_INFECTED_GOLDEN_APPLE ? EnumRarity.EPIC : super.getForgeRarity(itemStack);
     }
 
     @Override

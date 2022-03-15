@@ -1,6 +1,6 @@
 package stevekung.mods.moreplanets.items;
 
-import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
+import micdoodle8.mods.galacticraft.api.item.GCRarity;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -16,8 +16,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
@@ -26,7 +24,7 @@ import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ISortableItem;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
-public class ItemSpaceBow extends ItemBow implements ISortableItem, IItemModelRender, IItemRarity
+public class ItemSpaceBow extends ItemBow implements ISortableItem, IItemModelRender, IItemRarity, GCRarity
 {
     private final String name;
 
@@ -171,13 +169,6 @@ public class ItemSpaceBow extends ItemBow implements ISortableItem, IItemModelRe
     public CreativeTabs getCreativeTab()
     {
         return MorePlanetsMod.ITEM_TAB;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public EnumRarity getRarity(ItemStack itemStack)
-    {
-        return ClientProxyCore.galacticraftItem;
     }
 
     @Override

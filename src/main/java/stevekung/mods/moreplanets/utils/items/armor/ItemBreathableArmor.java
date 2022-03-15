@@ -1,13 +1,12 @@
 package stevekung.mods.moreplanets.utils.items.armor;
 
+import micdoodle8.mods.galacticraft.api.item.GCRarity;
 import micdoodle8.mods.galacticraft.api.item.IBreathableArmor;
-import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -20,7 +19,7 @@ import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ISortableItem;
 
-public abstract class ItemBreathableArmor extends ItemArmor implements IBreathableArmor, ISortableItem, IItemModelRender
+public abstract class ItemBreathableArmor extends ItemArmor implements IBreathableArmor, ISortableItem, IItemModelRender, GCRarity
 {
     private String name;
 
@@ -86,13 +85,6 @@ public abstract class ItemBreathableArmor extends ItemArmor implements IBreathab
     public String getName()
     {
         return this.name;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public EnumRarity getRarity(ItemStack itemStack)
-    {
-        return ClientProxyCore.galacticraftItem;
     }
 
     protected abstract Item getRepairItem();

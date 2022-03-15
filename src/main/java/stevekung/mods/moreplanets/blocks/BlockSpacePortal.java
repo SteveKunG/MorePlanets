@@ -69,6 +69,7 @@ public class BlockSpacePortal extends BlockBreakableMP implements IItemModelRend
         return false;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity, boolean moveEntity)
     {

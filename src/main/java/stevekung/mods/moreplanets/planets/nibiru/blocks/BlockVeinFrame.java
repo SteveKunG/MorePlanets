@@ -80,6 +80,7 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
         return AABB_BLOCK;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity, boolean pull)
     {

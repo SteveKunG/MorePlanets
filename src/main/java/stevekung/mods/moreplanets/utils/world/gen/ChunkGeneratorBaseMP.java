@@ -5,8 +5,7 @@ import java.util.Random;
 import java.util.Set;
 
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3;
-import micdoodle8.mods.galacticraft.core.perlin.NoiseModule;
-import micdoodle8.mods.galacticraft.core.perlin.generator.Gradient;
+import micdoodle8.mods.galacticraft.core.perlin.generator.GradientNoise;
 import micdoodle8.mods.galacticraft.core.world.gen.EnumCraterSize;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
@@ -29,10 +28,10 @@ import net.minecraft.world.gen.NoiseGeneratorPerlin;
 public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
 {
     // Planet gen
-    private NoiseModule noise1;
-    private NoiseModule noise2;
-    private NoiseModule noise3;
-    private NoiseModule noise4;
+    private GradientNoise noise1;
+    private GradientNoise noise2;
+    private GradientNoise noise3;
+    private GradientNoise noise4;
 
     // Default gen
     private NoiseGeneratorOctaves minLimitPerlinNoise;
@@ -60,10 +59,10 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
         this.isSingleBiomePlanet = true;
 
         // Planet gen
-        this.noise1 = new Gradient(this.rand.nextLong(), 4, 0.25F);
-        this.noise2 = new Gradient(this.rand.nextLong(), 4, 0.25F);
-        this.noise3 = new Gradient(this.rand.nextLong(), 1, 0.25F);
-        this.noise4 = new Gradient(this.rand.nextLong(), 1, 0.25F);
+        this.noise1 = new GradientNoise(this.rand.nextLong(), 4, 0.25F);
+        this.noise2 = new GradientNoise(this.rand.nextLong(), 4, 0.25F);
+        this.noise3 = new GradientNoise(this.rand.nextLong(), 1, 0.25F);
+        this.noise4 = new GradientNoise(this.rand.nextLong(), 1, 0.25F);
 
         // Default gen
         this.minLimitPerlinNoise = new NoiseGeneratorOctaves(this.rand, 16);
@@ -175,7 +174,7 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
                     {
                         if (this.getCraterChance() > 0)
                         {
-                            if (Math.abs(this.randFromPoint(cx * 16 + x, (cz * 16 + z) * 1000)) < this.noise4.getNoise(x * 16 + x, cz * 16 + z) / this.getCraterChance())
+                            if (Math.abs(this.randFromPoint(cx * 16 + x, (cz * 16 + z) * 1000)) < this.noise4.evalNoise(x * 16 + x, cz * 16 + z) / this.getCraterChance())
                             {
                                 Random random = new Random(cx * 16 + x + (cz * 16 + z) * 5000);
                                 EnumCraterSize cSize = EnumCraterSize.sizeArray[random.nextInt(EnumCraterSize.sizeArray.length)];
@@ -197,7 +196,7 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
         {
             for (int z = 0; z < 16; ++z)
             {
-                int noise = (int) (this.noise4.getNoise(x + chunkX * 16, z * chunkZ * 16) / 3.0D + 3.0D + this.rand.nextDouble() * 0.25D);
+                int noise = (int) (this.noise4.evalNoise(x + chunkX * 16, z * chunkZ * 16) / 3.0D + 3.0D + this.rand.nextDouble() * 0.25D);
                 int j = -1;
                 IBlockState topBlock = this.getTopBlock();
                 IBlockState fillBlock = this.getSubBlock();
@@ -256,18 +255,18 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
 
     private void generateTerrain(int chunkX, int chunkZ, ChunkPrimer chunk)
     {
-        this.noise1.setFrequency(0.0125F);
-        this.noise2.setFrequency(0.015F);
-        this.noise3.setFrequency(0.01F);
-        this.noise4.setFrequency(0.02F);
+        this.noise1.setFrequencyAll(0.0125F);
+        this.noise2.setFrequencyAll(0.015F);
+        this.noise3.setFrequencyAll(0.01F);
+        this.noise4.setFrequencyAll(0.02F);
 
         for (int x = 0; x < 16; x++)
         {
             for (int z = 0; z < 16; z++)
             {
-                double d = this.noise1.getNoise(x + chunkX * 16, z + chunkZ * 16) * 8;
-                double d2 = this.noise2.getNoise(x + chunkX * 16, z + chunkZ * 16) * 24;
-                double d3 = this.noise3.getNoise(x + chunkX * 16, z + chunkZ * 16) - 0.1;
+                double d = this.noise1.evalNoise(x + chunkX * 16, z + chunkZ * 16) * 8;
+                double d2 = this.noise2.evalNoise(x + chunkX * 16, z + chunkZ * 16) * 24;
+                double d3 = this.noise3.evalNoise(x + chunkX * 16, z + chunkZ * 16) - 0.1;
                 d3 *= 4;
 
                 double yDev = 0;

@@ -186,6 +186,7 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
         return rand.nextInt(20) == 0 ? 1 : 0;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean isOpaqueCube(IBlockState state)
     {
@@ -199,6 +200,7 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
         return Blocks.LEAVES.getRenderLayer();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)

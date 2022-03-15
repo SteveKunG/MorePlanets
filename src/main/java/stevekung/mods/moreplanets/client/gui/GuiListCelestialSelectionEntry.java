@@ -36,7 +36,7 @@ public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListE
     @Override
     public void drawEntry(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY, boolean isSelected, float partialTicks)
     {
-        String name = this.celestial.getLocalizedName();
+        String name = this.celestial.getTranslatedName();
         String tier = String.valueOf(this.celestial.getTierRequirement());
         this.mc.fontRenderer.drawString(name, x + 35, y + 1, 16777215);
         this.mc.fontRenderer.drawString("Tier " + tier, x + 35, y + this.mc.fontRenderer.FONT_HEIGHT + 3, 8421504);

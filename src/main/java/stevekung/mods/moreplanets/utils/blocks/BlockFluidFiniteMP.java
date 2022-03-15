@@ -45,6 +45,7 @@ public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements IIt
         return LiquidUtils.checkInsideBlock((EntityPlayer) entity, this) && testingHead;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing facing)

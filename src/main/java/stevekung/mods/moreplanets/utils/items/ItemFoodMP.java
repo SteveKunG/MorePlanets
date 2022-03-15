@@ -1,19 +1,16 @@
 package stevekung.mods.moreplanets.utils.items;
 
-import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
+import micdoodle8.mods.galacticraft.api.item.GCRarity;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
-public abstract class ItemFoodMP extends ItemFood implements ISortableItem, IItemModelRender, IItemRarity
+public abstract class ItemFoodMP extends ItemFood implements ISortableItem, IItemModelRender, IItemRarity, GCRarity
 {
     private String name;
     private ColorUtils.RGB rgb;
@@ -46,13 +43,6 @@ public abstract class ItemFoodMP extends ItemFood implements ISortableItem, IIte
     public String getName()
     {
         return this.name;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public EnumRarity getRarity(ItemStack itemStack)
-    {
-        return ClientProxyCore.galacticraftItem;
     }
 
     @Override

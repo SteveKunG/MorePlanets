@@ -4,14 +4,13 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import micdoodle8.mods.galacticraft.api.item.GCRarity;
 import micdoodle8.mods.galacticraft.core.TransformerHooks;
-import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -29,7 +28,7 @@ import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 
-public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelRender, IItemRarity
+public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelRender, IItemRarity, GCRarity
 {
     private final ArrowType type;
     private ColorUtils.RGB rgb;
@@ -40,13 +39,6 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelR
         this.type = type;
         this.name = name;
         this.setTranslationKey(name);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public EnumRarity getRarity(ItemStack itemStack)
-    {
-        return ClientProxyCore.galacticraftItem;
     }
 
     @Override

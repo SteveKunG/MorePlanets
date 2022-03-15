@@ -1,21 +1,18 @@
 package stevekung.mods.moreplanets.utils.items.tools;
 
-import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
+import micdoodle8.mods.galacticraft.api.item.GCRarity;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ISortableItem;
 
-public class ItemHoeMP extends ItemHoe implements ISortableItem, IItemModelRender
+public class ItemHoeMP extends ItemHoe implements ISortableItem, IItemModelRender, GCRarity
 {
     private Item repairItem;
     private String name;
@@ -71,12 +68,5 @@ public class ItemHoeMP extends ItemHoe implements ISortableItem, IItemModelRende
     public String getName()
     {
         return this.name;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public EnumRarity getRarity(ItemStack itemStack)
-    {
-        return ClientProxyCore.galacticraftItem;
     }
 }
