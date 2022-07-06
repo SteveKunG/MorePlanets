@@ -31,7 +31,11 @@ minecraft {
     mappings = "${mcp_mapping}"
     makeObfSourceJar = false
     clientJvmArgs += "-Dfml.coreMods.load=micdoodle8.mods.miccore.MicdoodlePlugin -Dmixin.checks.interfaces=true -Dmixin.hotSwap=true -Dmixin.debug.export=true -Dmixin.debug.verbose=true"
-    clientRunArgs += "--username ${project.username} --uuid ${project.uuid} --mixin mixins.more_planets.json"
+    clientRunArgs += "--mixin mixins.more_planets.json"
+
+    if (project.hasProperty("username") && project.hasProperty("uuid")) {
+        clientRunArgs += "--username ${username} --uuid ${uuid}"
+    }
 
     replace "4.0.1.-1", project.gc_require_version
     replaceIn "MorePlanetsMod.java"
@@ -125,26 +129,24 @@ jar {
 }
 
 curseforge {
-    if (project.hasProperty("upload_api_key")) {
-        apiKey = project.upload_api_key
-        project {
-            id = "261990"
-            changelog = file("CHANGE_LOG.md")
-            changelogType = "markdown"
-            releaseType = "release"
-            addGameVersion mcVersion
+    apiKey = project.hasProperty("upload_api_key") ? project.upload_api_key : ""
+    project {
+        id = "261990"
+        changelog = file("CHANGE_LOG.md")
+        changelogType = "markdown"
+        releaseType = "release"
+        addGameVersion mcVersion
 
-            mainArtifact(jar) {
-                displayName = "More-Planets-" + mcVersion + "-" + version
-                relations {
-                    requiredLibrary "galacticraft-legacy"
-                    requiredLibrary "stevekungs-lib"
-                    requiredLibrary "mixin-booter"
-                    optionalLibrary "jei"
-                    optionalLibrary "ctm"
-                    optionalLibrary "hwyla"
-                    optionalLibrary "jeid"
-                }
+        mainArtifact(jar) {
+            displayName = "More-Planets-" + mcVersion + "-" + version
+            relations {
+                requiredLibrary "galacticraft-legacy"
+                requiredLibrary "stevekungs-lib"
+                requiredLibrary "mixin-booter"
+                optionalLibrary "jei"
+                optionalLibrary "ctm"
+                optionalLibrary "hwyla"
+                optionalLibrary "jeid"
             }
         }
     }
