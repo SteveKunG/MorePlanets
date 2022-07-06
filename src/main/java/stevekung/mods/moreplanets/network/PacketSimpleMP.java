@@ -281,7 +281,7 @@ public class PacketSimpleMP extends PacketBase
             break;
         case S_TRANSFER_PLAYER:
             int dimID = (int)this.data.get(0);
-            playerMP.server.getPlayerList().transferPlayerToDimension(playerMP, dimID, new TeleporterSpaceNether(playerMP.server.getWorld(dimID), player.getPosition(), player.world.provider));
+            playerMP.server.getPlayerList().transferPlayerToDimension(playerMP, dimID, new TeleporterSpaceNether(playerMP.server.getWorld(dimID)));
             GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_RELOAD_RENDERER, player.dimension), playerMP);
             break;
         default:

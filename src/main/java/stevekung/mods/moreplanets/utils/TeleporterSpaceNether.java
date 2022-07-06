@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.utils;
 
+import java.util.Map;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
@@ -7,62 +9,111 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Teleporter;
-import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldServer;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
+import net.minecraft.world.chunk.Chunk;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpacePortal;
 
 public class TeleporterSpaceNether extends Teleporter
 {
-    private final WorldServer world;
-    private final BlockPos pos;
-    private final int prevDim;
-
-    public TeleporterSpaceNether(WorldServer world, BlockPos pos, WorldProvider provider)
+    public TeleporterSpaceNether(WorldServer world)
     {
         super(world);
-        this.world = world;
-        this.prevDim = provider.getDimension();
-        this.pos = pos;
     }
 
     @Override
-    public void placeInPortal(Entity entity, float rotationYaw)
+    public void placeInPortal(Entity entity, float yaw)
     {
-        if (this.world.getBlockState(this.pos).getBlock() != MPBlocks.SPACE_PORTAL && this.world.provider.getDimension() == ConfigManagerMP.moreplanets_dimension.idDimensionSpaceNether)
+        if (!this.placeInExistingPortal(entity, yaw))
         {
-            for (int x = -2; x < 3; x++)
+            this.makePortal(entity);
+            this.placeInExistingPortal(entity, yaw);
+        }
+    }
+
+    @Override
+    public boolean placeInExistingPortal(Entity entity, float yaw)
+    {
+        BlockPos pos = entity.getPosition();
+        BlockPos teleporterPos = this.findNearestTeleporter(new BlockPos(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D));
+
+        if (teleporterPos != null)
+        {
+            entity.setLocationAndAngles(teleporterPos.getX() + 0.5D, teleporterPos.getY() + 1, teleporterPos.getZ() + 0.5D, entity.rotationYaw, entity.rotationPitch);
+            this.world.playSound(null, entity.getPosition(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.PLAYERS, 0.25F, this.random.nextFloat() * 0.4F + 0.8F);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean makePortal(Entity entity)
+    {
+        BlockPos pos = entity.getPosition();
+        double x = pos.getX() + 0.5D;
+        double y = pos.getY() + 0.5D;
+        double z = pos.getZ() + 0.5D;
+
+        for (int dx = -2; dx < 3; dx++)
+        {
+            for (int dy = -1; dy < 3; dy++)
             {
-                for (int y = -1; y < 3; y++)
+                for (int dz = -2; dz < 3; dz++)
                 {
-                    for (int z = -2; z < 3; z++)
+                    BlockPos pos2 = new BlockPos(x + dx, y + dy, z + dz);
+
+                    if (dy > -1)
                     {
-                        if (y > -1)
+                        this.world.setBlockToAir(pos2);
+                    }
+                    else if (this.world.isAirBlock(pos2))
+                    {
+                        this.world.setBlockState(pos2, Blocks.OBSIDIAN.getDefaultState());
+                    }
+                }
+            }
+        }
+        this.world.setBlockState(entity.getPosition(), MPBlocks.SPACE_PORTAL.getDefaultState());
+        entity.setLocationAndAngles(x + 0.5D, y, z + 0.5D, entity.rotationYaw, 0.0F);
+        entity.motionX = entity.motionY = entity.motionZ = 0.0D;
+        return true;
+    }
+
+    private BlockPos findNearestTeleporter(BlockPos pos)
+    {
+        BlockPos closestPos = null;
+        double minDist = 0;
+
+        for (int x = pos.getX() - 8 >> 4; x <= pos.getX() + 8 >> 4; x++)
+        {
+            for (int z = pos.getZ() - 8 >> 4; z <= pos.getZ() + 8 >> 4; z++)
+            {
+                Chunk chunk = this.world.getChunk(x, z);
+
+                for (Map.Entry<BlockPos, TileEntity> entry : chunk.getTileEntityMap().entrySet())
+                {
+                    TileEntity tileEntity = entry.getValue();
+
+                    if (tileEntity instanceof TileEntitySpacePortal)
+                    {
+                        BlockPos key = entry.getKey();
+
+                        if (key == null)
                         {
-                            this.world.setBlockToAir(this.pos.add(x, y, z));
+                            continue;
                         }
-                        else if (this.world.isAirBlock(this.pos.add(x, y, z)))
+
+                        double dist = pos.distanceSq(key);
+
+                        if (closestPos == null || dist < minDist)
                         {
-                            this.world.setBlockState(this.pos.add(x, y, z), Blocks.OBSIDIAN.getDefaultState());
+                            closestPos = key;
+                            minDist = dist;
                         }
                     }
                 }
             }
-            this.world.setBlockState(this.pos, MPBlocks.SPACE_PORTAL.getDefaultState());
         }
-
-        if (this.prevDim != ConfigManagerMP.moreplanets_dimension.idDimensionSpaceNether)
-        {
-            TileEntity tile = this.world.getTileEntity(this.pos);
-
-            if (tile != null && tile instanceof TileEntitySpacePortal)
-            {
-                ((TileEntitySpacePortal)tile).setDimension(this.prevDim);
-            }
-        }
-        entity.setPosition(this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D);
-        entity.motionX = entity.motionY = entity.motionZ = 0;
-        this.world.playSound(null, entity.getPosition(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.MASTER, 0.25F, this.random.nextFloat() * 0.4F + 0.8F);
+        return closestPos;
     }
 }
