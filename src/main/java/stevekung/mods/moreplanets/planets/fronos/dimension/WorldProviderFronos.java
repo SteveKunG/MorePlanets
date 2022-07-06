@@ -5,7 +5,9 @@ import java.util.List;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.core.event.EventHandlerGC;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -70,6 +72,25 @@ public class WorldProviderFronos extends WorldProviderMP
     public long getDayLength()
     {
         return 24000L;
+    }
+
+    @Override
+    public boolean canRespawnHere()
+    {
+        EventHandlerGC.bedActivated = false;
+        return true;
+    }
+
+    @Override
+    public boolean isSurfaceWorld()
+    {
+        return true;
+    }
+
+    @Override
+    public WorldSleepResult canSleepAt(EntityPlayer player, BlockPos pos)
+    {
+        return WorldSleepResult.ALLOW;
     }
 
     @Override
