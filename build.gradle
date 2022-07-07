@@ -141,7 +141,7 @@ jar {
 }
 
 curseforge {
-    apiKey = project.hasProperty("upload_api_key") ? project.upload_api_key : ""
+    apiKey = project.hasProperty("curseforge_api_token") ? project.curseforge_api_token : ""
     project {
         id = "261990"
         changelog = file("CHANGE_LOG.md")
