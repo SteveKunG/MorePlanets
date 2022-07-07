@@ -1,12 +1,9 @@
 # Change Log
 
-## REQUIRED MIXIN BOOTER!
+## REQUIRED MIXIN BOOTER 4.2!
 
-* Survival Planet feature is now working as expected (except for multiplayer)
-* Space Portal is now easier to use, right click to teleport
-* Added minor detail to Frolia Sapling texture
-* Increased Diona/Chalos structures spawn rate
-* Hide Space Nether from Celestial Selection Screen (GalaxySpace compatible)
-* Internal mixin update
-* Fixed Oscalea Log texture tiling
-* Fixed some crash on the server
+* Require MixinBooter 4.2
+* Better space nether portal logic, closed #140
+* Slightly better Space Warp Pad usage and some fixes, closed #141
+* Fixed Space Nether still displayed on celestial selection screen, closed #135
+* Fixed bed exploding on Fronos, partially fix #140
