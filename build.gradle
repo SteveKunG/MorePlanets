@@ -70,6 +70,10 @@ repositories {
         name "Modmaven"
         url "https://modmaven.dev/"
     }
+    maven {
+        name "MixinBooter"
+        url "https://maven.cleanroommc.com/"
+    }
 
     flatDir {
         dirs "libs"
@@ -97,7 +101,7 @@ dependencies {
         deobfCompile "curse.maven:stevekungs-lib-296019:3636234"
     }
 
-    deobfCompile "curse.maven:mixinBooter-419286:3575119"
+    deobfCompile "zone.rong:mixinbooter:4.2"
     deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}:api"
     deobfCompile "curse.maven:codechicken-lib-1-8-242818:2779848"
     deobfCompile "curse.maven:hwyla-253449:2568751"

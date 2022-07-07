@@ -1,14 +1,15 @@
 package stevekung.mods.moreplanets.core;
 
-import org.spongepowered.asm.mixin.Mixins;
+import java.util.Collections;
+import java.util.List;
 
-import zone.rong.mixinbooter.MixinLoader;
+import zone.rong.mixinbooter.ILateMixinLoader;
 
-@MixinLoader
-public class GCMixinLoader
+public class GCMixinLoader implements ILateMixinLoader
 {
-    static
+    @Override
+    public List<String> getMixinConfigs()
     {
-        Mixins.addConfiguration("mixins.more_planets_gc.json");
+        return Collections.singletonList("mixins.more_planets_gc.json");
     }
 }
