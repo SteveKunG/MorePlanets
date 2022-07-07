@@ -803,6 +803,7 @@ desc.bhs_more.name=and %s more...
 desc.shift_info.name=Press <SHIFT> for more info
 desc.control_info.name=Press <CONTROL> for more info
 description.space_portal=Space Portal work only if you select a planet to start survival on it.
+desc.space_warper_core=Press Shift and right-click to set a teleport coordinate
 
 # CONTAINER
 container.space_warp_pad.name=Space Warp Pad

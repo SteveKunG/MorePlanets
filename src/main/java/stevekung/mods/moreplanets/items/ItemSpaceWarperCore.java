@@ -74,6 +74,7 @@ public class ItemSpaceWarperCore extends ItemBaseMP
     {
         if (!itemStack.hasTagCompound())
         {
+            list.add(LangUtils.translate("desc.space_warper_core"));
             return;
         }
         if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("DimensionID") || itemStack.getTagCompound().hasKey("X") || itemStack.getTagCompound().hasKey("Y") || itemStack.getTagCompound().hasKey("Z"))

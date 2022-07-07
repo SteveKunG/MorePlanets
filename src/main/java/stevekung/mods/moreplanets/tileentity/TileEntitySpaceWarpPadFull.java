@@ -122,7 +122,7 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     @SideOnly(Side.CLIENT)
     public AxisAlignedBB getRenderBoundingBox()
     {
-        return new AxisAlignedBB(this.getPos().getX() - 1, this.getPos().getY(), this.getPos().getZ() - 1, this.getPos().getX() + 2, this.getPos().getY() + 0.4D, this.getPos().getZ() + 2);
+        return INFINITE_EXTENT_AABB;
     }
 
     @Override

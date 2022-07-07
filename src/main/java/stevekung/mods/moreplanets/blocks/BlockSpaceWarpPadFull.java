@@ -26,6 +26,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
 import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.moreplanets.utils.TeleportUtils;
@@ -150,13 +151,30 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTileMP implements IParti
         }
         else
         {
-            if (!player.isSneaking())
-            {
-                TileEntity tile = world.getTileEntity(pos);
+            ItemStack itemStack = player.getHeldItem(hand);
+            TileEntity tile = world.getTileEntity(pos);
 
+            if (!itemStack.isEmpty() && itemStack.getItem() == MPItems.SPACE_WARPER_CORE && itemStack.hasTagCompound())
+            {
                 if (tile instanceof TileEntitySpaceWarpPadFull)
                 {
-                    TileEntitySpaceWarpPadFull warpPad = (TileEntitySpaceWarpPadFull) tile;
+                    TileEntitySpaceWarpPadFull warpPad = (TileEntitySpaceWarpPadFull)tile;
+
+                    warpPad.setInventorySlotContents(1, itemStack.copy());
+
+                    if (!player.capabilities.isCreativeMode)
+                    {
+                        itemStack.shrink(1);
+                    }
+                    return true;
+                }
+            }
+
+            if (player.isSneaking())
+            {
+                if (tile instanceof TileEntitySpaceWarpPadFull)
+                {
+                    TileEntitySpaceWarpPadFull warpPad = (TileEntitySpaceWarpPadFull)tile;
 
                     if (!warpPad.disabled)
                     {
@@ -172,7 +190,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTileMP implements IParti
                                 if (warpPad.getEnergyStoredGC() >= 5000.0F)
                                 {
                                     warpPad.storage.setEnergyStored(warpPad.storage.getEnergyStoredGC() - 5000.0F);
-                                    TeleportUtils.teleportEntity(player, warpPad.getDimensionId(), warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getRotationPitch(), warpPad.getRotationYaw());
+                                    TeleportUtils.teleportEntity(player, warpPad.getDimensionId(), warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getRotationYaw(), warpPad.getRotationPitch());
                                     world.playSound(null, pos, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.PLAYERS, 0.75F, 1.0F);
                                     LoggerMP.debug("Teleport player to {} {} {} {} {}", warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getDimensionId(), warpPad.getDimensionName());
                                     return true;
@@ -197,12 +215,9 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTileMP implements IParti
                     }
                 }
             }
-            else
-            {
-                player.openGui(MorePlanetsMod.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
-                return true;
-            }
+
+            player.openGui(MorePlanetsMod.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
+            return true;
         }
-        return false;
     }
 }
