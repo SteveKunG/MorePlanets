@@ -30,8 +30,16 @@ minecraft {
     runDir = "run"
     mappings = "${mcp_mapping}"
     makeObfSourceJar = false
-    clientJvmArgs += "-Dfml.coreMods.load=micdoodle8.mods.miccore.MicdoodlePlugin -Dmixin.checks.interfaces=true -Dmixin.hotSwap=true -Dmixin.debug.export=true -Dmixin.debug.verbose=true"
-    clientRunArgs += "--mixin mixins.more_planets.json"
+
+    def jvms = "-Dfml.coreMods.load=micdoodle8.mods.miccore.MicdoodlePlugin -Dmixin.checks.interfaces=true -Dmixin.hotSwap=true -Dmixin.debug.export=true -Dmixin.debug.verbose=true";
+    def runArgs = "--mixin mixins.more_planets.json"
+
+    clientJvmArgs += jvms
+    clientRunArgs += runArgs
+
+    serverJvmArgs += jvms
+    serverRunArgs += runArgs
+    serverRunArgs += "nogui"
 
     if (project.hasProperty("username") && project.hasProperty("uuid")) {
         clientRunArgs += "--username ${username} --uuid ${uuid}"
