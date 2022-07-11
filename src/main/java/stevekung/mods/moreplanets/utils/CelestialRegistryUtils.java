@@ -1,6 +1,9 @@
 package stevekung.mods.moreplanets.utils;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.*;
@@ -11,6 +14,7 @@ import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.api.world.ITeleportType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldProvider;
+import stevekung.mods.moreplanets.init.MPPlanets;
 
 public class CelestialRegistryUtils
 {
@@ -109,5 +113,10 @@ public class CelestialRegistryUtils
     public static void registerRocketGui(Class<? extends WorldProvider> clazz, String resource)
     {
         GalacticraftRegistry.registerRocketGui(clazz, new ResourceLocation("moreplanets:textures/gui/rocket/" + resource + ".png"));
+    }
+
+    public static <T extends CelestialBody, E extends Collection<T>> List<T> removeSpaceNether(E list)
+    {
+        return list.stream().filter(planet -> planet != MPPlanets.SPACE_NETHER).collect(Collectors.toList());
     }
 }

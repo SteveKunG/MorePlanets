@@ -1,37 +1,32 @@
 package stevekung.mods.moreplanets.core.mixin.client.gc;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
-import stevekung.mods.moreplanets.init.MPPlanets;
+import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
+import micdoodle8.mods.galacticraft.api.galaxies.Planet;
+import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
+import stevekung.mods.moreplanets.utils.CelestialRegistryUtils;
 
 @Pseudo
 @Mixin(targets = "asmodeuscore.core.astronomy.gui.screen.NewGuiCelestialSelection")
-public class NewGuiCelestialSelectionMixin extends GuiCelestialSelection
+public class NewGuiCelestialSelectionMixin
 {
-    NewGuiCelestialSelectionMixin()
+    @Redirect(method = "refreshBodies", remap = false, at = @At(value = "INVOKE", target = "java/util/Map.values()Ljava/util/Collection;", remap = false, ordinal = 1))
+    private Collection<Planet> moreplanets$removeSpaceNetherInit(Map<String, Planet> collection)
     {
-        super(false, null, false);
+        return CelestialRegistryUtils.removeSpaceNether(collection.values());
     }
 
-    @Inject(method = "refreshBodies", remap = false, at = @At("TAIL"))
-    private void moreplanets$removeSpaceNether(CallbackInfo info)
+    @Redirect(method = "getChildren", remap = false, at = @At(value = "INVOKE", target = "micdoodle8/mods/galacticraft/api/galaxies/GalaxyRegistry.getPlanetsForSolarSystem(Lmicdoodle8/mods/galacticraft/api/galaxies/SolarSystem;)Ljava/util/List;", remap = false))
+    private List<Planet> moreplanets$removeSpaceNetherChildren(SolarSystem solarSystem)
     {
-        this.bodiesToRender.removeIf(body -> body == MPPlanets.SPACE_NETHER);
-    }
-
-    @Inject(method = "getChildren", remap = false, at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILSOFT)
-    private void moreplanets$removeSpaceNetherChildren(Object object, int start, int size, CallbackInfoReturnable<List<CelestialBody>> info, List<CelestialBody> bodyList)
-    {
-        bodyList.removeIf(body -> body == MPPlanets.SPACE_NETHER);
+        return CelestialRegistryUtils.removeSpaceNether(GalaxyRegistry.getPlanetsForSolarSystem(solarSystem));
     }
 }
