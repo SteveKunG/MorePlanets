@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "moreplanets:purlonite_block",
+    "moreplanets:budding_purlonite",
+    "moreplanets:small_purlonite_bud",
+    "moreplanets:medium_purlonite_bud",
+    "moreplanets:large_purlonite_bud"
+  ]
+}

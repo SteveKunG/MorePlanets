@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "moreplanets:glowing_iron_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "moreplanets:glowing_iron_ingot"
+  }
+}

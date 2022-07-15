@@ -1,0 +1,49 @@
+{
+    "schemaVersion": 1,
+    "id": "moreplanets",
+    "version": "${version}",
+    "name": "More Planets",
+    "description": "An add-on adds new exotic planets into Galacticraft!",
+    "authors": [
+        "SteveKunG",
+        "PloyiinGz"
+    ],
+    "contact": {
+        "homepage": "https://www.curseforge.com/minecraft/mc-mods/more-planets-gc-addon",
+        "sources": "https://github.com/SteveKunG/MorePlanets",
+        "issues": "https://github.com/SteveKunG/MorePlanets/issues"
+    },
+    "license": "MIT",
+    "icon": "logo.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.stevekung.moreplanets.core.MorePlanets"
+        ],
+        "client": [
+            "com.stevekung.moreplanets.core.MorePlanetsClient"
+        ],
+        "fabric-datagen": [
+            "com.stevekung.moreplanets.data.DataGeneratorMP"
+        ],
+        "modmenu": [
+            "com.stevekung.moreplanets.modmenu.ModMenuIntegrationMP"
+        ]
+    },
+    "depends": {
+        "fabricloader": ">=0.14",
+        "fabric": ">=0.57",
+        "minecraft": ">=1.19"
+    },
+    "mixins": [
+        "mixins.moreplanets.json"
+    ],
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.discord": "https://discord.gg/4bAj4mkGag"
+            }
+        }
+    },
+    "accessWidener": "moreplanets.accesswidener"
+}

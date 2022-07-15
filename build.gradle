@@ -1,60 +1,122 @@
 plugins {
-    id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "0.10.0-SNAPSHOT" apply false
-    id "com.matthewprenger.cursegradle" version "1.4.0" apply false
+    id "fabric-loom" version "0.12-SNAPSHOT"
 }
 
-architectury {
-    minecraft = rootProject.mc_version
-}
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
-subprojects {
-    apply plugin: "dev.architectury.loom"
+archivesBaseName = project.archives_base_name
+version = project.mod_version
+group = project.maven_group
 
-    loom {
-        silentMojangMappingsLicense()
-    }
-
-    repositories {
-        maven {
-            name "ParchmentMC"
-            url "https://maven.parchmentmc.org"
-        }
-    }
-
-    dependencies {
-        minecraft "com.mojang:minecraft:${rootProject.mc_version}"
-        mappings loom.layered() {
-            officialMojangMappings()
-            parchment("org.parchmentmc.data:parchment-${rootProject.mc_version}:${rootProject.parchmentmc_version}@zip")
+sourceSets {
+    main {
+        resources {
+            srcDirs += "src/generated/resources/"
         }
     }
 }
 
-allprojects {
-    apply plugin: "java"
-    apply plugin: "architectury-plugin"
+loom {
+    accessWidenerPath = file("src/main/resources/moreplanets.accesswidener")
 
-    archivesBaseName = rootProject.archives_base_name
-    version = rootProject.mod_version
-    group = rootProject.maven_group
+    /*mixin {
+        defaultRefmapName = "mixins.ismputils.refmap.json"
+    }*/
 
-    repositories {
-        maven {
-            name "CurseMaven"
-            url "https://www.cursemaven.com/"
-            content {
-                includeGroup "curse.maven"
+    runs {
+        client {
+            if (project.hasProperty("username") && project.hasProperty("uuid")) {
+                programArgs "--username", "${username}", "--uuid", "${uuid}"
+            }
+
+            vmArg "-Dmixin.debug.export=true"
+            vmArg "-Dmixin.hotSwap=true"
+        }
+        server {
+            vmArg "-Dmixin.debug.export=true"
+            vmArg "-Dmixin.hotSwap=true"
+        }
+        datagen {
+            server()
+            name "Data Generation"
+            vmArg "-Dfabric-api.datagen"
+            vmArg "-Dfabric-api.datagen.output-dir=${file("src/generated/resources")}"
+            runDir "build/datagen"
+        }
+    }
+}
+
+repositories {
+    maven {
+        name "Shedaniel Maven"
+        url "https://maven.shedaniel.me"
+    }
+    maven {
+        name "TerraformersMC"
+        url "https://maven.terraformersmc.com/releases"
+    }
+    maven {
+        name "ParchmentMC"
+        url "https://maven.parchmentmc.org"
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings loom.layered() {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${rootProject.parchmentmc_version}@zip")
+    }
+
+    modImplementation "net.fabricmc:fabric-loader:${loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+
+    modImplementation ("com.terraformersmc:modmenu:${mod_menu_version}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+    modImplementation ("me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+}
+
+String fileName = "${archives_base_name}-mc${minecraft_version}"
+
+jar {
+    exclude ".cache"
+}
+
+remapJar {
+    archiveVersion = "v${project.version}"
+    archiveBaseName = fileName
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    it.options.release = 17
+}
+
+tasks.getByName("configureLaunch") {
+    doFirst {
+        loom {
+            runs {
+                def mixinJarFile = configurations.compileClasspath.files { it.group == "net.fabricmc" && it.name == "sponge-mixin" }.find { true }
+
+                client {
+                    vmArg("-javaagent:$mixinJarFile")
+                }
+                server {
+                    vmArg("-javaagent:$mixinJarFile")
+                }
             }
         }
-    }
-
-    tasks.withType(JavaCompile) {
-        options.encoding = "UTF-8"
-        options.release = 16
-    }
-
-    java {
-        withSourcesJar()
     }
 }

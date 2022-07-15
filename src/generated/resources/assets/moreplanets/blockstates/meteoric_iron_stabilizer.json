@@ -1,0 +1,62 @@
+{
+  "variants": {
+    "axis=x": [
+      {
+        "model": "moreplanets:block/meteoric_iron_stabilizer",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "moreplanets:block/meteoric_iron_stabilizer",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "moreplanets:block/meteoric_iron_stabilizer",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "moreplanets:block/meteoric_iron_stabilizer",
+        "x": 90,
+        "y": 90
+      }
+    ],
+    "axis=y": [
+      {
+        "model": "moreplanets:block/meteoric_iron_stabilizer"
+      },
+      {
+        "model": "moreplanets:block/meteoric_iron_stabilizer"
+      },
+      {
+        "model": "moreplanets:block/meteoric_iron_stabilizer",
+        "y": 180
+      },
+      {
+        "model": "moreplanets:block/meteoric_iron_stabilizer",
+        "y": 180
+      }
+    ],
+    "axis=z": [
+      {
+        "model": "moreplanets:block/meteoric_iron_stabilizer",
+        "x": 90
+      },
+      {
+        "model": "moreplanets:block/meteoric_iron_stabilizer",
+        "x": 90
+      },
+      {
+        "model": "moreplanets:block/meteoric_iron_stabilizer",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "moreplanets:block/meteoric_iron_stabilizer",
+        "x": 90,
+        "y": 180
+      }
+    ]
+  }
+}

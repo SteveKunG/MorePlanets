@@ -1,6 +1,0 @@
-{
-  "parent": "moreplanets:block/compacted_crystal_middle",
-  "textures": {
-    "crystal": "moreplanets:block/purlonite_block"
-  }
-}

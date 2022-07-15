@@ -1,4 +1,5 @@
 # folder
+.cache
 .settings
 .gradle
 .idea
@@ -14,5 +15,4 @@ run
 .metadata
 .classpath
 .project
-.cache
 !gradlew.bat

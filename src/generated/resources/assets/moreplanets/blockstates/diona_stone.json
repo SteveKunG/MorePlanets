@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "moreplanets:block/diona_stone"
+      },
+      {
+        "model": "moreplanets:block/diona_stone_mirrored"
+      },
+      {
+        "model": "moreplanets:block/diona_stone",
+        "y": 180
+      },
+      {
+        "model": "moreplanets:block/diona_stone_mirrored",
+        "y": 180
+      }
+    ]
+  }
+}

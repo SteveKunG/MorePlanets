@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "moreplanets:block/purlonite_crystal_lantern"
+    },
+    "hanging=true": {
+      "model": "moreplanets:block/purlonite_crystal_lantern_hanging"
+    }
+  }
+}
