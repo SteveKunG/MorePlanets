@@ -1,4 +1,6 @@
 accessWidener v1 named
 accessible field net/minecraft/data/models/BlockModelGenerators skippedAutoModelsOutput Ljava/util/function/Consumer;
+accessible field net/minecraft/data/models/ItemModelGenerators output Ljava/util/function/BiConsumer;
 
 accessible method net/minecraft/world/level/block/BaseEntityBlock createTickerHelper (Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/world/level/block/entity/BlockEntityTicker;)Lnet/minecraft/world/level/block/entity/BlockEntityTicker;
+accessible method net/minecraft/data/models/model/ModelTemplates createItem (Ljava/lang/String;[Lnet/minecraft/data/models/model/TextureSlot;)Lnet/minecraft/data/models/model/ModelTemplate;

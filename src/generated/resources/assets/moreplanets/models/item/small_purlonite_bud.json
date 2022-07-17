@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/small_amethyst_bud",
+  "textures": {
+    "layer0": "moreplanets:block/small_purlonite_bud"
+  }
+}

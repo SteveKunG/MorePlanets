@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "moreplanets:block/compacted_purlonite_block_bottom"
+    },
+    "type=middle": {
+      "model": "moreplanets:block/compacted_purlonite_block_middle"
+    },
+    "type=none": {
+      "model": "moreplanets:block/compacted_purlonite_block"
+    },
+    "type=top": {
+      "model": "moreplanets:block/compacted_purlonite_block_top"
+    }
+  }
+}

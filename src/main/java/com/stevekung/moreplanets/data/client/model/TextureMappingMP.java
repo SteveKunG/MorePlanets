@@ -7,6 +7,11 @@ public class TextureMappingMP
 {
     public static TextureMapping displayJar(Block displayJar)
     {
-        return new TextureMapping().put(TextureSlotMP.TERRARIUM, TextureMapping.getBlockTexture(displayJar));
+        return TextureMapping.singleSlot(TextureSlotMP.TERRARIUM, TextureMapping.getBlockTexture(displayJar));
+    }
+
+    public static TextureMapping compactedCrystal(Block crystal)
+    {
+        return TextureMapping.singleSlot(TextureSlotMP.CRYSTAL, TextureMapping.getBlockTexture(crystal));
     }
 }

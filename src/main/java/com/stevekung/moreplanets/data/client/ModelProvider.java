@@ -24,9 +24,6 @@ public class ModelProvider extends FabricModelProvider
     {
         var mpGen = new BlockModelGeneratorsMP(generator.blockStateOutput, generator.modelOutput, generator.skippedAutoModelsOutput);
 
-        // TODO Crystals item models
-        // TODO Compacted Purlonite Block model
-
         mpGen.createRotatedSurfaceBlock(MPBlocks.DIONA_FINE_REGOLITH, MPBlocks.DIONA_REGOLITH);
         generator.createTrivialCube(MPBlocks.DIONA_FINE_REGOLITH);
         mpGen.createMirroredCube(MPBlocks.DIONA_STONE);
@@ -46,7 +43,7 @@ public class ModelProvider extends FabricModelProvider
         generator.createAmethystCluster(MPBlocks.LARGE_PURLONITE_BUD);
         mpGen.createDarkEnergyCore();
         generator.createNonTemplateModelBlock(MPBlocks.ZELIUS_EGG);
-        // generator.createNonTemplateModelBlock(MPBlocks.COMPACTED_PURLONITE_BLOCK);
+        mpGen.createCompactedCrystal(MPBlocks.COMPACTED_PURLONITE_BLOCK, MPBlocks.PURLONITE_BLOCK);
         mpGen.createDisplayJar(MPBlocks.DISPLAY_JAR);
         mpGen.createDisplayJar(MPBlocks.PURLONITE_WORM_JAR);
         mpGen.createTerrariumJar(MPBlocks.CHALOS_SPORE_JAR, new ResourceLocation(MorePlanets.MOD_ID, "block/chalos_spore"));
@@ -55,6 +52,7 @@ public class ModelProvider extends FabricModelProvider
     @Override
     public void generateItemModels(ItemModelGenerators generator)
     {
+        var mpGen = new ItemModelGeneratorsMP(generator.output);
         generator.generateFlatItem(MPItems.GLOWING_IRON_INGOT, ModelTemplates.FLAT_ITEM);
         generator.generateFlatItem(MPItems.RAW_GLOWING_IRON, ModelTemplates.FLAT_ITEM);
         generator.generateFlatItem(MPItems.PURLONITE_SHARD, ModelTemplates.FLAT_ITEM);
@@ -70,5 +68,7 @@ public class ModelProvider extends FabricModelProvider
         generator.generateFlatItem(MPItems.GLOWING_IRON_CHESTPLATE, ModelTemplates.FLAT_ITEM);
         generator.generateFlatItem(MPItems.GLOWING_IRON_LEGGINGS, ModelTemplates.FLAT_ITEM);
         generator.generateFlatItem(MPItems.GLOWING_IRON_BOOTS, ModelTemplates.FLAT_ITEM);
+
+        mpGen.generateCrystalsSetItem(MPBlocks.PURLONITE_CLUSTER, MPBlocks.SMALL_PURLONITE_BUD, MPBlocks.MEDIUM_PURLONITE_BUD, MPBlocks.LARGE_PURLONITE_BUD);
     }
 }
