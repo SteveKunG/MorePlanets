@@ -166,3 +166,27 @@ curseforge {
 
 tasks.curseforge.dependsOn(build)
 jar.finalizedBy("reobfJar")
+
+if (project.hasProperty("version_lib_dir")) {
+    task updateVersionLib(group: "upload") {
+        def versionFile = file("${version_lib_dir}/more_planets_version.json")
+        def jsonBuilder = new groovy.json.JsonBuilder(new groovy.json.JsonSlurper().parseText(versionFile.text))
+        def jsonElement = jsonBuilder.content
+        def formattedList = []
+        def modVersion = project.version.substring(0, 5)
+
+        jsonElement.promos."${mc_version}-latest" = modVersion
+        jsonElement.promos."${mc_version}-recommended" = modVersion
+
+        def reader = new BufferedReader(new FileReader(rootProject.file("CHANGE_LOG.md")));
+        def line;
+        for (int ln = 0; (line = reader.readLine()) != null; ln++) {
+            if (ln >= 4) {
+                formattedList.add(line)
+            }
+        }
+
+        jsonElement."${mc_version}"."${modVersion}" = formattedList.join("\n")
+        versionFile.text = jsonBuilder.toPrettyString()
+    }
+}
