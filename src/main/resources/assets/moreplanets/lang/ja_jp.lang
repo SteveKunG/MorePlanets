@@ -61,7 +61,6 @@ tile.nibiru_cobblestone_wall.name=ニビルの丸石の塀
 tile.diona_dungeon_brick_wall.name=ディオナダンジョンのレンガの塀
 tile.chalos_dungeon_brick_wall.name=カロスダンジョンのレンガの塀
 tile.nibiru_dungeon_brick_wall.name=ニビルダンジョンのレンガの塀
-tile.space_portal.name=スペースポータル
 tile.black_hole_storage.name=ブラックホールストレージ
 tile.alien_defender_beacon.name=宇宙防衛隊ビーコン
 tile.shield_generator.name=シールド生成機
@@ -766,7 +765,6 @@ desc.bhs_slot_used.name=使用済みスロット
 desc.bhs_more.name=and %s more...
 desc.shift_info.name=LSHIFT キーで詳細を表示
 desc.control_info.name=LCONTROL キーで詳細を表示
-description.space_portal=サバイバルプラネット有効化:
 
 # CONTAINER
 container.space_warp_pad.name=スペースワープパッド
@@ -801,7 +799,6 @@ advancements.diona.find_crashed_alien_ship.title=謎の墜落した船?
 advancements.diona.find_crashed_alien_ship.description=何が起きている?
 
 # PLANETS
-planet.space_nether=宇宙ネザー
 planet.diona=ディオナ
 planet.chalos=カロス
 planet.nibiru=ニビル

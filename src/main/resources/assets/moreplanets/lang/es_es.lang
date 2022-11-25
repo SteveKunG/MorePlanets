@@ -61,7 +61,6 @@ tile.nibiru_cobblestone_wall.name=Muro de Roca de Nibiru
 tile.diona_dungeon_brick_wall.name=Ladrillos de Piedra de Mazmorra de Diona
 tile.chalos_dungeon_brick_wall.name=Ladrillos de Piedra de Mazmorra de Calos
 tile.nibiru_dungeon_brick_wall.name=Ladrillos de Piedra de Mazmorra de Nibiru
-tile.space_portal.name=Portal Espacial
 tile.black_hole_storage.name=Agujero Negro de Almacenaje
 tile.alien_defender_beacon.name=Faro Alienigena Defensor
 tile.shield_generator.name=Generador de Escudo
@@ -766,7 +765,6 @@ desc.bhs_slot_used.name=Casillas Usadas
 desc.bhs_more.name=y %s mas...
 desc.shift_info.name=Presiona <SHIFT> para más Info.
 desc.control_info.name=Presiona <CONTROL> para más Info.
-description.space_portal=Sobrevivir en el Planeta Habilitado:
 
 # CONTAINER
 container.space_warp_pad.name=Plataforma de Teletrasporte
@@ -801,7 +799,6 @@ advancements.diona.find_crashed_alien_ship.title=Mystery Crashed Ship?
 advancements.diona.find_crashed_alien_ship.description=What's going on here?
 
 # PLANETS
-planet.space_nether=Nether Espacial
 planet.diona=Diona
 planet.chalos=Calos
 planet.nibiru=Nibiru

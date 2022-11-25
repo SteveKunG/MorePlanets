@@ -62,7 +62,6 @@ tile.nibiru_cobblestone_wall.name=Стена из булыжника Нибир�
 tile.diona_dungeon_brick_wall.name=Кирпичная стена подземелья Дионы
 tile.chalos_dungeon_brick_wall.name=Кирпичная стена подземелья Чалоса
 tile.nibiru_dungeon_brick_wall.name=Кирпичная стена подземелья Нибиру
-tile.space_portal.name=Космический портал
 tile.black_hole_storage.name=Хранилище Черной Дыры
 tile.alien_defender_beacon.name=Маяк защитника пришельцев
 tile.shield_generator.name=Генератор щита
@@ -802,7 +801,6 @@ desc.bhs_slot_used.name=Используемый слот
 desc.bhs_more.name=и %s болье...
 desc.shift_info.name=Нажмите <SHIFT> для детальной информации
 desc.control_info.name=Нажмите <CONTROL> для детальной информации
-description.space_portal=Включена планета выживания:
 
 # CONTAINER
 container.space_warp_pad.name=Площадка для искривления пространства
@@ -837,7 +835,6 @@ advancements.diona.find_crashed_alien_ship.title=Таинственный раз
 advancements.diona.find_crashed_alien_ship.description=Что тут происходит?
 
 # PLANETS
-planet.space_nether=Космическая Пустота
 planet.diona=Диона
 planet.chalos=Чалос
 planet.nibiru=Нибиру

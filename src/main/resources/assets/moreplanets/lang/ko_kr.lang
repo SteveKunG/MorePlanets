@@ -61,7 +61,6 @@ tile.nibiru_cobblestone_wall.name=니비루 조약돌 담장
 tile.diona_dungeon_brick_wall.name=디오나 던전 벽돌 담장
 tile.chalos_dungeon_brick_wall.name=칼로스 던전 벽돌 담장
 tile.nibiru_dungeon_brick_wall.name=니비루 던전 벽돌 담장
-tile.space_portal.name=우주 포탈
 tile.black_hole_storage.name=블랙홀 저장기
 tile.alien_defender_beacon.name=외계인 방어 수신기
 tile.shield_generator.name=방패 제조기
@@ -768,7 +767,6 @@ desc.bhs_slot_used.name=슬롯 사용
 desc.bhs_more.name=%s더 필요합니다.
 desc.shift_info.name=자세한 정보는 <SHIFT>를 누르세요
 desc.control_info.name=자세한 정보는 <CONTROL>을 누르세요
-description.space_portal=행성 생존 가능성:
 
 # CONTAINER
 container.space_warp_pad.name=우주 순간이동 패드
@@ -803,7 +801,6 @@ advancements.diona.find_crashed_alien_ship.title=신비한 부서진 배?
 advancements.diona.find_crashed_alien_ship.description=어디로 가요?
 
 # PLANETS
-planet.space_nether=지옥성
 planet.diona=디오나
 planet.chalos=칼로스
 planet.nibiru=니비루

@@ -55,7 +55,6 @@ tile.cobblestone_wall_mp.nibiru.name=尼比鲁圆石墙
 tile.dungeon_brick_wall_mp.diona.name=狄俄娜地牢砖墙
 tile.dungeon_brick_wall_mp.chalos.name=奶酪星地牢砖墙
 tile.dungeon_brick_wall_mp.nibiru.name=尼比鲁地牢砖墙
-tile.space_portal.name=太空入口
 tile.black_hole_storage.name=黑洞物品储存器
 tile.alien_defender_beacon.name=外星防御信标
 tile.shield_generator.name=Shield Generator

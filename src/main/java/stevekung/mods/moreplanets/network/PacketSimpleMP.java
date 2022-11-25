@@ -34,7 +34,6 @@ import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.moreplanets.utils.TeleportUtils;
-import stevekung.mods.moreplanets.utils.TeleporterSpaceNether;
 import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
@@ -279,11 +278,6 @@ public class PacketSimpleMP extends PacketBase
                 WorldTickEventHandler.survivalPlanetData.setDirty(true);
             }
             break;
-        case S_TRANSFER_PLAYER:
-            int dimID = (int)this.data.get(0);
-            playerMP.server.getPlayerList().transferPlayerToDimension(playerMP, dimID, new TeleporterSpaceNether(playerMP.server.getWorld(dimID)));
-            GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_RELOAD_RENDERER, player.dimension), playerMP);
-            break;
         default:
             break;
         }
@@ -302,7 +296,6 @@ public class PacketSimpleMP extends PacketBase
         S_START_SURVIVAL_PLANET(Side.SERVER, Integer.class, String.class),
         S_UPDATE_NIBIRU_WEATHER(Side.SERVER, Boolean.class),
         S_SAVE_DISABLE_MESSAGE(Side.SERVER),
-        S_TRANSFER_PLAYER(Side.SERVER, Integer.class),
 
         // CLIENT
         C_REMOVE_GUIDE_POS(Side.CLIENT, BlockPos.class),

@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.utils;
 import micdoodle8.mods.galacticraft.core.entities.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
 import stevekung.mods.moreplanets.init.MPPotions;
@@ -12,12 +11,7 @@ public class EntityEffectUtils
 {
     public static boolean isGalacticraftMob(Entity entity)
     {
-        return entity.getClass() == EntityEvolvedSkeleton.class || entity.getClass() == EntityEvolvedZombie.class || entity.getClass() == EntityEvolvedCreeper.class || entity.getClass() == EntityEvolvedSpider.class || entity.getClass() == EntityEvolvedEnderman.class || entity.getClass() == EntityEvolvedWitch.class;
-    }
-
-    public static boolean isSpaceNetherMob(Entity entity)
-    {
-        return entity.getClass() == EntityPigZombie.class || entity.getClass() == EntityBlaze.class || entity.getClass() == EntityWitherSkeleton.class || entity.getClass() == EntityMagmaCube.class || entity.getClass() == EntityGhast.class;
+        return entity instanceof EntityEvolvedSkeleton || entity instanceof EntityEvolvedZombie || entity instanceof EntityEvolvedCreeper || entity instanceof EntityEvolvedSpider || entity instanceof EntityEvolvedEnderman || entity instanceof EntityEvolvedWitch;
     }
 
     public static boolean addInfectedSpore(Entity entity)

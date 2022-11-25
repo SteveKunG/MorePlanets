@@ -16,7 +16,6 @@ public class ItemDescription
 {
     static void init()
     {
-        JEIRegistryHelper.addInfo(MPBlocks.SPACE_PORTAL, text("A %blue%Space Portal%black% allow you to travel into %red%Nether%black% across the space dimension."), "", text("Note: %dark_gray%To use a %blue%Space Portal%dark_gray%, Enable Started Planet in the Config"));
         JEIRegistryHelper.addInfo(MPBlocks.CRASHED_ALIEN_PROBE, text("A %blue%Crashed Alien Probe%black% can be found randomly on Diona surface, which contain some pieces of metal plate."), text("Also beware an %red%Alien Miner%black% around it!"));
     }
 

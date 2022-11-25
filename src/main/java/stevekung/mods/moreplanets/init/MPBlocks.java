@@ -120,7 +120,6 @@ public class MPBlocks
     public static Block SPACE_WARP_PAD;
     public static Block SPACE_WARP_PAD_FULL;
     public static Block DARK_ENERGY_RECEIVER;
-    public static Block SPACE_PORTAL;
     public static Block BLACK_HOLE_STORAGE;
     public static Block ALIEN_DEFENDER_BEACON;
     public static Block SHIELD_GENERATOR;
@@ -630,7 +629,6 @@ public class MPBlocks
         MPBlocks.SPACE_WARP_PAD = new BlockSpaceWarpPad("space_warp_pad");
         MPBlocks.SPACE_WARP_PAD_FULL = new BlockSpaceWarpPadFull("space_warp_pad_full");
         MPBlocks.DARK_ENERGY_RECEIVER = new BlockDarkEnergyReceiver("dark_energy_receiver");
-        MPBlocks.SPACE_PORTAL = new BlockSpacePortal("space_portal");
         MPBlocks.BLACK_HOLE_STORAGE = new BlockBlackHoleStorage("black_hole_storage");
         MPBlocks.ALIEN_DEFENDER_BEACON = new BlockAlienDefenderBeacon("alien_defender_beacon");
         MPBlocks.SHIELD_GENERATOR = new BlockShieldGenerator("shield_generator");
@@ -1507,7 +1505,6 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.SPACE_WARP_PAD, ItemBlockSpaceWarpPad::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.SPACE_WARP_PAD_FULL, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.DARK_ENERGY_RECEIVER, ItemBlockDarkEnergyReceiver::new);
-        BlocksItemsRegistry.registerBlock(MPBlocks.SPACE_PORTAL, ItemBlockSpacePortal::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.BLACK_HOLE_STORAGE, ItemBlockBlackHoleStorage::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_DEFENDER_BEACON, ItemBlockTESRMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.SHIELD_GENERATOR, ItemBlockShieldGenerator::new);

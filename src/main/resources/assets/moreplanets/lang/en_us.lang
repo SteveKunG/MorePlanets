@@ -62,7 +62,6 @@ tile.nibiru_cobblestone_wall.name=Nibiru Cobblestone Wall
 tile.diona_dungeon_brick_wall.name=Diona Dungeon Brick Wall
 tile.chalos_dungeon_brick_wall.name=Chalos Dungeon Brick Wall
 tile.nibiru_dungeon_brick_wall.name=Nibiru Dungeon Brick Wall
-tile.space_portal.name=Space Portal
 tile.black_hole_storage.name=Black Hole Storage
 tile.alien_defender_beacon.name=Alien Defender Beacon
 tile.shield_generator.name=Shield Generator
@@ -802,7 +801,6 @@ desc.bhs_slot_used.name=Slot Used
 desc.bhs_more.name=and %s more...
 desc.shift_info.name=Press <SHIFT> for more info
 desc.control_info.name=Press <CONTROL> for more info
-description.space_portal=Space Portal work only if you select a planet to start survival on it.
 desc.space_warper_core=Press Shift and right-click to set a teleport coordinate
 
 # CONTAINER
@@ -838,7 +836,6 @@ advancements.diona.find_crashed_alien_ship.title=Mystery Crashed Ship?
 advancements.diona.find_crashed_alien_ship.description=What's going on here?
 
 # PLANETS
-planet.space_nether=Space Nether
 planet.diona=Diona
 planet.chalos=Chalos
 planet.nibiru=Nibiru

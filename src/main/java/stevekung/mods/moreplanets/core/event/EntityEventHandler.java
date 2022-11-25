@@ -34,7 +34,6 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
-import stevekung.mods.moreplanets.core.dimension.WorldProviderSpaceNether;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.moons.koentus.entity.EntityKoentusMeteor;
@@ -235,13 +234,6 @@ public class EntityEventHandler
     {
         EntityLivingBase living = event.getEntityLiving();
 
-        if (living.world.provider instanceof WorldProviderSpaceNether)
-        {
-            if (EntityEffectUtils.isSpaceNetherMob(living))
-            {
-                event.setCanceled(true);
-            }
-        }
         if (living.world.getBiome(living.getPosition()) instanceof BiomeGreenVeinFields)
         {
             event.setCanceled(true);

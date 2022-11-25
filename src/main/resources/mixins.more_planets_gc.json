@@ -9,8 +9,6 @@
     	"gc.CommandGCHoustonMixin"
     ],
     "client": [
-    	"client.gc.GuiCelestialSelectionMixin",
-    	"client.gc.NewGuiCelestialSelectionMixin"
     ],
     "injectors": {
         "defaultRequire": 1

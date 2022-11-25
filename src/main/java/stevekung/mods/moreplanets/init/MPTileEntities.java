@@ -50,7 +50,6 @@ public class MPTileEntities
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityNuclearWasteGenerator.class, "nuclear_waste_generator");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityTerrastoneFurnace.class, "terrastone_furnace");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityNibiruDungeonSpawner.class, "nibiru_dungeon_spawner");
-        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntitySpacePortal.class, "space_portal");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityGravityExtractor.class, "gravity_extractor");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntitySealableNuclearWasteRod.class, "sealable_nuclear_waste_rod");
     }
