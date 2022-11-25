@@ -2,11 +2,13 @@
     "required": true,
     "minVersion": "0.7.11",
     "compatibilityLevel": "JAVA_8",
-    "package": "stevekung.mods.moreplanets.core.mixin",
+    "package": "stevekung.mods.moreplanets.core.mixin.gc",
     "refmap": "mixins.more_planets.refmap.json",
     "target": "@env(DEFAULT)",
     "mixins": [
-    	"gc.CommandGCHoustonMixin"
+    	"CommandGCHoustonMixin",
+    	"EventHandlerGCMixin",
+    	"WorldProviderSpaceMixin"
     ],
     "client": [
     ],
