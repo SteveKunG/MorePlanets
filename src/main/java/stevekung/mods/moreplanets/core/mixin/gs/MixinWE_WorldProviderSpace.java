@@ -10,7 +10,7 @@ import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 
 @Pseudo
 @Mixin(targets = "asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace")
-public class WE_WorldProviderSpaceMixin
+public class MixinWE_WorldProviderSpace
 {
     @Inject(method = "netherPortalsOperational", cancellable = true, remap = false, at = @At("HEAD"))
     private void moreplanets$enablePortal(CallbackInfoReturnable<Boolean> info)

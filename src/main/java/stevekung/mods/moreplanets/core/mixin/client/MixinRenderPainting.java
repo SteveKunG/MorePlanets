@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import stevekung.mods.moreplanets.utils.PaintingMP;
 
 @Mixin(RenderPainting.class)
-public class RenderPaintingMixin
+public class MixinRenderPainting
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/painting/paintings_more_planets.png");
 

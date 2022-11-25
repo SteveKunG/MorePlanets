@@ -9,7 +9,7 @@ import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 
 @Mixin(WorldProviderSpace.class)
-public class WorldProviderSpaceMixin
+public class MixinWorldProviderSpace
 {
     @Inject(method = "netherPortalsOperational", cancellable = true, remap = false, at = @At("HEAD"))
     private void moreplanets$enablePortal(CallbackInfoReturnable<Boolean> info)

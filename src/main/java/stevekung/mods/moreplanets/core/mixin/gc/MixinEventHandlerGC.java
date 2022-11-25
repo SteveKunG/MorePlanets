@@ -10,7 +10,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 
 @Mixin(EventHandlerGC.class)
-public class EventHandlerGCMixin
+public class MixinEventHandlerGC
 {
     @Redirect(method = "onPlayerRightClickedBlock", remap = false, slice = @Slice(from = @At(value = "FIELD", target = "net/minecraft/init/Blocks.TNT:Lnet/minecraft/block/Block;")), at = @At(value = "INVOKE", target = "net/minecraftforge/event/entity/player/PlayerInteractEvent$RightClickBlock.setCanceled(Z)V", remap = false))
     private void moreplanets$enableIgnitedItem(PlayerInteractEvent.RightClickBlock event, boolean defaultValue)

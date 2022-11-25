@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.EntityRenderer;
 import stevekung.mods.moreplanets.utils.WorldColorUtils;
 
 @Mixin(EntityRenderer.class)
-public class EntityRendererMixin
+public class MixinEntityRenderer
 {
     @Shadow
     @Final

@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import stevekung.mods.moreplanets.init.MPBlocks;
 
 @Mixin(ParticleDigging.class)
-public class ParticleDiggingMixin
+public class MixinParticleDigging
 {
     @Shadow
     @Final

@@ -10,7 +10,7 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.util.ResourceLocation;
 
 @Mixin(RenderWolf.class)
-public class RenderWolfMixin
+public class MixinRenderWolf
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/dog/rong.png");
 

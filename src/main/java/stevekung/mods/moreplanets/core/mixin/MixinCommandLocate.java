@@ -14,7 +14,7 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandLocate;
 
 @Mixin(CommandLocate.class)
-public class CommandLocateMixin
+public class MixinCommandLocate
 {
     @Redirect(method = "getTabCompletions", at = @At(value = "INVOKE", target = "net/minecraft/command/CommandLocate.getListOfStringsMatchingLastWord([Ljava/lang/String;[Ljava/lang/String;)Ljava/util/List;"))
     private List<String> moreplanets$addStructures(String[] args, String... possibilities)

@@ -6,9 +6,9 @@
     "refmap": "mixins.more_planets.refmap.json",
     "target": "@env(DEFAULT)",
     "mixins": [
-    	"CommandGCHoustonMixin",
-    	"EventHandlerGCMixin",
-    	"WorldProviderSpaceMixin"
+    	"MixinCommandGCHouston",
+    	"MixinEventHandlerGC",
+    	"MixinWorldProviderSpace"
     ],
     "client": [
     ],

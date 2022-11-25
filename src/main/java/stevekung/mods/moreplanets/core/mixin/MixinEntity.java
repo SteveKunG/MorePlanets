@@ -11,7 +11,7 @@ import net.minecraft.entity.Entity;
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 
 @Mixin(Entity.class)
-public class EntityMixin
+public class MixinEntity
 {
     @ModifyConstant(method = "onEntityUpdate", constant = @Constant(intValue = 0), slice = @Slice(from = @At(value = "INVOKE", target = "net/minecraft/world/DimensionType.getId()I"), to = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.changeDimension(I)Lnet/minecraft/entity/Entity;")))
     private int moreplanets$changeDim(int defaultDim)
