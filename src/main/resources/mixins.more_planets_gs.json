@@ -1,0 +1,16 @@
+{
+    "required": true,
+    "minVersion": "0.7.11",
+    "compatibilityLevel": "JAVA_8",
+    "package": "stevekung.mods.moreplanets.core.mixin.gs",
+    "refmap": "mixins.more_planets.refmap.json",
+    "target": "@env(DEFAULT)",
+    "mixins": [
+    	"WE_WorldProviderSpaceMixin"
+    ],
+    "client": [
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
