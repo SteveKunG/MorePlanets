@@ -1,4 +1,4 @@
-![](https://i.imgur.com/L4Y1Nw4.png)
+![](https://i.imgur.com/sJMxvz8.png)
 
 [![](https://img.shields.io/discord/356400329086205953?color=00dabc&label=discord&logo=discord&logoColor=00dabc&style=for-the-badge)](https://discord.gg/4bAj4mkGag)
 
