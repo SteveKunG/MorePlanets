@@ -81,10 +81,10 @@ public class SkyProviderNibiru extends SkyProviderBaseMP
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.popMatrix();
 
-        this.renderSolar(SkyProviderNibiru.LAZENDUS, this.solarSize, false, true, 4.0F, alpha);
-        this.renderObject(1.25F, 80.0F, 200.0F, true, SkyProviderNibiru.CHALOS, partialTicks, alpha);
-        this.renderObject(0.5F, 40.0F, 0.0F, true, SkyProviderNibiru.DIONA, partialTicks, alpha);
-        this.renderObject(1.5F, -60.0F, 0.0F, true, SkyProviderNibiru.FRONOS, partialTicks, alpha);
+        this.renderSolar(LAZENDUS, this.solarSize, false, true, 4.0F, alpha);
+        this.renderObject(1.0F, 240.0F, 200.0F, true, FRONOS, partialTicks, alpha);
+        this.renderObject(0.6F, 200.0F, 220.0F, true, CHALOS, partialTicks, alpha);
+        this.renderObject(0.4F, -50.0F, 180.0F, true, DIONA, partialTicks, alpha);
     }
 
     @Override

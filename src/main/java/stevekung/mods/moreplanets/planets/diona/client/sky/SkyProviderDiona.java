@@ -9,8 +9,10 @@ import stevekung.mods.moreplanets.client.renderer.sky.SkyProviderBaseMP;
 public class SkyProviderDiona extends SkyProviderBaseMP
 {
     private static final ResourceLocation LAZENDUS = new ResourceLocation("moreplanets:textures/gui/celestialbodies/lazendus.png");
+    private static final ResourceLocation KOENTUS = new ResourceLocation("moreplanets:textures/gui/celestialbodies/koentus.png");
     private static final ResourceLocation CHALOS = new ResourceLocation("moreplanets:textures/gui/celestialbodies/chalos.png");
     private static final ResourceLocation NIBIRU = new ResourceLocation("moreplanets:textures/gui/celestialbodies/nibiru.png");
+    private static final ResourceLocation FRONOS = new ResourceLocation("moreplanets:textures/gui/celestialbodies/fronos.png");
 
     public SkyProviderDiona(float solarSize)
     {
@@ -20,9 +22,11 @@ public class SkyProviderDiona extends SkyProviderBaseMP
     @Override
     protected void renderObjects(float partialTicks, WorldClient world, Minecraft mc)
     {
-        this.renderSolar(SkyProviderDiona.LAZENDUS, this.solarSize, true, true, 4.0F);
-        this.renderObject(2.0F, 50.0F, 200.0F, true, SkyProviderDiona.CHALOS, partialTicks);
-        this.renderObject(1.5F, -150.0F, -200.0F, true, SkyProviderDiona.NIBIRU, partialTicks);
+        this.renderSolar(LAZENDUS, this.solarSize, true, true, 4.0F);
+        this.renderObject(2.0F, 60.0F, -120.0F, true, KOENTUS, partialTicks);
+        this.renderObject(1.2F, 240.0F, 200.0F, true, CHALOS, partialTicks);
+        this.renderObject(0.8F, 200.0F, 220.0F, true, NIBIRU, partialTicks);
+        this.renderObject(0.6F, -50.0F, 180.0F, true, FRONOS, partialTicks);
     }
 
     @Override

@@ -12,6 +12,7 @@ import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 public class SkyProviderFronos extends SkyProviderBaseMP
 {
+    private static final ResourceLocation DIONA = new ResourceLocation("moreplanets:textures/gui/celestialbodies/diona.png");
     private static final ResourceLocation NIBIRU = new ResourceLocation("moreplanets:textures/gui/celestialbodies/nibiru.png");
     private static final ResourceLocation CHALOS = new ResourceLocation("moreplanets:textures/gui/celestialbodies/chalos.png");
     private static final ResourceLocation LAZENDUS = new ResourceLocation("moreplanets:textures/gui/celestialbodies/lazendus.png");
@@ -80,9 +81,10 @@ public class SkyProviderFronos extends SkyProviderBaseMP
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.popMatrix();
 
-        this.renderSolar(SkyProviderFronos.LAZENDUS, this.solarSize, false, true, 4.0F, alpha);
-        this.renderObject(0.5F, 60.0F, 180.0F, true, SkyProviderFronos.CHALOS, partialTicks, alpha);
-        this.renderObject(1.5F, -60.0F, 0.0F, true, SkyProviderFronos.NIBIRU, partialTicks, alpha);
+        this.renderSolar(LAZENDUS, this.solarSize, false, true, 4.0F, alpha);
+        this.renderObject(0.8F, 240.0F, 200.0F, true, NIBIRU, partialTicks, alpha);
+        this.renderObject(0.3F, 200.0F, 220.0F, true, CHALOS, partialTicks, alpha);
+        this.renderObject(0.2F, -50.0F, 180.0F, true, DIONA, partialTicks, alpha);
     }
 
     @Override
