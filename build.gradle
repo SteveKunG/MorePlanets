@@ -189,7 +189,7 @@ if (project.hasProperty("version_lib_dir")) {
         def reader = new BufferedReader(new FileReader(rootProject.file("CHANGE_LOG.md")));
         def line;
         for (int ln = 0; (line = reader.readLine()) != null; ln++) {
-            if (ln >= 4) {
+            if (ln >= 5) {
                 formattedList.add(line)
             }
         }
