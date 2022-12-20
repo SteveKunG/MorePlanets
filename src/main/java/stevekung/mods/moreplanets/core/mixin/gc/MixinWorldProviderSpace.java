@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
-import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
+import stevekung.mods.moreplanets.utils.SurvivalPlanetUtils;
 
 @Mixin(WorldProviderSpace.class)
 public class MixinWorldProviderSpace
@@ -14,7 +14,7 @@ public class MixinWorldProviderSpace
     @Inject(method = "netherPortalsOperational", cancellable = true, remap = false, at = @At("HEAD"))
     private void moreplanets$enablePortal(CallbackInfoReturnable<Boolean> info)
     {
-        if (WorldTickEventHandler.survivalPlanetData != null && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
+        if (SurvivalPlanetUtils.hasSurvivalPlanetData() || SurvivalPlanetUtils.hasSurvivalPlanetDataForServer())
         {
             info.setReturnValue(true);
         }

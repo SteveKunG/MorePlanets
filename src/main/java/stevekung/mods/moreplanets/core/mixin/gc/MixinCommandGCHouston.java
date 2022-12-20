@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
-import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
+import stevekung.mods.moreplanets.utils.SurvivalPlanetUtils;
 
 @Mixin(CommandGCHouston.class)
 public class MixinCommandGCHouston
@@ -23,7 +23,7 @@ public class MixinCommandGCHouston
     @Inject(method = "execute", at = @At(value = "INVOKE", target = "net/minecraft/command/CommandBase.notifyCommandListener(Lnet/minecraft/command/ICommandSender;Lnet/minecraft/command/ICommand;Ljava/lang/String;[Ljava/lang/Object;)V", ordinal = 3), locals = LocalCapture.CAPTURE_FAILSOFT)
     private void moreplanets$removeInventoryContents(MinecraftServer server, ICommandSender sender, String[] args, CallbackInfo info, EntityPlayerMP playerBase, boolean isOp, int dimID, WorldServer worldserver, BlockPos spawnPoint, BlockPos bedPos, GCPlayerStats stats, Vector3 spawnPos)
     {
-        if (WorldTickEventHandler.survivalPlanetData != null && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
+        if (SurvivalPlanetUtils.hasSurvivalPlanetData() || SurvivalPlanetUtils.hasSurvivalPlanetDataForServer())
         {
             playerBase.inventory.clearMatchingItems(null, -1, -1, null);
             playerBase.inventoryContainer.detectAndSendChanges();

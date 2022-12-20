@@ -24,7 +24,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import stevekung.mods.moreplanets.command.CommandOpenCelestialScreen;
 import stevekung.mods.moreplanets.core.capability.CapabilityHandlerMP;
@@ -160,12 +159,6 @@ public class MorePlanetsMod
         SmeltingManagerMP.init();
         MPSchematics.init();
         MPDimensions.init();
-    }
-
-    @EventHandler
-    public void serverAboutToStart(FMLServerAboutToStartEvent event)
-    {
-        WorldTickEventHandler.survivalPlanetData = null;
     }
 
     @SubscribeEvent

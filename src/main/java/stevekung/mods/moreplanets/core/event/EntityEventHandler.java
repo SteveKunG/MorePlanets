@@ -7,6 +7,7 @@ import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -33,7 +34,9 @@ import net.minecraftforge.event.entity.living.ZombieEvent.SummonAidEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
+import stevekung.mods.moreplanets.core.config.ConfigManagerServerMP;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.moons.koentus.entity.EntityKoentusMeteor;
@@ -43,13 +46,29 @@ import stevekung.mods.moreplanets.planets.nibiru.entity.EntityInfectedZombie;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityShlime;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFields;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
-import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
-import stevekung.mods.moreplanets.utils.EntityEffectUtils;
-import stevekung.mods.moreplanets.utils.LoggerMP;
+import stevekung.mods.moreplanets.utils.*;
 import stevekung.mods.moreplanets.world.IMeteorType;
 
 public class EntityEventHandler
 {
+    @SubscribeEvent
+    public void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event)
+    {
+        String dimensionName = ConfigManagerServerMP.survivalPlanetDimensionName.replace("\"", "");
+        EntityPlayer player = event.player;
+
+        if (!SurvivalPlanetUtils.hasSurvivalPlanetDataForServer())
+        {
+            return;
+        }
+
+        if (!player.hasSpawnDimension())
+        {
+            player.setSpawnDimension(WorldUtil.getProviderForNameServer(dimensionName).getDimension());
+            TeleportUtils.teleportPlayerToPlanet((EntityPlayerMP)player, player.getServer(), 0, WorldUtil.getProviderForNameServer(dimensionName).getDimension());
+        }
+    }
+
     @SubscribeEvent
     public void onZombieSummonAid(SummonAidEvent event)
     {
@@ -86,7 +105,7 @@ public class EntityEventHandler
 
             if (living instanceof EntityPlayerMP)
             {
-                EntityPlayerMP player = (EntityPlayerMP) living;
+                EntityPlayerMP player = (EntityPlayerMP)living;
 
                 if (player.inventory.hasItemStack(new ItemStack(MPItems.GRAVITY_AMULET)))
                 {
@@ -195,7 +214,7 @@ public class EntityEventHandler
                             }
                             catch (Exception e)
                             {
-                                uuid = UUID.fromString("eef3a603-1c1b-4c98-8264-d2f04b231ef4"); //default uuid :)
+                                uuid = UUID.fromString("eef3a603-1c1b-4c98-8264-d2f04b231ef4"); // default uuid :)
                             }
 
                             if (living.world.getPlayerEntityByUUID(uuid) != null)
@@ -356,9 +375,9 @@ public class EntityEventHandler
 
                     switch (meteor.getMeteorType())
                     {
-                    case KOENTUS:
-                        meteorEntity = new EntityKoentusMeteor(world, player.posX + x, 355.0D, player.posZ + z, motX - 2.5D, 0, motZ - 2.5D, size);
-                        break;
+                        case KOENTUS:
+                            meteorEntity = new EntityKoentusMeteor(world, player.posX + x, 355.0D, player.posZ + z, motX - 2.5D, 0, motZ - 2.5D, size);
+                            break;
                     }
                     world.spawnEntity(meteorEntity);
                     LoggerMP.debug("Spawn meteor {} at {} {} {}", EntityList.getKey(meteorEntity), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
@@ -369,9 +388,9 @@ public class EntityEventHandler
 
                     switch (meteor.getMeteorType())
                     {
-                    case KOENTUS:
-                        meteorEntity = new EntityKoentusMeteor(world, player.posX + x, 355.0D, player.posZ + z, motX - 2.5D, 0, motZ - 2.5D, size);
-                        break;
+                        case KOENTUS:
+                            meteorEntity = new EntityKoentusMeteor(world, player.posX + x, 355.0D, player.posZ + z, motX - 2.5D, 0, motZ - 2.5D, size);
+                            break;
                     }
                     world.spawnEntity(meteorEntity);
                     LoggerMP.debug("Spawn meteor {} at {} {} {}", EntityList.getKey(meteorEntity), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
