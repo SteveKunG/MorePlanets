@@ -14,6 +14,7 @@ public class SkyProviderNibiru extends SkyProviderBaseMP
 {
     private static final ResourceLocation DIONA = new ResourceLocation("moreplanets:textures/gui/celestialbodies/diona.png");
     private static final ResourceLocation CHALOS = new ResourceLocation("moreplanets:textures/gui/celestialbodies/chalos.png");
+    private static final ResourceLocation FRONOS = new ResourceLocation("moreplanets:textures/gui/celestialbodies/fronos.png");
     private static final ResourceLocation LAZENDUS = new ResourceLocation("moreplanets:textures/gui/celestialbodies/lazendus.png");
 
     public SkyProviderNibiru(float solarSize)
@@ -83,6 +84,7 @@ public class SkyProviderNibiru extends SkyProviderBaseMP
         this.renderSolar(SkyProviderNibiru.LAZENDUS, this.solarSize, false, true, 4.0F, alpha);
         this.renderObject(1.25F, 80.0F, 200.0F, true, SkyProviderNibiru.CHALOS, partialTicks, alpha);
         this.renderObject(0.5F, 40.0F, 0.0F, true, SkyProviderNibiru.DIONA, partialTicks, alpha);
+        this.renderObject(1.5F, -60.0F, 0.0F, true, SkyProviderNibiru.FRONOS, partialTicks, alpha);
     }
 
     @Override
