@@ -33,9 +33,9 @@ public class MPPlanets
 
         // Planets
         MPPlanets.DIONA = CelestialRegistryUtils.createPlanet("diona", MPPlanets.LAZENDUS_SOLAR_SYSTEM, -14.25F, 4.25F, 20.0F, 0.876F, ConfigManagerMP.moreplanets_planet_settings.planetDionaTier, ConfigManagerMP.moreplanets_dimension.idDimensionDiona, WorldProviderDiona.class);
-        MPPlanets.CHALOS = CelestialRegistryUtils.createPlanet("chalos", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 8.75F, 3.5F, 60.5F, 10.0F, ConfigManagerMP.moreplanets_planet_settings.planetChalosTier, ConfigManagerMP.moreplanets_dimension.idDimensionChalos, WorldProviderChalos.class);
-        MPPlanets.NIBIRU = CelestialRegistryUtils.createPlanet("nibiru", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 27.0F, 2.0F, 1050.5F, 2.0F, ConfigManagerMP.moreplanets_planet_settings.planetNibiruTier, ConfigManagerMP.moreplanets_dimension.idDimensionNibiru, WorldProviderNibiru.class);
-        MPPlanets.FRONOS = CelestialRegistryUtils.createPlanet("fronos", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 10.0F, 1.5F, 100.0F, 1.0F, ConfigManagerMP.moreplanets_planet_settings.planetFronosTier, ConfigManagerMP.moreplanets_dimension.idDimensionFronos, WorldProviderFronos.class);
+        MPPlanets.CHALOS = CelestialRegistryUtils.createPlanet("chalos", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 8.75F, 3.5F, 60.5F, 1.25F, ConfigManagerMP.moreplanets_planet_settings.planetChalosTier, ConfigManagerMP.moreplanets_dimension.idDimensionChalos, WorldProviderChalos.class);
+        MPPlanets.NIBIRU = CelestialRegistryUtils.createPlanet("nibiru", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 27.0F, 2.0F, 1050.5F, 1.2F, ConfigManagerMP.moreplanets_planet_settings.planetNibiruTier, ConfigManagerMP.moreplanets_dimension.idDimensionNibiru, WorldProviderNibiru.class);
+        MPPlanets.FRONOS = CelestialRegistryUtils.createPlanet("fronos", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 10.0F, 1.5F, 100.0F, 1.1F, ConfigManagerMP.moreplanets_planet_settings.planetFronosTier, ConfigManagerMP.moreplanets_dimension.idDimensionFronos, WorldProviderFronos.class);
 
         // Moons
         MPPlanets.KOENTUS = CelestialRegistryUtils.createMoon("koentus", MPPlanets.DIONA, 2.436F, 9.5F, 1 / 0.01F, 0.3867F, ConfigManagerMP.moreplanets_moon_settings.moonKoentusTier, ConfigManagerMP.moreplanets_dimension.idDimensionKoentus, WorldProviderKoentus.class);
