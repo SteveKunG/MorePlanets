@@ -24,4 +24,18 @@ public class SurvivalPlanetUtils
     {
         return WorldUtil.getProviderForNameServer(dimensionName);
     }
+
+    public static int getSurvivalPlanetDimension(int defaultDim)
+    {
+        if (SurvivalPlanetUtils.hasSurvivalPlanetData())
+        {
+            return SurvivalPlanetUtils.getSurvivalPlanetProvider(WorldTickEventHandler.survivalPlanetData.survivalPlanetName).getDimension();
+        }
+        else if (SurvivalPlanetUtils.hasSurvivalPlanetDataForServer())
+        {
+            String dimensionName = ConfigManagerServerMP.survivalPlanetDimensionName.replace("\"", "");
+            return SurvivalPlanetUtils.getSurvivalPlanetProvider(dimensionName).getDimension();
+        }
+        return defaultDim;
+    }
 }

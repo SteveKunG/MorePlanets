@@ -174,7 +174,7 @@ public class ClientEventHandler
                     Field pluginsField = proxy.getClass().getDeclaredField("plugins");
                     pluginsField.setAccessible(true);
                     Class<?> starter = Class.forName("mezz.jei.startup.JeiStarter");
-                    Object obj = starter.newInstance();
+                    Object obj = starter.getDeclaredConstructor().newInstance();
                     Method method = obj.getClass().getDeclaredMethod("start", List.class);
                     method.invoke(obj, (ArrayList<?>) pluginsField.get(proxy));
                 }
