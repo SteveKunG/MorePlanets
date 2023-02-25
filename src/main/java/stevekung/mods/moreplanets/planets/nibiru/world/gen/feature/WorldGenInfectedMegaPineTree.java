@@ -28,7 +28,7 @@ public class WorldGenInfectedMegaPineTree extends WorldGenAbstractHugeTrees
     {
         int i = this.getHeight(rand);
 
-        if (!this.ensureGrowable(world, rand, pos, i))
+        if (!this.ensureGrowable(world, pos, i))
         {
             return false;
         }
