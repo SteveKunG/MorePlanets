@@ -54,11 +54,11 @@ public class MorePlanetsMod
     public static final String MOD_ID = "moreplanets";
     private static final int MAJOR_VERSION = 2;
     private static final int MINOR_VERSION = 3;
-    private static final int BUILD_VERSION = 1;
+    private static final int BUILD_VERSION = 2;
     public static final String VERSION = MorePlanetsMod.MAJOR_VERSION + "." + MorePlanetsMod.MINOR_VERSION + "." + MorePlanetsMod.BUILD_VERSION;
     private static final String FORGE_VERSION = "after:forge@[14.23.5.2768,); ";
     private static final String DEPENDENCIES = "after:jei@[4.15.0.268,); ";
-    protected static final String MAIN_DEPENDENCIES = "required-after:stevekung's_lib@[1.1.11,); required-after:galacticraftcore@[4.0.1.-1,); required-after:galacticraftplanets@[4.0.1.-1,); required-after:micdoodlecore; required-after:mixinbooter@[4.2,); " + MorePlanetsMod.FORGE_VERSION + MorePlanetsMod.DEPENDENCIES;
+    protected static final String MAIN_DEPENDENCIES = "required-after:stevekung's_lib@[1.3.0,); required-after:galacticraftcore@[4.0.1.-1,); required-after:galacticraftplanets@[4.0.1.-1,); required-after:micdoodlecore; required-after:mixinbooter@[7.0,); " + MorePlanetsMod.FORGE_VERSION + MorePlanetsMod.DEPENDENCIES;
     public static final String URL = "https://www.curseforge.com/minecraft/mc-mods/more-planets-gc-addon";
     protected static final String JSON_URL = "https://raw.githubusercontent.com/SteveKunG/VersionCheckLibrary/master/more_planets_version.json";
     public static boolean isDevelopment;

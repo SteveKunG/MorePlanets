@@ -110,11 +110,11 @@ dependencies {
     }
 
     // More Planets deps
-    if (file("libs/SteveKunG's-Lib-1.12.2-${lib_version}-deobf.jar").exists()) {
-        deobfCompile ":SteveKunG's-Lib-1.12.2-${lib_version}-deobf"
+    if (file("libs/SteveKunG's-Lib-mc1.12.2-v${lib_version}-deobf.jar").exists()) {
+        deobfCompile ":SteveKunG's-Lib-mc1.12.2-v${lib_version}-deobf"
     }
     else {
-        deobfCompile "curse.maven:stevekungs-lib-296019:3636234"
+        deobfCompile "curse.maven:stevekungs-lib-296019:4429451"
     }
 
     deobfCompile "zone.rong:mixinbooter:7.0"
