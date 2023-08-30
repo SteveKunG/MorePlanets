@@ -15,7 +15,7 @@ import stevekung.mods.moreplanets.init.MPPotions;
 @Mixin(EntityLivingBase.class)
 public abstract class MixinEntityLivingBase extends Entity implements IInfectedPurlonite
 {
-    private static final DataParameter<Boolean> INFECTED_PURLONITE = new DataParameter<>(122, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> INFECTED_PURLONITE = new DataParameter<>(252, DataSerializers.BOOLEAN);
 
     MixinEntityLivingBase()
     {
