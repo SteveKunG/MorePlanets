@@ -1,3 +1,6 @@
+import groovy.json.JsonBuilder
+import groovy.json.JsonSlurper
+
 buildscript {
     repositories {
         gradlePluginPortal()
@@ -18,9 +21,7 @@ plugins {
 apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: "org.spongepowered.mixin"
 
-def mcVersion = project.mc_version
-
-version = project.version
+version = project.mod_version
 group = "stevekung.mods.moreplanets"
 archivesBaseName = "More-Planets-All"
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = 1.8
@@ -90,11 +91,12 @@ repositories {
     flatDir {
         dirs "libs"
     }
+    mavenLocal()
 }
 
 dependencies {
     // Galacticraft deps
-    compile "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    compile "mezz.jei:jei_${minecraft_version}:${jei_version}:api"
     compile "mekanism:Mekanism-1.12.2:9.7.5.376:api"
     compile "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.12.2-7.0.1.2441:api"
     compile "com.mod-buildcraft:buildcraft-api:7.99.24.6"
@@ -110,24 +112,26 @@ dependencies {
     }
 
     // More Planets deps
-    if (file("libs/SteveKunG's-Lib-mc1.12.2-v${lib_version}-deobf.jar").exists()) {
-        deobfCompile ":SteveKunG's-Lib-mc1.12.2-v${lib_version}-deobf"
+    String libs = "stevekung's-lib-mc${minecraft_version}-v${stevekung_lib_version}-deobf"
+    if (file("libs/${libs}.jar").exists()) {
+        // Don't forget to copy deobf jar into mods folder, all mixins and classes are loaded when running in dev but an actual "mod" doesn't. Weird -.-
+        deobfCompile ":${libs}"
     }
     else {
         deobfCompile "curse.maven:stevekungs-lib-296019:4429451"
     }
 
-    deobfCompile "zone.rong:mixinbooter:7.0"
-    deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    deobfCompile "zone.rong:mixinbooter:${mixinbooter_version}"
+    deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}:api"
     deobfCompile "curse.maven:codechicken-lib-1-8-242818:2779848"
     deobfCompile "curse.maven:hwyla-253449:2568751"
     deobfCompile "curse.maven:baubles-227083:2518667"
 
-    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
-    runtime "ctm:CTM:MC1.12.2:1.0.2.31"
+    runtime "mezz.jei:jei_${minecraft_version}:${jei_version}"
+    runtime "ctm:CTM:MC${minecraft_version}:${ctm_version}"
 
-    compile "org.spongepowered:mixin:0.8.3"
-    annotationProcessor "org.spongepowered:mixin:0.8.3:processor"
+    compile "org.spongepowered:mixin:${mixin_version}"
+    annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
 }
 
 sourceSets {
@@ -145,7 +149,7 @@ jar {
                    "ForceLoadAsMod": "true"
         )
     }
-    baseName = "More-Planets-" + mcVersion
+    baseName = "More-Planets-" + project.minecraft_version
 }
 
 curseforge {
@@ -155,10 +159,10 @@ curseforge {
         changelog = file("CHANGE_LOG.md")
         changelogType = "markdown"
         releaseType = "release"
-        addGameVersion mcVersion
+        addGameVersion project.minecraft_version
 
         mainArtifact(jar) {
-            displayName = "More-Planets-" + mcVersion + "-" + version
+            displayName = "More-Planets-" + project.minecraft_version + "-" + project.mod_version
             relations {
                 requiredLibrary "galacticraft-legacy"
                 requiredLibrary "stevekungs-lib"
@@ -176,15 +180,16 @@ tasks.curseforge.dependsOn(build)
 jar.finalizedBy("reobfJar")
 
 if (project.hasProperty("version_lib_dir")) {
-    task updateVersionLib(group: "upload") {
+    tasks.register("updateVersionLib") {
+        group "upload"
         def versionFile = file("${version_lib_dir}/more_planets_version.json")
-        def jsonBuilder = new groovy.json.JsonBuilder(new groovy.json.JsonSlurper().parseText(versionFile.text))
+        def jsonBuilder = new JsonBuilder(new JsonSlurper().parseText(versionFile.text))
         def jsonElement = jsonBuilder.content
         def formattedList = []
-        def modVersion = project.version.substring(0, 5)
+        def modVersion = project.mod_version.substring(0, 5)
 
-        jsonElement.promos."${mc_version}-latest" = modVersion
-        jsonElement.promos."${mc_version}-recommended" = modVersion
+        jsonElement.promos."${minecraft_version}-latest" = modVersion
+        jsonElement.promos."${minecraft_version}-recommended" = modVersion
 
         def reader = new BufferedReader(new FileReader(rootProject.file("CHANGE_LOG.md")));
         def line;
@@ -194,7 +199,7 @@ if (project.hasProperty("version_lib_dir")) {
             }
         }
 
-        jsonElement."${mc_version}"."${modVersion}" = formattedList.join("\n")
+        jsonElement."${minecraft_version}"."${modVersion}" = formattedList.join("\n")
         versionFile.text = jsonBuilder.toPrettyString()
     }
 }
