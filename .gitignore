@@ -10,8 +10,6 @@ logs
 run
 
 # file
-*.bat
 *.launch
 .classpath
 .project
-!gradlew.bat
