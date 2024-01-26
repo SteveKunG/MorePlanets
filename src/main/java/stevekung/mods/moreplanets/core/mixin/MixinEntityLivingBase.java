@@ -28,13 +28,13 @@ public abstract class MixinEntityLivingBase extends Entity implements IInfectedP
         this.dataManager.register(INFECTED_PURLONITE, false);
     }
 
-    @Inject(method = "updatePotionMetadata", at = @At(value = "INVOKE", target = "net/minecraft/entity/EntityLivingBase.setInvisible(Z)V", shift = At.Shift.AFTER, ordinal = 0))
+    @Inject(method = "updatePotionMetadata", at = @At(value = "INVOKE", target = "net/minecraft/entity/EntityLivingBase.setInvisible(Z)V", ordinal = 0))
     private void moreplanets$updateInfectedPurlonitePre(CallbackInfo info)
     {
         this.setInfectedPurlonite(false);
     }
 
-    @Inject(method = "updatePotionMetadata", at = @At(value = "INVOKE", target = "net/minecraft/entity/EntityLivingBase.setInvisible(Z)V", shift = At.Shift.BEFORE, ordinal = 1))
+    @Inject(method = "updatePotionMetadata", at = @At(value = "INVOKE", target = "net/minecraft/entity/EntityLivingBase.setInvisible(Z)V", ordinal = 1))
     private void moreplanets$updateInfectedPurlonitePost(CallbackInfo info)
     {
         this.setInfectedPurlonite(((EntityLivingBase)(Object)this).isPotionActive(MPPotions.INFECTED_PURLONITE));

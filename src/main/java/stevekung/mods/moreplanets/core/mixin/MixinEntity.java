@@ -12,7 +12,7 @@ import stevekung.mods.moreplanets.utils.SurvivalPlanetUtils;
 @Mixin(Entity.class)
 public class MixinEntity
 {
-    @ModifyConstant(method = "onEntityUpdate", constant = @Constant(intValue = 0), slice = @Slice(from = @At(value = "INVOKE", target = "net/minecraft/world/DimensionType.getId()I"), to = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.changeDimension(I)Lnet/minecraft/entity/Entity;")), require = 0)
+    @ModifyConstant(method = "onEntityUpdate", constant = @Constant(), slice = @Slice(from = @At(value = "INVOKE", target = "net/minecraft/world/DimensionType.getId()I"), to = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.changeDimension(I)Lnet/minecraft/entity/Entity;")), require = 0)
     private int moreplanets$changeDim(int defaultDim)
     {
         return SurvivalPlanetUtils.getSurvivalPlanetDimension(defaultDim);
