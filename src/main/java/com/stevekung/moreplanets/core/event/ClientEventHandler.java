@@ -252,7 +252,7 @@ public class ClientEventHandler
         {
             EntityLivingBase living = (EntityLivingBase)entity;
 
-            if (((IInfectedPurlonite)living).isInfectedPurlonite())
+            if (((IInfectedPurlonite)living).moreplanets$isInfectedPurlonite())
             {
                 GlStateManager.disableLighting();
                 TextureMap texturemap = this.mc.getTextureMapBlocks();

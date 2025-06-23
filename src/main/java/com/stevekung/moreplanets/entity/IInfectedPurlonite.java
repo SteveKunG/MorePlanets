@@ -2,6 +2,6 @@ package com.stevekung.moreplanets.entity;
 
 public interface IInfectedPurlonite
 {
-    boolean isInfectedPurlonite();
-    void setInfectedPurlonite(boolean infected);
+    boolean moreplanets$isInfectedPurlonite();
+    void moreplanets$setInfectedPurlonite(boolean infected);
 }

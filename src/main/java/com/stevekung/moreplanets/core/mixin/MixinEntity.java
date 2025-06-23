@@ -6,13 +6,24 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.Slice;
 
-import net.minecraft.entity.Entity;
 import com.stevekung.moreplanets.utils.SurvivalPlanetUtils;
+
+import net.minecraft.entity.Entity;
 
 @Mixin(Entity.class)
 public class MixinEntity
 {
-    @ModifyConstant(method = "onEntityUpdate", constant = @Constant(), slice = @Slice(from = @At(value = "INVOKE", target = "net/minecraft/world/DimensionType.getId()I"), to = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.changeDimension(I)Lnet/minecraft/entity/Entity;")), require = 0)
+    @ModifyConstant(
+            method = "onEntityUpdate",
+            constant = @Constant(),
+            slice = @Slice(
+                    from = @At(
+                            value = "INVOKE",
+                            target = "net/minecraft/world/DimensionType.getId()I"),
+                    to = @At(
+                            value = "INVOKE",
+                            target = "net/minecraft/entity/Entity.changeDimension(I)Lnet/minecraft/entity/Entity;")),
+            require = 0)
     private int moreplanets$changeDim(int defaultDim)
     {
         return SurvivalPlanetUtils.getSurvivalPlanetDimension(defaultDim);

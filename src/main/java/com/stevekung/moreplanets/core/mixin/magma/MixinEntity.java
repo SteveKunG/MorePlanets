@@ -6,13 +6,26 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.Slice;
 
-import net.minecraft.entity.Entity;
 import com.stevekung.moreplanets.utils.SurvivalPlanetUtils;
+
+import net.minecraft.entity.Entity;
 
 @Mixin(Entity.class)
 public class MixinEntity
 {
-    @ModifyConstant(method = "postTick", remap = false, constant = @Constant(), slice = @Slice(from = @At(value = "INVOKE", target = "net/minecraft/world/DimensionType.func_186068_a()I", remap = false), to = @At(value = "INVOKE", target = "net/minecraft/entity/Entity.func_184204_a(I)Lnet/minecraft/entity/Entity;", remap = false)), require = 0)
+    @ModifyConstant(method = "postTick",
+            remap = false,
+            constant = @Constant(),
+            slice = @Slice(
+                    from = @At(
+                            value = "INVOKE",
+                            target = "net/minecraft/world/DimensionType.func_186068_a()I",
+                            remap = false),
+                    to = @At(
+                            value = "INVOKE",
+                            target = "net/minecraft/entity/Entity.func_184204_a(I)Lnet/minecraft/entity/Entity;",
+                            remap = false)),
+            require = 0)
     private int moreplanets$changeDimForMagmaServer(int defaultDim)
     {
         return SurvivalPlanetUtils.getSurvivalPlanetDimension(defaultDim);
