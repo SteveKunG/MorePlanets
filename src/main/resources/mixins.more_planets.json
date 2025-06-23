@@ -11,7 +11,7 @@
         "MixinEntity",
         "MixinEntityLivingBase",
         
-        "magma.MixinEntity",
+        "magma.MixinEntity"
     ],
     "client": [
     	"client.MixinEntityRenderer",

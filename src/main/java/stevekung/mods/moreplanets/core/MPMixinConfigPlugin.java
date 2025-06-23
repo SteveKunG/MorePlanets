@@ -36,6 +36,10 @@ public class MPMixinConfigPlugin implements IMixinConfigPlugin
         {
             return !foundMagmaServer;
         }
+        else if (mixinClassName.equals("stevekung.mods.moreplanets.core.mixin.magma.MixinEntity"))
+        {
+            return foundMagmaServer;
+        }
         return true;
     }
 

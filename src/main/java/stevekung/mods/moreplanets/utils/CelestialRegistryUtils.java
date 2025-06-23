@@ -88,17 +88,17 @@ public class CelestialRegistryUtils
 
     public static void registerSolarSystem(SolarSystem solarSystem)
     {
-        GalaxyRegistry.register(solarSystem);
+        GalaxyRegistry.registerSolarSystem(solarSystem);
     }
 
     public static void registerPlanet(Planet planet)
     {
-        GalaxyRegistry.register(planet);
+        GalaxyRegistry.registerPlanet(planet);
     }
 
     public static void registerMoon(Moon moon)
     {
-        GalaxyRegistry.register(moon);
+        GalaxyRegistry.registerMoon(moon);
     }
 
     public static void registerTeleportType(Class<? extends WorldProvider> clazz, ITeleportType type)
