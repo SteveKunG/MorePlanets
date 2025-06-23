@@ -127,7 +127,7 @@ String fileName = "${archives_base_name}-mc${minecraft_version}"
 jar {
     if (project.hasProperty("use_mixin") && use_mixin.toBoolean()) {
         manifest {
-            attributes "FMLCorePlugin": "stevekung.mods.moreplanets.core.MorePlanetsPlugin"
+            attributes "FMLCorePlugin": "com.stevekung.moreplanets.core.MorePlanetsPlugin"
             attributes "FMLCorePluginContainsFMLMod": true
             attributes "ForceLoadAsMod": true
         }
