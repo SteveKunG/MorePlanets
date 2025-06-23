@@ -1,93 +1,98 @@
-import groovy.json.JsonBuilder
-import groovy.json.JsonSlurper
-
-buildscript {
-    repositories {
-        gradlePluginPortal()
-        maven { url "https://maven.minecraftforge.net" }
-        maven { url "https://repo.spongepowered.org/repository/maven-public/" }
-    }
-    dependencies {
-        classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
-        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.4.0"
-        classpath "org.spongepowered:mixingradle:0.6-SNAPSHOT"
-    }
-}
+import org.jetbrains.gradle.ext.Gradle
 
 plugins {
-    id "com.matthewprenger.cursegradle" version "1.4.0"
+    id "org.jetbrains.gradle.plugin.idea-ext" version "1.1.9"
+    id "com.gtnewhorizons.retrofuturagradle" version "1.4.1"
 }
 
-apply plugin: "net.minecraftforge.gradle.forge"
-apply plugin: "org.spongepowered.mixin"
+version = "${mod_version}"
+group = "${maven_group}"
 
-version = project.mod_version
-group = "stevekung.mods.moreplanets"
-archivesBaseName = "More-Planets-All"
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = 1.8
+base {
+    archivesName = archives_base_name
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+        // Azul covers the most platforms for Java 8 toolchains, crucially including MacOS arm64
+        vendor.set(JvmVendorSpec.AZUL)
+    }
+}
+
+configurations {
+    embed
+    implementation.extendsFrom(embed)
+}
 
 minecraft {
-    version = "${forge_version}"
-    runDir = "run"
-    mappings = "${mcp_mapping}"
-    makeObfSourceJar = false
+    mcVersion.set(minecraft_version)
 
-    def jvms = "-Dfml.coreMods.load=micdoodle8.mods.miccore.MicdoodlePlugin -Dmixin.checks.interfaces=true -Dmixin.hotSwap=true -Dmixin.debug.export=true -Dmixin.debug.verbose=true";
-    def runArgs = "--mixin mixins.more_planets.json"
+    mcpMappingChannel.set(mapping_channel)
+    mcpMappingVersion.set(mapping_version)
 
-    clientJvmArgs += jvms
-    clientRunArgs += runArgs
+    useDependencyAccessTransformers.set(true)
 
-    serverJvmArgs += jvms
-    serverRunArgs += runArgs
-    serverRunArgs += "nogui"
+    username.set("Developer")
 
-    if (project.hasProperty("username") && project.hasProperty("uuid")) {
-        clientRunArgs += "--username ${username} --uuid ${uuid}"
+    // Add various JVM arguments here for runtime
+    def args = ["-ea:" + group]
+
+    if (project.hasProperty("use_mixin") && use_mixin.toBoolean()) {
+        args << "-Dmixin.debug=true"
+        args << "-Dmixin.debug.verbose=true"
+        args << "-Dmixin.hotSwap=true"
+        args << "-Dmixin.checks.interfaces=true"
+        args << "-Dmixin.debug.export=true"
+        args << "-Dfml.coreMods.load=micdoodle8.mods.miccore.MicdoodlePlugin"
     }
+    extraRunJvmArguments.addAll(args)
+}
 
-    replace "4.0.1.-1", project.gc_require_version
-    replaceIn "MorePlanetsMod.java"
+// Adds Access Transformer files to tasks
+def fileLocation = file("${projectDir}/src/main/resources/META-INF/moreplanets_at.cfg")
+if (fileLocation.exists()) {
+    tasks.deobfuscateMergedJarToSrg.accessTransformerFiles.from(fileLocation)
+    tasks.srgifyBinpatchedJar.accessTransformerFiles.from(fileLocation)
+} else {
+    throw new GradleException("Access Transformer file [$fileLocation] does not exist!")
 }
 
 repositories {
-    maven {
-        name "SpongePowered"
-        url "https://repo.spongepowered.org/repository/maven-public/"
+    exclusiveContent {
+        forRepository {
+            maven {
+                url = "https://cursemaven.com"
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                url = "https://modmaven.dev/"
+            }
+        }
+        filter {
+            includeGroup "team.chisel.ctm"
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                url = "https://dvs1.progwml6.com/files/maven"
+            }
+        }
+        filter {
+            includeGroup "mezz.jei"
+        }
     }
     maven {
-        name "CurseMaven"
-        url "https://www.cursemaven.com"
+        name = "CleanroomMC Maven"
+        url = "https://maven.cleanroommc.com"
     }
-    maven {
-        name "CurseForge"
-        url "https://minecraft.curseforge.com/api/maven/"
-    }
-    maven {
-        name "JEI"
-        url "https://dvs1.progwml6.com/files/maven"
-    }
-    maven {
-        name "Buildcraft"
-        url "https://mod-buildcraft.com/maven/"
-    }
-    maven {
-        name "AA"
-        url "https://maven.ellpeck.de/"
-    }
-    maven {
-        name "Modmaven"
-        url "https://modmaven.dev/"
-    }
-    maven {
-        name "MixinBooter"
-        url "https://maven.cleanroommc.com/"
-    }
-    maven {
-        name "Galacticraft Legacy"
-        url "https://maven.galacticraft.net/repository/legacy/"
-    }
-
     flatDir {
         dirs "libs"
     }
@@ -95,111 +100,88 @@ repositories {
 }
 
 dependencies {
-    // Galacticraft deps
-    compile "mezz.jei:jei_${minecraft_version}:${jei_version}:api"
-    compile "mekanism:Mekanism-1.12.2:9.7.5.376:api"
-    compile "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.12.2-7.0.1.2441:api"
-    compile "com.mod-buildcraft:buildcraft-api:7.99.24.6"
-    compile "curse.maven:redstoneflux-1.1.1-270789:2920436"
-    compile "industrial-craft:industrialcraft-2-2.8.157:ex112:api"
-    compile "curse.maven:playerapi-1.1-449521:3212872"
-    compile "de.ellpeck.actuallyadditions:ActuallyAdditions_1.12.2:1.12.2-r151:api"
-
-    deobfCompile ("dev.galacticraft:galacticraft-legacy:${gc_require_version}") {
-        exclude group: "mod.dependency", module: "mekanism"
-        exclude group: "mod.dependency", module: "industrialcraft-2"
-        exclude group: "mod.dependency", module: "buildcraft-api"
+    if (project.hasProperty("use_mixin") && use_mixin.toBoolean()) {
+        String mixin = modUtils.enableMixins("zone.rong:mixinbooter:${mixin_booter_version}", "mixins.${mod_id}.refmap.json")
+        api(mixin) {
+            transitive = false
+        }
+        annotationProcessor "org.ow2.asm:asm-debug-all:5.2"
+        annotationProcessor "com.google.guava:guava:32.1.2-jre"
+        annotationProcessor "com.google.code.gson:gson:2.8.9"
+        annotationProcessor(mixin) {
+            transitive = false
+        }
     }
 
-    // More Planets deps
-    String libs = "stevekung's-lib-mc${minecraft_version}-v${stevekung_lib_version}-deobf"
-    if (file("libs/${libs}.jar").exists()) {
-        // Don't forget to copy deobf jar into mods folder, all mixins and classes are loaded when running in dev but an actual "mod" doesn't. Weird -.-
-        deobfCompile ":${libs}"
-    }
-    else {
-        deobfCompile "curse.maven:stevekungs-lib-296019:4429451"
-    }
-
-    deobfCompile "zone.rong:mixinbooter:${mixinbooter_version}"
-    deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}:api"
-    deobfCompile "curse.maven:codechicken-lib-1-8-242818:2779848"
-    deobfCompile "curse.maven:hwyla-253449:2568751"
-    deobfCompile "curse.maven:baubles-227083:2518667"
-
-    runtime "mezz.jei:jei_${minecraft_version}:${jei_version}"
-    runtime "ctm:CTM:MC${minecraft_version}:${ctm_version}"
-
-    compile "org.spongepowered:mixin:${mixin_version}"
-    annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
+    implementation(":galacticraft-legacy:4.0.2.283")
+    implementation(modUtils.deobfuscate("curse.maven:stevekungs-lib-296019:5064118").toString())
+    implementation "curse.maven:hwyla-253449:2568751"
+    implementation(modUtils.deobfuscate("curse.maven:codechicken-lib-1-8-242818:2779848").toString())
+    api "curse.maven:baubles-227083:2518667"
+    api "team.chisel.ctm:CTM:MC${minecraft_version}-${ctm_version}"
+    api "mezz.jei:jei_${minecraft_version}:${jei_version}:api"
 }
 
-sourceSets {
-    main {
-        ext.refMap = "mixins.more_planets.refmap.json"
-    }
-}
+String fileName = "${archives_base_name}-mc${minecraft_version}"
 
 jar {
-    manifest {
-        attributes("FMLAT": "moreplanets_at.cfg",
-                   "FMLCorePluginContainsFMLMod": "true",
-                   "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
-                   "MixinConfigs": "mixins.more_planets.json",
-                   "ForceLoadAsMod": "true"
+    if (project.hasProperty("use_mixin") && use_mixin.toBoolean()) {
+        manifest {
+            attributes "FMLCorePlugin": "stevekung.mods.moreplanets.core.MorePlanetsPlugin"
+            attributes "FMLCorePluginContainsFMLMod": true
+            attributes "ForceLoadAsMod": true
+        }
+    }
+
+    archiveVersion = "v${version}"
+    archiveBaseName = fileName
+    from sourceSets.main.output
+}
+
+processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", mod_version
+    inputs.property "mcversion", minecraft_version
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    filesMatching("pack.mcmeta") { fcd ->
+        fcd.expand(
+                "display_name": display_name
         )
     }
-    baseName = "More-Planets-" + project.minecraft_version
+
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude "mcmod.info"
+    }
 }
 
-curseforge {
-    apiKey = project.hasProperty("curseforge_api_token") ? project.curseforge_api_token : ""
+idea {
+    module {
+        inheritOutputDirs = true
+    }
     project {
-        id = "261990"
-        changelog = file("CHANGE_LOG.md")
-        changelogType = "markdown"
-        releaseType = "release"
-        addGameVersion project.minecraft_version
-
-        mainArtifact(jar) {
-            displayName = "More-Planets-" + project.minecraft_version + "-" + project.mod_version
-            relations {
-                requiredLibrary "galacticraft-legacy"
-                requiredLibrary "stevekungs-lib"
-                requiredLibrary "mixin-booter"
-                optionalLibrary "jei"
-                optionalLibrary "ctm"
-                optionalLibrary "hwyla"
-                optionalLibrary "jeid"
+        settings {
+            runConfigurations {
+                "1. Run Client"(Gradle) {
+                    taskNames = ["runClient"]
+                }
+                "2. Run Server"(Gradle) {
+                    taskNames = ["runServer"]
+                }
+            }
+            compiler.javac {
+                afterEvaluate {
+                    javacAdditionalOptions = "-encoding utf8"
+                    moduleJavacAdditionalOptions = [
+                            (project.name + ".main"): tasks.compileJava.options.compilerArgs.collect { '"' + it + '"' }.join(' ')
+                    ]
+                }
             }
         }
     }
 }
 
-tasks.curseforge.dependsOn(build)
-jar.finalizedBy("reobfJar")
-
-if (project.hasProperty("version_lib_dir")) {
-    tasks.register("updateVersionLib") {
-        group "upload"
-        def versionFile = file("${version_lib_dir}/more_planets_version.json")
-        def jsonBuilder = new JsonBuilder(new JsonSlurper().parseText(versionFile.text))
-        def jsonElement = jsonBuilder.content
-        def formattedList = []
-        def modVersion = project.mod_version.substring(0, 5)
-
-        jsonElement.promos."${minecraft_version}-latest" = modVersion
-        jsonElement.promos."${minecraft_version}-recommended" = modVersion
-
-        def reader = new BufferedReader(new FileReader(rootProject.file("CHANGE_LOG.md")));
-        def line;
-        for (int ln = 0; (line = reader.readLine()) != null; ln++) {
-            if (ln >= 2) {
-                formattedList.add(line)
-            }
-        }
-
-        jsonElement."${minecraft_version}"."${modVersion}" = formattedList.join("\n")
-        versionFile.text = jsonBuilder.toPrettyString()
-    }
+tasks.register("cleanroomAfterSync") {
+    // no-op
 }
