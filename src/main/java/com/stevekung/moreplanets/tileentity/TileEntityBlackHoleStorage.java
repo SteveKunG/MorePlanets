@@ -42,7 +42,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
 {
     private static final int[] SLOTS = new int[108];
     @NetworkedField(targetSide = Side.CLIENT)
-    public final FluidTankGC fluidTank = new FluidTankGC(1000000, this);
+    public FluidTankGC fluidTank = new FluidTankGC(1000000, this);
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean disableBlackHole = false;
     @NetworkedField(targetSide = Side.CLIENT)

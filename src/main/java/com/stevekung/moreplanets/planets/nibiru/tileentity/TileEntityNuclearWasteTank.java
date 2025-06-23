@@ -44,7 +44,7 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean createRod = false;
     @NetworkedField(targetSide = Side.CLIENT)
-    public final FluidTankGC fluidTank = new FluidTankGC(3000, this);
+    public FluidTankGC fluidTank = new FluidTankGC(3000, this);
 
     @Override
     public void readFromNBT(NBTTagCompound nbt)
