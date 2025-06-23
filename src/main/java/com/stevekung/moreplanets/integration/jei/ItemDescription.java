@@ -6,12 +6,6 @@ import net.minecraft.util.text.TextFormatting;
 import com.stevekung.moreplanets.init.MPBlocks;
 import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
-/***
- *
- * For contributors, you can improve/change/fix blocks and items description.
- * My English skill not pretty much good at all.
- *
- */
 public class ItemDescription
 {
     static void init()

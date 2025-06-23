@@ -27,11 +27,7 @@ public class ItemBlockFronosMushroom extends ItemBlockMP
     {
         ItemStack itemstack = player.getHeldItem(hand);
 
-        if (!player.canPlayerEdit(pos.offset(facing), facing, itemstack))
-        {
-            return EnumActionResult.FAIL;
-        }
-        else
+        if (player.canPlayerEdit(pos.offset(facing), facing, itemstack))
         {
             IBlockState iblockstate = world.getBlockState(pos);
             Block block = iblockstate.getBlock();
@@ -59,7 +55,7 @@ public class ItemBlockFronosMushroom extends ItemBlockMP
                     return EnumActionResult.SUCCESS;
                 }
             }
-            return EnumActionResult.FAIL;
         }
+        return EnumActionResult.FAIL;
     }
 }

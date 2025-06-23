@@ -60,19 +60,19 @@ public class BlockInfectedPurloniteCrystal extends BlockDirectionalMP implements
 
         switch (facing)
         {
-        case NORTH:
-        default:
-            return NORTH;
-        case EAST:
-            return EAST;
-        case WEST:
-            return WEST;
-        case SOUTH:
-            return SOUTH;
-        case UP:
-            return UP;
-        case DOWN:
-            return DOWN;
+            case EAST:
+                return EAST;
+            case WEST:
+                return WEST;
+            case SOUTH:
+                return SOUTH;
+            case UP:
+                return UP;
+            case DOWN:
+                return DOWN;
+            case NORTH:
+            default:
+                return NORTH;
         }
     }
 
@@ -104,11 +104,7 @@ public class BlockInfectedPurloniteCrystal extends BlockDirectionalMP implements
             {
                 EntityPlayer player = (EntityPlayer) entity;
 
-                if (player.capabilities.isCreativeMode)
-                {
-                    return;
-                }
-                else
+                if (!player.capabilities.isCreativeMode)
                 {
                     EntityLivingBase living = (EntityLivingBase) entity;
                     living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_PURLONITE, 60));

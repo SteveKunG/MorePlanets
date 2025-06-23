@@ -120,11 +120,4 @@ public class EntityDarkLightningBolt extends Entity
         d0 = d0 * 128.0D * getRenderDistanceWeight();
         return distance < d0 * d0;
     }
-
-    public void spawnWeather()
-    {
-        this.world.addWeatherEffect(this);
-        this.world.loadedEntityList.add(this);
-        this.world.onEntityAdded(this);
-    }
 }

@@ -62,11 +62,7 @@ public abstract class ItemBreathableArmor extends ItemArmor implements IBreathab
         {
             return false;
         }
-        if (repair.getItem() == this.getRepairItem())
-        {
-            return true;
-        }
-        return false;
+        return repair.getItem() == this.getRepairItem();
     }
 
     @Override

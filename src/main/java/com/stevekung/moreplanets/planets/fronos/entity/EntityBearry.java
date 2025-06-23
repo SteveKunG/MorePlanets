@@ -132,7 +132,7 @@ public class EntityBearry extends EntityFronosPet
         else
         {
             EntityBearry pet = (EntityBearry)otherAnimal;
-            return !pet.isTamed() ? false : pet.isSitting() ? false : this.isInLove() && pet.isInLove();
+            return pet.isTamed() && !pet.isSitting() && this.isInLove() && pet.isInLove();
         }
     }
 

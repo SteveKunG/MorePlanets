@@ -39,16 +39,8 @@ public class EntityAINibiruVillagerMoveIndoors extends EntityAIBase
             else
             {
                 Village village = this.entity.world.getVillageCollection().getNearestVillage(pos, 14);
-
-                if (village == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    this.doorInfo = village.getDoorInfo(pos);
-                    return this.doorInfo != null;
-                }
+                this.doorInfo = village.getDoorInfo(pos);
+                return true;
             }
         }
         else

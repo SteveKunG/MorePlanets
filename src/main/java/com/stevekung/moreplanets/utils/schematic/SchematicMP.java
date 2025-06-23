@@ -11,9 +11,10 @@ public abstract class SchematicMP implements ISchematicPage
         {
             return 1;
         }
-        else
+        else if (this.getPageID() < page.getPageID())
         {
             return -1;
         }
+        return 0;
     }
 }

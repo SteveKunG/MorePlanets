@@ -12,7 +12,7 @@ import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWast
 
 public class ContainerNuclearWasteGenerator extends Container
 {
-    private TileEntityNuclearWasteGenerator tile;
+    private final TileEntityNuclearWasteGenerator tile;
 
     public ContainerNuclearWasteGenerator(InventoryPlayer invPlayer, TileEntityNuclearWasteGenerator tile)
     {
@@ -66,7 +66,6 @@ public class ContainerNuclearWasteGenerator extends Container
                     {
                         return ItemStack.EMPTY;
                     }
-                    movedToMachineSlot = true;
                 }
                 else
                 {
@@ -81,8 +80,8 @@ public class ContainerNuclearWasteGenerator extends Container
                     {
                         return ItemStack.EMPTY;
                     }
-                    movedToMachineSlot = true;
                 }
+                movedToMachineSlot = true;
             }
 
             if (stack.getCount() == 0)

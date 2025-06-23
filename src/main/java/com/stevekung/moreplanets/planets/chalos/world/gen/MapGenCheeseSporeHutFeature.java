@@ -54,15 +54,7 @@ public class MapGenCheeseSporeHutFeature extends MapGenStructure
         if (i == k && j == l)
         {
             Biome biome = this.world.getBiomeProvider().getBiome(new BlockPos(i * 16 + 8, 0, j * 16 + 8));
-
-            if (biome == null)
-            {
-                return false;
-            }
-            if (biome == MPBiomes.CHALOS_PLAINS)
-            {
-                return true;
-            }
+            return biome == MPBiomes.CHALOS_PLAINS;
         }
         return false;
     }
@@ -77,14 +69,14 @@ public class MapGenCheeseSporeHutFeature extends MapGenStructure
     @Override
     protected StructureStart getStructureStart(int chunkX, int chunkZ)
     {
-        return new MapGenCheeseSporeHutFeature.Start(this.world, this.rand, chunkX, chunkZ);
+        return new MapGenCheeseSporeHutFeature.Start(this.rand, chunkX, chunkZ);
     }
 
     public static class Start extends StructureStart
     {
         public Start() {}
 
-        public Start(World world, Random rand, int chunkX, int chunkZ)
+        public Start(Random rand, int chunkX, int chunkZ)
         {
             super(chunkX, chunkZ);
             ComponentCheeseSporeHutPieces.CheeseSporeHut component = new ComponentCheeseSporeHutPieces.CheeseSporeHut(rand, chunkX * 16, chunkZ * 16);

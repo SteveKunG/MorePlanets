@@ -29,8 +29,8 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 
 public class BiomeFronos extends BiomeMP
 {
-    protected IBlockState stoneBlock;
-    protected IBlockState liquidBlock;
+    protected final IBlockState stoneBlock;
+    protected final IBlockState liquidBlock;
     protected final BiomeDecoratorFronos decorator = new BiomeDecoratorFronos();
     protected static final WorldGenOscaleaTrees OSCALEA = new WorldGenOscaleaTrees();
     protected static final WorldGenFroliaTree FROLIA = new WorldGenFroliaTree();

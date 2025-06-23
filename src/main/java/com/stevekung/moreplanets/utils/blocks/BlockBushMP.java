@@ -91,11 +91,6 @@ public class BlockBushMP extends BlockBaseMP
     public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
     {
         Block blockDown = world.getBlockState(pos.down()).getBlock();
-
-        if (state.getBlock() == this)
-        {
-            return this.validBlock(blockDown);
-        }
         return this.validBlock(blockDown);
     }
 

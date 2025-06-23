@@ -1,15 +1,6 @@
 package com.stevekung.moreplanets.init;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
-import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraftforge.common.util.EnumHelper;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.items.*;
-
 import com.stevekung.moreplanets.items.*;
 import com.stevekung.moreplanets.moons.koentus.items.ItemGravityBoots;
 import com.stevekung.moreplanets.planets.chalos.items.ItemCheeseSpore;
@@ -21,20 +12,22 @@ import com.stevekung.moreplanets.planets.diona.items.ItemInfectedPurloniteBomb;
 import com.stevekung.moreplanets.planets.diona.items.armor.ItemArmorIllenium;
 import com.stevekung.moreplanets.planets.diona.items.armor.ItemBreathableIllenium;
 import com.stevekung.moreplanets.planets.nibiru.items.*;
-
-import com.stevekung.moreplanets.planets.nibiru.items.*;
 import com.stevekung.moreplanets.planets.nibiru.items.armor.ItemArmorMultalicCrystal;
 import com.stevekung.moreplanets.planets.nibiru.items.armor.ItemBreathableMultalicCrystal;
-import com.stevekung.moreplanets.planets.nibiru.items.tools.*;
-
 import com.stevekung.moreplanets.planets.nibiru.items.tools.*;
 import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
 import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
 import com.stevekung.moreplanets.utils.items.*;
 import com.stevekung.moreplanets.utils.items.tools.*;
 
-import com.stevekung.moreplanets.utils.items.*;
-import com.stevekung.moreplanets.utils.items.tools.*;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.Item;
+import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraftforge.common.util.EnumHelper;
+
 import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.enums.EnumHarvestLevel;
@@ -329,7 +322,7 @@ public class MPItems
         MPItems.ANTI_GRAVITY_FRAGMENTS = new ItemAntiGravity("anti_gravity_fragments").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.SPECIAL));
 
         // Other
-        MPItems.DIONA_DUNGEON_KEY = new ItemDungeonKeyMP("diona_dungeon_key", 4);
+        MPItems.DIONA_DUNGEON_KEY = new ItemDungeonKeyMP("diona_dungeon_key");
         MPItems.INFECTED_PURLONITE_BOMB = new ItemInfectedPurloniteBomb("infected_purlonite_bomb").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
         MPItems.INFECTED_PURLONITE_SLIMEBALL = new ItemBaseMP("infected_purlonite_slimeball").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
         MPItems.INFECTED_PURLONITE_ARROW = new ItemArrowMP("infected_purlonite_arrow", ItemArrowMP.ArrowType.INFECTED_PURLONITE).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
@@ -352,7 +345,7 @@ public class MPItems
 
         // Other
         MPItems.CHEESE_SLIMEBALL = new ItemBaseMP("cheese_slimeball");
-        MPItems.CHALOS_DUNGEON_KEY = new ItemDungeonKeyMP("chalos_dungeon_key", 5);
+        MPItems.CHALOS_DUNGEON_KEY = new ItemDungeonKeyMP("chalos_dungeon_key");
         MPItems.CHEESE_SPORE = new ItemCheeseSpore("cheese_spore_item");
         MPItems.CHEESE_SPORE_SEED = new ItemCheeseSporeSeed("cheese_spore_seed");
         MPItems.CHEESE_SPORE_DOOR = new ItemDoorMP("cheese_spore_door", MPBlocks.CHEESE_SPORE_DOOR);
@@ -387,7 +380,7 @@ public class MPItems
         MPItems.INFECTED_CLAY_BALL = new ItemBaseMP("infected_clay_ball");
         MPItems.INFECTED_SNOWBALL = new ItemInfectedSnowball("infected_snowball");
         MPItems.PURIFIED_SNOWBALL = new ItemPurifiedSnowball("purified_snowball");
-        MPItems.NIBIRU_DUNGEON_KEY = new ItemDungeonKeyMP("nibiru_dungeon_key", 6);
+        MPItems.NIBIRU_DUNGEON_KEY = new ItemDungeonKeyMP("nibiru_dungeon_key");
         MPItems.NIBIRU_DUNGEON_KEY_BOW = new ItemBaseMP("nibiru_dungeon_key_bow").setSortCategory(EnumSortCategoryItem.DUNGEON_KEY);
         MPItems.NIBIRU_DUNGEON_KEY_BLADE = new ItemBaseMP("nibiru_dungeon_key_blade").setSortCategory(EnumSortCategoryItem.DUNGEON_KEY);
         MPItems.INFECTED_SUGAR_CANE = new ItemInfectedSugarCane("infected_sugar_cane");

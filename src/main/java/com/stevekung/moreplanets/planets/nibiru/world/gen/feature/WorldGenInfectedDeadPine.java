@@ -11,7 +11,7 @@ import com.stevekung.moreplanets.init.MPBlocks;
 
 public class WorldGenInfectedDeadPine extends WorldGenAbstractTree
 {
-    private boolean genLeaves;
+    private final boolean genLeaves;
 
     public WorldGenInfectedDeadPine(boolean genLeaves)
     {
@@ -33,7 +33,7 @@ public class WorldGenInfectedDeadPine extends WorldGenAbstractTree
 
             for (int i1 = pos.getY(); i1 <= pos.getY() + 1 + i && flag; ++i1)
             {
-                int j1 = 1;
+                int j1;
 
                 if (i1 - pos.getY() < j)
                 {

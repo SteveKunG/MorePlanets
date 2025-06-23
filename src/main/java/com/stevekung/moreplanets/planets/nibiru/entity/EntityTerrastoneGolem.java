@@ -102,7 +102,7 @@ public class EntityTerrastoneGolem extends EntityGolem
 
             if (state.getMaterial() != Material.AIR)
             {
-                this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(state)});
+                this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, Block.getStateId(state));
             }
         }
     }
@@ -134,7 +134,7 @@ public class EntityTerrastoneGolem extends EntityGolem
                 {
                     if (this.getHealth() > 0.0F && this.hurtTime == 0)
                     {
-                        ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.5D, this.posZ, 10, this.width / 6.0F, 0.0D, this.width / 6.0F, 0.05D, new int[] {Block.getStateId(MPBlocks.TERRASTONE.getDefaultState())});
+                        ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.5D, this.posZ, 10, this.width / 6.0F, 0.0D, this.width / 6.0F, 0.05D, Block.getStateId(MPBlocks.TERRASTONE.getDefaultState()));
                     }
                 }
             }

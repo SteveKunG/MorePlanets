@@ -28,28 +28,28 @@ import net.minecraft.world.gen.NoiseGeneratorPerlin;
 public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
 {
     // Planet gen
-    private GradientNoise noise1;
-    private GradientNoise noise2;
-    private GradientNoise noise3;
-    private GradientNoise noise4;
+    private final GradientNoise noise1;
+    private final GradientNoise noise2;
+    private final GradientNoise noise3;
+    private final GradientNoise noise4;
 
     // Default gen
-    private NoiseGeneratorOctaves minLimitPerlinNoise;
-    private NoiseGeneratorOctaves maxLimitPerlinNoise;
-    private NoiseGeneratorOctaves mainPerlinNoise;
-    private NoiseGeneratorPerlin surfaceNoise;
-    private NoiseGeneratorOctaves depthNoise;
+    private final NoiseGeneratorOctaves minLimitPerlinNoise;
+    private final NoiseGeneratorOctaves maxLimitPerlinNoise;
+    private final NoiseGeneratorOctaves mainPerlinNoise;
+    private final NoiseGeneratorPerlin surfaceNoise;
+    private final NoiseGeneratorOctaves depthNoise;
     private double[] depthBuffer = new double[256];
-    private double[] heightMap;
+    private final double[] heightMap;
     private Biome[] biomesForGeneration;
     private double[] mainNoiseRegion;
     private double[] minLimitRegion;
     private double[] maxLimitRegion;
     private double[] depthRegion;
-    private float[] biomeWeights;
+    private final float[] biomeWeights;
 
-    protected World world;
-    protected Random rand;
+    protected final World world;
+    protected final Random rand;
     protected boolean isSingleBiomePlanet;
 
     public ChunkGeneratorBaseMP(World world, long seed)
@@ -176,7 +176,7 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
                         {
                             if (Math.abs(this.randFromPoint(cx * 16 + x, (cz * 16 + z) * 1000)) < this.noise4.evalNoise(x * 16 + x, cz * 16 + z) / this.getCraterChance())
                             {
-                                Random random = new Random(cx * 16 + x + (cz * 16 + z) * 5000);
+                                Random random = new Random(cx * 16L + x + (cz * 16L + z) * 5000);
                                 EnumCraterSize cSize = EnumCraterSize.sizeArray[random.nextInt(EnumCraterSize.sizeArray.length)];
                                 int size = random.nextInt(cSize.MAX_SIZE - cSize.MIN_SIZE) + cSize.MIN_SIZE;
                                 this.makeCrater(cx * 16 + x, cz * 16 + z, chunkX * 16, chunkZ * 16, size, primer);
@@ -203,7 +203,7 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
 
                 for (int y = 255; y >= 0; --y)
                 {
-                    if (y <= 0 + this.rand.nextInt(5))
+                    if (y <= this.rand.nextInt(5))
                     {
                         chunk.setBlockState(x, y, z, Blocks.BEDROCK.getDefaultState());
                     }
@@ -236,7 +236,7 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
                                 {
                                     chunk.setBlockState(x, y, z, topBlock);
                                 }
-                                else if (y < seaLevel - 1 && y >= seaLevel - 2)
+                                else if (y >= seaLevel - 2)
                                 {
                                     chunk.setBlockState(x, y, z, fillBlock);
                                 }
@@ -269,7 +269,7 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
                 double d3 = this.noise3.evalNoise(x + chunkX * 16, z + chunkZ * 16) - 0.1;
                 d3 *= 4;
 
-                double yDev = 0;
+                double yDev;
 
                 if (d3 < 0.0D)
                 {
@@ -337,8 +337,6 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
         n = n << 13 ^ n;
         return 1.0D - (n * (n * n * 15731 + 789221) + 1376312589 & 0x7fffffff) / 1073741824.0D;
     }
-
-    /** PLANET GEN **/
 
     /** DEFAULT GEN **/
 
@@ -455,8 +453,8 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
                     for (int k1 = -2; k1 <= 2; ++k1)
                     {
                         Biome biome1 = this.biomesForGeneration[k + j1 + 2 + (l + k1 + 2) * 10];
-                        float f5 = biome1.getBaseHeight() * 1.0F;
-                        float f6 = biome1.getHeightVariation() * 1.0F;
+                        float f5 = biome1.getBaseHeight();
+                        float f6 = biome1.getHeightVariation();
                         float f7 = this.biomeWeights[j1 + 2 + (k1 + 2) * 5] / (f5 + 2.0F);
 
                         if (biome1.getBaseHeight() > biome.getBaseHeight())
@@ -539,8 +537,6 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
     {
         return Blocks.WATER.getDefaultState();
     }
-
-    /** DEFAULT GEN **/
 
     /** POCKET GEN **/
 
@@ -668,11 +664,7 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
     {
         Block block = world.getBlockState(pos).getBlock();
 
-        if (block instanceof BlockFalling)
-        {
-            return true;
-        }
-        return false;
+        return block instanceof BlockFalling;
     }
 
     private static boolean checkPocketPresent(World world, int x, int cy, int z, int r, IBlockState pocket)

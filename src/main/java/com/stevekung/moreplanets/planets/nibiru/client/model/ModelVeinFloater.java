@@ -195,13 +195,13 @@ public class ModelVeinFloater extends ModelBase
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale, Entity entity)
     {
-        float rotation1 = MathHelper.cos(ageInTicks * 0.1F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * (1 + Math.abs(2 - 2));
-        float rotation2 = MathHelper.cos(ageInTicks * 0.15F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * (1 + Math.abs(2 - 2));
-        float rotation3 = MathHelper.cos(ageInTicks * 0.125F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * (1 + Math.abs(2 - 2));
-        float rotation4 = MathHelper.cos(ageInTicks * 0.13F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * (1 + Math.abs(2 - 2));
-        float rotation5 = MathHelper.cos(ageInTicks * 0.14F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * (1 + Math.abs(2 - 2));
-        float rotation6 = MathHelper.cos(ageInTicks * 0.12F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * (1 + Math.abs(2 - 2));
-        float rotation7 = MathHelper.cos(ageInTicks * 0.135F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * (1 + Math.abs(2 - 2));
+        float rotation1 = MathHelper.cos(ageInTicks * 0.1F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * 1;
+        float rotation2 = MathHelper.cos(ageInTicks * 0.15F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * 1;
+        float rotation3 = MathHelper.cos(ageInTicks * 0.125F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * 1;
+        float rotation4 = MathHelper.cos(ageInTicks * 0.13F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * 1;
+        float rotation5 = MathHelper.cos(ageInTicks * 0.14F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * 1;
+        float rotation6 = MathHelper.cos(ageInTicks * 0.12F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * 1;
+        float rotation7 = MathHelper.cos(ageInTicks * 0.135F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * 1;
 
         this.tail1.rotateAngleX = rotation1;
         this.tail2.rotateAngleX = rotation2;

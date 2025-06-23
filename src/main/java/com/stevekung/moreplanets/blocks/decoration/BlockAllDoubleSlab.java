@@ -12,7 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.utils.blocks.BlockSlabMP;
 
 public class BlockAllDoubleSlab extends BlockAllHalfSlab
 {
@@ -79,12 +78,5 @@ public class BlockAllDoubleSlab extends BlockAllHalfSlab
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(this.getHalf());
-    }
-
-    @Override
-    public BlockSlabMP setHalf(BlockSlabMP halfSlab)
-    {
-        this.halfSlab = halfSlab;
-        return this;
     }
 }

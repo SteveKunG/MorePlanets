@@ -2,6 +2,15 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.biome;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.nibiru.entity.*;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.BiomeDecoratorNibiru;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenNibiruFossils;
+import com.stevekung.moreplanets.utils.world.gen.biome.BiomeMP;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -11,21 +20,12 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.nibiru.entity.*;
 
-import com.stevekung.moreplanets.planets.nibiru.entity.*;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.BiomeDecoratorNibiru;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenNibiruFossils;
-import com.stevekung.moreplanets.utils.world.gen.biome.BiomeMP;
 import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 
 public class BiomeNibiru extends BiomeMP
 {
-    protected IBlockState stoneBlock;
+    protected final IBlockState stoneBlock;
     protected IBlockState liquidBlock;
     protected final BiomeDecoratorNibiru decorator = new BiomeDecoratorNibiru();
     protected static final WorldGenInfectedBigTree BIG_TREE = new WorldGenInfectedBigTree(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());

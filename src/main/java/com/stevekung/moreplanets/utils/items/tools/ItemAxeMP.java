@@ -15,7 +15,7 @@ import stevekung.mods.stevekunglib.utils.enums.EnumToolSpeed;
 
 public class ItemAxeMP extends ItemAxe implements ISortableItem, IItemModelRender, GCRarity
 {
-    private Item repairItem;
+    private final Item repairItem;
     private String name;
 
     public ItemAxeMP(String name, ToolMaterial material, Block block, EnumToolSpeed speed)
@@ -47,11 +47,7 @@ public class ItemAxeMP extends ItemAxe implements ISortableItem, IItemModelRende
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
-        if (repair.getItem() == this.repairItem)
-        {
-            return true;
-        }
-        return false;
+        return repair.getItem() == this.repairItem;
     }
 
     @Override

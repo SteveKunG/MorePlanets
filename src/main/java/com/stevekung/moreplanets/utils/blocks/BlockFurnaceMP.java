@@ -3,6 +3,11 @@ package com.stevekung.moreplanets.utils.blocks;
 import java.util.Locale;
 import java.util.Random;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityInfectedFurnace;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityTerrastoneFurnace;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityFurnaceMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -12,7 +17,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -24,16 +28,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityInfectedFurnace;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityTerrastoneFurnace;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityFurnaceMP;
+
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockFurnaceMP extends BlockContainerMP
 {
     public static final PropertyBool LIT = PropertyBool.create("lit");
-    private BlockType type;
+    private final BlockType type;
     private static boolean keepInventory;
 
     public BlockFurnaceMP(String name, BlockType type)
@@ -58,12 +59,6 @@ public class BlockFurnaceMP extends BlockContainerMP
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-        return Item.getItemFromBlock(this);
-    }
-
-    @Override
     public void onBlockAdded(World world, BlockPos pos, IBlockState state)
     {
         this.setDefaultFacing(world, pos, state);
@@ -85,20 +80,20 @@ public class BlockFurnaceMP extends BlockContainerMP
             switch (enumfacing)
             {
             case WEST:
-                world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 - d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D, new int[0]);
-                world.spawnParticle(EnumParticleTypes.FLAME, d0 - d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 - d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0 - d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
                 break;
             case EAST:
-                world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D, new int[0]);
-                world.spawnParticle(EnumParticleTypes.FLAME, d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
                 break;
             case NORTH:
-                world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 - d3, 0.0D, 0.0D, 0.0D, new int[0]);
-                world.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 - d3, 0.0D, 0.0D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 - d3, 0.0D, 0.0D, 0.0D);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 - d3, 0.0D, 0.0D, 0.0D);
                 break;
             case SOUTH:
-                world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 + d3, 0.0D, 0.0D, 0.0D, new int[0]);
-                world.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 + d3, 0.0D, 0.0D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 + d3, 0.0D, 0.0D, 0.0D);
+                world.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 + d3, 0.0D, 0.0D, 0.0D);
             default:
                 break;
             }
@@ -108,20 +103,16 @@ public class BlockFurnaceMP extends BlockContainerMP
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (world.isRemote)
-        {
-            return true;
-        }
-        else
+        if (!world.isRemote)
         {
             TileEntity tileentity = world.getTileEntity(pos);
 
             if (tileentity instanceof TileEntityFurnaceMP)
             {
-                player.displayGUIChest((TileEntityFurnaceMP)tileentity);
+                player.displayGUIChest((TileEntityFurnaceMP) tileentity);
             }
-            return true;
         }
+        return true;
     }
 
     @Override

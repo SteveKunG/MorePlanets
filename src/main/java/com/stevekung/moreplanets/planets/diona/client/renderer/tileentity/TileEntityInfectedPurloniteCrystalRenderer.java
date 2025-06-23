@@ -38,7 +38,7 @@ public class TileEntityInfectedPurloniteCrystalRenderer extends TileEntitySpecia
             meta = tile.getBlockMetadata();
         }
 
-        Random rand = new Random(tile.getPos().getX() + tile.getPos().getY() * tile.getPos().getZ());
+        Random rand = new Random(tile.getPos().getX() + (long) tile.getPos().getY() * tile.getPos().getZ());
 
         for (int i = 0; i < 6; i++)
         {
@@ -78,7 +78,7 @@ public class TileEntityInfectedPurloniteCrystalRenderer extends TileEntitySpecia
         GlStateManager.scale((0.15F + rand.nextFloat() * 0.075F) * size, (0.5F + rand.nextFloat() * 0.1F) * size, (0.15F + rand.nextFloat() * 0.05F) * size);
         if (tile.renderTicks > 0)
         {
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightX / 1.0F, lightZ / 1.0F);
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightX, lightZ);
         }
         GlStateManager.color(r, g, b, 1.0F);
         this.bindTexture(TileEntityInfectedPurloniteCrystalRenderer.TEXTURE);
@@ -157,7 +157,7 @@ public class TileEntityInfectedPurloniteCrystalRenderer extends TileEntitySpecia
                 GlStateManager.rotate(angle1, 0.1F, 1.0F, 0.0F);
                 GlStateManager.rotate(angle2, 1.0F, 0.0F, 0.0F);
                 GlStateManager.scale((0.15F + rand.nextFloat() * 0.075F) * size, (0.5F + rand.nextFloat() * 0.1F) * size, (0.15F + rand.nextFloat() * 0.05F) * size);
-                OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightX / 1.0F, lightZ / 1.0F);
+                OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightX, lightZ);
                 GlStateManager.color(r, g, b, 1.0F);
                 Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityInfectedPurloniteCrystalRenderer.TEXTURE);
                 this.model.render();

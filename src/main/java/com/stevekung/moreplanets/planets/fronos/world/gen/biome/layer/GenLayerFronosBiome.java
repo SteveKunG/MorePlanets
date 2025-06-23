@@ -43,7 +43,6 @@ public class GenLayerFronosBiome extends GenLayer
     @Override
     public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
     {
-        int[] aint = this.parent.getInts(areaX, areaY, areaWidth, areaHeight);
         int[] aint1 = IntCache.getIntCache(areaWidth * areaHeight);
 
         for (int i = 0; i < areaHeight; ++i)
@@ -51,8 +50,6 @@ public class GenLayerFronosBiome extends GenLayer
             for (int j = 0; j < areaWidth; ++j)
             {
                 this.initChunkSeed(j + areaX, i + areaY);
-                int k = aint[j + i * areaWidth];
-                k = k & -3841;
                 aint1[j + i * areaWidth] = Biome.getIdForBiome(this.getWeightedBiomeEntry(BiomeManager.BiomeType.WARM).biome);
             }
         }

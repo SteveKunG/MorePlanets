@@ -97,62 +97,62 @@ public class StructureDionaMineshaftPieces
             {
                 switch (enumfacing)
                 {
-                case NORTH:
-                default:
-                    if (j <= 1)
-                    {
-                        this.generateAndAddPiece(component, list, rand, this.boundingBox.minX, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ - 1, enumfacing, i);
-                    }
-                    else if (j == 2)
-                    {
-                        this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ, EnumFacing.WEST, i);
-                    }
-                    else
-                    {
-                        this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ, EnumFacing.EAST, i);
-                    }
-                    break;
-                case SOUTH:
-                    if (j <= 1)
-                    {
-                        this.generateAndAddPiece(component, list, rand, this.boundingBox.minX, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.maxZ + 1, enumfacing, i);
-                    }
-                    else if (j == 2)
-                    {
-                        this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.maxZ - 3, EnumFacing.WEST, i);
-                    }
-                    else
-                    {
-                        this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.maxZ - 3, EnumFacing.EAST, i);
-                    }
-                    break;
-                case WEST:
-                    if (j <= 1)
-                    {
-                        this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ, enumfacing, i);
-                    }
-                    else if (j == 2)
-                    {
-                        this.generateAndAddPiece(component, list, rand, this.boundingBox.minX, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ - 1, EnumFacing.NORTH, i);
-                    }
-                    else
-                    {
-                        this.generateAndAddPiece(component, list, rand, this.boundingBox.minX, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.maxZ + 1, EnumFacing.SOUTH, i);
-                    }
-                    break;
-                case EAST:
-                    if (j <= 1)
-                    {
-                        this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ, enumfacing, i);
-                    }
-                    else if (j == 2)
-                    {
-                        this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX - 3, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ - 1, EnumFacing.NORTH, i);
-                    }
-                    else
-                    {
-                        this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX - 3, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.maxZ + 1, EnumFacing.SOUTH, i);
-                    }
+                    case SOUTH:
+                        if (j <= 1)
+                        {
+                            this.generateAndAddPiece(component, list, rand, this.boundingBox.minX, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.maxZ + 1, enumfacing, i);
+                        }
+                        else if (j == 2)
+                        {
+                            this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.maxZ - 3, EnumFacing.WEST, i);
+                        }
+                        else
+                        {
+                            this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.maxZ - 3, EnumFacing.EAST, i);
+                        }
+                        break;
+                    case WEST:
+                        if (j <= 1)
+                        {
+                            this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ, enumfacing, i);
+                        }
+                        else if (j == 2)
+                        {
+                            this.generateAndAddPiece(component, list, rand, this.boundingBox.minX, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ - 1, EnumFacing.NORTH, i);
+                        }
+                        else
+                        {
+                            this.generateAndAddPiece(component, list, rand, this.boundingBox.minX, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.maxZ + 1, EnumFacing.SOUTH, i);
+                        }
+                        break;
+                    case EAST:
+                        if (j <= 1)
+                        {
+                            this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ, enumfacing, i);
+                        }
+                        else if (j == 2)
+                        {
+                            this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX - 3, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ - 1, EnumFacing.NORTH, i);
+                        }
+                        else
+                        {
+                            this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX - 3, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.maxZ + 1, EnumFacing.SOUTH, i);
+                        }
+                    case NORTH:
+                    default:
+                        if (j <= 1)
+                        {
+                            this.generateAndAddPiece(component, list, rand, this.boundingBox.minX, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ - 1, enumfacing, i);
+                        }
+                        else if (j == 2)
+                        {
+                            this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ, EnumFacing.WEST, i);
+                        }
+                        else
+                        {
+                            this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ, EnumFacing.EAST, i);
+                        }
+                        break;
                 }
             }
 
@@ -374,26 +374,26 @@ public class StructureDionaMineshaftPieces
 
             switch (this.corridorDirection)
             {
-            case NORTH:
-            default:
-                this.generateAndAddPiece(component, list, rand, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, i);
-                this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.WEST, i);
-                this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.EAST, i);
-                break;
-            case SOUTH:
-                this.generateAndAddPiece(component, list, rand, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, i);
-                this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.WEST, i);
-                this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.EAST, i);
-                break;
-            case WEST:
-                this.generateAndAddPiece(component, list, rand, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, i);
-                this.generateAndAddPiece(component, list, rand, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, i);
-                this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.WEST, i);
-                break;
-            case EAST:
-                this.generateAndAddPiece(component, list, rand, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, i);
-                this.generateAndAddPiece(component, list, rand, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, i);
-                this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.EAST, i);
+                case SOUTH:
+                    this.generateAndAddPiece(component, list, rand, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, i);
+                    this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.WEST, i);
+                    this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.EAST, i);
+                    break;
+                case WEST:
+                    this.generateAndAddPiece(component, list, rand, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, i);
+                    this.generateAndAddPiece(component, list, rand, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, i);
+                    this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.WEST, i);
+                    break;
+                case EAST:
+                    this.generateAndAddPiece(component, list, rand, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, i);
+                    this.generateAndAddPiece(component, list, rand, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, i);
+                    this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.EAST, i);
+                case NORTH:
+                default:
+                    this.generateAndAddPiece(component, list, rand, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, i);
+                    this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.WEST, i);
+                    this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.EAST, i);
+                    break;
             }
 
             if (this.isMultipleFloors)
@@ -554,17 +554,13 @@ public class StructureDionaMineshaftPieces
             }
             else
             {
-                StructureBoundingBox box = this.findCorridorSize(component, rand, x, y, z, facing);
-
-                if (box != null)
-                {
-                    return new Corridor(type, rand, box, facing);
-                }
+                StructureBoundingBox box = this.findCorridorSize(rand, x, y, z, facing);
+                return new Corridor(type, rand, box, facing);
             }
             return null;
         }
 
-        private StructureBoundingBox findCorridorSize(List<StructureComponent> list, Random rand, int x, int y, int z, EnumFacing facing)
+        private StructureBoundingBox findCorridorSize(Random rand, int x, int y, int z, EnumFacing facing)
         {
             StructureBoundingBox box = new StructureBoundingBox(x, y, z, x, y + 2, z);
             int i;
@@ -575,30 +571,25 @@ public class StructureDionaMineshaftPieces
 
                 switch (facing)
                 {
-                case NORTH:
-                default:
-                    box.maxX = x + 2;
-                    box.minZ = z - (j - 1);
-                    break;
-                case SOUTH:
-                    box.maxX = x + 2;
-                    box.maxZ = z + j - 1;
-                    break;
-                case WEST:
-                    box.minX = x - (j - 1);
-                    box.maxZ = z + 2;
-                    break;
-                case EAST:
-                    box.maxX = x + j - 1;
-                    box.maxZ = z + 2;
-                }
-
-                if (StructureComponent.findIntersecting(list, box) == null)
-                {
-                    break;
+                    case SOUTH:
+                        box.maxX = x + 2;
+                        box.maxZ = z + j - 1;
+                        break;
+                    case WEST:
+                        box.minX = x - (j - 1);
+                        box.maxZ = z + 2;
+                        break;
+                    case EAST:
+                        box.maxX = x + j - 1;
+                        box.maxZ = z + 2;
+                    case NORTH:
+                    default:
+                        box.maxX = x + 2;
+                        box.minZ = z - (j - 1);
+                        break;
                 }
             }
-            return i > 0 ? box : null;
+            return box;
         }
 
         private StructureBoundingBox findCrossing(List<StructureComponent> list, Random rand, int x, int y, int z, EnumFacing facing)
@@ -612,26 +603,26 @@ public class StructureDionaMineshaftPieces
 
             switch (facing)
             {
-            case NORTH:
-            default:
-                box.minX = x - 1;
-                box.maxX = x + 3;
-                box.minZ = z - 4;
-                break;
-            case SOUTH:
-                box.minX = x - 1;
-                box.maxX = x + 3;
-                box.maxZ = z + 3 + 1;
-                break;
-            case WEST:
-                box.minX = x - 4;
-                box.minZ = z - 1;
-                box.maxZ = z + 3;
-                break;
-            case EAST:
-                box.maxX = x + 3 + 1;
-                box.minZ = z - 1;
-                box.maxZ = z + 3;
+                case SOUTH:
+                    box.minX = x - 1;
+                    box.maxX = x + 3;
+                    box.maxZ = z + 3 + 1;
+                    break;
+                case WEST:
+                    box.minX = x - 4;
+                    box.minZ = z - 1;
+                    box.maxZ = z + 3;
+                    break;
+                case EAST:
+                    box.maxX = x + 3 + 1;
+                    box.minZ = z - 1;
+                    box.maxZ = z + 3;
+                case NORTH:
+                default:
+                    box.minX = x - 1;
+                    box.maxX = x + 3;
+                    box.minZ = z - 4;
+                    break;
             }
             return StructureComponent.findIntersecting(list, box) != null ? null : box;
         }
@@ -642,22 +633,22 @@ public class StructureDionaMineshaftPieces
 
             switch (facing)
             {
-            case NORTH:
-            default:
-                box.maxX = x + 2;
-                box.minZ = z - 8;
-                break;
-            case SOUTH:
-                box.maxX = x + 2;
-                box.maxZ = z + 8;
-                break;
-            case WEST:
-                box.minX = x - 8;
-                box.maxZ = z + 2;
-                break;
-            case EAST:
-                box.maxX = x + 8;
-                box.maxZ = z + 2;
+                case SOUTH:
+                    box.maxX = x + 2;
+                    box.maxZ = z + 8;
+                    break;
+                case WEST:
+                    box.minX = x - 8;
+                    box.maxZ = z + 2;
+                    break;
+                case EAST:
+                    box.maxX = x + 8;
+                    box.maxZ = z + 2;
+                    break;
+                default:
+                    box.maxX = x + 2;
+                    box.minZ = z - 8;
+                    break;
             }
             return StructureComponent.findIntersecting(list, box) != null ? null : box;
         }
@@ -665,7 +656,7 @@ public class StructureDionaMineshaftPieces
 
     public static class Room extends Piece
     {
-        private List<StructureBoundingBox> roomsLinkedToTheRoom = new LinkedList<>();
+        private final List<StructureBoundingBox> roomsLinkedToTheRoom = new LinkedList<>();
 
         public Room() {}
 
@@ -836,18 +827,18 @@ public class StructureDionaMineshaftPieces
             {
                 switch (enumfacing)
                 {
-                case NORTH:
-                default:
-                    this.generateAndAddPiece(component, list, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, i);
-                    break;
-                case SOUTH:
-                    this.generateAndAddPiece(component, list, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, i);
-                    break;
-                case WEST:
-                    this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ, EnumFacing.WEST, i);
-                    break;
-                case EAST:
-                    this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ, EnumFacing.EAST, i);
+                    case SOUTH:
+                        this.generateAndAddPiece(component, list, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, i);
+                        break;
+                    case WEST:
+                        this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ, EnumFacing.WEST, i);
+                        break;
+                    case EAST:
+                        this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ, EnumFacing.EAST, i);
+                        break;
+                    default:
+                        this.generateAndAddPiece(component, list, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, i);
+                        break;
                 }
             }
         }

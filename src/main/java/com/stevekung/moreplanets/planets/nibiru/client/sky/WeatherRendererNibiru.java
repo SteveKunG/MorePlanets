@@ -120,16 +120,11 @@ public class WeatherRendererNibiru extends IRenderHandler
                         l2 = j2;
                     }
 
-                    int i3 = j2;
-
-                    if (j2 < l)
-                    {
-                        i3 = l;
-                    }
+                    int i3 = Math.max(j2, l);
 
                     if (k2 != l2)
                     {
-                        this.rand.setSeed(l1 * l1 * 3121 + l1 * 45238971 ^ k1 * k1 * 418711 + k1 * 13761);
+                        this.rand.setSeed(l1 * l1 * 3121L + l1 * 45238971L ^ k1 * k1 * 418711L + k1 * 13761L);
                         mutablePos.setPos(l1, k2, k1);
                         float f2 = biome.getTemperature(mutablePos);
 
@@ -153,17 +148,17 @@ public class WeatherRendererNibiru extends IRenderHandler
                             mutablePos.setPos(l1, i3, k1);
                             int j3 = world.getCombinedLight(mutablePos, 0);
                             int k3 = j3 >> 16 & 65535;
-                    int l3 = j3 & 65535;
-                    buffer.pos(l1 - d3 + 0.5D, k2, k1 - d4 + 0.5D).tex(0.0D, k2 * 0.25D + d5).color(1.0F, 1.0F, 1.0F, f4).lightmap(k3, l3).endVertex();
-                    buffer.pos(l1 + d3 + 0.5D, k2, k1 + d4 + 0.5D).tex(1.0D, k2 * 0.25D + d5).color(1.0F, 1.0F, 1.0F, f4).lightmap(k3, l3).endVertex();
-                    buffer.pos(l1 + d3 + 0.5D, l2, k1 + d4 + 0.5D).tex(1.0D, l2 * 0.25D + d5).color(1.0F, 1.0F, 1.0F, f4).lightmap(k3, l3).endVertex();
-                    buffer.pos(l1 - d3 + 0.5D, l2, k1 - d4 + 0.5D).tex(0.0D, l2 * 0.25D + d5).color(1.0F, 1.0F, 1.0F, f4).lightmap(k3, l3).endVertex();
+                            int l3 = j3 & 65535;
+                            buffer.pos(l1 - d3 + 0.5D, k2, k1 - d4 + 0.5D).tex(0.0D, k2 * 0.25D + d5).color(1.0F, 1.0F, 1.0F, f4).lightmap(k3, l3).endVertex();
+                            buffer.pos(l1 + d3 + 0.5D, k2, k1 + d4 + 0.5D).tex(1.0D, k2 * 0.25D + d5).color(1.0F, 1.0F, 1.0F, f4).lightmap(k3, l3).endVertex();
+                            buffer.pos(l1 + d3 + 0.5D, l2, k1 + d4 + 0.5D).tex(1.0D, l2 * 0.25D + d5).color(1.0F, 1.0F, 1.0F, f4).lightmap(k3, l3).endVertex();
+                            buffer.pos(l1 - d3 + 0.5D, l2, k1 - d4 + 0.5D).tex(0.0D, l2 * 0.25D + d5).color(1.0F, 1.0F, 1.0F, f4).lightmap(k3, l3).endVertex();
                         }
                         else
                         {
                             if (j1 != 1)
                             {
-                                if (j1 >= 0)
+                                if (j1 == 0)
                                 {
                                     tessellator.draw();
                                 }
@@ -260,16 +255,11 @@ public class WeatherRendererNibiru extends IRenderHandler
                         l2 = j2;
                     }
 
-                    int i3 = j2;
-
-                    if (j2 < l)
-                    {
-                        i3 = l;
-                    }
+                    int i3 = Math.max(j2, l);
 
                     if (k2 != l2)
                     {
-                        this.rand.setSeed(l1 * l1 * 3121 + l1 * 45238971 ^ k1 * k1 * 418711 + k1 * 13761);
+                        this.rand.setSeed(l1 * l1 * 3121L + l1 * 45238971L ^ k1 * k1 * 418711L + k1 * 13761L);
                         mutablePos.setPos(l1, k2, k1);
 
                         if (biome == MPBiomes.GREEN_VEIN_FIELDS || biome == MPBiomes.GREEN_VEIN_FIELD_SHORE)
@@ -302,7 +292,7 @@ public class WeatherRendererNibiru extends IRenderHandler
                         {
                             if (j1 != 1)
                             {
-                                if (j1 >= 0)
+                                if (j1 == 0)
                                 {
                                     tessellator.draw();
                                 }

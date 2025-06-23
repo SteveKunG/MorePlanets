@@ -45,7 +45,7 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
         super.updateTick(world, pos, state, rand);
         this.checkForMixing(world, pos, state);
 
-        if (this.canFlowingInto(world, pos.down(), world.getBlockState(pos.down())))
+        if (this.canFlowingInto(world.getBlockState(pos.down())))
         {
             if (this.material == Material.LAVA && world.getBlockState(pos.down()).getMaterial() == Material.WATER)
             {
@@ -166,26 +166,15 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
             }
             return super.displaceIfPossible(world, pos);
         }
-
-        if (this.density > density)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return this.density > density;
     }
 
     private boolean isSurroundingBlockFlammable(World world, BlockPos pos)
     {
         EnumFacing[] aenumfacing = EnumFacing.VALUES;
-        int i = aenumfacing.length;
 
-        for (int j = 0; j < i; ++j)
+        for (EnumFacing enumfacing : aenumfacing)
         {
-            EnumFacing enumfacing = aenumfacing[j];
-
             if (this.getCanBlockBurn(world, pos.offset(enumfacing)))
             {
                 return true;
@@ -203,12 +192,9 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
     {
         boolean flag = false;
         EnumFacing[] aenumfacing = EnumFacing.VALUES;
-        int i = aenumfacing.length;
 
-        for (int j = 0; j < i; ++j)
+        for (EnumFacing enumfacing : aenumfacing)
         {
-            EnumFacing enumfacing = aenumfacing[j];
-
             if (enumfacing != EnumFacing.DOWN && world.getBlockState(pos.offset(enumfacing)).getMaterial() == Material.WATER)
             {
                 flag = true;
@@ -220,36 +206,31 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
         {
             Integer integer = state.getValue(LEVEL);
 
-            if (integer.intValue() == 0)
+            if (integer == 0)
             {
                 world.setBlockState(pos, this.getObsidianBlock());
-                this.triggerMixEffects(world, pos);
-                return true;
             }
-            if (integer.intValue() <= 4)
+            else
             {
                 world.setBlockState(pos, this.getCobblestoneBlock());
-                this.triggerMixEffects(world, pos);
-                return true;
             }
+            this.triggerMixEffects(world, pos);
+            return true;
         }
         return false;
     }
 
-    private boolean canFlowingInto(World world, BlockPos pos, IBlockState state)
+    private boolean canFlowingInto(IBlockState state)
     {
         Material material = state.getMaterial();
-        return material != this.material && material != Material.LAVA && !this.isBlocked(world, pos, state);
+        return material != this.material && material != Material.LAVA && !this.isBlocked(state);
     }
 
-    private boolean isBlocked(World world, BlockPos pos, IBlockState state)
+    private boolean isBlocked(IBlockState state)
     {
         if (this.displacements.containsKey(state.getBlock()))
         {
-            if (this.displacements.get(state.getBlock()))
-            {
-                return true;
-            }
+            return this.displacements.get(state.getBlock());
         }
         return false;
     }

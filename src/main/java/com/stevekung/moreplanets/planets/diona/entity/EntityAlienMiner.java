@@ -271,7 +271,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
         }
         float partialTicksTime = this.ticksExisted + partialTicks;
         float hoverTime = MathHelper.sin(partialTicksTime / 12) / 30.0F + 0.5F;
-        return hoverTime = hoverTime * hoverTime + hoverTime;
+        return hoverTime * hoverTime + hoverTime;
     }
 
     private void setTargetedEntity(int entityId)
@@ -411,7 +411,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
         @Override
         public boolean shouldContinueExecuting()
         {
-            return this.findStone ? false : super.shouldContinueExecuting();
+            return !this.findStone && super.shouldContinueExecuting();
         }
 
         @Override

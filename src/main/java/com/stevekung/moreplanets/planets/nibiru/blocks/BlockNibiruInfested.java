@@ -16,7 +16,7 @@ import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
 
 public class BlockNibiruInfested extends BlockBaseMP
 {
-    private BlockType type;
+    private final BlockType type;
 
     public BlockNibiruInfested(String name, BlockType type)
     {

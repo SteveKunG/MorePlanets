@@ -16,7 +16,7 @@ public class TileEntityCrashedAlienProbeRenderer extends TileEntitySpecialRender
     @Override
     public void render(TileEntityCrashedAlienProbe tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        Random rand = new Random(tile.getPos().getX() + tile.getPos().getY() * tile.getPos().getZ());
+        Random rand = new Random(tile.getPos().getX() + (long) tile.getPos().getY() * tile.getPos().getZ());
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F);
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);

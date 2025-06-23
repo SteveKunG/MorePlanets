@@ -52,9 +52,9 @@ public abstract class BiomeDecoratorMP extends BiomeDecorator
         }
     }
 
-    protected void generateLapis(WorldGenerator generator, EnumOreGen oreGen, World world, Random rand)
+    protected void generateLapis(WorldGenerator generator, World world, Random rand)
     {
-        this.generateLapis(generator, oreGen.getBlockCount(), oreGen.getMinHeight(), oreGen.getMaxHeight(), world, rand);
+        this.generateLapis(generator, EnumOreGen.LAPIS.getBlockCount(), EnumOreGen.LAPIS.getMinHeight(), EnumOreGen.LAPIS.getMaxHeight(), world, rand);
     }
 
     protected void generateLapis(WorldGenerator generator, int blockCount, int centerHeight, int spread, World world, Random rand)

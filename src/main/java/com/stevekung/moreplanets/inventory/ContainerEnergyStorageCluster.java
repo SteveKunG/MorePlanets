@@ -70,7 +70,6 @@ public class ContainerEnergyStorageCluster extends Container
                                 return ItemStack.EMPTY;
                             }
                         }
-                        movedToMachineSlot = true;
                     }
                     else
                     {
@@ -78,8 +77,8 @@ public class ContainerEnergyStorageCluster extends Container
                         {
                             return ItemStack.EMPTY;
                         }
-                        movedToMachineSlot = true;
                     }
+                    movedToMachineSlot = true;
                 }
                 else
                 {

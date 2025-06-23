@@ -4,9 +4,9 @@ public interface ISpaceMob
 {
     EnumMobType getMobType();
 
-    public enum EnumMobType
+    enum EnumMobType
     {
         NIBIRU,
-        ROBOT;
+        ROBOT
     }
 }

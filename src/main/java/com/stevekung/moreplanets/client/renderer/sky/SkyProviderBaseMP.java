@@ -19,7 +19,7 @@ import stevekung.mods.stevekunglib.utils.client.GLConstants;
 public abstract class SkyProviderBaseMP extends IRenderHandler
 {
     private static final String[] starColorHexTable = {"#9bb2ff", "#9eb5ff", "#a3b9ff", "#aabffir", "#b2c5ff", "#bbccfr", "#c4d2ff", "#ccd8ff", "#d3ddff", "#dae2ff", "#dfe5ff", "#e4e9ff", "#e9ecif", "#eeefff", "#f3f2ff", "#f8f6ff", "#fef9ff", "Off9fb", "#fff7f5", "#ffif5ef", "#fff3ea", "#fffle5", "#ffefe0", "#ffeddb", "#ffebd6", "#ffe9d2", "#ffe8ce", "#ffe6ca", "#ffe5c6", "#ffe3c3", "#ffe2bf", "#ffeObb", "#ffdfb8", "#ffddb4", "#ffdbb0", "#ffdaad", "#ffd8a9", "#ffd6a5", "#ffd5a1", "#ffd29c", "#ffd096", "#ffcc8f", "#ffc885", "#ffc178", "#ffb765", "#ffa94b", "#ff9523"};
-    private int starList;
+    private final int starList;
     private int glSkyList;
     private int glSkyList2;
     protected float solarSize;
@@ -51,10 +51,10 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
             for (int l = -byte2 * i; l <= byte2 * i; l += byte2)
             {
                 buffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION);
-                buffer.pos(j + 0, f, l + 0).endVertex();
-                buffer.pos(j + byte2, f, l + 0).endVertex();
+                buffer.pos(j, f, l).endVertex();
+                buffer.pos(j + byte2, f, l).endVertex();
                 buffer.pos(j + byte2, f, l + byte2).endVertex();
-                buffer.pos(j + 0, f, l + byte2).endVertex();
+                buffer.pos(j, f, l + byte2).endVertex();
                 tessellator.draw();
             }
         }
@@ -69,9 +69,9 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
         {
             for (int i1 = -byte2 * i; i1 <= byte2 * i; i1 += byte2)
             {
-                buffer.pos(k + byte2, f, i1 + 0).endVertex();
-                buffer.pos(k + 0, f, i1 + 0).endVertex();
-                buffer.pos(k + 0, f, i1 + byte2).endVertex();
+                buffer.pos(k + byte2, f, i1).endVertex();
+                buffer.pos(k, f, i1).endVertex();
+                buffer.pos(k, f, i1 + byte2).endVertex();
                 buffer.pos(k + byte2, f, i1 + byte2).endVertex();
             }
         }

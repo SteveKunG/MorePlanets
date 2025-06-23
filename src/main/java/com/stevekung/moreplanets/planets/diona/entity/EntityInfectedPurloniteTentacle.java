@@ -62,12 +62,6 @@ public class EntityInfectedPurloniteTentacle extends Entity
     }
 
     @Override
-    public boolean canBePushed()
-    {
-        return false;
-    }
-
-    @Override
     protected void entityInit()
     {
         this.dataManager.register(DAMAGE, 0.0F);
@@ -119,11 +113,7 @@ public class EntityInfectedPurloniteTentacle extends Entity
                     {
                         this.world.spawnEntity(worm);
                     }
-
-                    if (worm != null)
-                    {
-                        worm.spawnExplosionParticle();
-                    }
+                    worm.spawnExplosionParticle();
                 }
             }
         }
@@ -160,7 +150,7 @@ public class EntityInfectedPurloniteTentacle extends Entity
                 {
                     for (int i = 0; i < 8; i++)
                     {
-                        ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + this.height / 1.5D, this.posZ, 10, this.width / 4.0F, this.height / 4.0F, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(MPBlocks.INFECTED_PURLONITE_SEGMENT.getDefaultState())});
+                        ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + this.height / 1.5D, this.posZ, 10, this.width / 4.0F, this.height / 4.0F, this.width / 4.0F, 0.05D, Block.getStateId(MPBlocks.INFECTED_PURLONITE_SEGMENT.getDefaultState()));
                     }
                 }
                 if (source.isCreativePlayer() || this.getDamage() > 2048.0F)

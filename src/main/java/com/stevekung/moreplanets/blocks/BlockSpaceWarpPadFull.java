@@ -145,11 +145,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTileMP implements IParti
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if (world.isRemote)
-        {
-            return true;
-        }
-        else
+        if (!world.isRemote)
         {
             ItemStack itemStack = player.getHeldItem(hand);
             TileEntity tile = world.getTileEntity(pos);
@@ -158,7 +154,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTileMP implements IParti
             {
                 if (tile instanceof TileEntitySpaceWarpPadFull)
                 {
-                    TileEntitySpaceWarpPadFull warpPad = (TileEntitySpaceWarpPadFull)tile;
+                    TileEntitySpaceWarpPadFull warpPad = (TileEntitySpaceWarpPadFull) tile;
 
                     warpPad.setInventorySlotContents(1, itemStack.copy());
 
@@ -174,7 +170,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTileMP implements IParti
             {
                 if (tile instanceof TileEntitySpaceWarpPadFull)
                 {
-                    TileEntitySpaceWarpPadFull warpPad = (TileEntitySpaceWarpPadFull)tile;
+                    TileEntitySpaceWarpPadFull warpPad = (TileEntitySpaceWarpPadFull) tile;
 
                     if (!warpPad.disabled)
                     {
@@ -183,7 +179,6 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTileMP implements IParti
                             if (warpPad.getDestinationPos() == null)
                             {
                                 player.sendMessage(JsonUtils.create(LangUtils.translate("gui.no_warp_destination.message")).setStyle(JsonUtils.red()));
-                                return true;
                             }
                             else
                             {
@@ -193,31 +188,28 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTileMP implements IParti
                                     TeleportUtils.teleportEntity(player, warpPad.getDimensionId(), warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getRotationYaw(), warpPad.getRotationPitch());
                                     world.playSound(null, pos, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.PLAYERS, 0.75F, 1.0F);
                                     LoggerMP.debug("Teleport player to {} {} {} {} {}", warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getDimensionId(), warpPad.getDimensionName());
-                                    return true;
                                 }
                                 else
                                 {
                                     player.sendMessage(JsonUtils.create(LangUtils.translate("gui.status.missingpower.name")).setStyle(JsonUtils.red()));
-                                    return true;
                                 }
                             }
                         }
                         else
                         {
                             player.sendMessage(JsonUtils.create(LangUtils.translate("gui.status.warp_core_required.name")).setStyle(JsonUtils.red()));
-                            return true;
                         }
                     }
                     else
                     {
                         player.sendMessage(JsonUtils.create(LangUtils.translate("gui.dark_energy_disabled.message")).setStyle(JsonUtils.red()));
-                        return true;
                     }
+                    return true;
                 }
             }
 
             player.openGui(MorePlanetsMod.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
-            return true;
         }
+        return true;
     }
 }

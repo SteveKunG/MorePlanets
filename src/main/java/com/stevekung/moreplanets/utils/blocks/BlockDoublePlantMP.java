@@ -28,7 +28,7 @@ import com.stevekung.moreplanets.init.MPItems;
 
 public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShearable
 {
-    private BlockType type;
+    private final BlockType type;
 
     public BlockDoublePlantMP(String name, BlockType type)
     {
@@ -178,8 +178,6 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
                 }
                 else
                 {
-                    IBlockState iblockstate = world.getBlockState(pos.down());
-
                     if (!this.type.isGrass())
                     {
                         world.destroyBlock(pos.down(), true);
@@ -190,7 +188,7 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
                     }
                     else if (isShears)
                     {
-                        this.onHarvest(world, pos, iblockstate, player);
+                        this.onHarvest(player);
                         world.setBlockToAir(pos.down());
                     }
                     else
@@ -311,16 +309,11 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
         world.setBlockState(lowerPos.up(), block.getDefaultState().withProperty(BlockDoublePlant.HALF, BlockDoublePlant.EnumBlockHalf.UPPER), flags);
     }
 
-    private boolean onHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
+    private void onHarvest(EntityPlayer player)
     {
-        if (this.type.isGrass())
-        {
-            return false;
-        }
-        else
+        if (!this.type.isGrass())
         {
             player.addStat(StatList.getBlockStats(this));
-            return true;
         }
     }
 
@@ -334,7 +327,7 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
         LARGE_WHEAT(false),
         FRONOS_TALL_GRASS(true);
 
-        private boolean isGrass;
+        private final boolean isGrass;
 
         BlockType(boolean isGrass)
         {

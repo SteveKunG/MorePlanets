@@ -48,7 +48,6 @@ import com.stevekung.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFi
 import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
 import com.stevekung.moreplanets.utils.*;
 
-import com.stevekung.moreplanets.utils.*;
 import com.stevekung.moreplanets.world.IMeteorType;
 
 public class EntityEventHandler
@@ -108,15 +107,7 @@ public class EntityEventHandler
             if (living instanceof EntityPlayerMP)
             {
                 EntityPlayerMP player = (EntityPlayerMP)living;
-
-                if (player.inventory.hasItemStack(new ItemStack(MPItems.GRAVITY_AMULET)))
-                {
-                    event.setCanceled(true);
-                }
-                else
-                {
-                    event.setCanceled(false);
-                }
+                event.setCanceled(player.inventory.hasItemStack(new ItemStack(MPItems.GRAVITY_AMULET)));
             }
         }
     }
@@ -200,8 +191,7 @@ public class EntityEventHandler
                                 d6 /= d11;
                                 d8 /= d11;
                                 d10 /= d11;
-                                double d13 = (0.0D - d4) * 2.0D / 10.0D;
-                                double d14 = d13;
+                                double d14 = (0.0D - d4) * 2.0D / 10.0D;
                                 double knockback = 10.0D;
                                 living.motionX -= d6 * d14 / knockback;
                                 living.motionY -= d8 * d14 / knockback;
@@ -242,7 +232,7 @@ public class EntityEventHandler
                                 }
                             }
                             float motion = MathHelper.sqrt(living.motionX * living.motionX + living.motionZ * living.motionZ);
-                            shield.shieldCapacity -= motion * 2;
+                            shield.shieldCapacity -= (int) (motion * 2);
                         }
                     }
                 }
@@ -295,7 +285,6 @@ public class EntityEventHandler
         if (event.getEntity() instanceof EntityKoentusMeteor)
         {
             event.setCanUpdate(true);
-            return;
         }
     }
 

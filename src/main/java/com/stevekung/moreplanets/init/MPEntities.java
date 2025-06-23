@@ -1,6 +1,5 @@
 package com.stevekung.moreplanets.init;
 
-import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.entity.EntityAntiGravFallingBlock;
 import com.stevekung.moreplanets.entity.EntityBlackHole;
@@ -17,8 +16,6 @@ import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseSlime;
 import com.stevekung.moreplanets.planets.chalos.entity.projectile.EntityCheeseSpore;
 import com.stevekung.moreplanets.planets.chalos.entity.projectile.EntitySmallCheeseSpore;
 import com.stevekung.moreplanets.planets.diona.entity.*;
-
-import com.stevekung.moreplanets.planets.diona.entity.*;
 import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityAntiGravityArrow;
 import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityInfectedPurloniteArrow;
 import com.stevekung.moreplanets.planets.fronos.entity.EntityBearry;
@@ -27,10 +24,10 @@ import com.stevekung.moreplanets.planets.fronos.entity.EntityJellySlime;
 import com.stevekung.moreplanets.planets.fronos.entity.EntityMarshmallow;
 import com.stevekung.moreplanets.planets.nibiru.entity.*;
 import com.stevekung.moreplanets.planets.nibiru.entity.projectile.*;
-
-import com.stevekung.moreplanets.planets.nibiru.entity.*;
-import com.stevekung.moreplanets.planets.nibiru.entity.projectile.*;
 import com.stevekung.moreplanets.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
+
+import net.minecraft.entity.EntityLiving.SpawnPlacementType;
+
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.enums.EnumEntityTrackerType;
 

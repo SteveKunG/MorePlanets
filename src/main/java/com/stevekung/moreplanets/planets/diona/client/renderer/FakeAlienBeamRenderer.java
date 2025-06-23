@@ -18,12 +18,11 @@ public class FakeAlienBeamRenderer
 {
     public static final FakeAlienBeamRenderer INSTANCE = new FakeAlienBeamRenderer();
     private static final ResourceLocation TEXTURE = new ResourceLocation("textures/entity/beacon_beam.png");
-    private float prevTime;
     private float time;
 
     public void renderBeam(double x, double y, double z, float partialTicks)
     {
-        this.prevTime = this.time;
+        float prevTime = this.time;
         this.time += 0.0125F;
 
         if (this.time >= 1.0F)
@@ -35,7 +34,7 @@ public class FakeAlienBeamRenderer
             this.time = 0.0F;
         }
 
-        float beamTime = this.prevTime + (this.time - this.prevTime) * partialTicks;
+        float beamTime = prevTime + (this.time - prevTime) * partialTicks;
 
         if (beamTime > 0.0F)
         {
@@ -74,8 +73,8 @@ public class FakeAlienBeamRenderer
         double d9 = 0.5D + Math.sin(d2 + 3.9269908169872414D) * 0.2D;
         double d10 = 0.5D + Math.cos(d2 + 5.497787143782138D) * 0.2D;
         double d11 = 0.5D + Math.sin(d2 + 5.497787143782138D) * 0.2D;
-        double d12 = 0.0D;
-        double d13 = 1.0D;
+        double d12;
+        double d13;
         double d14 = -1.0D + d1;
         double d15 = (float)512 * 512 * 2.5D + d14;
         GlStateManager.enableBlend();
@@ -100,15 +99,6 @@ public class FakeAlienBeamRenderer
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.depthMask(false);
-        d2 = 0.2D;
-        d4 = 0.8D;
-        d5 = 0.2D;
-        d6 = 0.2D;
-        d7 = 0.8D;
-        d8 = 0.8D;
-        d9 = 0.8D;
-        d10 = 0.0D;
-        d11 = 1.0D;
         d12 = -1.0D + d1;
         d13 = (float)512 * 512 + d12;
         worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);

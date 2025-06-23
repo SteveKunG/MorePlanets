@@ -46,8 +46,8 @@ public class ModelInfectedCreeper extends ModelCreeper
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale, Entity entity)
     {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entity);
-        this.tail1.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * (1 + Math.abs(2 - 2));
-        this.tail1.rotationPointX = MathHelper.sin(ageInTicks * 0.9F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.2F * Math.abs(2 - 2);
+        this.tail1.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * 1;
+        this.tail1.rotationPointX = MathHelper.sin(ageInTicks * 0.9F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.2F;
         this.tail2.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + 3 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * (1 + Math.abs(3 - 2));
         this.tail2.rotationPointX = MathHelper.sin(ageInTicks * 0.9F + 3 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.2F * Math.abs(3 - 2);
         this.tail3.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + 5 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * (1 + Math.abs(5 - 2));

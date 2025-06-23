@@ -99,11 +99,6 @@ public class ModelBipedTranslucent extends ModelBiped
             GlStateManager.pushMatrix();
             GlStateManager.scale(0.5F, 0.5F, 0.5F);
             GlStateManager.translate(0.0F, 24.0F * scale, 0.0F);
-            this.bipedBody.render(scale);
-            this.bipedRightArm.render(scale);
-            this.bipedLeftArm.render(scale);
-            this.bipedRightLeg.render(scale);
-            this.bipedLeftLeg.render(scale);
         }
         else
         {
@@ -112,12 +107,12 @@ public class ModelBipedTranslucent extends ModelBiped
                 GlStateManager.translate(0.0F, 0.2F, 0.0F);
             }
             this.bipedHead.render(scale);
-            this.bipedBody.render(scale);
-            this.bipedRightArm.render(scale);
-            this.bipedLeftArm.render(scale);
-            this.bipedRightLeg.render(scale);
-            this.bipedLeftLeg.render(scale);
         }
+        this.bipedBody.render(scale);
+        this.bipedRightArm.render(scale);
+        this.bipedLeftArm.render(scale);
+        this.bipedRightLeg.render(scale);
+        this.bipedLeftLeg.render(scale);
         if (!this.renderingEnchantment)
         {
             GlStateManager.disableBlend();
@@ -170,8 +165,8 @@ public class ModelBipedTranslucent extends ModelBiped
 
         if (this.isRiding)
         {
-            this.bipedRightArm.rotateAngleX += -((float)Math.PI / 5F);
-            this.bipedLeftArm.rotateAngleX += -((float)Math.PI / 5F);
+            this.bipedRightArm.rotateAngleX -= (float) Math.PI / 5F;
+            this.bipedLeftArm.rotateAngleX -= (float) Math.PI / 5F;
             this.bipedRightLeg.rotateAngleX = -1.4137167F;
             this.bipedRightLeg.rotateAngleY = (float)Math.PI / 10F;
             this.bipedRightLeg.rotateAngleZ = 0.07853982F;
@@ -185,10 +180,6 @@ public class ModelBipedTranslucent extends ModelBiped
 
         switch (this.leftArmPose)
         {
-        case EMPTY:
-        default:
-            this.bipedLeftArm.rotateAngleY = 0.0F;
-            break;
         case BLOCK:
             this.bipedLeftArm.rotateAngleX = this.bipedLeftArm.rotateAngleX * 0.5F - 0.9424779F;
             this.bipedLeftArm.rotateAngleY = 0.5235988F;
@@ -196,13 +187,13 @@ public class ModelBipedTranslucent extends ModelBiped
         case ITEM:
             this.bipedLeftArm.rotateAngleX = this.bipedLeftArm.rotateAngleX * 0.5F - (float)Math.PI / 10F;
             this.bipedLeftArm.rotateAngleY = 0.0F;
+            break;
+            default:
+                this.bipedLeftArm.rotateAngleY = 0.0F;
+                break;
         }
         switch (this.rightArmPose)
         {
-        case EMPTY:
-        default:
-            this.bipedRightArm.rotateAngleY = 0.0F;
-            break;
         case BLOCK:
             this.bipedRightArm.rotateAngleX = this.bipedRightArm.rotateAngleX * 0.5F - 0.9424779F;
             this.bipedRightArm.rotateAngleY = -0.5235988F;
@@ -210,6 +201,10 @@ public class ModelBipedTranslucent extends ModelBiped
         case ITEM:
             this.bipedRightArm.rotateAngleX = this.bipedRightArm.rotateAngleX * 0.5F - (float)Math.PI / 10F;
             this.bipedRightArm.rotateAngleY = 0.0F;
+            break;
+            default:
+                this.bipedRightArm.rotateAngleY = 0.0F;
+                break;
         }
 
         if (this.swingProgress > 0.0F)
@@ -229,7 +224,7 @@ public class ModelBipedTranslucent extends ModelBiped
             this.bipedLeftArm.rotationPointX = MathHelper.cos(this.bipedBody.rotateAngleY) * 5.0F;
             this.bipedRightArm.rotateAngleY += this.bipedBody.rotateAngleY;
             this.bipedLeftArm.rotateAngleY += this.bipedBody.rotateAngleY;
-            this.bipedLeftArm.rotateAngleX += this.bipedBody.rotateAngleY;
+            this.bipedLeftArm.rotateAngleX += this.bipedBody.rotateAngleX;
             f1 = 1.0F - this.swingProgress;
             f1 = f1 * f1;
             f1 = f1 * f1;

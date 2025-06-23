@@ -87,12 +87,6 @@ public class ChunkGeneratorFronos extends ChunkGeneratorBaseMP
     }
 
     @Override
-    protected IBlockState getLiquidBlock()
-    {
-        return Blocks.WATER.getDefaultState();
-    }
-
-    @Override
     public BlockPos getNearestStructurePos(World world, String name, BlockPos pos, boolean findUnexplored)
     {
         if ("RongHouse".equals(name) && this.rongHouseGenerator != null)

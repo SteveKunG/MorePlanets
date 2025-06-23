@@ -88,8 +88,6 @@ public class FronosCloudRenderer extends IRenderHandler
                     f7 = f10;
                 }
 
-                f8 = (float)(d1 * 0.0D);
-                f9 = (float)(d2 * 0.0D);
                 f10 = 0.00390625F;
                 f8 = MathHelper.floor(d1) * f10;
                 f9 = MathHelper.floor(d2) * f10;

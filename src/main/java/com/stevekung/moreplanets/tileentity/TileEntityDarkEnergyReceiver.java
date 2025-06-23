@@ -245,11 +245,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                         }
 
                         state = this.world.getBlockState(new BlockPos(this.pos.getX() - 1, yRender + 1, this.pos.getZ()));
-
-                        if (state.isOpaqueCube() && state.getBlock() != MPBlocks.DARK_ENERGY_CORE)
-                        {
-                            this.failed = true;
-                        }
                     }
                     else
                     {
@@ -262,10 +257,10 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
 
                         state = this.world.getBlockState(new BlockPos(this.pos.getX(), yRender + 1, this.pos.getZ() - 1));
 
-                        if (state.isOpaqueCube() && state.getBlock() != MPBlocks.DARK_ENERGY_CORE)
-                        {
-                            this.failed = true;
-                        }
+                    }
+                    if (state.isOpaqueCube() && state.getBlock() != MPBlocks.DARK_ENERGY_CORE)
+                    {
+                        this.failed = true;
                     }
                 }
 
@@ -286,7 +281,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                         {
                             for (int i = 0; i < 120; i++)
                             {
-                                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, pos.getX() + this.world.rand.nextDouble() * 1.0D, pos.getY() + this.world.rand.nextDouble() * 1.0D, pos.getZ() + this.world.rand.nextDouble() * 1.0D, 0.0D, -this.world.rand.nextDouble(), 0.0D);
+                                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, pos.getX() + this.world.rand.nextDouble(), pos.getY() + this.world.rand.nextDouble(), pos.getZ() + this.world.rand.nextDouble(), 0.0D, -this.world.rand.nextDouble(), 0.0D);
                             }
                             this.world.setBlockToAir(pos);
                         }

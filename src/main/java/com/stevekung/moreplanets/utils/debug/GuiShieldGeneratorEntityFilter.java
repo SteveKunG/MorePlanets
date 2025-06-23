@@ -48,7 +48,7 @@ public class GuiShieldGeneratorEntityFilter extends GuiContainerMP
         switch (button.id)
         {
         case 0:
-            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_SWITCH_SHIELD_GENERATOR_GUI, GCCoreUtil.getDimensionID(this.tile.getWorld()), new Object[] { this.tile.getPos(), 1 }));
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_SWITCH_SHIELD_GENERATOR_GUI, GCCoreUtil.getDimensionID(this.tile.getWorld()), this.tile.getPos(), 1));
             break;
         }
     }
@@ -89,7 +89,7 @@ public class GuiShieldGeneratorEntityFilter extends GuiContainerMP
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        String owner = null;
+        String owner;
 
         try
         {
@@ -160,7 +160,6 @@ public class GuiShieldGeneratorEntityFilter extends GuiContainerMP
 
     public void selectEntity(@Nullable GuiListEntityFilterEntry entry)
     {
-        boolean flag = entry != null;
-        this.buttonAdd.enabled = flag;
+        this.buttonAdd.enabled = entry != null;
     }
 }

@@ -25,7 +25,7 @@ public class TileEntityJuicerEggRenderer extends TileEntitySpecialRenderer<TileE
     @Override
     public void render(TileEntityJuicerEgg tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        Random rand = new Random(tile.getPos().getX() + tile.getPos().getY() * tile.getPos().getZ());
+        Random rand = new Random(tile.getPos().getX() + (long) tile.getPos().getY() * tile.getPos().getZ());
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)x + 0.5F, (float)y + 1.475F, (float)z + 0.5F);
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
@@ -52,7 +52,7 @@ public class TileEntityJuicerEggRenderer extends TileEntitySpecialRenderer<TileE
         EntityJuicer juicer = new EntityJuicer(Minecraft.getMinecraft().world);
         manager.renderEntity(juicer, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, false);
 
-        if (type != null && type == ItemCameraTransforms.TransformType.GUI || render)
+        if (type == ItemCameraTransforms.TransformType.GUI || render)
         {
             GlStateManager.enableRescaleNormal();
             GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);

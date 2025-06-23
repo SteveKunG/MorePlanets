@@ -159,12 +159,12 @@ public class EntityVeinEye extends Entity
         {
             for (int i = 0; i < 4; ++i)
             {
-                this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * f3, this.posY - this.motionY * f3, this.posZ - this.motionZ * f3, this.motionX, this.motionY, this.motionZ, new int[0]);
+                this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * f3, this.posY - this.motionY * f3, this.posZ - this.motionZ * f3, this.motionX, this.motionY, this.motionZ);
             }
         }
         else
         {
-            this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX - this.motionX * f3 + this.rand.nextDouble() * 0.6D - 0.3D, this.posY - this.motionY * f3 - 0.5D, this.posZ - this.motionZ * f3 + this.rand.nextDouble() * 0.6D - 0.3D, this.motionX, this.motionY, this.motionZ, new int[] { Block.getIdFromBlock(MPBlocks.INFECTED_VINES) });
+            this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX - this.motionX * f3 + this.rand.nextDouble() * 0.6D - 0.3D, this.posY - this.motionY * f3 - 0.5D, this.posZ - this.motionZ * f3 + this.rand.nextDouble() * 0.6D - 0.3D, this.motionX, this.motionY, this.motionZ, Block.getIdFromBlock(MPBlocks.INFECTED_VINES));
         }
 
         if (!this.world.isRemote)
@@ -188,12 +188,12 @@ public class EntityVeinEye extends Entity
 
                     for (int j = 0; j < 8; ++j)
                     {
-                        this.world.spawnParticle(EnumParticleTypes.ITEM_CRACK, d0, d1, d2, this.rand.nextGaussian() * 0.15D, this.rand.nextDouble() * 0.2D, this.rand.nextGaussian() * 0.15D, new int[] {Item.getIdFromItem(MPItems.VEIN_EYE)});
+                        this.world.spawnParticle(EnumParticleTypes.ITEM_CRACK, d0, d1, d2, this.rand.nextGaussian() * 0.15D, this.rand.nextDouble() * 0.2D, this.rand.nextGaussian() * 0.15D, Item.getIdFromItem(MPItems.VEIN_EYE));
                     }
                     for (double d18 = 0.0D; d18 < Math.PI * 2D; d18 += 0.15707963267948966D)
                     {
-                        this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, d0 + Math.cos(d18) * 5.0D, d1 - 0.4D, d2 + Math.sin(d18) * 5.0D, Math.cos(d18) * -5.0D, 0.0D, Math.sin(d18) * -5.0D, new int[] { Block.getIdFromBlock(MPBlocks.INFECTED_VINES) });
-                        this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, d0 + Math.cos(d18) * 5.0D, d1 - 0.4D, d2 + Math.sin(d18) * 5.0D, Math.cos(d18) * -7.0D, 0.0D, Math.sin(d18) * -7.0D, new int[] { Block.getIdFromBlock(MPBlocks.INFECTED_VINES) });
+                        this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, d0 + Math.cos(d18) * 5.0D, d1 - 0.4D, d2 + Math.sin(d18) * 5.0D, Math.cos(d18) * -5.0D, 0.0D, Math.sin(d18) * -5.0D, Block.getIdFromBlock(MPBlocks.INFECTED_VINES));
+                        this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, d0 + Math.cos(d18) * 5.0D, d1 - 0.4D, d2 + Math.sin(d18) * 5.0D, Math.cos(d18) * -7.0D, 0.0D, Math.sin(d18) * -7.0D, Block.getIdFromBlock(MPBlocks.INFECTED_VINES));
                     }
                 }
             }

@@ -56,7 +56,7 @@ public class ItemBaseMP extends Item implements ISortableItem, IItemModelRender,
     @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
-        return this instanceof IItemRarity && ((IItemRarity)this).getRarity() != null ? ((IItemRarity)this).getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
+        return this.getRarity() != null ? this.getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
     }
 
     public ItemBaseMP setSortCategory(EnumSortCategoryItem category)

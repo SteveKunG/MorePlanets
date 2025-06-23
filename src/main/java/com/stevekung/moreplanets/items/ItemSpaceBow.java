@@ -58,7 +58,7 @@ public class ItemSpaceBow extends ItemBow implements ISortableItem, IItemModelRe
             int power = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, itemStack);
             int punch = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, itemStack);
             ItemStack arrowStack = this.findAmmo(player);
-            ArrowLooseEvent event = new ArrowLooseEvent(player, itemStack, world, useDuration, arrowStack != null);
+            ArrowLooseEvent event = new ArrowLooseEvent(player, itemStack, world, useDuration, true);
             boolean flag = player.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, itemStack) > 0;
             MinecraftForge.EVENT_BUS.post(event);
 
@@ -96,18 +96,6 @@ public class ItemSpaceBow extends ItemBow implements ISortableItem, IItemModelRe
     }
 
     @Override
-    public int getMaxItemUseDuration(ItemStack itemStack)
-    {
-        return 72000;
-    }
-
-    @Override
-    public EnumAction getItemUseAction(ItemStack itemStack)
-    {
-        return EnumAction.BOW;
-    }
-
-    @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         boolean flag = !this.findAmmo(player).isEmpty();
@@ -120,7 +108,7 @@ public class ItemSpaceBow extends ItemBow implements ISortableItem, IItemModelRe
         }
         if (!player.capabilities.isCreativeMode && !flag)
         {
-            return !flag ? new ActionResult<>(EnumActionResult.FAIL, itemStack) : new ActionResult<>(EnumActionResult.PASS, itemStack);
+            return new ActionResult<>(EnumActionResult.FAIL, itemStack);
         }
         else
         {
@@ -174,7 +162,7 @@ public class ItemSpaceBow extends ItemBow implements ISortableItem, IItemModelRe
     @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
-        return this instanceof IItemRarity && ((IItemRarity)this).getRarity() != null ? ((IItemRarity)this).getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
+        return this.getRarity() != null ? this.getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
     }
 
     private static void spawnArrow(ItemStack itemStack, ItemStack arrowStack, World world, EntityPlayer player, EntityArrow arrow, Item arrowItem, int power, int punch, float duration, boolean flag)

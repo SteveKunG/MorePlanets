@@ -56,7 +56,7 @@ public class EntityInfectedChicken extends EntityChicken implements ISpaceMob, I
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() != MPPotions.INFECTED_SPORE && super.isPotionApplicable(potion);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class EntityInfectedChicken extends EntityChicken implements ISpaceMob, I
                 this.applyEnchantments(this, entity);
                 return EntityEffectUtils.addInfectedSpore(entity);
             }
-            return flag;
+            return false;
         }
         return super.attackEntityAsMob(entity);
     }

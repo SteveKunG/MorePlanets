@@ -91,11 +91,4 @@ public class ModelInfectedPurloniteTentacle extends ModelBase
         this.body3.rotateAngleX = MathHelper.cos(ageInTicks * 0.9F + 3 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * (2 + Math.abs(2));
         this.body4.rotateAngleX = MathHelper.cos(ageInTicks * 0.9F + 3 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * (4 + Math.abs(4));
     }
-
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z)
-    {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
-    }
 }

@@ -3,21 +3,21 @@ package com.stevekung.moreplanets.planets.fronos.world.gen;
 import java.util.Collections;
 import java.util.Random;
 
-import it.unimi.dsi.fastutil.objects.ObjectIterator;
+import com.stevekung.moreplanets.init.MPBiomes;
+import com.stevekung.moreplanets.utils.LoggerMP;
+
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureStart;
-import com.stevekung.moreplanets.init.MPBiomes;
-import com.stevekung.moreplanets.utils.LoggerMP;
 
 public class MapGenRongHouse extends MapGenStructure
 {
     private boolean ranBiomeCheck;
-    private ChunkPos[] structureCoords;
-    private double distance;
+    private final ChunkPos[] structureCoords;
+    private final double distance;
     private int spread;
 
     static
@@ -94,12 +94,9 @@ public class MapGenRongHouse extends MapGenStructure
     {
         this.initializeStructureData(this.world);
         int i = 0;
-        ObjectIterator<?> lvt_2_1_ = this.structureMap.values().iterator();
 
-        while (lvt_2_1_.hasNext())
+        for (StructureStart structurestart : this.structureMap.values())
         {
-            StructureStart structurestart = (StructureStart)lvt_2_1_.next();
-
             if (i < this.structureCoords.length)
             {
                 this.structureCoords[i++] = new ChunkPos(structurestart.getChunkPosX(), structurestart.getChunkPosZ());

@@ -51,10 +51,6 @@ public class ItemInfectedWoodPickaxe extends ItemPickaxeMP
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
-        if (repair.getItem() == Item.getItemFromBlock(MPBlocks.INFECTED_OAK_PLANKS))
-        {
-            return true;
-        }
-        return false;
+        return repair.getItem() == Item.getItemFromBlock(MPBlocks.INFECTED_OAK_PLANKS);
     }
 }

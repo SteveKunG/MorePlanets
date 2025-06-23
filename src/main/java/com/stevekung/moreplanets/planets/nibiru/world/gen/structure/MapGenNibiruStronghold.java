@@ -19,7 +19,6 @@ public class MapGenNibiruStronghold extends MapGenStructure
     public final List<Biome> allowedBiomes;
     private boolean ranBiomeCheck;
     private final ChunkPos[] structureCoords = new ChunkPos[128];
-    private final double distance = 32.0D;
     private int spread;
 
     static
@@ -130,7 +129,8 @@ public class MapGenNibiruStronghold extends MapGenStructure
         {
             for (int i1 = 0; i1 < this.structureCoords.length; ++i1)
             {
-                double d0 = 4.0D * this.distance + this.distance * j * 6.0D + (rand.nextDouble() - 0.5D) * this.distance * 2.5D;
+                double distance = 32.0D;
+                double d0 = 4.0D * distance + distance * j * 6.0D + (rand.nextDouble() - 0.5D) * distance * 2.5D;
                 int j1 = (int)Math.round(Math.cos(d1) * d0);
                 int k1 = (int)Math.round(Math.sin(d1) * d0);
                 BlockPos blockpos = this.world.getBiomeProvider().findBiomePosition((j1 << 4) + 8, (k1 << 4) + 8, 112, this.allowedBiomes, rand);

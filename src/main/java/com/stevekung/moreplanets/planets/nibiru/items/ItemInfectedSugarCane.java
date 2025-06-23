@@ -34,7 +34,7 @@ public class ItemInfectedSugarCane extends ItemBaseMP
         Block block = iblockstate.getBlock();
         Block cane = MPBlocks.INFECTED_SUGAR_CANE;
 
-        if (block == Blocks.SNOW_LAYER && iblockstate.getValue(BlockSnow.LAYERS).intValue() < 1 || block == MPBlocks.INFECTED_SNOW_LAYER && iblockstate.getValue(BlockStateProperty.LAYERS).intValue() < 1)
+        if (block == Blocks.SNOW_LAYER && iblockstate.getValue(BlockSnow.LAYERS) < 1 || block == MPBlocks.INFECTED_SNOW_LAYER && iblockstate.getValue(BlockStateProperty.LAYERS) < 1)
         {
             facing = EnumFacing.UP;
         }

@@ -59,11 +59,6 @@ public class RoomBossMP extends SizedPieceMP
         this.chestPos = new BlockPos(tagCompound.getInteger("chestX"), tagCompound.getInteger("chestY"), tagCompound.getInteger("chestZ"));
     }
 
-    public BlockPos getChestPos()
-    {
-        return this.chestPos;
-    }
-
     public void setChestPos(BlockPos chestPos)
     {
         this.chestPos = chestPos;

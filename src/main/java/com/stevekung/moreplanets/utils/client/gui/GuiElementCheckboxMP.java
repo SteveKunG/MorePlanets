@@ -16,13 +16,13 @@ public class GuiElementCheckboxMP extends GuiElementCheckbox
 {
     private static final ResourceLocation texture = new ResourceLocation("moreplanets:textures/gui/gadget.png");
     public Boolean isSelected;
-    private ICheckBoxCallback parentGui;
-    private int textColor;
-    private int texWidth;
-    private int texHeight;
-    private int texX;
-    private int texY;
-    private boolean shiftOnHover;
+    private final ICheckBoxCallback parentGui;
+    private final int textColor;
+    private final int texWidth;
+    private final int texHeight;
+    private final int texX;
+    private final int texY;
+    private final boolean shiftOnHover;
 
     public GuiElementCheckboxMP(int id, ICheckBoxCallback parentGui, int x, int y, String text)
     {
@@ -65,7 +65,7 @@ public class GuiElementCheckboxMP extends GuiElementCheckbox
             this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
             this.drawTexturedModalRect(this.x, this.y, this.hovered ? this.texX + this.texWidth : this.texX, this.hovered ? this.shiftOnHover ? this.texY + this.texHeight : this.texY : this.texY, this.width, this.height);
             this.mouseDragged(mc, mouseX, mouseY);
-            mc.fontRenderer.drawString(this.displayString, this.x + this.width + 3, this.y + (this.height - 6) / 2, this.textColor, false);
+            mc.fontRenderer.drawString(this.displayString, this.x + this.width + 3, this.y + (this.height - 6) / 2.0f, this.textColor, false);
         }
     }
 
@@ -77,10 +77,10 @@ public class GuiElementCheckboxMP extends GuiElementCheckbox
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder worldRenderer = tessellator.getBuffer();
         worldRenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
-        worldRenderer.pos(x + 0, y + height, this.zLevel).tex((textureX + 0) * f, (textureY + this.texHeight) * f1).endVertex();
+        worldRenderer.pos(x, y + height, this.zLevel).tex(textureX * f, (textureY + this.texHeight) * f1).endVertex();
         worldRenderer.pos(x + width, y + height, this.zLevel).tex((textureX + this.texWidth) * f, (textureY + this.texHeight) * f1).endVertex();
-        worldRenderer.pos(x + width, y + 0, this.zLevel).tex((textureX + this.texWidth) * f, (textureY + 0) * f1).endVertex();
-        worldRenderer.pos(x + 0, y + 0, this.zLevel).tex((textureX + 0) * f, (textureY + 0) * f1).endVertex();
+        worldRenderer.pos(x + width, y, this.zLevel).tex((textureX + this.texWidth) * f, textureY * f1).endVertex();
+        worldRenderer.pos(x, y, this.zLevel).tex(textureX * f, textureY * f1).endVertex();
         tessellator.draw();
     }
 

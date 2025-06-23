@@ -92,7 +92,7 @@ public class EntityInfectedSkeleton extends EntitySkeleton implements IEntityBre
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() != MPPotions.INFECTED_SPORE && super.isPotionApplicable(potion);
     }
 
     @Override

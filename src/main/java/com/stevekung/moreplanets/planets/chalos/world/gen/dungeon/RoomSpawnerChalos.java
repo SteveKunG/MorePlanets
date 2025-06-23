@@ -77,17 +77,17 @@ public class RoomSpawnerChalos extends RoomEmptyMP
     {
         switch (rand.nextInt(5))
         {
-        case 0:
-        default:
-            return EntityCheeseFloater.class;
-        case 2:
-            return EntityEvolvedSpider.class;
-        case 3:
-            return EntityEvolvedCreeper.class;
-        case 4:
-            return EntityEvolvedSkeleton.class;
-        case 5:
-            return EntityEvolvedZombie.class;
+            case 2:
+                return EntityEvolvedSpider.class;
+            case 3:
+                return EntityEvolvedCreeper.class;
+            case 4:
+                return EntityEvolvedSkeleton.class;
+            case 5:
+                return EntityEvolvedZombie.class;
+            case 0:
+            default:
+                return EntityCheeseFloater.class;
         }
     }
 }

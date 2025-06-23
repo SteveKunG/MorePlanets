@@ -7,12 +7,12 @@ import net.minecraft.util.math.MathHelper;
 
 public class ModelInfectedPurloniteWorm extends ModelBase
 {
-    private ModelRenderer body1;
-    private ModelRenderer body2;
-    private ModelRenderer body3;
-    private ModelRenderer body4;
-    private ModelRenderer tentacle1;
-    private ModelRenderer tentacle2;
+    private final ModelRenderer body1;
+    private final ModelRenderer body2;
+    private final ModelRenderer body3;
+    private final ModelRenderer body4;
+    private final ModelRenderer tentacle1;
+    private final ModelRenderer tentacle2;
 
     public ModelInfectedPurloniteWorm()
     {
@@ -63,8 +63,8 @@ public class ModelInfectedPurloniteWorm extends ModelBase
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale, Entity entity)
     {
-        this.body2.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * (1 + Math.abs(2 - 2));
-        this.body2.rotationPointX = MathHelper.sin(ageInTicks * 0.9F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.2F * Math.abs(2 - 2);
+        this.body2.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * 1;
+        this.body2.rotationPointX = MathHelper.sin(ageInTicks * 0.9F + 2 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.2F;
         this.body3.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + 3 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * (1 + Math.abs(3 - 2));
         this.body3.rotationPointX = MathHelper.sin(ageInTicks * 0.9F + 3 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.2F * Math.abs(3 - 2);
         this.body4.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + 5 * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * (1 + Math.abs(5 - 2));

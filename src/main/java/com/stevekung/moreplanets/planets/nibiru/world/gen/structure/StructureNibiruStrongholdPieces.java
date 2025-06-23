@@ -383,11 +383,7 @@ public class StructureNibiruStrongholdPieces
             StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -1, 0, 5, 5, 4, facing);
             StructureComponent structurecomponent = StructureComponent.findIntersecting(component, box);
 
-            if (structurecomponent == null)
-            {
-                return null;
-            }
-            else
+            if (structurecomponent != null)
             {
                 if (structurecomponent.getBoundingBox().minY == box.minY)
                 {
@@ -401,8 +397,8 @@ public class StructureNibiruStrongholdPieces
                         }
                     }
                 }
-                return null;
             }
+            return null;
         }
     }
 
@@ -480,7 +476,6 @@ public class StructureNibiruStrongholdPieces
             }
         }
 
-        @SuppressWarnings("deprecation")
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox box)
         {
@@ -752,12 +747,12 @@ public class StructureNibiruStrongholdPieces
         }
     }
 
-    static class PieceWeight
+    public static class PieceWeight
     {
-        public Class<? extends Stronghold> pieceClass;
+        public final Class<? extends Stronghold> pieceClass;
         public final int pieceWeight;
         public int instancesSpawned;
-        public int instancesLimit;
+        public final int instancesLimit;
 
         public PieceWeight(Class<? extends Stronghold> pieceClass, int pieceWeight, int instancesLimit)
         {
@@ -791,10 +786,7 @@ public class StructureNibiruStrongholdPieces
         @Override
         public void buildComponent(StructureComponent component, List<StructureComponent> list, Random rand)
         {
-            if (component != null)
-            {
-                ((Stairs2)component).strongholdPortalRoom = this;
-            }
+            ((Stairs2) component).strongholdPortalRoom = this;
         }
 
         @Override
@@ -1161,15 +1153,7 @@ public class StructureNibiruStrongholdPieces
             this.source = true;
             this.setCoordBaseMode(EnumFacing.Plane.HORIZONTAL.random(rand));
             this.entryDoor = Door.OPENING;
-
-            if (this.getCoordBaseMode().getAxis() == EnumFacing.Axis.Z)
-            {
-                this.boundingBox = new StructureBoundingBox(x, 64, z, x + 5 - 1, 74, z + 5 - 1);
-            }
-            else
-            {
-                this.boundingBox = new StructureBoundingBox(x, 64, z, x + 5 - 1, 74, z + 5 - 1);
-            }
+            this.boundingBox = new StructureBoundingBox(x, 64, z, x + 5 - 1, 74, z + 5 - 1);
         }
 
         public Stairs(int type, Random rand, StructureBoundingBox box, EnumFacing facing)
@@ -1249,7 +1233,7 @@ public class StructureNibiruStrongholdPieces
     {
         public PieceWeight lastPlaced;
         public PortalRoom strongholdPortalRoom;
-        public List<StructureComponent> pendingChildren = new ArrayList<>();
+        public final List<StructureComponent> pendingChildren = new ArrayList<>();
 
         public Stairs2() {}
 
@@ -1534,16 +1518,14 @@ public class StructureNibiruStrongholdPieces
 
             switch (i)
             {
-            case 0:
-            case 1:
-            default:
-                return Door.OPENING;
             case 2:
                 return Door.WOOD_DOOR;
             case 3:
                 return Door.GRATES;
             case 4:
                 return Door.IRON_DOOR;
+                default:
+                    return Door.OPENING;
             }
         }
 
@@ -1556,15 +1538,14 @@ public class StructureNibiruStrongholdPieces
             {
                 switch (facing)
                 {
-                default:
-                case NORTH:
-                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX + x, this.boundingBox.minY + z, this.boundingBox.minZ - 1, facing, this.getComponentType());
                 case SOUTH:
                     return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX + x, this.boundingBox.minY + z, this.boundingBox.maxZ + 1, facing, this.getComponentType());
                 case WEST:
                     return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX - 1, this.boundingBox.minY + z, this.boundingBox.minZ + x, facing, this.getComponentType());
                 case EAST:
                     return generateAndAddPiece(stairs, component, rand, this.boundingBox.maxX + 1, this.boundingBox.minY + z, this.boundingBox.minZ + x, facing, this.getComponentType());
+                    default:
+                        return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX + x, this.boundingBox.minY + z, this.boundingBox.minZ - 1, facing, this.getComponentType());
                 }
             }
             return null;
@@ -1579,15 +1560,12 @@ public class StructureNibiruStrongholdPieces
             {
                 switch (facing)
                 {
-                default:
-                case NORTH:
-                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX - 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.WEST, this.getComponentType());
-                case SOUTH:
-                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX - 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.WEST, this.getComponentType());
-                case WEST:
-                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
-                case EAST:
-                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+                    case WEST:
+                    case SOUTH:
+                    case EAST:
+                        return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+                    default:
+                        return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX - 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.WEST, this.getComponentType());
                 }
             }
             return null;
@@ -1602,15 +1580,11 @@ public class StructureNibiruStrongholdPieces
             {
                 switch (facing)
                 {
-                default:
-                case NORTH:
-                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.maxX + 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.EAST, this.getComponentType());
-                case SOUTH:
-                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.maxX + 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.EAST, this.getComponentType());
-                case WEST:
-                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
-                case EAST:
-                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+                    case WEST:
+                    case EAST:
+                        return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+                    default:
+                        return generateAndAddPiece(stairs, component, rand, this.boundingBox.maxX + 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.EAST, this.getComponentType());
                 }
             }
             return null;
@@ -1670,7 +1644,7 @@ public class StructureNibiruStrongholdPieces
             OPENING,
             WOOD_DOOR,
             GRATES,
-            IRON_DOOR;
+            IRON_DOOR
         }
     }
 }

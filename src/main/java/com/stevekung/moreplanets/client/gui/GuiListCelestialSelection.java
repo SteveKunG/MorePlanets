@@ -1,7 +1,6 @@
 package com.stevekung.moreplanets.client.gui;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -37,7 +36,7 @@ public class GuiListCelestialSelection extends GuiListExtended
     public void refreshList(GuiCelestialSelection.SortType type)
     {
         this.entries.clear();
-        Collections.sort(this.listCelestial, type);
+        this.listCelestial.sort(type);
 
         for (CelestialBody celestial : this.listCelestial)
         {
@@ -148,10 +147,5 @@ public class GuiListCelestialSelection extends GuiListExtended
     public GuiCelestialSelection getGui()
     {
         return this.selection;
-    }
-
-    public List<CelestialBody> getCelestialList()
-    {
-        return this.listCelestial;
     }
 }

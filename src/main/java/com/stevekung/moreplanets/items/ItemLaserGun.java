@@ -22,7 +22,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.entity.projectile.EntityLaserBullet;
 import com.stevekung.moreplanets.entity.projectile.EntityLaserBullet.LaserType;
 import com.stevekung.moreplanets.init.MPItems;
@@ -46,11 +45,7 @@ public class ItemLaserGun extends ItemBaseMP implements ISortableItem, IItemMode
         this.setTranslationKey(name);
         this.addPropertyOverride(new ResourceLocation("pull"), (itemStack, world, living) ->
         {
-            if (living == null)
-            {
-                return 0.0F;
-            }
-            else
+            if (living != null)
             {
                 ItemStack gun = living.getActiveItemStack();
 
@@ -72,8 +67,8 @@ public class ItemLaserGun extends ItemBaseMP implements ISortableItem, IItemMode
                         }
                     }
                 }
-                return 0.0F;
             }
+            return 0.0F;
         });
         this.addPropertyOverride(new ResourceLocation("pulling"), (itemStack, world, living) -> living != null && living.isHandActive() && living.getActiveItemStack() == itemStack ? 1.0F : 0.0F);
     }
@@ -88,12 +83,6 @@ public class ItemLaserGun extends ItemBaseMP implements ISortableItem, IItemMode
     public int getMaxItemUseDuration(ItemStack itemStack)
     {
         return 16;
-    }
-
-    @Override
-    public CreativeTabs getCreativeTab()
-    {
-        return MorePlanetsMod.ITEM_TAB;
     }
 
     @Override
@@ -118,7 +107,7 @@ public class ItemLaserGun extends ItemBaseMP implements ISortableItem, IItemMode
             if (this.getElectricityStored(itemStack) > 0.0F && (flag || !bulletStack.isEmpty()))
             {
                 EntityLaserBullet laser = new EntityLaserBullet(world, player, 1.0F);
-                world.playSound(player, player.getPosition(), MPSounds.LASER_SHOOTED, SoundCategory.PLAYERS, 1.0F, 2.0F / (1.0F * 0.4F + 1.2F) + 1.0F * 0.5F);
+                world.playSound(player, player.getPosition(), MPSounds.LASER_SHOOTED, SoundCategory.PLAYERS, 1.0F, 2.0F / (0.4F + 1.2F) + 0.5F);
                 int slot = -1;
 
                 if (bulletStack.isEmpty())
@@ -165,7 +154,7 @@ public class ItemLaserGun extends ItemBaseMP implements ISortableItem, IItemMode
         {
             if (!player.capabilities.isCreativeMode && !flag)
             {
-                return !flag ? new ActionResult<>(EnumActionResult.FAIL, itemStack) : new ActionResult<>(EnumActionResult.PASS, itemStack);
+                return new ActionResult<>(EnumActionResult.FAIL, itemStack);
             }
             else
             {
@@ -190,7 +179,6 @@ public class ItemLaserGun extends ItemBaseMP implements ISortableItem, IItemMode
 
         if (energyToReceive > this.transferMax)
         {
-            rejectedElectricity += energyToReceive - this.transferMax;
             energyToReceive = this.transferMax;
         }
         if (doRecharge)

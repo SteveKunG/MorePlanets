@@ -134,9 +134,9 @@ public class GenLayerNibiruHills extends GenLayer
                     }
                     else
                     {
-                        int k2 = aint[j + 1 + (i + 0) * (areaWidth + 2)];
+                        int k2 = aint[j + 1 + i * (areaWidth + 2)];
                         int j1 = aint[j + 2 + (i + 1) * (areaWidth + 2)];
-                        int k1 = aint[j + 0 + (i + 1) * (areaWidth + 2)];
+                        int k1 = aint[j + (i + 1) * (areaWidth + 2)];
                         int l1 = aint[j + 1 + (i + 2) * (areaWidth + 2)];
                         int i2 = 0;
 

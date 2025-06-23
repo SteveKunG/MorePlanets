@@ -55,10 +55,4 @@ public class TileEntityAlienDefenderBeaconRenderer extends TileEntitySpecialRend
         GlStateManager.disableRescaleNormal();
         GlStateManager.popMatrix();
     }
-
-    @Override
-    public boolean isGlobalRenderer(TileEntityAlienDefenderBeacon tile)
-    {
-        return false;
-    }
 }

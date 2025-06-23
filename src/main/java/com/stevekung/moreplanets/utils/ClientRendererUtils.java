@@ -101,7 +101,8 @@ public class ClientRendererUtils
         float f1 = (float)(targetY - 1.0D - prevY);
         float f2 = (float)(targetZ - prevZ);
         float f3 = MathHelper.sqrt(f * f + f2 * f2);
-        float f4 = MathHelper.sqrt(f * f + f1 * f1 + f2 * f2);
+        float f33 = f * f + f1 * f1 + f2 * f2;
+        float f4 = MathHelper.sqrt(f33);
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)x, (float)y + 2.0F, (float)z);
         GlStateManager.rotate((float)-Math.atan2(f2, f) * (180F / (float)Math.PI) - 90.0F, 0.0F, 1.0F, 0.0F);
@@ -112,7 +113,7 @@ public class ClientRendererUtils
         GlStateManager.disableCull();
         GlStateManager.shadeModel(7425);
         float f5 = 0.0F - (ticksExisted + partialTicks) * 0.01F;
-        float f6 = MathHelper.sqrt(f * f + f1 * f1 + f2 * f2) / 32.0F - (ticksExisted + partialTicks) * 0.01F;
+        float f6 = MathHelper.sqrt(f33) / 32.0F - (ticksExisted + partialTicks) * 0.01F;
         vertexbuffer.begin(5, DefaultVertexFormats.POSITION_TEX_COLOR);
 
         for (int j = 0; j <= 8; ++j)

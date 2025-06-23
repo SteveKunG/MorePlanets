@@ -57,17 +57,13 @@ public class ItemCapsule extends ItemFoodMP
             {
                 CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP)player, itemStack);
             }
-            if (player == null || !player.capabilities.isCreativeMode)
+            if (!player.capabilities.isCreativeMode)
             {
                 if (itemStack.isEmpty())
                 {
                     return new ItemStack(MPItems.EMPTY_CAPSULE);
                 }
-
-                if (player != null)
-                {
-                    player.inventory.addItemStackToInventory(new ItemStack(MPItems.EMPTY_CAPSULE));
-                }
+                player.inventory.addItemStackToInventory(new ItemStack(MPItems.EMPTY_CAPSULE));
                 itemStack.shrink(1);
             }
         }
@@ -108,7 +104,7 @@ public class ItemCapsule extends ItemFoodMP
         INFECTED_SPORE(ColorUtils.rgbToDecimal(232, 62, 19)),
         DARK_ENERGY(ColorUtils.rgbToDecimal(75, 75, 75));
 
-        private int color;
+        private final int color;
 
         CapsuleType(int color)
         {

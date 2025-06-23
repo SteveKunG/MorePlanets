@@ -62,7 +62,7 @@ public class EntityJellySlime extends EntitySlimeBaseMP
             for (int k = 0; k < j; ++k)
             {
                 float f = (k % 2 - 0.5F) * i / 4.0F;
-                float f1 = (k / 2 - 0.5F) * i / 4.0F;
+                float f1 = (k / 2.0f - 0.5F) * i / 4.0F;
                 EntityJellySlime entityslime = this.createInstance();
 
                 if (this.hasCustomName())
@@ -122,7 +122,7 @@ public class EntityJellySlime extends EntitySlimeBaseMP
     {
         int i = this.rand.nextInt(2);
 
-        if (i < 2 && this.rand.nextFloat() < 0.5F * diff.getClampedAdditionalDifficulty())
+        if (this.rand.nextFloat() < 0.5F * diff.getClampedAdditionalDifficulty())
         {
             ++i;
         }

@@ -19,6 +19,6 @@ public abstract class BlockGrassBlockMP extends BlockBaseMP implements ITerrafor
     @Override
     public boolean isTerraformable(World world, BlockPos pos)
     {
-        return true && !world.getBlockState(pos.up()).isOpaqueCube();
+        return !world.getBlockState(pos.up()).isOpaqueCube();
     }
 }

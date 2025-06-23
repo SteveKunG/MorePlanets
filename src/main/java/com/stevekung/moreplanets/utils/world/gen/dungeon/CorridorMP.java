@@ -163,7 +163,6 @@ public class CorridorMP extends SizedPieceMP
                         e.printStackTrace();
                     }
                 default:
-                case 2:
                     return new RoomEmptyMP(this.configuration, rand, blockX, blockZ, sizeX, sizeY, sizeZ, this.getDirection().getOpposite());
                 }
             }

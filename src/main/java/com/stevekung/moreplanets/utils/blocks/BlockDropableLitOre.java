@@ -3,7 +3,6 @@ package com.stevekung.moreplanets.utils.blocks;
 import java.util.Locale;
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
@@ -18,16 +17,17 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
+
 public class BlockDropableLitOre extends BlockBasicMP implements IDetectableResource
 {
     public static final PropertyBool LIT = PropertyBool.create("lit");
-    private BlockType type;
+    private final BlockType type;
 
     public BlockDropableLitOre(String name, BlockType type)
     {
@@ -147,12 +147,6 @@ public class BlockDropableLitOre extends BlockBasicMP implements IDetectableReso
             return new ItemStack(this.getDefaultState().getBlock());
         }
         return super.getSilkTouchDrop(state);
-    }
-
-    @Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
-    {
-        return new ItemStack(this);
     }
 
     @Override

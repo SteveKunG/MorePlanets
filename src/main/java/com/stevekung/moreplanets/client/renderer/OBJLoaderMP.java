@@ -62,29 +62,18 @@ public class OBJLoaderMP implements ICustomModelLoader
         }
         else
         {
+            ResourceLocation file = new ResourceLocation(modelLocation.getNamespace(), "models/obj/" + modelLocation.getPath());
+            IResource resource = this.manager.getResource(file);
+            OBJModel.Parser parser = new OBJModel.Parser(resource, this.manager);
+
             try
             {
-                ResourceLocation file = new ResourceLocation(modelLocation.getNamespace(), "models/obj/" + modelLocation.getPath());
-                IResource resource = this.manager.getResource(file);
-
-                if (resource != null)
-                {
-                    OBJModel.Parser parser = new OBJModel.Parser(resource, this.manager);
-
-                    try
-                    {
-                        model = parser.parse().process(ImmutableMap.of("flip-v", "true"));
-                    }
-                    finally
-                    {
-                        resource.getInputStream().close();
-                        this.cache.put(modelLocation, model);
-                    }
-                }
+                model = parser.parse().process(ImmutableMap.of("flip-v", "true"));
             }
-            catch (IOException e)
+            finally
             {
-                throw e;
+                resource.getInputStream().close();
+                this.cache.put(modelLocation, model);
             }
         }
         if (model == null)

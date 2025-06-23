@@ -130,6 +130,6 @@ public class BiomeInfectedTaiga extends BiomeNibiru
     {
         NORMAL,
         MEGA,
-        MEGA_SPRUCE;
+        MEGA_SPRUCE
     }
 }

@@ -64,7 +64,7 @@ public class WorldGenNibiruBlockBlob extends WorldGenerator
                         world.setBlockState(blockpos, this.state, 4);
                     }
                 }
-                pos = pos.add(-(i1 + 1) + rand.nextInt(2 + i1 * 2), 0 - rand.nextInt(2), -(i1 + 1) + rand.nextInt(2 + i1 * 2));
+                pos = pos.add(-(i1 + 1) + rand.nextInt(2 + i1 * 2), -rand.nextInt(2), -(i1 + 1) + rand.nextInt(2 + i1 * 2));
             }
             return true;
             }

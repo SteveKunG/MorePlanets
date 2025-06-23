@@ -14,9 +14,9 @@ import com.stevekung.moreplanets.recipe.DarkEnergyRecipeData;
 
 public class DarkEnergyTransformRecipeWrapper implements IRecipeWrapper
 {
-    private HashMap<Integer, ItemStack> input;
-    private ItemStack output;
-    private int time;
+    private final HashMap<Integer, ItemStack> input;
+    private final ItemStack output;
+    private final int time;
 
     public DarkEnergyTransformRecipeWrapper(DarkEnergyRecipeData recipe)
     {

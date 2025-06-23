@@ -13,8 +13,8 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenAbstractHugeTrees;
 
 public class WorldGenInfectedMegaPineTree extends WorldGenAbstractHugeTrees
 {
-    private boolean useBaseHeight;
-    private boolean genLeaves;
+    private final boolean useBaseHeight;
+    private final boolean genLeaves;
 
     public WorldGenInfectedMegaPineTree(boolean genLeaves, boolean useBaseHeight)
     {

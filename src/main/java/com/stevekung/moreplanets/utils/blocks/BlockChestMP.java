@@ -322,11 +322,7 @@ public abstract class BlockChestMP extends BlockContainerMP implements IItemRari
 
     public IBlockState checkForSurroundingChests(World world, BlockPos pos, IBlockState state)
     {
-        if (world.isRemote)
-        {
-            return state;
-        }
-        else
+        if (!world.isRemote)
         {
             IBlockState iblockstate = world.getBlockState(pos.north());
             IBlockState iblockstate1 = world.getBlockState(pos.south());
@@ -402,8 +398,8 @@ public abstract class BlockChestMP extends BlockContainerMP implements IItemRari
             }
             state = state.withProperty(BlockStateProperty.FACING_HORIZON, enumfacing);
             world.setBlockState(pos, state, 3);
-            return state;
         }
+        return state;
     }
 
     public IBlockState correctFacing(World world, BlockPos pos, IBlockState state)
@@ -460,11 +456,7 @@ public abstract class BlockChestMP extends BlockContainerMP implements IItemRari
 
     private boolean isDoubleChest(World world, BlockPos pos)
     {
-        if (world.getBlockState(pos).getBlock() != this)
-        {
-            return false;
-        }
-        else
+        if (world.getBlockState(pos).getBlock() == this)
         {
             for (EnumFacing facing : EnumFacing.Plane.HORIZONTAL)
             {
@@ -473,8 +465,8 @@ public abstract class BlockChestMP extends BlockContainerMP implements IItemRari
                     return true;
                 }
             }
-            return false;
         }
+        return false;
     }
 
     protected abstract TileEntityChestMP getChestTile();

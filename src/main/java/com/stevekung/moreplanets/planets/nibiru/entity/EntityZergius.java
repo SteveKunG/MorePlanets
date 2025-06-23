@@ -78,7 +78,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() != MPPotions.INFECTED_SPORE && super.isPotionApplicable(potion);
     }
 
     @Override
@@ -213,7 +213,6 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
         private final EntityZergius entity = EntityZergius.this;
         private final FlyingMoveTargetPosition targetPos = new FlyingMoveTargetPosition();
         private int courseChangeCooldown = 0;
-        private double closeEnough = 0.3D;
 
         public ZergiusMoveHelper()
         {
@@ -253,11 +252,12 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
                 this.entity.motionX += strafeAmount * MathHelper.cos(this.entity.rotationYaw * (float)Math.PI / 180.0F);
                 this.entity.motionZ += strafeAmount * MathHelper.sin(this.entity.rotationYaw * (float)Math.PI / 180.0F);
             }
+            double closeEnough = 0.3D;
             if (!this.targetPos.isPathClear(1.0D))
             {
                 this.action = Action.WAIT;
             }
-            else if (this.targetPos.dist < this.closeEnough)
+            else if (this.targetPos.dist < closeEnough)
             {
                 this.action = Action.WAIT;
             }

@@ -2,15 +2,15 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.biome;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.*;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.*;
 
-import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.*;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 
@@ -20,7 +20,7 @@ public class BiomeInfectedJungle extends BiomeNibiru
     private static final WorldGenNibiruMelon MELON = new WorldGenNibiruMelon();
     private static final WorldGenInfectedVines VINES = new WorldGenInfectedVines();
     private static final WorldGenInfectedMegaJungleTree MEGA_JUNGLE_TREE = new WorldGenInfectedMegaJungleTree();
-    private static final WorldGenInfectedShrub SHRUB = new WorldGenInfectedShrub(MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+    private static final WorldGenInfectedShrub SHRUB = new WorldGenInfectedShrub();
     private final boolean isEdge;
 
     public BiomeInfectedJungle(BiomeProperties prop, boolean isEdge)

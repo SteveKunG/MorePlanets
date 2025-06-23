@@ -30,7 +30,7 @@ import com.stevekung.moreplanets.utils.entity.ISpaceMob;
 
 public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob, IEntityBreathable
 {
-    private static final DataParameter<Boolean> MOVING = EntityDataManager.<Boolean>createKey(EntityInfectedGuardian.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> MOVING = EntityDataManager.createKey(EntityInfectedGuardian.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> TARGET_ENTITY = EntityDataManager.createKey(EntityInfectedGuardian.class, DataSerializers.VARINT);
     private EntityLivingBase targetedEntity;
     private int clientSideAttackTime;
@@ -60,7 +60,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() != MPPotions.INFECTED_SPORE && super.isPotionApplicable(potion);
     }
 
     @Override
@@ -90,7 +90,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     @Override
     public boolean hasTargetedEntity()
     {
-        return this.dataManager.get(TARGET_ENTITY).intValue() != 0;
+        return this.dataManager.get(TARGET_ENTITY) != 0;
     }
 
     @Override
@@ -176,7 +176,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
                     while (d4 < d3)
                     {
                         d4 += 1.8D - d5 + this.rand.nextDouble() * (1.7D - d5);
-                        this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + d0 * d4, this.posY + d1 * d4 + this.getEyeHeight(), this.posZ + d2 * d4, 0.0D, 0.0D, 0.0D, new int[0]);
+                        this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + d0 * d4, this.posY + d1 * d4 + this.getEyeHeight(), this.posZ + d2 * d4, 0.0D, 0.0D, 0.0D);
                     }
                 }
             }
@@ -361,7 +361,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
                 this.entity.motionY += this.entity.getAIMoveSpeed() * d1 * 0.1D;
                 EntityLookHelper entitylookhelper = this.entity.getLookHelper();
                 double d7 = this.entity.posX + d0 / d3 * 2.0D;
-                double d8 = this.entity.getEyeHeight() + this.entity.posY + d1 / d3 * 1.0D;
+                double d8 = this.entity.getEyeHeight() + this.entity.posY + d1 / d3;
                 double d9 = this.entity.posZ + d2 / d3 * 2.0D;
                 double d10 = entitylookhelper.getLookPosX();
                 double d11 = entitylookhelper.getLookPosY();

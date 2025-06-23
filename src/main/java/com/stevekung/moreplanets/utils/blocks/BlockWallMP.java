@@ -68,7 +68,7 @@ public class BlockWallMP extends BlockBaseMP
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState state, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
     {
-        return side == EnumFacing.DOWN ? super.shouldSideBeRendered(state, blockAccess, pos, side) : true;
+        return side != EnumFacing.DOWN || super.shouldSideBeRendered(state, blockAccess, pos, side);
     }
 
     @Override
@@ -92,7 +92,7 @@ public class BlockWallMP extends BlockBaseMP
     {
         IBlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
-        return block == Blocks.BARRIER ? false : block != this && !(block instanceof BlockWallMP) && !(block instanceof BlockFenceGate) ? state.getMaterial().isOpaque() && state.isFullCube() ? state.getMaterial() != Material.GOURD : false : true;
+        return block != Blocks.BARRIER && (block instanceof BlockWallMP || block instanceof BlockFenceGate || state.getMaterial().isOpaque() && state.isFullCube() && state.getMaterial() != Material.GOURD);
     }
 
     private int getAABBIndex(IBlockState state)

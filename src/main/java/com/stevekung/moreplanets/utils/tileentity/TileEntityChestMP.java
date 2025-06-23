@@ -86,7 +86,7 @@ public abstract class TileEntityChestMP extends TileEntityLockableLoot implement
     @Override
     public boolean hasCustomName()
     {
-        return this.customName != null && this.customName.length() > 0;
+        return this.customName != null && !this.customName.isEmpty();
     }
 
     @Override

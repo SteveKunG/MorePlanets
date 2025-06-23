@@ -12,7 +12,7 @@ import com.stevekung.moreplanets.init.MPBlocks;
 
 public class WorldGenInfectedRoofedTree extends WorldGenAbstractTree
 {
-    private boolean genLeaves;
+    private final boolean genLeaves;
 
     public WorldGenInfectedRoofedTree(boolean genLeaves)
     {
@@ -122,7 +122,7 @@ public class WorldGenInfectedRoofedTree extends WorldGenAbstractTree
                 {
                     for (int j4 = -1; j4 <= 2; ++j4)
                     {
-                        if ((k3 < 0 || k3 > 1 || j4 < 0 || j4 > 1) && rand.nextInt(3) <= 0)
+                        if ((k3 < 0 || k3 > 1 || j4 < 0 || j4 > 1) && rand.nextInt(3) == 0)
                         {
                             int l4 = rand.nextInt(3) + 2;
 

@@ -1,7 +1,6 @@
 package com.stevekung.moreplanets.core.event;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -117,12 +116,12 @@ public class GeneralEventHandler
         ItemStack heldItem = event.getItemStack();
 
         // Skip events triggered from Thaumcraft Golems and other non-players
-        if (player == null || pos == null || world == null)
+        if (player == null || world == null)
         {
             return;
         }
 
-        if (!heldItem.isEmpty() && (heldItem.getItem() instanceof ItemSpade || heldItem.getItem().getToolClasses(heldItem) == Collections.singleton("shovel")))
+        if (!heldItem.isEmpty() && (heldItem.getItem() instanceof ItemSpade || heldItem.getItem().getToolClasses(heldItem).contains("shovel")))
         {
             if (event.getFace() != EnumFacing.DOWN && world.getBlockState(pos.up()).getMaterial() == Material.AIR)
             {
@@ -151,7 +150,7 @@ public class GeneralEventHandler
 
         TileEntity tile = world.getTileEntity(pos);
 
-        if (tile != null && tile instanceof TileEntityTreasureChestMP && tile instanceof IDungeonKeyable)
+        if (tile instanceof TileEntityTreasureChestMP)
         {
             TileEntityTreasureChestMP chest = (TileEntityTreasureChestMP) tile;
             IDungeonKeyable keyable = (IDungeonKeyable) tile;

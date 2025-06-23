@@ -63,12 +63,6 @@ public class BlockGlowingHardenedIce extends BlockIceMP
     }
 
     @Override
-    protected boolean isTranslucent()
-    {
-        return true;
-    }
-
-    @Override
     protected boolean renderSideWithState()
     {
         return true;

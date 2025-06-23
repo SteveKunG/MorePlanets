@@ -56,8 +56,8 @@ public class ModelCheeseCubeEyeBoss extends ModelBase
         float z1 = (float)Math.PI * -0.05F;
         this.body1.offsetZ = -0.025F;
         this.body3.offsetZ = 0.025F;
-        this.body1.rotateAngleZ = partialTicks * z + (float) (Math.PI / 8) * 1.0F;
-        this.body2.rotateAngleZ = -partialTicks * z + (float) (Math.PI / 8) * 1.0F;
+        this.body1.rotateAngleZ = partialTicks * z + (float) (Math.PI / 8);
+        this.body2.rotateAngleZ = -partialTicks * z + (float) (Math.PI / 8);
         this.body3.rotateAngleZ = partialTicks * z1 + (float) (Math.PI / 8) * 0.5F;
         this.body4.rotateAngleZ = -partialTicks * z1 + (float) (Math.PI / 8) * 0.5F;
     }

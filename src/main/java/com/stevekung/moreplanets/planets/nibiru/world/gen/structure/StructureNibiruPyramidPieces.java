@@ -89,48 +89,9 @@ public abstract class StructureNibiruPyramidPieces extends StructureComponent
         this.horizontalPos = nbt.getInteger("HPos");
     }
 
-    protected boolean offsetToAverageGroundLevel(World world, StructureBoundingBox box, int yOffset)
-    {
-        if (this.horizontalPos >= 0)
-        {
-            return true;
-        }
-        else
-        {
-            int i = 0;
-            int j = 0;
-            BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-
-            for (int k = this.boundingBox.minZ; k <= this.boundingBox.maxZ; ++k)
-            {
-                for (int l = this.boundingBox.minX; l <= this.boundingBox.maxX; ++l)
-                {
-                    blockpos$mutableblockpos.setPos(l, 64, k);
-
-                    if (box.isVecInside(blockpos$mutableblockpos))
-                    {
-                        i += Math.max(world.getTopSolidOrLiquidBlock(blockpos$mutableblockpos).getY(), world.provider.getAverageGroundLevel());
-                        ++j;
-                    }
-                }
-            }
-
-            if (j == 0)
-            {
-                return false;
-            }
-            else
-            {
-                this.horizontalPos = i / j;
-                this.boundingBox.offset(0, this.horizontalPos - this.boundingBox.minY + yOffset, 0);
-                return true;
-            }
-        }
-    }
-
     public static class NibiruPyramid extends StructureNibiruPyramidPieces
     {
-        private boolean[] hasPlacedChest = new boolean[4];
+        private final boolean[] hasPlacedChest = new boolean[4];
 
         public NibiruPyramid() {}
 

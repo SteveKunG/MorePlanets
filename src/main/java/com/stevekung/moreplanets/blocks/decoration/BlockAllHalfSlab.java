@@ -107,16 +107,14 @@ public class BlockAllHalfSlab extends BlockSlabMP
         return this.doubleSlab;
     }
 
-    public BlockSlabMP setHalf(BlockSlabMP halfSlab)
+    public void setHalf(BlockSlabMP halfSlab)
     {
         this.halfSlab = halfSlab;
-        return this;
     }
 
-    public BlockSlabMP setDouble(BlockSlabMP doubleSlab)
+    public void setDouble(BlockSlabMP doubleSlab)
     {
         this.doubleSlab = doubleSlab;
-        return this;
     }
 
     public enum BlockType

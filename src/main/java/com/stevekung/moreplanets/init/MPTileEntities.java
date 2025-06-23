@@ -10,10 +10,6 @@ import com.stevekung.moreplanets.planets.diona.tileentity.*;
 import com.stevekung.moreplanets.planets.nibiru.tileentity.*;
 import com.stevekung.moreplanets.tileentity.*;
 
-import com.stevekung.moreplanets.planets.diona.tileentity.*;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.*;
-import com.stevekung.moreplanets.tileentity.*;
-
 public class MPTileEntities
 {
     public static void init()

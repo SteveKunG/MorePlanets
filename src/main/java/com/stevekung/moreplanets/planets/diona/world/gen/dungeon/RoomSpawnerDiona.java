@@ -79,21 +79,21 @@ public class RoomSpawnerDiona extends RoomEmptyMP
     {
         switch (rand.nextInt(6))
         {
-        case 0:
-        default:
-            return EntityZeliusZombie.class;
-        case 1:
-            return EntityZeliusCreeper.class;
-        case 2:
-            return EntityZeliusSkeleton.class;
-        case 3:
-            return EntityEvolvedSpider.class;
-        case 4:
-            return EntityEvolvedCreeper.class;
-        case 5:
-            return EntityEvolvedSkeleton.class;
-        case 6:
-            return EntityEvolvedZombie.class;
+            case 1:
+                return EntityZeliusCreeper.class;
+            case 2:
+                return EntityZeliusSkeleton.class;
+            case 3:
+                return EntityEvolvedSpider.class;
+            case 4:
+                return EntityEvolvedCreeper.class;
+            case 5:
+                return EntityEvolvedSkeleton.class;
+            case 6:
+                return EntityEvolvedZombie.class;
+            case 0:
+            default:
+                return EntityZeliusZombie.class;
         }
     }
 }

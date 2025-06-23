@@ -11,7 +11,7 @@ import com.stevekung.moreplanets.init.MPBlocks;
 
 public class WorldGenInfectedDeadSpruce extends WorldGenAbstractTree
 {
-    private boolean genLeaves;
+    private final boolean genLeaves;
 
     public WorldGenInfectedDeadSpruce(boolean genLeaves)
     {

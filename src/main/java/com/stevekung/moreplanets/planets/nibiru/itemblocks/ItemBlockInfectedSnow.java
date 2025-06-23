@@ -83,6 +83,6 @@ public class ItemBlockInfectedSnow extends ItemBlockMP
     public boolean canPlaceBlockOnSide(World world, BlockPos pos, EnumFacing side, EntityPlayer player, ItemStack stack)
     {
         IBlockState state = world.getBlockState(pos);
-        return state.getBlock() != (this.getBlock() == MPBlocks.PURIFIED_SNOW_LAYER ? MPBlocks.PURIFIED_SNOW_LAYER : MPBlocks.INFECTED_SNOW_LAYER) || state.getValue(BlockStateProperty.LAYERS) > 7 ? super.canPlaceBlockOnSide(world, pos, side, player, stack) : true;
+        return state.getBlock() == (this.getBlock() == MPBlocks.PURIFIED_SNOW_LAYER ? MPBlocks.PURIFIED_SNOW_LAYER : MPBlocks.INFECTED_SNOW_LAYER) && state.getValue(BlockStateProperty.LAYERS) <= 7 || super.canPlaceBlockOnSide(world, pos, side, player, stack);
     }
 }

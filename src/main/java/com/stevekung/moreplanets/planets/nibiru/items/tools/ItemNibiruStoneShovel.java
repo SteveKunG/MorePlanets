@@ -51,10 +51,6 @@ public class ItemNibiruStoneShovel extends ItemShovelMP
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
-        if (repair.getItem() == Item.getItemFromBlock(MPBlocks.NIBIRU_ROCK))
-        {
-            return true;
-        }
-        return false;
+        return repair.getItem() == Item.getItemFromBlock(MPBlocks.INFECTED_OAK_PLANKS);
     }
 }

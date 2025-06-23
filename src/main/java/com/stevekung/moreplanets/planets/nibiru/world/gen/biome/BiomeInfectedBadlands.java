@@ -146,7 +146,7 @@ public class BiomeInfectedBadlands extends BiomeNibiru
                             iblockstate3 = this.fillerBlock;
                         }
 
-                        if (j1 < i2 && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
+                        if (j1 < i2 && iblockstate.getMaterial() == Material.AIR)
                         {
                             iblockstate = MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
                         }

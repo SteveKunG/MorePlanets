@@ -14,7 +14,7 @@ import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
 
 public class BlockInfectedSnow extends BlockBaseMP
 {
-    private boolean isPurified;
+    private final boolean isPurified;
 
     public BlockInfectedSnow(String name, boolean isPurified)
     {

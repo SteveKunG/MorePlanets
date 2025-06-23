@@ -20,14 +20,7 @@ public class EntityAIFaceTexture extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if (this.entity.getRNG().nextInt(this.entity.isChild() ? 5 : 25) != 0)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return this.entity.getRNG().nextInt(this.entity.isChild() ? 5 : 25) == 0;
     }
 
     @Override

@@ -36,14 +36,14 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
         this.tasks.addTask(7, new EntityAIWanderAvoidWater(this, 1.0D));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[0]));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
     }
 
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() != MPPotions.INFECTED_SPORE && super.isPotionApplicable(potion);
     }
 
     @Override
@@ -112,12 +112,8 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
                     {
                         this.setRevengeTarget((EntityLivingBase)entity);
                     }
-                    return true;
                 }
-                else
-                {
-                    return true;
-                }
+                return true;
             }
             else
             {
@@ -172,9 +168,6 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
         {
             this.attackStep = 0;
         }
-
-        @Override
-        public void resetTask() {}
 
         @Override
         public void updateTask()

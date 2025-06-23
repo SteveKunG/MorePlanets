@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 public class MPMixinConfigPlugin implements IMixinConfigPlugin
 {
     private static final Logger LOGGER = LogManager.getLogger();
-    private static boolean foundMagmaServer;
+    private static final boolean foundMagmaServer;
 
     static
     {

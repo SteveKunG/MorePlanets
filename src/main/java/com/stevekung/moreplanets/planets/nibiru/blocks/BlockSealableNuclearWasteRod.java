@@ -28,12 +28,12 @@ import com.stevekung.moreplanets.utils.blocks.ISortableBlock;
 
 public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartialSealableBlock, ITileEntityProvider, IDescription, ISortableBlock
 {
-    public static PropertyBool UP = PropertyBool.create("up");
-    public static PropertyBool DOWN = PropertyBool.create("down");
-    public static PropertyBool NORTH = PropertyBool.create("north");
-    public static PropertyBool EAST = PropertyBool.create("east");
-    public static PropertyBool SOUTH = PropertyBool.create("south");
-    public static PropertyBool WEST = PropertyBool.create("west");
+    public static final PropertyBool UP = PropertyBool.create("up");
+    public static final PropertyBool DOWN = PropertyBool.create("down");
+    public static final PropertyBool NORTH = PropertyBool.create("north");
+    public static final PropertyBool EAST = PropertyBool.create("east");
+    public static final PropertyBool SOUTH = PropertyBool.create("south");
+    public static final PropertyBool WEST = PropertyBool.create("west");
 
     public BlockSealableNuclearWasteRod(String name)
     {
@@ -114,7 +114,7 @@ public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartia
 
         if (tileEntity instanceof ITransmitter)
         {
-            TileEntity[] connectable = new TileEntity[6];
+            TileEntity[] connectable;
             connectable = EnergyUtil.getAdjacentPowerConnections(tileEntity);
             return state.withProperty(DOWN, connectable[EnumFacing.DOWN.ordinal()] != null).withProperty(UP, connectable[EnumFacing.UP.ordinal()] != null).withProperty(NORTH, connectable[EnumFacing.NORTH.ordinal()] != null).withProperty(EAST, connectable[EnumFacing.EAST.ordinal()] != null).withProperty(SOUTH, connectable[EnumFacing.SOUTH.ordinal()] != null).withProperty(WEST, connectable[EnumFacing.WEST.ordinal()] != null);
         }

@@ -22,11 +22,7 @@ public class BlockDionaTreasureChest extends BlockTreasureChestMP
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (world.isRemote)
-        {
-            return true;
-        }
-        else
+        if (!world.isRemote)
         {
             IInventory inv = this.getContainer(world, pos);
 
@@ -34,8 +30,8 @@ public class BlockDionaTreasureChest extends BlockTreasureChestMP
             {
                 player.displayGUIChest(inv);
             }
-            return true;
         }
+        return true;
     }
 
     @Override
@@ -60,15 +56,13 @@ public class BlockDionaTreasureChest extends BlockTreasureChestMP
         }
         else
         {
-            Object object = tileentity;
-
             if (this.cannotOpenChest(world, pos))
             {
                 return null;
             }
             else
             {
-                return (IInventory)object;
+                return (IInventory) tileentity;
             }
         }
     }

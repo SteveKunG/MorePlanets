@@ -2,6 +2,7 @@ package com.stevekung.moreplanets.planets.diona.client.gui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
@@ -41,11 +42,9 @@ public class GuiDarkEnergyGenerator extends GuiContainerMP
     @Override
     protected void actionPerformed(GuiButton button)
     {
-        switch (button.id)
+        if (button.id == 0)
         {
-        case 0:
             GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(EnumSimplePacket.S_UPDATE_DISABLEABLE_BUTTON, GCCoreUtil.getDimensionID(this.mc.world), new Object[] { this.tile.getPos(), 0 }));
-            break;
         }
     }
 
@@ -57,7 +56,7 @@ public class GuiDarkEnergyGenerator extends GuiContainerMP
         int y = (this.height - this.ySize) / 2;
         List<String> electricityDesc = new ArrayList<>();
         electricityDesc.add(LangUtils.translate("gui.energy_storage.desc.0"));
-        electricityDesc.add(TextFormatting.YELLOW + LangUtils.translate("gui.energy_storage.desc.1") + ((int) Math.floor(this.tile.getEnergyStoredGC()) + " / " + (int) Math.floor(this.tile.getMaxEnergyStoredGC())));
+        electricityDesc.add(TextFormatting.YELLOW + LangUtils.translate("gui.energy_storage.desc.1") + (int) Math.floor(this.tile.getEnergyStoredGC()) + " / " + (int) Math.floor(this.tile.getMaxEnergyStoredGC()));
         this.electricInfoRegion = new GuiElementInfoRegionMP(x + 51, y + 24, 54, 9, electricityDesc, this.width, this);
         this.infoRegions.add(this.electricInfoRegion);
         this.infoRegions.add(new GuiElementInfoRegionMP(x + 7, y + 84, 18, 18, Arrays.asList(LangUtils.translate("gui.battery_slot.desc.0"), LangUtils.translate("gui.battery_slot.desc.1")), this.width, this));
@@ -78,7 +77,7 @@ public class GuiDarkEnergyGenerator extends GuiContainerMP
         this.fontRenderer.drawString(displayString, this.xSize / 2 - this.fontRenderer.getStringWidth(displayString) / 2, 40 + 23 - 40 + offsetY, 4210752);
         displayString = LangUtils.translate("gui.message.generating.name") + ": " + (this.tile.generateWatts > 0 ? EnergyDisplayHelper.getEnergyDisplayS(this.tile.generateWatts) + "/t" : LangUtils.translate("gui.status.not_generating.name"));
         this.fontRenderer.drawString(displayString, this.xSize / 2 - this.fontRenderer.getStringWidth(displayString) / 2, 28 + 23 - 40 + offsetY, 4210752);
-        displayString = LangUtils.translate("gui.status.dark_energy_fuel.name") + ": " + String.valueOf(this.tile.darkEnergyFuel * 100 / 1000) + "%";
+        displayString = LangUtils.translate("gui.status.dark_energy_fuel.name") + ": " + this.tile.darkEnergyFuel * 100 / 1000 + "%";
 
         if (this.tile.darkEnergyFuel == 0)
         {
@@ -94,7 +93,7 @@ public class GuiDarkEnergyGenerator extends GuiContainerMP
     {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(TEXTURE);
-        List<String> electricityDesc = new ArrayList<>(Arrays.asList(LangUtils.translate("gui.energy_storage.desc.0")));
+        List<String> electricityDesc = new ArrayList<>(Collections.singletonList(LangUtils.translate("gui.energy_storage.desc.0")));
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.tile.getEnergyStoredGC(), this.tile.getMaxEnergyStoredGC(), electricityDesc);
         this.electricInfoRegion.tooltipStrings = electricityDesc;
         int x = (this.width - this.xSize) / 2;

@@ -144,7 +144,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
             for (int k = 0; k < j; ++k)
             {
                 float f = (k % 2 - 0.5F) * i / 4.0F;
-                float f1 = (k / 2 - 0.5F) * i / 4.0F;
+                float f1 = (k / 2f - 0.5F) * i / 4.0F;
                 EntitySlimeBaseMP entityslime = this.createInstance();
 
                 if (this.hasCustomName())
@@ -324,7 +324,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
 
     static class AISlimeAttack extends EntityAIBase
     {
-        private EntitySlimeBaseMP slime;
+        private final EntitySlimeBaseMP slime;
         private int growTieredTimer;
 
         public AISlimeAttack(EntitySlimeBaseMP slime)
@@ -337,7 +337,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
         public boolean shouldExecute()
         {
             EntityLivingBase entitylivingbase = this.slime.getAttackTarget();
-            return entitylivingbase == null ? false : !entitylivingbase.isEntityAlive() ? false : !(entitylivingbase instanceof EntityPlayer) || !((EntityPlayer)entitylivingbase).capabilities.disableDamage;
+            return entitylivingbase != null && entitylivingbase.isEntityAlive() && (!(entitylivingbase instanceof EntityPlayer) || !((EntityPlayer) entitylivingbase).capabilities.disableDamage);
         }
 
         @Override
@@ -351,7 +351,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
         public boolean shouldContinueExecuting()
         {
             EntityLivingBase entitylivingbase = this.slime.getAttackTarget();
-            return entitylivingbase == null ? false : !entitylivingbase.isEntityAlive() ? false : entitylivingbase instanceof EntityPlayer && ((EntityPlayer)entitylivingbase).capabilities.disableDamage ? false : --this.growTieredTimer > 0;
+            return entitylivingbase != null && entitylivingbase.isEntityAlive() && (!(entitylivingbase instanceof EntityPlayer) || !((EntityPlayer) entitylivingbase).capabilities.disableDamage) && --this.growTieredTimer > 0;
         }
 
         @Override
@@ -364,7 +364,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
 
     static class AISlimeFaceRandom extends EntityAIBase
     {
-        private EntitySlimeBaseMP slime;
+        private final EntitySlimeBaseMP slime;
         private float chosenDegrees;
         private int nextRandomizeTime;
 
@@ -394,7 +394,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
 
     static class AISlimeFloat extends EntityAIBase
     {
-        private EntitySlimeBaseMP slime;
+        private final EntitySlimeBaseMP slime;
 
         public AISlimeFloat(EntitySlimeBaseMP slime)
         {
@@ -422,7 +422,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
 
     static class AISlimeHop extends EntityAIBase
     {
-        private EntitySlimeBaseMP slime;
+        private final EntitySlimeBaseMP slime;
 
         public AISlimeHop(EntitySlimeBaseMP slime)
         {

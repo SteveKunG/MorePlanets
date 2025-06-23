@@ -67,15 +67,7 @@ public class MapGenNibiruJungleTemple extends MapGenStructure
         if (i == k && j == l)
         {
             Biome biome = this.world.getBiomeProvider().getBiome(new BlockPos(i * 16 + 8, 0, j * 16 + 8));
-
-            if (biome == null)
-            {
-                return false;
-            }
-            if (biome == MPBiomes.INFECTED_JUNGLE)
-            {
-                return true;
-            }
+            return biome == MPBiomes.INFECTED_JUNGLE;
         }
         return false;
     }
@@ -83,7 +75,7 @@ public class MapGenNibiruJungleTemple extends MapGenStructure
     @Override
     protected StructureStart getStructureStart(int chunkX, int chunkZ)
     {
-        return new Start(this.world, this.rand, chunkX, chunkZ);
+        return new Start(this.rand, chunkX, chunkZ);
     }
 
     @Override
@@ -97,7 +89,7 @@ public class MapGenNibiruJungleTemple extends MapGenStructure
     {
         StructureStart structurestart = this.getStructureAt(pos);
 
-        if (structurestart != null && structurestart instanceof Start && !structurestart.getComponents().isEmpty())
+        if (structurestart instanceof Start && !structurestart.getComponents().isEmpty())
         {
             StructureComponent structurecomponent = structurestart.getComponents().get(0);
             return structurecomponent instanceof StructureNibiruJungleTemplePieces.JungleTemple;
@@ -117,7 +109,7 @@ public class MapGenNibiruJungleTemple extends MapGenStructure
     {
         public Start() {}
 
-        public Start(World world, Random rand, int chunkX, int chunkZ)
+        public Start(Random rand, int chunkX, int chunkZ)
         {
             super(chunkX, chunkZ);
             LoggerMP.debug("Generate jungle temple at {} {}", chunkX * 16, chunkZ * 16);

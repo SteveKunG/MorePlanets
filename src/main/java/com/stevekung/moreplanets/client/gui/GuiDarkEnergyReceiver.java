@@ -47,11 +47,9 @@ public class GuiDarkEnergyReceiver extends GuiContainerMP implements ICheckBoxCa
     @Override
     protected void actionPerformed(GuiButton button)
     {
-        switch (button.id)
+        if (button.id == 0)
         {
-        case 0:
             GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(EnumSimplePacket.S_UPDATE_DISABLEABLE_BUTTON, GCCoreUtil.getDimensionID(this.tile.getWorld()), new Object[] { this.tile.getPos(), 0 }));
-            break;
         }
     }
 
@@ -107,7 +105,7 @@ public class GuiDarkEnergyReceiver extends GuiContainerMP implements ICheckBoxCa
         {
             this.drawTexturedModalRect(x + 64, y + 16, 176, 10, 16, 16);
         }
-        List<String> desc = new ArrayList<>(Arrays.asList(LangUtils.translate("gui.energy_storage.desc.0")));
+        List<String> desc = new ArrayList<>(Collections.singletonList(LangUtils.translate("gui.energy_storage.desc.0")));
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.tile.getEnergyStoredGC(), this.tile.getMaxEnergyStoredGC(), desc);
         this.electricInfoRegion.tooltipStrings = desc;
         this.checkboxRender.isSelected = ClientEventHandler.RECEIVER_RENDER_POS.contains(this.tile.getPos());
@@ -147,7 +145,7 @@ public class GuiDarkEnergyReceiver extends GuiContainerMP implements ICheckBoxCa
     @Override
     public void drawCenteredString(FontRenderer fontRenderer, String text, int x, int y, int color)
     {
-        fontRenderer.drawString(text, x - fontRenderer.getStringWidth(text) / 2, y, color, false);
+        fontRenderer.drawString(text, x - fontRenderer.getStringWidth(text) / 2.0f, y, color, false);
     }
 
     private String getStatus()

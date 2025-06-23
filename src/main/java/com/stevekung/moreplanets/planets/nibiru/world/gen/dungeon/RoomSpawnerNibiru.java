@@ -78,9 +78,6 @@ public class RoomSpawnerNibiru extends RoomEmptyNibiru
     {
         switch (rand.nextInt(6))
         {
-        case 0:
-        default:
-            return EntityInfectedZombie.class;
         case 1:
             return EntityInfectedCreeper.class;
         case 2:
@@ -93,6 +90,8 @@ public class RoomSpawnerNibiru extends RoomEmptyNibiru
             return EntityEvolvedSkeleton.class;
         case 6:
             return EntityEvolvedZombie.class;
+            default:
+                return EntityInfectedZombie.class;
         }
     }
 }

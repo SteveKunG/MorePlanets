@@ -2,36 +2,31 @@ package com.stevekung.moreplanets.moons.koentus.entity;
 
 import java.util.List;
 
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
-import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
+import com.stevekung.moreplanets.init.MPBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.MoverType;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPBlocks;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 
 public class EntityKoentusMeteor extends Entity
 {
     private static final DataParameter<Integer> SIZE = EntityDataManager.createKey(EntityKoentusMeteor.class, DataSerializers.VARINT);
-    private EntityLiving shootingEntity;
     private int size = 1;
 
     public EntityKoentusMeteor(World world)
@@ -152,15 +147,6 @@ public class EntityKoentusMeteor extends Entity
         this.dataManager.set(SIZE, size);
     }
 
-    private DamageSource causeMeteorDamage(EntityKoentusMeteor meteor, Entity entity)
-    {
-        if (entity != null && entity instanceof EntityPlayer)
-        {
-            LangUtils.translate("death.meteor", PlayerUtil.getName((EntityPlayer)entity) + " was hit by a meteor! That's gotta hurt!");
-        }
-        return new EntityDamageSourceIndirect("explosion", meteor, entity).setProjectile();
-    }
-
     private void onImpact(RayTraceResult result)
     {
         if (!this.world.isRemote)
@@ -168,32 +154,15 @@ public class EntityKoentusMeteor extends Entity
             if (result != null)
             {
                 BlockPos pos = result.getBlockPos();
-
-                if (pos == null)
-                {
-                    if (result.entityHit != null)
-                    {
-                        pos = this.world.getTopSolidOrLiquidBlock(result.entityHit.getPosition());
-                    }
-                    else
-                    {
-                        pos = this.world.getTopSolidOrLiquidBlock(this.getPosition());
-                    }
-                }
-
                 BlockPos above = pos.up();
 
                 if (this.world.getBlockState(above).getBlock() instanceof BlockAir)
                 {
                     this.world.setBlockState(above, MPBlocks.FALLEN_KOENTUS_METEOR.getDefaultState(), 3);
                 }
-                if (result.entityHit != null)
-                {
-                    result.entityHit.attackEntityFrom(this.causeMeteorDamage(this, this.shootingEntity), ConfigManagerCore.hardMode ? 12.0F : 6.0F);
-                }
             }
             this.world.playEvent(2001, this.getPosition(), Block.getStateId(MPBlocks.FALLEN_KOENTUS_METEOR.getDefaultState()));
-            this.world.newExplosion(this, this.posX, this.posY, this.posZ, this.size / 3 + 2, false, true);
+            this.world.newExplosion(this, this.posX, this.posY, this.posZ, this.size / 3.0f + 2, false, true);
         }
         this.setDead();
     }

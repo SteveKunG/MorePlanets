@@ -52,29 +52,25 @@ public class ItemCheeseSpore extends ItemBaseMP
                 BlockPos blockpos1 = blockpos;
                 int j = 0;
 
-                while (true)
+                if (j == i / 16)
                 {
-                    if (j >= i / 16)
+                    if (world.isAirBlock(blockpos1))
                     {
-                        if (world.isAirBlock(blockpos1))
-                        {
-                            IBlockState iblockstate1 = MPBlocks.CHEESE_SPORE_FLOWER.getDefaultState();
+                        IBlockState iblockstate1 = MPBlocks.CHEESE_SPORE_FLOWER.getDefaultState();
 
-                            if (rand.nextInt(5) == 0)
+                        if (rand.nextInt(5) == 0)
+                        {
+                            if (iblockstate1.getBlock().canPlaceBlockAt(world, blockpos1))
                             {
-                                if (iblockstate1.getBlock().canPlaceBlockAt(world, blockpos1))
-                                {
-                                    world.playEvent(2005, blockpos1, 0);
-                                    world.setBlockState(blockpos1, iblockstate1, 3);
-                                }
-                            }
-                            else
-                            {
-                                world.playEvent(2005, pos, 0);
+                                world.playEvent(2005, blockpos1, 0);
+                                world.setBlockState(blockpos1, iblockstate1, 3);
                             }
                         }
+                        else
+                        {
+                            world.playEvent(2005, pos, 0);
+                        }
                     }
-                    break;
                 }
 
                 blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);

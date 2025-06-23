@@ -52,10 +52,10 @@ public class CelestialRegistryUtils
         return satellite;
     }
 
-    public static SolarSystem createStarAndSolarSystem(SolarSystem solarSystem, Star star, String solarName, String starName, Vector3 galaxyPos, String starResource)
+    public static SolarSystem createStarAndSolarSystem(String solarName, String starName, Vector3 galaxyPos, String starResource)
     {
-        solarSystem = new SolarSystem(solarName, "milky_way").setMapPosition(galaxyPos);
-        star = new Star(starName).setParentSolarSystem(solarSystem);
+        SolarSystem solarSystem = new SolarSystem(solarName, "milky_way").setMapPosition(galaxyPos);
+        Star star = new Star(starName).setParentSolarSystem(solarSystem);
         star.setTierRequired(-1);
         star.setBodyIcon(new ResourceLocation("moreplanets:textures/gui/celestialbodies/" + starResource + ".png"));
         solarSystem.setMainStar(star);

@@ -76,15 +76,7 @@ public class TileEntityTreasureChestRendererMP extends TileEntitySpecialRenderer
         f1 = 1.0F - f1;
         f1 = 1.0F - f1 * f1 * f1;
         this.model.chestLid.rotateAngleX = -(f1 * (float)Math.PI / 2.0F);
-
-        if (tile.locked)
-        {
-            this.model.renderAll(false);
-        }
-        else
-        {
-            this.model.renderAll(true);
-        }
+        this.model.renderAll(!tile.locked);
 
         GlStateManager.disableRescaleNormal();
         GlStateManager.popMatrix();

@@ -33,12 +33,6 @@ public class WorldGenCrystalObelisk extends WorldGenerator
 
                         switch (rand.nextInt(4))
                         {
-                        case 0:
-                        default:
-                            world.setBlockState(pos.add(0, y + 1, 0), Blocks.OBSIDIAN.getDefaultState(), 2);
-                            world.setBlockState(pos.add(0, y + 2, 0), rand.nextInt(5) == 0 ? MPBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.LAPIS_BLOCK.getDefaultState(), 2);
-                            this.genCrystal(world, pos.add(0, y + 3, 0));
-                            break;
                         case 1:
                             world.setBlockState(pos.add(x, y + 1, 0), Blocks.OBSIDIAN.getDefaultState(), 2);
                             world.setBlockState(pos.add(x, y + 2, 0), rand.nextInt(5) == 0 ? MPBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.LAPIS_BLOCK.getDefaultState(), 2);
@@ -54,6 +48,11 @@ public class WorldGenCrystalObelisk extends WorldGenerator
                             world.setBlockState(pos.add(x, y + 2, 1), rand.nextInt(5) == 0 ? MPBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.LAPIS_BLOCK.getDefaultState(), 2);
                             this.genCrystal(world, pos.add(x, y + 3, 1));
                             break;
+                            default:
+                                world.setBlockState(pos.add(0, y + 1, 0), Blocks.OBSIDIAN.getDefaultState(), 2);
+                                world.setBlockState(pos.add(0, y + 2, 0), rand.nextInt(5) == 0 ? MPBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.LAPIS_BLOCK.getDefaultState(), 2);
+                                this.genCrystal(world, pos.add(0, y + 3, 0));
+                                break;
                         }
                     }
                 }

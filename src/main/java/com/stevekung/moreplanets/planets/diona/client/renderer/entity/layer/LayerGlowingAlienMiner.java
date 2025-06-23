@@ -110,7 +110,7 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
         GlStateManager.enableLighting();
         time = entity.ticksExisted + partialTicks;
-        sin = (MathHelper.sin(time / 16) + 1F) / 1F + 0.15F;
+        sin = MathHelper.sin(time / 16) + 1F + 0.15F;
         GlStateManager.color(sin, sin, sin, sin);
         Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);

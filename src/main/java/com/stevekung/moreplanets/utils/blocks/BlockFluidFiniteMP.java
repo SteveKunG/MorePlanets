@@ -33,7 +33,6 @@ public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements IIt
         return super.setTranslationKey(name);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     @Nullable
     public Boolean isEntityInsideMaterial(IBlockAccess world, BlockPos pos, IBlockState state, Entity entity, double yToTest, Material material, boolean testingHead)
@@ -45,7 +44,6 @@ public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements IIt
         return LiquidUtils.checkInsideBlock((EntityPlayer) entity, this) && testingHead;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing facing)
@@ -57,7 +55,7 @@ public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements IIt
         {
             return false;
         }
-        if (block != this && (block instanceof BlockFluidBaseMP || block instanceof BlockFluidFiniteMP))
+        if (block instanceof BlockFluidBaseMP || block instanceof BlockFluidFiniteMP)
         {
             return true;
         }

@@ -91,7 +91,7 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements IIte
         {
             return false;
         }
-        if (block != this && block instanceof BlockFluidBaseMP)
+        if (block instanceof BlockFluidBaseMP)
         {
             return true;
         }

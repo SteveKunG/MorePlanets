@@ -111,7 +111,7 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelR
     @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
-        return this instanceof IItemRarity && ((IItemRarity)this).getRarity() != null ? ((IItemRarity)this).getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
+        return this.getRarity() != null ? this.getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
     }
 
     public ItemArrowMP setRarityRGB(ColorUtils.RGB rgb)
@@ -124,6 +124,6 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelR
     {
         INFECTED_PURLONITE,
         INFECTED,
-        ANTI_GRAVITY;
+        ANTI_GRAVITY
     }
 }

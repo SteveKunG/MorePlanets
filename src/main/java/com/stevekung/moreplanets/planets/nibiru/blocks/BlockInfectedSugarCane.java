@@ -115,18 +115,6 @@ public class BlockInfectedSugarCane extends BlockBushMP
     }
 
     @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(MPItems.INFECTED_SUGAR_CANE);

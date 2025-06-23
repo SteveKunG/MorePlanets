@@ -15,16 +15,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class LayerGlowingTexture<E extends EntityLiving> implements LayerRenderer<E>
 {
     private final RenderLiving<E> render;
-    private final String textureToRender;
     private final boolean light;
     private final ResourceLocation texture;
 
     public LayerGlowingTexture(RenderLiving<E> render, String textureToRender, boolean light)
     {
         this.render = render;
-        this.textureToRender = textureToRender;
         this.light = light;
-        this.texture = new ResourceLocation("moreplanets:textures/entity/" + this.textureToRender + ".png");
+        this.texture = new ResourceLocation("moreplanets:textures/entity/" + textureToRender + ".png");
     }
 
     @Override

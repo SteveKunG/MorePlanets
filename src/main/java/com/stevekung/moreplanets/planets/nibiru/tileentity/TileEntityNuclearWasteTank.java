@@ -44,7 +44,7 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean createRod = false;
     @NetworkedField(targetSide = Side.CLIENT)
-    public FluidTankGC fluidTank = new FluidTankGC(3000, this);
+    public final FluidTankGC fluidTank = new FluidTankGC(3000, this);
 
     @Override
     public void readFromNBT(NBTTagCompound nbt)
@@ -224,16 +224,12 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
         this.time = 1200 + this.world.rand.nextInt(1200);
     }
 
-    private boolean destroyBlock(BlockPos pos, boolean dropBlock)
+    private void destroyBlock(BlockPos pos, boolean dropBlock)
     {
         IBlockState state = this.world.getBlockState(pos);
         Block block = state.getBlock();
 
-        if (block.isAir(state, this.world, pos))
-        {
-            return false;
-        }
-        else
+        if (!block.isAir(state, this.world, pos))
         {
             ItemStack itemStack = new ItemStack(MPBlocks.NUCLEAR_WASTE_TANK);
 
@@ -255,7 +251,7 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
                 Block.spawnAsEntity(this.world, pos, itemStack);
             }
             this.world.playEvent(2001, pos, Block.getStateId(state));
-            return this.world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+            this.world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
         }
     }
 }

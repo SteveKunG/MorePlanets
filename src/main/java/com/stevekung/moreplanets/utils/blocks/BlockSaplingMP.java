@@ -3,6 +3,12 @@ package com.stevekung.moreplanets.utils.blocks;
 import java.util.Locale;
 import java.util.Random;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.chalos.world.gen.feature.WorldGenCheeseSporeTree;
+import com.stevekung.moreplanets.planets.fronos.world.gen.feature.WorldGenFroliaTree;
+import com.stevekung.moreplanets.planets.fronos.world.gen.feature.WorldGenOscaleaTrees;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.*;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.PropertyBool;
@@ -15,19 +21,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.chalos.world.gen.feature.WorldGenCheeseSporeTree;
-import com.stevekung.moreplanets.planets.fronos.world.gen.feature.WorldGenFroliaTree;
-import com.stevekung.moreplanets.planets.fronos.world.gen.feature.WorldGenOscaleaTrees;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.*;
-
-import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.*;
 
 public class BlockSaplingMP extends BlockBushMP implements IGrowable
 {
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
     public static final PropertyBool NATURAL_GEN = PropertyBool.create("natural_gen");
-    private BlockType type;
+    private final BlockType type;
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
     private static final AxisAlignedBB CHEESE_SPORE = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
 

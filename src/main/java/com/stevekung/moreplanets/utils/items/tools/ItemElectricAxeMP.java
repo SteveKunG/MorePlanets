@@ -94,7 +94,7 @@ public class ItemElectricAxeMP extends ItemAxe implements IItemElectric, ISortab
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, @Nullable World world, List<String> list, ITooltipFlag flag)
     {
-        TextFormatting color = null;
+        TextFormatting color;
         float joules = this.getElectricityStored(itemStack);
 
         if (joules <= this.getMaxElectricityStored(itemStack) / 3)
@@ -126,7 +126,6 @@ public class ItemElectricAxeMP extends ItemAxe implements IItemElectric, ISortab
 
         if (energyToReceive > this.transferMax)
         {
-            rejectedElectricity += energyToReceive - this.transferMax;
             energyToReceive = this.transferMax;
         }
         if (doReceive)

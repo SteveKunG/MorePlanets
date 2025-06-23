@@ -118,7 +118,7 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
             IBlockState state = world.getBlockState(pos);
             block = state.getBlock();
 
-            if (block instanceof BlockCropsMP && state.getValue(BlockStateProperty.AGE_7).intValue() == 7 && this.wantsToReapStuff && (this.currentTask == 0 || this.currentTask < 0))
+            if (block instanceof BlockCropsMP && state.getValue(BlockStateProperty.AGE_7) == 7 && this.wantsToReapStuff && (this.currentTask == 0 || this.currentTask < 0))
             {
                 this.currentTask = 0;
                 return true;

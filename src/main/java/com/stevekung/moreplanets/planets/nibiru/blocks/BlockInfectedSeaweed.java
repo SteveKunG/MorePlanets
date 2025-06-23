@@ -70,7 +70,7 @@ public class BlockInfectedSeaweed extends BlockBushMP
             int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, heldStack);
             this.harvesters.set(player);
             this.dropBlockAsItem(world, pos, state, i);
-            this.harvesters.set(null);
+            this.harvesters.remove();
             Material material = world.getBlockState(pos.down()).getMaterial();
 
             if (material.blocksMovement() || material.isLiquid() || player.isCreative())
@@ -97,11 +97,6 @@ public class BlockInfectedSeaweed extends BlockBushMP
     public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
     {
         IBlockState blockUp = world.getBlockState(pos.up());
-
-        if (state.getBlock() == this)
-        {
-            return world.getBlockState(pos.down()).isFullBlock() && blockUp == MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
-        }
         return world.getBlockState(pos.down()).isFullBlock() && blockUp == MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
     }
 

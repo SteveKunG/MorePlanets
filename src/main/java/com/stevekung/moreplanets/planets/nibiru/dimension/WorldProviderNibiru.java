@@ -3,14 +3,15 @@ package com.stevekung.moreplanets.planets.nibiru.dimension;
 import java.util.Arrays;
 import java.util.List;
 
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import micdoodle8.mods.galacticraft.core.GCItems;
-import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
-import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
-import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
-import micdoodle8.mods.galacticraft.planets.venus.VenusItems;
+import com.stevekung.moreplanets.core.config.ConfigManagerMP;
+import com.stevekung.moreplanets.init.*;
+import com.stevekung.moreplanets.planets.nibiru.client.sky.CloudRendererNibiru;
+import com.stevekung.moreplanets.planets.nibiru.client.sky.SkyProviderNibiru;
+import com.stevekung.moreplanets.planets.nibiru.client.sky.WeatherRendererNibiru;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.BiomeProviderNibiru;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.ChunkGeneratorNibiru;
+import com.stevekung.moreplanets.utils.dimension.WorldProviderMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -25,16 +26,15 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.config.ConfigManagerMP;
-import com.stevekung.moreplanets.init.*;
 
-import com.stevekung.moreplanets.init.*;
-import com.stevekung.moreplanets.planets.nibiru.client.sky.CloudRendererNibiru;
-import com.stevekung.moreplanets.planets.nibiru.client.sky.SkyProviderNibiru;
-import com.stevekung.moreplanets.planets.nibiru.client.sky.WeatherRendererNibiru;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.BiomeProviderNibiru;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.ChunkGeneratorNibiru;
-import com.stevekung.moreplanets.utils.dimension.WorldProviderMP;
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.core.GCItems;
+import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
+import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
+import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
+import micdoodle8.mods.galacticraft.planets.venus.VenusItems;
 
 public class WorldProviderNibiru extends WorldProviderMP
 {
@@ -64,11 +64,7 @@ public class WorldProviderNibiru extends WorldProviderMP
         Biome biome = this.getBiomeForCoords(pos);
         float temp = biome.getTemperature(pos);
 
-        if (temp > 0.15F)
-        {
-            return false;
-        }
-        else
+        if (temp < 0.15F)
         {
             if (pos.getY() >= 0 && pos.getY() < 256 && this.world.getLightFor(EnumSkyBlock.BLOCK, pos) < 10)
             {
@@ -80,17 +76,12 @@ public class WorldProviderNibiru extends WorldProviderMP
                     {
                         return true;
                     }
-
                     boolean flag = this.isWater(pos.west()) && this.isWater(pos.east()) && this.isWater(pos.north()) && this.isWater(pos.south());
-
-                    if (!flag)
-                    {
-                        return true;
-                    }
+                    return !flag;
                 }
             }
-            return false;
         }
+        return false;
     }
 
     @Override
@@ -112,11 +103,7 @@ public class WorldProviderNibiru extends WorldProviderMP
             if (pos.getY() >= 0 && pos.getY() < 256 && this.world.getLightFor(EnumSkyBlock.BLOCK, pos) < 10)
             {
                 Block block = this.world.getBlockState(pos).getBlock();
-
-                if (block.isAir(this.world.getBlockState(pos), this.world, pos) && MPBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.world, pos))
-                {
-                    return true;
-                }
+                return block.isAir(this.world.getBlockState(pos), this.world, pos) && MPBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.world, pos);
             }
             return false;
         }
@@ -167,7 +154,7 @@ public class WorldProviderNibiru extends WorldProviderMP
         value = 1.0F - value;
         value = value * (1.0F - this.world.getRainStrength(partialTicks) * 6.0F / 16.0F);
         value = value * (1.0F - this.world.getThunderStrength(partialTicks) * 8.0F / 16.0F);
-        return value * 1.0F;
+        return value;
     }
 
     @Override

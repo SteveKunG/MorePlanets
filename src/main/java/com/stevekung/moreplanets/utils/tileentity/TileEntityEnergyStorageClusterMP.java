@@ -21,7 +21,7 @@ public abstract class TileEntityEnergyStorageClusterMP extends TileBaseUniversal
     public int lastScaledEnergyLevel;
     private float lastEnergy = 0;
     private MachineSidePack[] machineSides;
-    public String containerName = "";
+    public final String containerName;
 
     public TileEntityEnergyStorageClusterMP(float capacity, float extract, int tier, String containerName)
     {

@@ -37,14 +37,12 @@ import com.stevekung.moreplanets.core.handler.GuiHandlerMP;
 import com.stevekung.moreplanets.core.handler.MissingMappingHandler;
 import com.stevekung.moreplanets.init.*;
 
-import com.stevekung.moreplanets.init.*;
 import com.stevekung.moreplanets.network.PacketSimpleMP;
 import com.stevekung.moreplanets.proxy.ServerProxyMP;
 import com.stevekung.moreplanets.recipe.CraftingManagerMP;
 import com.stevekung.moreplanets.recipe.SmeltingManagerMP;
 import com.stevekung.moreplanets.utils.*;
 
-import com.stevekung.moreplanets.utils.*;
 import stevekung.mods.stevekunglib.utils.CommonRegistryUtils;
 import stevekung.mods.stevekunglib.utils.CommonUtils;
 import stevekung.mods.stevekunglib.utils.VersionChecker;

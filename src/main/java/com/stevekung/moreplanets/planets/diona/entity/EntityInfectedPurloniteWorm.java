@@ -182,7 +182,7 @@ public class EntityInfectedPurloniteWorm extends EntityMob implements IEntityBre
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotion() == MPPotions.INFECTED_PURLONITE ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() != MPPotions.INFECTED_PURLONITE && super.isPotionApplicable(potion);
     }
 
     static class AIRandomMovement extends EntityAIWander

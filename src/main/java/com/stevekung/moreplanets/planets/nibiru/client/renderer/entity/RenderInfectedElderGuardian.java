@@ -46,11 +46,7 @@ public class RenderInfectedElderGuardian extends RenderLiving<EntityInfectedElde
                 {
                     Vec3d vec3 = this.getPosition(entitylivingbase, entitylivingbase.height * 0.5D, 1.0F);
                     Vec3d vec31 = this.getPosition(entity, entity.getEyeHeight(), 1.0F);
-
-                    if (camera.isBoundingBoxInFrustum(new AxisAlignedBB(vec31.x, vec31.y, vec31.z, vec3.x, vec3.y, vec3.z)))
-                    {
-                        return true;
-                    }
+                    return camera.isBoundingBoxInFrustum(new AxisAlignedBB(vec31.x, vec31.y, vec31.z, vec3.x, vec3.y, vec3.z));
                 }
             }
             return false;
@@ -90,7 +86,7 @@ public class RenderInfectedElderGuardian extends RenderLiving<EntityInfectedElde
             vec32 = vec32.normalize();
             float f5 = (float)Math.acos(vec32.y);
             float f6 = (float)Math.atan2(vec32.z, vec32.x);
-            GlStateManager.rotate(((float)Math.PI / 2F + -f6) * (180F / (float)Math.PI), 0.0F, 1.0F, 0.0F);
+            GlStateManager.rotate(((float) Math.PI / 2F - f6) * (180F / (float)Math.PI), 0.0F, 1.0F, 0.0F);
             GlStateManager.rotate(f5 * (180F / (float)Math.PI), 1.0F, 0.0F, 0.0F);
             int i = 1;
             double d1 = f2 * 0.05D * (1.0D - (i & 1) * 2.5D);

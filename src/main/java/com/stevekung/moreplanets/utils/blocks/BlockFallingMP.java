@@ -66,12 +66,7 @@ public class BlockFallingMP extends BlockFalling implements ISortableBlock, IIte
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing facing, IPlantable plantable)
     {
         IBlockState plantState = plantable.getPlant(world, pos.offset(facing));
-
-        if (this == MPBlocks.INFECTED_SAND && plantState.getBlock() == Blocks.DEADBUSH)
-        {
-            return true;
-        }
-        return false;
+        return this == MPBlocks.INFECTED_SAND && plantState.getBlock() == Blocks.DEADBUSH;
     }
 
     @Override

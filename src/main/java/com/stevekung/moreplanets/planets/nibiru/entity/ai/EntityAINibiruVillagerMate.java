@@ -1,6 +1,7 @@
 package com.stevekung.moreplanets.planets.nibiru.entity.ai;
 
-import net.minecraft.entity.Entity;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.math.BlockPos;
@@ -8,7 +9,6 @@ import net.minecraft.village.Village;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
 
 public class EntityAINibiruVillagerMate extends EntityAIBase
 {
@@ -40,13 +40,9 @@ public class EntityAINibiruVillagerMate extends EntityAIBase
         {
             this.village = this.world.getVillageCollection().getNearestVillage(new BlockPos(this.entity), 0);
 
-            if (this.village == null)
+            if (this.checkSufficientDoorsPresentForNewVillager() && this.entity.getIsWillingToMate(true))
             {
-                return false;
-            }
-            else if (this.checkSufficientDoorsPresentForNewVillager() && this.entity.getIsWillingToMate(true))
-            {
-                Entity entity = this.world.findNearestEntityWithinAABB(EntityNibiruVillager.class, this.entity.getEntityBoundingBox().grow(8.0D, 3.0D, 8.0D), this.entity);
+                EntityNibiruVillager entity = this.world.findNearestEntityWithinAABB(EntityNibiruVillager.class, this.entity.getEntityBoundingBox().grow(8.0D, 3.0D, 8.0D), this.entity);
 
                 if (entity == null)
                 {
@@ -54,7 +50,7 @@ public class EntityAINibiruVillagerMate extends EntityAIBase
                 }
                 else
                 {
-                    this.mate = (EntityNibiruVillager)entity;
+                    this.mate = entity;
                     return this.mate.getGrowingAge() == 0 && this.mate.getIsWillingToMate(true);
                 }
             }

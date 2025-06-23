@@ -28,13 +28,13 @@ public class GenLayerNibiruShore extends GenLayer
                 this.initChunkSeed(j + areaX, i + areaY);
                 int k = aint[j + 1 + (i + 1) * (areaWidth + 2)];
                 Biome biome = Biome.getBiome(k);
+                int k4 = aint[j + 1 + (i + 1 + 1) * (areaWidth + 2)];
 
                 if (k == Biome.getIdForBiome(MPBiomes.GREEN_VEIN_FIELDS))
                 {
                     int j2 = aint[j + 1 + (i + 1 - 1) * (areaWidth + 2)];
                     int i3 = aint[j + 1 + 1 + (i + 1) * (areaWidth + 2)];
                     int l3 = aint[j + 1 - 1 + (i + 1) * (areaWidth + 2)];
-                    int k4 = aint[j + 1 + (i + 1 + 1) * (areaWidth + 2)];
 
                     if (j2 != Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN) && i3 != Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN) && l3 != Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN) && k4 != Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN))
                     {
@@ -50,11 +50,10 @@ public class GenLayerNibiruShore extends GenLayer
                     int i2 = aint[j + 1 + (i + 1 - 1) * (areaWidth + 2)];
                     int l2 = aint[j + 1 + 1 + (i + 1) * (areaWidth + 2)];
                     int k3 = aint[j + 1 - 1 + (i + 1) * (areaWidth + 2)];
-                    int j4 = aint[j + 1 + (i + 1 + 1) * (areaWidth + 2)];
 
-                    if (this.isJungleCompatible(i2) && this.isJungleCompatible(l2) && this.isJungleCompatible(k3) && this.isJungleCompatible(j4))
+                    if (this.isJungleCompatible(i2) && this.isJungleCompatible(l2) && this.isJungleCompatible(k3) && this.isJungleCompatible(k4))
                     {
-                        if (!this.isOcean(i2) && !this.isOcean(l2) && !this.isOcean(k3) && !this.isOcean(j4))
+                        if (!this.isOcean(i2) && !this.isOcean(l2) && !this.isOcean(k3) && !this.isOcean(k4))
                         {
                             aint1[j + i * areaWidth] = k;
                         }
@@ -81,9 +80,8 @@ public class GenLayerNibiruShore extends GenLayer
                             int l1 = aint[j + 1 + (i + 1 - 1) * (areaWidth + 2)];
                             int k2 = aint[j + 1 + 1 + (i + 1) * (areaWidth + 2)];
                             int j3 = aint[j + 1 - 1 + (i + 1) * (areaWidth + 2)];
-                            int i4 = aint[j + 1 + (i + 1 + 1) * (areaWidth + 2)];
 
-                            if (!this.isOcean(l1) && !this.isOcean(k2) && !this.isOcean(j3) && !this.isOcean(i4))
+                            if (!this.isOcean(l1) && !this.isOcean(k2) && !this.isOcean(j3) && !this.isOcean(k4))
                             {
                                 aint1[j + i * areaWidth] = k;
                             }
@@ -102,11 +100,10 @@ public class GenLayerNibiruShore extends GenLayer
                         int l = aint[j + 1 + (i + 1 - 1) * (areaWidth + 2)];
                         int i1 = aint[j + 1 + 1 + (i + 1) * (areaWidth + 2)];
                         int j1 = aint[j + 1 - 1 + (i + 1) * (areaWidth + 2)];
-                        int k1 = aint[j + 1 + (i + 1 + 1) * (areaWidth + 2)];
 
-                        if (!this.isOcean(l) && !this.isOcean(i1) && !this.isOcean(j1) && !this.isOcean(k1))
+                        if (!this.isOcean(l) && !this.isOcean(i1) && !this.isOcean(j1) && !this.isOcean(k4))
                         {
-                            if (this.isMesa(l) && this.isMesa(i1) && this.isMesa(j1) && this.isMesa(k1))
+                            if (this.isMesa(l) && this.isMesa(i1) && this.isMesa(j1) && this.isMesa(k4))
                             {
                                 aint1[j + i * areaWidth] = k;
                             }

@@ -21,7 +21,7 @@ import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
 public class BlockInfectedSponge extends BlockBaseMP
 {
-    private boolean isWet;
+    private final boolean isWet;
 
     public BlockInfectedSponge(String name, boolean isWet)
     {
@@ -35,16 +35,16 @@ public class BlockInfectedSponge extends BlockBaseMP
     @Override
     public void onBlockAdded(World world, BlockPos pos, IBlockState state)
     {
-        this.tryAbsorb(world, pos, state);
+        this.tryAbsorb(world, pos);
     }
 
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
-        this.tryAbsorb(world, pos, state);
+        this.tryAbsorb(world, pos);
     }
 
-    private void tryAbsorb(World world, BlockPos pos, IBlockState state)
+    private void tryAbsorb(World world, BlockPos pos)
     {
         if (!this.isWet && this.absorb(world, pos))
         {

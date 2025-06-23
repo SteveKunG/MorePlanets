@@ -51,11 +51,7 @@ public class ItemPickaxeMP extends ItemPickaxe implements ISortableItem, IItemMo
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
-        if (repair.getItem() == this.repairItem)
-        {
-            return true;
-        }
-        return false;
+        return repair.getItem() == this.repairItem;
     }
 
     @Override

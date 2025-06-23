@@ -13,7 +13,7 @@ import com.stevekung.moreplanets.init.MPBlocks;
 
 public class WorldGenInfectedSwampTree extends WorldGenAbstractTree
 {
-    private boolean genLeaves;
+    private final boolean genLeaves;
 
     public WorldGenInfectedSwampTree(boolean genLeaves)
     {

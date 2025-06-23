@@ -63,10 +63,4 @@ public class BlockInfectedFarmland extends BlockFarmlandMP
         while (world.getBlockState(mutableblockpos).getBlock() != MPBlocks.INFECTED_WATER_FLUID_BLOCK && world.getBlockState(mutableblockpos).getBlock() != MPBlocks.PURIFIED_WATER_FLUID_BLOCK);
         return true;
     }
-
-    @Override
-    protected Block getSourceBlock()
-    {
-        return null;
-    }
 }

@@ -54,7 +54,6 @@ import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.init.MPPotions;
 import com.stevekung.moreplanets.planets.nibiru.entity.ai.*;
 
-import com.stevekung.moreplanets.planets.nibiru.entity.ai.*;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFields;
 import com.stevekung.moreplanets.utils.entity.ISpaceMob;
 import com.stevekung.moreplanets.utils.entity.ai.PathNavigateGroundMP;
@@ -252,7 +251,7 @@ public class EntityNibiruVillager extends EntityAgeable implements INpc, IMercha
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() != MPPotions.INFECTED_SPORE && super.isPotionApplicable(potion);
     }
 
     @Override
@@ -288,20 +287,13 @@ public class EntityNibiruVillager extends EntityAgeable implements INpc, IMercha
             this.randomTickDivider = 70 + this.rand.nextInt(50);
             this.village = this.world.getVillageCollection().getNearestVillage(pos, 32);
 
-            if (this.village == null)
-            {
-                this.detachHome();
-            }
-            else
-            {
-                BlockPos pos1 = this.village.getCenter();
-                this.setHomePosAndDistance(pos1, this.village.getVillageRadius());
+            BlockPos pos1 = this.village.getCenter();
+            this.setHomePosAndDistance(pos1, this.village.getVillageRadius());
 
-                if (this.isLookingForHome)
-                {
-                    this.isLookingForHome = false;
-                    this.village.setDefaultPlayerReputation(5);
-                }
+            if (this.isLookingForHome)
+            {
+                this.isLookingForHome = false;
+                this.village.setDefaultPlayerReputation(5);
             }
         }
 
@@ -623,7 +615,7 @@ public class EntityNibiruVillager extends EntityAgeable implements INpc, IMercha
         Team team = this.getTeam();
         String customName = this.getCustomNameTag();
 
-        if (customName != null && !customName.isEmpty())
+        if (!customName.isEmpty())
         {
             TextComponentString component = new TextComponentString(ScorePlayerTeam.formatPlayerName(team, customName));
             component.getStyle().setHoverEvent(this.getHoverEvent());
@@ -1019,8 +1011,8 @@ public class EntityNibiruVillager extends EntityAgeable implements INpc, IMercha
 
     public static class EmeraldForItemStack implements EntityVillager.ITradeList
     {
-        public ItemStack buyingItem;
-        public EntityVillager.PriceInfo price;
+        public final ItemStack buyingItem;
+        public final EntityVillager.PriceInfo price;
 
         public EmeraldForItemStack(ItemStack itemStack, EntityVillager.PriceInfo price)
         {

@@ -1,9 +1,6 @@
 package com.stevekung.moreplanets.client.gui;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
@@ -51,7 +48,7 @@ public class GuiShieldGenerator extends GuiContainerMP
             GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(EnumSimplePacket.S_UPDATE_DISABLEABLE_BUTTON, GCCoreUtil.getDimensionID(this.tile.getWorld()), new Object[] { this.tile.getPos(), 0 }));
             break;
         case 1:
-            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_SWITCH_SHIELD_GENERATOR_GUI, GCCoreUtil.getDimensionID(this.tile.getWorld()), new Object[] { this.tile.getPos(), true }));
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_SWITCH_SHIELD_GENERATOR_GUI, GCCoreUtil.getDimensionID(this.tile.getWorld()), this.tile.getPos(), true));
             break;
         }
     }
@@ -69,7 +66,7 @@ public class GuiShieldGenerator extends GuiContainerMP
         this.infoRegions.add(new GuiElementInfoRegionMP(x + 176, y + 23, 18, 18, Arrays.asList(LangUtils.translate("gui.shield_damage_upgrade.desc.0"), LangUtils.translate("gui.shield_damage_upgrade.desc.1")), this.width, this));
         List<String> electricityDesc = new ArrayList<>();
         electricityDesc.add(LangUtils.translate("gui.energy_storage.desc.0"));
-        electricityDesc.add(TextFormatting.YELLOW + LangUtils.translate("gui.energy_storage.desc.1") + ((int) Math.floor(this.tile.getEnergyStoredGC()) + " / " + (int) Math.floor(this.tile.getMaxEnergyStoredGC())));
+        electricityDesc.add(TextFormatting.YELLOW + LangUtils.translate("gui.energy_storage.desc.1") + (int) Math.floor(this.tile.getEnergyStoredGC()) + " / " + (int) Math.floor(this.tile.getMaxEnergyStoredGC()));
         this.electricInfoRegion = new GuiElementInfoRegionMP(x + 156, y + 21, 8, 43, electricityDesc, this.width, this);
         this.infoRegions.add(this.electricInfoRegion);
         this.buttonList.add(this.buttonEnable = new GuiButton(0, this.width / 2 - 76, this.height / 2 - 6, 72, 20, !this.tile.getDisabled(0) ? LangUtils.translate("gui.button.disable.name") : LangUtils.translate("gui.button.enable.name")));
@@ -131,7 +128,7 @@ public class GuiShieldGenerator extends GuiContainerMP
             this.drawTexturedModalRect(x + 154, y + 66, 201, 0, 11, 10);
         }
 
-        List<String> electricityDesc = new ArrayList<>(Arrays.asList(LangUtils.translate("gui.energy_storage.desc.0")));
+        List<String> electricityDesc = new ArrayList<>(Collections.singletonList(LangUtils.translate("gui.energy_storage.desc.0")));
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.tile.getEnergyStoredGC(), this.tile.getMaxEnergyStoredGC(), electricityDesc);
         this.electricInfoRegion.tooltipStrings = electricityDesc;
     }

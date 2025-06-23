@@ -1,16 +1,13 @@
 package com.stevekung.moreplanets.utils.tileentity;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.init.MPSounds;
+import com.stevekung.moreplanets.network.PacketSimpleMP;
+import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
+import com.stevekung.moreplanets.utils.items.IDungeonKeyable;
 
-import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityAdvanced;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,10 +32,14 @@ import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPSounds;
-import com.stevekung.moreplanets.network.PacketSimpleMP;
-import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import com.stevekung.moreplanets.utils.items.IDungeonKeyable;
+
+import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.tile.TileEntityAdvanced;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import micdoodle8.mods.miccore.Annotations.NetworkedField;
+
+import javax.annotation.Nullable;
 
 public abstract class TileEntityTreasureChestMP extends TileEntityAdvanced implements IDungeonKeyable, IInteractionObject
 {
@@ -46,7 +47,7 @@ public abstract class TileEntityTreasureChestMP extends TileEntityAdvanced imple
     public float prevLidAngle;
     public int numPlayersUsing;
     private int ticksSinceSync;
-    private Block block;
+    private final Block block;
     private ResourceLocation lootTable;
     private long lootTableSeed;
 
@@ -143,17 +144,14 @@ public abstract class TileEntityTreasureChestMP extends TileEntityAdvanced imple
             this.numPlayersUsing = 0;
             f = 5.0F;
             List<EntityPlayer> list = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(i - f, j - f, k - f, i + 1 + f, j + 1 + f, k + 1 + f));
-            Iterator<EntityPlayer> iterator = list.iterator();
 
-            while (iterator.hasNext())
+            for (EntityPlayer player : list)
             {
-                EntityPlayer player = iterator.next();
-
                 if (player.openContainer instanceof ContainerChest)
                 {
-                    IInventory iinventory = ((ContainerChest)player.openContainer).getLowerChestInventory();
+                    IInventory iinventory = ((ContainerChest) player.openContainer).getLowerChestInventory();
 
-                    if (iinventory == this || iinventory instanceof InventoryLargeChest && ((InventoryLargeChest)iinventory).isPartOfLargeChest(this))
+                    if (iinventory == this || iinventory instanceof InventoryLargeChest && ((InventoryLargeChest) iinventory).isPartOfLargeChest(this))
                     {
                         ++this.numPlayersUsing;
                     }
@@ -303,7 +301,7 @@ public abstract class TileEntityTreasureChestMP extends TileEntityAdvanced imple
         {
             if (player.world.isRemote)
             {
-                GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_FAILED_UNLOCK_CHEST, GCCoreUtil.getDimensionID(this.world), new Object[] { item.getItemStackDisplayName(item.getDefaultInstance()) }));
+                GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_FAILED_UNLOCK_CHEST, GCCoreUtil.getDimensionID(this.world), item.getItemStackDisplayName(item.getDefaultInstance())));
             }
             return true;
         }

@@ -105,7 +105,7 @@ public class BlockCreep extends BlockFallingMP implements ITileEntityProvider, I
     @Override
     public boolean hasTileEntity(IBlockState state)
     {
-        return this.type == BlockType.GRAVITY_CREEP_EXTRACTOR ? true : false;
+        return this.type == BlockType.GRAVITY_CREEP_EXTRACTOR;
     }
 
     @Override
@@ -190,6 +190,6 @@ public class BlockCreep extends BlockFallingMP implements ITileEntityProvider, I
     {
         CREEP_BLOCK,
         GRAVITY_CREEP_BLOCK,
-        GRAVITY_CREEP_EXTRACTOR;
+        GRAVITY_CREEP_EXTRACTOR
     }
 }

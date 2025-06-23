@@ -178,7 +178,7 @@ public class DoubleChestItemHandlerMP extends WeakReference<TileEntityChestMP> i
         World world = chest.getWorld();
         BlockPos pos = chest.getPos();
 
-        if (world == null || pos == null || !world.isBlockLoaded(pos))
+        if (!world.isBlockLoaded(pos))
         {
             return null; // Still loading
         }

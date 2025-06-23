@@ -166,7 +166,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
 
     public void growStem(World world, BlockPos pos, IBlockState state)
     {
-        int i = state.getValue(BlockStateProperty.AGE_7).intValue() + MathHelper.getInt(world.rand, 2, 5);
+        int i = state.getValue(BlockStateProperty.AGE_7) + MathHelper.getInt(world.rand, 2, 5);
         world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_7, Math.min(7, i)), 2);
     }
 
@@ -207,7 +207,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
     @Override
     public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient)
     {
-        return state.getValue(BlockStateProperty.AGE_7).intValue() != 7;
+        return state.getValue(BlockStateProperty.AGE_7) != 7;
     }
 
     @Override

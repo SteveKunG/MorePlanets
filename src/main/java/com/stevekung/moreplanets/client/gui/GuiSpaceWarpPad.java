@@ -2,6 +2,7 @@ package com.stevekung.moreplanets.client.gui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
@@ -41,11 +42,9 @@ public class GuiSpaceWarpPad extends GuiContainerMP
     @Override
     protected void actionPerformed(GuiButton button)
     {
-        switch (button.id)
+        if (button.id == 0)
         {
-        case 0:
             GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(EnumSimplePacket.S_UPDATE_DISABLEABLE_BUTTON, GCCoreUtil.getDimensionID(this.tile.getWorld()), new Object[] { this.tile.getPos(), 0 }));
-            break;
         }
     }
 
@@ -77,7 +76,7 @@ public class GuiSpaceWarpPad extends GuiContainerMP
         {
             NBTTagCompound compound = this.tile.getInventory().get(1).getTagCompound();
             dimension = TextFormatting.GREEN + String.valueOf(compound.getInteger("DimensionID"));
-            name = TextFormatting.GREEN + String.valueOf(compound.getString("DimensionName"));
+            name = TextFormatting.GREEN + compound.getString("DimensionName");
             dest = TextFormatting.GREEN + "" + compound.getInteger("X") + " " + compound.getInteger("Y") + " " + compound.getInteger("Z");
         }
         this.fontRenderer.drawString(LangUtils.translate("gui.status.dimension.name") + ": " + dimension + " ", 46, 26, 2536735);
@@ -101,7 +100,7 @@ public class GuiSpaceWarpPad extends GuiContainerMP
         {
             this.drawTexturedModalRect(x + 6, y + 80, 176, 0, 11, 10);
         }
-        List<String> electricityDesc = new ArrayList<>(Arrays.asList(LangUtils.translate("gui.energy_storage.desc.0")));
+        List<String> electricityDesc = new ArrayList<>(Collections.singletonList(LangUtils.translate("gui.energy_storage.desc.0")));
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.tile.getEnergyStoredGC(), this.tile.getMaxEnergyStoredGC(), electricityDesc);
         this.electricInfoRegion.tooltipStrings = electricityDesc;
     }

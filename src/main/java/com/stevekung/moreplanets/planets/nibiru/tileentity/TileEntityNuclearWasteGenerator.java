@@ -26,7 +26,7 @@ import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectricalSource implements IConnector, IDisableableMachine
 {
-    public int maxGenerate = 50000;
+    public final int maxGenerate = 50000;
     @NetworkedField(targetSide = Side.CLIENT)
     public float generateTick;
     @NetworkedField(targetSide = Side.CLIENT)

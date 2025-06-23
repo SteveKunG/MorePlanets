@@ -13,9 +13,9 @@ import com.stevekung.moreplanets.init.MPBlocks;
 
 public class WorldGenInfectedJungleTrees extends WorldGenAbstractTree
 {
-    private int minTreeHeight;
-    private boolean genLeaves;
-    private boolean vinesGrow;
+    private final int minTreeHeight;
+    private final boolean genLeaves;
+    private final boolean vinesGrow;
 
     public WorldGenInfectedJungleTrees(boolean genLeaves, int minTreeHeight, boolean vinesGrow)
     {

@@ -19,7 +19,7 @@ public class EntranceCraterNibiru extends SizedPieceNibiru
 
     public EntranceCraterNibiru() {}
 
-    public EntranceCraterNibiru(World world, DungeonConfigurationMP configuration, Random rand, int blockPosX, int blockPosZ)
+    public EntranceCraterNibiru(DungeonConfigurationMP configuration, Random rand, int blockPosX, int blockPosZ)
     {
         super(configuration, rand.nextInt(4) + 6, 12, rand.nextInt(4) + 6, EnumFacing.Plane.HORIZONTAL.random(rand));
         this.setCoordBaseMode(EnumFacing.SOUTH);

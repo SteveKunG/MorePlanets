@@ -87,7 +87,7 @@ public class GuiBlackHoleStorage extends GuiContainerMP implements ICheckBoxCall
         int y = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
         this.mc.getTextureManager().bindTexture(GuiBlackHoleStorage.XP_TEXTURE);
-        int level = Math.min((int) Math.floor(this.tile.fluidTank.getFluidAmount() * 37 / this.tile.getMaxXP()), 37);
+        int level = Math.min((int) Math.floor(this.tile.fluidTank.getFluidAmount() * 37.0d / this.tile.getMaxXP()), 37);
         this.drawTexturedModalRect(x + 238, y + 170 + 37 - level, 238, 170 - level + 37, 5, level);
         this.disableBlackHoleCheckbox.isSelected = this.tile.disableBlackHole;
         this.useHopperCheckbox.isSelected = this.tile.useHopper;

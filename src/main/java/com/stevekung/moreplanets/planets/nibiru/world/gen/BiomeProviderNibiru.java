@@ -1,15 +1,14 @@
 package com.stevekung.moreplanets.planets.nibiru.world.gen;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.init.MPBiomes;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.biome.layer.*;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.*;
-import com.stevekung.moreplanets.init.MPBiomes;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.biome.layer.*;
 
-import com.stevekung.moreplanets.planets.nibiru.world.gen.biome.layer.*;
+import javax.annotation.Nullable;
 
 public class BiomeProviderNibiru extends BiomeProvider
 {
@@ -35,7 +34,7 @@ public class BiomeProviderNibiru extends BiomeProvider
         int size = width * height;
         int[] aint = this.genBiomes.getInts(x, z, width, height);
 
-        if (biomes == null || biomes.length < size)
+        if (biomes.length < size)
         {
             biomes = new Biome[size];
         }
@@ -61,7 +60,6 @@ public class BiomeProviderNibiru extends BiomeProvider
         {
             Biome[] abiome = this.biomeCache.getCachedBiomes(x, z);
             System.arraycopy(abiome, 0, listToReuse, 0, size);
-            return listToReuse;
         }
         else
         {
@@ -71,8 +69,8 @@ public class BiomeProviderNibiru extends BiomeProvider
             {
                 listToReuse[i] = Biome.getBiome(aint[i], MPBiomes.INFECTED_OCEAN);
             }
-            return listToReuse;
         }
+        return listToReuse;
     }
 
     private void initLayers(long seed)
@@ -117,7 +115,7 @@ public class BiomeProviderNibiru extends BiomeProvider
                 genlayerhills = new GenLayerAddIsland(3L, genlayerhills);
             }
 
-            if (k == 1 || i == 1)
+            if (k == 1)
             {
                 genlayerhills = new GenLayerNibiruShore(1000L, genlayerhills);
             }

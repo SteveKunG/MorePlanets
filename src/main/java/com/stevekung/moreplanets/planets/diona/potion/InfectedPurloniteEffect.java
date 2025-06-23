@@ -22,7 +22,7 @@ public class InfectedPurloniteEffect extends PotionMP
         if (this == MPPotions.INFECTED_PURLONITE)
         {
             int k = 20 >> amplifier;
-            return k > 0 ? duration % k == 0 : true;
+            return k == 0 || duration % k == 0;
         }
         return false;
     }

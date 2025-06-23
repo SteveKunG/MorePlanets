@@ -7,9 +7,9 @@ public enum BossType
     NIBIRU("Nibiru Boss"),
     NIBIRU_MINI("Nibiru Boss");
 
-    private String name;
+    private final String name;
 
-    private BossType(String name)
+    BossType(String name)
     {
         this.name = name;
     }

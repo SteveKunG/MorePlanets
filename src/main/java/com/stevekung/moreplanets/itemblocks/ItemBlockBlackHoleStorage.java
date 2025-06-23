@@ -85,7 +85,7 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescriptionTESR
     {
         if (this.getBlock() instanceof IDescription && this.getBlock() instanceof BlockBlackHoleStorage)
         {
-            TileEntity tile = ((BlockBlackHoleStorage) this.getBlock()).createTileEntity(null, this.getBlock().getDefaultState());
+            TileEntity tile = this.getBlock().createTileEntity(null, this.getBlock().getDefaultState());
 
             if (tile instanceof TileEntityBlackHoleStorage)
             {
@@ -170,11 +170,7 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescriptionTESR
         if (itemStack.hasTagCompound() && nbt.hasKey("Items"))
         {
             NBTTagList list = nbt.getTagList("Items", 10);
-
-            for (int i = 0; i < list.tagCount();)
-            {
-                return list.getCompoundTagAt(i).hasKey("Slot");
-            }
+            return list.tagCount() > 0;
         }
         return false;
     }

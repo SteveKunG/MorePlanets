@@ -215,26 +215,20 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
                 return state.withProperty(VARIANT, BlockType.SOUTH);
             case NORTH_EAST:
                 return state.withProperty(VARIANT, BlockType.SOUTH_EAST);
-            case WEST:
-            case EAST:
-            default:
-                return state;
             case SOUTH_WEST:
                 return state.withProperty(VARIANT, BlockType.NORTH_WEST);
             case SOUTH:
                 return state.withProperty(VARIANT, BlockType.NORTH);
             case SOUTH_EAST:
                 return state.withProperty(VARIANT, BlockType.NORTH_EAST);
+                default:
+                    return state;
             }
         case FRONT_BACK:
             switch (type)
             {
             case NORTH_WEST:
                 return state.withProperty(VARIANT, BlockType.NORTH_EAST);
-            case NORTH:
-            case SOUTH:
-            default:
-                return state;
             case NORTH_EAST:
                 return state.withProperty(VARIANT, BlockType.NORTH_WEST);
             case WEST:
@@ -245,6 +239,8 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
                 return state.withProperty(VARIANT, BlockType.SOUTH_EAST);
             case SOUTH_EAST:
                 return state.withProperty(VARIANT, BlockType.SOUTH_WEST);
+                default:
+                    return state;
             }
         default:
             return state;

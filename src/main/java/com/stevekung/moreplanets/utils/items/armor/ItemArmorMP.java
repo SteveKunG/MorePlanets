@@ -43,11 +43,7 @@ public abstract class ItemArmorMP extends ItemArmor implements ISortableItem, II
         {
             return false;
         }
-        if (repair.getItem() == this.getRepairItem())
-        {
-            return true;
-        }
-        return false;
+        return repair.getItem() == this.getRepairItem();
     }
 
     @Override
@@ -55,15 +51,14 @@ public abstract class ItemArmorMP extends ItemArmor implements ISortableItem, II
     {
         switch (this.armorType)
         {
-        case HEAD:
-        default:
-            return EnumSortCategoryItem.HELMET;
         case CHEST:
             return EnumSortCategoryItem.CHESTPLATE;
         case LEGS:
             return EnumSortCategoryItem.LEGGINGS;
         case FEET:
             return EnumSortCategoryItem.BOOTS;
+            default:
+                return EnumSortCategoryItem.HELMET;
         }
     }
 

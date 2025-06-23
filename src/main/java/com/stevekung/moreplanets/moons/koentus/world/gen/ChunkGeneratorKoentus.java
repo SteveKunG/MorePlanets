@@ -93,7 +93,7 @@ public class ChunkGeneratorKoentus extends ChunkGeneratorBaseMP
     @Override
     public boolean isInsideStructure(World world, String name, BlockPos pos)
     {
-        return "AlienShip".equals(name) && this.alienShipFeatureGenerator != null ? this.alienShipFeatureGenerator.isInsideStructure(pos) : false;
+        return "AlienShip".equals(name) && this.alienShipFeatureGenerator != null && this.alienShipFeatureGenerator.isInsideStructure(pos);
     }
 
     @Override

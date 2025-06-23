@@ -134,7 +134,7 @@ public class ItemElectricSwordMP extends ItemSword implements IItemElectric, ISo
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, @Nullable World world, List<String> list, ITooltipFlag flag)
     {
-        TextFormatting color = null;
+        TextFormatting color;
         float joules = this.getElectricityStored(itemStack);
 
         if (joules <= this.getMaxElectricityStored(itemStack) / 3)
@@ -166,7 +166,6 @@ public class ItemElectricSwordMP extends ItemSword implements IItemElectric, ISo
 
         if (energyToReceive > this.transferMax)
         {
-            rejectedElectricity += energyToReceive - this.transferMax;
             energyToReceive = this.transferMax;
         }
         if (doReceive)

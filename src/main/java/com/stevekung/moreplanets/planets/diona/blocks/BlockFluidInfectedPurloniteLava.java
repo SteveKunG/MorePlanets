@@ -26,12 +26,9 @@ public class BlockFluidInfectedPurloniteLava extends BlockFluidLavaBaseMP
     {
         boolean flag = false;
         EnumFacing[] aenumfacing = EnumFacing.VALUES;
-        int i = aenumfacing.length;
 
-        for (int j = 0; j < i; ++j)
+        for (EnumFacing enumfacing : aenumfacing)
         {
-            EnumFacing enumfacing = aenumfacing[j];
-
             if (enumfacing != EnumFacing.DOWN && world.getBlockState(pos.offset(enumfacing)).getMaterial() == Material.WATER)
             {
                 flag = true;
@@ -41,9 +38,9 @@ public class BlockFluidInfectedPurloniteLava extends BlockFluidLavaBaseMP
 
         if (flag)
         {
-            Integer integer = state.getValue(LEVEL);
+            int integer = state.getValue(LEVEL);
 
-            if (integer.intValue() == 0)
+            if (integer == 0)
             {
                 world.setBlockState(pos, this.getObsidianBlock());
                 this.triggerMixEffects(world, pos);
@@ -52,14 +49,13 @@ public class BlockFluidInfectedPurloniteLava extends BlockFluidLavaBaseMP
                 {
                     Block.spawnAsEntity(world, pos.up(), new ItemStack(MPItems.INFECTED_PURLONITE_SHARD));
                 }
-                return true;
             }
-            if (integer.intValue() <= 4)
+            else
             {
                 world.setBlockState(pos, this.getCobblestoneBlock());
                 this.triggerMixEffects(world, pos);
-                return true;
             }
+            return true;
         }
         return false;
     }

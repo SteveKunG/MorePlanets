@@ -48,7 +48,6 @@ public class ItemVeinEye extends ItemBaseMP
                     double d2 = pos.getZ() + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F;
                     world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, 0.0D, 0.0D, 0.0D);
                 }
-                return EnumActionResult.SUCCESS;
             }
             else
             {
@@ -69,8 +68,8 @@ public class ItemVeinEye extends ItemBaseMP
                         }
                     }
                 }
-                return EnumActionResult.SUCCESS;
             }
+            return EnumActionResult.SUCCESS;
         }
         else
         {
@@ -84,7 +83,7 @@ public class ItemVeinEye extends ItemBaseMP
         ItemStack itemStack = player.getHeldItem(hand);
         RayTraceResult result = this.rayTrace(world, player, false);
 
-        if (result != null && result.typeOfHit == RayTraceResult.Type.BLOCK && world.getBlockState(result.getBlockPos()).getBlock() == MPBlocks.VEIN_FRAME && !world.getBlockState(result.getBlockPos()).getValue(BlockVeinFrame.EYE))
+        if (result.typeOfHit == RayTraceResult.Type.BLOCK && world.getBlockState(result.getBlockPos()).getBlock() == MPBlocks.VEIN_FRAME && !world.getBlockState(result.getBlockPos()).getValue(BlockVeinFrame.EYE))
         {
             return new ActionResult<>(EnumActionResult.PASS, itemStack);
         }

@@ -63,12 +63,12 @@ public class BlockDirectionalMP extends BlockBaseMP
         case NORTH:
             i = 4;
             break;
-        case UP:
-        default:
-            i = 5;
-            break;
         case DOWN:
             i = 0;
+            break;
+            default:
+                i = 5;
+                break;
         }
         return i;
     }

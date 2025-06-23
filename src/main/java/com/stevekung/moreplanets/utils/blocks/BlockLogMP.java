@@ -1,7 +1,5 @@
 package com.stevekung.moreplanets.utils.blocks;
 
-import java.util.Iterator;
-
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -12,6 +10,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockLogMP extends BlockBaseMP
@@ -55,13 +54,12 @@ public class BlockLogMP extends BlockBaseMP
         case 0:
             state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.X);
             break;
-        default:
-        case 1:
-            state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Y);
-            break;
         case 2:
             state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Z);
             break;
+            default:
+                state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Y);
+                break;
         }
         return state;
     }
@@ -105,11 +103,8 @@ public class BlockLogMP extends BlockBaseMP
 
             if (world.isAreaLoaded(pos.add(-i, -i, -i), pos.add(i, i, i)))
             {
-                Iterator<BlockPos> iterator = BlockPos.getAllInBox(pos.add(-b0, -b0, -b0), pos.add(b0, b0, b0)).iterator();
-
-                while (iterator.hasNext())
+                for (BlockPos blockpos1 : BlockPos.getAllInBox(pos.add(-b0, -b0, -b0), pos.add(b0, b0, b0)))
                 {
-                    BlockPos blockpos1 = iterator.next();
                     IBlockState iblockstate1 = world.getBlockState(blockpos1);
 
                     if (iblockstate1.getBlock().isLeaves(iblockstate1, world, blockpos1))

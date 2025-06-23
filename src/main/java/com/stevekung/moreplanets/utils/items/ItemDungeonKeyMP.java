@@ -2,7 +2,7 @@ package com.stevekung.moreplanets.utils.items;
 
 public class ItemDungeonKeyMP extends ItemBaseMP implements IDungeonKey
 {
-    public ItemDungeonKeyMP(String name, int tier)
+    public ItemDungeonKeyMP(String name)
     {
         this.setMaxStackSize(1);
         this.setTranslationKey(name);

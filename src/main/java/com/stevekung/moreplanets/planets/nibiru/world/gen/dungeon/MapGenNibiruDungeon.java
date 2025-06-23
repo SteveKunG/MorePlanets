@@ -3,12 +3,12 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.dungeon;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.world.World;
+import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
+import com.stevekung.moreplanets.utils.world.gen.dungeon.MapGenDungeonMP;
+
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
-import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
-import com.stevekung.moreplanets.utils.world.gen.dungeon.MapGenDungeonMP;
 
 public class MapGenNibiruDungeon extends MapGenDungeonMP
 {
@@ -34,7 +34,7 @@ public class MapGenNibiruDungeon extends MapGenDungeonMP
     @Override
     protected StructureStart getStructureStart(int chunkX, int chunkZ)
     {
-        return new Start(this.world, this.rand, chunkX, chunkZ, this.configuration);
+        return new Start(this.rand, chunkX, chunkZ, this.configuration);
     }
 
     @Override
@@ -47,10 +47,10 @@ public class MapGenNibiruDungeon extends MapGenDungeonMP
     {
         public Start() {}
 
-        public Start(World world, Random rand, int chunkX, int chunkZ, DungeonConfigurationMP configuration)
+        public Start(Random rand, int chunkX, int chunkZ, DungeonConfigurationMP configuration)
         {
             super(chunkX, chunkZ);
-            DungeonStartNibiru startPiece = new DungeonStartNibiru(world, configuration, rand, (chunkX << 4) + 2, (chunkZ << 4) + 2);
+            DungeonStartNibiru startPiece = new DungeonStartNibiru(configuration, rand, (chunkX << 4) + 2, (chunkZ << 4) + 2);
             startPiece.buildComponent(startPiece, this.components, rand);
             List<StructureComponent> list = startPiece.attachedComponents;
 

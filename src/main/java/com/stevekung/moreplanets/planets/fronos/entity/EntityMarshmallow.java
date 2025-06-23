@@ -148,7 +148,7 @@ public class EntityMarshmallow extends EntityFronosPet
         else
         {
             EntityMarshmallow pet = (EntityMarshmallow)otherAnimal;
-            return !pet.isTamed() ? false : pet.isSitting() ? false : this.isInLove() && pet.isInLove();
+            return pet.isTamed() && !pet.isSitting() && this.isInLove() && pet.isInLove();
         }
     }
 

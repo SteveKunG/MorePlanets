@@ -29,7 +29,7 @@ public class MPPlanets
     public static void init()
     {
         // Solar System
-        MPPlanets.LAZENDUS_SOLAR_SYSTEM = CelestialRegistryUtils.createStarAndSolarSystem(MPPlanets.LAZENDUS_SOLAR_SYSTEM, MPPlanets.LAZENDUS, "lazendus", "lazendus", new Vector3(0.75F, 1.25F, 0.0F), "lazendus_celestial");
+        MPPlanets.LAZENDUS_SOLAR_SYSTEM = CelestialRegistryUtils.createStarAndSolarSystem("lazendus", "lazendus", new Vector3(0.75F, 1.25F, 0.0F), "lazendus_celestial");
 
         // Planets
         MPPlanets.DIONA = CelestialRegistryUtils.createPlanet("diona", MPPlanets.LAZENDUS_SOLAR_SYSTEM, -14.25F, 4.25F, 20.0F, 0.876F, ConfigManagerMP.moreplanets_planet_settings.planetDionaTier, ConfigManagerMP.moreplanets_dimension.idDimensionDiona, WorldProviderDiona.class);

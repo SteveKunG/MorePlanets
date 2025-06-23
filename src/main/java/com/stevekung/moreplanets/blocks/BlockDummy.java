@@ -169,7 +169,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         {
             return false;
         }
-        return this.onNuclearTankActivated(world, pos, this.type == BlockType.NUCLEAR_WASTE_TANK_MIDDLE ? pos.down() : pos.down(2), player, heldStack) || tileEntity.onBlockActivated(world, pos, player);
+        return this.onNuclearTankActivated(world, pos, this.type == BlockType.NUCLEAR_WASTE_TANK_MIDDLE ? pos.down() : pos.down(2), player, heldStack) || tileEntity.onBlockActivated(player);
     }
 
     @Override

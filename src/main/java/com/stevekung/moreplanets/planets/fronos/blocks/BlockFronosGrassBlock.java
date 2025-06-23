@@ -107,12 +107,7 @@ public class BlockFronosGrassBlock extends BlockGrassBlockMP implements IGrowabl
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)
     {
         IBlockState plant = plantable.getPlant(world, pos.offset(direction));
-
-        if (plant.getBlock() == Blocks.REEDS)
-        {
-            return true;
-        }
-        return false;
+        return plant.getBlock() == Blocks.REEDS;
     }
 
     @Override

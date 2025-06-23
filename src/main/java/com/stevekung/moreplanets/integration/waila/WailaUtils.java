@@ -5,7 +5,7 @@ import mcp.mobius.waila.api.IWailaRegistrar;
 
 public class WailaUtils
 {
-    public static String WAILA_CONSTANT = "MorePlanets";
+    public static final String WAILA_CONSTANT = "MorePlanets";
     static IWailaRegistrar register;
     static IWailaDataProvider dataProvider;
 

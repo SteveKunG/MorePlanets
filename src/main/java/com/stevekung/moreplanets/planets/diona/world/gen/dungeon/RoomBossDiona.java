@@ -2,17 +2,17 @@ package com.stevekung.moreplanets.planets.diona.world.gen.dungeon;
 
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityDionaDungeonSpawner;
+import com.stevekung.moreplanets.utils.world.gen.dungeon.*;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityDionaDungeonSpawner;
-import com.stevekung.moreplanets.utils.world.gen.dungeon.*;
 
-import com.stevekung.moreplanets.utils.world.gen.dungeon.*;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
 
 public class RoomBossDiona extends RoomBossMP
 {
@@ -99,7 +99,7 @@ public class RoomBossDiona extends RoomBossMP
                     {
                         if (rand.nextInt(4) == 0)
                         {
-                            this.setBlockState(world, this.configuration.getGlowstoneBlock(), i, j - 1, k, boundingBox);
+                            this.setBlockState(world, this.configuration.getGlowstoneBlock(), i, 0, k, boundingBox);
                         }
                         else
                         {

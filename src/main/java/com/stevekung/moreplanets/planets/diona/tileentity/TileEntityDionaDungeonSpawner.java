@@ -15,17 +15,9 @@ public class TileEntityDionaDungeonSpawner extends TileEntityDungeonSpawnerMP<En
     @Override
     public void readFromNBT(NBTTagCompound nbt)
     {
-        // backward compatibility
-        String bossClass = nbt.getString("bossClass");
-
-        if (!bossClass.equals("com.stevekung.moreplanets.planets.diona.entity.EntityInfectedPurloniteSlimeBoss"))
-        {
-            bossClass = "com.stevekung.moreplanets.planets.diona.entity.EntityInfectedPurloniteSlimeBoss";
-        }
-
         try
         {
-            this.bossClass = (Class<EntityInfectedPurloniteSlimeBoss>) Class.forName(bossClass);
+            this.bossClass = (Class<EntityInfectedPurloniteSlimeBoss>) Class.forName(nbt.getString("bossClass"));
         }
         catch (Exception e)
         {

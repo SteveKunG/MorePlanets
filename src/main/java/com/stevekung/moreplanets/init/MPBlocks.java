@@ -1,14 +1,5 @@
 package com.stevekung.moreplanets.init;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockFire;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.EnumDyeColor;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import com.stevekung.moreplanets.blocks.*;
-
 import com.stevekung.moreplanets.blocks.*;
 import com.stevekung.moreplanets.blocks.decoration.BlockAllDoubleSlab;
 import com.stevekung.moreplanets.blocks.decoration.BlockAllHalfSlab;
@@ -16,25 +7,14 @@ import com.stevekung.moreplanets.blocks.decoration.BlockAllWall;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.itemblocks.*;
 import com.stevekung.moreplanets.moons.koentus.blocks.*;
-
-import com.stevekung.moreplanets.itemblocks.*;
-import com.stevekung.moreplanets.moons.koentus.blocks.*;
 import com.stevekung.moreplanets.moons.koentus.itemblocks.ItemBlockAntiGravity;
-import com.stevekung.moreplanets.planets.chalos.blocks.*;
-
 import com.stevekung.moreplanets.planets.chalos.blocks.*;
 import com.stevekung.moreplanets.planets.chalos.blocks.fluid.FluidGaseousCheeseMilk;
 import com.stevekung.moreplanets.planets.diona.blocks.*;
-
-import com.stevekung.moreplanets.planets.diona.blocks.*;
 import com.stevekung.moreplanets.planets.diona.itemblocks.ItemBlockDarkEnergyGenerator;
-import com.stevekung.moreplanets.planets.fronos.blocks.*;
-
 import com.stevekung.moreplanets.planets.fronos.blocks.*;
 import com.stevekung.moreplanets.planets.fronos.item.ItemBlockFronosLilyPad;
 import com.stevekung.moreplanets.planets.fronos.item.ItemBlockFronosMushroom;
-import com.stevekung.moreplanets.planets.nibiru.blocks.*;
-
 import com.stevekung.moreplanets.planets.nibiru.blocks.*;
 import com.stevekung.moreplanets.planets.nibiru.blocks.fluid.FluidHeliumGas;
 import com.stevekung.moreplanets.planets.nibiru.itemblocks.ItemBlockInfectedSnow;
@@ -43,13 +23,18 @@ import com.stevekung.moreplanets.planets.nibiru.itemblocks.ItemBlockSporelily;
 import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
 import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
 import com.stevekung.moreplanets.utils.blocks.*;
-
-import com.stevekung.moreplanets.utils.blocks.*;
 import com.stevekung.moreplanets.utils.blocks.BlockStairsMP.EnumStairsType;
 import com.stevekung.moreplanets.utils.blocks.fluid.FluidMP;
 import com.stevekung.moreplanets.utils.itemblocks.*;
 
-import com.stevekung.moreplanets.utils.itemblocks.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockFire;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.EnumDyeColor;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+
 import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.enums.EnumHarvestLevel;
@@ -100,28 +85,28 @@ public class MPBlocks
     public static BlockAllHalfSlab OSCALEA_SLAB;
     public static BlockAllHalfSlab FROLIA_SLAB;
 
-    @Deprecated public static BlockAllHalfSlab DOUBLE_DIONA_COBBLESTONE_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_CHALOS_COBBLESTONE_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_NIBIRU_COBBLESTONE_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_DIONA_DUNGEON_BRICK_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_CHALOS_DUNGEON_BRICK_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_ALIEN_SHIP_DECORATION_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_PRISMARINE_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_PRISMARINE_BRICK_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_DARK_PRISMARINE_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_STONE_BRICKS_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_VEIN_STONE_BRICKS_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_CRACKED_STONE_BRICKS_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_TERRASTONE_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_SANDSTONE_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_CUT_SANDSTONE_SLAB;
+    public static BlockAllHalfSlab DOUBLE_DIONA_COBBLESTONE_SLAB;
+    public static BlockAllHalfSlab DOUBLE_CHALOS_COBBLESTONE_SLAB;
+    public static BlockAllHalfSlab DOUBLE_NIBIRU_COBBLESTONE_SLAB;
+    public static BlockAllHalfSlab DOUBLE_DIONA_DUNGEON_BRICK_SLAB;
+    public static BlockAllHalfSlab DOUBLE_CHALOS_DUNGEON_BRICK_SLAB;
+    public static BlockAllHalfSlab DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB;
+    public static BlockAllHalfSlab DOUBLE_ALIEN_SHIP_DECORATION_SLAB;
+    public static BlockAllHalfSlab DOUBLE_INFECTED_PRISMARINE_SLAB;
+    public static BlockAllHalfSlab DOUBLE_INFECTED_PRISMARINE_BRICK_SLAB;
+    public static BlockAllHalfSlab DOUBLE_INFECTED_DARK_PRISMARINE_SLAB;
+    public static BlockAllHalfSlab DOUBLE_INFECTED_STONE_BRICKS_SLAB;
+    public static BlockAllHalfSlab DOUBLE_INFECTED_VEIN_STONE_BRICKS_SLAB;
+    public static BlockAllHalfSlab DOUBLE_INFECTED_CRACKED_STONE_BRICKS_SLAB;
+    public static BlockAllHalfSlab DOUBLE_TERRASTONE_SLAB;
+    public static BlockAllHalfSlab DOUBLE_INFECTED_SANDSTONE_SLAB;
+    public static BlockAllHalfSlab DOUBLE_INFECTED_CUT_SANDSTONE_SLAB;
 
-    @Deprecated public static BlockAllHalfSlab DOUBLE_CHEESE_SPORE_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_OAK_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_ALIEN_BERRY_OAK_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_OSCALEA_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_FROLIA_SLAB;
+    public static BlockAllHalfSlab DOUBLE_CHEESE_SPORE_SLAB;
+    public static BlockAllHalfSlab DOUBLE_INFECTED_OAK_SLAB;
+    public static BlockAllHalfSlab DOUBLE_ALIEN_BERRY_OAK_SLAB;
+    public static BlockAllHalfSlab DOUBLE_OSCALEA_SLAB;
+    public static BlockAllHalfSlab DOUBLE_FROLIA_SLAB;
 
     // Pressure Plate
     public static Block INFECTED_OAK_PRESSURE_PLATE;

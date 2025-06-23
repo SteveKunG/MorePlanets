@@ -17,7 +17,7 @@ import com.stevekung.moreplanets.init.MPItems;
 
 public class BlockDropableOre extends BlockBasicMP implements IDetectableResource
 {
-    private BlockType type;
+    private final BlockType type;
 
     public BlockDropableOre(String name, BlockType type)
     {

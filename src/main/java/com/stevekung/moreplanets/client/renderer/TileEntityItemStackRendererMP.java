@@ -24,7 +24,6 @@ import com.stevekung.moreplanets.planets.nibiru.client.renderer.tileentity.TileE
 import com.stevekung.moreplanets.planets.nibiru.client.renderer.tileentity.TileEntityNuclearWasteTankRenderer;
 import com.stevekung.moreplanets.planets.nibiru.tileentity.*;
 
-import com.stevekung.moreplanets.planets.nibiru.tileentity.*;
 import com.stevekung.moreplanets.tileentity.TileEntityAlienChest;
 import com.stevekung.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import com.stevekung.moreplanets.tileentity.TileEntityBlackHoleStorage;

@@ -1,7 +1,6 @@
 package com.stevekung.moreplanets.items;
 
 import net.minecraft.item.ItemStack;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
 import com.stevekung.moreplanets.utils.items.ItemFoodMP;
 
 public class ItemSpaceFish extends ItemFoodMP
@@ -12,12 +11,6 @@ public class ItemSpaceFish extends ItemFoodMP
     {
         this.setTranslationKey(name);
         this.type = type;
-    }
-
-    @Override
-    public EnumSortCategoryItem getItemCategory()
-    {
-        return EnumSortCategoryItem.FOOD;
     }
 
     @Override
@@ -38,8 +31,8 @@ public class ItemSpaceFish extends ItemFoodMP
         GLOWING_ALIEN_FISH(2, 0.1F),
         CHEESE_FISH(2, 0.1F);
 
-        private int hunger;
-        private float saturation;
+        private final int hunger;
+        private final float saturation;
 
         ItemType(int hunger, float saturation)
         {

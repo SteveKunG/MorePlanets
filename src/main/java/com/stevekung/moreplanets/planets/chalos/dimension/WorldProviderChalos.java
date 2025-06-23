@@ -28,14 +28,14 @@ public class WorldProviderChalos extends WorldProviderMP
     public Vector3 getFogColor()
     {
         float f = 0.65F - this.getStarBrightness(1.0F);
-        return new Vector3(255F / 255F * f, 193F / 255F * f, 6F / 255F * f);
+        return new Vector3(f, 193F / 255F * f, 6F / 255F * f);
     }
 
     @Override
     public Vector3 getSkyColor()
     {
         float f = 0.6F - this.getStarBrightness(1.0F);
-        return new Vector3(255 / 255F * f, 223 / 255F * f, 128 / 255F * f);
+        return new Vector3(f, 223 / 255F * f, 128 / 255F * f);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class WorldProviderChalos extends WorldProviderMP
         float value = 1.0F - (MathHelper.cos(angle * ((float)Math.PI * 2.0F)) * 2.0F + 0.2F);
         value = MathHelper.clamp(value, 0.0F, 1.0F);
         value = 1.0F - value;
-        return value * 1.0F;
+        return value;
     }
 
     @Override
@@ -107,7 +107,7 @@ public class WorldProviderChalos extends WorldProviderMP
         float angle = this.world.getCelestialAngle(this.getDayLength());
         float value = 1.0F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.2F);
         value = 1.0F - value;
-        return value * 1.0F;
+        return value;
     }
 
     @Override

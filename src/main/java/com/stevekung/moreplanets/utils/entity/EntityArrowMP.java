@@ -137,7 +137,7 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
                 movingobjectposition = new RayTraceResult(entity);
             }
 
-            if (movingobjectposition != null && movingobjectposition.entityHit != null && movingobjectposition.entityHit instanceof EntityPlayer)
+            if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer)
             {
                 EntityPlayer entityplayer = (EntityPlayer)movingobjectposition.entityHit;
 
@@ -257,7 +257,7 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
             {
                 for (int k = 0; k < 4; ++k)
                 {
-                    this.world.spawnParticle(EnumParticleTypes.CRIT, this.posX + this.motionX * k / 4.0D, this.posY + this.motionY * k / 4.0D, this.posZ + this.motionZ * k / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
+                    this.world.spawnParticle(EnumParticleTypes.CRIT, this.posX + this.motionX * k / 4.0D, this.posY + this.motionY * k / 4.0D, this.posZ + this.motionZ * k / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ);
                 }
             }
 
@@ -292,7 +292,7 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
                 for (int i1 = 0; i1 < 4; ++i1)
                 {
                     float f8 = 0.25F;
-                    this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * f8, this.posY - this.motionY * f8, this.posZ - this.motionZ * f8, this.motionX, this.motionY, this.motionZ, new int[0]);
+                    this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * f8, this.posY - this.motionY * f8, this.posZ - this.motionZ * f8, this.motionX, this.motionY, this.motionZ);
                 }
                 f4 = 0.6F;
             }

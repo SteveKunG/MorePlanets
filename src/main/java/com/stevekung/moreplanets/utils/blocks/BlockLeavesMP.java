@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Random;
 
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -24,16 +29,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
+
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockLeavesMP extends BlockBaseMP implements IShearable
 {
     private int[] surroundings;
-    private BlockType type;
+    private final BlockType type;
 
     public BlockLeavesMP(String name, BlockType type)
     {
@@ -105,21 +107,22 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
                             {
                                 IBlockState iblockstate = world.getBlockState(mutableblockpos.setPos(x + i2, y + j2, z + k2));
                                 Block block = iblockstate.getBlock();
+                                int arr = (i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16;
 
                                 if (!block.canSustainLeaves(iblockstate, world, mutableblockpos.setPos(x + i2, y + j2, z + k2)))
                                 {
                                     if (block.isLeaves(iblockstate, world, mutableblockpos.setPos(x + i2, y + j2, z + k2)))
                                     {
-                                        this.surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = -2;
+                                        this.surroundings[arr] = -2;
                                     }
                                     else
                                     {
-                                        this.surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = -1;
+                                        this.surroundings[arr] = -1;
                                     }
                                 }
                                 else
                                 {
-                                    this.surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = 0;
+                                    this.surroundings[arr] = 0;
                                 }
                             }
                         }
@@ -133,31 +136,37 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
                             {
                                 for (int l3 = -4; l3 <= 4; ++l3)
                                 {
-                                    if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16] == i3 - 1)
+                                    int arr = (j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16;
+                                    int arr1 = (j3 + 16 - 1) * 1024 + (k3 + 16) * 32 + l3 + 16;
+                                    int arr2 = (j3 + 16 + 1) * 1024 + (k3 + 16) * 32 + l3 + 16;
+                                    int arr3 = (j3 + 16) * 1024 + (k3 + 16 - 1) * 32 + l3 + 16;
+                                    int arr4 = (j3 + 16) * 1024 + (k3 + 16 + 1) * 32 + l3 + 16;
+
+                                    if (this.surroundings[arr] == i3 - 1)
                                     {
-                                        if (this.surroundings[(j3 + 16 - 1) * 1024 + (k3 + 16) * 32 + l3 + 16] == -2)
+                                        if (this.surroundings[arr1] == -2)
                                         {
-                                            this.surroundings[(j3 + 16 - 1) * 1024 + (k3 + 16) * 32 + l3 + 16] = i3;
+                                            this.surroundings[arr1] = i3;
                                         }
-                                        if (this.surroundings[(j3 + 16 + 1) * 1024 + (k3 + 16) * 32 + l3 + 16] == -2)
+                                        if (this.surroundings[arr2] == -2)
                                         {
-                                            this.surroundings[(j3 + 16 + 1) * 1024 + (k3 + 16) * 32 + l3 + 16] = i3;
+                                            this.surroundings[arr2] = i3;
                                         }
-                                        if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16 - 1) * 32 + l3 + 16] == -2)
+                                        if (this.surroundings[arr3] == -2)
                                         {
-                                            this.surroundings[(j3 + 16) * 1024 + (k3 + 16 - 1) * 32 + l3 + 16] = i3;
+                                            this.surroundings[arr3] = i3;
                                         }
-                                        if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16 + 1) * 32 + l3 + 16] == -2)
+                                        if (this.surroundings[arr4] == -2)
                                         {
-                                            this.surroundings[(j3 + 16) * 1024 + (k3 + 16 + 1) * 32 + l3 + 16] = i3;
+                                            this.surroundings[arr4] = i3;
                                         }
-                                        if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 - 1] == -2)
+                                        if (this.surroundings[arr - 1] == -2)
                                         {
-                                            this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 - 1] = i3;
+                                            this.surroundings[arr - 1] = i3;
                                         }
-                                        if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 + 1] == -2)
+                                        if (this.surroundings[arr + 1] == -2)
                                         {
-                                            this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 + 1] = i3;
+                                            this.surroundings[arr + 1] = i3;
                                         }
                                     }
                                 }
@@ -274,7 +283,7 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
 
         if (world instanceof World)
         {
-            this.dropFruits((World)world, pos, state, chance);
+            this.dropFruits((World)world, pos, chance);
         }
         drops.addAll(this.captureDrops(false));
     }
@@ -378,7 +387,7 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
         return i;
     }
 
-    private void dropFruits(World world, BlockPos pos, IBlockState state, int chance)
+    private void dropFruits(World world, BlockPos pos, int chance)
     {
         if (world.rand.nextInt(chance) == 0)
         {

@@ -15,7 +15,7 @@ public class BiomeFronosMeadow extends BiomeFronos
 {
     private static final WorldGenDoublePlantMP TALL_GRASS = new WorldGenDoublePlantMP(MPBlocks.FRONOS_TALL_GRASS);
     private static final WorldGenFronosShrub SHRUB = new WorldGenFronosShrub();
-    private boolean isMeadow;
+    private final boolean isMeadow;
 
     public BiomeFronosMeadow(BiomeProperties prop, boolean isMeadow)
     {

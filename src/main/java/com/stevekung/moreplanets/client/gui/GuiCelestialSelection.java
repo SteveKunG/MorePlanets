@@ -87,7 +87,7 @@ public class GuiCelestialSelection extends GuiScreen
     }
 
     @Override
-    protected void actionPerformed(GuiButton button) throws IOException
+    protected void actionPerformed(GuiButton button)
     {
         if (button.enabled)
         {
@@ -147,11 +147,11 @@ public class GuiCelestialSelection extends GuiScreen
                             if (provider instanceof WorldProviderSpace)
                             {
                                 WorldProviderSpace space = (WorldProviderSpace)provider;
-                                String thermal = "";
+                                String thermal;
 
                                 try
                                 {
-                                    thermal = String.valueOf(String.format("%.2f", 1.8F * space.getThermalLevelModifier() * 32)) + "\u2103";
+                                    thermal = String.format("%.2f", 1.8F * space.getThermalLevelModifier() * 32) + "℃";
                                 }
                                 catch (Exception e)
                                 {
@@ -164,7 +164,7 @@ public class GuiCelestialSelection extends GuiScreen
                                 }
                                 else
                                 {
-                                    double dayDouble = space.getDayLength() / 24000;
+                                    double dayDouble = (double) space.getDayLength() / 24000;
 
                                     if (dayDouble % 1 == 0)
                                     {
@@ -176,26 +176,26 @@ public class GuiCelestialSelection extends GuiScreen
                                         infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Day-night Cycle:", dayDouble + (dayDouble <= 1 ? " Day" : " Days") + " / " + dayDouble * 24 + " hours"));
                                     }
                                 }
-                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Gravity:", String.valueOf(space.getGravity()) + "g"));
-                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Wind:", String.valueOf(String.format("%.1f", space.getWindLevel() * 100.0F)) + "%"));
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Gravity:", space.getGravity() + "g"));
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Wind:", String.format("%.1f", space.getWindLevel() * 100.0F) + "%"));
                                 infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Thermal:", thermal));
                                 infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Breathable Atmosphere:", space.hasBreathableAtmosphere()));
                                 infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Corrode Armor:", space.shouldCorrodeArmor()));
-                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Sound Reduction:", String.valueOf(space.getSoundVolReductionAmount() / 1.0F) + "%"));
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Sound Reduction:", space.getSoundVolReductionAmount() + "%"));
                             }
                             if (provider instanceof ISolarLevel)
                             {
                                 ISolarLevel solar = (ISolarLevel)provider;
-                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Solar Level:", String.valueOf(String.format("%.1f", solar.getSolarEnergyMultiplier() * 100.0D)) + "%"));
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Solar Level:", String.format("%.1f", solar.getSolarEnergyMultiplier() * 100.0D) + "%"));
                             }
                             if (provider instanceof IDarkEnergyProvider)
                             {
                                 IDarkEnergyProvider space = (IDarkEnergyProvider)provider;
-                                String darkEnergy = "";
+                                String darkEnergy;
 
                                 try
                                 {
-                                    darkEnergy = String.valueOf(space.getDarkEnergyMultiplier(null, null)) + "%";
+                                    darkEnergy = space.getDarkEnergyMultiplier(null, null) + "%";
                                 }
                                 catch (Exception e)
                                 {
@@ -289,7 +289,7 @@ public class GuiCelestialSelection extends GuiScreen
         return key + " " + TextFormatting.RESET + (value ? TextFormatting.GREEN : TextFormatting.RED) + value;
     }
 
-    enum SortType implements Comparator<CelestialBody>
+    public enum SortType implements Comparator<CelestialBody>
     {
         A_TO_Z(10),
         Z_TO_A(11)
@@ -310,9 +310,9 @@ public class GuiCelestialSelection extends GuiScreen
         };
 
         protected static final SortType[] values = SortType.values();
-        private int id;
+        private final int id;
 
-        private SortType(int id)
+        SortType(int id)
         {
             this.id = id;
         }

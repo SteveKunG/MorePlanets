@@ -3,9 +3,18 @@ package com.stevekung.moreplanets.integration.waila;
 import java.util.List;
 import java.util.UUID;
 
-import mcp.mobius.waila.api.*;
-import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
-import micdoodle8.mods.galacticraft.core.util.WorldUtil;
+import com.stevekung.moreplanets.blocks.BlockDummy;
+import com.stevekung.moreplanets.core.config.ConfigManagerMP;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyCore;
+import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
+import com.stevekung.moreplanets.tileentity.*;
+import com.stevekung.moreplanets.utils.IDescription;
+import com.stevekung.moreplanets.utils.LoggerMP;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -15,19 +24,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
-import com.stevekung.moreplanets.blocks.BlockDummy;
-import com.stevekung.moreplanets.core.config.ConfigManagerMP;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyCore;
-import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
-import com.stevekung.moreplanets.tileentity.*;
 
-import com.stevekung.moreplanets.tileentity.*;
-import com.stevekung.moreplanets.utils.IDescription;
-import com.stevekung.moreplanets.utils.LoggerMP;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
+import mcp.mobius.waila.api.*;
+import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import stevekung.mods.stevekunglib.utils.CommonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 import stevekung.mods.stevekunglib.utils.client.ClientUtils;
@@ -195,7 +195,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             int generateWatts = nbt.getInteger("GenerateWatts");
             int fuel = nbt.getInteger("DarkEnergyFuel");
             tooltip.add(LangUtils.translate("gui.message.generating.name") + ": " + (generateWatts > 0 ? EnergyDisplayHelper.getEnergyDisplayS(generateWatts) + "/t" : LangUtils.translate("gui.status.not_generating.name")));
-            tooltip.add(LangUtils.translate("gui.status.dark_energy_fuel.name") + ": " + (fuel > 0 ? String.valueOf(fuel * 100 / 1000) + "%" : TextFormatting.GOLD + LangUtils.translate("gui.status.empty.name")));
+            tooltip.add(LangUtils.translate("gui.status.dark_energy_fuel.name") + ": " + (fuel > 0 ? fuel * 100 / 1000 + "%" : TextFormatting.GOLD + LangUtils.translate("gui.status.empty.name")));
         }
         if (tile instanceof TileEntitySpaceWarpPadFull)
         {
@@ -227,7 +227,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
         }
         if (tile instanceof TileEntityBlackHoleStorage)
         {
-            String owner = LangUtils.translate("gui.status.unknown.name");
+            String owner;
             String collectMode = nbt.getString("CollectMode").equals("item") ? LangUtils.translate("gui.status.collect_item.name") : nbt.getString("CollectMode").equals("item_and_xp") ? LangUtils.translate("gui.status.collect_item_and_xp.name") : LangUtils.translate("gui.status.collect_xp.name");
 
             try
@@ -236,7 +236,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             }
             catch (Exception e)
             {
-                owner = "";
+                owner = LangUtils.translate("gui.status.unknown.name");
             }
             int xp = nbt.hasKey("XpFluid", Constants.NBT.TAG_COMPOUND) ? nbt.getCompoundTag("XpFluid").getInteger("Amount") : 0;
             tooltip.add(LangUtils.translate("gui.status.owner.name") + ": " + owner);

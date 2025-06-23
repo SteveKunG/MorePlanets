@@ -85,7 +85,7 @@ public class EntityZeliusCreeper extends EntityCreeper implements IEntityBreatha
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotion() == MPPotions.INFECTED_PURLONITE ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() != MPPotions.INFECTED_PURLONITE && super.isPotionApplicable(potion);
     }
 
     @Override

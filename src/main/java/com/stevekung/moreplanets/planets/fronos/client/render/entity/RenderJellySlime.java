@@ -42,23 +42,22 @@ public class RenderJellySlime extends RenderLiving<EntityJellySlime>
     {
         switch (entity.getJellySlimeType())
         {
-        case 0:
-        default:
-            return RenderJellySlime.GRAPE;
-        case 1:
-            return RenderJellySlime.RASPBERRY;
-        case 2:
-            return RenderJellySlime.STRAWBERRY;
-        case 3:
-            return RenderJellySlime.BERRY;
-        case 4:
-            return RenderJellySlime.LIME;
-        case 5:
-            return RenderJellySlime.ORANGE;
-        case 6:
-            return RenderJellySlime.GREEN;
-        case 7:
-            return RenderJellySlime.LEMON;
+            case 1:
+                return RenderJellySlime.RASPBERRY;
+            case 2:
+                return RenderJellySlime.STRAWBERRY;
+            case 3:
+                return RenderJellySlime.BERRY;
+            case 4:
+                return RenderJellySlime.LIME;
+            case 5:
+                return RenderJellySlime.ORANGE;
+            case 6:
+                return RenderJellySlime.GREEN;
+            case 7:
+                return RenderJellySlime.LEMON;
+            default:
+                return RenderJellySlime.GRAPE;
         }
     }
 

@@ -53,7 +53,7 @@ public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListE
     {
         this.gui.selectCelestial(slotIndex);
 
-        if (relativeX <= 32 && relativeX < 32)
+        if (relativeX < 32)
         {
             this.teleport();
             return true;
@@ -90,7 +90,7 @@ public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListE
         {
             this.mc.displayGuiScreen(null);
             String celestialName = WorldUtil.getDimensionName(WorldUtil.getProviderForDimensionClient(this.celestial.getDimensionID()));
-            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_START_SURVIVAL_PLANET, GCCoreUtil.getDimensionID(this.mc.world), new Object[] { this.mc.world.provider.getDimension(), celestialName }));
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_START_SURVIVAL_PLANET, GCCoreUtil.getDimensionID(this.mc.world), this.mc.world.provider.getDimension(), celestialName));
         }
         catch (Exception e)
         {

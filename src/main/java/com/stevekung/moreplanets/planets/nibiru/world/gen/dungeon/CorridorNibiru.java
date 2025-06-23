@@ -30,7 +30,7 @@ public class CorridorNibiru extends SizedPieceNibiru
             {
                 for (int k = 0; k < this.boundingBox.getZSize(); k++)
                 {
-                    if (j == 2 && this.getDirection().getAxis() == EnumFacing.Axis.Z && (k + 1) % 1 == 0 && k != this.boundingBox.getZSize() - 1)
+                    if (j == 2 && this.getDirection().getAxis() == EnumFacing.Axis.Z && k != this.boundingBox.getZSize() - 1)
                     {
                         if (i == 0 || i == this.boundingBox.getXSize() - 1)
                         {
@@ -45,7 +45,7 @@ public class CorridorNibiru extends SizedPieceNibiru
                             this.setBlockState(worldIn, Blocks.AIR.getDefaultState(), i, j, k, this.boundingBox);
                         }
                     }
-                    else if (j == 2 && this.getDirection().getAxis() == EnumFacing.Axis.X && (i + 1) % 1 == 0 && i != this.boundingBox.getXSize() - 1)
+                    else if (j == 2 && this.getDirection().getAxis() == EnumFacing.Axis.X && i != this.boundingBox.getXSize() - 1)
                     {
                         if (k == 0 || k == this.boundingBox.getZSize() - 1)
                         {
@@ -66,7 +66,7 @@ public class CorridorNibiru extends SizedPieceNibiru
                     }
                     else if (this.getDirection().getAxis() == EnumFacing.Axis.Z && (i == 0 || i == this.boundingBox.getXSize() - 1) || this.getDirection().getAxis() == EnumFacing.Axis.X && (k == 0 || k == this.boundingBox.getZSize() - 1))
                     {
-                        this.setBlockState(worldIn, j == 0 || j == this.boundingBox.getYSize() - 1 ? MPBlocks.MOSSY_NIBIRU_DUNGEON_BRICK.getDefaultState() : this.configuration.getBrickBlock(), i, j, k, this.boundingBox);
+                        this.setBlockState(worldIn, j == this.boundingBox.getYSize() - 1 ? MPBlocks.MOSSY_NIBIRU_DUNGEON_BRICK.getDefaultState() : this.configuration.getBrickBlock(), i, j, k, this.boundingBox);
                     }
                     else
                     {

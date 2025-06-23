@@ -1,7 +1,9 @@
 package com.stevekung.moreplanets.planets.fronos.blocks;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.blocks.BlockBushMP;
+
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,8 +18,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.blocks.BlockBushMP;
+
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockSidedFronosMushroom extends BlockBushMP
@@ -35,15 +36,15 @@ public class BlockSidedFronosMushroom extends BlockBushMP
     {
         switch (state.getValue(BlockStateProperty.FACING_HORIZON))
         {
-        case SOUTH:
-            return new AxisAlignedBB(0.3125D, 0.3125D, 0.6625D, 0.6875D, 0.75D, 1.0D);
-        case NORTH:
-        default:
-            return new AxisAlignedBB(0.3125D, 0.3125D, 0.0D, 0.6875D, 0.75D, 0.3375D);
-        case WEST:
-            return new AxisAlignedBB(0.0D, 0.3125D, 0.3125D, 0.3225D, 0.75D, 0.6875D);
-        case EAST:
-            return new AxisAlignedBB(0.6725D, 0.3125D, 0.3125D, 1.0D, 0.75D, 0.6875D);
+            case SOUTH:
+                return new AxisAlignedBB(0.3125D, 0.3125D, 0.6625D, 0.6875D, 0.75D, 1.0D);
+            case WEST:
+                return new AxisAlignedBB(0.0D, 0.3125D, 0.3125D, 0.3225D, 0.75D, 0.6875D);
+            case EAST:
+                return new AxisAlignedBB(0.6725D, 0.3125D, 0.3125D, 1.0D, 0.75D, 0.6875D);
+            case NORTH:
+            default:
+                return new AxisAlignedBB(0.3125D, 0.3125D, 0.0D, 0.6875D, 0.75D, 0.3375D);
         }
     }
 
@@ -99,12 +100,6 @@ public class BlockSidedFronosMushroom extends BlockBushMP
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, BlockStateProperty.FACING_HORIZON);
-    }
-
-    @Override
-    public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing facing)
-    {
-        return BlockFaceShape.UNDEFINED;
     }
 
     @Override

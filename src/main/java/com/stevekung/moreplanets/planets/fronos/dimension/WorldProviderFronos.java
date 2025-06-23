@@ -113,7 +113,7 @@ public class WorldProviderFronos extends WorldProviderMP
         value = 1.0F - value;
         value = value * (1.0F - this.world.getRainStrength(partialTicks) * 6.0F / 16.0F);
         value = value * (1.0F - this.world.getThunderStrength(partialTicks) * 8.0F / 16.0F);
-        return value * 1.0F;
+        return value;
     }
 
     @Override

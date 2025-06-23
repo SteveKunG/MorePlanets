@@ -4,7 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.entity.EntitySpaceMinecartChest;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedCaveSpider;
 
 import net.minecraft.block.BlockRail;
 import net.minecraft.block.BlockRailBase;
@@ -25,11 +28,10 @@ import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import com.stevekung.moreplanets.entity.EntitySpaceMinecartChest;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedCaveSpider;
+
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+
+import javax.annotation.Nullable;
 
 public class StructureNibiruMineshaftPieces
 {
@@ -97,21 +99,6 @@ public class StructureNibiruMineshaftPieces
             {
                 switch (enumfacing)
                 {
-                case NORTH:
-                default:
-                    if (j <= 1)
-                    {
-                        this.generateAndAddPiece(component, list, rand, this.boundingBox.minX, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ - 1, enumfacing, i);
-                    }
-                    else if (j == 2)
-                    {
-                        this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ, EnumFacing.WEST, i);
-                    }
-                    else
-                    {
-                        this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ, EnumFacing.EAST, i);
-                    }
-                    break;
                 case SOUTH:
                     if (j <= 1)
                     {
@@ -153,6 +140,20 @@ public class StructureNibiruMineshaftPieces
                     {
                         this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX - 3, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.maxZ + 1, EnumFacing.SOUTH, i);
                     }
+                    default:
+                        if (j <= 1)
+                        {
+                            this.generateAndAddPiece(component, list, rand, this.boundingBox.minX, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ - 1, enumfacing, i);
+                        }
+                        else if (j == 2)
+                        {
+                            this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ, EnumFacing.WEST, i);
+                        }
+                        else
+                        {
+                            this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ, EnumFacing.EAST, i);
+                        }
+                        break;
                 }
             }
 
@@ -374,12 +375,6 @@ public class StructureNibiruMineshaftPieces
 
             switch (this.corridorDirection)
             {
-            case NORTH:
-            default:
-                this.generateAndAddPiece(component, list, rand, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, i);
-                this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.WEST, i);
-                this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.EAST, i);
-                break;
             case SOUTH:
                 this.generateAndAddPiece(component, list, rand, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, i);
                 this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.WEST, i);
@@ -394,6 +389,12 @@ public class StructureNibiruMineshaftPieces
                 this.generateAndAddPiece(component, list, rand, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, i);
                 this.generateAndAddPiece(component, list, rand, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, i);
                 this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.EAST, i);
+            break;
+                default:
+                    this.generateAndAddPiece(component, list, rand, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, i);
+                    this.generateAndAddPiece(component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.WEST, i);
+                    this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ + 1, EnumFacing.EAST, i);
+                    break;
             }
 
             if (this.isMultipleFloors)
@@ -575,11 +576,6 @@ public class StructureNibiruMineshaftPieces
 
                 switch (facing)
                 {
-                case NORTH:
-                default:
-                    box.maxX = x + 2;
-                    box.minZ = z - (j - 1);
-                    break;
                 case SOUTH:
                     box.maxX = x + 2;
                     box.maxZ = z + j - 1;
@@ -591,6 +587,11 @@ public class StructureNibiruMineshaftPieces
                 case EAST:
                     box.maxX = x + j - 1;
                     box.maxZ = z + 2;
+                    break;
+                    default:
+                        box.maxX = x + 2;
+                        box.minZ = z - (j - 1);
+                        break;
                 }
 
                 if (StructureComponent.findIntersecting(list, box) == null)
@@ -612,12 +613,6 @@ public class StructureNibiruMineshaftPieces
 
             switch (facing)
             {
-            case NORTH:
-            default:
-                box.minX = x - 1;
-                box.maxX = x + 3;
-                box.minZ = z - 4;
-                break;
             case SOUTH:
                 box.minX = x - 1;
                 box.maxX = x + 3;
@@ -632,6 +627,12 @@ public class StructureNibiruMineshaftPieces
                 box.maxX = x + 3 + 1;
                 box.minZ = z - 1;
                 box.maxZ = z + 3;
+                break;
+                default:
+                    box.minX = x - 1;
+                    box.maxX = x + 3;
+                    box.minZ = z - 4;
+                    break;
             }
             return StructureComponent.findIntersecting(list, box) != null ? null : box;
         }
@@ -642,11 +643,6 @@ public class StructureNibiruMineshaftPieces
 
             switch (facing)
             {
-            case NORTH:
-            default:
-                box.maxX = x + 2;
-                box.minZ = z - 8;
-                break;
             case SOUTH:
                 box.maxX = x + 2;
                 box.maxZ = z + 8;
@@ -658,6 +654,11 @@ public class StructureNibiruMineshaftPieces
             case EAST:
                 box.maxX = x + 8;
                 box.maxZ = z + 2;
+                break;
+                default:
+                    box.maxX = x + 2;
+                    box.minZ = z - 8;
+                    break;
             }
             return StructureComponent.findIntersecting(list, box) != null ? null : box;
         }
@@ -665,7 +666,7 @@ public class StructureNibiruMineshaftPieces
 
     public static class Room extends Piece
     {
-        private List<StructureBoundingBox> roomsLinkedToTheRoom = new LinkedList<>();
+        private final List<StructureBoundingBox> roomsLinkedToTheRoom = new LinkedList<>();
 
         public Room() {}
 
@@ -836,10 +837,6 @@ public class StructureNibiruMineshaftPieces
             {
                 switch (enumfacing)
                 {
-                case NORTH:
-                default:
-                    this.generateAndAddPiece(component, list, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, i);
-                    break;
                 case SOUTH:
                     this.generateAndAddPiece(component, list, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, i);
                     break;
@@ -848,6 +845,9 @@ public class StructureNibiruMineshaftPieces
                     break;
                 case EAST:
                     this.generateAndAddPiece(component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ, EnumFacing.EAST, i);
+                    default:
+                        this.generateAndAddPiece(component, list, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, i);
+                        break;
                 }
             }
         }

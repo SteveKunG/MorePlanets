@@ -118,12 +118,12 @@ public class EntityBlackHole extends Entity
         {
             for (int i = 0; i < 16; ++i)
             {
-                double d0 = this.posX + this.rand.nextFloat();
+                double d0;
                 double d1 = this.posY - 0.5D + this.rand.nextFloat();
-                double d2 = this.posZ + this.rand.nextFloat();
-                double d3 = (this.rand.nextFloat() - 0.5D) * 0.5D;
+                double d2;
+                double d3;
                 double d4 = (this.rand.nextFloat() - 0.5D) * 0.5D;
-                double d5 = (this.rand.nextFloat() - 0.5D) * 0.5D;
+                double d5;
                 int j = this.rand.nextInt(2) * 2 - 1;
                 d0 = this.posX + 0.25D * j;
                 d3 = this.rand.nextFloat() * 2.0F * j;

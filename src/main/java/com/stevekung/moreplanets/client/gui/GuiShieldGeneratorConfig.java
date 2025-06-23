@@ -57,7 +57,7 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
         switch (button.id)
         {
         case 0:
-            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_SWITCH_SHIELD_GENERATOR_GUI, GCCoreUtil.getDimensionID(this.tile.getWorld()), new Object[] { this.tile.getPos(), false }));
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_SWITCH_SHIELD_GENERATOR_GUI, GCCoreUtil.getDimensionID(this.tile.getWorld()), this.tile.getPos(), false));
             break;
         case 1:
             GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_SHIELD_GENERATOR_OPTION, GCCoreUtil.getDimensionID(this.tile.getWorld()), this.tile.getPos(), this.tempDamage, "damage"));
@@ -182,14 +182,8 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
         {
             this.messageTicks--;
         }
-        if (this.shieldDamageText.getText().isEmpty() || this.shieldSizeText.getText().isEmpty())
-        {
-            this.buttonDone.enabled = false;
-        }
-        else
-        {
-            this.buttonDone.enabled = true;
-        }
+
+        this.buttonDone.enabled = !this.shieldDamageText.getText().isEmpty() && !this.shieldSizeText.getText().isEmpty();
 
         if (this.tempDamage > this.tile.maxShieldDamage)
         {

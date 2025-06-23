@@ -165,12 +165,6 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
     }
 
     @Override
-    public int getItemEnchantability()
-    {
-        return 1;
-    }
-
-    @Override
     public String getName()
     {
         return "space_fishing_rod";

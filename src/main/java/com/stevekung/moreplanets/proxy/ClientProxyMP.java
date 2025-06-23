@@ -1,32 +1,6 @@
 package com.stevekung.moreplanets.proxy;
 
 import com.google.common.base.Function;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.client.renderer.color.BlockColors;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.world.biome.BiomeColorHelper;
-import net.minecraftforge.client.event.ModelBakeEvent;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.network.internal.FMLMessage;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.common.registry.EntityRegistry.EntityRegistration;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.client.renderer.*;
-
 import com.stevekung.moreplanets.client.renderer.*;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.core.event.ClientEventHandler;
@@ -52,7 +26,30 @@ import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
 import com.stevekung.moreplanets.utils.IMorePlanetsBoss;
 import com.stevekung.moreplanets.utils.client.particle.*;
 
-import com.stevekung.moreplanets.utils.client.particle.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.client.renderer.color.BlockColors;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.world.biome.BiomeColorHelper;
+import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.internal.FMLMessage;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry.EntityRegistration;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.CommonUtils;
 import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
@@ -313,8 +310,7 @@ public class ClientProxyMP extends ServerProxyMP
 
             if (angler instanceof EntityPlayer)
             {
-                Entity entity = new EntitySpaceFishHook(world, (EntityPlayer) angler, posX, posY, posZ);
-                return entity;
+                return (Entity) new EntitySpaceFishHook(world, (EntityPlayer) angler, posX, posY, posZ);
             }
             return null;
         };
@@ -344,8 +340,7 @@ public class ClientProxyMP extends ServerProxyMP
             {
                 e.printStackTrace();
             }
-            Entity entity = new EntityCheeseSpore(world, posX, posY, posZ, speedScaledX, speedScaledY, speedScaledZ);
-            return entity;
+            return (Entity) new EntityCheeseSpore(world, posX, posY, posZ, speedScaledX, speedScaledY, speedScaledZ);
         };
         entityRegistration.setCustomSpawning(handler, false);
         entityRegistration = EntityRegistry.instance().lookupModSpawn(EntitySmallCheeseSpore.class, false);
@@ -373,8 +368,7 @@ public class ClientProxyMP extends ServerProxyMP
             {
                 e.printStackTrace();
             }
-            Entity entity = new EntitySmallCheeseSpore(world, posX, posY, posZ, speedScaledX, speedScaledY, speedScaledZ);
-            return entity;
+            return (Entity) new EntitySmallCheeseSpore(world, posX, posY, posZ, speedScaledX, speedScaledY, speedScaledZ);
         };
         entityRegistration.setCustomSpawning(handler, false);
         entityRegistration = EntityRegistry.instance().lookupModSpawn(EntityVeinBall.class, false);
@@ -402,8 +396,7 @@ public class ClientProxyMP extends ServerProxyMP
             {
                 e.printStackTrace();
             }
-            Entity entity = new EntityVeinBall(world, posX, posY, posZ, speedScaledX, speedScaledY, speedScaledZ);
-            return entity;
+            return (Entity) new EntityVeinBall(world, posX, posY, posZ, speedScaledX, speedScaledY, speedScaledZ);
         };
         entityRegistration.setCustomSpawning(handler, false);
     }

@@ -122,11 +122,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (world.isRemote)
-        {
-            return true;
-        }
-        else
+        if (!world.isRemote)
         {
             TileEntity tile = world.getTileEntity(pos);
             int slot = player.inventory.currentItem;
@@ -167,8 +163,8 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                     }
                 }
             }
-            return true;
         }
+        return true;
     }
 
     @Override

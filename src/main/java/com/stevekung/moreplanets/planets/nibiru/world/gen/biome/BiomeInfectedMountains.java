@@ -87,7 +87,7 @@ public class BiomeInfectedMountains extends BiomeNibiru
     {
         NORMAL,
         EXTRA_TREES,
-        MUTATED;
+        MUTATED
     }
 
     private static class WorldGenEmerald extends WorldGenerator
@@ -102,7 +102,7 @@ public class BiomeInfectedMountains extends BiomeNibiru
                 BlockPos blockpos = pos.add(rand.nextInt(16) + 8, rand.nextInt(28) + 4, rand.nextInt(16) + 8);
                 IBlockState state = world.getBlockState(blockpos);
 
-                if (state.getBlock() == MPBlocks.NIBIRU_ROCK.getDefaultState())
+                if (state.getBlock() == MPBlocks.NIBIRU_ROCK)
                 {
                     world.setBlockState(blockpos, MPBlocks.INFECTED_EMERALD_ORE.getDefaultState(), 16 | 2);
                 }

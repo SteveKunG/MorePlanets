@@ -42,7 +42,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
 {
     private static final int[] SLOTS = new int[108];
     @NetworkedField(targetSide = Side.CLIENT)
-    public FluidTankGC fluidTank = new FluidTankGC(1000000, this);
+    public final FluidTankGC fluidTank = new FluidTankGC(1000000, this);
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean disableBlackHole = false;
     @NetworkedField(targetSide = Side.CLIENT)
@@ -321,7 +321,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
     public boolean drainExp(EntityPlayer player)
     {
         FluidStack fluid = this.fluidTank.getFluid();
-        boolean isXP = false;
+        boolean isXP;
 
         if (CompatibilityManagerMP.isModAddedXpFluid())
         {
@@ -332,7 +332,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
             isXP = fluid.getFluid().getName().equals("xpjuice");
         }
 
-        if (fluid != null && isXP)
+        if (isXP)
         {
             int requiredXp = MathHelper.ceil(player.xpBarCap() * (1 - player.experience));
             int requiredXPJuice = this.xpToLiquidRatio(requiredXp);
@@ -474,11 +474,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
                 return false;
             }
         }
-        if (this.fluidTank.getFluidAmount() >= this.getMaxXP())
-        {
-            return false;
-        }
-        return true;
+        return this.fluidTank.getFluidAmount() < this.getMaxXP();
     }
 
     private boolean putXPValue(EntityXPOrb xpOrb)
@@ -585,12 +581,12 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
 
     private boolean canInsertItemInSlot(IInventory inventory, ItemStack itemStack, int index)
     {
-        return !inventory.isItemValidForSlot(index, itemStack) ? false : true;
+        return inventory.isItemValidForSlot(index, itemStack);
     }
 
     private boolean canCombine(ItemStack itemStack1, ItemStack itemStack2)
     {
-        return itemStack1.getItem() != itemStack2.getItem() ? false : itemStack1.getMetadata() != itemStack2.getMetadata() ? false : itemStack1.getCount() > itemStack1.getMaxStackSize() ? false : ItemStack.areItemStackTagsEqual(itemStack1, itemStack2);
+        return itemStack1.getItem() == itemStack2.getItem() && itemStack1.getMetadata() == itemStack2.getMetadata() && itemStack1.getCount() <= itemStack1.getMaxStackSize() && ItemStack.areItemStackTagsEqual(itemStack1, itemStack2);
     }
 
     private boolean destroyBlock()

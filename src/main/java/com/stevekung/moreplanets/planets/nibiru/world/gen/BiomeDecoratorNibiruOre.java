@@ -71,7 +71,7 @@ public class BiomeDecoratorNibiruOre extends BiomeDecoratorMP
             this.generateOre(this.copperGen, EnumOreGen.COPPER, world, rand);
             this.generateOre(this.aluminumGen, EnumOreGen.ALUMINUM, world, rand);
             this.generateOre(this.siliconGen, EnumOreGen.SILICON, world, rand);
-            this.generateLapis(this.lapisGen, EnumOreGen.LAPIS, world, rand);
+            this.generateLapis(this.lapisGen, world, rand);
         }
 
         this.generateOre(biome instanceof BiomeGreenVeinFields ? this.purifiedGravelGen : this.infectedGravelGen, EnumOreGen.GRAVEL, world, rand);

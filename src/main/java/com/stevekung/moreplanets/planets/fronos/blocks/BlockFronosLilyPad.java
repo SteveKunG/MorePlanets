@@ -29,7 +29,6 @@ public class BlockFronosLilyPad extends BlockBushMP
         this.setSoundType(MPSounds.LILYPAD);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity, boolean push)
     {

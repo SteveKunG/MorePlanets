@@ -19,6 +19,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeModContainer;
+
 import com.stevekung.moreplanets.init.MPPotions;
 import com.stevekung.moreplanets.utils.EntityEffectUtils;
 import com.stevekung.moreplanets.utils.entity.ISpaceMob;
@@ -40,7 +42,7 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() != MPPotions.INFECTED_SPORE && super.isPotionApplicable(potion);
     }
 
     @Override
@@ -90,14 +92,14 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
 
         if (data == null)
         {
-            data = new GroupData(this.world.rand.nextFloat() < net.minecraftforge.common.ForgeModContainer.zombieBabyChance);
+            data = new GroupData(this.world.rand.nextFloat() < ForgeModContainer.zombieBabyChance);
         }
 
         if (data instanceof GroupData)
         {
             GroupData entityzombie$groupdata = (GroupData)data;
 
-            if (entityzombie$groupdata.isChild)
+            if (entityzombie$groupdata.isBaby)
             {
                 this.setChild(true);
 
@@ -132,7 +134,7 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
         {
             Calendar calendar = this.world.getCurrentDate();
 
-            if (calendar.get(2) + 1 == 10 && calendar.get(5) == 31 && this.rand.nextFloat() < 0.25F)
+            if (calendar.get(Calendar.MONTH) + 1 == 10 && calendar.get(Calendar.DATE) == 31 && this.rand.nextFloat() < 0.25F)
             {
                 this.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(this.rand.nextFloat() < 0.1F ? Blocks.LIT_PUMPKIN : Blocks.PUMPKIN));
                 this.inventoryArmorDropChances[EntityEquipmentSlot.HEAD.getIndex()] = 0.0F;
@@ -167,14 +169,13 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
         return EntityZombie.SPAWN_REINFORCEMENTS_CHANCE;
     }
 
-    class GroupData implements IEntityLivingData
+    static class GroupData implements IEntityLivingData
     {
-        public boolean isChild;
+        public final boolean isBaby;
 
         private GroupData(boolean isBaby)
         {
-            this.isChild = false;
-            this.isChild = isBaby;
+            this.isBaby = isBaby;
         }
     }
 }

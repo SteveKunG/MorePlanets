@@ -9,14 +9,13 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerBlackHoleStorage extends Container
 {
-    private final EntityPlayer player;
     private final IInventory inventory;
 
     public ContainerBlackHoleStorage(IInventory playerInventory, IInventory chestInventory)
     {
         this.inventory = chestInventory;
-        this.player = ((InventoryPlayer) playerInventory).player;
-        chestInventory.openInventory(this.player);
+        EntityPlayer player = ((InventoryPlayer) playerInventory).player;
+        chestInventory.openInventory(player);
         this.addSlotForContainer(playerInventory, chestInventory, 256, 256);
     }
 

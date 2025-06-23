@@ -48,12 +48,7 @@ public class MapGenCrashedAlienShipFeature extends MapGenStructure
         l = l * this.maxDistance;
         k = k + random.nextInt(this.maxDistance - 8);
         l = l + random.nextInt(this.maxDistance - 8);
-
-        if (i == k && j == l)
-        {
-            return true;
-        }
-        return false;
+        return i == k && j == l;
     }
 
     @Override
@@ -66,14 +61,14 @@ public class MapGenCrashedAlienShipFeature extends MapGenStructure
     @Override
     protected StructureStart getStructureStart(int chunkX, int chunkZ)
     {
-        return new MapGenCrashedAlienShipFeature.Start(this.world, this.rand, chunkX, chunkZ);
+        return new MapGenCrashedAlienShipFeature.Start(this.rand, chunkX, chunkZ);
     }
 
     public static class Start extends StructureStart
     {
         public Start() {}
 
-        public Start(World world, Random rand, int chunkX, int chunkZ)
+        public Start(Random rand, int chunkX, int chunkZ)
         {
             super(chunkX, chunkZ);
             LoggerMP.debug("Generate Crashed Alien Ship at {} {}", chunkX * 16, chunkZ * 16);

@@ -2,9 +2,11 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.structure;
 
 import java.util.*;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedElderGuardian;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -14,8 +16,6 @@ import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedElderGuardian;
 
 public class StructureNibiruOceanMonumentPieces
 {
@@ -624,7 +624,7 @@ public class StructureNibiruOceanMonumentPieces
     {
         private RoomDefinition sourceRoom;
         private RoomDefinition coreRoom;
-        private List<Piece> childPieces = new ArrayList<>();
+        private final List<Piece> childPieces = new ArrayList<>();
 
         public MonumentBuilding() {}
 
@@ -633,16 +633,7 @@ public class StructureNibiruOceanMonumentPieces
             super(0);
             this.setCoordBaseMode(facing);
             EnumFacing enumfacing = this.getCoordBaseMode();
-
-            if (enumfacing.getAxis() == EnumFacing.Axis.Z)
-            {
-                this.boundingBox = new StructureBoundingBox(x, 39, z, x + 58 - 1, 61, z + 58 - 1);
-            }
-            else
-            {
-                this.boundingBox = new StructureBoundingBox(x, 39, z, x + 58 - 1, 61, z + 58 - 1);
-            }
-
+            this.boundingBox = new StructureBoundingBox(x, 39, z, x + 58 - 1, 61, z + 58 - 1);
             List<RoomDefinition> list = this.generateRoomGraph(rand);
             this.sourceRoom.claimed = true;
             this.childPieces.add(new EntryRoom(enumfacing, this.sourceRoom));
@@ -663,7 +654,7 @@ public class StructureNibiruOceanMonumentPieces
                         Iterator<MonumentRoomFitHelper> iterator = list1.iterator();
                         MonumentRoomFitHelper helper;
 
-                        while (true)
+                        do
                         {
                             if (!iterator.hasNext())
                             {
@@ -672,11 +663,8 @@ public class StructureNibiruOceanMonumentPieces
 
                             helper = iterator.next();
 
-                            if (helper.fits(roomdefinition))
-                            {
-                                break;
-                            }
                         }
+                        while (!helper.fits(roomdefinition));
                         this.childPieces.add(helper.create(enumfacing, roomdefinition));
                     }
                 }
@@ -884,10 +872,10 @@ public class StructureNibiruOceanMonumentPieces
             }
             for (int l1 = 0; l1 < 5; ++l1)
             {
-                this.generateWaterBox(world, box, -1 - l1, 0 + l1 * 2, -1 - l1, -1 - l1, 23, 58 + l1, false);
-                this.generateWaterBox(world, box, 58 + l1, 0 + l1 * 2, -1 - l1, 58 + l1, 23, 58 + l1, false);
-                this.generateWaterBox(world, box, 0 - l1, 0 + l1 * 2, -1 - l1, 57 + l1, 23, -1 - l1, false);
-                this.generateWaterBox(world, box, 0 - l1, 0 + l1 * 2, 58 + l1, 57 + l1, 23, 58 + l1, false);
+                this.generateWaterBox(world, box, -1 - l1, l1 * 2, -1 - l1, -1 - l1, 23, 58 + l1, false);
+                this.generateWaterBox(world, box, 58 + l1, l1 * 2, -1 - l1, 58 + l1, 23, 58 + l1, false);
+                this.generateWaterBox(world, box, -l1, l1 * 2, -1 - l1, 57 + l1, 23, -1 - l1, false);
+                this.generateWaterBox(world, box, -l1, l1 * 2, 58 + l1, 57 + l1, 23, 58 + l1, false);
             }
             for (Piece piece : this.childPieces)
             {
@@ -903,8 +891,8 @@ public class StructureNibiruOceanMonumentPieces
         {
             if (this.doesChunkIntersect(box, size, 0, size + 23, 20))
             {
-                this.fillWithBlocks(world, box, size + 0, 0, 0, size + 24, 0, 20, this.roughPrismarine, this.roughPrismarine, false);
-                this.generateWaterBox(world, box, size + 0, 1, 0, size + 24, 10, 20, false);
+                this.fillWithBlocks(world, box, size, 0, 0, size + 24, 0, 20, this.roughPrismarine, this.roughPrismarine, false);
+                this.generateWaterBox(world, box, size, 1, 0, size + 24, 10, 20, false);
 
                 for (int j = 0; j < 4; ++j)
                 {
@@ -1261,7 +1249,7 @@ public class StructureNibiruOceanMonumentPieces
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox box)
         {
             this.generateBoxOnFillOnly(world, box, 1, 8, 0, 14, 8, 14, this.roughPrismarine);
-            int i = 7;
+            int i;
             IBlockState iblockstate = this.bricksPrismarine;
             this.fillWithBlocks(world, box, 0, 7, 0, 0, 7, 15, iblockstate, iblockstate, false);
             this.fillWithBlocks(world, box, 15, 7, 0, 15, 7, 15, iblockstate, iblockstate, false);
@@ -1398,15 +1386,15 @@ public class StructureNibiruOceanMonumentPieces
 
     public abstract static class Piece extends StructureComponent
     {
-        protected IBlockState roughPrismarine = MPBlocks.INFECTED_PRISMARINE.getDefaultState();
-        protected IBlockState bricksPrismarine = MPBlocks.INFECTED_PRISMARINE_BRICKS.getDefaultState();
-        protected IBlockState darkPrismarine = MPBlocks.INFECTED_DARK_PRISMARINE.getDefaultState();
-        protected IBlockState seaLantern = MPBlocks.INFECTED_SEA_LANTERN.getDefaultState();
-        protected IBlockState water = MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
-        protected int gridroomSourceIndex = getRoomIndex(2, 0, 0);
-        protected int gridroomTopConnectIndex = getRoomIndex(2, 2, 0);
-        protected int gridroomLeftwingConnectIndex = getRoomIndex(0, 1, 0);
-        protected int gridroomRightwingConnectIndex = getRoomIndex(4, 1, 0);
+        protected final IBlockState roughPrismarine = MPBlocks.INFECTED_PRISMARINE.getDefaultState();
+        protected final IBlockState bricksPrismarine = MPBlocks.INFECTED_PRISMARINE_BRICKS.getDefaultState();
+        protected final IBlockState darkPrismarine = MPBlocks.INFECTED_DARK_PRISMARINE.getDefaultState();
+        protected final IBlockState seaLantern = MPBlocks.INFECTED_SEA_LANTERN.getDefaultState();
+        protected final IBlockState water = MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
+        protected final int gridroomSourceIndex = getRoomIndex(2, 0, 0);
+        protected final int gridroomTopConnectIndex = getRoomIndex(2, 2, 0);
+        protected final int gridroomLeftwingConnectIndex = getRoomIndex(0, 1, 0);
+        protected final int gridroomRightwingConnectIndex = getRoomIndex(4, 1, 0);
         protected RoomDefinition roomDefinition;
 
         protected static int getRoomIndex(int x, int y, int z)
@@ -1500,9 +1488,9 @@ public class StructureNibiruOceanMonumentPieces
         {
             if (open)
             {
-                this.fillWithBlocks(world, box, x + 0, 0, z + 0, x + 2, 0, z + 8 - 1, this.roughPrismarine, this.roughPrismarine, false);
-                this.fillWithBlocks(world, box, x + 5, 0, z + 0, x + 8 - 1, 0, z + 8 - 1, this.roughPrismarine, this.roughPrismarine, false);
-                this.fillWithBlocks(world, box, x + 3, 0, z + 0, x + 4, 0, z + 2, this.roughPrismarine, this.roughPrismarine, false);
+                this.fillWithBlocks(world, box, x, 0, z, x + 2, 0, z + 8 - 1, this.roughPrismarine, this.roughPrismarine, false);
+                this.fillWithBlocks(world, box, x + 5, 0, z, x + 8 - 1, 0, z + 8 - 1, this.roughPrismarine, this.roughPrismarine, false);
+                this.fillWithBlocks(world, box, x + 3, 0, z, x + 4, 0, z + 2, this.roughPrismarine, this.roughPrismarine, false);
                 this.fillWithBlocks(world, box, x + 3, 0, z + 5, x + 4, 0, z + 8 - 1, this.roughPrismarine, this.roughPrismarine, false);
                 this.fillWithBlocks(world, box, x + 3, 0, z + 2, x + 4, 0, z + 2, this.bricksPrismarine, this.bricksPrismarine, false);
                 this.fillWithBlocks(world, box, x + 3, 0, z + 5, x + 4, 0, z + 5, this.bricksPrismarine, this.bricksPrismarine, false);
@@ -1511,7 +1499,7 @@ public class StructureNibiruOceanMonumentPieces
             }
             else
             {
-                this.fillWithBlocks(world, box, x + 0, 0, z + 0, x + 8 - 1, 0, z + 8 - 1, this.roughPrismarine, this.roughPrismarine, false);
+                this.fillWithBlocks(world, box, x, 0, z, x + 8 - 1, 0, z + 8 - 1, this.roughPrismarine, this.roughPrismarine, false);
             }
         }
 
@@ -1552,7 +1540,7 @@ public class StructureNibiruOceanMonumentPieces
                 EntityInfectedElderGuardian entityguardian = new EntityInfectedElderGuardian(world);
                 entityguardian.heal(entityguardian.getMaxHealth());
                 entityguardian.setLocationAndAngles(i + 0.5D, j, k + 0.5D, 0.0F, 0.0F);
-                entityguardian.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(entityguardian)), (IEntityLivingData)null);
+                entityguardian.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(entityguardian)), null);
                 world.spawnEntity(entityguardian);
                 return true;
             }
@@ -1563,11 +1551,11 @@ public class StructureNibiruOceanMonumentPieces
         }
     }
 
-    static class RoomDefinition
+    public static class RoomDefinition
     {
-        int index;
-        RoomDefinition[] connections = new RoomDefinition[6];
-        boolean[] hasOpening = new boolean[6];
+        final int index;
+        final RoomDefinition[] connections = new RoomDefinition[6];
+        final boolean[] hasOpening = new boolean[6];
         boolean claimed;
         boolean isSource;
         int scanIndex;

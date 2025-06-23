@@ -14,7 +14,7 @@ import com.stevekung.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
 
 public class ContainerSpaceWarpPad extends Container
 {
-    private TileBaseElectricBlock tile;
+    private final TileBaseElectricBlock tile;
 
     public ContainerSpaceWarpPad(InventoryPlayer invPlayer, TileEntitySpaceWarpPadFull tile)
     {

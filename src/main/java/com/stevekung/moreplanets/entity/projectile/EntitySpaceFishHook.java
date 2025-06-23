@@ -417,12 +417,12 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
                 {
                     if (this.rand.nextFloat() < 0.15F)
                     {
-                        worldserver.spawnParticle(EnumParticleTypes.WATER_BUBBLE, d0, d1 - 0.10000000149011612D, d2, 1, f1, 0.1D, f2, 0.0D, new int[0]);
+                        worldserver.spawnParticle(EnumParticleTypes.WATER_BUBBLE, d0, d1 - 0.10000000149011612D, d2, 1, f1, 0.1D, f2, 0.0D);
                     }
                     float f3 = f1 * 0.04F;
                     float f4 = f2 * 0.04F;
-                    worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, d0, d1, d2, 0, f4, 0.01D, -f3, 1.0D, new int[0]);
-                    worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, d0, d1, d2, 0, -f4, 0.01D, f3, 1.0D, new int[0]);
+                    worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, d0, d1, d2, 0, f4, 0.01D, -f3, 1.0D);
+                    worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, d0, d1, d2, 0, -f4, 0.01D, f3, 1.0D);
                 }
             }
             else
@@ -430,8 +430,8 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
                 this.motionY = -0.4F * MathHelper.nextFloat(this.rand, 0.6F, 1.0F);
                 this.playSound(SoundEvents.ENTITY_BOBBER_SPLASH, 0.25F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
                 double d3 = this.getEntityBoundingBox().minY + 0.5D;
-                worldserver.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX, d3, this.posZ, (int)(1.0F + this.width * 20.0F), this.width, 0.0D, this.width, 0.20000000298023224D, new int[0]);
-                worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, this.posX, d3, this.posZ, (int)(1.0F + this.width * 20.0F), this.width, 0.0D, this.width, 0.20000000298023224D, new int[0]);
+                worldserver.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX, d3, this.posZ, (int)(1.0F + this.width * 20.0F), this.width, 0.0D, this.width, 0.20000000298023224D);
+                worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, this.posX, d3, this.posZ, (int)(1.0F + this.width * 20.0F), this.width, 0.0D, this.width, 0.20000000298023224D);
                 this.ticksCatchable = MathHelper.getInt(this.rand, 20, 40);
             }
         }
@@ -464,7 +464,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
 
                 if (block1 == Blocks.WATER || block1 == Blocks.FLOWING_WATER || block1 instanceof IFishableLiquidBlock)
                 {
-                    worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D, new int[0]);
+                    worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D);
                 }
             }
             if (this.ticksCaughtDelay <= 0)
@@ -604,6 +604,6 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
     {
         FLYING,
         HOOKED_IN_ENTITY,
-        BOBBING;
+        BOBBING
     }
 }

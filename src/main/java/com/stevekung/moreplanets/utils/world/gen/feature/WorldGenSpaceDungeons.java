@@ -1,13 +1,13 @@
 package com.stevekung.moreplanets.utils.world.gen.feature;
 
 import java.lang.reflect.Method;
-import java.util.Iterator;
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedCreeper;
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSkeleton;
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.utils.LoggerMP;
+import com.stevekung.moreplanets.utils.blocks.BlockChestMP;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -20,10 +20,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.utils.LoggerMP;
-import com.stevekung.moreplanets.utils.blocks.BlockChestMP;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
+
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedCreeper;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSkeleton;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
 
 public class WorldGenSpaceDungeons extends WorldGenerator
 {
@@ -92,7 +93,7 @@ public class WorldGenSpaceDungeons extends WorldGenerator
 
                         if (l1 != j && i2 != -1 && j2 != i1 && l1 != k && i2 != 4 && j2 != j1)
                         {
-                            if (world.getBlockState(blockpos1).getBlock() != this.chest)
+                            if (world.getBlockState(blockpos1).getBlock() != this.chest.getBlock())
                             {
                                 world.setBlockToAir(blockpos1);
                             }
@@ -101,7 +102,7 @@ public class WorldGenSpaceDungeons extends WorldGenerator
                         {
                             world.setBlockToAir(blockpos1);
                         }
-                        else if (world.getBlockState(blockpos1).getMaterial().isSolid() && world.getBlockState(blockpos1).getBlock() != this.chest)
+                        else if (world.getBlockState(blockpos1).getMaterial().isSolid() && world.getBlockState(blockpos1).getBlock() != this.chest.getBlock())
                         {
                             if (i2 == -1 && rand.nextInt(4) != 0)
                             {
@@ -136,12 +137,9 @@ public class WorldGenSpaceDungeons extends WorldGenerator
                         if (world.isAirBlock(blockpos2))
                         {
                             int k2 = 0;
-                            Iterator<EnumFacing> iterator = EnumFacing.Plane.HORIZONTAL.iterator();
 
-                            while (iterator.hasNext())
+                            for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
                             {
-                                EnumFacing enumfacing = iterator.next();
-
                                 if (world.getBlockState(blockpos2.offset(enumfacing)).getMaterial().isSolid())
                                 {
                                     ++k2;

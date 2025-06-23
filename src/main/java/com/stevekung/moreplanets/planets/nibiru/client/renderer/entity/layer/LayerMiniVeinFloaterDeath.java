@@ -55,7 +55,7 @@ public class LayerMiniVeinFloaterDeath implements LayerRenderer<EntityMiniVeinFl
                 worldrenderer.pos(0.0D, 0.0D, 0.0D).color(110, 60, 10, (int)(255.0F * (1.0F - f1))).endVertex();
                 worldrenderer.pos(-0.866D * f3, f2, -0.5F * f3).color(110, 60, 10, 0).endVertex();
                 worldrenderer.pos(0.866D * f3, f2, -0.5F * f3).color(110, 60, 10, 0).endVertex();
-                worldrenderer.pos(0.0D, f2, 1.0F * f3).color(110, 60, 10, 0).endVertex();
+                worldrenderer.pos(0.0D, f2, f3).color(110, 60, 10, 0).endVertex();
                 worldrenderer.pos(-0.866D * f3, f2, -0.5F * f3).color(110, 60, 10, 0).endVertex();
                 tessellator.draw();
             }

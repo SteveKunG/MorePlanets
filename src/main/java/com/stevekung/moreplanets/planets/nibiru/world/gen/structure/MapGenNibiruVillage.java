@@ -63,12 +63,7 @@ public class MapGenNibiruVillage extends MapGenStructure
 
         if (i == k && j == l)
         {
-            boolean flag = this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 0, MapGenNibiruVillage.BIOMES);
-
-            if (flag)
-            {
-                return true;
-            }
+            return this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 0, MapGenNibiruVillage.BIOMES);
         }
         return false;
     }

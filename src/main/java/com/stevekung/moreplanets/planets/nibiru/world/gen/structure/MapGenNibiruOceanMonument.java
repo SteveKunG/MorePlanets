@@ -73,12 +73,7 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
                 return false;
             }
 
-            boolean flag = this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 29, MapGenNibiruOceanMonument.BIOMES);
-
-            if (flag)
-            {
-                return true;
-            }
+            return this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 29, MapGenNibiruOceanMonument.BIOMES);
         }
         return false;
     }
@@ -103,7 +98,7 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
 
     public static class StartMonument extends StructureStart
     {
-        private Set<ChunkPos> processed = new HashSet<>();
+        private final Set<ChunkPos> processed = new HashSet<>();
         private boolean wasCreated;
 
         public StartMonument() {}
@@ -129,7 +124,7 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
         @Override
         public boolean isValidForPostProcess(ChunkPos pair)
         {
-            return this.processed.contains(pair) ? false : super.isValidForPostProcess(pair);
+            return !this.processed.contains(pair) && super.isValidForPostProcess(pair);
         }
 
         @Override

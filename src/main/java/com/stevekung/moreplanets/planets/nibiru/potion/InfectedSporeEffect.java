@@ -23,7 +23,7 @@ public class InfectedSporeEffect extends PotionMP
         if (this == MPPotions.INFECTED_SPORE)
         {
             int k = 20 >> amplifier;
-            return k > 0 ? duration % k == 0 : true;
+            return k == 0 || duration % k == 0;
         }
         return false;
     }

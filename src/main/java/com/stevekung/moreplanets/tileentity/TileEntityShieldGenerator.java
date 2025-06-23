@@ -207,7 +207,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         }
         if (!this.world.isRemote)
         {
-            int count = 0;
+            int count;
             int capacityUpgradeCount = 0;
 
             // shield damage upgrade
@@ -251,11 +251,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
             {
                 this.needCharged = true;
                 this.shieldChargeCooldown = 1200;
-
-                if (this.shieldChargeCooldown == 0)
-                {
-                    this.shieldCapacity = 100;
-                }
             }
             if (!this.disabled && this.getEnergyStoredGC() > 0.0F && this.hasEnoughEnergyToRun)
             {
@@ -303,7 +298,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
                         ((WorldServer)this.world).spawnParticle(EnumParticleTypes.CRIT_MAGIC, entity.posX, entity.posY, entity.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
                     }
                     float motion = MathHelper.sqrt(entity.motionX * entity.motionX + entity.motionZ * entity.motionZ);
-                    this.shieldCapacity -= motion * 2;
+                    this.shieldCapacity -= (int) (motion * 2);
                     entity.setDead();
                 }
             }
@@ -385,12 +380,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     public int getPacketCooldown()
     {
         return 1;
-    }
-
-    @Override
-    public boolean isNetworkedTile()
-    {
-        return true;
     }
 
     @Override
@@ -567,12 +556,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         double dx = this.pos.getX() - pos.getX();
         double dy = Math.abs(this.pos.getY() - pos.getY());
         double dz = this.pos.getZ() - pos.getZ();
-
-        if (dx * dx + dz * dz <= this.shieldSize * this.shieldSize && dy <= this.shieldSize)
-        {
-            return true;
-        }
-        return false;
+        return dx * dx + dz * dz <= this.shieldSize * this.shieldSize && dy <= this.shieldSize;
     }
 
     private boolean destroyBlock()

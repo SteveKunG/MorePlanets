@@ -28,12 +28,13 @@ public class GenLayerNibiruBiomeEdge extends GenLayer
 
                 if (!this.replaceBiomeEdgeIfNecessary(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_MOUNTAINS), Biome.getIdForBiome(MPBiomes.INFECTED_MOUNTAINS_EDGE)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_WOODED_BADLANDS_PLATEAU), Biome.getIdForBiome(MPBiomes.INFECTED_BADLANDS)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_BADLANDS_PLATEAU), Biome.getIdForBiome(MPBiomes.INFECTED_BADLANDS)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_GIANT_TREE_TAIGA), Biome.getIdForBiome(MPBiomes.INFECTED_TAIGA)))
                 {
+                    int k2 = aint[j + 1 + (i + 1 + 1) * (areaWidth + 2)];
+
                     if (k == Biome.getIdForBiome(MPBiomes.INFECTED_DESERT))
                     {
                         int l1 = aint[j + 1 + (i + 1 - 1) * (areaWidth + 2)];
                         int i2 = aint[j + 1 + 1 + (i + 1) * (areaWidth + 2)];
                         int j2 = aint[j + 1 - 1 + (i + 1) * (areaWidth + 2)];
-                        int k2 = aint[j + 1 + (i + 1 + 1) * (areaWidth + 2)];
 
                         if (l1 != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_SPIKES) && i2 != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_SPIKES) && j2 != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_SPIKES) && k2 != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_SPIKES))
                         {
@@ -49,11 +50,10 @@ public class GenLayerNibiruBiomeEdge extends GenLayer
                         int l = aint[j + 1 + (i + 1 - 1) * (areaWidth + 2)];
                         int i1 = aint[j + 1 + 1 + (i + 1) * (areaWidth + 2)];
                         int j1 = aint[j + 1 - 1 + (i + 1) * (areaWidth + 2)];
-                        int k1 = aint[j + 1 + (i + 1 + 1) * (areaWidth + 2)];
 
-                        if (l != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && k1 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && l != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TAIGA) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TAIGA) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TAIGA) && k1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TAIGA) && l != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_SPIKES) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_SPIKES) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_SPIKES) && k1 != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_SPIKES))
+                        if (l != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && k2 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && l != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TAIGA) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TAIGA) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TAIGA) && k2 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TAIGA) && l != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_SPIKES) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_SPIKES) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_SPIKES) && k2 != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_SPIKES))
                         {
-                            if (l != Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE) && k1 != Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE))
+                            if (l != Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE) && k2 != Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE))
                             {
                                 aint1[j + i * areaWidth] = k;
                             }

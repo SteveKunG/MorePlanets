@@ -5,6 +5,20 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import com.stevekung.moreplanets.core.event.ClientEventHandler;
+import com.stevekung.moreplanets.planets.nibiru.inventory.ContainerNuclearWasteGenerator;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
+import com.stevekung.moreplanets.utils.client.gui.GuiContainerMP;
+import com.stevekung.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
+
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementCheckbox;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementCheckbox.ICheckBoxCallback;
@@ -12,19 +26,6 @@ import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.event.ClientEventHandler;
-import com.stevekung.moreplanets.planets.nibiru.inventory.ContainerNuclearWasteGenerator;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
-import com.stevekung.moreplanets.utils.client.gui.GuiContainerMP;
-import com.stevekung.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 @SideOnly(Side.CLIENT)
@@ -47,11 +48,9 @@ public class GuiNuclearWasteGenerator extends GuiContainerMP implements ICheckBo
     @Override
     protected void actionPerformed(GuiButton button)
     {
-        switch (button.id)
+        if (button.id == 0)
         {
-        case 0:
             GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(EnumSimplePacket.S_UPDATE_DISABLEABLE_BUTTON, GCCoreUtil.getDimensionID(this.mc.world), new Object[] { this.tile.getPos(), 0 }));
-            break;
         }
     }
 
@@ -59,9 +58,6 @@ public class GuiNuclearWasteGenerator extends GuiContainerMP implements ICheckBo
     public void initGui()
     {
         super.initGui();
-        List<String> electricityDesc = new ArrayList<>();
-        electricityDesc.add(LangUtils.translate("gui.energy_storage.desc.0"));
-        electricityDesc.add(TextFormatting.YELLOW + LangUtils.translate("gui.energy_storage.desc.1") + ((int) Math.floor(this.tile.getEnergyStoredGC()) + " / " + (int) Math.floor(this.tile.getMaxEnergyStoredGC())));
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
         this.electricInfoRegion = new GuiElementInfoRegionMP(x + 46, y + 24, 56, 9, new ArrayList<>(), this.width, this);

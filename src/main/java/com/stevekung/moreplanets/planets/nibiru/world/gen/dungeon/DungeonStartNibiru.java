@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.world.World;
-import net.minecraft.world.gen.structure.StructureBoundingBox;
-import net.minecraft.world.gen.structure.StructureComponent;
 import com.stevekung.moreplanets.utils.LoggerMP;
 import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
+
+import net.minecraft.world.gen.structure.StructureBoundingBox;
+import net.minecraft.world.gen.structure.StructureComponent;
 
 public class DungeonStartNibiru extends EntranceCraterNibiru
 {
@@ -17,9 +17,9 @@ public class DungeonStartNibiru extends EntranceCraterNibiru
 
     public DungeonStartNibiru() {}
 
-    public DungeonStartNibiru(World world, DungeonConfigurationMP configuration, Random rand, int blockPosX, int blockPosZ)
+    public DungeonStartNibiru(DungeonConfigurationMP configuration, Random rand, int blockPosX, int blockPosZ)
     {
-        super(world, configuration, rand, blockPosX, blockPosZ);
+        super(configuration, rand, blockPosX, blockPosZ);
     }
 
     @Override
@@ -61,11 +61,6 @@ public class DungeonStartNibiru extends EntranceCraterNibiru
             LoggerMP.error("Could not find valid dungeon layout! This is a bug, please report it, including your world seed (/seed) and dungeon location {} {}", xPos, zPos);
         }
         super.buildComponent(component, listIn, rand);
-    }
-
-    public boolean checkIntersection(int blockX, int blockZ, int sizeX, int sizeZ)
-    {
-        return this.checkIntersection(new StructureBoundingBox(blockX, blockZ, blockX + sizeX, blockZ + sizeZ));
     }
 
     public boolean checkIntersection(StructureBoundingBox bounds)

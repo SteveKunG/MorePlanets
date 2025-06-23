@@ -57,7 +57,7 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() != MPPotions.INFECTED_SPORE && super.isPotionApplicable(potion);
     }
 
     @Override
@@ -92,7 +92,7 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
             {
                 i = MathHelper.floor(this.posX + (l % 2 * 2 - 1) * 0.25F);
                 j = MathHelper.floor(this.posY);
-                k = MathHelper.floor(this.posZ + (l / 2 % 2 * 2 - 1) * 0.25F);
+                k = MathHelper.floor(this.posZ + (l / 2.0d % 2 * 2 - 1) * 0.25F);
                 BlockPos blockpos = new BlockPos(i, j, k);
 
                 if (this.world.getBlockState(blockpos).getMaterial() == Material.AIR && this.world.getBiome(new BlockPos(i, 0, k)).getTemperature(blockpos) < 0.8F && MPBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.world, blockpos))

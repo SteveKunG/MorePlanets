@@ -107,7 +107,7 @@ public class ChunkGeneratorChalos extends ChunkGeneratorBaseMP
     @Override
     public boolean isInsideStructure(World world, String structureName, BlockPos pos)
     {
-        return "CheeseSporeHut".equals(structureName) && this.cheeseSporeHutFeatureGenerator != null ? this.cheeseSporeHutFeatureGenerator.isInsideStructure(pos) : false;
+        return "CheeseSporeHut".equals(structureName) && this.cheeseSporeHutFeatureGenerator != null && this.cheeseSporeHutFeatureGenerator.isInsideStructure(pos);
     }
 
     @Override

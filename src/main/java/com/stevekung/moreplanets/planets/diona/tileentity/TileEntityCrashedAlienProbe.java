@@ -1,5 +1,6 @@
 package com.stevekung.moreplanets.planets.diona.tileentity;
 
+import java.util.Collections;
 import java.util.Random;
 
 import javax.annotation.Nullable;
@@ -186,10 +187,7 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
     @Override
     public void clear()
     {
-        for (int i = 0; i < this.containingItems.size(); ++i)
-        {
-            this.containingItems.set(i, ItemStack.EMPTY);
-        }
+        Collections.fill(this.containingItems, ItemStack.EMPTY);
     }
 
     @Override

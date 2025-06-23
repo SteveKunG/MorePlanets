@@ -126,7 +126,7 @@ public class TileEntityDummy extends TileBaseElectricBlock
         }
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, EntityPlayer player)
+    public boolean onBlockActivated(EntityPlayer player)
     {
         if (this.mainBlockPosition != null)
         {
@@ -138,15 +138,6 @@ public class TileEntityDummy extends TileBaseElectricBlock
             }
         }
         return false;
-    }
-
-    public TileEntity getMainBlockTile()
-    {
-        if (this.mainBlockPosition != null)
-        {
-            return this.world.getTileEntity(this.mainBlockPosition);
-        }
-        return null;
     }
 
     public static boolean initialiseMultiTiles(BlockPos pos, World world, IMultiBlock thisTile)

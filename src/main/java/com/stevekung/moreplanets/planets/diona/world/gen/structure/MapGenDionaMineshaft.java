@@ -10,8 +10,6 @@ import net.minecraft.world.gen.structure.StructureStart;
 
 public class MapGenDionaMineshaft extends MapGenStructure
 {
-    private final double chance = 0.004D;
-
     public MapGenDionaMineshaft() {}
 
     static
@@ -29,7 +27,8 @@ public class MapGenDionaMineshaft extends MapGenStructure
     @Override
     protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
     {
-        return this.rand.nextDouble() < this.chance && this.rand.nextInt(80) < Math.max(Math.abs(chunkX), Math.abs(chunkZ));
+        double chance = 0.004D;
+        return this.rand.nextDouble() < chance && this.rand.nextInt(80) < Math.max(Math.abs(chunkX), Math.abs(chunkZ));
     }
 
     @Override

@@ -87,7 +87,7 @@ public class ItemBlockSlabMP extends ItemBlockMP
             }
             pos = pos.offset(side);
             IBlockState state1 = world.getBlockState(pos);
-            return state1.getBlock() == singleSlab.getHalf() ? true : super.canPlaceBlockOnSide(world, pos, side, player, itemStack);
+            return state1.getBlock() == singleSlab.getHalf() || super.canPlaceBlockOnSide(world, pos, side, player, itemStack);
         }
         return super.canPlaceBlockOnSide(world, pos, side, player, itemStack);
     }

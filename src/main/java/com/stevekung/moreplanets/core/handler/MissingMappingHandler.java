@@ -13,7 +13,6 @@ import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.init.MPPotions;
 import com.stevekung.moreplanets.planets.diona.entity.*;
 
-import com.stevekung.moreplanets.planets.diona.entity.*;
 import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityInfectedPurloniteArrow;
 import stevekung.mods.stevekunglib.utils.BlockItemRemapper;
 import stevekung.mods.stevekunglib.utils.LoggerSL;

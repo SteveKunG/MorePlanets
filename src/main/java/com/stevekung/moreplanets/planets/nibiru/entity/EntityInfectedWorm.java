@@ -50,7 +50,7 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() != MPPotions.INFECTED_SPORE && super.isPotionApplicable(potion);
     }
 
     @Override
@@ -240,7 +240,7 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
         @Override
         public boolean shouldContinueExecuting()
         {
-            return this.doMerge ? false : super.shouldContinueExecuting();
+            return !this.doMerge && super.shouldContinueExecuting();
         }
 
         @Override
@@ -293,11 +293,11 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
                 Random random = this.entity.getRNG();
                 BlockPos blockpos = new BlockPos(this.entity);
 
-                for (int i = 0; i <= 5 && i >= -5; i = i <= 0 ? 1 - i : 0 - i)
+                for (int i = 0; i <= 5 && i >= -5; i = i <= 0 ? 1 - i : -i)
                 {
-                    for (int j = 0; j <= 10 && j >= -10; j = j <= 0 ? 1 - j : 0 - j)
+                    for (int j = 0; j <= 10 && j >= -10; j = j <= 0 ? 1 - j : -j)
                     {
-                        for (int k = 0; k <= 10 && k >= -10; k = k <= 0 ? 1 - k : 0 - k)
+                        for (int k = 0; k <= 10 && k >= -10; k = k <= 0 ? 1 - k : -k)
                         {
                             BlockPos blockpos1 = blockpos.add(j, i, k);
                             IBlockState iblockstate = world.getBlockState(blockpos1);

@@ -2,14 +2,13 @@ package com.stevekung.moreplanets.utils.items.tools;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
+import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
+import com.stevekung.moreplanets.utils.items.ISortableItem;
 
-import micdoodle8.mods.galacticraft.api.item.ElectricItemHelper;
-import micdoodle8.mods.galacticraft.api.item.IItemElectric;
-import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.state.IBlockState;
@@ -34,10 +33,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
-import com.stevekung.moreplanets.utils.items.ISortableItem;
+
+import micdoodle8.mods.galacticraft.api.item.ElectricItemHelper;
+import micdoodle8.mods.galacticraft.api.item.IItemElectric;
+import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
+
+import javax.annotation.Nullable;
 
 public class ItemElectricHoeMP extends ItemHoe implements IItemElectric, ISortableItem
 {
@@ -100,16 +101,13 @@ public class ItemElectricHoeMP extends ItemHoe implements IItemElectric, ISortab
                     }
                     if (block == Blocks.DIRT)
                     {
-                        switch (iblockstate.getValue(BlockDirt.VARIANT))
+                        if (iblockstate.getValue(BlockDirt.VARIANT) == BlockDirt.DirtType.COARSE_DIRT)
                         {
-                        case DIRT:
-                        default:
-                            this.setBlock(itemStack, player, world, pos, Blocks.FARMLAND.getDefaultState());
-                            return EnumActionResult.SUCCESS;
-                        case COARSE_DIRT:
                             this.setBlock(itemStack, player, world, pos, Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
                             return EnumActionResult.SUCCESS;
                         }
+                        this.setBlock(itemStack, player, world, pos, Blocks.FARMLAND.getDefaultState());
+                        return EnumActionResult.SUCCESS;
                     }
                 }
                 return EnumActionResult.PASS;
@@ -140,7 +138,7 @@ public class ItemElectricHoeMP extends ItemHoe implements IItemElectric, ISortab
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, @Nullable World world, List<String> list, ITooltipFlag flag)
     {
-        TextFormatting color = null;
+        TextFormatting color;
         float joules = this.getElectricityStored(itemStack);
 
         if (joules <= this.getMaxElectricityStored(itemStack) / 3)
@@ -172,7 +170,6 @@ public class ItemElectricHoeMP extends ItemHoe implements IItemElectric, ISortab
 
         if (energyToReceive > this.transferMax)
         {
-            rejectedElectricity += energyToReceive - this.transferMax;
             energyToReceive = this.transferMax;
         }
         if (doReceive)
@@ -258,12 +255,6 @@ public class ItemElectricHoeMP extends ItemHoe implements IItemElectric, ISortab
     public CreativeTabs getCreativeTab()
     {
         return MorePlanetsMod.ITEM_TAB;
-    }
-
-    @Override
-    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
-    {
-        return false;
     }
 
     @Override

@@ -60,12 +60,6 @@ public class BlockFallenKoentusMeteor extends BlockFallingMP
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-        return Item.getItemFromBlock(this);
-    }
-
-    @Override
     public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
     {
         return true;

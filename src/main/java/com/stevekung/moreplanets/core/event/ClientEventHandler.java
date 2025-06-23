@@ -76,7 +76,7 @@ import stevekung.mods.stevekunglib.utils.client.event.RenderEntityOverlayEvent;
 public class ClientEventHandler
 {
     private final Map<BlockPos, Integer> beamList = new HashMap<>();
-    private Minecraft mc;
+    private final Minecraft mc;
     private boolean firstWorldJoin;
     private boolean initVersionCheck;
     public static final List<BlockPos> RECEIVER_RENDER_POS = new ArrayList<>();
@@ -130,7 +130,7 @@ public class ClientEventHandler
                     GlStateManager.pushMatrix();
                     GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 
-                    if (tile != null && tile instanceof TileEntityDarkEnergyReceiver)
+                    if (tile instanceof TileEntityDarkEnergyReceiver)
                     {
                         TileEntityDarkEnergyReceiver der = (TileEntityDarkEnergyReceiver) tile;
                         der.multiBlockClientLists.forEach((pos, state) -> MultiblockRendererUtils.renderBlock(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos, state));
@@ -147,7 +147,7 @@ public class ClientEventHandler
                     GlStateManager.pushMatrix();
                     GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 
-                    if (tile != null && tile instanceof TileEntityNuclearWasteGenerator)
+                    if (tile instanceof TileEntityNuclearWasteGenerator)
                     {
                         TileEntityNuclearWasteGenerator generator = (TileEntityNuclearWasteGenerator) tile;
                         generator.multiBlockClientLists.forEach((pos, state) -> MultiblockRendererUtils.renderBlock(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos, state));
@@ -176,7 +176,7 @@ public class ClientEventHandler
                     Class<?> starter = Class.forName("mezz.jei.startup.JeiStarter");
                     Object obj = starter.getDeclaredConstructor().newInstance();
                     Method method = obj.getClass().getDeclaredMethod("start", List.class);
-                    method.invoke(obj, (ArrayList<?>) pluginsField.get(proxy));
+                    method.invoke(obj, pluginsField.get(proxy));
                 }
                 catch (Exception e)
                 {
@@ -235,11 +235,8 @@ public class ClientEventHandler
     {
         if (this.mc.player != null)
         {
-            Iterator<Map.Entry<BlockPos, Integer>> it = this.beamList.entrySet().iterator();
-
-            while (it.hasNext())
+            for (Map.Entry<BlockPos, Integer> entry : this.beamList.entrySet())
             {
-                Map.Entry<BlockPos, Integer> entry = it.next();
                 FakeAlienBeamRenderer.INSTANCE.renderBeam(entry.getKey().getX() - ClientProxyCore.playerPosX, entry.getKey().getY() - ClientProxyCore.playerPosY, entry.getKey().getZ() - ClientProxyCore.playerPosZ, event.partialTicks);
             }
             ShieldRenderer.renderShields(this.mc.player, event.partialTicks);
@@ -380,14 +377,13 @@ public class ClientEventHandler
                 this.mc.getTextureManager().bindTexture(BOSS_BAR);
                 this.mc.ingameGUI.drawTexturedModalRect(barX, barY, 0, 0, bossBarWidth, bossBarHeight);
                 this.mc.ingameGUI.drawTexturedModalRect(barX, barY, 0, 16, percent, bossBarHeight);
-                this.mc.ingameGUI.getFontRenderer().drawStringWithShadow(bossType, width / 2 - this.mc.ingameGUI.getFontRenderer().getStringWidth(bossType) / 2, y - 8, 16777215);
-                this.mc.ingameGUI.getFontRenderer().drawStringWithShadow(TextFormatting.ITALIC + name, width / 2 - this.mc.ingameGUI.getFontRenderer().getStringWidth(name) / 2, y + 8, boss.getBossTextColor());
+                this.mc.ingameGUI.getFontRenderer().drawStringWithShadow(bossType, width / 2.0f - this.mc.ingameGUI.getFontRenderer().getStringWidth(bossType) / 2.0f, y - 8, 16777215);
+                this.mc.ingameGUI.getFontRenderer().drawStringWithShadow(TextFormatting.ITALIC + name, width / 2.0f - this.mc.ingameGUI.getFontRenderer().getStringWidth(name) / 2.0f, y + 8, boss.getBossTextColor());
                 event.setIncrement(bossBarHeight * 2);
             }
         }
     }
 
-    @SuppressWarnings("deprecation")
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onRenderBlockOverlay(RenderBlockOverlayEvent event)
@@ -425,7 +421,6 @@ public class ClientEventHandler
         }
     }
 
-    @SuppressWarnings("deprecation")
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onRenderFog(FogColors event)
@@ -483,7 +478,7 @@ public class ClientEventHandler
             {
                 float size = gui.getWidthForCelestialBody(event.celestialBody) / 16.0F;
                 float orbitTick = MathHelper.sin(partialTicks * 0.2F) / 10.0F + 0.5F;
-                GlStateManager.translate(6.0F, orbitTick + -6.5F, 0.0F);
+                GlStateManager.translate(6.0F, orbitTick - 6.5F, 0.0F);
                 this.mc.renderEngine.bindTexture(new ResourceLocation("moreplanets:textures/gui/celestialbodies/ion_cannon.png"));
                 gui.drawTexturedModalRect(-7.5F * size, -1.75F * size, 2.0F, 2.0F, 0, 0, 32, 32, false, false, 32, 32);
             }

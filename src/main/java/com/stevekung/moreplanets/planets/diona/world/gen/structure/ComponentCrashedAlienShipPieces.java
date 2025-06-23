@@ -115,14 +115,14 @@ public class ComponentCrashedAlienShipPieces extends StructureComponent
             BlockPos blockpos2 = pos.add(template2.calculateConnectedPos(settings, new BlockPos(27, 0, 0), settings, new BlockPos(0, 0, 2)));
             this.addBlocksToWorldChunk(template2, world, blockpos2, settings);
 
-            ComponentCrashedAlienShipPieces.replaceDataBlocks1(world, rand, rotation, template, pos, settings);
+            ComponentCrashedAlienShipPieces.replaceDataBlocks1(world, rand, template, pos, settings);
             ComponentCrashedAlienShipPieces.replaceDataBlocks2(world, rand, rotation, template1, pos.add(blockpos1), settings);
             ComponentCrashedAlienShipPieces.replaceDataBlocks3(world, rand, rotation, template2, blockpos2, settings);
             return true;
         }
     }
 
-    private static void replaceDataBlocks1(World world, Random rand, Rotation rotation, Template template, BlockPos pos, PlacementSettings settings)
+    private static void replaceDataBlocks1(World world, Random rand, Template template, BlockPos pos, PlacementSettings settings)
     {
         Map<BlockPos, String> map = template.getDataBlocks(pos, settings);
 

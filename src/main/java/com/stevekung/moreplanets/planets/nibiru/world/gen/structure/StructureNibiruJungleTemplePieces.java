@@ -132,7 +132,7 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
         private boolean hasRandomChest;
         private boolean placedTrap1;
         private boolean placedTrap2;
-        private Stones scatteredStones = new Stones();
+        private final Stones scatteredStones = new Stones();
 
         public JungleTemple() {}
 
@@ -269,9 +269,9 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
 
                 for (int k = 0; k < 4; ++k)
                 {
-                    this.setBlockState(world, iblockstate, 5, 0 - k, 6 + k, box);
-                    this.setBlockState(world, iblockstate, 6, 0 - k, 6 + k, box);
-                    this.fillWithAir(world, box, 5, 0 - k, 7 + k, 6, 0 - k, 9 + k);
+                    this.setBlockState(world, iblockstate, 5, -k, 6 + k, box);
+                    this.setBlockState(world, iblockstate, 6, -k, 6 + k, box);
+                    this.fillWithAir(world, box, 5, -k, 7 + k, 6, -k, 9 + k);
                 }
 
                 this.fillWithAir(world, box, 1, -3, 12, 10, -1, 13);

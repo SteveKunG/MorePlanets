@@ -35,7 +35,7 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
     private static final AxisAlignedBB VEALIUM_VINES = new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 1.0D, 0.75D);
     private static final AxisAlignedBB TERRASHROOM = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.6D, 0.7D);
     private static final AxisAlignedBB PURPLE_BUSH = new AxisAlignedBB(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
-    private BlockType type;
+    private final BlockType type;
 
     public BlockPlaceableBushMP(String name, BlockType type)
     {
@@ -392,19 +392,14 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         return this.type == BlockType.CREEP_VINES ? ColorUtils.stringToRGB(IItemRarity.ALIEN) : null;
     }
 
-    private boolean generateBigMushroom(World world, BlockPos pos, IBlockState state, Random rand)
+    private void generateBigMushroom(World world, BlockPos pos, IBlockState state, Random rand)
     {
         world.setBlockToAir(pos);
         WorldGenTerrashroom worldGen = new WorldGenTerrashroom();
 
-        if (worldGen.generate(world, rand, pos))
-        {
-            return true;
-        }
-        else
+        if (!worldGen.generate(world, rand, pos))
         {
             world.setBlockState(pos, state, 3);
-            return false;
         }
     }
 
@@ -430,7 +425,7 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         FRONOS_FERN(false),
         ;
 
-        private boolean isFlower;
+        private final boolean isFlower;
 
         BlockType(boolean isFlower)
         {

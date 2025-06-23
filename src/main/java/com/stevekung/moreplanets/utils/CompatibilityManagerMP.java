@@ -66,14 +66,6 @@ public class CompatibilityManagerMP
             CompatibilityManagerMP.conductivityCopper = iHeatEntity.getDeclaredField("conductivityCopper").getFloat(iHeatEntity);
             CompatibilityManagerMP.conductivityGold = iHeatEntity.getDeclaredField("conductivityGold").getFloat(iHeatEntity);
         }
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-        catch (NoSuchMethodException e)
-        {
-            e.printStackTrace();
-        }
         catch (Exception e)
         {
             e.printStackTrace();

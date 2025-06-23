@@ -61,8 +61,8 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
             double d9 = 0.5D + Math.sin(d2 + 3.9269908169872414D) * 0.2D;
             double d10 = 0.5D + Math.cos(d2 + 5.497787143782138D) * 0.2D;
             double d11 = 0.5D + Math.sin(d2 + 5.497787143782138D) * 0.2D;
-            double d12 = 0.0D;
-            double d13 = 1.0D;
+            double d12;
+            double d13;
             double d14 = -1.0D + d1;
             double d15 = 8 * 8 * 2.5D + d14;
             worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
@@ -86,15 +86,6 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.depthMask(false);
-            d2 = 0.2D;
-            d4 = 0.8D;
-            d5 = 0.2D;
-            d6 = 0.2D;
-            d7 = 0.8D;
-            d8 = 0.8D;
-            d9 = 0.8D;
-            d10 = 0.0D;
-            d11 = 1.0D;
             d12 = -1.0D + d1;
             d13 = 8 * 8 + d12;
             worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
@@ -118,7 +109,6 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
             GlStateManager.enableLighting();
             GlStateManager.enableTexture2D();
             GlStateManager.depthMask(true);
-            i = k;
         }
 
         GlStateManager.disableLighting();
@@ -217,7 +207,7 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
 
             if (k == 0)
             {
-                f2 = f3 = f4 = 1.0F * f5;
+                f2 = f3 = f4 = f5;
             }
 
             worldRenderer.pos(x, y, z + 1.0D).color(f2, f3, f4, 1.0F).endVertex();

@@ -87,21 +87,9 @@ public class BlockInfectedCactus extends BlockBushMP
     }
 
     @Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        return super.canPlaceBlockAt(world, pos) ? this.canBlockStay(world, pos, this.getDefaultState()) : false;
+        return super.canPlaceBlockAt(world, pos) && this.canBlockStay(world, pos, this.getDefaultState());
     }
 
     @Override

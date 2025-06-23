@@ -82,6 +82,6 @@ public class BiomeInfectedForest extends BiomeNibiru
     public enum Type
     {
         NORMAL,
-        DARK;
+        DARK
     }
 }

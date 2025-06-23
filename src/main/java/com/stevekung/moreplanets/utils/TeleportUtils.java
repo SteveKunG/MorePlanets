@@ -381,7 +381,7 @@ public class TeleportUtils
             player.setSpawnChunk(spawnChunkPos, true, GCCoreUtil.getDimensionID(player.world));
         }
         GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_RELOAD_RENDERER, player.dimension), player);
-        GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_MESSAGE_SURVIVAL_PLANET, player.dimension, new Object[] { WorldUtil.getProviderForDimensionServer(targetDim).getDimensionType().getName() }), player);
+        GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_MESSAGE_SURVIVAL_PLANET, player.dimension, WorldUtil.getProviderForDimensionServer(targetDim).getDimensionType().getName()), player);
         return player;
     }
 }

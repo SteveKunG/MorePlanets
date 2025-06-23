@@ -144,11 +144,7 @@ public class RongHouse extends StructureComponent
                 case EAST:
                 case WEST:
                     return EnumFacing.EAST;
-                case NORTH:
                 default:
-                    this.printDebug(rotation, facing, pos);
-                    break;
-                case SOUTH:
                     this.printDebug(rotation, facing, pos);
                     break;
                 }
@@ -157,16 +153,14 @@ public class RongHouse extends StructureComponent
             {
                 switch (facing)
                 {
-                case EAST:
-                    this.printDebug(rotation, facing, pos);
-                    break;
-                case NORTH:
-                case SOUTH:
-                default:
-                    return EnumFacing.EAST;
-                case WEST:
-                    this.printDebug(rotation, facing, pos);
-                    break;
+                    case WEST:
+                    case EAST:
+                        this.printDebug(rotation, facing, pos);
+                        break;
+                    case NORTH:
+                    case SOUTH:
+                    default:
+                        return EnumFacing.EAST;
                 }
             }
         }
@@ -179,11 +173,7 @@ public class RongHouse extends StructureComponent
                 case EAST:
                 case WEST:
                     return EnumFacing.SOUTH;
-                case NORTH:
                 default:
-                    this.printDebug(rotation, facing, pos);
-                    break;
-                case SOUTH:
                     this.printDebug(rotation, facing, pos);
                     break;
                 }
@@ -192,6 +182,7 @@ public class RongHouse extends StructureComponent
             {
                 switch (facing)
                 {
+                    case WEST:
                 case EAST:
                     this.printDebug(rotation, facing, pos);
                     break;
@@ -199,9 +190,6 @@ public class RongHouse extends StructureComponent
                 case SOUTH:
                 default:
                     return EnumFacing.SOUTH;
-                case WEST:
-                    this.printDebug(rotation, facing, pos);
-                    break;
                 }
             }
         }
@@ -211,16 +199,12 @@ public class RongHouse extends StructureComponent
             {
                 switch (facing)
                 {
-                case NORTH:
-                default:
-                    this.printDebug(rotation, facing, pos);
-                    break;
-                case SOUTH:
-                    this.printDebug(rotation, facing, pos);
-                    break;
                 case WEST:
                 case EAST:
                     return EnumFacing.WEST;
+                    default:
+                        this.printDebug(rotation, facing, pos);
+                        break;
                 }
             }
             else
@@ -247,11 +231,7 @@ public class RongHouse extends StructureComponent
                 case EAST:
                 case WEST:
                     return EnumFacing.NORTH;
-                case NORTH:
                 default:
-                    this.printDebug(rotation, facing, pos);
-                    break;
-                case SOUTH:
                     this.printDebug(rotation, facing, pos);
                     break;
                 }
@@ -261,15 +241,13 @@ public class RongHouse extends StructureComponent
                 switch (facing)
                 {
                 case EAST:
+                    case WEST:
                     this.printDebug(rotation, facing, pos);
                     break;
                 case NORTH:
                 case SOUTH:
                 default:
                     return EnumFacing.NORTH;
-                case WEST:
-                    this.printDebug(rotation, facing, pos);
-                    break;
                 }
             }
         }

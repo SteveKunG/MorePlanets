@@ -49,9 +49,6 @@ public class BlockMultalicCrystal extends BlockDirectionalMP implements ITileEnt
 
         switch (facing)
         {
-        case NORTH:
-        default:
-            return new AxisAlignedBB(0.0D + box, 0.0D + box, 0.0D + box, 1.0D - box, 1.0D - box, 1.0D);
         case EAST:
             return new AxisAlignedBB(0.0D, 0.0D + box, 0.0D + box, 1.0D - box, 1.0D - box, 1.0D - box);
         case WEST:
@@ -62,6 +59,8 @@ public class BlockMultalicCrystal extends BlockDirectionalMP implements ITileEnt
             return new AxisAlignedBB(0.0D + box, 0.0D, 0.0D + box, 1.0D - box, 1.0D - box, 1.0D - box);
         case DOWN:
             return new AxisAlignedBB(0.0D + box, 0.0D + box, 0.0D + box, 1.0D - box, 1.0D, 1.0D - box);
+            default:
+                return new AxisAlignedBB(0.0D + box, 0.0D + box, 0.0D + box, 1.0D - box, 1.0D - box, 1.0D);
         }
     }
 

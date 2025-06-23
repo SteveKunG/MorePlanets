@@ -69,12 +69,6 @@ public class BlockInfectedPurloniteCobweb extends BlockBaseMP
     }
 
     @Override
-    public int damageDropped(IBlockState state)
-    {
-        return 0;
-    }
-
-    @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
         return Items.STRING;

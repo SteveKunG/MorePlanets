@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import com.stevekung.moreplanets.client.renderer.ccl.*;
 
-import com.stevekung.moreplanets.client.renderer.ccl.*;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPItems;

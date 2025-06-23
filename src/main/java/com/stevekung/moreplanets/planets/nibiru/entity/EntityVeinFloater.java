@@ -48,18 +48,17 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
 {
     private TileEntityDungeonSpawner<?> spawner;
     public int deathTicks = 0;
-    private int entitiesWithin;
     private int entitiesWithinLast;
     private static final DataParameter<Boolean> VINE_PULL = EntityDataManager.createKey(EntityVeinFloater.class, DataSerializers.BOOLEAN);
-    private MultiPartEntityPart[] partArray;
-    private MultiPartEntityPart partHead;
-    private MultiPartEntityPart partTentacle0;
-    private MultiPartEntityPart partTentacle1;
-    private MultiPartEntityPart partTentacle2;
-    private MultiPartEntityPart partHoodN;
-    private MultiPartEntityPart partHoodE;
-    private MultiPartEntityPart partHoodW;
-    private MultiPartEntityPart partHoodS;
+    private final MultiPartEntityPart[] partArray;
+    private final MultiPartEntityPart partHead;
+    private final MultiPartEntityPart partTentacle0;
+    private final MultiPartEntityPart partTentacle1;
+    private final MultiPartEntityPart partTentacle2;
+    private final MultiPartEntityPart partHoodN;
+    private final MultiPartEntityPart partHoodE;
+    private final MultiPartEntityPart partHoodW;
+    private final MultiPartEntityPart partHoodS;
     private final BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
     private UUID bossInfoUUID = this.bossInfo.getUniqueId();
 
@@ -69,13 +68,13 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
         this.ignoreFrustumCheck = true;
         this.partArray = new MultiPartEntityPart[] {
                 this.partHead = new MultiPartEntityPart(this, "head", 7.0F, 5.0F),
-                        this.partHoodN = new MultiPartEntityPart(this, "hood_n", 6.0F, 2.0F),
-                        this.partHoodE = new MultiPartEntityPart(this, "hood_e", 6.0F, 2.0F),
-                        this.partHoodW = new MultiPartEntityPart(this, "hood_w", 6.0F, 2.0F),
-                        this.partHoodS = new MultiPartEntityPart(this, "hood_s", 6.0F, 2.0F),
-                        this.partTentacle2 = new MultiPartEntityPart(this, "tentacle_2", 7.0F, 5.0F),
-                        this.partTentacle1 = new MultiPartEntityPart(this, "tentacle_1", 7.0F, 5.0F),
-                        this.partTentacle0 = new MultiPartEntityPart(this, "tentacle_0", 7.0F, 5.0F)
+                this.partHoodN = new MultiPartEntityPart(this, "hood_n", 6.0F, 2.0F),
+                this.partHoodE = new MultiPartEntityPart(this, "hood_e", 6.0F, 2.0F),
+                this.partHoodW = new MultiPartEntityPart(this, "hood_w", 6.0F, 2.0F),
+                this.partHoodS = new MultiPartEntityPart(this, "hood_s", 6.0F, 2.0F),
+                this.partTentacle2 = new MultiPartEntityPart(this, "tentacle_2", 7.0F, 5.0F),
+                this.partTentacle1 = new MultiPartEntityPart(this, "tentacle_1", 7.0F, 5.0F),
+                this.partTentacle0 = new MultiPartEntityPart(this, "tentacle_0", 7.0F, 5.0F)
         };
         this.isImmuneToFire = true;
         this.setSize(16.0F, 16.0F);
@@ -125,7 +124,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
 
         if (this.getHealth() <= 0.0F)
         {
-            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_UPDATE_NIBIRU_WEATHER, GCCoreUtil.getDimensionID(this.world), new Object[] { false }));
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_UPDATE_NIBIRU_WEATHER, GCCoreUtil.getDimensionID(this.world), false));
             this.dataManager.set(VINE_PULL, false);
             return;
         }
@@ -135,7 +134,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
 
         if (this.getHealth() <= this.getMaxHealth() / 3)
         {
-            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_UPDATE_NIBIRU_WEATHER, GCCoreUtil.getDimensionID(this.world), new Object[] { true }));
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_UPDATE_NIBIRU_WEATHER, GCCoreUtil.getDimensionID(this.world), true));
 
             if (this.rand.nextFloat() > 0.975F && !this.isDead)
             {
@@ -236,12 +235,8 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
                     {
                         this.setRevengeTarget((EntityLivingBase)entity);
                     }
-                    return true;
                 }
-                else
-                {
-                    return true;
-                }
+                return true;
             }
             else
             {
@@ -379,15 +374,15 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
         if (this.spawner != null)
         {
             List<EntityPlayer> playersWithin = this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBounds());
-            this.entitiesWithin = playersWithin.size();
+            int entitiesWithin = playersWithin.size();
 
-            if (this.entitiesWithin == 0 && this.entitiesWithinLast != 0)
+            if (entitiesWithin == 0 && this.entitiesWithinLast != 0)
             {
                 this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11()).forEach(player -> player.sendMessage(JsonUtils.create(LangUtils.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red())));
                 this.setDead();
                 return;
             }
-            this.entitiesWithinLast = this.entitiesWithin;
+            this.entitiesWithinLast = entitiesWithin;
         }
 
         this.partTentacle0.onUpdate();
@@ -435,7 +430,6 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
         super.setDead();
     }
 
-    @SuppressWarnings("rawtypes")
     @Override
     public void onBossSpawned(TileEntityDungeonSpawner spawner)
     {

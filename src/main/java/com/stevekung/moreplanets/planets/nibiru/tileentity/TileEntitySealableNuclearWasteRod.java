@@ -8,8 +8,8 @@ import net.minecraft.util.math.MathHelper;
 
 public class TileEntitySealableNuclearWasteRod extends TileBaseUniversalConductor
 {
-    private static float BC3_RATIO = 128.0F;
-    private static float RF_RATIO = TileEntitySealableNuclearWasteRod.BC3_RATIO / 8.0F;
+    private static final float BC3_RATIO = 128.0F;
+    private static final float RF_RATIO = TileEntitySealableNuclearWasteRod.BC3_RATIO / 8.0F;
 
     /** ForgeEnergy **/
     @Override

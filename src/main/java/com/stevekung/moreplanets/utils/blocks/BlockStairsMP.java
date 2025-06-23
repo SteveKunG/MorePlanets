@@ -74,10 +74,10 @@ public class BlockStairsMP extends BlockStairs implements ISortableBlock, IItemM
         WOODEN(Blocks.PLANKS, 2.0F),
         ALIEN_SHIP(Blocks.IRON_BLOCK, 4.0F);
 
-        private float hardness;
-        private Block parent;
+        private final float hardness;
+        private final Block parent;
 
-        private EnumStairsType(Block parent, float hardness)
+        EnumStairsType(Block parent, float hardness)
         {
             this.hardness = hardness;
             this.parent = parent;

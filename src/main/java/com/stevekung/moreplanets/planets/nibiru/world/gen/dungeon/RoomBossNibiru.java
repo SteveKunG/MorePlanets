@@ -107,7 +107,7 @@ public class RoomBossNibiru extends SizedPieceNibiru
                     {
                         if (rand.nextInt(4) == 0)
                         {
-                            this.setBlockState(world, this.configuration.getGlowstoneBlock(), i, j - 1, k, boundingBox);
+                            this.setBlockState(world, this.configuration.getGlowstoneBlock(), i, 0, k, boundingBox);
                         }
                         else
                         {
@@ -160,11 +160,6 @@ public class RoomBossNibiru extends SizedPieceNibiru
     {
         super.readStructureFromNBT(tagCompound, manager);
         this.chestPos = new BlockPos(tagCompound.getInteger("chestX"), tagCompound.getInteger("chestY"), tagCompound.getInteger("chestZ"));
-    }
-
-    public BlockPos getChestPos()
-    {
-        return this.chestPos;
     }
 
     public void setChestPos(BlockPos chestPos)

@@ -152,7 +152,7 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.5D, this.posZ, 10, this.width / 4.0F, 0.0D, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(MPBlocks.CHEESE_SLIME_BLOCK.getDefaultState())});
+                    ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.5D, this.posZ, 10, this.width / 4.0F, 0.0D, this.width / 4.0F, 0.05D, Block.getStateId(MPBlocks.CHEESE_SLIME_BLOCK.getDefaultState()));
                 }
             }
 
@@ -170,12 +170,8 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
                     {
                         this.setRevengeTarget((EntityLivingBase)entity);
                     }
-                    return true;
                 }
-                else
-                {
-                    return true;
-                }
+                return true;
             }
             else
             {
@@ -217,7 +213,7 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
         return this.dataManager.get(EntityCheeseFloater.MINION);
     }
 
-    class AICheeseSporeAttack extends EntityAIBase
+    static class AICheeseSporeAttack extends EntityAIBase
     {
         private final EntityCheeseFloater entity;
         private int attackStep;
@@ -241,9 +237,6 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
         {
             this.attackStep = 0;
         }
-
-        @Override
-        public void resetTask() {}
 
         @Override
         public void updateTask()

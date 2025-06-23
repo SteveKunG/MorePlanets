@@ -110,7 +110,7 @@ public class PacketSimpleMP extends PacketBase
             {
                 TileEntity tile = player.world.getTileEntity(pos);
 
-                if (tile != null && tile instanceof TileEntityShieldGenerator)
+                if (tile instanceof TileEntityShieldGenerator)
                 {
                     FMLClientHandler.instance().getClient().displayGuiScreen(isConfig ? new GuiShieldGeneratorConfig(player.inventory, (TileEntityShieldGenerator) tile) : new GuiShieldGenerator(player.inventory, (TileEntityShieldGenerator) tile));
                 }
@@ -286,40 +286,33 @@ public class PacketSimpleMP extends PacketBase
     public enum EnumSimplePacketMP
     {
         // SERVER
-        S_BLACK_HOLE_STORAGE_OPTION(Side.SERVER, BlockPos.class, String.class),
-        S_SHIELD_VISIBLE(Side.SERVER, BlockPos.class, Boolean.class),
-        S_ENABLE_SHIELD(Side.SERVER, BlockPos.class),
-        S_ENABLE_SHIELD_DAMAGE(Side.SERVER, BlockPos.class),
-        S_SHIELD_GENERATOR_OPTION(Side.SERVER, BlockPos.class, Integer.class, String.class),
-        S_SWITCH_SHIELD_GENERATOR_GUI(Side.SERVER, BlockPos.class, Boolean.class),
-        S_FAILED_UNLOCK_CHEST(Side.SERVER, String.class),
-        S_START_SURVIVAL_PLANET(Side.SERVER, Integer.class, String.class),
-        S_UPDATE_NIBIRU_WEATHER(Side.SERVER, Boolean.class),
-        S_SAVE_DISABLE_MESSAGE(Side.SERVER),
+        S_BLACK_HOLE_STORAGE_OPTION(BlockPos.class, String.class),
+        S_SHIELD_VISIBLE(BlockPos.class, Boolean.class),
+        S_ENABLE_SHIELD(BlockPos.class),
+        S_ENABLE_SHIELD_DAMAGE(BlockPos.class),
+        S_SHIELD_GENERATOR_OPTION(BlockPos.class, Integer.class, String.class),
+        S_SWITCH_SHIELD_GENERATOR_GUI(BlockPos.class, Boolean.class),
+        S_FAILED_UNLOCK_CHEST(String.class),
+        S_START_SURVIVAL_PLANET(Integer.class, String.class),
+        S_UPDATE_NIBIRU_WEATHER(Boolean.class),
+        S_SAVE_DISABLE_MESSAGE(),
 
         // CLIENT
-        C_REMOVE_GUIDE_POS(Side.CLIENT, BlockPos.class),
-        C_RELOAD_RENDERER(Side.CLIENT),
-        C_SWITCH_SHIELD_GENERATOR_GUI(Side.CLIENT, BlockPos.class, Integer.class, Boolean.class),
-        C_REMOVE_GENERATOR_GUIDE_POS(Side.CLIENT, BlockPos.class),
-        C_OPEN_SURVIVAL_PLANET_GUI(Side.CLIENT),
-        C_MESSAGE_SURVIVAL_PLANET(Side.CLIENT, String.class),
-        C_PLAY_CREATED_BLACK_HOLE_SOUND(Side.CLIENT),
+        C_REMOVE_GUIDE_POS(BlockPos.class),
+        C_RELOAD_RENDERER(),
+        C_SWITCH_SHIELD_GENERATOR_GUI(BlockPos.class, Integer.class, Boolean.class),
+        C_REMOVE_GENERATOR_GUIDE_POS(BlockPos.class),
+        C_OPEN_SURVIVAL_PLANET_GUI(),
+        C_MESSAGE_SURVIVAL_PLANET(String.class),
+        C_PLAY_CREATED_BLACK_HOLE_SOUND(),
         ;
 
-        private Side targetSide;
-        private Class<?>[] decodeAs;
+        private final Class<?>[] decodeAs;
         public static final EnumSimplePacketMP[] values = EnumSimplePacketMP.values();
 
-        private EnumSimplePacketMP(Side targetSide, Class<?>... decodeAs)
+        EnumSimplePacketMP(Class<?>... decodeAs)
         {
-            this.targetSide = targetSide;
             this.decodeAs = decodeAs;
-        }
-
-        public Side getTargetSide()
-        {
-            return this.targetSide;
         }
 
         public Class<?>[] getDecodeClasses()

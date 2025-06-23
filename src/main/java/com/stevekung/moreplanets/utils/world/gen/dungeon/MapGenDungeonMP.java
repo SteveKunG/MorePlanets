@@ -50,17 +50,17 @@ public class MapGenDungeonMP extends MapGenStructure
     @Override
     protected StructureStart getStructureStart(int chunkX, int chunkZ)
     {
-        return new Start(this.world, this.rand, chunkX, chunkZ, this.configuration);
+        return new Start(this.rand, chunkX, chunkZ, this.configuration);
     }
 
     public static class Start extends StructureStart
     {
         public Start() {}
 
-        public Start(World world, Random rand, int chunkX, int chunkZ, DungeonConfigurationMP configuration)
+        public Start(Random rand, int chunkX, int chunkZ, DungeonConfigurationMP configuration)
         {
             super(chunkX, chunkZ);
-            DungeonStartMP startPiece = new DungeonStartMP(world, configuration, rand, (chunkX << 4) + 2, (chunkZ << 4) + 2);
+            DungeonStartMP startPiece = new DungeonStartMP(configuration, rand, (chunkX << 4) + 2, (chunkZ << 4) + 2);
             startPiece.buildComponent(startPiece, this.components, rand);
             List<StructureComponent> list = startPiece.attachedComponents;
 

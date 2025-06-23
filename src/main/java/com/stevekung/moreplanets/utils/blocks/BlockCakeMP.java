@@ -140,7 +140,7 @@ public abstract class BlockCakeMP extends BlockBaseMP
     @Override
     public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
     {
-        return (7 - state.getValue(BlockStateProperty.BITES).intValue()) * 2;
+        return (7 - state.getValue(BlockStateProperty.BITES)) * 2;
     }
 
     @Override

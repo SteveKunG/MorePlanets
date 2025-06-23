@@ -116,7 +116,7 @@ public class ChunkGeneratorDiona extends ChunkGeneratorBaseMP
         }
         else
         {
-            return "CrashedAlienShip".equals(name) && this.alienShipFeatureGenerator != null ? this.alienShipFeatureGenerator.isInsideStructure(pos.add(0, 4, 0)) : false;
+            return "CrashedAlienShip".equals(name) && this.alienShipFeatureGenerator != null && this.alienShipFeatureGenerator.isInsideStructure(pos.add(0, 4, 0));
         }
     }
 

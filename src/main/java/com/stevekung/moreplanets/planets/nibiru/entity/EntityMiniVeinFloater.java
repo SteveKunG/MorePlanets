@@ -48,7 +48,6 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
 {
     private TileEntityDungeonSpawner<?> spawner;
     public int deathTicks = 0;
-    private int entitiesWithin;
     private int entitiesWithinLast;
     private static final DataParameter<Boolean> VINE_PULL = EntityDataManager.createKey(EntityMiniVeinFloater.class, DataSerializers.BOOLEAN);
     private final BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
@@ -256,7 +255,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
             {
                 TileEntity chestTest = this.world.getTileEntity(this.spawner.getChestPos());
 
-                if (chestTest != null && chestTest instanceof TileEntityTreasureChestMP)
+                if (chestTest instanceof TileEntityTreasureChestMP)
                 {
                     chest = (TileEntityTreasureChestMP) chestTest;
                 }
@@ -300,15 +299,15 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
         if (this.spawner != null)
         {
             List<EntityPlayer> playersWithin = this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBounds());
-            this.entitiesWithin = playersWithin.size();
+            int entitiesWithin = playersWithin.size();
 
-            if (this.entitiesWithin == 0 && this.entitiesWithinLast != 0)
+            if (entitiesWithin == 0 && this.entitiesWithinLast != 0)
             {
                 this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11()).forEach(player2 -> player2.sendMessage(JsonUtils.create(LangUtils.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red())));
                 this.setDead();
                 return;
             }
-            this.entitiesWithinLast = this.entitiesWithin;
+            this.entitiesWithinLast = entitiesWithin;
         }
         this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
         super.onLivingUpdate();
@@ -330,7 +329,6 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
         super.setDead();
     }
 
-    @SuppressWarnings("rawtypes")
     @Override
     public void onBossSpawned(TileEntityDungeonSpawner spawner)
     {

@@ -156,7 +156,6 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
             float f = MathHelper.sqrt(x * x + z * z);
             this.prevRotationYaw = this.rotationYaw = (float)(MathHelper.atan2(x, z) * 180.0D / Math.PI);
             this.prevRotationPitch = this.rotationPitch = (float)(MathHelper.atan2(y, f) * 180.0D / Math.PI);
-            this.prevRotationPitch = this.rotationPitch;
             this.prevRotationYaw = this.rotationYaw;
             this.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
         }
@@ -440,6 +439,6 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
     public enum LaserType
     {
         NORMAL,
-        INFECTED_PURLONITE;
+        INFECTED_PURLONITE
     }
 }

@@ -69,7 +69,7 @@ public class BlockInfectedIce extends BlockIceMP
             int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, heldStack);
             this.harvesters.set(player);
             this.dropBlockAsItem(world, pos, state, i);
-            this.harvesters.set(null);
+            this.harvesters.remove();
             Material material = world.getBlockState(pos.down()).getMaterial();
 
             if (material.blocksMovement() || material.isLiquid())

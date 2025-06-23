@@ -122,8 +122,7 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
     public void render()
     {
         float time = ClientEventHandler.renderPartialTicks;
-        float ticks = MathHelper.sin(time / 8) / 1.0F + 0.75F;
-        ticks = ticks * ticks + ticks;
+        float ticks;
         float sinOfTheTime = (MathHelper.sin(time / 4) + 1F) / 2F + 0.15F;
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;

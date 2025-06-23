@@ -3,8 +3,14 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen;
 import java.util.List;
 
 import com.google.common.collect.Sets;
+import com.stevekung.moreplanets.init.MPBiomes;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.dungeon.*;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.structure.*;
+import com.stevekung.moreplanets.utils.world.gen.ChunkGeneratorBaseMP;
+import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
+import com.stevekung.moreplanets.utils.world.gen.feature.WorldGenSpaceDungeons;
 
-import micdoodle8.mods.galacticraft.core.GCBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -14,16 +20,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import com.stevekung.moreplanets.init.MPBiomes;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.dungeon.*;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.structure.*;
 
-import com.stevekung.moreplanets.planets.nibiru.world.gen.dungeon.*;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.structure.*;
-import com.stevekung.moreplanets.utils.world.gen.ChunkGeneratorBaseMP;
-import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
-import com.stevekung.moreplanets.utils.world.gen.feature.WorldGenSpaceDungeons;
+import micdoodle8.mods.galacticraft.core.GCBlocks;
 import stevekung.mods.stevekunglib.world.gen.MapGenCavesBase;
 import stevekung.mods.stevekunglib.world.gen.MapGenRavineBase;
 import stevekung.mods.stevekunglib.world.gen.WorldGenLiquidLake;
@@ -164,7 +162,7 @@ public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
 
         if (chunk.getInhabitedTime() < 3600L)
         {
-            flag |= this.oceanMonumentGenerator.generateStructure(this.world, this.rand, new ChunkPos(chunkX, chunkZ));
+            flag = this.oceanMonumentGenerator.generateStructure(this.world, this.rand, new ChunkPos(chunkX, chunkZ));
         }
         return flag;
     }
@@ -260,7 +258,7 @@ public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
         }
         else
         {
-            return "NibiruJungleTemple".equals(name) && this.jungleTempleGenerator != null ? this.jungleTempleGenerator.isInsideStructure(pos) : false;
+            return "NibiruJungleTemple".equals(name) && this.jungleTempleGenerator != null && this.jungleTempleGenerator.isInsideStructure(pos);
         }
     }
 

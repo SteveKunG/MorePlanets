@@ -95,7 +95,7 @@ public abstract class EntityFireballMP extends Entity
             ++this.ticksInAir;
             RayTraceResult result = ProjectileHelper.forwardsRaycast(this, true, this.ticksInAir >= 25, this.shootingEntity);
 
-            if (result != null && !ForgeEventFactory.onProjectileImpact(this, result))
+            if (!ForgeEventFactory.onProjectileImpact(this, result))
             {
                 this.onImpact(result);
             }
@@ -136,8 +136,8 @@ public abstract class EntityFireballMP extends Entity
     @Override
     public void writeEntityToNBT(NBTTagCompound compound)
     {
-        compound.setTag("Direction", this.newDoubleNBTList(new double[] {this.motionX, this.motionY, this.motionZ}));
-        compound.setTag("Power", this.newDoubleNBTList(new double[] {this.accelerationX, this.accelerationY, this.accelerationZ}));
+        compound.setTag("Direction", this.newDoubleNBTList(this.motionX, this.motionY, this.motionZ));
+        compound.setTag("Power", this.newDoubleNBTList(this.accelerationX, this.accelerationY, this.accelerationZ));
         compound.setInteger("Life", this.ticksAlive);
     }
 
@@ -197,16 +197,13 @@ public abstract class EntityFireballMP extends Entity
             if (source.getTrueSource() != null)
             {
                 Vec3d vec3d = source.getTrueSource().getLookVec();
+                this.motionX = vec3d.x;
+                this.motionY = vec3d.y;
+                this.motionZ = vec3d.z;
+                this.accelerationX = this.motionX * 0.1D;
+                this.accelerationY = this.motionY * 0.1D;
+                this.accelerationZ = this.motionZ * 0.1D;
 
-                if (vec3d != null)
-                {
-                    this.motionX = vec3d.x;
-                    this.motionY = vec3d.y;
-                    this.motionZ = vec3d.z;
-                    this.accelerationX = this.motionX * 0.1D;
-                    this.accelerationY = this.motionY * 0.1D;
-                    this.accelerationZ = this.motionZ * 0.1D;
-                }
                 if (source.getTrueSource() instanceof EntityLivingBase)
                 {
                     this.shootingEntity = (EntityLivingBase)source.getTrueSource();

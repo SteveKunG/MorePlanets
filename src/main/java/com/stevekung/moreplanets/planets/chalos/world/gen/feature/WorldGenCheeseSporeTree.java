@@ -86,9 +86,11 @@ public class WorldGenCheeseSporeTree extends WorldGenAbstractTree
 
                     for (int b = 0; b < this.blockMaxHigh; b++)
                     {
-                        if (this.isReplaceable(world, new BlockPos(x, y + b, z)))
+                        BlockPos blockPos = new BlockPos(x, y + b, z);
+
+                        if (this.isReplaceable(world, blockPos))
                         {
-                            this.setBlockAndNotifyAdequately(world, new BlockPos(x, y + b, z), MPBlocks.CHEESE_SPORE_STEM.getDefaultState());
+                            this.setBlockAndNotifyAdequately(world, blockPos, MPBlocks.CHEESE_SPORE_STEM.getDefaultState());
                         }
                     }
 
@@ -147,16 +149,19 @@ public class WorldGenCheeseSporeTree extends WorldGenAbstractTree
 
                                 if (this.genSpore)
                                 {
+                                    boolean m1 = Math.abs(j2) != width || Math.abs(l2) != width;
+
                                     if (height != 1)
                                     {
                                         this.setBlockAndNotifyAdequately(world, new BlockPos(i2, this.blockMaxHigh + k1 + 1, k2), MPBlocks.CHEESE_SPORE.getDefaultState());
                                     }
-                                    if ((Math.abs(j2) != width || Math.abs(l2) != width) && height != 0)
+                                    if (m1)
                                     {
-                                        this.setBlockAndNotifyAdequately(world, new BlockPos(i2, this.blockMaxHigh + k1 + 2, k2), MPBlocks.CHEESE_SPORE.getDefaultState());
-                                    }
-                                    if (Math.abs(j2) != width || Math.abs(l2) != width)
-                                    {
+                                        if (height != 0)
+                                        {
+                                            this.setBlockAndNotifyAdequately(world, new BlockPos(i2, this.blockMaxHigh + k1 + 2, k2), MPBlocks.CHEESE_SPORE.getDefaultState());
+                                        }
+
                                         Block block1 = world.getBlockState(new BlockPos(i2, this.blockMaxHigh + k1, k2)).getBlock();
 
                                         if (block1.isAir(world.getBlockState(new BlockPos(i2, this.blockMaxHigh + k1, k2)), world, new BlockPos(i2, this.blockMaxHigh + k1, k2)))

@@ -54,7 +54,7 @@ public abstract class ItemFoodMP extends ItemFood implements ISortableItem, IIte
     @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
-        return this instanceof IItemRarity && ((IItemRarity)this).getRarity() != null ? ((IItemRarity)this).getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
+        return this.getRarity() != null ? this.getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
     }
 
     public ItemFoodMP setRarityRGB(ColorUtils.RGB rgb)

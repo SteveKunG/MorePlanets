@@ -1,6 +1,5 @@
 package com.stevekung.moreplanets.utils;
 
-import java.util.Collections;
 import java.util.Comparator;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -50,7 +49,7 @@ public class CreativeTabsMP extends CreativeTabs
         {
             try
             {
-                Collections.sort(list, this.tabSorter);
+                list.sort(this.tabSorter);
             }
             catch (Exception e)
             {

@@ -179,8 +179,8 @@ public class ItemAllFood extends ItemFoodMP
         LEMON_JELLY(4, 0.35F),
         BLUE_PEAR(4, 0.025F);
 
-        private int hunger;
-        private float saturation;
+        private final int hunger;
+        private final float saturation;
 
         ItemType(int hunger, float saturation)
         {

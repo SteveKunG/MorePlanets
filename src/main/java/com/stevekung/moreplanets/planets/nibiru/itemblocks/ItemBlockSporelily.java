@@ -31,53 +31,46 @@ public class ItemBlockSporelily extends ItemBlockMP
         ItemStack itemStack = player.getHeldItem(hand);
         RayTraceResult result = this.rayTrace(world, player, true);
 
-        if (result == null)
+        if (result.typeOfHit == RayTraceResult.Type.BLOCK)
         {
-            return new ActionResult<>(EnumActionResult.PASS, itemStack);
-        }
-        else
-        {
-            if (result.typeOfHit == RayTraceResult.Type.BLOCK)
-            {
-                BlockPos pos = result.getBlockPos();
+            BlockPos pos = result.getBlockPos();
 
-                if (!world.isBlockModifiable(player, pos) || !player.canPlayerEdit(pos.offset(result.sideHit), result.sideHit, itemStack))
+            if (!world.isBlockModifiable(player, pos) || !player.canPlayerEdit(pos.offset(result.sideHit), result.sideHit, itemStack))
+            {
+                return new ActionResult<>(EnumActionResult.FAIL, itemStack);
+            }
+
+            BlockPos pos1 = pos.up();
+            IBlockState state = world.getBlockState(pos);
+
+            if (state.getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK && state.getValue(BlockFluidBase.LEVEL) == 0 && world.isAirBlock(pos1))
+            {
+                BlockSnapshot blocksnapshot = BlockSnapshot.getBlockSnapshot(world, pos1);
+                world.setBlockState(pos1, MPBlocks.SPORELILY.getDefaultState());
+
+                if (ForgeEventFactory.onPlayerBlockPlace(player, blocksnapshot, EnumFacing.UP, hand).isCanceled())
                 {
+                    blocksnapshot.restore(true, false);
                     return new ActionResult<>(EnumActionResult.FAIL, itemStack);
                 }
 
-                BlockPos pos1 = pos.up();
-                IBlockState state = world.getBlockState(pos);
+                world.setBlockState(pos1, MPBlocks.SPORELILY.getDefaultState(), 11);
 
-                if (state.getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK && state.getValue(BlockFluidBase.LEVEL) == 0 && world.isAirBlock(pos1))
+                if (player instanceof EntityPlayerMP)
                 {
-                    BlockSnapshot blocksnapshot = BlockSnapshot.getBlockSnapshot(world, pos1);
-                    world.setBlockState(pos1, MPBlocks.SPORELILY.getDefaultState());
-
-                    if (ForgeEventFactory.onPlayerBlockPlace(player, blocksnapshot, EnumFacing.UP, hand).isCanceled())
-                    {
-                        blocksnapshot.restore(true, false);
-                        return new ActionResult<>(EnumActionResult.FAIL, itemStack);
-                    }
-
-                    world.setBlockState(pos1, MPBlocks.SPORELILY.getDefaultState(), 11);
-
-                    if (player instanceof EntityPlayerMP)
-                    {
-                        CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP)player, pos1, itemStack);
-                    }
-
-                    if (!player.capabilities.isCreativeMode)
-                    {
-                        itemStack.shrink(1);
-                    }
-                    player.swingArm(hand);
-                    player.addStat(StatList.getObjectUseStats(this));
-                    world.playSound(player, pos, SoundEvents.BLOCK_WATERLILY_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
+                    CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) player, pos1, itemStack);
                 }
+
+                if (!player.capabilities.isCreativeMode)
+                {
+                    itemStack.shrink(1);
+                }
+                player.swingArm(hand);
+                player.addStat(StatList.getObjectUseStats(this));
+                world.playSound(player, pos, SoundEvents.BLOCK_WATERLILY_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
             }
-            return new ActionResult<>(EnumActionResult.FAIL, itemStack);
         }
+        return new ActionResult<>(EnumActionResult.FAIL, itemStack);
     }
 }

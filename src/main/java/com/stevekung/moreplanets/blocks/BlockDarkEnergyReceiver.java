@@ -251,10 +251,10 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription
                 {
                     double d0 = pos.getX() + rand.nextFloat();
                     double d1 = pos.getY() + rand.nextFloat();
-                    double d2 = pos.getZ() + rand.nextFloat();
+                    double d2;
                     double d3 = (rand.nextFloat() - 0.5D) * 0.5D;
                     double d4 = (rand.nextFloat() - 0.5D) * 0.5D;
-                    double d5 = (rand.nextFloat() - 0.5D) * 0.5D;
+                    double d5;
                     int j = rand.nextInt(2) * 2 - 1;
                     d2 = pos.getZ() + 0.5D + 0.25D * j;
                     d5 = rand.nextFloat() * 2.0F * j;
@@ -262,10 +262,10 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription
                 }
                 for (int i = 0; i < 32; ++i)
                 {
-                    double d0 = pos.getX() + rand.nextFloat();
+                    double d0;
                     double d1 = pos.getY() + rand.nextFloat();
                     double d2 = pos.getZ() + rand.nextFloat();
-                    double d3 = (rand.nextFloat() - 0.5D) * 0.5D;
+                    double d3;
                     double d4 = (rand.nextFloat() - 0.5D) * 0.5D;
                     double d5 = (rand.nextFloat() - 0.5D) * 0.5D;
                     int j = rand.nextInt(2) * 2 - 1;

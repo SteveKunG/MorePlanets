@@ -31,7 +31,7 @@ public class BiomeProviderFronos extends BiomeProvider
         int size = width * height;
         int[] aint = this.genBiomes.getInts(x, z, width, height);
 
-        if (biomes == null || biomes.length < size)
+        if (biomes.length < size)
         {
             biomes = new Biome[size];
         }
@@ -57,7 +57,6 @@ public class BiomeProviderFronos extends BiomeProvider
         {
             Biome[] abiome = this.biomeCache.getCachedBiomes(x, z);
             System.arraycopy(abiome, 0, listToReuse, 0, size);
-            return listToReuse;
         }
         else
         {
@@ -67,8 +66,8 @@ public class BiomeProviderFronos extends BiomeProvider
             {
                 listToReuse[i] = Biome.getBiome(aint[i], Biomes.OCEAN);
             }
-            return listToReuse;
         }
+        return listToReuse;
     }
 
     private void initLayers(long seed)

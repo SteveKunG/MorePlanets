@@ -30,9 +30,8 @@ public class BlockCobblestoneDrop extends BlockBaseMP
         return this;
     }
 
-    public BlockCobblestoneDrop setDrop(Block block)
+    public void setDrop(Block block)
     {
         this.block = block;
-        return this;
     }
 }

@@ -37,7 +37,7 @@ public class BlockCheeseSporeBerry extends BlockCropsMP
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (state.getValue(BlockStateProperty.AGE_7).intValue() == 7)
+        if (state.getValue(BlockStateProperty.AGE_7) == 7)
         {
             for (int i = 0; i < 2 + world.rand.nextInt(2); i++)
             {

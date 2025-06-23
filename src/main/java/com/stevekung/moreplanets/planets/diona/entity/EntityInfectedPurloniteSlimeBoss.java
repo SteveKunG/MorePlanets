@@ -1,18 +1,18 @@
 package com.stevekung.moreplanets.planets.diona.entity;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.utils.BossType;
+import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
+import com.stevekung.moreplanets.utils.IMorePlanetsBoss;
+import com.stevekung.moreplanets.utils.entity.EntitySlimeBaseMP;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
 
-import io.netty.buffer.ByteBuf;
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.network.PacketSimple;
-import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityDungeonSpawner;
-import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -40,24 +40,24 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.utils.BossType;
-import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
-import com.stevekung.moreplanets.utils.IMorePlanetsBoss;
-import com.stevekung.moreplanets.utils.entity.EntitySlimeBaseMP;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
+
+import io.netty.buffer.ByteBuf;
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.network.PacketSimple;
+import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
+import micdoodle8.mods.galacticraft.core.tile.TileEntityDungeonSpawner;
+import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
+
+import javax.annotation.Nullable;
 
 public class EntityInfectedPurloniteSlimeBoss extends EntitySlimeBaseMP implements IMorePlanetsBoss
 {
     private TileEntityDungeonSpawner<?> spawner;
     public int deathTicks = 0;
-    private int entitiesWithin;
     private int entitiesWithinLast;
     private static final DataParameter<Boolean> BARRIER = EntityDataManager.createKey(EntityInfectedPurloniteSlimeBoss.class, DataSerializers.BOOLEAN);
     public EntityInfectedPurloniteTentacle tentacle;
@@ -201,23 +201,19 @@ public class EntityInfectedPurloniteSlimeBoss extends EntitySlimeBaseMP implemen
                 this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, j));
             }
 
-            TileEntityTreasureChestMP chest = null;
+            TileEntityTreasureChestMP chest = TileEntityTreasureChestMP.findClosest(this, MPItems.DIONA_DUNGEON_KEY);
 
             if (this.spawner != null && this.spawner.getChestPos() != null)
             {
                 TileEntity chestTest = this.world.getTileEntity(this.spawner.getChestPos());
 
-                if (chestTest != null && chestTest instanceof TileEntityTreasureChestMP)
+                if (chestTest instanceof TileEntityTreasureChestMP)
                 {
                     chest = (TileEntityTreasureChestMP) chestTest;
                 }
             }
 
-            if (chest == null)
-            {
-                chest = TileEntityTreasureChestMP.findClosest(this, MPItems.DIONA_DUNGEON_KEY);
-            }
-            else
+            if (chest != null)
             {
                 double dist = this.getDistanceSq(chest.getPos().getX() + 0.5, chest.getPos().getY() + 0.5, chest.getPos().getZ() + 0.5);
 
@@ -255,7 +251,7 @@ public class EntityInfectedPurloniteSlimeBoss extends EntitySlimeBaseMP implemen
         List<EntityInfectedPurloniteTentacle> list = this.world.getEntitiesWithinAABB(EntityInfectedPurloniteTentacle.class, this.getEntityBoundingBox().grow(32.0D));
         this.updateTentacle();
 
-        if (list.size() > 0)
+        if (!list.isEmpty())
         {
             this.dataManager.set(BARRIER, true);
         }
@@ -278,15 +274,15 @@ public class EntityInfectedPurloniteSlimeBoss extends EntitySlimeBaseMP implemen
         if (this.spawner != null)
         {
             List<EntityPlayer> playersWithin = this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBounds());
-            this.entitiesWithin = playersWithin.size();
+            int entitiesWithin = playersWithin.size();
 
-            if (this.entitiesWithin == 0 && this.entitiesWithinLast != 0)
+            if (entitiesWithin == 0 && this.entitiesWithinLast != 0)
             {
                 this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11()).forEach(player2 -> player2.sendMessage(JsonUtils.create(LangUtils.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red())));
                 this.setDead();
                 return;
             }
-            this.entitiesWithinLast = this.entitiesWithin;
+            this.entitiesWithinLast = entitiesWithin;
         }
         this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
         super.onLivingUpdate();
@@ -310,7 +306,7 @@ public class EntityInfectedPurloniteSlimeBoss extends EntitySlimeBaseMP implemen
             for (int k = 0; k < j; ++k)
             {
                 float f = (k % 2 - 0.5F) * i / 4.0F;
-                float f1 = (k / 2 - 0.5F) * i / 4.0F;
+                float f1 = (k / 2.0f - 0.5F) * i / 4.0F;
                 EntityInfectedPurloniteSlimeMinion entityslime = new EntityInfectedPurloniteSlimeMinion(this.world);
 
                 if (this.hasCustomName())
@@ -388,12 +384,8 @@ public class EntityInfectedPurloniteSlimeBoss extends EntitySlimeBaseMP implemen
                 {
                     this.setRevengeTarget((EntityLivingBase) entity);
                 }
-                return true;
             }
-            else
-            {
-                return true;
-            }
+            return true;
         }
         else
         {
@@ -401,7 +393,6 @@ public class EntityInfectedPurloniteSlimeBoss extends EntitySlimeBaseMP implemen
         }
     }
 
-    @SuppressWarnings("rawtypes")
     @Override
     public void onBossSpawned(TileEntityDungeonSpawner spawner)
     {
@@ -528,11 +519,9 @@ public class EntityInfectedPurloniteSlimeBoss extends EntitySlimeBaseMP implemen
         List<EntityInfectedPurloniteTentacle> list = this.world.getEntitiesWithinAABB(EntityInfectedPurloniteTentacle.class, this.getEntityBoundingBox().grow(32.0D));
         EntityInfectedPurloniteTentacle tentacle = null;
         double distance1 = Double.MAX_VALUE;
-        Iterator<EntityInfectedPurloniteTentacle> iterator = list.iterator();
 
-        while (iterator.hasNext())
+        for (EntityInfectedPurloniteTentacle tentacle1 : list)
         {
-            EntityInfectedPurloniteTentacle tentacle1 = iterator.next();
             double distance = tentacle1.getDistanceSq(this);
 
             if (distance < distance1)

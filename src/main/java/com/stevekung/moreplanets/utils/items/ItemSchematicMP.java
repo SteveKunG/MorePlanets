@@ -28,7 +28,7 @@ public class ItemSchematicMP extends ItemBaseMP implements ISchematicItem
         {
             EntityHangingSchematic entityhanging = this.createEntity(world, blockpos, facing, this.getIndex(itemStack.getItemDamage()));
 
-            if (entityhanging != null && entityhanging.onValidSurface())
+            if (entityhanging.onValidSurface())
             {
                 if (!world.isRemote)
                 {

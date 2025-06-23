@@ -1,12 +1,17 @@
 package com.stevekung.moreplanets.planets.nibiru.world.gen.structure;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.core.GCBlocks;
-import micdoodle8.mods.galacticraft.core.blocks.BlockUnlitTorch;
+import com.stevekung.moreplanets.init.MPBiomes;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
+import com.stevekung.moreplanets.utils.blocks.BlockChestMP;
+import com.stevekung.moreplanets.utils.blocks.BlockCropsMP;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
+
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -24,13 +29,9 @@ import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import com.stevekung.moreplanets.init.MPBiomes;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
-import com.stevekung.moreplanets.utils.blocks.BlockChestMP;
-import com.stevekung.moreplanets.utils.blocks.BlockCropsMP;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
+
+import micdoodle8.mods.galacticraft.core.GCBlocks;
+import micdoodle8.mods.galacticraft.core.blocks.BlockUnlitTorch;
 
 public class StructureNibiruVillagePieces
 {
@@ -60,23 +61,15 @@ public class StructureNibiruVillagePieces
     {
         List<PieceWeight> list = new ArrayList<>();
         list.add(new PieceWeight(House4Garden.class, 4, MathHelper.getInt(rand, 2 + size, 4 + size * 2)));
-        list.add(new PieceWeight(Church.class, 20, MathHelper.getInt(rand, 0 + size, 1 + size)));
-        list.add(new PieceWeight(House1.class, 20, MathHelper.getInt(rand, 0 + size, 2 + size)));
+        list.add(new PieceWeight(Church.class, 20, MathHelper.getInt(rand, size, 1 + size)));
+        list.add(new PieceWeight(House1.class, 20, MathHelper.getInt(rand, size, 2 + size)));
         list.add(new PieceWeight(WoodHut.class, 3, MathHelper.getInt(rand, 2 + size, 5 + size * 3)));
-        list.add(new PieceWeight(Hall.class, 15, MathHelper.getInt(rand, 0 + size, 2 + size)));
+        list.add(new PieceWeight(Hall.class, 15, MathHelper.getInt(rand, size, 2 + size)));
         list.add(new PieceWeight(Field1.class, 3, MathHelper.getInt(rand, 1 + size, 4 + size)));
         list.add(new PieceWeight(Field2.class, 3, MathHelper.getInt(rand, 2 + size, 4 + size * 2)));
         list.add(new PieceWeight(House2.class, 15, MathHelper.getInt(rand, 0, 1 + size)));
-        list.add(new PieceWeight(House3.class, 8, MathHelper.getInt(rand, 0 + size, 3 + size * 2)));
-        Iterator<PieceWeight> iterator = list.iterator();
-
-        while (iterator.hasNext())
-        {
-            if (iterator.next().villagePiecesLimit == 0)
-            {
-                iterator.remove();
-            }
-        }
+        list.add(new PieceWeight(House3.class, 8, MathHelper.getInt(rand, size, 3 + size * 2)));
+        list.removeIf(pieceWeight -> pieceWeight.villagePiecesLimit == 0);
         return list;
     }
 
@@ -393,7 +386,6 @@ public class StructureNibiruVillagePieces
             this.boundingBox = box;
         }
 
-        @SuppressWarnings("deprecation")
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox box)
         {
@@ -436,15 +428,13 @@ public class StructureNibiruVillagePieces
             this.setBlockState(world, iblockstate4, 0, 4, 3, box);
             this.setBlockState(world, iblockstate4, 8, 4, 2, box);
             this.setBlockState(world, iblockstate4, 8, 4, 3, box);
-            IBlockState iblockstate7 = iblockstate1;
-            IBlockState iblockstate8 = iblockstate2;
 
             for (int i = -1; i <= 2; ++i)
             {
                 for (int j = 0; j <= 8; ++j)
                 {
-                    this.setBlockState(world, iblockstate7, j, 4 + i, i, box);
-                    this.setBlockState(world, iblockstate8, j, 4 + i, 5 - i, box);
+                    this.setBlockState(world, iblockstate1, j, 4 + i, i, box);
+                    this.setBlockState(world, iblockstate2, j, 4 + i, 5 - i, box);
                 }
             }
 
@@ -463,7 +453,7 @@ public class StructureNibiruVillagePieces
             this.setBlockState(world, iblockstate6, 2, 1, 3, box);
             this.setBlockState(world, MPBlocks.INFECTED_OAK_PRESSURE_PLATE.getDefaultState(), 2, 2, 3, box);
             this.setBlockState(world, iblockstate4, 1, 1, 4, box);
-            this.setBlockState(world, iblockstate7, 2, 1, 4, box);
+            this.setBlockState(world, iblockstate1, 2, 1, 4, box);
             this.setBlockState(world, iblockstate3, 1, 1, 3, box);
             this.fillWithBlocks(world, box, 5, 0, 1, 7, 0, 3, MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
             this.setBlockState(world, MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 6, 1, 1, box);
@@ -475,7 +465,7 @@ public class StructureNibiruVillagePieces
 
             if (this.getBlockStateFromPos(world, 2, 0, -1, box).getMaterial() == Material.AIR && this.getBlockStateFromPos(world, 2, -1, -1, box).getMaterial() != Material.AIR)
             {
-                this.setBlockState(world, iblockstate7, 2, 0, -1, box);
+                this.setBlockState(world, iblockstate1, 2, 0, -1, box);
 
                 if (this.getBlockStateFromPos(world, 2, -1, -1, box).getBlock() == MPBlocks.INFECTED_GRASS_PATH)
                 {
@@ -658,7 +648,6 @@ public class StructureNibiruVillagePieces
             this.hasMadeChest = nbt.getBoolean("Chest");
         }
 
-        @SuppressWarnings("deprecation")
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox box)
         {
@@ -804,20 +793,16 @@ public class StructureNibiruVillagePieces
             this.setBlockState(world, iblockstate5, 8, 4, 2, box);
             this.setBlockState(world, iblockstate5, 8, 4, 3, box);
             this.setBlockState(world, iblockstate5, 8, 4, 4, box);
-            IBlockState iblockstate7 = iblockstate1;
-            IBlockState iblockstate8 = iblockstate2;
-            IBlockState iblockstate9 = iblockstate4;
-            IBlockState iblockstate10 = iblockstate3;
 
             for (int i = -1; i <= 2; ++i)
             {
                 for (int j = 0; j <= 8; ++j)
                 {
-                    this.setBlockState(world, iblockstate7, j, 4 + i, i, box);
+                    this.setBlockState(world, iblockstate1, j, 4 + i, i, box);
 
-                    if ((i > -1 || j <= 1) && (i > 0 || j <= 3) && (i > 1 || j <= 4 || j >= 6))
+                    if ((i > -1 || j <= 1) && (i > 0 || j <= 3) && (i > 1 || j != 5))
                     {
-                        this.setBlockState(world, iblockstate8, j, 4 + i, 5 - i, box);
+                        this.setBlockState(world, iblockstate2, j, 4 + i, 5 - i, box);
                     }
                 }
             }
@@ -834,7 +819,7 @@ public class StructureNibiruVillagePieces
 
                 for (int k1 = 8 - k; k1 <= 10; ++k1)
                 {
-                    this.setBlockState(world, iblockstate10, k, 2 + k, k1, box);
+                    this.setBlockState(world, iblockstate3, k, 2 + k, k1, box);
                 }
             }
 
@@ -846,7 +831,7 @@ public class StructureNibiruVillagePieces
             {
                 for (int l1 = 5; l1 <= 10; ++l1)
                 {
-                    this.setBlockState(world, iblockstate9, l, 12 - l, l1, box);
+                    this.setBlockState(world, iblockstate4, l, 12 - l, l1, box);
                 }
             }
 
@@ -882,7 +867,7 @@ public class StructureNibiruVillagePieces
 
             if (this.getBlockStateFromPos(world, 2, 0, -1, box).getMaterial() == Material.AIR && this.getBlockStateFromPos(world, 2, -1, -1, box).getMaterial() != Material.AIR)
             {
-                this.setBlockState(world, iblockstate7, 2, 0, -1, box);
+                this.setBlockState(world, iblockstate1, 2, 0, -1, box);
 
                 if (this.getBlockStateFromPos(world, 2, -1, -1, box).getBlock() == MPBlocks.INFECTED_GRASS_PATH)
                 {
@@ -1102,18 +1087,18 @@ public class StructureNibiruVillagePieces
             {
                 switch (facing)
                 {
-                case NORTH:
-                default:
-                    this.generateAndAddRoadPiece((Start)component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ, EnumFacing.WEST, this.getComponentType());
-                    break;
-                case SOUTH:
-                    this.generateAndAddRoadPiece((Start)component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.maxZ - 2, EnumFacing.WEST, this.getComponentType());
-                    break;
-                case WEST:
-                    this.generateAndAddRoadPiece((Start)component, list, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
-                    break;
-                case EAST:
-                    this.generateAndAddRoadPiece((Start)component, list, rand, this.boundingBox.maxX - 2, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+                    case SOUTH:
+                        this.generateAndAddRoadPiece((Start)component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.maxZ - 2, EnumFacing.WEST, this.getComponentType());
+                        break;
+                    case WEST:
+                        this.generateAndAddRoadPiece((Start)component, list, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+                        break;
+                    case EAST:
+                        this.generateAndAddRoadPiece((Start)component, list, rand, this.boundingBox.maxX - 2, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+                        break;
+                    default:
+                        this.generateAndAddRoadPiece((Start)component, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ, EnumFacing.WEST, this.getComponentType());
+                        break;
                 }
             }
 
@@ -1121,18 +1106,18 @@ public class StructureNibiruVillagePieces
             {
                 switch (facing)
                 {
-                case NORTH:
-                default:
-                    this.generateAndAddRoadPiece((Start)component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ, EnumFacing.EAST, this.getComponentType());
-                    break;
-                case SOUTH:
-                    this.generateAndAddRoadPiece((Start)component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.maxZ - 2, EnumFacing.EAST, this.getComponentType());
-                    break;
-                case WEST:
-                    this.generateAndAddRoadPiece((Start)component, list, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
-                    break;
-                case EAST:
-                    this.generateAndAddRoadPiece((Start)component, list, rand, this.boundingBox.maxX - 2, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+                    case SOUTH:
+                        this.generateAndAddRoadPiece((Start)component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.maxZ - 2, EnumFacing.EAST, this.getComponentType());
+                        break;
+                    case WEST:
+                        this.generateAndAddRoadPiece((Start)component, list, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+                        break;
+                    case EAST:
+                        this.generateAndAddRoadPiece((Start)component, list, rand, this.boundingBox.maxX - 2, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+                        break;
+                    default:
+                        this.generateAndAddRoadPiece((Start)component, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ, EnumFacing.EAST, this.getComponentType());
+                        break;
                 }
             }
         }
@@ -1197,10 +1182,10 @@ public class StructureNibiruVillagePieces
 
     public static class PieceWeight
     {
-        public Class<? extends Village> villagePieceClass;
+        public final Class<? extends Village> villagePieceClass;
         public final int villagePieceWeight;
         public int villagePiecesSpawned;
-        public int villagePiecesLimit;
+        public final int villagePiecesLimit;
 
         public PieceWeight(Class<? extends Village> clazz, int weight, int limit)
         {
@@ -1236,15 +1221,15 @@ public class StructureNibiruVillagePieces
         public int terrainType;
         public PieceWeight structVillagePieceWeight;
         public List<PieceWeight> structureVillageWeightedPieceList;
-        public List<StructureComponent> pendingHouses = new ArrayList<>();
-        public List<StructureComponent> pendingRoads = new ArrayList<>();
+        public final List<StructureComponent> pendingHouses = new ArrayList<>();
+        public final List<StructureComponent> pendingRoads = new ArrayList<>();
         public Biome biome;
 
         public Start() {}
 
         public Start(BiomeProvider biomeProvider, Random rand, int x, int z, List<PieceWeight> list, int type)
         {
-            super((Start)null, 0, rand, x, z);
+            super(null, 0, rand, x, z);
             this.biomeProvider = biomeProvider;
             this.structureVillageWeightedPieceList = list;
             this.terrainType = type;
@@ -1410,15 +1395,11 @@ public class StructureNibiruVillagePieces
             {
                 switch (facing)
                 {
-                case NORTH:
-                default:
-                    return this.generateAndAddComponent(start, component, rand, this.boundingBox.minX - 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.WEST, this.getComponentType());
-                case SOUTH:
-                    return this.generateAndAddComponent(start, component, rand, this.boundingBox.minX - 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.WEST, this.getComponentType());
-                case WEST:
-                    return this.generateAndAddComponent(start, component, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
-                case EAST:
-                    return this.generateAndAddComponent(start, component, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+                    case WEST:
+                    case EAST:
+                        return this.generateAndAddComponent(start, component, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+                    default:
+                        return this.generateAndAddComponent(start, component, rand, this.boundingBox.minX - 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.WEST, this.getComponentType());
                 }
             }
             else
@@ -1435,15 +1416,11 @@ public class StructureNibiruVillagePieces
             {
                 switch (facing)
                 {
-                case NORTH:
-                default:
-                    return this.generateAndAddComponent(start, component, rand, this.boundingBox.maxX + 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.EAST, this.getComponentType());
-                case SOUTH:
-                    return this.generateAndAddComponent(start, component, rand, this.boundingBox.maxX + 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.EAST, this.getComponentType());
-                case WEST:
-                    return this.generateAndAddComponent(start, component, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
-                case EAST:
-                    return this.generateAndAddComponent(start, component, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+                    case WEST:
+                    case EAST:
+                        return this.generateAndAddComponent(start, component, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+                    default:
+                        return this.generateAndAddComponent(start, component, rand, this.boundingBox.maxX + 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.EAST, this.getComponentType());
                 }
             }
             else
@@ -1515,7 +1492,6 @@ public class StructureNibiruVillagePieces
             return currentVillagerProfession;
         }
 
-        @SuppressWarnings("deprecation")
         protected IBlockState getBiomeSpecificBlockState(IBlockState state)
         {
             Block block = state.getBlock();
@@ -1611,13 +1587,11 @@ public class StructureNibiruVillagePieces
 
         protected BlockDoor getDoor()
         {
-            switch (this.structureType)
+            if (this.structureType == 2)
             {
-            case 2:
                 return MPBlocks.ALIEN_BERRY_OAK_DOOR;
-            default:
-                return MPBlocks.INFECTED_OAK_DOOR;
             }
+            return MPBlocks.INFECTED_OAK_DOOR;
         }
 
         protected void createVillageDoor(World world, StructureBoundingBox box, Random rand, int x, int y, int z)
@@ -1872,15 +1846,7 @@ public class StructureNibiruVillagePieces
         {
             super(start, type);
             this.setCoordBaseMode(EnumFacing.Plane.HORIZONTAL.random(rand));
-
-            if (this.getCoordBaseMode().getAxis() == EnumFacing.Axis.Z)
-            {
-                this.boundingBox = new StructureBoundingBox(x, 64, z, x + 6 - 1, 78, z + 6 - 1);
-            }
-            else
-            {
-                this.boundingBox = new StructureBoundingBox(x, 64, z, x + 6 - 1, 78, z + 6 - 1);
-            }
+            this.boundingBox = new StructureBoundingBox(x, 64, z, x + 6 - 1, 78, z + 6 - 1);
         }
 
         @Override
