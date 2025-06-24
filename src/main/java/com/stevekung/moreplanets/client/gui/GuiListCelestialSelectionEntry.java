@@ -101,7 +101,7 @@ public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListE
 
     public boolean isReachable()
     {
-        return this.celestial.getReachable();
+        return this.celestial.isReachable();
     }
 
     public CelestialBody getCelestialBody()

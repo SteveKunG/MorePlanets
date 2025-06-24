@@ -89,6 +89,26 @@ repositories {
             includeGroup "mezz.jei"
         }
     }
+    exclusiveContent {
+        forRepository {
+            maven {
+                url = "https://maven.ic2.player.to"
+            }
+        }
+        filter {
+            includeGroup "net.industrial-craft"
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                url = "https://mod-buildcraft.com/maven"
+            }
+        }
+        filter {
+            includeGroup "com.mod-buildcraft"
+        }
+    }
     maven {
         name = "CleanroomMC Maven"
         url = "https://maven.cleanroommc.com"
@@ -113,10 +133,13 @@ dependencies {
         }
     }
 
-    implementation(":galacticraft-legacy:4.0.2.283")
+    implementation(":Galacticraft-1.12.2-4.0.7-deobf")
     implementation(modUtils.deobfuscate("curse.maven:stevekungs-lib-296019:5064118").toString())
     implementation "curse.maven:hwyla-253449:2568751"
     implementation(modUtils.deobfuscate("curse.maven:codechicken-lib-1-8-242818:2779848").toString())
+    api "curse.maven:mekanism-268560:2835176"
+    api "com.mod-buildcraft:buildcraft-api:7.99.8.2"
+    api "net.industrial-craft:industrialcraft-2:2.8.222-ex112:api"
     api "curse.maven:baubles-227083:2518667"
     api "team.chisel.ctm:CTM:MC${minecraft_version}-${ctm_version}"
     api "mezz.jei:jei_${minecraft_version}:${jei_version}:api"

@@ -371,7 +371,6 @@ public class ClientEventHandler
                 String bossType = boss.getBossType().getName();
                 String name = boss.getBossName();
 
-                // start render custom boss bar
                 event.setCanceled(true);
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 this.mc.getTextureManager().bindTexture(BOSS_BAR);
