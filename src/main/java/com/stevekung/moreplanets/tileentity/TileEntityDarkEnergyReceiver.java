@@ -43,9 +43,9 @@ import com.stevekung.moreplanets.planets.diona.entity.EntityDarkLightningBolt;
 import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityInfectedPurloniteEnderCore;
 import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityZeliusEgg;
 import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
-import stevekung.mods.stevekunglib.utils.JsonUtils;
-import stevekung.mods.stevekunglib.utils.LangUtils;
-import stevekung.mods.stevekunglib.utils.client.ClientUtils;
+import com.stevekung.lib.utils.JsonUtils;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.lib.utils.client.ClientUtils;
 
 public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMultiBlock
 {

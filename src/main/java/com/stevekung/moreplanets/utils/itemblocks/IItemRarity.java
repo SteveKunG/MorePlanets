@@ -1,6 +1,6 @@
 package com.stevekung.moreplanets.utils.itemblocks;
 
-import stevekung.mods.stevekunglib.utils.ColorUtils;
+import com.stevekung.lib.utils.ColorUtils;
 
 public interface IItemRarity
 {

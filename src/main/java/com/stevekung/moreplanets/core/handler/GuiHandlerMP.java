@@ -24,7 +24,7 @@ import com.stevekung.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
 import com.stevekung.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
-import stevekung.mods.stevekunglib.utils.client.ClientUtils;
+import com.stevekung.lib.utils.client.ClientUtils;
 
 public class GuiHandlerMP implements IGuiHandler
 {

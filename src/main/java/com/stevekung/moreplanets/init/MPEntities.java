@@ -28,8 +28,8 @@ import com.stevekung.moreplanets.planets.nibiru.entity.weather.EntityNibiruLight
 
 import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 
-import stevekung.mods.stevekunglib.utils.ColorUtils;
-import stevekung.mods.stevekunglib.utils.enums.EnumEntityTrackerType;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.enums.EnumEntityTrackerType;
 
 public class MPEntities
 {

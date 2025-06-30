@@ -21,7 +21,7 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPLootTables;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
-import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
+import com.stevekung.lib.utils.enums.CachedEnum;
 
 public class StructureNibiruIglooPieces extends StructureComponent
 {

@@ -48,8 +48,8 @@ import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPSounds;
 import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.LangUtils;
 
 public class TileEntityShieldGenerator extends TileEntityDummy implements IMultiBlock, IBubbleProvider
 {

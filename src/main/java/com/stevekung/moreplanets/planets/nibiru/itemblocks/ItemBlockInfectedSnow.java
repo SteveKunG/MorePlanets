@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.utils.itemblocks.ItemBlockMP;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.BlockStateProperty;
 
 public class ItemBlockInfectedSnow extends ItemBlockMP
 {

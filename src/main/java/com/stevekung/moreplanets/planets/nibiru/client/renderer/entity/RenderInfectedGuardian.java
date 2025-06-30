@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedGuardian;
 import com.stevekung.moreplanets.utils.client.model.ModelGuardianMP;
-import stevekung.mods.stevekunglib.utils.client.GLConstants;
+import com.stevekung.lib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class RenderInfectedGuardian extends RenderLiving<EntityInfectedGuardian>

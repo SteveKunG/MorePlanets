@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.init.MPPotions;
 import com.stevekung.moreplanets.utils.items.ItemFoodMP;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
+import com.stevekung.lib.utils.ColorUtils;
 
 public class ItemCapsule extends ItemFoodMP
 {

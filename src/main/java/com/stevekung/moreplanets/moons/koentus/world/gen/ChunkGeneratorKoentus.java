@@ -19,7 +19,7 @@ import com.stevekung.moreplanets.planets.diona.world.gen.feature.WorldGenCrashed
 import com.stevekung.moreplanets.planets.diona.world.gen.structure.MapGenCrashedAlienShipFeature;
 import com.stevekung.moreplanets.utils.world.gen.ChunkGeneratorBaseMP;
 import com.stevekung.moreplanets.utils.world.gen.feature.WorldGenSpaceDungeons;
-import stevekung.mods.stevekunglib.world.gen.MapGenCavesBase;
+import com.stevekung.lib.world.gen.MapGenCavesBase;
 
 public class ChunkGeneratorKoentus extends ChunkGeneratorBaseMP
 {

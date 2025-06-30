@@ -29,9 +29,9 @@ import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityInfectedPurl
 import com.stevekung.moreplanets.utils.blocks.BlockDirectionalMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
 import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
-import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.enums.CachedEnum;
 
 public class BlockInfectedPurloniteCrystal extends BlockDirectionalMP implements ITileEntityProvider
 {

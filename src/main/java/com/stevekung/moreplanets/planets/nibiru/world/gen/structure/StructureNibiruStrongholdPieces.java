@@ -31,7 +31,7 @@ import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityJuicerEgg;
 import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
 import com.stevekung.moreplanets.tileentity.TileEntityDummy;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.BlockStateProperty;
 
 public class StructureNibiruStrongholdPieces
 {

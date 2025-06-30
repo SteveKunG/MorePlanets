@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import com.stevekung.moreplanets.client.renderer.sky.SkyProviderBaseMP;
-import stevekung.mods.stevekunglib.utils.client.GLConstants;
+import com.stevekung.lib.utils.client.GLConstants;
 
 public class SkyProviderFronos extends SkyProviderBaseMP
 {

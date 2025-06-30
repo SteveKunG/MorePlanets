@@ -43,11 +43,11 @@ import com.stevekung.moreplanets.recipe.CraftingManagerMP;
 import com.stevekung.moreplanets.recipe.SmeltingManagerMP;
 import com.stevekung.moreplanets.utils.*;
 
-import stevekung.mods.stevekunglib.utils.CommonRegistryUtils;
-import stevekung.mods.stevekunglib.utils.CommonUtils;
-import stevekung.mods.stevekunglib.utils.VersionChecker;
-import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
-import stevekung.mods.stevekunglib.utils.client.ClientUtils;
+import com.stevekung.lib.utils.CommonRegistryUtils;
+import com.stevekung.lib.utils.CommonUtils;
+import com.stevekung.lib.utils.VersionChecker;
+import com.stevekung.lib.utils.client.ClientRegistryUtils;
+import com.stevekung.lib.utils.client.ClientUtils;
 
 @Mod(modid = MorePlanetsMod.MOD_ID, name = MorePlanetsMod.NAME, version = MorePlanetsMod.VERSION, dependencies = MorePlanetsMod.MAIN_DEPENDENCIES, updateJSON = MorePlanetsMod.JSON_URL)
 public class MorePlanetsMod

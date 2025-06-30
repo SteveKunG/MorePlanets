@@ -22,7 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import com.stevekung.moreplanets.core.event.ClientEventHandler;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPSounds;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import com.stevekung.lib.utils.LangUtils;
 
 public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectricalSource implements IConnector, IDisableableMachine
 {

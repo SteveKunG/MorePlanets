@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.inventory.ContainerBlackHoleStorageSchematic;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import com.stevekung.lib.utils.LangUtils;
 
 @SideOnly(Side.CLIENT)
 public class GuiBlackHoleStorageSchematic extends GuiPositionedContainer implements ISchematicResultPage

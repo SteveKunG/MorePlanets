@@ -38,7 +38,7 @@ import com.stevekung.moreplanets.utils.items.IDungeonKey;
 import com.stevekung.moreplanets.utils.items.IDungeonKeyable;
 import com.stevekung.moreplanets.utils.items.ItemDoorMP;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
-import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
+import com.stevekung.lib.utils.enums.CachedEnum;
 
 public class GeneralEventHandler
 {

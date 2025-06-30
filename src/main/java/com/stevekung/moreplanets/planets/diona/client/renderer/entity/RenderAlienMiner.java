@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.planets.diona.client.model.ModelAlienMiner;
 import com.stevekung.moreplanets.planets.diona.client.renderer.entity.layer.LayerGlowingAlienMiner;
 import com.stevekung.moreplanets.planets.diona.entity.EntityAlienMiner;
-import stevekung.mods.stevekunglib.utils.client.GLConstants;
+import com.stevekung.lib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class RenderAlienMiner extends RenderLiving<EntityAlienMiner>

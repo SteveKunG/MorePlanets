@@ -7,8 +7,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import com.stevekung.moreplanets.init.MPBlocks;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
-import stevekung.mods.stevekunglib.world.gen.WorldGenAbstractTree;
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.world.gen.WorldGenAbstractTree;
 
 public class WorldGenFroliaTree extends WorldGenAbstractTree
 {

@@ -17,8 +17,8 @@ import com.stevekung.moreplanets.planets.fronos.world.gen.feature.WorldGenFronos
 import com.stevekung.moreplanets.utils.world.gen.biome.BiomeMP;
 import com.stevekung.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
 import com.stevekung.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
-import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
-import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
+import com.stevekung.lib.utils.WorldDecorateUtils;
+import com.stevekung.lib.world.gen.WorldGenFlowersBase;
 
 public class BiomeDecoratorFronos extends BiomeDecoratorMP
 {

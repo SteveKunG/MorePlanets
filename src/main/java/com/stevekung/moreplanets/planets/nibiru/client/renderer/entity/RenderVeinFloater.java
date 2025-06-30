@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.planets.nibiru.client.model.ModelVeinFloater;
 import com.stevekung.moreplanets.planets.nibiru.client.renderer.entity.layer.LayerVeinFloaterDeath;
 import com.stevekung.moreplanets.planets.nibiru.entity.EntityVeinFloater;
-import stevekung.mods.stevekunglib.utils.client.GLConstants;
+import com.stevekung.lib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class RenderVeinFloater extends RenderLiving<EntityVeinFloater>

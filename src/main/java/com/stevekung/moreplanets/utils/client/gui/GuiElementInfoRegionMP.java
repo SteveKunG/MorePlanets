@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import stevekung.mods.stevekunglib.utils.client.RenderUtils;
+import com.stevekung.lib.utils.client.RenderUtils;
 
 @SideOnly(Side.CLIENT)
 public class GuiElementInfoRegionMP extends Gui

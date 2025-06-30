@@ -22,7 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import com.stevekung.moreplanets.utils.world.capability.DoubleChestItemHandlerMP;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import com.stevekung.lib.utils.LangUtils;
 
 public abstract class TileEntityChestMP extends TileEntityLockableLoot implements ITickable, IInventory
 {

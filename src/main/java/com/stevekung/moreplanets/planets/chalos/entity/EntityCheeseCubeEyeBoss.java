@@ -51,9 +51,9 @@ import com.stevekung.moreplanets.utils.BossType;
 import com.stevekung.moreplanets.utils.IMorePlanetsBoss;
 import com.stevekung.moreplanets.utils.entity.EntityFlyingBossMP;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
-import stevekung.mods.stevekunglib.utils.JsonUtils;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.JsonUtils;
+import com.stevekung.lib.utils.LangUtils;
 
 public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEntityBreathable, IMorePlanetsBoss
 {

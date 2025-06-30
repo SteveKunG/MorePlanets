@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.utils.blocks.BlockIceMP;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
+import com.stevekung.lib.utils.ColorUtils;
 
 public class BlockInfectedIce extends BlockIceMP
 {

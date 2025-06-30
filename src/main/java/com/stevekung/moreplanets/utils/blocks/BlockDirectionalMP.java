@@ -6,7 +6,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.BlockStateProperty;
 
 public class BlockDirectionalMP extends BlockBaseMP
 {

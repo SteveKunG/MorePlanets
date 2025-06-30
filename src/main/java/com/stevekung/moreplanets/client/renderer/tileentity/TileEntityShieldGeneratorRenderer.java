@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.client.model.ModelShieldGenerator;
 import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
-import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
+import com.stevekung.lib.client.event.ClientEventHandler;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer<TileEntityShieldGenerator>

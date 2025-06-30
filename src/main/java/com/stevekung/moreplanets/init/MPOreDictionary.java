@@ -1,6 +1,6 @@
 package com.stevekung.moreplanets.init;
 
-import stevekung.mods.stevekunglib.utils.OreDictionaryUtils;
+import com.stevekung.lib.utils.OreDictionaryUtils;
 
 public class MPOreDictionary
 {

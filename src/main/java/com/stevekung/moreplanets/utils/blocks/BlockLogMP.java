@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.BlockStateProperty;
 
 public class BlockLogMP extends BlockBaseMP
 {

@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.utils.blocks.BlockChestMP;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
-import stevekung.mods.stevekunglib.utils.CalendarUtils;
+import com.stevekung.lib.utils.CalendarUtils;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityChestRendererMP extends TileEntitySpecialRenderer<TileEntityChestMP>

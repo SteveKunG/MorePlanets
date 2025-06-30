@@ -15,7 +15,7 @@ import com.stevekung.moreplanets.core.event.WorldTickEventHandler;
 import com.stevekung.moreplanets.network.PacketSimpleMP;
 import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
+import com.stevekung.lib.utils.ColorUtils;
 
 public class CommandOpenCelestialScreen extends CommandBase
 {

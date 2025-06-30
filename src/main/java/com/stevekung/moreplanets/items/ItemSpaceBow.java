@@ -22,7 +22,7 @@ import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
 import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
 import com.stevekung.moreplanets.utils.items.ISortableItem;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
+import com.stevekung.lib.utils.ColorUtils;
 
 public class ItemSpaceBow extends ItemBow implements ISortableItem, IItemModelRender, IItemRarity, GCRarity
 {

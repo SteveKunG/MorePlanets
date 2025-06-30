@@ -6,7 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedRoofedTree;
-import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
+import com.stevekung.lib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedForest extends BiomeNibiru
 {

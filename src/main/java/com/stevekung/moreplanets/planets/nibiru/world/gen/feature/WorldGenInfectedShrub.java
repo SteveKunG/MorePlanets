@@ -4,7 +4,7 @@ import com.stevekung.moreplanets.init.MPBlocks;
 
 import net.minecraft.block.Block;
 
-import stevekung.mods.stevekunglib.world.gen.WorldGenAbstractShrub;
+import com.stevekung.lib.world.gen.WorldGenAbstractShrub;
 
 public class WorldGenInfectedShrub extends WorldGenAbstractShrub
 {

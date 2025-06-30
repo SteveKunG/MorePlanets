@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
 import com.stevekung.moreplanets.utils.items.ItemBaseMP;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.BlockStateProperty;
 
 public class ItemInfectedSugarCane extends ItemBaseMP
 {

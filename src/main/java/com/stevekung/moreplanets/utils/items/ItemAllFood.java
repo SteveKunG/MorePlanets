@@ -16,7 +16,7 @@ import net.minecraftforge.common.IRarity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.init.MPBlocks;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import com.stevekung.lib.utils.LangUtils;
 
 public class ItemAllFood extends ItemFoodMP
 {

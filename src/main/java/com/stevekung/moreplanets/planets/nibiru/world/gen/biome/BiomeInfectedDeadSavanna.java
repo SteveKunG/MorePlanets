@@ -10,7 +10,7 @@ import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadSavannaTree;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
 import com.stevekung.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
-import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
+import com.stevekung.lib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedDeadSavanna extends BiomeNibiru
 {

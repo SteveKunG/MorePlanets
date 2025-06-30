@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.planets.diona.client.model.ModelZeliusEgg;
 import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityZeliusEgg;
-import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
+import com.stevekung.lib.client.event.ClientEventHandler;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityZeliusEggRenderer extends TileEntitySpecialRenderer<TileEntityZeliusEgg>

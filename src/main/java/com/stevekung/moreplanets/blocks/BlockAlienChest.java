@@ -14,8 +14,8 @@ import com.stevekung.moreplanets.tileentity.TileEntityAlienChest;
 import com.stevekung.moreplanets.utils.blocks.BlockChestMP;
 import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.LangUtils;
 
 public class BlockAlienChest extends BlockChestMP implements IItemRarity
 {

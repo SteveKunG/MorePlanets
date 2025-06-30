@@ -22,7 +22,7 @@ import com.stevekung.moreplanets.moons.koentus.entity.EntityFallingKoentusMeteor
 import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
 import com.stevekung.moreplanets.utils.blocks.BlockFallingMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
+import com.stevekung.lib.utils.ColorUtils;
 
 public class BlockFallenKoentusMeteor extends BlockFallingMP
 {

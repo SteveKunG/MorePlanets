@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import com.stevekung.moreplanets.init.MPPotions;
 import com.stevekung.moreplanets.utils.PotionMP;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
+import com.stevekung.lib.utils.ColorUtils;
 
 public class DarkEnergyProtectionEffect extends PotionMP
 {

@@ -13,10 +13,10 @@ import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
 import com.stevekung.moreplanets.utils.items.ItemBaseMP;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
-import stevekung.mods.stevekunglib.utils.JsonUtils;
-import stevekung.mods.stevekunglib.utils.LangUtils;
-import stevekung.mods.stevekunglib.utils.client.ClientUtils;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.JsonUtils;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.lib.utils.client.ClientUtils;
 
 public class ItemAlienDefenderReinforcement extends ItemBaseMP
 {

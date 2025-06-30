@@ -13,8 +13,8 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.core.config.ConfigManagerMP;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
-import stevekung.mods.stevekunglib.utils.client.GLConstants;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.client.GLConstants;
 
 public abstract class SkyProviderBaseMP extends IRenderHandler
 {

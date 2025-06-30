@@ -23,7 +23,7 @@ import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenTerrashroom;
 import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
 import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
+import com.stevekung.lib.utils.ColorUtils;
 
 public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGrowable
 {

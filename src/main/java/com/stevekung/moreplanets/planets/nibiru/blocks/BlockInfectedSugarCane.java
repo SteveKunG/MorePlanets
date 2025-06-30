@@ -21,8 +21,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.utils.blocks.BlockBushMP;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
-import stevekung.mods.stevekunglib.utils.BlockUtils;
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.BlockUtils;
 
 public class BlockInfectedSugarCane extends BlockBushMP
 {

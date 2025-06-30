@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
 import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
 import com.stevekung.moreplanets.utils.items.armor.ItemArmorMP;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
+import com.stevekung.lib.utils.ColorUtils;
 
 public class ItemGravityBoots extends ItemArmorMP implements IArmorGravity, IItemRarity
 {

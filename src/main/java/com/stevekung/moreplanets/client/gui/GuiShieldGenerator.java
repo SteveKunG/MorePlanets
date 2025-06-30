@@ -20,8 +20,8 @@ import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
 import com.stevekung.moreplanets.utils.client.gui.GuiContainerMP;
 import com.stevekung.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
-import stevekung.mods.stevekunglib.utils.LangUtils;
-import stevekung.mods.stevekunglib.utils.NumberUtils;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.lib.utils.NumberUtils;
 
 @SideOnly(Side.CLIENT)
 public class GuiShieldGenerator extends GuiContainerMP

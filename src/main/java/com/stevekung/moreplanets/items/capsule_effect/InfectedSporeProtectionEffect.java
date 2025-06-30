@@ -13,9 +13,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.init.MPPotions;
 import com.stevekung.moreplanets.utils.PotionMP;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
-import stevekung.mods.stevekunglib.utils.CommonUtils;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.CommonUtils;
+import com.stevekung.lib.utils.LangUtils;
 
 public class InfectedSporeProtectionEffect extends PotionMP
 {

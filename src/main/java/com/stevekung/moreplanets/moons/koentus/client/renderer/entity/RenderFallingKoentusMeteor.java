@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.moons.koentus.entity.EntityFallingKoentusMeteor;
-import stevekung.mods.stevekunglib.utils.client.GLConstants;
+import com.stevekung.lib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class RenderFallingKoentusMeteor extends Render<EntityFallingKoentusMeteor>

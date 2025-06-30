@@ -31,8 +31,8 @@ import com.stevekung.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
 import com.stevekung.moreplanets.utils.LoggerMP;
 import com.stevekung.moreplanets.utils.TeleportUtils;
 import com.stevekung.moreplanets.utils.blocks.BlockAdvancedTileMP;
-import stevekung.mods.stevekunglib.utils.JsonUtils;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import com.stevekung.lib.utils.JsonUtils;
+import com.stevekung.lib.utils.LangUtils;
 
 public class BlockSpaceWarpPadFull extends BlockAdvancedTileMP implements IPartialSealableBlock
 {

@@ -24,8 +24,8 @@ import com.stevekung.moreplanets.utils.world.gen.ChunkGeneratorBaseMP;
 import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
 import com.stevekung.moreplanets.utils.world.gen.dungeon.RoomChestMP;
 import com.stevekung.moreplanets.utils.world.gen.feature.WorldGenSpaceDungeons;
-import stevekung.mods.stevekunglib.world.gen.MapGenCavesBase;
-import stevekung.mods.stevekunglib.world.gen.WorldGenLiquidLake;
+import com.stevekung.lib.world.gen.MapGenCavesBase;
+import com.stevekung.lib.world.gen.WorldGenLiquidLake;
 
 public class ChunkGeneratorDiona extends ChunkGeneratorBaseMP
 {

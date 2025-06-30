@@ -21,7 +21,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
+import com.stevekung.lib.world.gen.WorldGenFlowersBase;
 
 public class BiomeNibiru extends BiomeMP
 {

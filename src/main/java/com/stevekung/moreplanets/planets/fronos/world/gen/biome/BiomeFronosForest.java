@@ -6,9 +6,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import com.stevekung.moreplanets.init.MPBlocks;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
-import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
-import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.WorldDecorateUtils;
+import com.stevekung.lib.world.gen.WorldGenFlowersBase;
 
 public class BiomeFronosForest extends BiomeFronos
 {

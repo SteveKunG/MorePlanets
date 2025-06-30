@@ -32,7 +32,7 @@ import com.stevekung.moreplanets.tileentity.TileEntityAlienChest;
 import com.stevekung.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
 import com.stevekung.moreplanets.utils.world.gen.feature.ElectricFireBlockProcessor;
-import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
+import com.stevekung.lib.utils.enums.CachedEnum;
 
 public class ComponentCrashedAlienShipPieces extends StructureComponent
 {

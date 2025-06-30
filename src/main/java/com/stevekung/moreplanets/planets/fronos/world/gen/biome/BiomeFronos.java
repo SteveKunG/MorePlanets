@@ -24,8 +24,8 @@ import com.stevekung.moreplanets.planets.fronos.world.gen.feature.WorldGenFrolia
 import com.stevekung.moreplanets.planets.fronos.world.gen.feature.WorldGenOscaleaTrees;
 import com.stevekung.moreplanets.utils.world.gen.biome.BiomeMP;
 import com.stevekung.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
-import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.world.gen.WorldGenFlowersBase;
 
 public class BiomeFronos extends BiomeMP
 {

@@ -24,8 +24,8 @@ import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPLootTables;
 import com.stevekung.moreplanets.utils.LoggerMP;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
-import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.enums.CachedEnum;
 
 public abstract class ComponentCheeseSporeHutPieces extends StructureComponent
 {

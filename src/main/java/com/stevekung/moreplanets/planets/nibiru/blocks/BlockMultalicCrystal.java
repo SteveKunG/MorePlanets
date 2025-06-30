@@ -25,8 +25,8 @@ import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityMultalicCrystal;
 import com.stevekung.moreplanets.utils.blocks.BlockDirectionalMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
-import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.enums.CachedEnum;
 
 public class BlockMultalicCrystal extends BlockDirectionalMP implements ITileEntityProvider
 {

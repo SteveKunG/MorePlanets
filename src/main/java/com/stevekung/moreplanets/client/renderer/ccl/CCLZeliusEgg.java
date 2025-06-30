@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.item.ItemStack;
 import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityZeliusEgg;
-import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
+import com.stevekung.lib.utils.client.ClientRegistryUtils;
 
 public class CCLZeliusEgg extends CCLRenderBase
 {

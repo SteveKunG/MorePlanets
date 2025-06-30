@@ -14,8 +14,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityMultalicCrystal;
 import com.stevekung.moreplanets.utils.client.model.ModelCrystal;
-import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
+import com.stevekung.lib.client.event.ClientEventHandler;
+import com.stevekung.lib.utils.ColorUtils;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer<TileEntityMultalicCrystal>

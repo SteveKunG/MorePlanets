@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.init.MPSounds;
 import com.stevekung.moreplanets.utils.blocks.BlockBreakableMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
+import com.stevekung.lib.utils.ColorUtils;
 
 public class BlockJelly extends BlockBreakableMP
 {

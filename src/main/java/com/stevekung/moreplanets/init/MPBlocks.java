@@ -35,9 +35,9 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
-import stevekung.mods.stevekunglib.utils.BlockUtils;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
-import stevekung.mods.stevekunglib.utils.enums.EnumHarvestLevel;
+import com.stevekung.lib.utils.BlockUtils;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.enums.EnumHarvestLevel;
 
 public class MPBlocks
 {

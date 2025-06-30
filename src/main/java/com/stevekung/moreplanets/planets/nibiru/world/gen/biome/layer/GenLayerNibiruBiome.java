@@ -11,7 +11,7 @@ import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.common.BiomeManager;
 import com.stevekung.moreplanets.init.MPBiomes;
-import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
+import com.stevekung.lib.utils.enums.CachedEnum;
 
 public class GenLayerNibiruBiome extends GenLayer
 {

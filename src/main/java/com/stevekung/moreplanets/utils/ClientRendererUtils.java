@@ -18,9 +18,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3i;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.stevekunglib.utils.client.GLConstants;
-import stevekung.mods.stevekunglib.utils.client.RenderUtils;
-import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.lib.utils.client.RenderUtils;
+import com.stevekung.lib.utils.enums.CachedEnum;
 
 @SideOnly(Side.CLIENT)
 public class ClientRendererUtils

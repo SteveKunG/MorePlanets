@@ -12,7 +12,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.stevekunglib.utils.CommonUtils;
+import com.stevekung.lib.utils.CommonUtils;
 
 public class CapabilityHandlerMP
 {

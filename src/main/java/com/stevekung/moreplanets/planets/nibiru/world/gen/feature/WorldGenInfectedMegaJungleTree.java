@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import com.stevekung.moreplanets.init.MPBlocks;
-import stevekung.mods.stevekunglib.world.gen.WorldGenAbstractMegaJungle;
+import com.stevekung.lib.world.gen.WorldGenAbstractMegaJungle;
 
 public class WorldGenInfectedMegaJungleTree extends WorldGenAbstractMegaJungle
 {

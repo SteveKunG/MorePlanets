@@ -27,9 +27,9 @@ import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import com.stevekung.moreplanets.utils.IDescription;
 import com.stevekung.moreplanets.utils.itemblocks.ItemBlockDescriptionTESR;
-import stevekung.mods.stevekunglib.utils.JsonUtils;
-import stevekung.mods.stevekunglib.utils.LangUtils;
-import stevekung.mods.stevekunglib.utils.client.ClientUtils;
+import com.stevekung.lib.utils.JsonUtils;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.lib.utils.client.ClientUtils;
 
 public class ItemBlockBlackHoleStorage extends ItemBlockDescriptionTESR
 {

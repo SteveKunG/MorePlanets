@@ -21,10 +21,10 @@ import com.stevekung.moreplanets.utils.ItemDescription;
 import com.stevekung.moreplanets.utils.blocks.BlockAdvancedTileMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
 import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
-import stevekung.mods.stevekunglib.utils.JsonUtils;
-import stevekung.mods.stevekunglib.utils.LangUtils;
-import stevekung.mods.stevekunglib.utils.client.ClientUtils;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.JsonUtils;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.lib.utils.client.ClientUtils;
 
 public class BlockSpaceWarpPad extends BlockAdvancedTileMP implements IPartialSealableBlock, IDescription
 {

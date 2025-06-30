@@ -28,10 +28,10 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 
-import stevekung.mods.stevekunglib.utils.BlockUtils;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
-import stevekung.mods.stevekunglib.utils.enums.EnumHarvestLevel;
-import stevekung.mods.stevekunglib.utils.enums.EnumToolSpeed;
+import com.stevekung.lib.utils.BlockUtils;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.enums.EnumHarvestLevel;
+import com.stevekung.lib.utils.enums.EnumToolSpeed;
 
 public class MPItems
 {

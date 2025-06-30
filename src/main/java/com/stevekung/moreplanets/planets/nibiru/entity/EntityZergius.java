@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 import com.stevekung.moreplanets.init.MPPotions;
 import com.stevekung.moreplanets.utils.EntityEffectUtils;
 import com.stevekung.moreplanets.utils.entity.ISpaceMob;
-import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
+import com.stevekung.lib.utils.enums.CachedEnum;
 
 public class EntityZergius extends EntityFlying implements IMob, IEntityBreathable, ISpaceMob
 {

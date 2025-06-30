@@ -24,7 +24,7 @@ import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
 import com.stevekung.moreplanets.utils.client.gui.GuiContainerMP;
 import com.stevekung.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import com.stevekung.lib.utils.LangUtils;
 
 @SideOnly(Side.CLIENT)
 public class GuiShieldGeneratorEntityFilter extends GuiContainerMP

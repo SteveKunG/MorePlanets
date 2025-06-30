@@ -10,8 +10,8 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.IRenderHandler;
-import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
-import stevekung.mods.stevekunglib.utils.client.GLConstants;
+import com.stevekung.lib.client.event.ClientEventHandler;
+import com.stevekung.lib.utils.client.GLConstants;
 
 public class CloudRendererNibiru extends IRenderHandler
 {

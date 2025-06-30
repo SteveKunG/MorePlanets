@@ -20,7 +20,7 @@ import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.nibiru.blocks.BlockVeinFrame;
 import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityVeinEye;
 import com.stevekung.moreplanets.utils.items.ItemBaseMP;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.BlockStateProperty;
 
 public class ItemVeinEye extends ItemBaseMP
 {

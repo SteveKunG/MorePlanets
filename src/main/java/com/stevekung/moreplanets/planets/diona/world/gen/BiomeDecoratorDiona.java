@@ -9,9 +9,9 @@ import com.stevekung.moreplanets.core.config.ConfigManagerMP;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.diona.world.gen.feature.WorldGenInfectedPurloniteCrystal;
 import com.stevekung.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
-import stevekung.mods.stevekunglib.world.gen.EnumOreGen;
-import stevekung.mods.stevekunglib.world.gen.WorldGenCaveLiquid;
-import stevekung.mods.stevekunglib.world.gen.WorldGenMinableBase;
+import com.stevekung.lib.world.gen.EnumOreGen;
+import com.stevekung.lib.world.gen.WorldGenCaveLiquid;
+import com.stevekung.lib.world.gen.WorldGenMinableBase;
 
 public class BiomeDecoratorDiona extends BiomeDecoratorMP
 {

@@ -12,7 +12,7 @@ import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfect
 import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedMegaPineTree;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenNibiruBlockBlob;
 import com.stevekung.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
-import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
+import com.stevekung.lib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedTaiga extends BiomeNibiru
 {

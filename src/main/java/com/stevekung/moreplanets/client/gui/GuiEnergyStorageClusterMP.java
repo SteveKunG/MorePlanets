@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.inventory.ContainerEnergyStorageCluster;
 import com.stevekung.moreplanets.utils.client.gui.GuiContainerMP;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import com.stevekung.lib.utils.LangUtils;
 
 @SideOnly(Side.CLIENT)
 public class GuiEnergyStorageClusterMP extends GuiContainerMP

@@ -21,8 +21,8 @@ import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.utils.DamageSourceMP;
 import com.stevekung.moreplanets.utils.blocks.BlockBushMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
-import stevekung.mods.stevekunglib.utils.BlockUtils;
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.BlockUtils;
 
 public class BlockInfectedCactus extends BlockBushMP
 {

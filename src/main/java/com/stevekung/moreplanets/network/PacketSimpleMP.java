@@ -35,9 +35,9 @@ import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
 import com.stevekung.moreplanets.utils.LoggerMP;
 import com.stevekung.moreplanets.utils.TeleportUtils;
 import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
-import stevekung.mods.stevekunglib.utils.JsonUtils;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.JsonUtils;
+import com.stevekung.lib.utils.LangUtils;
 
 public class PacketSimpleMP extends PacketBase
 {

@@ -15,8 +15,8 @@ import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import com.stevekung.moreplanets.init.MPBlocks;
-import stevekung.mods.stevekunglib.world.gen.EnumOreGen;
-import stevekung.mods.stevekunglib.world.gen.WorldGenMinableBase;
+import com.stevekung.lib.world.gen.EnumOreGen;
+import com.stevekung.lib.world.gen.WorldGenMinableBase;
 
 public class BiomeInfectedBadlands extends BiomeNibiru
 {

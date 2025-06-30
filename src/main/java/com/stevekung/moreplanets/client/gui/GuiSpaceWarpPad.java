@@ -22,7 +22,7 @@ import com.stevekung.moreplanets.inventory.ContainerSpaceWarpPad;
 import com.stevekung.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
 import com.stevekung.moreplanets.utils.client.gui.GuiContainerMP;
 import com.stevekung.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import com.stevekung.lib.utils.LangUtils;
 
 @SideOnly(Side.CLIENT)
 public class GuiSpaceWarpPad extends GuiContainerMP

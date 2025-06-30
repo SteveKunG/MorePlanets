@@ -26,7 +26,7 @@ import com.stevekung.moreplanets.inventory.ContainerDarkEnergyReceiver;
 import com.stevekung.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import com.stevekung.moreplanets.utils.client.gui.GuiContainerMP;
 import com.stevekung.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import com.stevekung.lib.utils.LangUtils;
 
 @SideOnly(Side.CLIENT)
 public class GuiDarkEnergyReceiver extends GuiContainerMP implements ICheckBoxCallback

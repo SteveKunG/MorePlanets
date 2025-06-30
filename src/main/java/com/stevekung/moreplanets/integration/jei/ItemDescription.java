@@ -4,7 +4,7 @@ import java.util.Locale;
 
 import net.minecraft.util.text.TextFormatting;
 import com.stevekung.moreplanets.init.MPBlocks;
-import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
+import com.stevekung.lib.utils.enums.CachedEnum;
 
 public class ItemDescription
 {

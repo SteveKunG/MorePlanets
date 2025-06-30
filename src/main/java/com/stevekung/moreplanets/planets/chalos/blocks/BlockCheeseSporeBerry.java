@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.utils.blocks.BlockCropsMP;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.BlockStateProperty;
 
 public class BlockCheeseSporeBerry extends BlockCropsMP
 {

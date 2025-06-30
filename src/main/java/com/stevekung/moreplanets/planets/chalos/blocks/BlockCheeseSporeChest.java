@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 import com.stevekung.moreplanets.planets.chalos.tileentity.TileEntityCheeseSporeChest;
 import com.stevekung.moreplanets.utils.blocks.BlockChestMP;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import com.stevekung.lib.utils.LangUtils;
 
 public class BlockCheeseSporeChest extends BlockChestMP
 {

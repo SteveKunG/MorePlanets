@@ -7,9 +7,9 @@ import com.stevekung.moreplanets.utils.blocks.BlockDropableLitOre;
 import com.stevekung.moreplanets.utils.blocks.BlockSaplingMP;
 import com.stevekung.moreplanets.utils.client.renderer.StateMapperCTM;
 import com.stevekung.moreplanets.utils.client.renderer.StateMapperType;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
-import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
-import stevekung.mods.stevekunglib.utils.enums.EnumStateMapper;
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.client.ClientRegistryUtils;
+import com.stevekung.lib.utils.enums.EnumStateMapper;
 
 public class BlockStateMapper
 {

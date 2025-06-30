@@ -13,7 +13,7 @@ import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedChicken;
 import com.stevekung.moreplanets.planets.nibiru.entity.EntityShlime;
 import com.stevekung.moreplanets.utils.blocks.BlockFarmlandMP;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.BlockStateProperty;
 
 public class BlockInfectedFarmland extends BlockFarmlandMP
 {

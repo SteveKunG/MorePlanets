@@ -7,7 +7,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
+import com.stevekung.lib.utils.ColorUtils;
 
 public class BlockBaseMP extends Block implements ISortableBlock, IItemModelRender, IItemRarity
 {

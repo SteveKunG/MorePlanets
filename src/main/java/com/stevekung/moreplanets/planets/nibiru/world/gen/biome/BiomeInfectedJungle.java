@@ -11,8 +11,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
-import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
+import com.stevekung.lib.utils.WorldDecorateUtils;
+import com.stevekung.lib.world.gen.WorldGenFlowersBase;
 
 public class BiomeInfectedJungle extends BiomeNibiru
 {

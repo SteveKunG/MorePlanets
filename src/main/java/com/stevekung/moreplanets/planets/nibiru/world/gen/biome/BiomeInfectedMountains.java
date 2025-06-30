@@ -11,7 +11,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadSpruce;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenMultalicCrystal;
-import stevekung.mods.stevekunglib.world.gen.WorldGenMinableBase;
+import com.stevekung.lib.world.gen.WorldGenMinableBase;
 
 public class BiomeInfectedMountains extends BiomeNibiru
 {

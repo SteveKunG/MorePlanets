@@ -11,7 +11,7 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNibiruTreasureChest;
 import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.BlockStateProperty;
 
 public class RoomTreasureNibiru extends SizedPieceNibiru
 {

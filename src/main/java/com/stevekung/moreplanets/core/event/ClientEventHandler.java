@@ -66,12 +66,12 @@ import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
 import com.stevekung.moreplanets.utils.IMorePlanetsBoss;
 import com.stevekung.moreplanets.utils.blocks.fluid.LiquidUtils;
 import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
-import stevekung.mods.stevekunglib.utils.client.ClientUtils;
-import stevekung.mods.stevekunglib.utils.client.GLConstants;
-import stevekung.mods.stevekunglib.utils.client.event.AddRainParticleEvent;
-import stevekung.mods.stevekunglib.utils.client.event.FirstPersonViewOverlayEvent;
-import stevekung.mods.stevekunglib.utils.client.event.RenderEntityOverlayEvent;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.client.ClientUtils;
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.lib.utils.client.event.AddRainParticleEvent;
+import com.stevekung.lib.utils.client.event.FirstPersonViewOverlayEvent;
+import com.stevekung.lib.utils.client.event.RenderEntityOverlayEvent;
 
 public class ClientEventHandler
 {
@@ -471,7 +471,7 @@ public class ClientEventHandler
         {
             GuiCelestialSelection gui = (GuiCelestialSelection) this.mc.currentScreen;
             boolean enable = true;
-            float partialTicks = stevekung.mods.stevekunglib.client.event.ClientEventHandler.renderPartialTicks;
+            float partialTicks = com.stevekung.lib.client.event.ClientEventHandler.renderPartialTicks;
 
             if (event.celestialBody == GalacticraftCore.planetOverworld && enable)
             {

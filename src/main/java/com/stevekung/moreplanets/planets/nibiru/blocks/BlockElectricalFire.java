@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
-import stevekung.mods.stevekunglib.utils.IFireBlock;
+import com.stevekung.lib.utils.IFireBlock;
 
 public class BlockElectricalFire extends BlockFire implements IFireBlock
 {

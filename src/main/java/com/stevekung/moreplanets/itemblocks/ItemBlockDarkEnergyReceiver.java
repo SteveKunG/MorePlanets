@@ -11,10 +11,10 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.utils.itemblocks.ItemBlockDescriptionTESR;
-import stevekung.mods.stevekunglib.utils.BlockUtils;
-import stevekung.mods.stevekunglib.utils.JsonUtils;
-import stevekung.mods.stevekunglib.utils.LangUtils;
-import stevekung.mods.stevekunglib.utils.client.ClientUtils;
+import com.stevekung.lib.utils.BlockUtils;
+import com.stevekung.lib.utils.JsonUtils;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.lib.utils.client.ClientUtils;
 
 public class ItemBlockDarkEnergyReceiver extends ItemBlockDescriptionTESR
 {

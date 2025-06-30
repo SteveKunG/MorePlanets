@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.utils.items.tools.ItemAxeMP;
-import stevekung.mods.stevekunglib.utils.enums.EnumToolSpeed;
+import com.stevekung.lib.utils.enums.EnumToolSpeed;
 
 public class ItemNibiruStoneAxe extends ItemAxeMP
 {

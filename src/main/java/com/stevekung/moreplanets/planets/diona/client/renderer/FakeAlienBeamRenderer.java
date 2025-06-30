@@ -10,8 +10,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.stevekunglib.utils.client.GLConstants;
-import stevekung.mods.stevekunglib.utils.client.RenderUtils;
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.lib.utils.client.RenderUtils;
 
 @SideOnly(Side.CLIENT)
 public class FakeAlienBeamRenderer

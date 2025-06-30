@@ -134,7 +134,10 @@ dependencies {
     }
 
     implementation(":Galacticraft-1.12.2-4.0.7-deobf")
-    implementation(modUtils.deobfuscate("curse.maven:stevekungs-lib-296019:5064118").toString())
+
+    implementation(modUtils.deobfuscate("com.stevekung.lib:stevekungs-lib:mc1.12.2-v1.4.0").toString())
+    //implementation(modUtils.deobfuscate("curse.maven:stevekungs-lib-296019:5064118").toString())
+
     implementation "curse.maven:hwyla-253449:2568751"
     implementation(modUtils.deobfuscate("curse.maven:codechicken-lib-1-8-242818:2779848").toString())
     api "curse.maven:mekanism-268560:2835176"

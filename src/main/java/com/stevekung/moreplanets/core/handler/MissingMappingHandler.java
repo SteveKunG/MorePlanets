@@ -14,8 +14,8 @@ import com.stevekung.moreplanets.init.MPPotions;
 import com.stevekung.moreplanets.planets.diona.entity.*;
 
 import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityInfectedPurloniteArrow;
-import stevekung.mods.stevekunglib.utils.BlockItemRemapper;
-import stevekung.mods.stevekunglib.utils.LoggerSL;
+import com.stevekung.lib.utils.BlockItemRemapper;
+import com.stevekung.lib.utils.LoggerSL;
 
 public class MissingMappingHandler
 {

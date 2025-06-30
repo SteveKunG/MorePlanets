@@ -13,9 +13,9 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenDungeons;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.utils.world.gen.ChunkGeneratorBaseMP;
-import stevekung.mods.stevekunglib.world.gen.MapGenCavesBase;
-import stevekung.mods.stevekunglib.world.gen.MapGenRavineBase;
-import stevekung.mods.stevekunglib.world.gen.WorldGenLiquidLake;
+import com.stevekung.lib.world.gen.MapGenCavesBase;
+import com.stevekung.lib.world.gen.MapGenRavineBase;
+import com.stevekung.lib.world.gen.WorldGenLiquidLake;
 
 public class ChunkGeneratorFronos extends ChunkGeneratorBaseMP
 {

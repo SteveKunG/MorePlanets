@@ -29,7 +29,7 @@ import com.stevekung.moreplanets.entity.EntitySpaceMinecartChest;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPLootTables;
 import com.stevekung.moreplanets.planets.diona.entity.EntityInfectedPurloniteSpider;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.BlockStateProperty;
 
 public class StructureDionaMineshaftPieces
 {

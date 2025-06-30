@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNibiruAncientChest;
 import com.stevekung.moreplanets.utils.blocks.BlockChestMP;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import com.stevekung.lib.utils.LangUtils;
 
 public class BlockNibiruAncientChest extends BlockChestMP
 {

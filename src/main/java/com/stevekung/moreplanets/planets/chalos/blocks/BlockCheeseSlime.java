@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.utils.blocks.BlockBreakableMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
 import com.stevekung.moreplanets.utils.blocks.ISortableBlock;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
+import com.stevekung.lib.utils.ColorUtils;
 
 public class BlockCheeseSlime extends BlockBreakableMP implements ISortableBlock
 {

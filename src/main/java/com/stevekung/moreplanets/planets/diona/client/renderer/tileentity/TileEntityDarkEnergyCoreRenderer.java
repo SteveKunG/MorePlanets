@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.planets.diona.client.model.ModelDarkEnergyBlock;
 import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyCore;
-import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
+import com.stevekung.lib.client.event.ClientEventHandler;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityDarkEnergyCoreRenderer extends TileEntitySpecialRenderer<TileEntityDarkEnergyCore>

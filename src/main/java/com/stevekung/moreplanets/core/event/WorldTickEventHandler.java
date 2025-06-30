@@ -21,7 +21,7 @@ import com.stevekung.moreplanets.planets.nibiru.entity.weather.EntityNibiruLight
 import com.stevekung.moreplanets.planets.nibiru.world.gen.biome.BiomeInfectedBadlands;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.biome.BiomeInfectedDesert;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.biome.BiomeInfectedMountains;
-import stevekung.mods.stevekunglib.utils.event.WeatherTickEvent;
+import com.stevekung.lib.utils.event.WeatherTickEvent;
 
 public class WorldTickEventHandler
 {

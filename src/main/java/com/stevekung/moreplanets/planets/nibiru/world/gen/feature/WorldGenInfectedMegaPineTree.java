@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import com.stevekung.moreplanets.init.MPBlocks;
-import stevekung.mods.stevekunglib.world.gen.WorldGenAbstractHugeTrees;
+import com.stevekung.lib.world.gen.WorldGenAbstractHugeTrees;
 
 public class WorldGenInfectedMegaPineTree extends WorldGenAbstractHugeTrees
 {

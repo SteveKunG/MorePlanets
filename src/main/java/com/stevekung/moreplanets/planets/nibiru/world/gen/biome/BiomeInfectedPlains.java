@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
-import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
+import com.stevekung.lib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedPlains extends BiomeNibiru
 {

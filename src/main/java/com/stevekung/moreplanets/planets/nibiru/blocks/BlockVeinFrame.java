@@ -30,8 +30,8 @@ import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityVeinFrame;
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
 import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.ColorUtils;
 
 public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
 {

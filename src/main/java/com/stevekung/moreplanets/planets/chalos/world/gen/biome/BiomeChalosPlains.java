@@ -6,7 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
-import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
+import com.stevekung.lib.utils.WorldDecorateUtils;
 
 public class BiomeChalosPlains extends BiomeChalos
 {

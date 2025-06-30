@@ -9,7 +9,7 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import com.stevekung.moreplanets.init.MPLootTables;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
 import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.BlockStateProperty;
 
 public class RoomChestNibiru extends RoomEmptyNibiru
 {

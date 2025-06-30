@@ -9,8 +9,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import com.stevekung.moreplanets.init.MPBlocks;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
-import stevekung.mods.stevekunglib.world.gen.WorldGenAbstractTree;
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.world.gen.WorldGenAbstractTree;
 
 public class WorldGenOscaleaTrees extends WorldGenAbstractTree
 {

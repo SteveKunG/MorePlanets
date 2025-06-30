@@ -13,7 +13,7 @@ import com.stevekung.moreplanets.tileentity.*;
 
 import com.stevekung.moreplanets.utils.client.renderer.tileentity.TileEntityChestRendererMP;
 import com.stevekung.moreplanets.utils.client.renderer.tileentity.TileEntityTreasureChestRendererMP;
-import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
+import com.stevekung.lib.utils.client.ClientRegistryUtils;
 
 public class TileEntityRenderer
 {

@@ -16,8 +16,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.IRenderHandler;
 import com.stevekung.moreplanets.init.MPBiomes;
-import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
-import stevekung.mods.stevekunglib.utils.client.GLConstants;
+import com.stevekung.lib.client.event.ClientEventHandler;
+import com.stevekung.lib.utils.client.GLConstants;
 
 public class WeatherRendererNibiru extends IRenderHandler
 {

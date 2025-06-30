@@ -32,7 +32,7 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 import com.stevekung.moreplanets.init.MPLootTables;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
 import com.stevekung.moreplanets.utils.world.gen.feature.ElectricFireBlockProcessor;
-import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
+import com.stevekung.lib.utils.enums.CachedEnum;
 
 public class StructureAbandonedSatellitePieces extends StructureComponent
 {

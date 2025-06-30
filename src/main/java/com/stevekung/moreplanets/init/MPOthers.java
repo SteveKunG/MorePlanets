@@ -7,7 +7,7 @@ import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityInfected
 import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityInfectedEgg;
 import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityInfectedSnowball;
 import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityPurifiedSnowball;
-import stevekung.mods.stevekunglib.utils.BehaviorProjectileDispenseBase;
+import com.stevekung.lib.utils.BehaviorProjectileDispenseBase;
 
 public class MPOthers
 {

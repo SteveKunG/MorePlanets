@@ -11,7 +11,7 @@ import com.stevekung.moreplanets.integration.jei.MPJEIRecipes;
 import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
 import com.stevekung.moreplanets.utils.items.ISortableItem;
-import stevekung.mods.stevekunglib.utils.enums.EnumToolSpeed;
+import com.stevekung.lib.utils.enums.EnumToolSpeed;
 
 public class ItemAxeMP extends ItemAxe implements ISortableItem, IItemModelRender, GCRarity
 {

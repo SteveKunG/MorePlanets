@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.client.model.ModelBlackHoleStorage;
 import com.stevekung.moreplanets.tileentity.TileEntityBlackHoleStorage;
-import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
+import com.stevekung.lib.client.event.ClientEventHandler;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityBlackHoleStorageRenderer extends TileEntitySpecialRenderer<TileEntityBlackHoleStorage>

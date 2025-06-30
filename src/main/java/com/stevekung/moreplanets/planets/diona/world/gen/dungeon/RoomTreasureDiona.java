@@ -11,7 +11,7 @@ import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityDionaTreasureChest;
 import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
 import com.stevekung.moreplanets.utils.world.gen.dungeon.RoomTreasureMP;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.BlockStateProperty;
 
 public class RoomTreasureDiona extends RoomTreasureMP
 {

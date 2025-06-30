@@ -8,8 +8,8 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.fronos.world.gen.feature.WorldGenFronosShrub;
 import com.stevekung.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
-import stevekung.mods.stevekunglib.utils.ColorUtils;
-import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.WorldDecorateUtils;
 
 public class BiomeFronosMeadow extends BiomeFronos
 {

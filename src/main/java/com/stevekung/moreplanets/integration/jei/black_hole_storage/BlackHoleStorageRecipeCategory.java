@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.integration.jei.JEIRegistryHelper;
 import com.stevekung.moreplanets.integration.jei.MPJEIRecipes;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import com.stevekung.lib.utils.LangUtils;
 
 public class BlackHoleStorageRecipeCategory implements IRecipeCategory<BlackHoleStorageRecipeWrapper>
 {

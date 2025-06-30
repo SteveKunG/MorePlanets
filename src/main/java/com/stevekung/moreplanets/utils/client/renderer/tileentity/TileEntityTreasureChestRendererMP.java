@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
-import stevekung.mods.stevekunglib.utils.CalendarUtils;
+import com.stevekung.lib.utils.CalendarUtils;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityTreasureChestRendererMP extends TileEntitySpecialRenderer<TileEntityTreasureChestMP>
