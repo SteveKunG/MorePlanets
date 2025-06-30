@@ -167,12 +167,6 @@ processResources {
     inputs.property "mcversion", minecraft_version
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
-    filesMatching("pack.mcmeta") { fcd ->
-        fcd.expand(
-                "display_name": display_name
-        )
-    }
-
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude "mcmod.info"
