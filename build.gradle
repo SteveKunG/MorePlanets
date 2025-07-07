@@ -201,7 +201,3 @@ idea {
         }
     }
 }
-
-tasks.register("cleanroomAfterSync") {
-    // no-op
-}
