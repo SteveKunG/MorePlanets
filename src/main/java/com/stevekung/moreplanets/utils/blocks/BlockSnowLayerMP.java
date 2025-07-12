@@ -132,7 +132,12 @@ public class BlockSnowLayerMP extends BlockBaseMP
         else
         {
             IBlockState iblockstate = world.getBlockState(pos.offset(side));
-            return iblockstate.getBlock() == this && iblockstate.getValue(BlockStateProperty.LAYERS) >= state.getValue(BlockStateProperty.LAYERS) || super.shouldSideBeRendered(state, world, pos, side);
+
+            if (iblockstate.getBlock() == this && iblockstate.getValue(BlockStateProperty.LAYERS) >= state.getValue(BlockStateProperty.LAYERS))
+            {
+                return false;
+            }
+            return super.shouldSideBeRendered(state, world, pos, side);
         }
     }
 
