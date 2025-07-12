@@ -1,5 +1,7 @@
 package com.stevekung.moreplanets.planets.nibiru.inventory;
 
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
+
 import micdoodle8.mods.galacticraft.api.item.IItemElectric;
 import micdoodle8.mods.galacticraft.core.energy.EnergyUtil;
 import micdoodle8.mods.galacticraft.core.inventory.SlotSpecific;
@@ -8,7 +10,6 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
 
 public class ContainerNuclearWasteGenerator extends Container
 {
@@ -42,71 +43,55 @@ public class ContainerNuclearWasteGenerator extends Container
     public ItemStack transferStackInSlot(EntityPlayer player, int index)
     {
         ItemStack itemStack = ItemStack.EMPTY;
-        Slot invSlot = this.inventorySlots.get(index);
-        int slotSize = this.inventorySlots.size();
+        Slot slot = this.inventorySlots.get(index);
+        int size = this.inventorySlots.size();
 
-        if (invSlot != null && invSlot.getHasStack())
+        if (slot != null && slot.getHasStack())
         {
-            ItemStack stack = invSlot.getStack();
+            ItemStack stack = slot.getStack();
             itemStack = stack.copy();
-            boolean movedToMachineSlot = false;
 
             if (index == 0)
             {
-                if (!this.mergeItemStack(stack, slotSize - 36, slotSize, true))
+                if (!this.mergeItemStack(stack, size - 36, size, true))
                 {
                     return ItemStack.EMPTY;
                 }
             }
-            else
+            else if (EnergyUtil.isElectricItem(stack.getItem()))
             {
-                if (EnergyUtil.isElectricItem(stack.getItem()))
+                if (!this.mergeItemStack(stack, 0, 1, false))
                 {
-                    if (!this.mergeItemStack(stack, 0, 1, false))
-                    {
-                        return ItemStack.EMPTY;
-                    }
+                    return ItemStack.EMPTY;
                 }
-                else
+            }
+            else if (index < size - 9)
+            {
+                if (!this.mergeItemStack(stack, size - 9, size, false))
                 {
-                    if (index < slotSize - 9)
-                    {
-                        if (!this.mergeItemStack(stack, slotSize - 9, slotSize, false))
-                        {
-                            return ItemStack.EMPTY;
-                        }
-                    }
-                    else if (!this.mergeItemStack(stack, slotSize - 36, slotSize - 9, false))
-                    {
-                        return ItemStack.EMPTY;
-                    }
+                    return ItemStack.EMPTY;
                 }
-                movedToMachineSlot = true;
+            }
+            else if (!this.mergeItemStack(stack, size - 36, size - 9, false))
+            {
+                return ItemStack.EMPTY;
             }
 
             if (stack.getCount() == 0)
             {
-                if (movedToMachineSlot && itemStack.getCount() > 1)
-                {
-                    ItemStack remainder = itemStack.copy();
-                    remainder.shrink(1);
-                    invSlot.putStack(remainder);
-                }
-                else
-                {
-                    invSlot.putStack(ItemStack.EMPTY);
-                }
+                slot.putStack(ItemStack.EMPTY);
             }
             else
             {
-                invSlot.onSlotChanged();
+                slot.onSlotChanged();
             }
 
             if (stack.getCount() == itemStack.getCount())
             {
                 return ItemStack.EMPTY;
             }
-            invSlot.onTake(player, stack);
+
+            slot.onTake(player, stack);
         }
         return itemStack;
     }
