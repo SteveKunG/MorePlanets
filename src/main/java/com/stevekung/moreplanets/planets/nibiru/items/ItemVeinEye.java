@@ -83,7 +83,8 @@ public class ItemVeinEye extends ItemBaseMP
         ItemStack itemStack = player.getHeldItem(hand);
         RayTraceResult result = this.rayTrace(world, player, false);
 
-        if (result.typeOfHit == RayTraceResult.Type.BLOCK && world.getBlockState(result.getBlockPos()).getBlock() == MPBlocks.VEIN_FRAME && !world.getBlockState(result.getBlockPos()).getValue(BlockVeinFrame.EYE))
+        //noinspection ConstantValue
+        if (result != null && result.typeOfHit == RayTraceResult.Type.BLOCK && world.getBlockState(result.getBlockPos()).getBlock() == MPBlocks.VEIN_FRAME && !world.getBlockState(result.getBlockPos()).getValue(BlockVeinFrame.EYE))
         {
             return new ActionResult<>(EnumActionResult.PASS, itemStack);
         }
