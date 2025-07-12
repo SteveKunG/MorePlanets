@@ -287,13 +287,21 @@ public class EntityNibiruVillager extends EntityAgeable implements INpc, IMercha
             this.randomTickDivider = 70 + this.rand.nextInt(50);
             this.village = this.world.getVillageCollection().getNearestVillage(pos, 32);
 
-            BlockPos pos1 = this.village.getCenter();
-            this.setHomePosAndDistance(pos1, this.village.getVillageRadius());
-
-            if (this.isLookingForHome)
+            //noinspection ConstantValue
+            if (this.village == null)
             {
-                this.isLookingForHome = false;
-                this.village.setDefaultPlayerReputation(5);
+                this.detachHome();
+            }
+            else
+            {
+                BlockPos pos1 = this.village.getCenter();
+                this.setHomePosAndDistance(pos1, this.village.getVillageRadius());
+
+                if (this.isLookingForHome)
+                {
+                    this.isLookingForHome = false;
+                    this.village.setDefaultPlayerReputation(5);
+                }
             }
         }
 
