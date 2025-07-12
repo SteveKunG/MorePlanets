@@ -11,6 +11,7 @@ import micdoodle8.mods.galacticraft.core.blocks.BlockScreen;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityAirLockController;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityEnergyStorageModule;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityFallenMeteor;
+import micdoodle8.mods.galacticraft.core.tile.TileEntityScreen;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
@@ -229,6 +230,12 @@ public class ComponentCrashedAlienShipPieces extends StructureComponent
             if ("screen_west".equals(dataName))
             {
                 world.setBlockState(dataPos, GCBlocks.screen.getDefaultState().withProperty(BlockScreen.FACING, rotation.rotate(EnumFacing.WEST)), 3);
+                TileEntity tile = world.getTileEntity(dataPos);
+
+                if (tile instanceof TileEntityScreen)
+                {
+                    ((TileEntityScreen) tile).imageType = 2;
+                }
             }
             else if ("energy_storage_west".equals(dataName))
             {
