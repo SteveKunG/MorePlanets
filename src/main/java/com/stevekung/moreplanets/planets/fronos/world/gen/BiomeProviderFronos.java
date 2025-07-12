@@ -25,13 +25,13 @@ public class BiomeProviderFronos extends BiomeProvider
     }
 
     @Override
-    public Biome[] getBiomesForGeneration(Biome[] biomes, int x, int z, int width, int height)
+    public Biome[] getBiomesForGeneration(@Nullable Biome[] biomes, int x, int z, int width, int height)
     {
         IntCache.resetIntCache();
         int size = width * height;
         int[] aint = this.genBiomes.getInts(x, z, width, height);
 
-        if (biomes.length < size)
+        if (biomes == null || biomes.length < size)
         {
             biomes = new Biome[size];
         }
