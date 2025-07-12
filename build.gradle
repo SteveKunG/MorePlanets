@@ -3,6 +3,8 @@ import org.jetbrains.gradle.ext.Gradle
 plugins {
     id "org.jetbrains.gradle.plugin.idea-ext" version "1.1.9"
     id "com.gtnewhorizons.retrofuturagradle" version "1.4.1"
+    id "io.github.CDAGaming.cursegradle" version "1.6.1"
+    id "com.modrinth.minotaur" version "2.+"
 }
 
 version = "${mod_version}"
@@ -15,7 +17,6 @@ base {
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(8))
-        // Azul covers the most platforms for Java 8 toolchains, crucially including MacOS arm64
         vendor.set(JvmVendorSpec.AZUL)
     }
 }
@@ -110,6 +111,13 @@ repositories {
         }
     }
     maven {
+        name = "Modrinth Maven"
+        url = "https://api.modrinth.com/maven"
+        content {
+            includeGroup "maven.modrinth"
+        }
+    }
+    maven {
         name = "CleanroomMC Maven"
         url = "https://maven.cleanroommc.com"
     }
@@ -135,8 +143,8 @@ dependencies {
 
     implementation(":Galacticraft-1.12.2-4.0.7-deobf")
 
-    implementation(modUtils.deobfuscate("com.stevekung.lib:stevekungs-lib:mc1.12.2-v1.4.0").toString())
-    //implementation(modUtils.deobfuscate("curse.maven:stevekungs-lib-296019:5064118").toString())
+    implementation(modUtils.deobfuscate("com.stevekung.lib:stevekung-lib:mc1.12.2-v1.4.0").toString())
+    //implementation(modUtils.deobfuscate("curse.maven:stevekung-lib-296019:5064118").toString())
 
     implementation "curse.maven:hwyla-253449:2568751"
     implementation(modUtils.deobfuscate("curse.maven:codechicken-lib-1-8-242818:2779848").toString())
@@ -197,6 +205,97 @@ idea {
                             (project.name + ".main"): tasks.compileJava.options.compilerArgs.collect { '"' + it + '"' }.join(' ')
                     ]
                 }
+            }
+        }
+    }
+}
+
+curseforge {
+    apiKey = project.hasProperty("curseforge_api_token") ? curseforge_api_token : ""
+    project {
+        id = curseforge_project_id
+        changelog = rootProject.file("CHANGE_LOG.md")
+        changelogType = "markdown"
+        releaseType = release_type
+        addGameVersion "Forge"
+        addGameVersion minecraft_version
+
+        if (project.hasProperty("curseforge_additional_game_versions") && !curseforge_additional_game_versions.isEmpty()) {
+            curseforge_additional_game_versions.split(",").each {
+                String gameVersion -> addGameVersion gameVersion
+            }
+        }
+
+        mainArtifact(reobfJar) {
+            it.displayName = "[Forge ${minecraft_version}] ${display_name} v${mod_version}"
+        }
+
+        if (project.hasProperty("curseforge_forge_required_dependencies") && !curseforge_forge_required_dependencies.isEmpty()
+                || project.hasProperty("curseforge_forge_optional_dependencies") && !curseforge_forge_optional_dependencies.isEmpty()
+                || project.hasProperty("curseforge_forge_embedded_dependencies") && !curseforge_forge_embedded_dependencies.isEmpty()
+        ) {
+            relations {
+                if (project.hasProperty("curseforge_forge_required_dependencies") && !curseforge_forge_required_dependencies.isEmpty()) {
+                    curseforge_forge_required_dependencies.split(",").each {
+                        String dep -> it.requiredDependency dep
+                    }
+                }
+                if (project.hasProperty("curseforge_forge_optional_dependencies") && !curseforge_forge_optional_dependencies.isEmpty()) {
+                    curseforge_forge_optional_dependencies.split(",").each {
+                        String dep -> it.optionalDependency dep
+                    }
+                }
+                if (project.hasProperty("curseforge_forge_embedded_dependencies") && !curseforge_forge_embedded_dependencies.isEmpty()) {
+                    curseforge_forge_embedded_dependencies.split(",").each {
+                        String dep -> it.embeddedLibrary dep
+                    }
+                }
+            }
+        }
+
+        afterEvaluate {
+            uploadTask.dependsOn(reobfJar)
+        }
+    }
+    options {
+        debug = upload_debug.toBoolean()
+        forgeGradleIntegration = false
+    }
+}
+
+modrinth {
+    debugMode = upload_debug.toBoolean()
+    token = project.hasProperty("modrinth_api_token") ? modrinth_api_token : ""
+    projectId = modrinth_project_id
+    changelog = rootProject.file("CHANGE_LOG.md").text
+    syncBodyFrom = rootProject.file("README.md").text
+    versionName = "[Forge ${minecraft_version}] ${display_name} v${mod_version}"
+    versionNumber = mod_version + "-forge"
+    versionType = release_type
+    uploadFile = reobfJar
+    gameVersions = ["${minecraft_version}"]
+    loaders = ["forge"]
+
+    if (project.hasProperty("modrinth_additional_game_versions") && !modrinth_additional_game_versions.isEmpty()) {
+        modrinth_additional_game_versions.split(",").each {
+            gameVersions.add it
+        }
+    }
+
+    dependencies {
+        if (project.hasProperty("modrinth_forge_required_dependencies") && !modrinth_forge_required_dependencies.isEmpty()) {
+            modrinth_forge_required_dependencies.split(",").each {
+                required.project it
+            }
+        }
+        if (project.hasProperty("modrinth_forge_optional_dependencies") && !modrinth_forge_optional_dependencies.isEmpty()) {
+            modrinth_forge_optional_dependencies.split(",").each {
+                optional.project it
+            }
+        }
+        if (project.hasProperty("modrinth_forge_embedded_dependencies") && !modrinth_forge_embedded_dependencies.isEmpty()) {
+            modrinth_forge_embedded_dependencies.split(",").each {
+                embedded.project it
             }
         }
     }
