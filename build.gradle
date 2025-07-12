@@ -1,10 +1,28 @@
+import com.gtnewhorizons.retrofuturagradle.mcp.InjectTagsTask
 import org.jetbrains.gradle.ext.Gradle
+import org.codehaus.groovy.runtime.MethodClosure
+import groovy.text.SimpleTemplateEngine
 
 plugins {
     id "org.jetbrains.gradle.plugin.idea-ext" version "1.1.9"
     id "com.gtnewhorizons.retrofuturagradle" version "1.4.1"
     id "io.github.CDAGaming.cursegradle" version "1.6.1"
     id "com.modrinth.minotaur" version "2.+"
+}
+
+ext.interpolate = this.&interpolate as MethodClosure
+
+String interpolate(String value) {
+    if (value.startsWith('${{') && value.endsWith('}}')) {
+        value = value.substring(3, value.length() - 2)
+        Binding newBinding = new Binding(this.binding.getVariables())
+        newBinding.setProperty('it', this)
+        return new GroovyShell(this.getClass().getClassLoader(), newBinding).evaluate(value)
+    }
+    if (value.contains('${')) {
+        return new SimpleTemplateEngine().createTemplate(value).make(project.properties).toString()
+    }
+    return value
 }
 
 version = "${mod_version}"
@@ -34,7 +52,11 @@ minecraft {
 
     useDependencyAccessTransformers.set(true)
 
-    username.set("Developer")
+    if (project.hasProperty("username")) {
+        username.set(project.username)
+    } else {
+        username.set("Developer")
+    }
 
     // Add various JVM arguments here for runtime
     def args = ["-ea:" + group]
@@ -48,6 +70,13 @@ minecraft {
         args << "-Dfml.coreMods.load=micdoodle8.mods.miccore.MicdoodlePlugin"
     }
     extraRunJvmArguments.addAll(args)
+
+    if (file("tags.properties").exists()) {
+        Properties props = new Properties().tap {  it.load(file("tags.properties").newInputStream()); it }
+        if (!props.isEmpty()) {
+            injectedTags.set(props.collectEntries { k, v -> [(k): interpolate(v)] })
+        }
+    }
 }
 
 // Adds Access Transformer files to tasks
@@ -141,10 +170,10 @@ dependencies {
         }
     }
 
-    implementation(":Galacticraft-1.12.2-4.0.7-deobf")
+    implementation(":Galacticraft-${minecraft_version}-${galacticraft_version}-deobf")
 
-    implementation(modUtils.deobfuscate("com.stevekung.lib:stevekung-lib:mc1.12.2-v1.4.0").toString())
-    //implementation(modUtils.deobfuscate("curse.maven:stevekung-lib-296019:5064118").toString())
+    implementation(modUtils.deobfuscate("com.stevekung.lib:stevekung-lib:mc${minecraft_version}-v${required_stevekung_lib_version}").toString())
+    //implementation(modUtils.deobfuscate("curse.maven:stevekung-lib-296019:${stevekung_lib_version}").toString())
 
     implementation "curse.maven:hwyla-253449:2568751"
     implementation(modUtils.deobfuscate("curse.maven:codechicken-lib-1-8-242818:2779848").toString())
@@ -154,6 +183,15 @@ dependencies {
     api "curse.maven:baubles-227083:2518667"
     api "team.chisel.ctm:CTM:MC${minecraft_version}-${ctm_version}"
     api "mezz.jei:jei_${minecraft_version}:${jei_version}:api"
+}
+
+processResources {
+    inputs.property "mod_id", mod_id
+    inputs.property "mod_version", mod_version
+    inputs.property "display_name", display_name
+    inputs.property "required_galacticraft_version", required_galacticraft_version
+    inputs.property "stevekung_lib_version", stevekung_lib_version
+    inputs.property "mixin_booter_version", mixin_booter_version
 }
 
 String fileName = "${archives_base_name}-mc${minecraft_version}"
@@ -182,6 +220,13 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude "mcmod.info"
     }
+}
+
+tasks.named("injectTags", InjectTagsTask).configure {
+    onlyIf {
+        return !it.getTags().get().isEmpty()
+    }
+    it.outputClassName.set("${maven_group}.core.Tags")
 }
 
 idea {
