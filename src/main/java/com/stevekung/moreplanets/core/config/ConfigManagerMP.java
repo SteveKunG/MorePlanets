@@ -144,5 +144,9 @@ public class ConfigManagerMP
 
         @Config.Name(value = "Enable Description in Waila Tooltip")
         public boolean enableDescriptionInWaila = false;
+
+        @Config.Name(value = "Infected Purlonite Data Parameter ID")
+        @Config.RequiresMcRestart
+        public int infectedPurloniteDataId = 122;
     }
 }

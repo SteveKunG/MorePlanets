@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.stevekung.moreplanets.core.config.ConfigManagerMP;
 import com.stevekung.moreplanets.entity.IInfectedPurlonite;
 import com.stevekung.moreplanets.init.MPPotions;
 
@@ -18,7 +19,7 @@ import net.minecraft.network.datasync.DataSerializers;
 public abstract class MixinEntityLivingBase extends Entity implements IInfectedPurlonite
 {
     @Unique
-    private static final DataParameter<Boolean> INFECTED_PURLONITE = new DataParameter<>(122, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> INFECTED_PURLONITE = new DataParameter<>(ConfigManagerMP.moreplanets_other.infectedPurloniteDataId, DataSerializers.BOOLEAN);
 
     MixinEntityLivingBase()
     {
