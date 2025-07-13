@@ -117,6 +117,7 @@ public class MPBiomes
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.FRONOS_PLAINS, "fronos_plains");
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.FRONOS_RIVER, "fronos_river");
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.FRONOS_FOREST, "fronos_forest");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.KOENTUS, "koentus");
     }
 
     public static void registerTypes()
@@ -169,5 +170,6 @@ public class MPBiomes
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.FRONOS_PLAINS, PLAINS);
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.FRONOS_RIVER, RIVER);
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.FRONOS_FOREST, FOREST);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.KOENTUS, COLD, DEAD, DRY);
     }
 }
