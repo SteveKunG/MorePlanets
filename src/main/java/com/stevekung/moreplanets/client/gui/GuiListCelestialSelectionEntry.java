@@ -15,6 +15,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.network.PacketSimpleMP;
 import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
+import com.stevekung.moreplanets.utils.LoggerMP;
 
 @SideOnly(Side.CLIENT)
 public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListEntry
@@ -95,7 +96,7 @@ public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListE
         catch (Exception e)
         {
             this.mc.displayGuiScreen(new GuiCelestialSelection());
-            e.printStackTrace();
+            LoggerMP.error("An error occurred when trying teleport a player to survival planet.", e);
         }
     }
 

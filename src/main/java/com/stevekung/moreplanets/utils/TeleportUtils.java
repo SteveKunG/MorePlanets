@@ -2,6 +2,10 @@ package com.stevekung.moreplanets.utils;
 
 import java.util.Collection;
 
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.network.PacketSimpleMP;
+import com.stevekung.moreplanets.world.IStartedDimension;
+
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -25,7 +29,6 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.entity.ai.attributes.AttributeMap;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -42,23 +45,14 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.network.PacketSimpleMP;
-import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import com.stevekung.moreplanets.world.IStartedDimension;
 
 public class TeleportUtils
 {
-    public static Entity teleportEntity(Entity entity, int dimension, double xCoord, double yCoord, double zCoord)
-    {
-        return TeleportUtils.teleportEntity(entity, dimension, xCoord, yCoord, zCoord, 0.0F, 0.0F);
-    }
-
-    public static Entity teleportEntity(Entity entity, int dimension, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
+    public static void teleportEntity(Entity entity, int dimension, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
     {
         if (entity == null || entity.world.isRemote)
         {
-            return entity;
+            return;
         }
 
         MinecraftServer server = entity.getServer();
@@ -66,34 +60,33 @@ public class TeleportUtils
 
         if (!entity.isBeingRidden() && !entity.isRiding())
         {
-            return TeleportUtils.handleEntityTeleport(entity, server, sourceDim, dimension, xCoord, yCoord, zCoord, yaw, pitch);
+            TeleportUtils.handleEntityTeleport(entity, server, sourceDim, dimension, xCoord, yCoord, zCoord, yaw, pitch);
         }
-        return entity;
     }
 
-    private static Entity handleEntityTeleport(Entity entity, MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
+    private static void handleEntityTeleport(Entity entity, MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
     {
         if (entity == null || entity.world.isRemote)
         {
-            return entity;
+            return;
         }
 
         boolean interDimensional = sourceDim != targetDim;
 
         if (interDimensional && !ForgeHooks.onTravelToDimension(entity, targetDim))
         {
-            return entity;
+            return;
         }
 
         if (interDimensional)
         {
             if (entity instanceof EntityPlayerMP)
             {
-                return TeleportUtils.teleportPlayerInternational((EntityPlayerMP) entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
+                TeleportUtils.teleportPlayerInternational((EntityPlayerMP) entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
             }
             else
             {
-                return TeleportUtils.teleportEntityInternational(entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
+                TeleportUtils.teleportEntityInternational(entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
             }
         }
         else
@@ -110,14 +103,13 @@ public class TeleportUtils
                 entity.setRotationYawHead(yaw);
             }
         }
-        return entity;
     }
 
-    private static Entity teleportEntityInternational(Entity entity, MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
+    private static void teleportEntityInternational(Entity entity, MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
     {
         if (entity.isDead)
         {
-            return null;
+            return;
         }
 
         WorldServer sourceWorld = server.getWorld(sourceDim);
@@ -151,10 +143,9 @@ public class TeleportUtils
         entity.isDead = true;
         sourceWorld.resetUpdateEntityTick();
         targetWorld.resetUpdateEntityTick();
-        return newEntity;
     }
 
-    private static EntityPlayer teleportPlayerInternational(EntityPlayerMP player, MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
+    private static void teleportPlayerInternational(EntityPlayerMP player, MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
     {
         WorldServer sourceWorld = server.getWorld(sourceDim);
         WorldServer targetWorld = server.getWorld(targetDim);
@@ -183,10 +174,9 @@ public class TeleportUtils
         player.connection.sendPacket(new SPacketSetExperience(player.experience, player.experienceTotal, player.experienceLevel));
         FMLCommonHandler.instance().firePlayerChangedDimensionEvent(player, sourceDim, targetDim);
         player.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
-        return player;
     }
 
-    public static EntityPlayer teleportPlayerToPlanet(EntityPlayerMP player, MinecraftServer server, int sourceDim, int targetDim)
+    public static void teleportPlayerToPlanet(EntityPlayerMP player, MinecraftServer server, int sourceDim, int targetDim)
     {
         WorldServer sourceWorld = server.getWorld(sourceDim);
         WorldServer targetWorld = server.getWorld(targetDim);
@@ -371,6 +361,7 @@ public class TeleportUtils
             player.setSpawnChunk(spawnPos, true, GCCoreUtil.getDimensionID(player.world));
         }
 
+        //noinspection ConstantValue
         if (!(targetWorld.provider instanceof WorldProviderAsteroids) && player.onGround && player.getBedLocation(GCCoreUtil.getDimensionID(player.world)) == null)
         {
             int i = 30000000;
@@ -380,8 +371,7 @@ public class TeleportUtils
             BlockPos spawnChunkPos = targetWorld.getTopSolidOrLiquidBlock(new BlockPos(x, y, z));
             player.setSpawnChunk(spawnChunkPos, true, GCCoreUtil.getDimensionID(player.world));
         }
-        GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_RELOAD_RENDERER, player.dimension), player);
-        GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_MESSAGE_SURVIVAL_PLANET, player.dimension, WorldUtil.getProviderForDimensionServer(targetDim).getDimensionType().getName()), player);
-        return player;
+        GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(PacketSimpleMP.EnumSimplePacketMP.C_RELOAD_RENDERER, player.dimension), player);
+        GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(PacketSimpleMP.EnumSimplePacketMP.C_MESSAGE_SURVIVAL_PLANET, player.dimension, WorldUtil.getProviderForDimensionServer(targetDim).getDimensionType().getName()), player);
     }
 }
