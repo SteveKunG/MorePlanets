@@ -2,6 +2,9 @@ package com.stevekung.moreplanets.utils;
 
 import java.lang.reflect.Method;
 
+import com.stevekung.moreplanets.init.MPPlanets;
+
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import net.minecraftforge.fml.common.Loader;
 
 public class CompatibilityManagerMP
@@ -14,6 +17,7 @@ public class CompatibilityManagerMP
     public static final boolean isMobGrindingUtilsLoaded = Loader.isModLoaded("mob_grinding_utils");
     public static final boolean isCCLLoaded = Loader.isModLoaded("codechickenlib");
     public static final boolean isBaubleLoaded = Loader.isModLoaded("baubles");
+    public static final boolean isAsmodeusCoreLoaded = Loader.isModLoaded("asmodeuscore");
 
     // Extreme Reactors
     private static Method erRegisterFluid;
@@ -27,6 +31,7 @@ public class CompatibilityManagerMP
         {
             LoggerMP.info("Enabled CTM integrations");
         }
+
         if (CompatibilityManagerMP.isBigReactorLoaded)
         {
             CompatibilityManagerMP.initBigReactorCompat();
@@ -50,7 +55,50 @@ public class CompatibilityManagerMP
         {
             CompatibilityManagerMP.erRegisterFluid.invoke(null, name, absorption, heatEfficiency, moderation, heatConductivity);
         }
-        catch (Exception e) {}
+        catch (Exception e)
+        {
+            LoggerMP.error("Couldn't register Extreme Reactor compatibility", e);
+        }
+    }
+
+    @SuppressWarnings({ "unchecked", "rawtypes", "JavaReflectionInvocation" })
+    public static void registerAsmodeusCoreCompatibility()
+    {
+        if (isAsmodeusCoreLoaded)
+        {
+            try
+            {
+                Class<?> bodyData = Class.forName("asmodeuscore.core.astronomy.BodiesData");
+                Class<?> typeBody = Class.forName("asmodeuscore.api.dimension.IAdvancedSpace$TypeBody");
+                Class<?> starClass = Class.forName("asmodeuscore.api.dimension.IAdvancedSpace$StarClass");
+                Class<?> starColor = Class.forName("asmodeuscore.api.dimension.IAdvancedSpace$StarColor");
+                Object typeBodyEnum = Enum.valueOf((Class<Enum>) typeBody, "STAR");
+                Object starClassEnum = Enum.valueOf((Class<Enum>) starClass, "GIANT");
+                Object starColorEnum = Enum.valueOf((Class<Enum>) starColor, "RED");
+
+                Object data = bodyData.getConstructor(typeBody).newInstance(typeBodyEnum);
+                Class<?> dataClass = data.getClass();
+
+                Method setStarClassMethod = dataClass.getDeclaredMethod("setStarClass", starClass);
+                setStarClassMethod.invoke(data, starClassEnum);
+
+                Method setStarColorMethod = dataClass.getDeclaredMethod("setStarColor", starColor);
+                setStarColorMethod.invoke(data, starColorEnum);
+
+                Method setStarHabitableZoneMethod = dataClass.getDeclaredMethod("setStarHabitableZone", float.class, float.class);
+                setStarHabitableZoneMethod.invoke(data, 0.4F, 0.1F);
+
+                Class<?> bodyRegistries = Class.forName("asmodeuscore.core.astronomy.BodiesRegistry");
+                Method registerBodyData = bodyRegistries.getDeclaredMethod("registerBodyData", CelestialBody.class, bodyData);
+                registerBodyData.invoke(null, MPPlanets.LAZENDUS, data);
+
+                LoggerMP.info("Successfully registered AsmodeusCore compatibility");
+            }
+            catch (Exception e)
+            {
+                LoggerMP.error("Couldn't register AsmodeusCore compatibility", e);
+            }
+        }
     }
 
     private static void initBigReactorCompat()
@@ -68,7 +116,7 @@ public class CompatibilityManagerMP
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            LoggerMP.error("Couldn't get values from Extreme Reactor", e);
         }
     }
 }

@@ -119,6 +119,8 @@ public class MorePlanetsMod
         {
             ClientCommandHandler.instance.registerCommand(new CommandOpenCelestialScreen());
         }
+
+        CompatibilityManagerMP.registerAsmodeusCoreCompatibility();
     }
 
     @EventHandler
