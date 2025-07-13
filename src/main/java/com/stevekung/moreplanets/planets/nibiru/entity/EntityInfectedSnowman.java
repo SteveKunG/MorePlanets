@@ -90,9 +90,9 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
 
             for (int l = 0; l < 4; ++l)
             {
-                i = MathHelper.floor(this.posX + (l % 2 * 2 - 1) * 0.25F);
+                i = MathHelper.floor(this.posX + (double)((float)(l % 2 * 2 - 1) * 0.25F));
                 j = MathHelper.floor(this.posY);
-                k = MathHelper.floor(this.posZ + (l / 2.0d % 2 * 2 - 1) * 0.25F);
+                k = MathHelper.floor(this.posZ + (double)((float)(l / 2 % 2 * 2 - 1) * 0.25F));
                 BlockPos blockpos = new BlockPos(i, j, k);
 
                 if (this.world.getBlockState(blockpos).getMaterial() == Material.AIR && this.world.getBiome(new BlockPos(i, 0, k)).getTemperature(blockpos) < 0.8F && MPBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.world, blockpos))
