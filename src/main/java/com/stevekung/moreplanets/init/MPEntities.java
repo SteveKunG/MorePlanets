@@ -119,5 +119,6 @@ public class MPEntities
         MorePlanetsMod.COMMON_REGISTRY.registerEntityPlacement(EntityMarshmallow.class, SpawnPlacementType.ON_GROUND);
         MorePlanetsMod.COMMON_REGISTRY.registerEntityPlacement(EntityBearry.class, SpawnPlacementType.ON_GROUND);
         MorePlanetsMod.COMMON_REGISTRY.registerEntityPlacement(EntityJellySlime.class, SpawnPlacementType.ON_GROUND);
+        MorePlanetsMod.COMMON_REGISTRY.registerEntityPlacement(EntityTerrasquid.class, SpawnPlacementType.IN_WATER);
     }
 }
