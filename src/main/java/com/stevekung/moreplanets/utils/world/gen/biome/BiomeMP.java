@@ -38,7 +38,8 @@ public class BiomeMP extends Biome
 
         FlowerEntry flower = WeightedRandom.getRandomItem(rand, this.flowers);
 
-        if (flower.state == null || !flower.state.getBlock().canPlaceBlockAt(world, pos))
+        //noinspection ConstantValue
+        if (flower == null || flower.state == null || !flower.state.getBlock().canPlaceBlockAt(world, pos))
         {
             return;
         }

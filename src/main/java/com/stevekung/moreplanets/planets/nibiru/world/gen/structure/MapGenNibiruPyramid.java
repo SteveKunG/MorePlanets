@@ -66,6 +66,12 @@ public class MapGenNibiruPyramid extends MapGenStructure
         if (i == k && j == l)
         {
             Biome biome = this.world.getBiomeProvider().getBiome(new BlockPos(i * 16 + 8, 0, j * 16 + 8));
+
+            //noinspection ConstantValue
+            if (biome == null)
+            {
+                return false;
+            }
             return biome == MPBiomes.INFECTED_DESERT;
         }
         return false;

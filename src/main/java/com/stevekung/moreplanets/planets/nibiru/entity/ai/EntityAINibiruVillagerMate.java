@@ -40,7 +40,12 @@ public class EntityAINibiruVillagerMate extends EntityAIBase
         {
             this.village = this.world.getVillageCollection().getNearestVillage(new BlockPos(this.entity), 0);
 
-            if (this.checkSufficientDoorsPresentForNewVillager() && this.entity.getIsWillingToMate(true))
+            //noinspection ConstantValue
+            if (this.village == null)
+            {
+                return false;
+            }
+            else if (this.checkSufficientDoorsPresentForNewVillager() && this.entity.getIsWillingToMate(true))
             {
                 EntityNibiruVillager entity = this.world.findNearestEntityWithinAABB(EntityNibiruVillager.class, this.entity.getEntityBoundingBox().grow(8.0D, 3.0D, 8.0D), this.entity);
 

@@ -95,7 +95,8 @@ public abstract class EntityFireballMP extends Entity
             ++this.ticksInAir;
             RayTraceResult result = ProjectileHelper.forwardsRaycast(this, true, this.ticksInAir >= 25, this.shootingEntity);
 
-            if (!ForgeEventFactory.onProjectileImpact(this, result))
+            //noinspection ConstantValue
+            if (result != null && !ForgeEventFactory.onProjectileImpact(this, result))
             {
                 this.onImpact(result);
             }
