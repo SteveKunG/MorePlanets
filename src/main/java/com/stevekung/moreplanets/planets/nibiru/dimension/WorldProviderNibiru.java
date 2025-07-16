@@ -219,7 +219,7 @@ public class WorldProviderNibiru extends WorldProviderMP
     }
 
     @Override
-    public void setup(EntityPlayerMP player)
+    public void setupGear(EntityPlayerMP player)
     {
         GCPlayerStats stats = GCPlayerStats.get(player);
         SchematicRegistry.unlockNewPage(player, new ItemStack(GCItems.schematic, 1, 1)); //Knows how to build T2 rocket

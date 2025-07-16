@@ -8,7 +8,6 @@ import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.event.EventHandlerGC;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
@@ -163,9 +162,6 @@ public class WorldProviderFronos extends WorldProviderMP
     {
         return 100;
     }
-
-    @Override
-    public void setup(EntityPlayerMP player) {}
 
     @Override
     protected void renderSky()

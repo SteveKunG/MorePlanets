@@ -2,7 +2,7 @@ package com.stevekung.moreplanets.world;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 
-public interface IStartedDimension
+public interface SurvivalPlanetProvider
 {
-    void setup(EntityPlayerMP player);
+    void setupGear(EntityPlayerMP player);
 }

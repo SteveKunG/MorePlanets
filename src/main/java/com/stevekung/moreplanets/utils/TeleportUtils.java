@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.network.PacketSimpleMP;
-import com.stevekung.moreplanets.world.IStartedDimension;
+import com.stevekung.moreplanets.world.SurvivalPlanetProvider;
 
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
@@ -206,11 +206,11 @@ public class TeleportUtils
         playerList.updateTimeAndWeatherForPlayer(player, targetWorld);
         playerList.syncPlayerInventory(player);
 
-        if (targetWorld.provider instanceof IStartedDimension)
+        if (targetWorld.provider instanceof SurvivalPlanetProvider)
         {
-            IStartedDimension dimension = (IStartedDimension)targetWorld.provider;
+            SurvivalPlanetProvider dimension = (SurvivalPlanetProvider) targetWorld.provider;
             LoggerMP.info("Setting up survival player gear");
-            dimension.setup(player);
+            dimension.setupGear(player);
         }
         else if (targetWorld.provider instanceof WorldProviderMoon)
         {
