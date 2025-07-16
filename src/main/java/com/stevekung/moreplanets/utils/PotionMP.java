@@ -18,17 +18,17 @@ public abstract class PotionMP extends Potion
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void renderInventoryEffect(int x, int y, PotionEffect effect, Minecraft mc)
+    public void renderInventoryEffect(PotionEffect effect, Gui gui, int x, int y, float z)
     {
-        mc.getTextureManager().bindTexture(this.getPotionIcon());
+        Minecraft.getMinecraft().getTextureManager().bindTexture(this.getPotionIcon());
         Gui.drawModalRectWithCustomSizedTexture(x + 6, y + 7, 0, 0, 18, 18, 18, 18);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void renderHUDEffect(int x, int y, PotionEffect effect, Minecraft mc, float alpha)
+    public void renderHUDEffect(PotionEffect effect, Gui gui, int x, int y, float z, float alpha)
     {
-        mc.getTextureManager().bindTexture(this.getPotionIcon());
+        Minecraft.getMinecraft().getTextureManager().bindTexture(this.getPotionIcon());
         Gui.drawModalRectWithCustomSizedTexture(x + 3, y + 3, 0, 0, 18, 18, 18, 18);
     }
 

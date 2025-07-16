@@ -69,13 +69,13 @@ public class MPPlanets
     {
         TeleportTypeMoon teleport = new TeleportTypeMoon();
 
-        CelestialRegistryUtils.registerSolarSystem(MPPlanets.LAZENDUS_SOLAR_SYSTEM);
+        CelestialRegistryUtils.register(MPPlanets.LAZENDUS_SOLAR_SYSTEM);
 
-        CelestialRegistryUtils.registerPlanet(MPPlanets.DIONA);
-        CelestialRegistryUtils.registerPlanet(MPPlanets.CHALOS);
-        CelestialRegistryUtils.registerPlanet(MPPlanets.NIBIRU);
-        CelestialRegistryUtils.registerPlanet(MPPlanets.FRONOS);
-        CelestialRegistryUtils.registerMoon(MPPlanets.KOENTUS);
+        CelestialRegistryUtils.register(MPPlanets.DIONA);
+        CelestialRegistryUtils.register(MPPlanets.CHALOS);
+        CelestialRegistryUtils.register(MPPlanets.NIBIRU);
+        CelestialRegistryUtils.register(MPPlanets.FRONOS);
+        CelestialRegistryUtils.register(MPPlanets.KOENTUS);
         CelestialRegistryUtils.registerTeleportType(WorldProviderDiona.class, teleport);
         CelestialRegistryUtils.registerTeleportType(WorldProviderChalos.class, teleport);
         CelestialRegistryUtils.registerTeleportType(WorldProviderNibiru.class, teleport);

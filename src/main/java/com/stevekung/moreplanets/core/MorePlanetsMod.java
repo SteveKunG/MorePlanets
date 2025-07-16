@@ -80,7 +80,7 @@ public class MorePlanetsMod
         {
             MorePlanetsMod.isDevelopment = Launch.classLoader.getClassBytes("net.minecraft.world.World") != null;
         }
-        catch (Exception e) {}
+        catch (Exception ignored) {}
 
         if (ClientUtils.isClient())
         {

@@ -8,52 +8,51 @@ import com.stevekung.moreplanets.core.config.ConfigManagerMP;
 
 public class LoggerMP
 {
-    private static final Logger LOG = LogManager.getLogger("More Planets");
-    private static final Logger LOG_DEBUG = LogManager.getLogger("More Planets Debug");
+    private static final Logger LOGGER = LogManager.getLogger("More Planets");
 
     public static void info(String message)
     {
-        LoggerMP.LOG.info(message);
+        LoggerMP.LOGGER.info(message);
     }
 
     public static void error(String message)
     {
-        LoggerMP.LOG.error(message);
+        LoggerMP.LOGGER.error(message);
     }
 
     public static void warning(String message)
     {
-        LoggerMP.LOG.warn(message);
+        LoggerMP.LOGGER.warn(message);
     }
 
     public static void debug(String message)
     {
         if (ConfigManagerMP.moreplanets_general.enableDebug || MorePlanetsMod.isDevelopment)
         {
-            LoggerMP.LOG_DEBUG.info(message);
+            LoggerMP.LOGGER.debug(message);
         }
     }
 
     public static void info(String message, Object... obj)
     {
-        LoggerMP.LOG.info(message, obj);
+        LoggerMP.LOGGER.info(message, obj);
     }
 
     public static void error(String message, Object... obj)
     {
-        LoggerMP.LOG.error(message, obj);
+        LoggerMP.LOGGER.error(message, obj);
     }
 
     public static void warning(String message, Object... obj)
     {
-        LoggerMP.LOG.warn(message, obj);
+        LoggerMP.LOGGER.warn(message, obj);
     }
 
     public static void debug(String message, Object... obj)
     {
         if (ConfigManagerMP.moreplanets_general.enableDebug || MorePlanetsMod.isDevelopment)
         {
-            LoggerMP.LOG_DEBUG.info(message, obj);
+            LoggerMP.LOGGER.info(message, obj);
         }
     }
 }

@@ -53,7 +53,7 @@ public class CreativeTabsMP extends CreativeTabs
             }
             catch (Exception e)
             {
-                e.printStackTrace();
+                LoggerMP.error("Couldn't sort items in the creative tab", e);
             }
         }
     }

@@ -89,19 +89,9 @@ public class CelestialRegistryUtils
         GalacticraftRegistry.registerDimension(name, "_" + name.toLowerCase(Locale.ROOT), staticId, provider, true);
     }
 
-    public static void registerSolarSystem(SolarSystem solarSystem)
+    public static <T extends ICelestial> void register(T celestial)
     {
-        GalaxyRegistry.registerSolarSystem(solarSystem);
-    }
-
-    public static void registerPlanet(Planet planet)
-    {
-        GalaxyRegistry.registerPlanet(planet);
-    }
-
-    public static void registerMoon(Moon moon)
-    {
-        GalaxyRegistry.registerMoon(moon);
+        GalaxyRegistry.register(celestial);
     }
 
     public static void registerTeleportType(Class<? extends WorldProvider> clazz, ITeleportType type)

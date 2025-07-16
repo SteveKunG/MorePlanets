@@ -183,7 +183,7 @@ public class WorldGenSpaceDungeons extends WorldGenerator
                     method.setAccessible(true);
                     LoggerMP.debug("Generate {} spawner at {} {} {}", method.invoke(logic).toString(), pos.getX(), pos.getY(), pos.getZ());
                 }
-                catch (Exception e) {}
+                catch (Exception ignored) {}
             }
             else
             {
