@@ -172,8 +172,8 @@ dependencies {
 
     implementation(":Galacticraft-${minecraft_version}-${galacticraft_version}-deobf")
 
-    implementation(modUtils.deobfuscate("com.stevekung.lib:stevekung-lib:mc${minecraft_version}-v${required_stevekung_lib_version}").toString())
-    //implementation(modUtils.deobfuscate("curse.maven:stevekung-lib-296019:${stevekung_lib_version}").toString())
+    //implementation(modUtils.deobfuscate("com.stevekung.lib:stevekung-lib:mc${minecraft_version}-v${required_stevekung_lib_version}").toString())
+    implementation(modUtils.deobfuscate("curse.maven:stevekung-lib-296019:${stevekung_lib_version}").toString())
 
     implementation "curse.maven:hwyla-253449:2568751"
     implementation(modUtils.deobfuscate("curse.maven:codechicken-lib-1-8-242818:2779848").toString())
