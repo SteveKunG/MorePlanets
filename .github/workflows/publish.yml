@@ -11,11 +11,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up JDK 8
+      - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: '8'
-          distribution: 'temurin'
+          java-version: |
+            8
+            17
+            21
+          distribution: 'zulu'
 
       - name: Cache Gradle packages
         uses: actions/cache@v4
