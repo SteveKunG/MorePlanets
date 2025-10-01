@@ -189,7 +189,7 @@ public class MorePlanetsMod
         info.version = Tags.VERSION;
         info.description = "An add-on adds new exotic planets into Galacticraft!";
         info.url = MorePlanetsMod.URL;
-        info.credits = "All credits goes to Galacticraft Sources/API, Translators and some people who helped.";
+        info.credits = "Thanks to Galacticraft Sources/API and contributors.";
         info.authorList = Lists.newArrayList("SteveKunG", "PloyiinGz");
     }
 }
