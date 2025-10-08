@@ -158,7 +158,7 @@ repositories {
 
 dependencies {
     if (project.hasProperty("use_mixin") && use_mixin.toBoolean()) {
-        String mixin = modUtils.enableMixins("zone.rong:mixinbooter:${mixin_booter_version}", "mixins.${mod_id}.refmap.json")
+        String mixin = modUtils.enableMixins("zone.rong:mixinbooter:${mixin_booter_version}", "mixins.more_planets.refmap.json")
         api(mixin) {
             transitive = false
         }
@@ -203,6 +203,7 @@ jar {
             attributes "FMLCorePlugin": "com.stevekung.moreplanets.core.MorePlanetsPlugin"
             attributes "FMLCorePluginContainsFMLMod": true
             attributes "ForceLoadAsMod": true
+            attributes "FMLAT": "moreplanets_at.cfg"
         }
     }
 
