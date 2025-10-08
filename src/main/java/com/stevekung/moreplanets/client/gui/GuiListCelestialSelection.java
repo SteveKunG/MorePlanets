@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import javax.annotation.Nullable;
+import com.stevekung.lib.utils.client.GLConstants;
 
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiListExtended;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -15,7 +14,10 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.lib.utils.client.GLConstants;
+
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+
+import javax.annotation.Nullable;
 
 @SideOnly(Side.CLIENT)
 public class GuiListCelestialSelection extends GuiListExtended

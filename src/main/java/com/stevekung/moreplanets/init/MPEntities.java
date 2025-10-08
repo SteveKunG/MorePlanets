@@ -1,5 +1,7 @@
 package com.stevekung.moreplanets.init;
 
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.enums.EnumEntityTrackerType;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.entity.EntityAntiGravFallingBlock;
 import com.stevekung.moreplanets.entity.EntityBlackHole;
@@ -27,9 +29,6 @@ import com.stevekung.moreplanets.planets.nibiru.entity.projectile.*;
 import com.stevekung.moreplanets.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
 
 import net.minecraft.entity.EntityLiving.SpawnPlacementType;
-
-import com.stevekung.lib.utils.ColorUtils;
-import com.stevekung.lib.utils.enums.EnumEntityTrackerType;
 
 public class MPEntities
 {

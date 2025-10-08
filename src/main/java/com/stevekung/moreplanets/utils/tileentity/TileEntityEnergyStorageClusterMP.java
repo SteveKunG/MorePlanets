@@ -2,18 +2,20 @@ package com.stevekung.moreplanets.utils.tileentity;
 
 import java.util.EnumSet;
 
+import com.stevekung.moreplanets.blocks.BlockTieredEnergyStorageCluster;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
+
 import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
 import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectricalSource;
 import micdoodle8.mods.galacticraft.core.tile.IMachineSides;
 import micdoodle8.mods.galacticraft.core.tile.IMachineSidesProperties;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.NonNullList;
-import com.stevekung.moreplanets.blocks.BlockTieredEnergyStorageCluster;
 
 public abstract class TileEntityEnergyStorageClusterMP extends TileBaseUniversalElectricalSource implements IConnector, IMachineSides
 {

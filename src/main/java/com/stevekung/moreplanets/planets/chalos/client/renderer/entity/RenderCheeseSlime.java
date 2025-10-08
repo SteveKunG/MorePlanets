@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.planets.chalos.client.renderer.entity;
 
+import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseSlime;
+import com.stevekung.moreplanets.utils.client.renderer.entity.layer.LayerBaseSlimeGel;
+
 import net.minecraft.client.model.ModelSlime;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -7,8 +10,6 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseSlime;
-import com.stevekung.moreplanets.utils.client.renderer.entity.layer.LayerBaseSlimeGel;
 
 @SideOnly(Side.CLIENT)
 public class RenderCheeseSlime extends RenderLiving<EntityCheeseSlime>

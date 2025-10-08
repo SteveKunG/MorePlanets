@@ -1,6 +1,9 @@
 package com.stevekung.moreplanets.planets.nibiru.entity;
 
-import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.utils.EntityEffectUtils;
+import com.stevekung.moreplanets.utils.entity.ISpaceMob;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -18,9 +21,8 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.utils.EntityEffectUtils;
-import com.stevekung.moreplanets.utils.entity.ISpaceMob;
+
+import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 
 public class EntityGiantWorm extends EntityMob implements IEntityBreathable, ISpaceMob
 {

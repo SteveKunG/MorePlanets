@@ -1,8 +1,11 @@
 package com.stevekung.moreplanets.planets.diona.entity;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.init.MPSounds;
+import com.stevekung.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
-import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -16,11 +19,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.init.MPSounds;
-import com.stevekung.moreplanets.utils.entity.ai.PathNavigateGroundMP;
+
+import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+
+import javax.annotation.Nullable;
 
 public class EntityZeliusZombie extends EntityZombie implements IEntityBreathable
 {

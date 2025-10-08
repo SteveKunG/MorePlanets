@@ -2,6 +2,13 @@ package com.stevekung.moreplanets.planets.nibiru.blocks;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.BlockUtils;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.DamageSourceMP;
+import com.stevekung.moreplanets.utils.blocks.BlockBushMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -17,12 +24,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.DamageSourceMP;
-import com.stevekung.moreplanets.utils.blocks.BlockBushMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.lib.utils.BlockStateProperty;
-import com.stevekung.lib.utils.BlockUtils;
 
 public class BlockInfectedCactus extends BlockBushMP
 {

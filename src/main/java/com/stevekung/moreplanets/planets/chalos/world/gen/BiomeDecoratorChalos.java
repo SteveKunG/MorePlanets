@@ -2,14 +2,15 @@ package com.stevekung.moreplanets.planets.chalos.world.gen;
 
 import java.util.Random;
 
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
+import com.stevekung.lib.utils.WorldDecorateUtils;
+import com.stevekung.lib.world.gen.WorldGenFlowersBase;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.chalos.world.gen.feature.WorldGenCheeseSporeTree;
 import com.stevekung.moreplanets.utils.blocks.BlockSaplingMP;
 import com.stevekung.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
-import com.stevekung.lib.utils.WorldDecorateUtils;
-import com.stevekung.lib.world.gen.WorldGenFlowersBase;
+
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 
 public class BiomeDecoratorChalos extends BiomeDecoratorMP
 {

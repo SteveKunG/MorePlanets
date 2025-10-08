@@ -2,14 +2,15 @@ package com.stevekung.moreplanets.planets.chalos.world.gen;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.init.MPBiomes;
+import com.stevekung.moreplanets.planets.chalos.world.gen.structure.ComponentCheeseSporeHutPieces;
+
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureStart;
-import com.stevekung.moreplanets.init.MPBiomes;
-import com.stevekung.moreplanets.planets.chalos.world.gen.structure.ComponentCheeseSporeHutPieces;
 
 public class MapGenCheeseSporeHutFeature extends MapGenStructure
 {

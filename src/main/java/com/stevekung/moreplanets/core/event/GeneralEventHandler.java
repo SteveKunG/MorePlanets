@@ -3,6 +3,16 @@ package com.stevekung.moreplanets.core.event;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.stevekung.lib.utils.enums.CachedEnum;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFields;
+import com.stevekung.moreplanets.utils.items.IDungeonKey;
+import com.stevekung.moreplanets.utils.items.IDungeonKeyable;
+import com.stevekung.moreplanets.utils.items.ItemDoorMP;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -30,15 +40,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFields;
-import com.stevekung.moreplanets.utils.items.IDungeonKey;
-import com.stevekung.moreplanets.utils.items.IDungeonKeyable;
-import com.stevekung.moreplanets.utils.items.ItemDoorMP;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
-import com.stevekung.lib.utils.enums.CachedEnum;
 
 public class GeneralEventHandler
 {

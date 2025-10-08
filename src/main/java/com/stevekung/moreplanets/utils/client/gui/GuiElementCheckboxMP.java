@@ -1,6 +1,7 @@
 package com.stevekung.moreplanets.utils.client.gui;
 
-import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementCheckbox;
+import com.stevekung.lib.utils.client.GLConstants;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -9,7 +10,8 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.lib.utils.client.GLConstants;
+
+import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementCheckbox;
 
 @SideOnly(Side.CLIENT)
 public class GuiElementCheckboxMP extends GuiElementCheckbox

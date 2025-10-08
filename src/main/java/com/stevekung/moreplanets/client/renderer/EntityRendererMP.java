@@ -1,8 +1,7 @@
 package com.stevekung.moreplanets.client.renderer;
 
-import net.minecraft.item.ItemStack;
+import com.stevekung.lib.utils.client.ClientRegistryUtils;
 import com.stevekung.moreplanets.client.renderer.entity.*;
-
 import com.stevekung.moreplanets.entity.EntityAntiGravFallingBlock;
 import com.stevekung.moreplanets.entity.EntityBlackHole;
 import com.stevekung.moreplanets.entity.EntityBlackHoleStorage;
@@ -14,7 +13,6 @@ import com.stevekung.moreplanets.moons.koentus.client.renderer.entity.RenderKoen
 import com.stevekung.moreplanets.moons.koentus.entity.EntityFallingKoentusMeteor;
 import com.stevekung.moreplanets.moons.koentus.entity.EntityKoentusMeteor;
 import com.stevekung.moreplanets.planets.chalos.client.renderer.entity.*;
-
 import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseCow;
 import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseCubeEyeBoss;
 import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseFloater;
@@ -23,7 +21,6 @@ import com.stevekung.moreplanets.planets.chalos.entity.projectile.EntityCheeseSp
 import com.stevekung.moreplanets.planets.chalos.entity.projectile.EntitySmallCheeseSpore;
 import com.stevekung.moreplanets.planets.diona.client.renderer.entity.*;
 import com.stevekung.moreplanets.planets.diona.entity.*;
-
 import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityAntiGravityArrow;
 import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityInfectedPurloniteArrow;
 import com.stevekung.moreplanets.planets.fronos.client.render.entity.RenderBearry;
@@ -37,10 +34,10 @@ import com.stevekung.moreplanets.planets.fronos.entity.EntityMarshmallow;
 import com.stevekung.moreplanets.planets.nibiru.client.renderer.entity.*;
 import com.stevekung.moreplanets.planets.nibiru.entity.*;
 import com.stevekung.moreplanets.planets.nibiru.entity.projectile.*;
-
 import com.stevekung.moreplanets.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
 import com.stevekung.moreplanets.utils.client.renderer.entity.RenderSnowballMP;
-import com.stevekung.lib.utils.client.ClientRegistryUtils;
+
+import net.minecraft.item.ItemStack;
 
 public class EntityRendererMP
 {

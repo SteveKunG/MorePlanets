@@ -1,8 +1,8 @@
 package com.stevekung.moreplanets.client.gui;
 
-import micdoodle8.mods.galacticraft.api.recipe.ISchematicResultPage;
-import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
-import micdoodle8.mods.galacticraft.core.client.gui.container.GuiPositionedContainer;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.moreplanets.inventory.ContainerBlackHoleStorageSchematic;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -10,8 +10,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.inventory.ContainerBlackHoleStorageSchematic;
-import com.stevekung.lib.utils.LangUtils;
+
+import micdoodle8.mods.galacticraft.api.recipe.ISchematicResultPage;
+import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
+import micdoodle8.mods.galacticraft.core.client.gui.container.GuiPositionedContainer;
 
 @SideOnly(Side.CLIENT)
 public class GuiBlackHoleStorageSchematic extends GuiPositionedContainer implements ISchematicResultPage

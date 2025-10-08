@@ -1,10 +1,11 @@
 package com.stevekung.moreplanets.inventory;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import com.stevekung.moreplanets.init.MPBlocks;
 
 public class SlotBlackHoleStorage extends Slot
 {

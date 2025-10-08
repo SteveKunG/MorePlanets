@@ -1,8 +1,14 @@
 package com.stevekung.moreplanets.moons.koentus.world.gen;
 
-import javax.annotation.Nullable;
-
 import com.google.common.collect.Sets;
+import com.stevekung.lib.world.gen.MapGenCavesBase;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.moons.koentus.world.gen.feature.WorldGenGravityHarvester;
+import com.stevekung.moreplanets.planets.diona.world.gen.BiomeDecoratorDiona;
+import com.stevekung.moreplanets.planets.diona.world.gen.feature.WorldGenCrashedAlienProbe;
+import com.stevekung.moreplanets.planets.diona.world.gen.structure.MapGenCrashedAlienShipFeature;
+import com.stevekung.moreplanets.utils.world.gen.ChunkGeneratorBaseMP;
+import com.stevekung.moreplanets.utils.world.gen.feature.WorldGenSpaceDungeons;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -12,14 +18,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.moons.koentus.world.gen.feature.WorldGenGravityHarvester;
-import com.stevekung.moreplanets.planets.diona.world.gen.BiomeDecoratorDiona;
-import com.stevekung.moreplanets.planets.diona.world.gen.feature.WorldGenCrashedAlienProbe;
-import com.stevekung.moreplanets.planets.diona.world.gen.structure.MapGenCrashedAlienShipFeature;
-import com.stevekung.moreplanets.utils.world.gen.ChunkGeneratorBaseMP;
-import com.stevekung.moreplanets.utils.world.gen.feature.WorldGenSpaceDungeons;
-import com.stevekung.lib.world.gen.MapGenCavesBase;
+
+import javax.annotation.Nullable;
 
 public class ChunkGeneratorKoentus extends ChunkGeneratorBaseMP
 {

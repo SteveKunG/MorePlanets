@@ -1,15 +1,17 @@
 package com.stevekung.moreplanets.inventory;
 
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.network.PacketSimpleMP;
+import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.network.PacketSimpleMP;
-import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
+
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 
 public class SlotBlackHoleStorageResult extends Slot
 {

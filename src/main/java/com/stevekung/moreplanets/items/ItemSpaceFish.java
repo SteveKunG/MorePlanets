@@ -1,7 +1,8 @@
 package com.stevekung.moreplanets.items;
 
-import net.minecraft.item.ItemStack;
 import com.stevekung.moreplanets.utils.items.ItemFoodMP;
+
+import net.minecraft.item.ItemStack;
 
 public class ItemSpaceFish extends ItemFoodMP
 {

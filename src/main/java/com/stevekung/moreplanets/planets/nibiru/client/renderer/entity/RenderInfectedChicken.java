@@ -1,5 +1,7 @@
 package com.stevekung.moreplanets.planets.nibiru.client.renderer.entity;
 
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedChicken;
+
 import net.minecraft.client.model.ModelChicken;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -7,7 +9,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedChicken;
 
 @SideOnly(Side.CLIENT)
 public class RenderInfectedChicken extends RenderLiving<EntityInfectedChicken>

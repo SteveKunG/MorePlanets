@@ -2,7 +2,12 @@ package com.stevekung.moreplanets.planets.nibiru.entity;
 
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.planets.nibiru.blocks.BlockNibiruInfested;
+import com.stevekung.moreplanets.utils.EntityEffectUtils;
+import com.stevekung.moreplanets.utils.entity.ISpaceMob;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -19,11 +24,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.planets.nibiru.blocks.BlockNibiruInfested;
-import com.stevekung.moreplanets.utils.EntityEffectUtils;
-import com.stevekung.moreplanets.utils.entity.ISpaceMob;
+
+import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 
 public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, ISpaceMob
 {

@@ -2,15 +2,16 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.biome;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.WorldDecorateUtils;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedSwampTree;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedSwampTree;
-import com.stevekung.lib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedSwamp extends BiomeNibiru
 {

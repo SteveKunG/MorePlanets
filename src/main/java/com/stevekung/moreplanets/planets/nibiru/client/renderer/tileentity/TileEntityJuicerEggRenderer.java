@@ -2,7 +2,10 @@ package com.stevekung.moreplanets.planets.nibiru.client.renderer.tileentity;
 
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
+import com.stevekung.lib.utils.client.RenderUtils;
+import com.stevekung.moreplanets.planets.nibiru.client.model.ModelJuicerEgg;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityJuicerEgg;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -12,9 +15,8 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.nibiru.client.model.ModelJuicerEgg;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityJuicerEgg;
-import com.stevekung.lib.utils.client.RenderUtils;
+
+import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityJuicerEggRenderer extends TileEntitySpecialRenderer<TileEntityJuicerEgg>

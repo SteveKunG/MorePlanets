@@ -6,15 +6,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.google.common.collect.Sets;
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.moreplanets.blocks.BlockShieldGenerator;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPSounds;
+import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
 
-import io.netty.buffer.ByteBuf;
-import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
-import micdoodle8.mods.galacticraft.core.Constants;
-import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
-import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
-import micdoodle8.mods.galacticraft.core.entities.IBubbleProvider;
-import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
-import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -43,13 +42,15 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.blocks.BlockShieldGenerator;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPSounds;
-import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
-import com.stevekung.lib.utils.BlockStateProperty;
-import com.stevekung.lib.utils.LangUtils;
+
+import io.netty.buffer.ByteBuf;
+import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
+import micdoodle8.mods.galacticraft.core.Constants;
+import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
+import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
+import micdoodle8.mods.galacticraft.core.entities.IBubbleProvider;
+import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
+import micdoodle8.mods.miccore.Annotations.NetworkedField;
 
 public class TileEntityShieldGenerator extends TileEntityDummy implements IMultiBlock, IBubbleProvider
 {

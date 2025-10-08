@@ -1,5 +1,13 @@
 package com.stevekung.moreplanets.planets.fronos.entity;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.init.MPSounds;
+import com.stevekung.moreplanets.planets.fronos.entity.ai.EntityAIFaceTexture;
+import com.stevekung.moreplanets.planets.fronos.entity.ai.EntityAIFronosPanic;
+import com.stevekung.moreplanets.planets.fronos.entity.ai.EntityAIFronosTempt;
+import com.stevekung.moreplanets.utils.entity.ai.PathNavigateGroundMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,13 +27,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.init.MPSounds;
-import com.stevekung.moreplanets.planets.fronos.entity.ai.EntityAIFaceTexture;
-import com.stevekung.moreplanets.planets.fronos.entity.ai.EntityAIFronosPanic;
-import com.stevekung.moreplanets.planets.fronos.entity.ai.EntityAIFronosTempt;
-import com.stevekung.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
 public abstract class EntityFronosPet extends EntityTameable
 {

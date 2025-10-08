@@ -1,13 +1,14 @@
 package com.stevekung.moreplanets.items;
 
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityShlime;
+import com.stevekung.moreplanets.utils.items.ItemBaseMP;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityShlime;
-import com.stevekung.moreplanets.utils.items.ItemBaseMP;
 
 public class ItemDyeMP extends ItemBaseMP
 {

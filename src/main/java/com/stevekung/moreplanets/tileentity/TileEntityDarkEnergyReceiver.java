@@ -4,11 +4,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
-import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
-import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
-import micdoodle8.mods.miccore.Annotations.NetworkedField;
+import com.stevekung.lib.utils.JsonUtils;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.lib.utils.client.ClientUtils;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.core.event.ClientEventHandler;
+import com.stevekung.moreplanets.entity.EntityBlackHole;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.init.MPSounds;
+import com.stevekung.moreplanets.network.PacketSimpleMP;
+import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
+import com.stevekung.moreplanets.planets.diona.entity.EntityDarkLightningBolt;
+import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityInfectedPurloniteEnderCore;
+import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityZeliusEgg;
+import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -31,21 +42,12 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.core.event.ClientEventHandler;
-import com.stevekung.moreplanets.entity.EntityBlackHole;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.init.MPSounds;
-import com.stevekung.moreplanets.network.PacketSimpleMP;
-import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import com.stevekung.moreplanets.planets.diona.entity.EntityDarkLightningBolt;
-import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityInfectedPurloniteEnderCore;
-import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityZeliusEgg;
-import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
-import com.stevekung.lib.utils.JsonUtils;
-import com.stevekung.lib.utils.LangUtils;
-import com.stevekung.lib.utils.client.ClientUtils;
+
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
+import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
+import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
+import micdoodle8.mods.miccore.Annotations.NetworkedField;
 
 public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMultiBlock
 {

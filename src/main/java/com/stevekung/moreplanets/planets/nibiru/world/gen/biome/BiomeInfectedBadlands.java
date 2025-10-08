@@ -3,6 +3,10 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.biome;
 import java.util.Arrays;
 import java.util.Random;
 
+import com.stevekung.lib.world.gen.EnumOreGen;
+import com.stevekung.lib.world.gen.WorldGenMinableBase;
+import com.stevekung.moreplanets.init.MPBlocks;
+
 import net.minecraft.block.BlockColored;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -14,9 +18,6 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.lib.world.gen.EnumOreGen;
-import com.stevekung.lib.world.gen.WorldGenMinableBase;
 
 public class BiomeInfectedBadlands extends BiomeNibiru
 {

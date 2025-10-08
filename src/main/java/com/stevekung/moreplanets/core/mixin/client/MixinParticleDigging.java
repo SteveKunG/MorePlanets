@@ -1,7 +1,5 @@
 package com.stevekung.moreplanets.core.mixin.client;
 
-import javax.annotation.Nullable;
-
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -9,10 +7,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.particle.ParticleDigging;
 import net.minecraft.util.math.BlockPos;
-import com.stevekung.moreplanets.init.MPBlocks;
+
+import javax.annotation.Nullable;
 
 @Mixin(ParticleDigging.class)
 public class MixinParticleDigging

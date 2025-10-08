@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.init;
 
+import com.stevekung.lib.utils.BlockUtils;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.enums.EnumHarvestLevel;
 import com.stevekung.moreplanets.blocks.*;
 import com.stevekung.moreplanets.blocks.decoration.BlockAllDoubleSlab;
 import com.stevekung.moreplanets.blocks.decoration.BlockAllHalfSlab;
@@ -34,10 +37,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-
-import com.stevekung.lib.utils.BlockUtils;
-import com.stevekung.lib.utils.ColorUtils;
-import com.stevekung.lib.utils.enums.EnumHarvestLevel;
 
 public class MPBlocks
 {

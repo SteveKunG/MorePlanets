@@ -1,9 +1,11 @@
 package com.stevekung.moreplanets.moons.koentus.itemblocks;
 
-import micdoodle8.mods.galacticraft.core.TransformerHooks;
+import com.stevekung.moreplanets.utils.itemblocks.ItemBlockMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
-import com.stevekung.moreplanets.utils.itemblocks.ItemBlockMP;
+
+import micdoodle8.mods.galacticraft.core.TransformerHooks;
 
 public class ItemBlockAntiGravity extends ItemBlockMP
 {

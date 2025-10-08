@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.planets.nibiru.client.renderer.entity;
 
+import com.stevekung.moreplanets.planets.nibiru.client.model.ModelInfectedSkeleton;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedSkeleton;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -8,8 +11,6 @@ import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.nibiru.client.model.ModelInfectedSkeleton;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedSkeleton;
 
 @SideOnly(Side.CLIENT)
 public class RenderInfectedSkeleton extends RenderBiped<EntityInfectedSkeleton>

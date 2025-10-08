@@ -1,5 +1,14 @@
 package com.stevekung.moreplanets.core.handler;
 
+import com.stevekung.lib.utils.BlockItemRemapper;
+import com.stevekung.lib.utils.LoggerSL;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.planets.diona.entity.*;
+import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityInfectedPurloniteArrow;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
@@ -7,15 +16,6 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.planets.diona.entity.*;
-
-import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityInfectedPurloniteArrow;
-import com.stevekung.lib.utils.BlockItemRemapper;
-import com.stevekung.lib.utils.LoggerSL;
 
 public class MissingMappingHandler
 {

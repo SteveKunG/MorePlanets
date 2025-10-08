@@ -2,6 +2,10 @@ package com.stevekung.moreplanets.planets.nibiru.blocks;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.IFireBlock;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFire;
 import net.minecraft.block.BlockTNT;
@@ -16,9 +20,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
-import com.stevekung.lib.utils.IFireBlock;
 
 public class BlockElectricalFire extends BlockFire implements IFireBlock
 {

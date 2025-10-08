@@ -1,7 +1,7 @@
 package com.stevekung.moreplanets.client.renderer;
 
+import com.stevekung.lib.utils.client.ClientRegistryUtils;
 import com.stevekung.moreplanets.client.renderer.tileentity.*;
-
 import com.stevekung.moreplanets.planets.chalos.tileentity.TileEntityChalosAncientChest;
 import com.stevekung.moreplanets.planets.chalos.tileentity.TileEntityChalosTreasureChest;
 import com.stevekung.moreplanets.planets.chalos.tileentity.TileEntityCheeseSporeChest;
@@ -10,10 +10,8 @@ import com.stevekung.moreplanets.planets.diona.tileentity.*;
 import com.stevekung.moreplanets.planets.nibiru.client.renderer.tileentity.*;
 import com.stevekung.moreplanets.planets.nibiru.tileentity.*;
 import com.stevekung.moreplanets.tileentity.*;
-
 import com.stevekung.moreplanets.utils.client.renderer.tileentity.TileEntityChestRendererMP;
 import com.stevekung.moreplanets.utils.client.renderer.tileentity.TileEntityTreasureChestRendererMP;
-import com.stevekung.lib.utils.client.ClientRegistryUtils;
 
 public class TileEntityRenderer
 {

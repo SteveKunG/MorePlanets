@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
 
-import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -13,8 +14,8 @@ import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
-import com.stevekung.lib.utils.ColorUtils;
+
+import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 
 public class ShieldRenderer
 {

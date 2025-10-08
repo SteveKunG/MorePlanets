@@ -2,11 +2,12 @@ package com.stevekung.moreplanets.planets.chalos.world.gen.biome;
 
 import java.util.Random;
 
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import com.stevekung.lib.utils.WorldDecorateUtils;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
-import com.stevekung.lib.utils.WorldDecorateUtils;
+
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class BiomeChalosPlains extends BiomeChalos
 {

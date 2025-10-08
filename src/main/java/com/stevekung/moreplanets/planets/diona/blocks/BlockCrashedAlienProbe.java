@@ -1,5 +1,14 @@
 package com.stevekung.moreplanets.planets.diona.blocks;
 
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.planets.diona.entity.EntityAlienMiner;
+import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityCrashedAlienProbe;
+import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
+import com.stevekung.moreplanets.utils.blocks.BlockTileMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -14,14 +23,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.planets.diona.entity.EntityAlienMiner;
-import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityCrashedAlienProbe;
-import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
-import com.stevekung.moreplanets.utils.blocks.BlockTileMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.lib.utils.ColorUtils;
 
 public class BlockCrashedAlienProbe extends BlockTileMP
 {

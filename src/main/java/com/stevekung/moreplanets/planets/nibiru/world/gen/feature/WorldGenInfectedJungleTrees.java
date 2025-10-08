@@ -2,6 +2,8 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.feature;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockVine;
 import net.minecraft.block.material.Material;
@@ -9,7 +11,6 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import com.stevekung.moreplanets.init.MPBlocks;
 
 public class WorldGenInfectedJungleTrees extends WorldGenAbstractTree
 {

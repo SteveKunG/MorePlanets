@@ -1,5 +1,9 @@
 package com.stevekung.moreplanets.init;
 
+import com.stevekung.lib.utils.BlockUtils;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.enums.EnumHarvestLevel;
+import com.stevekung.lib.utils.enums.EnumToolSpeed;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.items.*;
 import com.stevekung.moreplanets.moons.koentus.items.ItemGravityBoots;
@@ -27,11 +31,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
-
-import com.stevekung.lib.utils.BlockUtils;
-import com.stevekung.lib.utils.ColorUtils;
-import com.stevekung.lib.utils.enums.EnumHarvestLevel;
-import com.stevekung.lib.utils.enums.EnumToolSpeed;
 
 public class MPItems
 {

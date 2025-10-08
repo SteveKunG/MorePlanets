@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.planets.nibiru.client.sky;
 
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.moreplanets.client.renderer.sky.SkyProviderBaseMP;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -7,8 +10,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
-import com.stevekung.moreplanets.client.renderer.sky.SkyProviderBaseMP;
-import com.stevekung.lib.utils.client.GLConstants;
 
 public class SkyProviderNibiru extends SkyProviderBaseMP
 {

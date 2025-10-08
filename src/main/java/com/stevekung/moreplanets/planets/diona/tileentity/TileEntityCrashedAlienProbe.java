@@ -3,7 +3,10 @@ package com.stevekung.moreplanets.planets.diona.tileentity;
 import java.util.Collections;
 import java.util.Random;
 
-import javax.annotation.Nullable;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.diona.blocks.BlockCrashedAlienProbe;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityRenderTickable;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -17,10 +20,8 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTable;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.diona.blocks.BlockCrashedAlienProbe;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityRenderTickable;
-import com.stevekung.lib.utils.LangUtils;
+
+import javax.annotation.Nullable;
 
 public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implements IInventory
 {

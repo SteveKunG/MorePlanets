@@ -1,5 +1,10 @@
 package com.stevekung.moreplanets.entity;
 
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
@@ -17,10 +22,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
-import com.stevekung.lib.utils.ColorUtils;
 
 public class EntityAntiGravFallingBlock extends Entity
 {

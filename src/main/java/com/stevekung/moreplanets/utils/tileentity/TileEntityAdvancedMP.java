@@ -1,7 +1,8 @@
 package com.stevekung.moreplanets.utils.tileentity;
 
-import micdoodle8.mods.galacticraft.core.tile.TileEntityAdvanced;
 import net.minecraft.nbt.NBTTagCompound;
+
+import micdoodle8.mods.galacticraft.core.tile.TileEntityAdvanced;
 
 public abstract class TileEntityAdvancedMP extends TileEntityAdvanced
 {

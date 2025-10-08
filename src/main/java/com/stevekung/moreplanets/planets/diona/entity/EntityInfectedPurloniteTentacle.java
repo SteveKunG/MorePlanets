@@ -2,7 +2,10 @@ package com.stevekung.moreplanets.planets.diona.entity;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.init.MPSounds;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -22,10 +25,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.init.MPSounds;
+
+import javax.annotation.Nullable;
 
 public class EntityInfectedPurloniteTentacle extends Entity
 {

@@ -1,10 +1,11 @@
 package com.stevekung.moreplanets.utils.blocks;
 
-import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 
 public abstract class BlockGrassBlockMP extends BlockBaseMP implements ITerraformableBlock
 {

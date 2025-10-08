@@ -2,10 +2,11 @@ package com.stevekung.moreplanets.utils.world.gen.feature;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.utils.blocks.BlockDoublePlantMP;
+
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import com.stevekung.moreplanets.utils.blocks.BlockDoublePlantMP;
 
 public class WorldGenDoublePlantMP extends WorldGenerator
 {

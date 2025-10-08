@@ -2,6 +2,11 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.structure;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityJuicerEgg;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
+
 import net.minecraft.block.BlockColored;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
@@ -16,10 +21,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityJuicerEgg;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
 
 public abstract class StructureNibiruPyramidPieces extends StructureComponent
 {

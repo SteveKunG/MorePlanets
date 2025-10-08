@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.planets.nibiru.entity.ai;
 
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
+
 import net.minecraft.entity.ai.EntityAIWatchClosest2;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Items;
@@ -7,8 +10,6 @@ import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
 
 public class EntityAINibiruVillagerInteract extends EntityAIWatchClosest2
 {

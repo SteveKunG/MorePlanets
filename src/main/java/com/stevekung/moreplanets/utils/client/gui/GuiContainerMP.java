@@ -3,7 +3,6 @@ package com.stevekung.moreplanets.utils.client.gui;
 import java.util.ArrayList;
 import java.util.List;
 
-import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.util.ITooltipFlag.TooltipFlags;
@@ -12,6 +11,8 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 
 @SideOnly(Side.CLIENT)
 public abstract class GuiContainerMP extends GuiContainer

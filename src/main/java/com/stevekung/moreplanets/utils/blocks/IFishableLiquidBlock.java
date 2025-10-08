@@ -1,9 +1,10 @@
 package com.stevekung.moreplanets.utils.blocks;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.init.MPLootTables;
 
 import net.minecraft.util.ResourceLocation;
-import com.stevekung.moreplanets.init.MPLootTables;
+
+import javax.annotation.Nullable;
 
 public interface IFishableLiquidBlock
 {

@@ -1,11 +1,6 @@
 package com.stevekung.moreplanets.client.renderer;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import com.stevekung.lib.utils.client.ClientRegistryUtils;
 import com.stevekung.moreplanets.client.renderer.tileentity.TileEntityShieldGeneratorRenderer;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPItems;
@@ -23,12 +18,17 @@ import com.stevekung.moreplanets.planets.nibiru.client.renderer.tileentity.TileE
 import com.stevekung.moreplanets.planets.nibiru.client.renderer.tileentity.TileEntityMultalicCrystalRenderer;
 import com.stevekung.moreplanets.planets.nibiru.client.renderer.tileentity.TileEntityNuclearWasteTankRenderer;
 import com.stevekung.moreplanets.planets.nibiru.tileentity.*;
-
 import com.stevekung.moreplanets.tileentity.TileEntityAlienChest;
 import com.stevekung.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import com.stevekung.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import com.stevekung.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
-import com.stevekung.lib.utils.client.ClientRegistryUtils;
+
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer

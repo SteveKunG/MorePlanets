@@ -1,13 +1,14 @@
 package com.stevekung.moreplanets.utils.blocks;
 
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.EnumBlockRenderType;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 
 public abstract class BlockContainerMP extends BlockContainer implements ISortableBlock, IItemModelRender
 {

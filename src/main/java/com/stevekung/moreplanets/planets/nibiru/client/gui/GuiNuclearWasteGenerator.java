@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import com.stevekung.lib.utils.LangUtils;
 import com.stevekung.moreplanets.core.event.ClientEventHandler;
 import com.stevekung.moreplanets.planets.nibiru.inventory.ContainerNuclearWasteGenerator;
 import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
@@ -26,7 +27,6 @@ import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import com.stevekung.lib.utils.LangUtils;
 
 @SideOnly(Side.CLIENT)
 public class GuiNuclearWasteGenerator extends GuiContainerMP implements ICheckBoxCallback

@@ -1,5 +1,7 @@
 package com.stevekung.moreplanets.planets.nibiru.client.particle;
 
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedElderGuardian;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -12,7 +14,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedElderGuardian;
 
 @SideOnly(Side.CLIENT)
 public class ParticleInfectedGuardianAppearance extends Particle

@@ -1,8 +1,12 @@
 package com.stevekung.moreplanets.planets.nibiru.entity;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityInfectedArrow;
+import com.stevekung.moreplanets.utils.EntityEffectUtils;
+import com.stevekung.moreplanets.utils.entity.ISpaceMob;
 
-import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -15,12 +19,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityInfectedArrow;
-import com.stevekung.moreplanets.utils.EntityEffectUtils;
-import com.stevekung.moreplanets.utils.entity.ISpaceMob;
+
+import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+
+import javax.annotation.Nullable;
 
 public class EntityInfectedSkeleton extends EntitySkeleton implements IEntityBreathable, ISpaceMob
 {

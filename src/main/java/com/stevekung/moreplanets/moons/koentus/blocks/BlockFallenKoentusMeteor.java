@@ -2,6 +2,13 @@ package com.stevekung.moreplanets.moons.koentus.blocks;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.moons.koentus.entity.EntityFallingKoentusMeteor;
+import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
+import com.stevekung.moreplanets.utils.blocks.BlockFallingMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -17,12 +24,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.moons.koentus.entity.EntityFallingKoentusMeteor;
-import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
-import com.stevekung.moreplanets.utils.blocks.BlockFallingMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.lib.utils.ColorUtils;
 
 public class BlockFallenKoentusMeteor extends BlockFallingMP
 {

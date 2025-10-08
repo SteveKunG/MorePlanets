@@ -3,6 +3,12 @@ package com.stevekung.moreplanets.items.capsule_effect;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.CommonUtils;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.utils.PotionMP;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -11,11 +17,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.utils.PotionMP;
-import com.stevekung.lib.utils.ColorUtils;
-import com.stevekung.lib.utils.CommonUtils;
-import com.stevekung.lib.utils.LangUtils;
 
 public class InfectedSporeProtectionEffect extends PotionMP
 {

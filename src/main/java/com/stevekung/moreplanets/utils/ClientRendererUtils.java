@@ -2,6 +2,10 @@ package com.stevekung.moreplanets.utils;
 
 import java.util.List;
 
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.lib.utils.client.RenderUtils;
+import com.stevekung.lib.utils.enums.CachedEnum;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -18,9 +22,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3i;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.lib.utils.client.GLConstants;
-import com.stevekung.lib.utils.client.RenderUtils;
-import com.stevekung.lib.utils.enums.CachedEnum;
 
 @SideOnly(Side.CLIENT)
 public class ClientRendererUtils

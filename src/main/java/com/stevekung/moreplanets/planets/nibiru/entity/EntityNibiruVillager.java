@@ -3,13 +3,14 @@ package com.stevekung.moreplanets.planets.nibiru.entity;
 import java.util.Random;
 import java.util.UUID;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.planets.nibiru.entity.ai.*;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFields;
+import com.stevekung.moreplanets.utils.entity.ISpaceMob;
+import com.stevekung.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
-import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
-import micdoodle8.mods.galacticraft.core.GCItems;
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedWitch;
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
-import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -49,14 +50,14 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.planets.nibiru.entity.ai.*;
 
-import com.stevekung.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFields;
-import com.stevekung.moreplanets.utils.entity.ISpaceMob;
-import com.stevekung.moreplanets.utils.entity.ai.PathNavigateGroundMP;
+import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+import micdoodle8.mods.galacticraft.core.GCItems;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedWitch;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
+import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
+
+import javax.annotation.Nullable;
 
 public class EntityNibiruVillager extends EntityAgeable implements INpc, IMerchant, IEntityBreathable, ISpaceMob
 {

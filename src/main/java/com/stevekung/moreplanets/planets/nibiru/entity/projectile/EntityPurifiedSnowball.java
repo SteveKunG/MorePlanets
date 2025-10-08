@@ -1,5 +1,9 @@
 package com.stevekung.moreplanets.planets.nibiru.entity.projectile;
 
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -8,9 +12,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
 
 public class EntityPurifiedSnowball extends EntityThrowable
 {

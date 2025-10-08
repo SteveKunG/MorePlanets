@@ -2,9 +2,10 @@ package com.stevekung.moreplanets.entity.projectile;
 
 import java.util.List;
 
-import io.netty.buffer.ByteBuf;
-import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
-import micdoodle8.mods.galacticraft.core.TransformerHooks;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.items.ItemSpaceFishingRod;
+import com.stevekung.moreplanets.utils.blocks.IFishableLiquidBlock;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
@@ -35,9 +36,10 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.common.registry.IThrowableEntity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.items.ItemSpaceFishingRod;
-import com.stevekung.moreplanets.utils.blocks.IFishableLiquidBlock;
+
+import io.netty.buffer.ByteBuf;
+import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
+import micdoodle8.mods.galacticraft.core.TransformerHooks;
 
 public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditionalSpawnData, IThrowableEntity
 {

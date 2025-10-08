@@ -2,9 +2,10 @@ package com.stevekung.moreplanets.planets.chalos.world.gen.biome;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
-import com.stevekung.moreplanets.init.MPBlocks;
 
 public class BiomeChalosMoutains extends BiomeChalos
 {

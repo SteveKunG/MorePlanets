@@ -1,5 +1,9 @@
 package com.stevekung.moreplanets.moons.koentus.client.renderer.entity;
 
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.moons.koentus.entity.EntityFallingKoentusMeteor;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
@@ -17,9 +21,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.moons.koentus.entity.EntityFallingKoentusMeteor;
-import com.stevekung.lib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class RenderFallingKoentusMeteor extends Render<EntityFallingKoentusMeteor>

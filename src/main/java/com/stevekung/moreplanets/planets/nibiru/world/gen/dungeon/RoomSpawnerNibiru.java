@@ -2,10 +2,11 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.dungeon;
 
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedCreeper;
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSkeleton;
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedCreeper;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedSkeleton;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedZombie;
+import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.init.Blocks;
@@ -14,10 +15,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedCreeper;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedSkeleton;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedZombie;
-import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
+
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedCreeper;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSkeleton;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
 
 public class RoomSpawnerNibiru extends RoomEmptyNibiru
 {

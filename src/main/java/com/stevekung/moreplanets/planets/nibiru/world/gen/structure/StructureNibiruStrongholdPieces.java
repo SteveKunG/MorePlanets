@@ -4,7 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.annotation.Nullable;
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.planets.nibiru.blocks.BlockVeinFrame;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedWorm;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityZergius;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityJuicerEgg;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
+import com.stevekung.moreplanets.tileentity.TileEntityDummy;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
 
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
@@ -22,16 +31,8 @@ import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.planets.nibiru.blocks.BlockVeinFrame;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedWorm;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityZergius;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityJuicerEgg;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
-import com.stevekung.moreplanets.tileentity.TileEntityDummy;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
-import com.stevekung.lib.utils.BlockStateProperty;
+
+import javax.annotation.Nullable;
 
 public class StructureNibiruStrongholdPieces
 {

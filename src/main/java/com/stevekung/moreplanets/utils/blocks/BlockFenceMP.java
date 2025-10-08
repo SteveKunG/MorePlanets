@@ -1,14 +1,15 @@
 package com.stevekung.moreplanets.utils.blocks;
 
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.lib.utils.ColorUtils;
 
 public class BlockFenceMP extends BlockFence implements ISortableBlock, IItemModelRender, IItemRarity
 {

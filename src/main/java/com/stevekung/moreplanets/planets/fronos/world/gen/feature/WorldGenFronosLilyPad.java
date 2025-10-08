@@ -2,10 +2,11 @@ package com.stevekung.moreplanets.planets.fronos.world.gen.feature;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import com.stevekung.moreplanets.init.MPBlocks;
 
 public class WorldGenFronosLilyPad extends WorldGenerator
 {

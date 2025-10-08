@@ -1,5 +1,7 @@
 package com.stevekung.moreplanets.planets.nibiru.client.particle;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
@@ -10,7 +12,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPBlocks;
 
 @SideOnly(Side.CLIENT)
 public class ParticleAlienBerryLeavesSpark extends Particle

@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
+import com.stevekung.lib.utils.enums.CachedEnum;
+import com.stevekung.moreplanets.init.MPBiomes;
 
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.common.BiomeManager;
-import com.stevekung.moreplanets.init.MPBiomes;
-import com.stevekung.lib.utils.enums.CachedEnum;
 
 public class GenLayerChalosBiomes extends GenLayer
 {

@@ -1,6 +1,17 @@
 package com.stevekung.moreplanets.planets.nibiru.blocks;
 
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.network.PacketSimpleMP;
+import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
+import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
+import com.stevekung.moreplanets.utils.IDescription;
+import com.stevekung.moreplanets.utils.ItemDescription;
+import com.stevekung.moreplanets.utils.blocks.BlockTileMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -14,17 +25,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.network.PacketSimpleMP;
-import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
-import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
-import com.stevekung.moreplanets.utils.IDescription;
-import com.stevekung.moreplanets.utils.ItemDescription;
-import com.stevekung.moreplanets.utils.blocks.BlockTileMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.lib.utils.ColorUtils;
+
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 
 public class BlockNuclearWasteGenerator extends BlockTileMP implements IDescription
 {

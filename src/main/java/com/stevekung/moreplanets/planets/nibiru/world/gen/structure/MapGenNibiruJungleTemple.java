@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedWitch;
+import com.stevekung.moreplanets.init.MPBiomes;
+import com.stevekung.moreplanets.utils.LoggerMP;
+
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -12,8 +14,8 @@ import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
-import com.stevekung.moreplanets.init.MPBiomes;
-import com.stevekung.moreplanets.utils.LoggerMP;
+
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedWitch;
 
 public class MapGenNibiruJungleTemple extends MapGenStructure
 {

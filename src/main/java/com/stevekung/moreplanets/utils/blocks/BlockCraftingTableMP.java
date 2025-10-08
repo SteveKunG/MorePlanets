@@ -1,5 +1,7 @@
 package com.stevekung.moreplanets.utils.blocks;
 
+import com.stevekung.moreplanets.utils.inventory.ContainerWorkbenchMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -14,7 +16,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.utils.inventory.ContainerWorkbenchMP;
 
 public class BlockCraftingTableMP extends BlockBaseMP
 {

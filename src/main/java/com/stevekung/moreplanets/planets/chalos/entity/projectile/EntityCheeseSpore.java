@@ -1,11 +1,12 @@
 package com.stevekung.moreplanets.planets.chalos.entity.projectile;
 
+import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseSlime;
+import com.stevekung.moreplanets.utils.entity.EntityFireballMP;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseSlime;
-import com.stevekung.moreplanets.utils.entity.EntityFireballMP;
 
 public class EntityCheeseSpore extends EntityFireballMP
 {

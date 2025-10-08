@@ -5,11 +5,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 import com.llamalad7.mixinextras.sugar.Local;
+import com.stevekung.moreplanets.utils.SurvivalPlanetUtils;
 
-import micdoodle8.mods.galacticraft.core.event.EventHandlerGC;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import com.stevekung.moreplanets.utils.SurvivalPlanetUtils;
+
+import micdoodle8.mods.galacticraft.core.event.EventHandlerGC;
 
 @Mixin(EventHandlerGC.class)
 public class MixinEventHandlerGC

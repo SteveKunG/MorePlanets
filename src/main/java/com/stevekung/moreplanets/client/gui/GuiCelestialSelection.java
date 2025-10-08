@@ -6,9 +6,18 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.annotation.Nullable;
-
 import com.google.common.collect.Lists;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.moreplanets.utils.dimension.IDarkEnergyProvider;
+
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiTextField;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.WorldProvider;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
@@ -17,16 +26,8 @@ import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.world.ISolarLevel;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.GuiTextField;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.WorldProvider;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.dimension.IDarkEnergyProvider;
-import com.stevekung.lib.utils.ColorUtils;
-import com.stevekung.lib.utils.LangUtils;
+
+import javax.annotation.Nullable;
 
 @SideOnly(Side.CLIENT)
 public class GuiCelestialSelection extends GuiScreen

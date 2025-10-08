@@ -2,7 +2,6 @@ package com.stevekung.moreplanets.utils.world.gen.biome;
 
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.core.entities.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.math.BlockPos;
@@ -10,6 +9,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import micdoodle8.mods.galacticraft.core.entities.*;
 
 public class BiomeMP extends Biome
 {

@@ -2,17 +2,8 @@ package com.stevekung.moreplanets.planets.fronos.world.gen.biome;
 
 import java.util.Random;
 
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.passive.EntitySquid;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.world.gen.WorldGenFlowersBase;
 import com.stevekung.moreplanets.init.MPBiomes;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.fronos.entity.EntityBearry;
@@ -24,8 +15,18 @@ import com.stevekung.moreplanets.planets.fronos.world.gen.feature.WorldGenFrolia
 import com.stevekung.moreplanets.planets.fronos.world.gen.feature.WorldGenOscaleaTrees;
 import com.stevekung.moreplanets.utils.world.gen.biome.BiomeMP;
 import com.stevekung.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
-import com.stevekung.lib.utils.ColorUtils;
-import com.stevekung.lib.world.gen.WorldGenFlowersBase;
+
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.monster.*;
+import net.minecraft.entity.passive.EntitySquid;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class BiomeFronos extends BiomeMP
 {

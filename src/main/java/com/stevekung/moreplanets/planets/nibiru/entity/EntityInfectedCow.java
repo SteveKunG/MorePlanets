@@ -1,6 +1,12 @@
 package com.stevekung.moreplanets.planets.nibiru.entity;
 
-import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.planets.nibiru.entity.ai.EntityAIFleeNibiruThunder;
+import com.stevekung.moreplanets.utils.entity.ISpaceMob;
+import com.stevekung.moreplanets.utils.entity.ai.PathNavigateGroundMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.*;
@@ -9,12 +15,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.planets.nibiru.entity.ai.EntityAIFleeNibiruThunder;
-import com.stevekung.moreplanets.utils.entity.ISpaceMob;
-import com.stevekung.moreplanets.utils.entity.ai.PathNavigateGroundMP;
+
+import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 
 public class EntityInfectedCow extends EntityCow implements ISpaceMob, IEntityBreathable
 {

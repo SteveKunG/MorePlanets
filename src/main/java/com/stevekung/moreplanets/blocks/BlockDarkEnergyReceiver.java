@@ -4,7 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import com.stevekung.lib.utils.*;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.init.MPSounds;
+import com.stevekung.moreplanets.network.PacketSimpleMP;
+import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
+import com.stevekung.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
+import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
+import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
+import com.stevekung.moreplanets.utils.IDescription;
+import com.stevekung.moreplanets.utils.ItemDescription;
+import com.stevekung.moreplanets.utils.blocks.BlockTileMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -27,19 +40,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.init.MPSounds;
-import com.stevekung.moreplanets.network.PacketSimpleMP;
-import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import com.stevekung.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
-import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
-import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
-import com.stevekung.moreplanets.utils.IDescription;
-import com.stevekung.moreplanets.utils.ItemDescription;
-import com.stevekung.moreplanets.utils.blocks.BlockTileMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.lib.utils.*;
+
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 
 public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription
 {

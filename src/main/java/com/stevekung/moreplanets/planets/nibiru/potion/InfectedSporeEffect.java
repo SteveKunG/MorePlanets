@@ -1,12 +1,13 @@
 package com.stevekung.moreplanets.planets.nibiru.potion;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ResourceLocation;
+import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.init.MPPotions;
 import com.stevekung.moreplanets.utils.DamageSourceMP;
 import com.stevekung.moreplanets.utils.PotionMP;
-import com.stevekung.lib.utils.ColorUtils;
+
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 
 public class InfectedSporeEffect extends PotionMP
 {

@@ -1,5 +1,7 @@
 package com.stevekung.moreplanets.planets.chalos.client.sky;
 
+import com.stevekung.lib.utils.client.GLConstants;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -10,7 +12,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.IRenderHandler;
-import com.stevekung.lib.utils.client.GLConstants;
 
 public class CloudRendererChalos extends IRenderHandler
 {

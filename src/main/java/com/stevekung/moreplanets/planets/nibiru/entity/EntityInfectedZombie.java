@@ -3,8 +3,10 @@ package com.stevekung.moreplanets.planets.nibiru.entity;
 import java.util.Calendar;
 import java.util.List;
 
-import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
-import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.utils.EntityEffectUtils;
+import com.stevekung.moreplanets.utils.entity.ISpaceMob;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -21,9 +23,8 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeModContainer;
 
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.utils.EntityEffectUtils;
-import com.stevekung.moreplanets.utils.entity.ISpaceMob;
+import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 
 public class EntityInfectedZombie extends EntityZombie implements IEntityBreathable, ISpaceMob
 {

@@ -2,7 +2,10 @@ package com.stevekung.moreplanets.integration.waila;
 
 import java.util.List;
 
-import mcp.mobius.waila.api.*;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.blocks.BlockFurnaceMP;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityFurnaceMP;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,9 +13,8 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.blocks.BlockFurnaceMP;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityFurnaceMP;
+
+import mcp.mobius.waila.api.*;
 
 public class HUDHandlerFurnaceMP implements IWailaDataProvider
 {

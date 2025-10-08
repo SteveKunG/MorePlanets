@@ -2,6 +2,11 @@ package com.stevekung.moreplanets.planets.nibiru.blocks;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
+import com.stevekung.moreplanets.utils.blocks.BlockGrassBlockMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.PropertyBool;
@@ -14,10 +19,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
-import com.stevekung.moreplanets.utils.blocks.BlockGrassBlockMP;
 
 public class BlockInfectedGrassBlock extends BlockGrassBlockMP implements IGrowable
 {

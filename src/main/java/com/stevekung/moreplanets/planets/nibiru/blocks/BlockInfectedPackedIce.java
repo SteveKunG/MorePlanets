@@ -2,10 +2,11 @@ package com.stevekung.moreplanets.planets.nibiru.blocks;
 
 import java.util.Random;
 
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
 import com.stevekung.moreplanets.utils.blocks.IIce;
+
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 
 public class BlockInfectedPackedIce extends BlockBaseMP implements IIce
 {

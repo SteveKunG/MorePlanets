@@ -1,10 +1,12 @@
 package com.stevekung.moreplanets.planets.nibiru.blocks;
 
-import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
-import micdoodle8.mods.galacticraft.api.transmission.tile.IConductor;
-import micdoodle8.mods.galacticraft.api.transmission.tile.INetworkConnection;
-import micdoodle8.mods.galacticraft.api.transmission.tile.ITransmitter;
-import micdoodle8.mods.galacticraft.core.energy.EnergyUtil;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntitySealableNuclearWasteRod;
+import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
+import com.stevekung.moreplanets.utils.IDescription;
+import com.stevekung.moreplanets.utils.ItemDescription;
+import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
+import com.stevekung.moreplanets.utils.blocks.ISortableBlock;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -19,12 +21,12 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntitySealableNuclearWasteRod;
-import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
-import com.stevekung.moreplanets.utils.IDescription;
-import com.stevekung.moreplanets.utils.ItemDescription;
-import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
-import com.stevekung.moreplanets.utils.blocks.ISortableBlock;
+
+import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
+import micdoodle8.mods.galacticraft.api.transmission.tile.IConductor;
+import micdoodle8.mods.galacticraft.api.transmission.tile.INetworkConnection;
+import micdoodle8.mods.galacticraft.api.transmission.tile.ITransmitter;
+import micdoodle8.mods.galacticraft.core.energy.EnergyUtil;
 
 public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartialSealableBlock, ITileEntityProvider, IDescription, ISortableBlock
 {

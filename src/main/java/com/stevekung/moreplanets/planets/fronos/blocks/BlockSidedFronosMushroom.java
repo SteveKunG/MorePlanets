@@ -1,5 +1,6 @@
 package com.stevekung.moreplanets.planets.fronos.blocks;
 
+import com.stevekung.lib.utils.BlockStateProperty;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.utils.blocks.BlockBushMP;
 
@@ -18,8 +19,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import com.stevekung.lib.utils.BlockStateProperty;
 
 public class BlockSidedFronosMushroom extends BlockBushMP
 {

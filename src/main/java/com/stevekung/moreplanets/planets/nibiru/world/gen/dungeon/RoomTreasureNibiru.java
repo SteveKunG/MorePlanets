@@ -2,16 +2,17 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.dungeon;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNibiruTreasureChest;
+import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNibiruTreasureChest;
-import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
-import com.stevekung.lib.utils.BlockStateProperty;
 
 public class RoomTreasureNibiru extends SizedPieceNibiru
 {

@@ -3,6 +3,9 @@ package com.stevekung.moreplanets.planets.diona.entity;
 import java.util.List;
 import java.util.UUID;
 
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.JsonUtils;
+import com.stevekung.lib.utils.LangUtils;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.init.MPLootTables;
@@ -48,9 +51,6 @@ import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityDungeonSpawner;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import com.stevekung.lib.utils.ColorUtils;
-import com.stevekung.lib.utils.JsonUtils;
-import com.stevekung.lib.utils.LangUtils;
 
 import javax.annotation.Nullable;
 

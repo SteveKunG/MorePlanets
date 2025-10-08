@@ -2,12 +2,13 @@ package com.stevekung.moreplanets.utils.world.gen.feature;
 
 import java.util.Random;
 
+import com.stevekung.lib.world.gen.EnumOreGen;
+
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import com.stevekung.lib.world.gen.EnumOreGen;
 
 public abstract class BiomeDecoratorMP extends BiomeDecorator
 {

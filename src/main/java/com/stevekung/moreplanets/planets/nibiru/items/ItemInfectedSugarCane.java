@@ -1,5 +1,10 @@
 package com.stevekung.moreplanets.planets.nibiru.items;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
+import com.stevekung.moreplanets.utils.items.ItemBaseMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSnow;
 import net.minecraft.block.SoundType;
@@ -14,10 +19,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
-import com.stevekung.moreplanets.utils.items.ItemBaseMP;
-import com.stevekung.lib.utils.BlockStateProperty;
 
 public class ItemInfectedSugarCane extends ItemBaseMP
 {

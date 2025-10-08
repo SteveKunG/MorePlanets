@@ -1,6 +1,8 @@
 package com.stevekung.moreplanets.planets.nibiru.blocks;
 
-import javax.annotation.Nullable;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.utils.blocks.BlockBreakableMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -11,9 +13,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.blocks.BlockBreakableMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.lib.utils.ColorUtils;
+
+import javax.annotation.Nullable;
 
 public class BlockMultalicCrystalBlock extends BlockBreakableMP
 {

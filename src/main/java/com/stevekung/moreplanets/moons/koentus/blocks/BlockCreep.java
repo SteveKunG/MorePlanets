@@ -2,6 +2,16 @@ package com.stevekung.moreplanets.moons.koentus.blocks;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.entity.EntityAntiGravFallingBlock;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.moons.koentus.tileentity.TileEntityGravityExtractor;
+import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
+import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
+import com.stevekung.moreplanets.utils.blocks.BlockFallingMP;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -15,15 +25,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.entity.EntityAntiGravFallingBlock;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.moons.koentus.tileentity.TileEntityGravityExtractor;
-import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
-import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
-import com.stevekung.moreplanets.utils.blocks.BlockFallingMP;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.lib.utils.ColorUtils;
 
 public class BlockCreep extends BlockFallingMP implements ITileEntityProvider, IItemRarity
 {

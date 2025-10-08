@@ -1,13 +1,14 @@
 package com.stevekung.moreplanets.planets.diona.client.renderer.entity;
 
+import com.stevekung.moreplanets.planets.diona.client.model.ModelInfectedPurloniteWorm;
+import com.stevekung.moreplanets.planets.diona.entity.EntityInfectedPurloniteWorm;
+import com.stevekung.moreplanets.utils.client.renderer.entity.layer.LayerGlowingTexture;
+
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.diona.client.model.ModelInfectedPurloniteWorm;
-import com.stevekung.moreplanets.planets.diona.entity.EntityInfectedPurloniteWorm;
-import com.stevekung.moreplanets.utils.client.renderer.entity.layer.LayerGlowingTexture;
 
 @SideOnly(Side.CLIENT)
 public class RenderInfectedPurloniteWorm extends RenderLiving<EntityInfectedPurloniteWorm>

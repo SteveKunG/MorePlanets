@@ -3,6 +3,11 @@ package com.stevekung.moreplanets.blocks;
 import java.util.Locale;
 import java.util.Random;
 
+import com.stevekung.moreplanets.planets.chalos.tileentity.TileEntityChalosDungeonSpawner;
+import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityDionaDungeonSpawner;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNibiruDungeonSpawner;
+import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
+
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
@@ -20,10 +25,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.chalos.tileentity.TileEntityChalosDungeonSpawner;
-import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityDionaDungeonSpawner;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNibiruDungeonSpawner;
-import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
 
 public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntityProvider
 {

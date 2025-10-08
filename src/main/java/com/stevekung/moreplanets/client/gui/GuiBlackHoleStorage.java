@@ -3,17 +3,7 @@ package com.stevekung.moreplanets.client.gui;
 import java.util.Collections;
 import java.util.UUID;
 
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementCheckbox;
-import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementCheckbox.ICheckBoxCallback;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import com.stevekung.lib.utils.LangUtils;
 import com.stevekung.moreplanets.inventory.ContainerBlackHoleStorage;
 import com.stevekung.moreplanets.network.PacketSimpleMP;
 import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
@@ -21,7 +11,19 @@ import com.stevekung.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import com.stevekung.moreplanets.utils.client.gui.GuiContainerMP;
 import com.stevekung.moreplanets.utils.client.gui.GuiElementCheckboxMP;
 import com.stevekung.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
-import com.stevekung.lib.utils.LangUtils;
+
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementCheckbox;
+import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementCheckbox.ICheckBoxCallback;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 
 @SideOnly(Side.CLIENT)
 public class GuiBlackHoleStorage extends GuiContainerMP implements ICheckBoxCallback

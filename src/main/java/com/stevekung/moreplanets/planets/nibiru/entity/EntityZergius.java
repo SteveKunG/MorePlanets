@@ -5,7 +5,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+import com.stevekung.lib.utils.enums.CachedEnum;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.utils.EntityEffectUtils;
+import com.stevekung.moreplanets.utils.entity.ISpaceMob;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,10 +27,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.utils.EntityEffectUtils;
-import com.stevekung.moreplanets.utils.entity.ISpaceMob;
-import com.stevekung.lib.utils.enums.CachedEnum;
+
+import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 
 public class EntityZergius extends EntityFlying implements IMob, IEntityBreathable, ISpaceMob
 {

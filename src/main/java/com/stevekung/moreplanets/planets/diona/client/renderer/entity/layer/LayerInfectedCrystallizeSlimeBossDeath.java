@@ -2,6 +2,9 @@ package com.stevekung.moreplanets.planets.diona.client.renderer.entity.layer;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.moreplanets.planets.diona.entity.EntityInfectedPurloniteSlimeBoss;
+
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -9,8 +12,6 @@ import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.diona.entity.EntityInfectedPurloniteSlimeBoss;
-import com.stevekung.lib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class LayerInfectedCrystallizeSlimeBossDeath implements LayerRenderer<EntityInfectedPurloniteSlimeBoss>

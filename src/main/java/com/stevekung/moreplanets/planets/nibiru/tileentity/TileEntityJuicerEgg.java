@@ -2,14 +2,16 @@ package com.stevekung.moreplanets.planets.nibiru.tileentity;
 
 import java.util.List;
 
-import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityRenderTickable;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.AxisAlignedBB;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityRenderTickable;
+
+import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
 
 public class TileEntityJuicerEgg extends TileEntityRenderTickable
 {

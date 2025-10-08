@@ -2,7 +2,7 @@ package com.stevekung.moreplanets.moons.koentus.blocks;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.utils.blocks.BlockIceMP;
 
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.IBlockState;
@@ -17,7 +17,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.blocks.BlockIceMP;
+
+import javax.annotation.Nullable;
 
 public class BlockGlowingHardenedIce extends BlockIceMP
 {

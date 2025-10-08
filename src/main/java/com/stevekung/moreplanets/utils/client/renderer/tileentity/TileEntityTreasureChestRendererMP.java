@@ -1,13 +1,15 @@
 package com.stevekung.moreplanets.utils.client.renderer.tileentity;
 
-import micdoodle8.mods.galacticraft.core.client.model.block.ModelTreasureChest;
+import com.stevekung.lib.utils.CalendarUtils;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
-import com.stevekung.lib.utils.CalendarUtils;
+
+import micdoodle8.mods.galacticraft.core.client.model.block.ModelTreasureChest;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityTreasureChestRendererMP extends TileEntitySpecialRenderer<TileEntityTreasureChestMP>

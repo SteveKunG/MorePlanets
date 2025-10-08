@@ -3,6 +3,13 @@ package com.stevekung.moreplanets.utils.blocks;
 import java.util.Locale;
 import java.util.Random;
 
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenTerrashroom;
+import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
@@ -18,12 +25,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenTerrashroom;
-import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.lib.utils.ColorUtils;
 
 public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGrowable
 {

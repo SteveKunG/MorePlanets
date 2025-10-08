@@ -4,10 +4,13 @@ import java.util.Collection;
 import java.util.Locale;
 import java.util.Random;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
+import com.stevekung.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
+import com.stevekung.moreplanets.tileentity.TileEntityDummy;
+import com.stevekung.moreplanets.utils.blocks.BlockContainerMP;
 
-import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
-import micdoodle8.mods.galacticraft.core.util.FluidUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -32,12 +35,11 @@ import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
-import com.stevekung.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
-import com.stevekung.moreplanets.tileentity.TileEntityDummy;
-import com.stevekung.moreplanets.utils.blocks.BlockContainerMP;
+
+import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
+import micdoodle8.mods.galacticraft.core.util.FluidUtil;
+
+import javax.annotation.Nullable;
 
 public class BlockDummy extends BlockContainerMP implements IPartialSealableBlock
 {

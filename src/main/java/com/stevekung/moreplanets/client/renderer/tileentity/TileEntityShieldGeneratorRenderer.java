@@ -1,5 +1,9 @@
 package com.stevekung.moreplanets.client.renderer.tileentity;
 
+import com.stevekung.lib.client.event.ClientEventHandler;
+import com.stevekung.moreplanets.client.model.ModelShieldGenerator;
+import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -8,9 +12,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.client.model.ModelShieldGenerator;
-import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
-import com.stevekung.lib.client.event.ClientEventHandler;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer<TileEntityShieldGenerator>

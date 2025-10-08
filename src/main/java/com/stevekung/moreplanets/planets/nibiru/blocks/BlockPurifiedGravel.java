@@ -2,14 +2,15 @@ package com.stevekung.moreplanets.planets.nibiru.blocks;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.utils.blocks.BlockFallingMP;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.blocks.BlockFallingMP;
-import com.stevekung.lib.utils.ColorUtils;
 
 public class BlockPurifiedGravel extends BlockFallingMP
 {

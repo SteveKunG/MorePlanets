@@ -1,5 +1,13 @@
 package com.stevekung.moreplanets.init;
 
+import com.stevekung.moreplanets.core.config.ConfigManagerMP;
+import com.stevekung.moreplanets.moons.koentus.dimension.WorldProviderKoentus;
+import com.stevekung.moreplanets.planets.chalos.dimension.WorldProviderChalos;
+import com.stevekung.moreplanets.planets.diona.dimension.WorldProviderDiona;
+import com.stevekung.moreplanets.planets.fronos.dimension.WorldProviderFronos;
+import com.stevekung.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
+import com.stevekung.moreplanets.utils.CelestialRegistryUtils;
+
 import micdoodle8.mods.galacticraft.api.galaxies.Moon;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
@@ -8,13 +16,6 @@ import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeMoon;
 import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeOverworld;
-import com.stevekung.moreplanets.core.config.ConfigManagerMP;
-import com.stevekung.moreplanets.moons.koentus.dimension.WorldProviderKoentus;
-import com.stevekung.moreplanets.planets.chalos.dimension.WorldProviderChalos;
-import com.stevekung.moreplanets.planets.diona.dimension.WorldProviderDiona;
-import com.stevekung.moreplanets.planets.fronos.dimension.WorldProviderFronos;
-import com.stevekung.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
-import com.stevekung.moreplanets.utils.CelestialRegistryUtils;
 
 public class MPPlanets
 {

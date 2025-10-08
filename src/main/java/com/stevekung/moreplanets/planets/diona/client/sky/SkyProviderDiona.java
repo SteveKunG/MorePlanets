@@ -1,10 +1,11 @@
 package com.stevekung.moreplanets.planets.diona.client.sky;
 
+import com.stevekung.moreplanets.client.renderer.sky.SkyProviderBaseMP;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
-import com.stevekung.moreplanets.client.renderer.sky.SkyProviderBaseMP;
 
 public class SkyProviderDiona extends SkyProviderBaseMP
 {

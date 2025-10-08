@@ -1,7 +1,8 @@
 package com.stevekung.moreplanets.utils.items;
 
-import micdoodle8.mods.galacticraft.core.TransformerHooks;
 import net.minecraft.entity.item.EntityItem;
+
+import micdoodle8.mods.galacticraft.core.TransformerHooks;
 
 public class ItemAntiGravity extends ItemBaseMP
 {

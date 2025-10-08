@@ -1,16 +1,18 @@
 package com.stevekung.moreplanets.integration.jei.black_hole_storage;
 
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.moreplanets.core.Tags;
+import com.stevekung.moreplanets.integration.jei.JEIRegistryHelper;
+import com.stevekung.moreplanets.integration.jei.MPJEIRecipes;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.ResourceLocation;
+
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
-import net.minecraft.client.Minecraft;
-import net.minecraft.util.ResourceLocation;
-import com.stevekung.moreplanets.core.Tags;
-import com.stevekung.moreplanets.integration.jei.JEIRegistryHelper;
-import com.stevekung.moreplanets.integration.jei.MPJEIRecipes;
-import com.stevekung.lib.utils.LangUtils;
 
 public class BlackHoleStorageRecipeCategory implements IRecipeCategory<BlackHoleStorageRecipeWrapper>
 {

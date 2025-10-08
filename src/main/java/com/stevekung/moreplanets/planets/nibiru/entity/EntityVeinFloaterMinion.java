@@ -1,6 +1,9 @@
 package com.stevekung.moreplanets.planets.nibiru.entity;
 
-import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityVeinBall;
+import com.stevekung.moreplanets.utils.entity.ISpaceMob;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -12,9 +15,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityVeinBall;
-import com.stevekung.moreplanets.utils.entity.ISpaceMob;
+
+import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 
 public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreathable, ISpaceMob
 {

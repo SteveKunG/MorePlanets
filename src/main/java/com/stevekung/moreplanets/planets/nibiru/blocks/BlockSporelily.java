@@ -2,7 +2,10 @@ package com.stevekung.moreplanets.planets.nibiru.blocks;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPSounds;
+import com.stevekung.moreplanets.utils.blocks.BlockBushMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -13,10 +16,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPSounds;
-import com.stevekung.moreplanets.utils.blocks.BlockBushMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+
+import javax.annotation.Nullable;
 
 public class BlockSporelily extends BlockBushMP
 {

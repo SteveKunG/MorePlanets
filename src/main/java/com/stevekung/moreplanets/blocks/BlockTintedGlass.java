@@ -2,9 +2,9 @@ package com.stevekung.moreplanets.blocks;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.utils.blocks.BlockBreakableMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
 
-import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
 import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -20,8 +20,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.blocks.BlockBreakableMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+
+import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
+
+import javax.annotation.Nullable;
 
 public class BlockTintedGlass extends BlockBreakableMP implements IPartialSealableBlock
 {

@@ -2,11 +2,12 @@ package com.stevekung.moreplanets.blocks.decoration;
 
 import java.util.Locale;
 
+import com.stevekung.moreplanets.utils.blocks.BlockWallMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import com.stevekung.moreplanets.utils.blocks.BlockWallMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
 
 public class BlockAllWall extends BlockWallMP
 {

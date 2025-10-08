@@ -1,5 +1,9 @@
 package com.stevekung.moreplanets.planets.chalos.client.renderer.entity.layer;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.chalos.client.renderer.entity.RenderCheeseFloater;
+import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseFloater;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
@@ -8,9 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.chalos.client.renderer.entity.RenderCheeseFloater;
-import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseFloater;
 
 @SideOnly(Side.CLIENT)
 public class LayerCheeseFloaterSlime implements LayerRenderer<EntityCheeseFloater>

@@ -2,6 +2,10 @@ package com.stevekung.moreplanets.planets.nibiru.entity.weather;
 
 import java.util.List;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPSounds;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityVeinFloater;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.SoundEvents;
@@ -13,9 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPSounds;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityVeinFloater;
 
 public class EntityNibiruLightningBolt extends Entity
 {

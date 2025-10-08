@@ -1,15 +1,17 @@
 package com.stevekung.moreplanets.moons.koentus.items;
 
-import micdoodle8.mods.galacticraft.api.item.IArmorGravity;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
+import com.stevekung.moreplanets.utils.items.armor.ItemArmorMP;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
-import com.stevekung.moreplanets.utils.items.armor.ItemArmorMP;
-import com.stevekung.lib.utils.ColorUtils;
+
+import micdoodle8.mods.galacticraft.api.item.IArmorGravity;
 
 public class ItemGravityBoots extends ItemArmorMP implements IArmorGravity, IItemRarity
 {

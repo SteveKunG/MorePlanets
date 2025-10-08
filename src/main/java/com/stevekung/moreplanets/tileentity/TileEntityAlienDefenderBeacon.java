@@ -1,9 +1,10 @@
 package com.stevekung.moreplanets.tileentity;
 
+import com.stevekung.moreplanets.utils.tileentity.TileEntityAdvancedMP;
+
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityAdvancedMP;
 
 public class TileEntityAlienDefenderBeacon extends TileEntityAdvancedMP
 {

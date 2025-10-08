@@ -2,8 +2,6 @@ package com.stevekung.moreplanets.utils.entity;
 
 import java.util.List;
 
-import io.netty.buffer.ByteBuf;
-import micdoodle8.mods.galacticraft.core.TransformerHooks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -22,6 +20,9 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+
+import io.netty.buffer.ByteBuf;
+import micdoodle8.mods.galacticraft.core.TransformerHooks;
 
 public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditionalSpawnData
 {

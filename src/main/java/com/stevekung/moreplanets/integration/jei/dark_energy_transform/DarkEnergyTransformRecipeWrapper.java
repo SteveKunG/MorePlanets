@@ -1,16 +1,18 @@
 package com.stevekung.moreplanets.integration.jei.dark_energy_transform;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import com.stevekung.moreplanets.recipe.DarkEnergyRecipeData;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.item.ItemStack;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.item.ItemStack;
-import com.stevekung.moreplanets.recipe.DarkEnergyRecipeData;
 
 public class DarkEnergyTransformRecipeWrapper implements IRecipeWrapper
 {

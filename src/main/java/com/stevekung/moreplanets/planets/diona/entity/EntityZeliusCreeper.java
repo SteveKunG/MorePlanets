@@ -1,8 +1,8 @@
 package com.stevekung.moreplanets.planets.diona.entity;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.init.MPPotions;
 
-import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityCreeper;
@@ -10,8 +10,10 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.init.MPPotions;
+
+import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+
+import javax.annotation.Nullable;
 
 public class EntityZeliusCreeper extends EntityCreeper implements IEntityBreathable
 {

@@ -3,14 +3,16 @@ package com.stevekung.moreplanets.client.renderer.ccl;
 import java.util.HashMap;
 import java.util.Map;
 
-import codechicken.lib.render.CCModelState;
-import codechicken.lib.util.TransformUtils;
+import com.stevekung.lib.utils.client.ClientRegistryUtils;
+
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.model.TRSRTransformation;
-import com.stevekung.lib.utils.client.ClientRegistryUtils;
+
+import codechicken.lib.render.CCModelState;
+import codechicken.lib.util.TransformUtils;
 
 public class CCLChest extends CCLRenderBase
 {

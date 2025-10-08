@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.planets.diona.client.renderer.entity;
 
+import com.stevekung.moreplanets.planets.diona.client.model.ModelInfectedPurloniteTentacle;
+import com.stevekung.moreplanets.planets.diona.entity.EntityInfectedPurloniteTentacle;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -9,8 +12,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.diona.client.model.ModelInfectedPurloniteTentacle;
-import com.stevekung.moreplanets.planets.diona.entity.EntityInfectedPurloniteTentacle;
 
 @SideOnly(Side.CLIENT)
 public class RenderInfectedPurloniteTentacle extends Render<EntityInfectedPurloniteTentacle>

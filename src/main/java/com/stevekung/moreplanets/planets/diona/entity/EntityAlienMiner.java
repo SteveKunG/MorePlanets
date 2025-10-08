@@ -2,11 +2,15 @@ package com.stevekung.moreplanets.planets.diona.entity;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import com.google.common.base.Predicate;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.init.MPSounds;
+import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
+import com.stevekung.moreplanets.utils.entity.ISpaceMob;
 
-import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -30,13 +34,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.init.MPSounds;
-import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
-import com.stevekung.moreplanets.utils.entity.ISpaceMob;
+
+import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+
+import javax.annotation.Nullable;
 
 public class EntityAlienMiner extends EntityMob implements IEntityBreathable, ISpaceMob
 {

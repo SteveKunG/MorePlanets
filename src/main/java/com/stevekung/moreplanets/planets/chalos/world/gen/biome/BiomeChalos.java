@@ -2,6 +2,13 @@ package com.stevekung.moreplanets.planets.chalos.world.gen.biome;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseCow;
+import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseFloater;
+import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseSlime;
+import com.stevekung.moreplanets.planets.chalos.world.gen.BiomeDecoratorChalos;
+import com.stevekung.moreplanets.utils.world.gen.biome.BiomeMP;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -9,12 +16,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseCow;
-import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseFloater;
-import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseSlime;
-import com.stevekung.moreplanets.planets.chalos.world.gen.BiomeDecoratorChalos;
-import com.stevekung.moreplanets.utils.world.gen.biome.BiomeMP;
 
 public class BiomeChalos extends BiomeMP
 {

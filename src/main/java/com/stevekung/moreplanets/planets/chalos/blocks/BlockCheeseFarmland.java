@@ -1,9 +1,10 @@
 package com.stevekung.moreplanets.planets.chalos.blocks;
 
-import net.minecraft.block.Block;
+import com.stevekung.lib.utils.BlockStateProperty;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.utils.blocks.BlockFarmlandMP;
-import com.stevekung.lib.utils.BlockStateProperty;
+
+import net.minecraft.block.Block;
 
 public class BlockCheeseFarmland extends BlockFarmlandMP
 {

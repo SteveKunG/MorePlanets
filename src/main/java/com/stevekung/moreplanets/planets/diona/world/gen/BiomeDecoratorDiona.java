@@ -2,16 +2,17 @@ package com.stevekung.moreplanets.planets.diona.world.gen;
 
 import java.util.Random;
 
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import com.stevekung.lib.world.gen.EnumOreGen;
+import com.stevekung.lib.world.gen.WorldGenCaveLiquid;
+import com.stevekung.lib.world.gen.WorldGenMinableBase;
 import com.stevekung.moreplanets.core.config.ConfigManagerMP;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.diona.world.gen.feature.WorldGenInfectedPurloniteCrystal;
 import com.stevekung.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
-import com.stevekung.lib.world.gen.EnumOreGen;
-import com.stevekung.lib.world.gen.WorldGenCaveLiquid;
-import com.stevekung.lib.world.gen.WorldGenMinableBase;
+
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class BiomeDecoratorDiona extends BiomeDecoratorMP
 {

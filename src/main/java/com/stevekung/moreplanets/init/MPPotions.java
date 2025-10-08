@@ -1,12 +1,13 @@
 package com.stevekung.moreplanets.init;
 
-import net.minecraft.potion.Potion;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.items.capsule_effect.DarkEnergyProtectionEffect;
 import com.stevekung.moreplanets.items.capsule_effect.InfectedSporeProtectionEffect;
 import com.stevekung.moreplanets.planets.diona.potion.DarkEnergyEffect;
 import com.stevekung.moreplanets.planets.diona.potion.InfectedPurloniteEffect;
 import com.stevekung.moreplanets.planets.nibiru.potion.InfectedSporeEffect;
+
+import net.minecraft.potion.Potion;
 
 public class MPPotions
 {

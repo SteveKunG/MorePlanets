@@ -1,14 +1,15 @@
 package com.stevekung.moreplanets.planets.diona.client.renderer.entity.layer;
 
+import com.stevekung.moreplanets.planets.diona.client.model.ModelInfectedPurloniteSlimeBoss;
+import com.stevekung.moreplanets.planets.diona.client.renderer.entity.RenderInfectedPurloniteSlimeBoss;
+import com.stevekung.moreplanets.planets.diona.entity.EntityInfectedPurloniteSlimeBoss;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.diona.client.model.ModelInfectedPurloniteSlimeBoss;
-import com.stevekung.moreplanets.planets.diona.client.renderer.entity.RenderInfectedPurloniteSlimeBoss;
-import com.stevekung.moreplanets.planets.diona.entity.EntityInfectedPurloniteSlimeBoss;
 
 @SideOnly(Side.CLIENT)
 public class LayerInfectedPurloniteSlimeBossBarrier implements LayerRenderer<EntityInfectedPurloniteSlimeBoss>

@@ -2,6 +2,16 @@ package com.stevekung.moreplanets.planets.diona.blocks;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.enums.CachedEnum;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityInfectedPurloniteCrystal;
+import com.stevekung.moreplanets.utils.blocks.BlockDirectionalMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -23,15 +33,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityInfectedPurloniteCrystal;
-import com.stevekung.moreplanets.utils.blocks.BlockDirectionalMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.lib.utils.BlockStateProperty;
-import com.stevekung.lib.utils.ColorUtils;
-import com.stevekung.lib.utils.enums.CachedEnum;
 
 public class BlockInfectedPurloniteCrystal extends BlockDirectionalMP implements ITileEntityProvider
 {

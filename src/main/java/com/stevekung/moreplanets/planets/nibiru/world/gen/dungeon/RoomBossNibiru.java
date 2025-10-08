@@ -2,7 +2,10 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.dungeon;
 
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNibiruDungeonSpawner;
+import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -10,9 +13,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNibiruDungeonSpawner;
-import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
+
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
 
 public class RoomBossNibiru extends SizedPieceNibiru
 {

@@ -1,5 +1,9 @@
 package com.stevekung.moreplanets.planets.diona.client.renderer.entity;
 
+import com.stevekung.moreplanets.planets.diona.client.renderer.entity.layer.LayerZeliusCreeperCharge;
+import com.stevekung.moreplanets.planets.diona.entity.EntityZeliusCreeper;
+import com.stevekung.moreplanets.utils.client.renderer.entity.layer.LayerGlowingTexture;
+
 import net.minecraft.client.model.ModelCreeper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -8,9 +12,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.diona.client.renderer.entity.layer.LayerZeliusCreeperCharge;
-import com.stevekung.moreplanets.planets.diona.entity.EntityZeliusCreeper;
-import com.stevekung.moreplanets.utils.client.renderer.entity.layer.LayerGlowingTexture;
 
 @SideOnly(Side.CLIENT)
 public class RenderZeliusCreeper extends RenderLiving<EntityZeliusCreeper>

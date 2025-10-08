@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.utils.blocks;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,8 +12,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
-import com.stevekung.lib.utils.BlockStateProperty;
 
 public class BlockCTMGlowingDirectional extends BlockDirectionalMP
 {

@@ -3,6 +3,7 @@ package com.stevekung.moreplanets.utils.blocks;
 import java.util.Locale;
 import java.util.Random;
 
+import com.stevekung.lib.utils.BlockStateProperty;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityInfectedFurnace;
 import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityTerrastoneFurnace;
@@ -28,8 +29,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import com.stevekung.lib.utils.BlockStateProperty;
 
 public class BlockFurnaceMP extends BlockContainerMP
 {

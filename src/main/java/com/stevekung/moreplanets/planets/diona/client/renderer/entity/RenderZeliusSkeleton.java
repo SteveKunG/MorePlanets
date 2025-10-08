@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.planets.diona.client.renderer.entity;
 
+import com.stevekung.moreplanets.planets.diona.entity.EntityZeliusSkeleton;
+import com.stevekung.moreplanets.utils.client.renderer.entity.layer.LayerGlowingTexture;
+
 import net.minecraft.client.model.ModelSkeleton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderBiped;
@@ -9,8 +12,6 @@ import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.diona.entity.EntityZeliusSkeleton;
-import com.stevekung.moreplanets.utils.client.renderer.entity.layer.LayerGlowingTexture;
 
 @SideOnly(Side.CLIENT)
 public class RenderZeliusSkeleton extends RenderBiped<EntityZeliusSkeleton>

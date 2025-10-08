@@ -1,10 +1,11 @@
 package com.stevekung.moreplanets.utils.world.gen.dungeon;
 
+import com.stevekung.moreplanets.utils.LoggerMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.gen.structure.StructureComponent;
-import com.stevekung.moreplanets.utils.LoggerMP;
 
 public class DungeonConfigurationMP
 {

@@ -2,11 +2,15 @@ package com.stevekung.moreplanets.client.gui;
 
 import java.util.*;
 
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
-import micdoodle8.mods.galacticraft.core.network.PacketSimple;
-import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.lib.utils.NumberUtils;
+import com.stevekung.moreplanets.inventory.ContainerShieldGenerator;
+import com.stevekung.moreplanets.network.PacketSimpleMP;
+import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
+import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
+import com.stevekung.moreplanets.utils.client.gui.GuiContainerMP;
+import com.stevekung.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -14,14 +18,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.inventory.ContainerShieldGenerator;
-import com.stevekung.moreplanets.network.PacketSimpleMP;
-import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
-import com.stevekung.moreplanets.utils.client.gui.GuiContainerMP;
-import com.stevekung.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
-import com.stevekung.lib.utils.LangUtils;
-import com.stevekung.lib.utils.NumberUtils;
+
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
+import micdoodle8.mods.galacticraft.core.network.PacketSimple;
+import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 
 @SideOnly(Side.CLIENT)
 public class GuiShieldGenerator extends GuiContainerMP

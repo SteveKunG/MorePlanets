@@ -1,17 +1,19 @@
 package com.stevekung.moreplanets.planets.diona.blocks;
 
-import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
+import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
-import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.lib.utils.ColorUtils;
+
+import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 
 public class BlockGlowingIronBlock extends BlockBaseMP implements IDetectableResource
 {

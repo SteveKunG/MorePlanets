@@ -1,13 +1,14 @@
 package com.stevekung.moreplanets.client.renderer.tileentity;
 
+import com.stevekung.moreplanets.client.model.ModelSpaceWarpPad;
+import com.stevekung.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.client.model.ModelSpaceWarpPad;
-import com.stevekung.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
 
 @SideOnly(Side.CLIENT)
 public class TileEntitySpaceWarpPadFullRenderer extends TileEntitySpecialRenderer<TileEntitySpaceWarpPadFull>

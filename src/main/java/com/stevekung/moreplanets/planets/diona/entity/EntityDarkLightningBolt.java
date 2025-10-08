@@ -2,6 +2,8 @@ package com.stevekung.moreplanets.planets.diona.entity;
 
 import java.util.List;
 
+import com.stevekung.moreplanets.init.MPSounds;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +16,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPSounds;
 
 public class EntityDarkLightningBolt extends Entity
 {

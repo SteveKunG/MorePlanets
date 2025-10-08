@@ -1,13 +1,14 @@
 package com.stevekung.moreplanets.tileentity;
 
-import javax.annotation.Nullable;
+import com.stevekung.lib.utils.JsonUtils;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.lib.utils.client.ClientUtils;
+import com.stevekung.moreplanets.entity.EntityBlackHoleStorage;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPSounds;
+import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityAdvancedMP;
 
-import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
-import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
-import micdoodle8.mods.galacticraft.core.tile.FluidTankGC;
-import micdoodle8.mods.galacticraft.core.wrappers.FluidHandlerWrapper;
-import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
-import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
@@ -29,14 +30,15 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.*;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
-import com.stevekung.moreplanets.entity.EntityBlackHoleStorage;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPSounds;
-import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityAdvancedMP;
-import com.stevekung.lib.utils.JsonUtils;
-import com.stevekung.lib.utils.LangUtils;
-import com.stevekung.lib.utils.client.ClientUtils;
+
+import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
+import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
+import micdoodle8.mods.galacticraft.core.tile.FluidTankGC;
+import micdoodle8.mods.galacticraft.core.wrappers.FluidHandlerWrapper;
+import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
+import micdoodle8.mods.miccore.Annotations.NetworkedField;
+
+import javax.annotation.Nullable;
 
 public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements IFluidHandlerWrapper, IConnector
 {

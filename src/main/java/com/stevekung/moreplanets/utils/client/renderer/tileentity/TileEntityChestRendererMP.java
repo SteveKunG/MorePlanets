@@ -1,5 +1,9 @@
 package com.stevekung.moreplanets.utils.client.renderer.tileentity;
 
+import com.stevekung.lib.utils.CalendarUtils;
+import com.stevekung.moreplanets.utils.blocks.BlockChestMP;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.model.ModelLargeChest;
@@ -8,9 +12,6 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.blocks.BlockChestMP;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
-import com.stevekung.lib.utils.CalendarUtils;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityChestRendererMP extends TileEntitySpecialRenderer<TileEntityChestMP>

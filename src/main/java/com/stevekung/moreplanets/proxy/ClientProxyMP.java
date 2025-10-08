@@ -1,6 +1,9 @@
 package com.stevekung.moreplanets.proxy;
 
 import com.google.common.base.Function;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.CommonUtils;
+import com.stevekung.lib.utils.client.ClientRegistryUtils;
 import com.stevekung.moreplanets.client.renderer.*;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.core.event.ClientEventHandler;
@@ -49,10 +52,6 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry.EntityRegistration;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import com.stevekung.lib.utils.ColorUtils;
-import com.stevekung.lib.utils.CommonUtils;
-import com.stevekung.lib.utils.client.ClientRegistryUtils;
 
 public class ClientProxyMP extends ServerProxyMP
 {

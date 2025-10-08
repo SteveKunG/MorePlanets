@@ -1,5 +1,9 @@
 package com.stevekung.moreplanets.entity;
 
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.tileentity.TileEntityBlackHoleStorage;
+import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityItem;
@@ -14,9 +18,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.tileentity.TileEntityBlackHoleStorage;
-import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
 
 public class EntityBlackHoleStorage extends Entity
 {

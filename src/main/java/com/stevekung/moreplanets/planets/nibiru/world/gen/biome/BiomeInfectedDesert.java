@@ -2,11 +2,12 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.biome;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDesertWells;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDesertWells;
 
 public class BiomeInfectedDesert extends BiomeNibiru
 {

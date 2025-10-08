@@ -1,5 +1,9 @@
 package com.stevekung.moreplanets.planets.chalos.blocks;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.blocks.BlockFluidFiniteMP;
+import com.stevekung.moreplanets.utils.blocks.material.MaterialsBase;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -7,9 +11,6 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.blocks.BlockFluidFiniteMP;
-import com.stevekung.moreplanets.utils.blocks.material.MaterialsBase;
 
 public class BlockGaseousCheeseMilk extends BlockFluidFiniteMP
 {

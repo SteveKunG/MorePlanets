@@ -1,13 +1,14 @@
 package com.stevekung.moreplanets.planets.nibiru.client.renderer.entity;
 
+import com.stevekung.moreplanets.planets.nibiru.client.model.ModelGiantWorm;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityGiantWorm;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.nibiru.client.model.ModelGiantWorm;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityGiantWorm;
 
 @SideOnly(Side.CLIENT)
 public class RenderGiantWorm extends RenderLiving<EntityGiantWorm>

@@ -1,5 +1,9 @@
 package com.stevekung.moreplanets.planets.nibiru.blocks;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.blocks.BlockFluidFiniteMP;
+import com.stevekung.moreplanets.utils.blocks.material.MaterialsBase;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,9 +14,6 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.blocks.BlockFluidFiniteMP;
-import com.stevekung.moreplanets.utils.blocks.material.MaterialsBase;
 
 public class BlockGasHelium extends BlockFluidFiniteMP
 {

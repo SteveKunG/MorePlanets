@@ -2,6 +2,14 @@ package com.stevekung.moreplanets.planets.nibiru.blocks;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.enums.CachedEnum;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityMultalicCrystal;
+import com.stevekung.moreplanets.utils.blocks.BlockDirectionalMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -20,13 +28,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityMultalicCrystal;
-import com.stevekung.moreplanets.utils.blocks.BlockDirectionalMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.lib.utils.BlockStateProperty;
-import com.stevekung.lib.utils.enums.CachedEnum;
 
 public class BlockMultalicCrystal extends BlockDirectionalMP implements ITileEntityProvider
 {

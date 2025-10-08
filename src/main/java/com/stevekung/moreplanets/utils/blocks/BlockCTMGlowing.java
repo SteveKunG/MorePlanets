@@ -1,10 +1,11 @@
 package com.stevekung.moreplanets.utils.blocks;
 
+import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
 
 public class BlockCTMGlowing extends BlockBaseMP
 {

@@ -3,12 +3,13 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.dungeon;
 import java.lang.reflect.Constructor;
 import java.util.Random;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
 
 public class CorridorNibiru extends SizedPieceNibiru
 {

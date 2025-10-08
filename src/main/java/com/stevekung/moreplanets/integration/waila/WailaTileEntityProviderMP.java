@@ -3,6 +3,9 @@ package com.stevekung.moreplanets.integration.waila;
 import java.util.List;
 import java.util.UUID;
 
+import com.stevekung.lib.utils.CommonUtils;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.lib.utils.client.ClientUtils;
 import com.stevekung.moreplanets.blocks.BlockDummy;
 import com.stevekung.moreplanets.core.config.ConfigManagerMP;
 import com.stevekung.moreplanets.init.MPBlocks;
@@ -28,9 +31,6 @@ import net.minecraftforge.common.util.Constants;
 import mcp.mobius.waila.api.*;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
-import com.stevekung.lib.utils.CommonUtils;
-import com.stevekung.lib.utils.LangUtils;
-import com.stevekung.lib.utils.client.ClientUtils;
 
 @WailaPlugin
 public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlugin

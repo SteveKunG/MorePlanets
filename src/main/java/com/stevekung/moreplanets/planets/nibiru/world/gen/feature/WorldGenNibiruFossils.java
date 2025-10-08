@@ -2,6 +2,8 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.feature;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.enums.CachedEnum;
+
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
@@ -14,7 +16,6 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import com.stevekung.lib.utils.enums.CachedEnum;
 
 public class WorldGenNibiruFossils extends WorldGenerator
 {

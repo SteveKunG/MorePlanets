@@ -1,5 +1,10 @@
 package com.stevekung.moreplanets.planets.chalos.client.renderer.entity;
 
+import com.stevekung.moreplanets.planets.chalos.client.model.ModelCheeseFloater;
+import com.stevekung.moreplanets.planets.chalos.client.renderer.entity.layer.LayerCheeseFloaterEye;
+import com.stevekung.moreplanets.planets.chalos.client.renderer.entity.layer.LayerCheeseFloaterSlime;
+import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseFloater;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -7,10 +12,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.chalos.client.model.ModelCheeseFloater;
-import com.stevekung.moreplanets.planets.chalos.client.renderer.entity.layer.LayerCheeseFloaterEye;
-import com.stevekung.moreplanets.planets.chalos.client.renderer.entity.layer.LayerCheeseFloaterSlime;
-import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseFloater;
 
 @SideOnly(Side.CLIENT)
 public class RenderCheeseFloater extends RenderLiving<EntityCheeseFloater>

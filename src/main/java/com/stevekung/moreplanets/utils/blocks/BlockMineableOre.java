@@ -1,8 +1,9 @@
 package com.stevekung.moreplanets.utils.blocks;
 
-import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+
+import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 
 public class BlockMineableOre extends BlockBaseMP implements IDetectableResource
 {

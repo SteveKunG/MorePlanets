@@ -2,6 +2,9 @@ package com.stevekung.moreplanets.planets.diona.tileentity;
 
 import java.util.List;
 
+import com.stevekung.moreplanets.recipe.DarkEnergyRecipeData;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityRenderTickable;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -10,8 +13,6 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.WorldServer;
-import com.stevekung.moreplanets.recipe.DarkEnergyRecipeData;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityRenderTickable;
 
 public class TileEntityDarkEnergyCore extends TileEntityRenderTickable
 {

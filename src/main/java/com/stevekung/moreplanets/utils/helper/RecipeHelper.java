@@ -1,10 +1,12 @@
 package com.stevekung.moreplanets.utils.helper;
 
-import micdoodle8.mods.galacticraft.api.recipe.CompressorRecipes;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.utils.debug.JSONRecipe;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import micdoodle8.mods.galacticraft.api.recipe.CompressorRecipes;
 
 public class RecipeHelper
 {

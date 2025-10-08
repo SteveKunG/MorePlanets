@@ -1,8 +1,10 @@
 package com.stevekung.moreplanets.planets.chalos.entity;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
-import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityCow;
@@ -16,10 +18,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.utils.entity.ai.PathNavigateGroundMP;
+
+import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+
+import javax.annotation.Nullable;
 
 public class EntityCheeseCow extends EntityCow implements IEntityBreathable
 {

@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.planets.diona.entity;
 
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.init.MPSounds;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.potion.PotionEffect;
@@ -7,8 +10,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.init.MPSounds;
 
 public class EntityInfectedPurloniteBomb extends EntityThrowable
 {

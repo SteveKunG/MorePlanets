@@ -1,11 +1,12 @@
 package com.stevekung.moreplanets.planets.nibiru.entity.ai;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPBlocks;
 
 public class EntityAIShlimeEatGrass extends EntityAIBase
 {

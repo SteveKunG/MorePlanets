@@ -3,10 +3,12 @@ package com.stevekung.moreplanets.recipe;
 import java.util.ArrayList;
 import java.util.List;
 
-import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
-import net.minecraft.item.ItemStack;
 import com.stevekung.moreplanets.integration.jei.black_hole_storage.BlackHoleStorageRecipeWrapper;
 import com.stevekung.moreplanets.inventory.InventoryBlackHoleStorageSchematic;
+
+import net.minecraft.item.ItemStack;
+
+import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 
 public class BlackHoleStorageRecipes
 {

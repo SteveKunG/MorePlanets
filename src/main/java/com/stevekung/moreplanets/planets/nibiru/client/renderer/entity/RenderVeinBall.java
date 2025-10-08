@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.planets.nibiru.client.renderer.entity;
 
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityVeinBall;
+
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -9,8 +12,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityVeinBall;
-import com.stevekung.lib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class RenderVeinBall extends Render<EntityVeinBall>

@@ -1,14 +1,16 @@
 package com.stevekung.moreplanets.planets.nibiru.entity;
 
-import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.utils.entity.ISpaceMob;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.utils.entity.ISpaceMob;
+
+import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 
 public class EntityInfectedCreeper extends EntityCreeper implements IEntityBreathable, ISpaceMob
 {

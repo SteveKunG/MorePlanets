@@ -2,6 +2,9 @@ package com.stevekung.moreplanets.planets.chalos.blocks;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -10,8 +13,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
 
 public class BlockCheeseSpore extends BlockBaseMP
 {

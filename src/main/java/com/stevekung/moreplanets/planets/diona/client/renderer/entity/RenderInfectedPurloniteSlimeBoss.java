@@ -1,5 +1,12 @@
 package com.stevekung.moreplanets.planets.diona.client.renderer.entity;
 
+import com.stevekung.moreplanets.planets.diona.client.model.ModelInfectedPurloniteSlimeBoss;
+import com.stevekung.moreplanets.planets.diona.client.renderer.entity.layer.LayerInfectedCrystallizeSlimeBossDeath;
+import com.stevekung.moreplanets.planets.diona.client.renderer.entity.layer.LayerInfectedPurloniteSlimeBossBarrier;
+import com.stevekung.moreplanets.planets.diona.entity.EntityInfectedPurloniteSlimeBoss;
+import com.stevekung.moreplanets.utils.ClientRendererUtils;
+import com.stevekung.moreplanets.utils.client.renderer.entity.layer.LayerGlowingTexture;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderDragon;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -7,12 +14,6 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.diona.client.model.ModelInfectedPurloniteSlimeBoss;
-import com.stevekung.moreplanets.planets.diona.client.renderer.entity.layer.LayerInfectedCrystallizeSlimeBossDeath;
-import com.stevekung.moreplanets.planets.diona.client.renderer.entity.layer.LayerInfectedPurloniteSlimeBossBarrier;
-import com.stevekung.moreplanets.planets.diona.entity.EntityInfectedPurloniteSlimeBoss;
-import com.stevekung.moreplanets.utils.ClientRendererUtils;
-import com.stevekung.moreplanets.utils.client.renderer.entity.layer.LayerGlowingTexture;
 
 @SideOnly(Side.CLIENT)
 public class RenderInfectedPurloniteSlimeBoss extends RenderLiving<EntityInfectedPurloniteSlimeBoss>

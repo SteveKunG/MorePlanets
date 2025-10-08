@@ -1,8 +1,9 @@
 package com.stevekung.moreplanets.planets.nibiru.world.gen.feature;
 
-import net.minecraft.block.Block;
-import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.lib.world.gen.WorldGenAbstractBigTree;
+import com.stevekung.moreplanets.init.MPBlocks;
+
+import net.minecraft.block.Block;
 
 public class WorldGenAlienBerryBigTree extends WorldGenAbstractBigTree
 {

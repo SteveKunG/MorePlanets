@@ -2,10 +2,11 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.feature;
 
 import java.util.Random;
 
+import com.stevekung.lib.world.gen.WorldGenAbstractMegaJungle;
+import com.stevekung.moreplanets.init.MPBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.lib.world.gen.WorldGenAbstractMegaJungle;
 
 public class WorldGenInfectedMegaJungleTree extends WorldGenAbstractMegaJungle
 {

@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.client.renderer;
 
+import com.stevekung.moreplanets.planets.nibiru.client.model.ModelNuclearWasteTank;
+import com.stevekung.moreplanets.utils.ClientRendererUtils;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -8,8 +11,6 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import com.stevekung.moreplanets.planets.nibiru.client.model.ModelNuclearWasteTank;
-import com.stevekung.moreplanets.utils.ClientRendererUtils;
 
 public class MultiblockRendererUtils
 {

@@ -2,13 +2,14 @@ package com.stevekung.moreplanets.planets.fronos.world.gen.feature;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.moreplanets.init.MPBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenTrees;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.lib.utils.BlockStateProperty;
 
 public class WorldGenFronosShrub extends WorldGenTrees
 {

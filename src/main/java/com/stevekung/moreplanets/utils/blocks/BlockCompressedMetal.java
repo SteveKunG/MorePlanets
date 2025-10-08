@@ -2,6 +2,9 @@ package com.stevekung.moreplanets.utils.blocks;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.entity.EntityAntiGravFallingBlock;
+import com.stevekung.moreplanets.init.MPBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
@@ -10,8 +13,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.entity.EntityAntiGravFallingBlock;
-import com.stevekung.moreplanets.init.MPBlocks;
 
 public class BlockCompressedMetal extends BlockBaseMP
 {

@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import micdoodle8.mods.galacticraft.api.vector.BlockVec3;
-import micdoodle8.mods.galacticraft.core.perlin.generator.GradientNoise;
-import micdoodle8.mods.galacticraft.core.world.gen.EnumCraterSize;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.BlockLiquid;
@@ -24,6 +21,10 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
+
+import micdoodle8.mods.galacticraft.api.vector.BlockVec3;
+import micdoodle8.mods.galacticraft.core.perlin.generator.GradientNoise;
+import micdoodle8.mods.galacticraft.core.world.gen.EnumCraterSize;
 
 public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
 {

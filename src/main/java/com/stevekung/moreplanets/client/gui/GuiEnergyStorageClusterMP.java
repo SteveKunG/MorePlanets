@@ -1,15 +1,17 @@
 package com.stevekung.moreplanets.client.gui;
 
-import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.moreplanets.inventory.ContainerEnergyStorageCluster;
+import com.stevekung.moreplanets.utils.client.gui.GuiContainerMP;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.inventory.ContainerEnergyStorageCluster;
-import com.stevekung.moreplanets.utils.client.gui.GuiContainerMP;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
-import com.stevekung.lib.utils.LangUtils;
+
+import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 
 @SideOnly(Side.CLIENT)
 public class GuiEnergyStorageClusterMP extends GuiContainerMP

@@ -2,8 +2,9 @@ package com.stevekung.moreplanets.utils;
 
 import java.util.UUID;
 
-import micdoodle8.mods.galacticraft.core.entities.IBoss;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+
+import micdoodle8.mods.galacticraft.core.entities.IBoss;
 
 public interface IMorePlanetsBoss extends IBoss, IEntityAdditionalSpawnData
 {

@@ -1,5 +1,11 @@
 package com.stevekung.moreplanets.planets.nibiru.itemblocks;
 
+import com.stevekung.lib.utils.JsonUtils;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.lib.utils.client.ClientUtils;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.itemblocks.ItemBlockTESRMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -8,11 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.itemblocks.ItemBlockTESRMP;
-import com.stevekung.lib.utils.JsonUtils;
-import com.stevekung.lib.utils.LangUtils;
-import com.stevekung.lib.utils.client.ClientUtils;
 
 public class ItemBlockNuclearWasteTank extends ItemBlockTESRMP
 {

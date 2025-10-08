@@ -1,7 +1,12 @@
 package com.stevekung.moreplanets.planets.nibiru.client.renderer.tileentity;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.Random;
+
+import com.stevekung.lib.client.event.ClientEventHandler;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityMultalicCrystal;
+import com.stevekung.moreplanets.utils.client.model.ModelCrystal;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -12,10 +17,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityMultalicCrystal;
-import com.stevekung.moreplanets.utils.client.model.ModelCrystal;
-import com.stevekung.lib.client.event.ClientEventHandler;
-import com.stevekung.lib.utils.ColorUtils;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer<TileEntityMultalicCrystal>

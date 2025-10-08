@@ -1,8 +1,10 @@
 package com.stevekung.moreplanets.init;
 
-import micdoodle8.mods.galacticraft.core.util.WorldUtil;
-import net.minecraft.world.DimensionType;
 import com.stevekung.moreplanets.core.config.ConfigManagerMP;
+
+import net.minecraft.world.DimensionType;
+
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 
 public class MPDimensions
 {

@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.planets.diona.client.renderer.entity;
 
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityInfectedPurloniteArrow;
+
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -10,8 +13,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityInfectedPurloniteArrow;
-import com.stevekung.lib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class RenderInfectedPurloniteArrow extends Render<EntityInfectedPurloniteArrow>

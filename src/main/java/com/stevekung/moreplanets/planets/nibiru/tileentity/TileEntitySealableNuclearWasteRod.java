@@ -1,10 +1,11 @@
 package com.stevekung.moreplanets.planets.nibiru.tileentity;
 
-import micdoodle8.mods.galacticraft.core.energy.EnergyConfigHandler;
-import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalConductor;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.MathHelper;
+
+import micdoodle8.mods.galacticraft.core.energy.EnergyConfigHandler;
+import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalConductor;
 
 public class TileEntitySealableNuclearWasteRod extends TileBaseUniversalConductor
 {

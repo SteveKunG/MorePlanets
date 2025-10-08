@@ -3,6 +3,9 @@ package com.stevekung.moreplanets.planets.nibiru.client.renderer.tileentity;
 import java.nio.FloatBuffer;
 import java.util.Random;
 
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityVeinPortal;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GLAllocation;
@@ -14,8 +17,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityVeinPortal;
-import com.stevekung.lib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<TileEntityVeinPortal>

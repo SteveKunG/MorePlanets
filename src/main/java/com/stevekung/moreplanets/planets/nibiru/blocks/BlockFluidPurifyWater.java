@@ -1,5 +1,10 @@
 package com.stevekung.moreplanets.planets.nibiru.blocks;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
+import com.stevekung.moreplanets.utils.blocks.BlockFluidBaseMP;
+import com.stevekung.moreplanets.utils.blocks.IFishableLiquidBlock;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -8,10 +13,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
-import com.stevekung.moreplanets.utils.blocks.BlockFluidBaseMP;
-import com.stevekung.moreplanets.utils.blocks.IFishableLiquidBlock;
 
 public class BlockFluidPurifyWater extends BlockFluidBaseMP implements IFishableLiquidBlock
 {

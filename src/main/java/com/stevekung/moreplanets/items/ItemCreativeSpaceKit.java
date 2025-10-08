@@ -2,12 +2,9 @@ package com.stevekung.moreplanets.items;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.moreplanets.utils.items.ItemBaseMP;
 
-import micdoodle8.mods.galacticraft.core.GCItems;
-import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
-import micdoodle8.mods.galacticraft.core.inventory.InventoryExtended;
-import micdoodle8.mods.galacticraft.planets.venus.VenusItems;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -19,8 +16,13 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.items.ItemBaseMP;
-import com.stevekung.lib.utils.LangUtils;
+
+import micdoodle8.mods.galacticraft.core.GCItems;
+import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
+import micdoodle8.mods.galacticraft.core.inventory.InventoryExtended;
+import micdoodle8.mods.galacticraft.planets.venus.VenusItems;
+
+import javax.annotation.Nullable;
 
 public class ItemCreativeSpaceKit extends ItemBaseMP
 {

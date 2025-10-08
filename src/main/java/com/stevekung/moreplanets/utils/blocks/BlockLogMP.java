@@ -1,5 +1,7 @@
 package com.stevekung.moreplanets.utils.blocks;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -10,8 +12,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import com.stevekung.lib.utils.BlockStateProperty;
 
 public class BlockLogMP extends BlockBaseMP
 {

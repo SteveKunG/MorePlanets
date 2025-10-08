@@ -2,16 +2,18 @@ package com.stevekung.moreplanets.planets.nibiru.blocks;
 
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.core.GCBlocks;
-import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
+import com.stevekung.moreplanets.core.config.ConfigManagerMP;
+import com.stevekung.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
+import com.stevekung.moreplanets.utils.blocks.BlockTorchMP;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.core.config.ConfigManagerMP;
-import com.stevekung.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
-import com.stevekung.moreplanets.utils.blocks.BlockTorchMP;
+
+import micdoodle8.mods.galacticraft.core.GCBlocks;
+import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 
 public class BlockInfectedTorch extends BlockTorchMP
 {

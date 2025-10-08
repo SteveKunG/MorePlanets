@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.Random;
 
 import com.google.common.collect.Lists;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.LoggerMP;
+import com.stevekung.moreplanets.utils.PaintingMP;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityPainting;
@@ -23,9 +26,6 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.LoggerMP;
-import com.stevekung.moreplanets.utils.PaintingMP;
 
 public class RongHouse extends StructureComponent
 {

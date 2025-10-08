@@ -1,10 +1,9 @@
 package com.stevekung.moreplanets.planets.nibiru.world.gen.feature;
 
+import com.stevekung.lib.world.gen.WorldGenAbstractShrub;
 import com.stevekung.moreplanets.init.MPBlocks;
 
 import net.minecraft.block.Block;
-
-import com.stevekung.lib.world.gen.WorldGenAbstractShrub;
 
 public class WorldGenInfectedShrub extends WorldGenAbstractShrub
 {

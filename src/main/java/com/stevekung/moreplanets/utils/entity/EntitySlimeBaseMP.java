@@ -1,6 +1,8 @@
 package com.stevekung.moreplanets.utils.entity;
 
-import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+import com.stevekung.moreplanets.init.MPSounds;
+import com.stevekung.moreplanets.utils.entity.ai.PathNavigateGroundMP;
+
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearest;
@@ -21,8 +23,8 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPSounds;
-import com.stevekung.moreplanets.utils.entity.ai.PathNavigateGroundMP;
+
+import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 
 public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IEntityBreathable
 {

@@ -2,13 +2,13 @@ package com.stevekung.moreplanets.planets.nibiru.entity.ai;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 public class EntityAIFleeNibiruThunder extends EntityAIBase
 {

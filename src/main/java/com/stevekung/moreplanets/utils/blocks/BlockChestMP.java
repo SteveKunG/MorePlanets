@@ -1,5 +1,10 @@
 package com.stevekung.moreplanets.utils.blocks;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
@@ -20,10 +25,6 @@ import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
-import com.stevekung.lib.utils.BlockStateProperty;
-import com.stevekung.lib.utils.ColorUtils;
 
 public abstract class BlockChestMP extends BlockContainerMP implements IItemRarity
 {

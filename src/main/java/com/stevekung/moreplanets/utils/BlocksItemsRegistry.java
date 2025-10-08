@@ -2,10 +2,19 @@ package com.stevekung.moreplanets.utils;
 
 import java.util.*;
 
-import javax.annotation.Nullable;
-
 import com.google.common.base.Function;
 import com.google.common.collect.Ordering;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.lib.utils.client.ClientUtils;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.itemblocks.ItemBlockTESRMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.ISortableBlock;
+import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
+import com.stevekung.moreplanets.utils.itemblocks.ItemBlockMP;
+import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
+import com.stevekung.moreplanets.utils.items.ISortableItem;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -16,17 +25,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.itemblocks.ItemBlockTESRMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.blocks.ISortableBlock;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
-import com.stevekung.moreplanets.utils.itemblocks.ItemBlockMP;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
-import com.stevekung.moreplanets.utils.items.ISortableItem;
-import com.stevekung.lib.utils.LangUtils;
-import com.stevekung.lib.utils.client.ClientUtils;
+
+import javax.annotation.Nullable;
 
 public class BlocksItemsRegistry
 {

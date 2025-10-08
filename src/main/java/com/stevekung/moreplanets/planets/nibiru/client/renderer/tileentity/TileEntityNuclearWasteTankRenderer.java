@@ -2,6 +2,10 @@ package com.stevekung.moreplanets.planets.nibiru.client.renderer.tileentity;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.moreplanets.planets.nibiru.client.model.ModelNuclearWasteTank;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -16,9 +20,6 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.nibiru.client.model.ModelNuclearWasteTank;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
-import com.stevekung.lib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRenderer<TileEntityNuclearWasteTank>

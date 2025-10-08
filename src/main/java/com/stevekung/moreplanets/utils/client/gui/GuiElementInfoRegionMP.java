@@ -2,13 +2,13 @@ package com.stevekung.moreplanets.utils.client.gui;
 
 import java.util.List;
 
+import com.stevekung.lib.utils.client.RenderUtils;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import com.stevekung.lib.utils.client.RenderUtils;
 
 @SideOnly(Side.CLIENT)
 public class GuiElementInfoRegionMP extends Gui

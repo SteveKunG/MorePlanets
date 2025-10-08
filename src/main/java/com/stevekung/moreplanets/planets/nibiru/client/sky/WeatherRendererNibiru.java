@@ -2,6 +2,10 @@ package com.stevekung.moreplanets.planets.nibiru.client.sky;
 
 import java.util.Random;
 
+import com.stevekung.lib.client.event.ClientEventHandler;
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.moreplanets.init.MPBiomes;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -15,9 +19,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.IRenderHandler;
-import com.stevekung.moreplanets.init.MPBiomes;
-import com.stevekung.lib.client.event.ClientEventHandler;
-import com.stevekung.lib.utils.client.GLConstants;
 
 public class WeatherRendererNibiru extends IRenderHandler
 {

@@ -1,15 +1,8 @@
 package com.stevekung.moreplanets.core.handler;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.network.IGuiHandler;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import com.stevekung.lib.utils.client.ClientUtils;
 import com.stevekung.moreplanets.client.gui.*;
 import com.stevekung.moreplanets.inventory.*;
-
 import com.stevekung.moreplanets.planets.diona.client.gui.GuiCrashedAlienProbe;
 import com.stevekung.moreplanets.planets.diona.client.gui.GuiDarkEnergyGenerator;
 import com.stevekung.moreplanets.planets.diona.inventory.ContainerCrashedAlienProbe;
@@ -24,7 +17,14 @@ import com.stevekung.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
 import com.stevekung.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
-import com.stevekung.lib.utils.client.ClientUtils;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.IGuiHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GuiHandlerMP implements IGuiHandler
 {

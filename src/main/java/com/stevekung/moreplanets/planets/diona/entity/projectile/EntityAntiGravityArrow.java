@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.planets.diona.entity.projectile;
 
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.utils.entity.EntityArrowMP;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -7,8 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.utils.entity.EntityArrowMP;
 
 public class EntityAntiGravityArrow extends EntityArrowMP
 {

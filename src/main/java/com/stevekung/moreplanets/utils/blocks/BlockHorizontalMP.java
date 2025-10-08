@@ -1,11 +1,12 @@
 package com.stevekung.moreplanets.utils.blocks;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import com.stevekung.lib.utils.BlockStateProperty;
 
 public class BlockHorizontalMP extends BlockLogMP
 {

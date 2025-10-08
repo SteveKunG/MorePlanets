@@ -2,9 +2,10 @@ package com.stevekung.moreplanets.planets.nibiru.entity.ai;
 
 import java.util.List;
 
-import net.minecraft.entity.ai.EntityAIBase;
 import com.stevekung.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
 import com.stevekung.moreplanets.planets.nibiru.entity.EntityTerrastoneGolem;
+
+import net.minecraft.entity.ai.EntityAIBase;
 
 public class EntityAINibiruVillagerFollowGolem extends EntityAIBase
 {

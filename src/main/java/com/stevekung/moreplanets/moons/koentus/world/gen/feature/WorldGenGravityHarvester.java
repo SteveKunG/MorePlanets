@@ -3,6 +3,10 @@ package com.stevekung.moreplanets.moons.koentus.world.gen.feature;
 import java.util.Map;
 import java.util.Random;
 
+import com.stevekung.lib.utils.enums.CachedEnum;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.moons.koentus.tileentity.TileEntityGravityExtractor;
+
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Mirror;
@@ -16,9 +20,6 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.moons.koentus.tileentity.TileEntityGravityExtractor;
-import com.stevekung.lib.utils.enums.CachedEnum;
 
 public class WorldGenGravityHarvester extends WorldGenerator
 {

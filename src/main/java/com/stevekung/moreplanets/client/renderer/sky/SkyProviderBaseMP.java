@@ -2,6 +2,10 @@ package com.stevekung.moreplanets.client.renderer.sky;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.moreplanets.core.config.ConfigManagerMP;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.*;
@@ -12,9 +16,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.config.ConfigManagerMP;
-import com.stevekung.lib.utils.ColorUtils;
-import com.stevekung.lib.utils.client.GLConstants;
 
 public abstract class SkyProviderBaseMP extends IRenderHandler
 {

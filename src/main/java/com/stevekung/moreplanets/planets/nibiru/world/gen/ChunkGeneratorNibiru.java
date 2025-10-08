@@ -3,6 +3,9 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen;
 import java.util.List;
 
 import com.google.common.collect.Sets;
+import com.stevekung.lib.world.gen.MapGenCavesBase;
+import com.stevekung.lib.world.gen.MapGenRavineBase;
+import com.stevekung.lib.world.gen.WorldGenLiquidLake;
 import com.stevekung.moreplanets.init.MPBiomes;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.dungeon.*;
@@ -22,9 +25,6 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 
 import micdoodle8.mods.galacticraft.core.GCBlocks;
-import com.stevekung.lib.world.gen.MapGenCavesBase;
-import com.stevekung.lib.world.gen.MapGenRavineBase;
-import com.stevekung.lib.world.gen.WorldGenLiquidLake;
 
 public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
 {

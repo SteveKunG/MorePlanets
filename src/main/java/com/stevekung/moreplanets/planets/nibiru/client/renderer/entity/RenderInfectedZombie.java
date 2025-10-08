@@ -1,13 +1,14 @@
 package com.stevekung.moreplanets.planets.nibiru.client.renderer.entity;
 
+import com.stevekung.moreplanets.planets.nibiru.client.model.ModelInfectedZombie;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedZombie;
+
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.nibiru.client.model.ModelInfectedZombie;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedZombie;
 
 @SideOnly(Side.CLIENT)
 public class RenderInfectedZombie extends RenderBiped<EntityInfectedZombie>

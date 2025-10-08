@@ -1,8 +1,9 @@
 package com.stevekung.moreplanets.planets.chalos.world.gen.dungeon;
 
-import net.minecraft.world.gen.structure.MapGenStructureIO;
 import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
 import com.stevekung.moreplanets.utils.world.gen.dungeon.MapGenDungeonMP;
+
+import net.minecraft.world.gen.structure.MapGenStructureIO;
 
 public class MapGenChalosDungeon extends MapGenDungeonMP
 {

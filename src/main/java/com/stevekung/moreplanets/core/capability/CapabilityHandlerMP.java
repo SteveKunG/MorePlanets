@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.core.capability;
 
+import com.stevekung.lib.utils.CommonUtils;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTBase;
@@ -11,8 +14,6 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.lib.utils.CommonUtils;
 
 public class CapabilityHandlerMP
 {

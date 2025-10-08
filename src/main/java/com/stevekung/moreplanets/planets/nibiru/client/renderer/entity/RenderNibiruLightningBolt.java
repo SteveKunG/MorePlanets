@@ -2,6 +2,8 @@ package com.stevekung.moreplanets.planets.nibiru.client.renderer.entity;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
+
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -12,7 +14,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
 
 @SideOnly(Side.CLIENT)
 public class RenderNibiruLightningBolt extends Render<EntityNibiruLightningBolt>

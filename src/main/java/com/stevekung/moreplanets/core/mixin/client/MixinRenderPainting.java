@@ -6,10 +6,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.stevekung.moreplanets.utils.PaintingMP;
+
 import net.minecraft.client.renderer.entity.RenderPainting;
 import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.util.ResourceLocation;
-import com.stevekung.moreplanets.utils.PaintingMP;
 
 @Mixin(RenderPainting.class)
 public class MixinRenderPainting

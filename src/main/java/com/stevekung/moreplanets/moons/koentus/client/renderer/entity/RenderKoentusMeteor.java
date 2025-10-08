@@ -1,13 +1,15 @@
 package com.stevekung.moreplanets.moons.koentus.client.renderer.entity;
 
-import micdoodle8.mods.galacticraft.core.client.model.ModelMeteor;
+import com.stevekung.moreplanets.moons.koentus.entity.EntityKoentusMeteor;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.moons.koentus.entity.EntityKoentusMeteor;
+
+import micdoodle8.mods.galacticraft.core.client.model.ModelMeteor;
 
 @SideOnly(Side.CLIENT)
 public class RenderKoentusMeteor extends Render<EntityKoentusMeteor>

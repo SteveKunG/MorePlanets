@@ -1,5 +1,12 @@
 package com.stevekung.moreplanets.blocks;
 
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.moreplanets.tileentity.TileEntityAlienChest;
+import com.stevekung.moreplanets.utils.blocks.BlockChestMP;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -10,12 +17,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.tileentity.TileEntityAlienChest;
-import com.stevekung.moreplanets.utils.blocks.BlockChestMP;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
-import com.stevekung.lib.utils.ColorUtils;
-import com.stevekung.lib.utils.LangUtils;
 
 public class BlockAlienChest extends BlockChestMP implements IItemRarity
 {

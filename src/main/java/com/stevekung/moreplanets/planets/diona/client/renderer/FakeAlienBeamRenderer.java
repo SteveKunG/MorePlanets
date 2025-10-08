@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.planets.diona.client.renderer;
 
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.lib.utils.client.RenderUtils;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -10,8 +13,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.lib.utils.client.GLConstants;
-import com.stevekung.lib.utils.client.RenderUtils;
 
 @SideOnly(Side.CLIENT)
 public class FakeAlienBeamRenderer

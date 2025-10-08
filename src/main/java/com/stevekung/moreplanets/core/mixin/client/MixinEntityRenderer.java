@@ -6,9 +6,10 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
+import com.stevekung.moreplanets.utils.WorldColorUtils;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
-import com.stevekung.moreplanets.utils.WorldColorUtils;
 
 @Mixin(EntityRenderer.class)
 public class MixinEntityRenderer

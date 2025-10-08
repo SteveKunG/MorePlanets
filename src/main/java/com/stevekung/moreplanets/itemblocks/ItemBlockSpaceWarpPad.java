@@ -2,9 +2,11 @@ package com.stevekung.moreplanets.itemblocks;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.lib.utils.client.ClientUtils;
+import com.stevekung.moreplanets.utils.IDescription;
+import com.stevekung.moreplanets.utils.itemblocks.ItemBlockMP;
 
-import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
@@ -12,10 +14,10 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.IDescription;
-import com.stevekung.moreplanets.utils.itemblocks.ItemBlockMP;
-import com.stevekung.lib.utils.LangUtils;
-import com.stevekung.lib.utils.client.ClientUtils;
+
+import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
+
+import javax.annotation.Nullable;
 
 public class ItemBlockSpaceWarpPad extends ItemBlockMP
 {

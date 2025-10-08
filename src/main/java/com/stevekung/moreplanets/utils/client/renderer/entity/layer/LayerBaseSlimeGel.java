@@ -1,5 +1,7 @@
 package com.stevekung.moreplanets.utils.client.renderer.entity.layer;
 
+import com.stevekung.moreplanets.utils.entity.EntitySlimeBaseMP;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelSlime;
 import net.minecraft.client.renderer.GlStateManager;
@@ -7,7 +9,6 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.entity.EntitySlimeBaseMP;
 
 @SideOnly(Side.CLIENT)
 public class LayerBaseSlimeGel<E extends EntitySlimeBaseMP> implements LayerRenderer<E>

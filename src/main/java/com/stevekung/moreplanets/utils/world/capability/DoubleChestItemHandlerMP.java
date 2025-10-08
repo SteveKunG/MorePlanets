@@ -2,10 +2,8 @@ package com.stevekung.moreplanets.utils.world.capability;
 
 import java.lang.ref.WeakReference;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import com.google.common.base.Objects;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -15,7 +13,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class DoubleChestItemHandlerMP extends WeakReference<TileEntityChestMP> implements IItemHandlerModifiable
 {

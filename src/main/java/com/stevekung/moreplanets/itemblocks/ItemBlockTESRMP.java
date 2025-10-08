@@ -1,7 +1,8 @@
 package com.stevekung.moreplanets.itemblocks;
 
-import net.minecraft.block.Block;
 import com.stevekung.moreplanets.utils.itemblocks.ItemBlockMP;
+
+import net.minecraft.block.Block;
 
 public class ItemBlockTESRMP extends ItemBlockMP
 {

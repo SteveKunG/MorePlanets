@@ -3,14 +3,15 @@ package com.stevekung.moreplanets.client.renderer.ccl;
 import java.util.HashMap;
 import java.util.Map;
 
-import codechicken.lib.render.CCModelState;
-import codechicken.lib.render.item.IItemRenderer;
-import codechicken.lib.texture.TextureUtils;
-import codechicken.lib.util.TransformUtils;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
+
+import codechicken.lib.render.CCModelState;
+import codechicken.lib.render.item.IItemRenderer;
+import codechicken.lib.texture.TextureUtils;
+import codechicken.lib.util.TransformUtils;
 
 public abstract class CCLRenderBase implements IItemRenderer
 {

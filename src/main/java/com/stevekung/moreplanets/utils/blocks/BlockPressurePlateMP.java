@@ -2,6 +2,9 @@ package com.stevekung.moreplanets.utils.blocks;
 
 import java.util.List;
 
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBasePressurePlate;
 import net.minecraft.block.SoundType;
@@ -16,8 +19,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 
 public class BlockPressurePlateMP extends BlockBasePressurePlate implements ISortableBlock, IItemModelRender
 {

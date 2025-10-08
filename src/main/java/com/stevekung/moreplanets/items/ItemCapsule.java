@@ -2,6 +2,11 @@ package com.stevekung.moreplanets.items;
 
 import java.util.Locale;
 
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.utils.items.ItemFoodMP;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,10 +20,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.utils.items.ItemFoodMP;
-import com.stevekung.lib.utils.ColorUtils;
 
 public class ItemCapsule extends ItemFoodMP
 {

@@ -1,7 +1,8 @@
 package com.stevekung.moreplanets.core.config;
 
-import net.minecraftforge.common.config.Config;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
+
+import net.minecraftforge.common.config.Config;
 
 @Config(modid = MorePlanetsMod.MOD_ID)
 public class ConfigManagerMP

@@ -3,6 +3,10 @@ package com.stevekung.moreplanets.planets.nibiru.tileentity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityVeinFloater;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityRenderTickable;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
@@ -13,9 +17,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityVeinFloater;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityRenderTickable;
 
 public class TileEntityVeinPortal extends TileEntityRenderTickable
 {

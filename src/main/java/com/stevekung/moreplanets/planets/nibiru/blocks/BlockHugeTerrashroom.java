@@ -3,7 +3,9 @@ package com.stevekung.moreplanets.planets.nibiru.blocks;
 import java.util.Locale;
 import java.util.Random;
 
-import javax.annotation.Nullable;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.blocks.BlockBreakableMP;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -21,9 +23,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.blocks.BlockBreakableMP;
-import com.stevekung.lib.utils.ColorUtils;
+
+import javax.annotation.Nullable;
 
 public class BlockHugeTerrashroom extends BlockBreakableMP
 {

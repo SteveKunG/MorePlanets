@@ -3,15 +3,15 @@ package com.stevekung.moreplanets.planets.diona.world.gen.structure;
 import java.util.Map;
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.core.GCBlocks;
-import micdoodle8.mods.galacticraft.core.blocks.BlockBrightLamp;
-import micdoodle8.mods.galacticraft.core.blocks.BlockMachineBase;
-import micdoodle8.mods.galacticraft.core.blocks.BlockMachineTiered;
-import micdoodle8.mods.galacticraft.core.blocks.BlockScreen;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityAirLockController;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityEnergyStorageModule;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityFallenMeteor;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityScreen;
+import com.stevekung.lib.utils.enums.CachedEnum;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityCrashedAlienProbe;
+import com.stevekung.moreplanets.tileentity.TileEntityAlienChest;
+import com.stevekung.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
+import com.stevekung.moreplanets.utils.world.gen.feature.ElectricFireBlockProcessor;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
@@ -26,14 +26,16 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityCrashedAlienProbe;
-import com.stevekung.moreplanets.tileentity.TileEntityAlienChest;
-import com.stevekung.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
-import com.stevekung.moreplanets.utils.world.gen.feature.ElectricFireBlockProcessor;
-import com.stevekung.lib.utils.enums.CachedEnum;
+
+import micdoodle8.mods.galacticraft.core.GCBlocks;
+import micdoodle8.mods.galacticraft.core.blocks.BlockBrightLamp;
+import micdoodle8.mods.galacticraft.core.blocks.BlockMachineBase;
+import micdoodle8.mods.galacticraft.core.blocks.BlockMachineTiered;
+import micdoodle8.mods.galacticraft.core.blocks.BlockScreen;
+import micdoodle8.mods.galacticraft.core.tile.TileEntityAirLockController;
+import micdoodle8.mods.galacticraft.core.tile.TileEntityEnergyStorageModule;
+import micdoodle8.mods.galacticraft.core.tile.TileEntityFallenMeteor;
+import micdoodle8.mods.galacticraft.core.tile.TileEntityScreen;
 
 public class ComponentCrashedAlienShipPieces extends StructureComponent
 {

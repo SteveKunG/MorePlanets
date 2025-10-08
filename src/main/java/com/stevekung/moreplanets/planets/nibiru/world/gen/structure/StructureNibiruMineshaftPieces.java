@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import com.stevekung.lib.utils.BlockStateProperty;
 import com.stevekung.moreplanets.entity.EntitySpaceMinecartChest;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPLootTables;
@@ -28,8 +29,6 @@ import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-
-import com.stevekung.lib.utils.BlockStateProperty;
 
 import javax.annotation.Nullable;
 

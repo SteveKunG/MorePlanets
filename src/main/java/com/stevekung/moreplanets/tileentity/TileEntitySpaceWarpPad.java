@@ -2,10 +2,11 @@ package com.stevekung.moreplanets.tileentity;
 
 import java.util.ArrayList;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
-import com.stevekung.moreplanets.init.MPBlocks;
 
 public class TileEntitySpaceWarpPad extends TileEntity implements ITickable
 {

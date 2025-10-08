@@ -2,13 +2,14 @@ package com.stevekung.moreplanets.planets.chalos.world.gen.feature;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.BlockStateProperty.EnumAxis;
+import com.stevekung.moreplanets.init.MPBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.lib.utils.BlockStateProperty;
-import com.stevekung.lib.utils.BlockStateProperty.EnumAxis;
 
 public class WorldGenCheeseSporeTree extends WorldGenAbstractTree
 {

@@ -1,5 +1,9 @@
 package com.stevekung.moreplanets.planets.nibiru.itemblocks;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.itemblocks.ItemBlockMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -12,9 +16,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.itemblocks.ItemBlockMP;
-import com.stevekung.lib.utils.BlockStateProperty;
 
 public class ItemBlockInfectedSnow extends ItemBlockMP
 {

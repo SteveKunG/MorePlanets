@@ -1,11 +1,12 @@
 package com.stevekung.moreplanets.planets.fronos.entity.ai;
 
+import com.stevekung.moreplanets.utils.entity.ai.PathNavigateGroundMP;
+
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import com.stevekung.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
 public class EntityAIFronosTempt extends EntityAIBase
 {

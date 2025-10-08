@@ -1,5 +1,10 @@
 package com.stevekung.moreplanets.planets.nibiru.entity.projectile;
 
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedChicken;
+import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
@@ -7,10 +12,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedChicken;
-import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
 
 public class EntityInfectedEgg extends EntityThrowable
 {

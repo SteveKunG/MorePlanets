@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.planets.diona.client.renderer.entity.layer;
 
+import com.stevekung.moreplanets.planets.diona.client.renderer.entity.RenderAlienMiner;
+import com.stevekung.moreplanets.planets.diona.entity.EntityAlienMiner;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -8,8 +11,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.diona.client.renderer.entity.RenderAlienMiner;
-import com.stevekung.moreplanets.planets.diona.entity.EntityAlienMiner;
 
 @SideOnly(Side.CLIENT)
 public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>

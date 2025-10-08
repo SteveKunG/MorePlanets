@@ -3,16 +3,6 @@ package com.stevekung.moreplanets.planets.diona.dimension;
 import java.util.Arrays;
 import java.util.List;
 
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import net.minecraft.block.Block;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.DimensionType;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.core.config.ConfigManagerMP;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPDimensions;
@@ -21,6 +11,18 @@ import com.stevekung.moreplanets.planets.diona.client.sky.SkyProviderDiona;
 import com.stevekung.moreplanets.planets.diona.world.gen.BiomeProviderDiona;
 import com.stevekung.moreplanets.planets.diona.world.gen.ChunkGeneratorDiona;
 import com.stevekung.moreplanets.utils.dimension.WorldProviderMP;
+
+import net.minecraft.block.Block;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
 
 public class WorldProviderDiona extends WorldProviderMP
 {

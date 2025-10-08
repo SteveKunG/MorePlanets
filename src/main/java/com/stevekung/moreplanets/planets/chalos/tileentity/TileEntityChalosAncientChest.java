@@ -1,10 +1,11 @@
 package com.stevekung.moreplanets.planets.chalos.tileentity;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
+
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
 
 public class TileEntityChalosAncientChest extends TileEntityChestMP
 {

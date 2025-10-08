@@ -1,5 +1,16 @@
 package com.stevekung.moreplanets.blocks;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
+import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
+import com.stevekung.moreplanets.utils.IDescription;
+import com.stevekung.moreplanets.utils.ItemDescription;
+import com.stevekung.moreplanets.utils.blocks.BlockAdvancedTileMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -21,16 +32,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
-import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
-import com.stevekung.moreplanets.utils.IDescription;
-import com.stevekung.moreplanets.utils.ItemDescription;
-import com.stevekung.moreplanets.utils.blocks.BlockAdvancedTileMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.lib.utils.BlockStateProperty;
-import com.stevekung.lib.utils.ColorUtils;
 
 public class BlockShieldGenerator extends BlockAdvancedTileMP implements IDescription
 {

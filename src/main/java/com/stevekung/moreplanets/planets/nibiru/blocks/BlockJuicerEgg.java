@@ -2,7 +2,13 @@ package com.stevekung.moreplanets.planets.nibiru.blocks;
 
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.init.MPSounds;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityJuicerEgg;
+import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
@@ -15,12 +21,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPSounds;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityJuicerEgg;
-import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.lib.utils.ColorUtils;
+
+import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
 
 public class BlockJuicerEgg extends BlockBaseMP implements ITileEntityProvider
 {

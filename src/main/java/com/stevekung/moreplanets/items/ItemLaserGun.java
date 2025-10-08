@@ -2,11 +2,16 @@ package com.stevekung.moreplanets.items;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.entity.projectile.EntityLaserBullet;
+import com.stevekung.moreplanets.entity.projectile.EntityLaserBullet.LaserType;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.init.MPSounds;
+import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
+import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
+import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
+import com.stevekung.moreplanets.utils.items.ISortableItem;
+import com.stevekung.moreplanets.utils.items.ItemBaseMP;
 
-import micdoodle8.mods.galacticraft.api.item.ElectricItemHelper;
-import micdoodle8.mods.galacticraft.api.item.IItemElectric;
-import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,15 +27,12 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.entity.projectile.EntityLaserBullet;
-import com.stevekung.moreplanets.entity.projectile.EntityLaserBullet.LaserType;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.init.MPSounds;
-import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
-import com.stevekung.moreplanets.utils.items.ISortableItem;
-import com.stevekung.moreplanets.utils.items.ItemBaseMP;
+
+import micdoodle8.mods.galacticraft.api.item.ElectricItemHelper;
+import micdoodle8.mods.galacticraft.api.item.IItemElectric;
+import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
+
+import javax.annotation.Nullable;
 
 public class ItemLaserGun extends ItemBaseMP implements ISortableItem, IItemModelRender, IItemElectric
 {

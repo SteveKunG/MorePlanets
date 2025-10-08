@@ -1,13 +1,14 @@
 package com.stevekung.moreplanets.planets.nibiru.client.renderer.entity.layer;
 
+import com.stevekung.moreplanets.planets.nibiru.client.model.ModelInfectedCreeper;
+import com.stevekung.moreplanets.planets.nibiru.client.renderer.entity.RenderInfectedCreeper;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.nibiru.client.model.ModelInfectedCreeper;
-import com.stevekung.moreplanets.planets.nibiru.client.renderer.entity.RenderInfectedCreeper;
 
 @SideOnly(Side.CLIENT)
 public class LayerInfectedCreeperCharge implements LayerRenderer<EntityCreeper>

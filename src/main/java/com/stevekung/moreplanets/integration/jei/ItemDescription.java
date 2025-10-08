@@ -2,9 +2,10 @@ package com.stevekung.moreplanets.integration.jei;
 
 import java.util.Locale;
 
-import net.minecraft.util.text.TextFormatting;
-import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.lib.utils.enums.CachedEnum;
+import com.stevekung.moreplanets.init.MPBlocks;
+
+import net.minecraft.util.text.TextFormatting;
 
 public class ItemDescription
 {

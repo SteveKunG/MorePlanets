@@ -4,8 +4,9 @@ import java.lang.reflect.Method;
 
 import com.stevekung.moreplanets.init.MPPlanets;
 
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import net.minecraftforge.fml.common.Loader;
+
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 
 public class CompatibilityManagerMP
 {

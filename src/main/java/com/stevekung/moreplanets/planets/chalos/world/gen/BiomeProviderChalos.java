@@ -1,15 +1,16 @@
 package com.stevekung.moreplanets.planets.chalos.world.gen;
 
+import com.stevekung.moreplanets.init.MPBiomes;
+import com.stevekung.moreplanets.planets.chalos.world.gen.biome.layer.GenLayerChalosBiomes;
+import com.stevekung.moreplanets.planets.chalos.world.gen.biome.layer.GenLayerSlimelyStream;
+import com.stevekung.moreplanets.planets.chalos.world.gen.biome.layer.GenLayerSlimelyStreamMix;
+
 import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.GenLayerSmooth;
 import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
 import net.minecraft.world.gen.layer.GenLayerZoom;
-import com.stevekung.moreplanets.init.MPBiomes;
-import com.stevekung.moreplanets.planets.chalos.world.gen.biome.layer.GenLayerChalosBiomes;
-import com.stevekung.moreplanets.planets.chalos.world.gen.biome.layer.GenLayerSlimelyStream;
-import com.stevekung.moreplanets.planets.chalos.world.gen.biome.layer.GenLayerSlimelyStreamMix;
 
 public class BiomeProviderChalos extends BiomeProvider
 {

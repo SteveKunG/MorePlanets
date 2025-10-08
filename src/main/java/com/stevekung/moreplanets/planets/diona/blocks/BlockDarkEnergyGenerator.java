@@ -2,6 +2,17 @@ package com.stevekung.moreplanets.planets.diona.blocks;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
+import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
+import com.stevekung.moreplanets.utils.IDescription;
+import com.stevekung.moreplanets.utils.ItemDescription;
+import com.stevekung.moreplanets.utils.blocks.BlockTileMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -22,16 +33,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
-import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
-import com.stevekung.moreplanets.utils.IDescription;
-import com.stevekung.moreplanets.utils.ItemDescription;
-import com.stevekung.moreplanets.utils.blocks.BlockTileMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.lib.utils.BlockStateProperty;
-import com.stevekung.lib.utils.ColorUtils;
 
 public class BlockDarkEnergyGenerator extends BlockTileMP implements IDescription
 {

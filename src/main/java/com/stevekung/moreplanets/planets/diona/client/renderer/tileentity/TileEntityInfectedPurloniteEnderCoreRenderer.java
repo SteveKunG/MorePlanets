@@ -1,5 +1,9 @@
 package com.stevekung.moreplanets.planets.diona.client.renderer.tileentity;
 
+import com.stevekung.lib.client.event.ClientEventHandler;
+import com.stevekung.moreplanets.planets.diona.client.model.ModelInfectedPurloniteEnderCore;
+import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityInfectedPurloniteEnderCore;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -7,9 +11,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.diona.client.model.ModelInfectedPurloniteEnderCore;
-import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityInfectedPurloniteEnderCore;
-import com.stevekung.lib.client.event.ClientEventHandler;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityInfectedPurloniteEnderCoreRenderer extends TileEntitySpecialRenderer<TileEntityInfectedPurloniteEnderCore>

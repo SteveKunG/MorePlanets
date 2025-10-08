@@ -2,12 +2,13 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.feature;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.blocks.BlockBushMP;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.blocks.BlockBushMP;
 
 public class WorldGenNibiruSeaweed extends WorldGenerator
 {

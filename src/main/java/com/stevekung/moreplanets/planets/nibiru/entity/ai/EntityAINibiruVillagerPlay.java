@@ -2,11 +2,12 @@ package com.stevekung.moreplanets.planets.nibiru.entity.ai;
 
 import java.util.List;
 
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.math.Vec3d;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
 
 public class EntityAINibiruVillagerPlay extends EntityAIBase
 {

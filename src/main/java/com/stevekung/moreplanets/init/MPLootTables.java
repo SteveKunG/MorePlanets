@@ -2,10 +2,12 @@ package com.stevekung.moreplanets.init;
 
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
+
+import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 
 public class MPLootTables
 {

@@ -1,5 +1,10 @@
 package com.stevekung.moreplanets.client.renderer.tileentity;
 
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.moreplanets.client.model.ModelDarkEnergyReceiver;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -11,10 +16,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.client.model.ModelDarkEnergyReceiver;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
-import com.stevekung.lib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRenderer<TileEntityDarkEnergyReceiver>

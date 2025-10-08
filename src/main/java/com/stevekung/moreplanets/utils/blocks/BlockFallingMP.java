@@ -1,5 +1,10 @@
 package com.stevekung.moreplanets.utils.blocks;
 
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
@@ -13,10 +18,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
-import com.stevekung.lib.utils.ColorUtils;
 
 public class BlockFallingMP extends BlockFalling implements ISortableBlock, IItemModelRender
 {

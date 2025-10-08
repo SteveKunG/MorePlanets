@@ -1,11 +1,12 @@
 package com.stevekung.moreplanets.planets.chalos.client.sky;
 
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.client.renderer.sky.SkyProviderBaseMP;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
-import com.stevekung.moreplanets.client.renderer.sky.SkyProviderBaseMP;
-import com.stevekung.lib.utils.ColorUtils;
 
 public class SkyProviderChalos extends SkyProviderBaseMP
 {

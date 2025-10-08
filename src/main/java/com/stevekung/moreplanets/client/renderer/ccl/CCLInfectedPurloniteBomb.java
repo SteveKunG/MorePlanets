@@ -3,13 +3,15 @@ package com.stevekung.moreplanets.client.renderer.ccl;
 import java.util.HashMap;
 import java.util.Map;
 
-import codechicken.lib.render.CCModelState;
-import codechicken.lib.util.TransformUtils;
+import com.stevekung.moreplanets.planets.diona.client.renderer.entity.RenderInfectedPurloniteBomb;
+
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.model.TRSRTransformation;
-import com.stevekung.moreplanets.planets.diona.client.renderer.entity.RenderInfectedPurloniteBomb;
+
+import codechicken.lib.render.CCModelState;
+import codechicken.lib.util.TransformUtils;
 
 public class CCLInfectedPurloniteBomb extends CCLRenderBase
 {

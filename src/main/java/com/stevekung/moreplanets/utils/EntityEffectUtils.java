@@ -1,11 +1,13 @@
 package com.stevekung.moreplanets.utils;
 
-import micdoodle8.mods.galacticraft.core.entities.*;
+import com.stevekung.moreplanets.init.MPPotions;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
-import com.stevekung.moreplanets.init.MPPotions;
+
+import micdoodle8.mods.galacticraft.core.entities.*;
 
 public class EntityEffectUtils
 {

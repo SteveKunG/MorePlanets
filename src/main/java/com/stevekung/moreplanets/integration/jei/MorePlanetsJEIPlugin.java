@@ -5,16 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import mezz.jei.api.IModPlugin;
-import mezz.jei.api.IModRegistry;
-import mezz.jei.api.JEIPlugin;
-import mezz.jei.api.recipe.IRecipeCategoryRegistration;
-import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
-import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
-import micdoodle8.mods.galacticraft.core.GCBlocks;
-import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.integration.jei.black_hole_storage.BlackHoleStorageRecipeCategory;
@@ -23,6 +13,18 @@ import com.stevekung.moreplanets.integration.jei.dark_energy_transform.DarkEnerg
 import com.stevekung.moreplanets.integration.jei.dark_energy_transform.DarkEnergyTransformRecipeWrapper;
 import com.stevekung.moreplanets.recipe.BlackHoleStorageRecipes;
 import com.stevekung.moreplanets.recipe.DarkEnergyRecipeData;
+
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import mezz.jei.api.IModPlugin;
+import mezz.jei.api.IModRegistry;
+import mezz.jei.api.JEIPlugin;
+import mezz.jei.api.recipe.IRecipeCategoryRegistration;
+import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
+import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
+import micdoodle8.mods.galacticraft.core.GCBlocks;
+import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 
 @JEIPlugin
 public class MorePlanetsJEIPlugin implements IModPlugin

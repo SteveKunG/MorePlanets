@@ -1,13 +1,14 @@
 package com.stevekung.moreplanets.planets.nibiru.client.renderer.tileentity;
 
+import com.stevekung.moreplanets.planets.nibiru.client.model.ModelVeinFrame;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityVeinFrame;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.nibiru.client.model.ModelVeinFrame;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityVeinFrame;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityVeinFrameRenderer extends TileEntitySpecialRenderer<TileEntityVeinFrame>

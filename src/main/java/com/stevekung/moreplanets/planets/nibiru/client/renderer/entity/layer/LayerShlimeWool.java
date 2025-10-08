@@ -1,5 +1,10 @@
 package com.stevekung.moreplanets.planets.nibiru.client.renderer.entity.layer;
 
+import com.stevekung.lib.utils.enums.CachedEnum;
+import com.stevekung.moreplanets.planets.nibiru.client.model.ModelShlimeFur;
+import com.stevekung.moreplanets.planets.nibiru.client.renderer.entity.RenderShlime;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityShlime;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.passive.EntitySheep;
@@ -7,10 +12,6 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.nibiru.client.model.ModelShlimeFur;
-import com.stevekung.moreplanets.planets.nibiru.client.renderer.entity.RenderShlime;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityShlime;
-import com.stevekung.lib.utils.enums.CachedEnum;
 
 @SideOnly(Side.CLIENT)
 public class LayerShlimeWool implements LayerRenderer<EntityShlime>

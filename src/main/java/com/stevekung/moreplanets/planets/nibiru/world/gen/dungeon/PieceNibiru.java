@@ -2,12 +2,13 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.dungeon;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
 
 public abstract class PieceNibiru extends StructureComponent
 {

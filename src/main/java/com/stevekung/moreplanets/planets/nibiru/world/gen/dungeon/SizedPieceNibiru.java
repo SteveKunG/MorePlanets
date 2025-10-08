@@ -1,9 +1,10 @@
 package com.stevekung.moreplanets.planets.nibiru.world.gen.dungeon;
 
+import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
 
 public abstract class SizedPieceNibiru extends DirectionalPieceNibiru
 {

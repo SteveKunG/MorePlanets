@@ -2,7 +2,6 @@ package com.stevekung.moreplanets.init;
 
 import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
-import net.minecraft.world.biome.Biome;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.planets.chalos.world.gen.biome.BiomeChalosMoutains;
 import com.stevekung.moreplanets.planets.chalos.world.gen.biome.BiomeChalosPlains;
@@ -12,8 +11,9 @@ import com.stevekung.moreplanets.planets.fronos.world.gen.biome.BiomeFronos;
 import com.stevekung.moreplanets.planets.fronos.world.gen.biome.BiomeFronosForest;
 import com.stevekung.moreplanets.planets.fronos.world.gen.biome.BiomeFronosMeadow;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.biome.*;
-
 import com.stevekung.moreplanets.utils.world.gen.biome.BiomeMP;
+
+import net.minecraft.world.biome.Biome;
 
 public class MPBiomes
 {

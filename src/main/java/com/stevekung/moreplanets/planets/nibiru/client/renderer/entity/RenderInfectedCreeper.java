@@ -1,5 +1,9 @@
 package com.stevekung.moreplanets.planets.nibiru.client.renderer.entity;
 
+import com.stevekung.moreplanets.planets.nibiru.client.model.ModelInfectedCreeper;
+import com.stevekung.moreplanets.planets.nibiru.client.renderer.entity.layer.LayerInfectedCreeperCharge;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedCreeper;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -7,9 +11,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.nibiru.client.model.ModelInfectedCreeper;
-import com.stevekung.moreplanets.planets.nibiru.client.renderer.entity.layer.LayerInfectedCreeperCharge;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedCreeper;
 
 @SideOnly(Side.CLIENT)
 public class RenderInfectedCreeper extends RenderLiving<EntityInfectedCreeper>

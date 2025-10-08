@@ -1,9 +1,10 @@
 package com.stevekung.moreplanets.utils.itemblocks;
 
-import micdoodle8.mods.galacticraft.api.item.GCRarity;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+
+import micdoodle8.mods.galacticraft.api.item.GCRarity;
 
 public class ItemBlockMP extends ItemBlock implements GCRarity
 {

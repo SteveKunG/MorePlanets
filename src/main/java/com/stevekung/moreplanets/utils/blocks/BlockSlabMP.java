@@ -2,6 +2,9 @@ package com.stevekung.moreplanets.utils.blocks;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
@@ -13,8 +16,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 
 public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, ISlab, IItemModelRender
 {

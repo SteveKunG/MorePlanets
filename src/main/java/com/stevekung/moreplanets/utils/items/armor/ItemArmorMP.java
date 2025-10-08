@@ -1,17 +1,19 @@
 package com.stevekung.moreplanets.utils.items.armor;
 
-import micdoodle8.mods.galacticraft.api.item.GCRarity;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemStack;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.integration.jei.MPJEIRecipes;
 import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
 import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
 import com.stevekung.moreplanets.utils.items.ISortableItem;
+
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
+
+import micdoodle8.mods.galacticraft.api.item.GCRarity;
 
 public abstract class ItemArmorMP extends ItemArmor implements ISortableItem, IItemModelRender, GCRarity
 {

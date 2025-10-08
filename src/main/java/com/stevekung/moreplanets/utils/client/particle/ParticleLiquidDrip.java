@@ -1,5 +1,7 @@
 package com.stevekung.moreplanets.utils.client.particle;
 
+import com.stevekung.lib.utils.ColorUtils;
+
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -9,7 +11,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.lib.utils.ColorUtils;
 
 @SideOnly(Side.CLIENT)
 public class ParticleLiquidDrip extends Particle

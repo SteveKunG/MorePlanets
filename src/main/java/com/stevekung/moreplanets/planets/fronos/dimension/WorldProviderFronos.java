@@ -3,9 +3,16 @@ package com.stevekung.moreplanets.planets.fronos.dimension;
 import java.util.Arrays;
 import java.util.List;
 
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import micdoodle8.mods.galacticraft.core.event.EventHandlerGC;
+import com.stevekung.moreplanets.core.config.ConfigManagerMP;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPDimensions;
+import com.stevekung.moreplanets.init.MPPlanets;
+import com.stevekung.moreplanets.planets.fronos.client.renderer.FronosCloudRenderer;
+import com.stevekung.moreplanets.planets.fronos.client.renderer.SkyProviderFronos;
+import com.stevekung.moreplanets.planets.fronos.world.gen.BiomeProviderFronos;
+import com.stevekung.moreplanets.planets.fronos.world.gen.ChunkGeneratorFronos;
+import com.stevekung.moreplanets.utils.dimension.WorldProviderMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -16,15 +23,10 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.config.ConfigManagerMP;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPDimensions;
-import com.stevekung.moreplanets.init.MPPlanets;
-import com.stevekung.moreplanets.planets.fronos.client.renderer.FronosCloudRenderer;
-import com.stevekung.moreplanets.planets.fronos.client.renderer.SkyProviderFronos;
-import com.stevekung.moreplanets.planets.fronos.world.gen.BiomeProviderFronos;
-import com.stevekung.moreplanets.planets.fronos.world.gen.ChunkGeneratorFronos;
-import com.stevekung.moreplanets.utils.dimension.WorldProviderMP;
+
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.core.event.EventHandlerGC;
 
 public class WorldProviderFronos extends WorldProviderMP
 {

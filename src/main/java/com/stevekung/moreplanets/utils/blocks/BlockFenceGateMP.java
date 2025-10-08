@@ -1,12 +1,13 @@
 package com.stevekung.moreplanets.utils.blocks;
 
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
 import net.minecraft.creativetab.CreativeTabs;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 
 public class BlockFenceGateMP extends BlockFenceGate implements ISortableBlock, IItemModelRender
 {

@@ -1,5 +1,11 @@
 package com.stevekung.moreplanets.planets.nibiru.blocks;
 
+import com.stevekung.moreplanets.utils.DamageSourceMP;
+import com.stevekung.moreplanets.utils.blocks.BlockVinesMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.entity.ISpaceMob;
+import com.stevekung.moreplanets.utils.entity.ISpaceMob.EnumMobType;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,11 +16,6 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.utils.DamageSourceMP;
-import com.stevekung.moreplanets.utils.blocks.BlockVinesMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.entity.ISpaceMob;
-import com.stevekung.moreplanets.utils.entity.ISpaceMob.EnumMobType;
 
 public class BlockInfectedVines extends BlockVinesMP
 {

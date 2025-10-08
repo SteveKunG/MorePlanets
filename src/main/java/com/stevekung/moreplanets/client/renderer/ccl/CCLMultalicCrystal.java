@@ -1,8 +1,9 @@
 package com.stevekung.moreplanets.client.renderer.ccl;
 
+import com.stevekung.moreplanets.planets.nibiru.client.renderer.tileentity.TileEntityMultalicCrystalRenderer;
+
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.item.ItemStack;
-import com.stevekung.moreplanets.planets.nibiru.client.renderer.tileentity.TileEntityMultalicCrystalRenderer;
 
 public class CCLMultalicCrystal extends CCLRenderBase
 {

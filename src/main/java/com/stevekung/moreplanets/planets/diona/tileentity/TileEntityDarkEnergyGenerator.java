@@ -2,12 +2,11 @@ package com.stevekung.moreplanets.planets.diona.tileentity;
 
 import java.util.EnumSet;
 
-import micdoodle8.mods.galacticraft.api.tile.IDisableableMachine;
-import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
-import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
-import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
-import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectricalSource;
-import micdoodle8.mods.miccore.Annotations.NetworkedField;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.init.MPSounds;
+import com.stevekung.moreplanets.utils.dimension.IDarkEnergyProvider;
+import com.stevekung.moreplanets.utils.items.IDarkEnergyFuel;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
@@ -18,10 +17,13 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.init.MPSounds;
-import com.stevekung.moreplanets.utils.dimension.IDarkEnergyProvider;
-import com.stevekung.moreplanets.utils.items.IDarkEnergyFuel;
+
+import micdoodle8.mods.galacticraft.api.tile.IDisableableMachine;
+import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
+import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
+import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
+import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectricalSource;
+import micdoodle8.mods.miccore.Annotations.NetworkedField;
 
 public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSource implements IDisableableMachine, IConnector
 {

@@ -1,7 +1,7 @@
 package com.stevekung.moreplanets.utils.items;
 
-import micdoodle8.mods.galacticraft.api.recipe.ISchematicItem;
-import micdoodle8.mods.galacticraft.core.entities.EntityHangingSchematic;
+import com.stevekung.lib.utils.LangUtils;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -9,7 +9,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import com.stevekung.lib.utils.LangUtils;
+
+import micdoodle8.mods.galacticraft.api.recipe.ISchematicItem;
+import micdoodle8.mods.galacticraft.core.entities.EntityHangingSchematic;
 
 public class ItemSchematicMP extends ItemBaseMP implements ISchematicItem
 {

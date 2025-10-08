@@ -1,12 +1,13 @@
 package com.stevekung.moreplanets.init;
 
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import com.stevekung.moreplanets.items.ItemBlackHoleStorageSchematic;
 import com.stevekung.moreplanets.items.ItemIonCannonSchematic;
 import com.stevekung.moreplanets.schematic.BlackHoleStorageSchematic;
 import com.stevekung.moreplanets.utils.SchematicsRegistry;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class MPSchematics
 {

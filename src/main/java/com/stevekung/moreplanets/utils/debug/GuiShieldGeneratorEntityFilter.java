@@ -5,12 +5,16 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.UUID;
 
-import javax.annotation.Nullable;
-
 import org.lwjgl.input.Keyboard;
 
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.moreplanets.inventory.ContainerShieldGenerator;
+import com.stevekung.moreplanets.network.PacketSimpleMP;
+import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
+import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
+import com.stevekung.moreplanets.utils.client.gui.GuiContainerMP;
+import com.stevekung.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.renderer.GlStateManager;
@@ -18,13 +22,11 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.inventory.ContainerShieldGenerator;
-import com.stevekung.moreplanets.network.PacketSimpleMP;
-import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
-import com.stevekung.moreplanets.utils.client.gui.GuiContainerMP;
-import com.stevekung.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
-import com.stevekung.lib.utils.LangUtils;
+
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+
+import javax.annotation.Nullable;
 
 @SideOnly(Side.CLIENT)
 public class GuiShieldGeneratorEntityFilter extends GuiContainerMP

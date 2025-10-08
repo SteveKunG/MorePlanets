@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.annotation.Nullable;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.blocks.BlockIceMP;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -18,9 +20,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.blocks.BlockIceMP;
-import com.stevekung.lib.utils.ColorUtils;
+
+import javax.annotation.Nullable;
 
 public class BlockInfectedIce extends BlockIceMP
 {

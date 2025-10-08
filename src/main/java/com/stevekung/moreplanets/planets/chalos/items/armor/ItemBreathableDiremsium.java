@@ -1,11 +1,12 @@
 package com.stevekung.moreplanets.planets.chalos.items.armor;
 
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.utils.items.armor.ItemBreathableArmor;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.utils.items.armor.ItemBreathableArmor;
 
 public class ItemBreathableDiremsium extends ItemBreathableArmor
 {

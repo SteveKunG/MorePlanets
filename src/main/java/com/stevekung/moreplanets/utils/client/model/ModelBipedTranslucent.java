@@ -1,6 +1,5 @@
 package com.stevekung.moreplanets.utils.client.model;
 
-import micdoodle8.mods.galacticraft.core.client.model.ModelBipedGC;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
@@ -13,6 +12,8 @@ import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import micdoodle8.mods.galacticraft.core.client.model.ModelBipedGC;
 
 @SideOnly(Side.CLIENT)
 public class ModelBipedTranslucent extends ModelBiped

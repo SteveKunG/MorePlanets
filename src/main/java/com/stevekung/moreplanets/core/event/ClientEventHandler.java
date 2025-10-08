@@ -6,11 +6,32 @@ import java.util.*;
 
 import org.lwjgl.input.Keyboard;
 
-import micdoodle8.mods.galacticraft.api.event.client.CelestialBodyRenderEvent;
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
-import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
-import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore.EventSpecialRender;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.client.ClientUtils;
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.lib.utils.client.event.AddRainParticleEvent;
+import com.stevekung.lib.utils.client.event.FirstPersonViewOverlayEvent;
+import com.stevekung.lib.utils.client.event.RenderEntityOverlayEvent;
+import com.stevekung.moreplanets.client.renderer.MultiblockRendererUtils;
+import com.stevekung.moreplanets.client.renderer.ShieldRenderer;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.core.config.ConfigManagerMP;
+import com.stevekung.moreplanets.entity.IInfectedPurlonite;
+import com.stevekung.moreplanets.init.MPBiomes;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.init.MPSounds;
+import com.stevekung.moreplanets.planets.diona.client.renderer.FakeAlienBeamRenderer;
+import com.stevekung.moreplanets.planets.diona.dimension.WorldProviderDiona;
+import com.stevekung.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
+import com.stevekung.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
+import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
+import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
+import com.stevekung.moreplanets.utils.IMorePlanetsBoss;
+import com.stevekung.moreplanets.utils.blocks.fluid.LiquidUtils;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
@@ -47,31 +68,12 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.client.renderer.MultiblockRendererUtils;
-import com.stevekung.moreplanets.client.renderer.ShieldRenderer;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.core.config.ConfigManagerMP;
-import com.stevekung.moreplanets.entity.IInfectedPurlonite;
-import com.stevekung.moreplanets.init.MPBiomes;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.init.MPSounds;
-import com.stevekung.moreplanets.planets.diona.client.renderer.FakeAlienBeamRenderer;
-import com.stevekung.moreplanets.planets.diona.dimension.WorldProviderDiona;
-import com.stevekung.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
-import com.stevekung.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
-import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
-import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
-import com.stevekung.moreplanets.utils.IMorePlanetsBoss;
-import com.stevekung.moreplanets.utils.blocks.fluid.LiquidUtils;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.lib.utils.ColorUtils;
-import com.stevekung.lib.utils.client.ClientUtils;
-import com.stevekung.lib.utils.client.GLConstants;
-import com.stevekung.lib.utils.client.event.AddRainParticleEvent;
-import com.stevekung.lib.utils.client.event.FirstPersonViewOverlayEvent;
-import com.stevekung.lib.utils.client.event.RenderEntityOverlayEvent;
+
+import micdoodle8.mods.galacticraft.api.event.client.CelestialBodyRenderEvent;
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
+import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
+import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore.EventSpecialRender;
 
 public class ClientEventHandler
 {

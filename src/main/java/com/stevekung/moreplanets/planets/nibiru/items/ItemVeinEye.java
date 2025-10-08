@@ -1,6 +1,11 @@
 package com.stevekung.moreplanets.planets.nibiru.items;
 
 import com.google.common.base.Predicates;
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.nibiru.blocks.BlockVeinFrame;
+import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityVeinEye;
+import com.stevekung.moreplanets.utils.items.ItemBaseMP;
 
 import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.block.state.IBlockState;
@@ -16,11 +21,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.nibiru.blocks.BlockVeinFrame;
-import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityVeinEye;
-import com.stevekung.moreplanets.utils.items.ItemBaseMP;
-import com.stevekung.lib.utils.BlockStateProperty;
 
 public class ItemVeinEye extends ItemBaseMP
 {

@@ -1,11 +1,12 @@
 package com.stevekung.moreplanets.planets.nibiru.client.model;
 
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityShlime;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityShlime;
 
 public class ModelShlime extends ModelBase
 {

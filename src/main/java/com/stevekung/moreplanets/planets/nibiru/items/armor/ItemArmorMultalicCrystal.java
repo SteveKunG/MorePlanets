@@ -1,5 +1,9 @@
 package com.stevekung.moreplanets.planets.nibiru.items.armor;
 
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.utils.ModelRegistryUtils;
+import com.stevekung.moreplanets.utils.items.armor.ItemArmorMP;
+
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -8,9 +12,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.utils.ModelRegistryUtils;
-import com.stevekung.moreplanets.utils.items.armor.ItemArmorMP;
 
 public class ItemArmorMultalicCrystal extends ItemArmorMP
 {

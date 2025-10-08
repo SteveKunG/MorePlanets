@@ -1,13 +1,15 @@
 package com.stevekung.moreplanets.utils.items;
 
-import micdoodle8.mods.galacticraft.api.item.GCRarity;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.lib.utils.ColorUtils;
+
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import micdoodle8.mods.galacticraft.api.item.GCRarity;
 
 public class ItemBaseMP extends Item implements ISortableItem, IItemModelRender, IItemRarity, GCRarity
 {

@@ -1,5 +1,6 @@
 package com.stevekung.moreplanets.init;
 
+import com.stevekung.lib.utils.BehaviorProjectileDispenseBase;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.planets.diona.entity.EntityInfectedPurloniteBomb;
 import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityInfectedPurloniteArrow;
@@ -7,7 +8,6 @@ import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityInfected
 import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityInfectedEgg;
 import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityInfectedSnowball;
 import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityPurifiedSnowball;
-import com.stevekung.lib.utils.BehaviorProjectileDispenseBase;
 
 public class MPOthers
 {

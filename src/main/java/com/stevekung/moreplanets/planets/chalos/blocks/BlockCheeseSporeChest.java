@@ -1,5 +1,10 @@
 package com.stevekung.moreplanets.planets.chalos.blocks;
 
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.moreplanets.planets.chalos.tileentity.TileEntityCheeseSporeChest;
+import com.stevekung.moreplanets.utils.blocks.BlockChestMP;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.inventory.InventoryLargeChest;
@@ -8,10 +13,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.planets.chalos.tileentity.TileEntityCheeseSporeChest;
-import com.stevekung.moreplanets.utils.blocks.BlockChestMP;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
-import com.stevekung.lib.utils.LangUtils;
 
 public class BlockCheeseSporeChest extends BlockChestMP
 {

@@ -2,16 +2,17 @@ package com.stevekung.moreplanets.planets.diona.world.gen.feature;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPLootTables;
 import com.stevekung.moreplanets.planets.diona.blocks.BlockCrashedAlienProbe;
 import com.stevekung.moreplanets.planets.diona.entity.EntityAlienMiner;
 import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityCrashedAlienProbe;
+
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class WorldGenCrashedAlienProbe extends WorldGenerator
 {

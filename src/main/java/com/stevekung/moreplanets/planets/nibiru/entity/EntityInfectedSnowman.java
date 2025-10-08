@@ -1,8 +1,12 @@
 package com.stevekung.moreplanets.planets.nibiru.entity;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityInfectedSnowball;
+import com.stevekung.moreplanets.utils.entity.ISpaceMob;
+import com.stevekung.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
-import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,12 +25,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityInfectedSnowball;
-import com.stevekung.moreplanets.utils.entity.ISpaceMob;
-import com.stevekung.moreplanets.utils.entity.ai.PathNavigateGroundMP;
+
+import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+
+import javax.annotation.Nullable;
 
 public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackMob, IEntityBreathable, ISpaceMob
 {

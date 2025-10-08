@@ -1,9 +1,10 @@
 package com.stevekung.moreplanets.planets.chalos.tileentity;
 
-import net.minecraft.item.Item;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
+
+import net.minecraft.item.Item;
 
 public class TileEntityChalosTreasureChest extends TileEntityTreasureChestMP
 {

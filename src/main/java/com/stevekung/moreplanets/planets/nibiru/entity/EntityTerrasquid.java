@@ -2,11 +2,12 @@ package com.stevekung.moreplanets.planets.nibiru.entity;
 
 import com.stevekung.moreplanets.init.MPBlocks;
 
-import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 
 public class EntityTerrasquid extends EntitySquid implements IEntityBreathable
 {

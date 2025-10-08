@@ -3,13 +3,13 @@ package com.stevekung.moreplanets.core.handler;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.datafix.FixTypes;
 import net.minecraft.util.datafix.IFixableData;
 import net.minecraftforge.common.util.ModFixs;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
 
 public class DataFixersMP
 {

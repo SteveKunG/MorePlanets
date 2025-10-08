@@ -2,10 +2,7 @@ package com.stevekung.moreplanets.client.renderer;
 
 import java.lang.reflect.Method;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import com.stevekung.moreplanets.client.renderer.ccl.*;
-
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPItems;
@@ -21,6 +18,9 @@ import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNibiruTreas
 import com.stevekung.moreplanets.tileentity.TileEntityAlienChest;
 import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
 import com.stevekung.moreplanets.utils.LoggerMP;
+
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 
 public class ItemModelRenderer
 {

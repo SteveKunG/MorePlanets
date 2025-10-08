@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.planets.chalos.client.renderer.entity.layer;
 
+import com.stevekung.moreplanets.planets.chalos.client.renderer.entity.RenderCheeseCubeEyeBoss;
+import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseCubeEyeBoss;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -7,8 +10,6 @@ import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.chalos.client.renderer.entity.RenderCheeseCubeEyeBoss;
-import com.stevekung.moreplanets.planets.chalos.entity.EntityCheeseCubeEyeBoss;
 
 @SideOnly(Side.CLIENT)
 public class LayerCheeseCubeEyeBoss implements LayerRenderer<EntityCheeseCubeEyeBoss>

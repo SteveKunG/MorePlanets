@@ -1,6 +1,12 @@
 package com.stevekung.moreplanets.planets.nibiru.blocks;
 
-import micdoodle8.mods.galacticraft.core.util.FluidUtil;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
+import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
+import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -20,12 +26,8 @@ import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
-import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.lib.utils.ColorUtils;
+
+import micdoodle8.mods.galacticraft.core.util.FluidUtil;
 
 public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityProvider
 {

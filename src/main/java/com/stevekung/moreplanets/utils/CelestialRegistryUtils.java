@@ -2,6 +2,9 @@ package com.stevekung.moreplanets.utils;
 
 import java.util.Locale;
 
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.WorldProvider;
+
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.*;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody.ScalableDistance;
@@ -9,8 +12,6 @@ import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.api.world.ITeleportType;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.WorldProvider;
 
 public class CelestialRegistryUtils
 {

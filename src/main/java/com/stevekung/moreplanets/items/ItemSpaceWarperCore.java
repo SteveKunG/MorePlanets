@@ -2,11 +2,10 @@ package com.stevekung.moreplanets.items;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
+import com.stevekung.lib.utils.JsonUtils;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.moreplanets.utils.items.ItemBaseMP;
 
-import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -18,9 +17,12 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.items.ItemBaseMP;
-import com.stevekung.lib.utils.JsonUtils;
-import com.stevekung.lib.utils.LangUtils;
+
+import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
+
+import javax.annotation.Nullable;
 
 public class ItemSpaceWarperCore extends ItemBaseMP
 {

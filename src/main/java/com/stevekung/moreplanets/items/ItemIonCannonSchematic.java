@@ -2,7 +2,8 @@ package com.stevekung.moreplanets.items;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.moreplanets.utils.items.ItemSchematicMP;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
@@ -10,8 +11,8 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.items.ItemSchematicMP;
-import com.stevekung.lib.utils.LangUtils;
+
+import javax.annotation.Nullable;
 
 public class ItemIonCannonSchematic extends ItemSchematicMP
 {

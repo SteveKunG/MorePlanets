@@ -1,9 +1,10 @@
 package com.stevekung.moreplanets.planets.chalos.world.gen.biome.layer;
 
+import com.stevekung.moreplanets.init.MPBiomes;
+
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
-import com.stevekung.moreplanets.init.MPBiomes;
 
 public class GenLayerSlimelyStream extends GenLayer
 {

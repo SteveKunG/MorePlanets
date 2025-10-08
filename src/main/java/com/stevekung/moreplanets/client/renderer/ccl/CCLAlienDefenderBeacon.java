@@ -1,10 +1,11 @@
 package com.stevekung.moreplanets.client.renderer.ccl;
 
+import com.stevekung.lib.utils.client.ClientRegistryUtils;
+import com.stevekung.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.item.ItemStack;
-import com.stevekung.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
-import com.stevekung.lib.utils.client.ClientRegistryUtils;
 
 public class CCLAlienDefenderBeacon extends CCLRenderBase
 {

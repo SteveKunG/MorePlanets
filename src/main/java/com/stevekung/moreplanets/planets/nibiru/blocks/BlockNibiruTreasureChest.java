@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.planets.nibiru.blocks;
 
+import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNibiruTreasureChest;
+import com.stevekung.moreplanets.utils.blocks.BlockTreasureChestMP;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -9,8 +12,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNibiruTreasureChest;
-import com.stevekung.moreplanets.utils.blocks.BlockTreasureChestMP;
 
 public class BlockNibiruTreasureChest extends BlockTreasureChestMP
 {

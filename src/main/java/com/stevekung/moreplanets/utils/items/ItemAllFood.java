@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.utils.items;
 
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.moreplanets.init.MPBlocks;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -15,8 +18,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IRarity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.lib.utils.LangUtils;
 
 public class ItemAllFood extends ItemFoodMP
 {

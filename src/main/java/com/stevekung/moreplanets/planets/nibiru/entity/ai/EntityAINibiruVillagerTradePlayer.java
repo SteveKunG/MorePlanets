@@ -1,8 +1,9 @@
 package com.stevekung.moreplanets.planets.nibiru.entity.ai;
 
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
+
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
 
 public class EntityAINibiruVillagerTradePlayer extends EntityAIBase
 {

@@ -1,13 +1,15 @@
 package com.stevekung.moreplanets.planets.diona.client.renderer.entity;
 
-import micdoodle8.mods.galacticraft.planets.mars.client.model.ModelSludgeling;
+import com.stevekung.moreplanets.planets.diona.entity.EntityAlbetiusWorm;
+import com.stevekung.moreplanets.utils.client.renderer.entity.layer.LayerGlowingTexture;
+
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.diona.entity.EntityAlbetiusWorm;
-import com.stevekung.moreplanets.utils.client.renderer.entity.layer.LayerGlowingTexture;
+
+import micdoodle8.mods.galacticraft.planets.mars.client.model.ModelSludgeling;
 
 @SideOnly(Side.CLIENT)
 public class RenderAlbetiusWorm extends RenderLiving<EntityAlbetiusWorm>

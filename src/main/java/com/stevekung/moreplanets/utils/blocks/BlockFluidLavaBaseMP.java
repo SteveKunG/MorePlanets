@@ -2,7 +2,6 @@ package com.stevekung.moreplanets.utils.blocks;
 
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.core.blocks.BlockGrating;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -15,6 +14,8 @@ import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import micdoodle8.mods.galacticraft.core.blocks.BlockGrating;
 
 public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
 {

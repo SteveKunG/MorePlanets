@@ -2,10 +2,18 @@ package com.stevekung.moreplanets.utils.items;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.lib.utils.client.ClientUtils;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityAntiGravityArrow;
+import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityInfectedPurloniteArrow;
+import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityInfectedArrow;
+import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
+import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
 
-import micdoodle8.mods.galacticraft.api.item.GCRarity;
-import micdoodle8.mods.galacticraft.core.TransformerHooks;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,17 +24,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityAntiGravityArrow;
-import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityInfectedPurloniteArrow;
-import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityInfectedArrow;
-import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.lib.utils.ColorUtils;
-import com.stevekung.lib.utils.LangUtils;
-import com.stevekung.lib.utils.client.ClientUtils;
+
+import micdoodle8.mods.galacticraft.api.item.GCRarity;
+import micdoodle8.mods.galacticraft.core.TransformerHooks;
+
+import javax.annotation.Nullable;
 
 public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelRender, IItemRarity, GCRarity
 {

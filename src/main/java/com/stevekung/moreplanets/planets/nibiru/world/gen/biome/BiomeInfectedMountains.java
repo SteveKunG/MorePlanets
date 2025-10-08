@@ -2,16 +2,17 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.biome;
 
 import java.util.Random;
 
+import com.stevekung.lib.world.gen.WorldGenMinableBase;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadSpruce;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenMultalicCrystal;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadSpruce;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenMultalicCrystal;
-import com.stevekung.lib.world.gen.WorldGenMinableBase;
 
 public class BiomeInfectedMountains extends BiomeNibiru
 {

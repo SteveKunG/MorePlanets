@@ -1,16 +1,8 @@
 package com.stevekung.moreplanets.planets.diona.world.gen;
 
-import javax.annotation.Nullable;
-
 import com.google.common.collect.Sets;
-
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.ChunkPrimer;
+import com.stevekung.lib.world.gen.MapGenCavesBase;
+import com.stevekung.lib.world.gen.WorldGenLiquidLake;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.diona.world.gen.dungeon.MapGenDionaDungeon;
 import com.stevekung.moreplanets.planets.diona.world.gen.dungeon.RoomBossDiona;
@@ -24,8 +16,16 @@ import com.stevekung.moreplanets.utils.world.gen.ChunkGeneratorBaseMP;
 import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
 import com.stevekung.moreplanets.utils.world.gen.dungeon.RoomChestMP;
 import com.stevekung.moreplanets.utils.world.gen.feature.WorldGenSpaceDungeons;
-import com.stevekung.lib.world.gen.MapGenCavesBase;
-import com.stevekung.lib.world.gen.WorldGenLiquidLake;
+
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ChunkPrimer;
+
+import javax.annotation.Nullable;
 
 public class ChunkGeneratorDiona extends ChunkGeneratorBaseMP
 {

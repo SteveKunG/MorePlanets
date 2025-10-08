@@ -2,16 +2,17 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.biome;
 
 import java.util.Random;
 
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedSnowman;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadSpruce;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedIcePath;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedIceSpike;
+
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 public class BiomeInfectedSnow extends BiomeNibiru
 {

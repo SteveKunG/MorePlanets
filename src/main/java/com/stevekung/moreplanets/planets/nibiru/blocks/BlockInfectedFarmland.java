@@ -2,6 +2,12 @@ package com.stevekung.moreplanets.planets.nibiru.blocks;
 
 import java.util.Iterator;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedChicken;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityShlime;
+import com.stevekung.moreplanets.utils.blocks.BlockFarmlandMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,11 +15,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedChicken;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityShlime;
-import com.stevekung.moreplanets.utils.blocks.BlockFarmlandMP;
-import com.stevekung.lib.utils.BlockStateProperty;
 
 public class BlockInfectedFarmland extends BlockFarmlandMP
 {

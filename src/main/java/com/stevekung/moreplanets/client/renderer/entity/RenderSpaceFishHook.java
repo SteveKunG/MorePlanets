@@ -1,5 +1,9 @@
 package com.stevekung.moreplanets.client.renderer.entity;
 
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.moreplanets.entity.projectile.EntitySpaceFishHook;
+import com.stevekung.moreplanets.init.MPItems;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -15,9 +19,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.entity.projectile.EntitySpaceFishHook;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.lib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class RenderSpaceFishHook extends Render<EntitySpaceFishHook>

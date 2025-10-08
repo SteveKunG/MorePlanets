@@ -1,16 +1,18 @@
 package com.stevekung.moreplanets.utils.items.tools;
 
-import micdoodle8.mods.galacticraft.api.item.GCRarity;
-import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemHoe;
-import net.minecraft.item.ItemStack;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.integration.jei.MPJEIRecipes;
 import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
 import com.stevekung.moreplanets.utils.items.ISortableItem;
+
+import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemHoe;
+import net.minecraft.item.ItemStack;
+
+import micdoodle8.mods.galacticraft.api.item.GCRarity;
 
 public class ItemHoeMP extends ItemHoe implements ISortableItem, IItemModelRender, GCRarity
 {

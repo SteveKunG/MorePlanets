@@ -1,6 +1,7 @@
 package com.stevekung.moreplanets.utils.tileentity;
 
-import javax.annotation.Nullable;
+import com.stevekung.lib.utils.LangUtils;
+import com.stevekung.moreplanets.utils.world.capability.DoubleChestItemHandlerMP;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,8 +22,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import com.stevekung.moreplanets.utils.world.capability.DoubleChestItemHandlerMP;
-import com.stevekung.lib.utils.LangUtils;
+
+import javax.annotation.Nullable;
 
 public abstract class TileEntityChestMP extends TileEntityLockableLoot implements ITickable, IInventory
 {

@@ -1,5 +1,9 @@
 package com.stevekung.moreplanets.utils.blocks;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
@@ -13,9 +17,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
-import com.stevekung.lib.utils.BlockStateProperty;
-import com.stevekung.lib.utils.ColorUtils;
 
 public abstract class BlockTreasureChestMP extends BlockContainerMP implements IItemRarity
 {

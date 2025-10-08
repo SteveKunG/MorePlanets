@@ -1,5 +1,11 @@
 package com.stevekung.moreplanets.entity;
 
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.core.config.ConfigManagerMP;
+import com.stevekung.moreplanets.init.MPSounds;
+import com.stevekung.moreplanets.utils.DamageSourceMP;
+import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -17,11 +23,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.core.config.ConfigManagerMP;
-import com.stevekung.moreplanets.init.MPSounds;
-import com.stevekung.moreplanets.utils.DamageSourceMP;
-import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
 
 public class EntityBlackHole extends Entity
 {

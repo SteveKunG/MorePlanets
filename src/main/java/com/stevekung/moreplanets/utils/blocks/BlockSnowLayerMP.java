@@ -2,6 +2,8 @@ package com.stevekung.moreplanets.utils.blocks;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -21,7 +23,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.lib.utils.BlockStateProperty;
 
 public class BlockSnowLayerMP extends BlockBaseMP
 {

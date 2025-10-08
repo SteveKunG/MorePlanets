@@ -2,6 +2,10 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.structure;
 
 import java.util.*;
 
+import com.stevekung.moreplanets.init.MPBiomes;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedGuardian;
+import com.stevekung.moreplanets.utils.LoggerMP;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
@@ -13,9 +17,6 @@ import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureStart;
-import com.stevekung.moreplanets.init.MPBiomes;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedGuardian;
-import com.stevekung.moreplanets.utils.LoggerMP;
 
 public class MapGenNibiruOceanMonument extends MapGenStructure
 {

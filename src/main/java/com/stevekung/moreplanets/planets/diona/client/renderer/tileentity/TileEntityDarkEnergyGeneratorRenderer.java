@@ -1,5 +1,9 @@
 package com.stevekung.moreplanets.planets.diona.client.renderer.tileentity;
 
+import com.stevekung.lib.client.event.ClientEventHandler;
+import com.stevekung.moreplanets.planets.diona.client.model.ModelDarkEnergyGenerator;
+import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -8,9 +12,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.diona.client.model.ModelDarkEnergyGenerator;
-import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
-import com.stevekung.lib.client.event.ClientEventHandler;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRenderer<TileEntityDarkEnergyGenerator>

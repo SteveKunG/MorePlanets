@@ -1,12 +1,13 @@
 package com.stevekung.moreplanets.planets.fronos.client.model;
 
+import com.stevekung.moreplanets.planets.fronos.entity.EntityBearry;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
-import com.stevekung.moreplanets.planets.fronos.entity.EntityBearry;
 
 public class ModelBearry extends ModelBase
 {

@@ -1,5 +1,10 @@
 package com.stevekung.moreplanets.planets.diona.client.renderer.entity;
 
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.moreplanets.planets.diona.client.model.ModelAlienMiner;
+import com.stevekung.moreplanets.planets.diona.client.renderer.entity.layer.LayerGlowingAlienMiner;
+import com.stevekung.moreplanets.planets.diona.entity.EntityAlienMiner;
+
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -12,10 +17,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.diona.client.model.ModelAlienMiner;
-import com.stevekung.moreplanets.planets.diona.client.renderer.entity.layer.LayerGlowingAlienMiner;
-import com.stevekung.moreplanets.planets.diona.entity.EntityAlienMiner;
-import com.stevekung.lib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class RenderAlienMiner extends RenderLiving<EntityAlienMiner>

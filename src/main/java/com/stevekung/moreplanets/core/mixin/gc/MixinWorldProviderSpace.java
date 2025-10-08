@@ -5,8 +5,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import com.stevekung.moreplanets.utils.SurvivalPlanetUtils;
+
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 
 @Mixin(WorldProviderSpace.class)
 public class MixinWorldProviderSpace

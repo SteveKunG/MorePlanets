@@ -3,6 +3,9 @@ package com.stevekung.moreplanets.utils.client.renderer;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.moreplanets.utils.blocks.BlockStemMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
@@ -11,8 +14,6 @@ import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.blocks.BlockStemMP;
-import com.stevekung.lib.utils.BlockStateProperty;
 
 @SideOnly(Side.CLIENT)
 public class StateMapperType extends StateMapperBase

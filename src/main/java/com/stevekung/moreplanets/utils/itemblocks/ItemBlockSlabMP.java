@@ -1,5 +1,8 @@
 package com.stevekung.moreplanets.utils.itemblocks;
 
+import com.stevekung.moreplanets.utils.blocks.BlockSlabMP;
+import com.stevekung.moreplanets.utils.blocks.ISlab;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.BlockSlab.EnumBlockHalf;
@@ -16,8 +19,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.blocks.BlockSlabMP;
-import com.stevekung.moreplanets.utils.blocks.ISlab;
 
 public class ItemBlockSlabMP extends ItemBlockMP
 {

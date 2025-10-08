@@ -2,9 +2,9 @@ package com.stevekung.moreplanets.entity.projectile;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.utils.DamageSourceMP;
 
-import io.netty.buffer.ByteBuf;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -31,8 +31,10 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.utils.DamageSourceMP;
+
+import io.netty.buffer.ByteBuf;
+
+import javax.annotation.Nullable;
 
 public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdditionalSpawnData
 {

@@ -2,6 +2,7 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.biome;
 
 import java.util.Random;
 
+import com.stevekung.lib.world.gen.WorldGenFlowersBase;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.nibiru.entity.*;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.BiomeDecoratorNibiru;
@@ -20,8 +21,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
-
-import com.stevekung.lib.world.gen.WorldGenFlowersBase;
 
 public class BiomeNibiru extends BiomeMP
 {

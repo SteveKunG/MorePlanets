@@ -1,9 +1,10 @@
 package com.stevekung.moreplanets.utils.blocks;
 
-import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 
 public class BlockTerraformable extends BlockBaseMP implements ITerraformableBlock
 {

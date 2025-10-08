@@ -1,6 +1,8 @@
 package com.stevekung.moreplanets.planets.nibiru.entity;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.planets.nibiru.entity.ai.EntityAIFleeNibiruThunder;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -24,9 +26,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.planets.nibiru.entity.ai.EntityAIFleeNibiruThunder;
+
+import javax.annotation.Nullable;
 
 public class EntityTerrastoneGolem extends EntityGolem
 {

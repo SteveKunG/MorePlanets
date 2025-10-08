@@ -1,9 +1,10 @@
 package com.stevekung.moreplanets.init;
 
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundEvent;
-import com.stevekung.moreplanets.core.MorePlanetsMod;
 
 public class MPSounds
 {

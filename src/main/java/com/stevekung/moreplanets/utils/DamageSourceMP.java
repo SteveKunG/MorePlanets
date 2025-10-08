@@ -1,11 +1,12 @@
 package com.stevekung.moreplanets.utils;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntityDamageSourceIndirect;
 import com.stevekung.moreplanets.entity.projectile.EntityLaserBullet;
 import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityInfectedPurloniteArrow;
 import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityInfectedArrow;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSourceIndirect;
 
 public class DamageSourceMP extends DamageSource
 {

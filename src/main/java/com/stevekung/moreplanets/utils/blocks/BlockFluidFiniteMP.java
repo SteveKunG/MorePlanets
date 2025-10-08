@@ -1,6 +1,7 @@
 package com.stevekung.moreplanets.utils.blocks;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.utils.blocks.fluid.LiquidUtils;
+import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,8 +15,8 @@ import net.minecraftforge.fluids.BlockFluidFinite;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.utils.blocks.fluid.LiquidUtils;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
+
+import javax.annotation.Nullable;
 
 public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements IItemModelRender
 {

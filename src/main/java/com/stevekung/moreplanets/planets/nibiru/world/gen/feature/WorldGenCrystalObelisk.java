@@ -2,15 +2,16 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.feature;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.lib.utils.enums.CachedEnum;
+import com.stevekung.moreplanets.init.MPBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.lib.utils.BlockStateProperty;
-import com.stevekung.lib.utils.enums.CachedEnum;
 
 public class WorldGenCrystalObelisk extends WorldGenerator
 {

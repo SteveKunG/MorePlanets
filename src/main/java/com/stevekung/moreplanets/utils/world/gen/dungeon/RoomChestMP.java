@@ -2,13 +2,14 @@ package com.stevekung.moreplanets.utils.world.gen.dungeon;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
+
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
-import com.stevekung.lib.utils.BlockStateProperty;
 
 public class RoomChestMP extends RoomEmptyMP
 {

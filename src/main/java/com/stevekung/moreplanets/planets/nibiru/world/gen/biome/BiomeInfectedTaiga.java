@@ -2,17 +2,18 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.biome;
 
 import java.util.Random;
 
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import com.stevekung.lib.utils.WorldDecorateUtils;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadPine;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadSpruce;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedMegaPineTree;
 import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenNibiruBlockBlob;
 import com.stevekung.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
-import com.stevekung.lib.utils.WorldDecorateUtils;
+
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 public class BiomeInfectedTaiga extends BiomeNibiru
 {

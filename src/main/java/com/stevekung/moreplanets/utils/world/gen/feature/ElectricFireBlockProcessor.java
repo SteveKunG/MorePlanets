@@ -2,14 +2,15 @@ package com.stevekung.moreplanets.utils.world.gen.feature;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.init.MPBlocks;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.template.ITemplateProcessor;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
-import com.stevekung.moreplanets.init.MPBlocks;
+
+import javax.annotation.Nullable;
 
 public class ElectricFireBlockProcessor implements ITemplateProcessor
 {

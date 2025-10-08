@@ -1,7 +1,8 @@
 package com.stevekung.moreplanets.items;
 
-import baubles.api.BaubleType;
-import baubles.api.IBauble;
+import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
+import com.stevekung.moreplanets.utils.items.ItemBaseMP;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,8 +10,9 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
-import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
-import com.stevekung.moreplanets.utils.items.ItemBaseMP;
+
+import baubles.api.BaubleType;
+import baubles.api.IBauble;
 
 @Optional.Interface(iface = "baubles.api.IBauble", modid = CompatibilityManagerMP.baublesModId, striprefs = true)
 public class ItemGravityAmulet extends ItemBaseMP implements IBauble

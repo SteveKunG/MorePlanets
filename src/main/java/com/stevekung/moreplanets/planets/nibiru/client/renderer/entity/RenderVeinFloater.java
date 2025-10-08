@@ -2,6 +2,11 @@ package com.stevekung.moreplanets.planets.nibiru.client.renderer.entity;
 
 import java.util.List;
 
+import com.stevekung.lib.utils.client.GLConstants;
+import com.stevekung.moreplanets.planets.nibiru.client.model.ModelVeinFloater;
+import com.stevekung.moreplanets.planets.nibiru.client.renderer.entity.layer.LayerVeinFloaterDeath;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityVeinFloater;
+
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -16,10 +21,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.nibiru.client.model.ModelVeinFloater;
-import com.stevekung.moreplanets.planets.nibiru.client.renderer.entity.layer.LayerVeinFloaterDeath;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityVeinFloater;
-import com.stevekung.lib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class RenderVeinFloater extends RenderLiving<EntityVeinFloater>

@@ -2,7 +2,11 @@ package com.stevekung.moreplanets.planets.fronos.entity;
 
 import java.util.UUID;
 
-import javax.annotation.Nullable;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.planets.fronos.entity.ai.EntityAIFaceTexture;
+import com.stevekung.moreplanets.planets.fronos.entity.ai.EntityAIFronosPanic;
+import com.stevekung.moreplanets.planets.fronos.entity.ai.EntityAIFronosTempt;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -14,11 +18,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.planets.fronos.entity.ai.EntityAIFaceTexture;
-import com.stevekung.moreplanets.planets.fronos.entity.ai.EntityAIFronosPanic;
-import com.stevekung.moreplanets.planets.fronos.entity.ai.EntityAIFronosTempt;
+
+import javax.annotation.Nullable;
 
 public class EntityBearry extends EntityFronosPet
 {

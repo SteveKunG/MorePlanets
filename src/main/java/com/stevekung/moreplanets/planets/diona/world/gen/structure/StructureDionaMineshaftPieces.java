@@ -4,7 +4,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import javax.annotation.Nullable;
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.moreplanets.entity.EntitySpaceMinecartChest;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.planets.diona.entity.EntityInfectedPurloniteSpider;
 
 import net.minecraft.block.BlockRail;
 import net.minecraft.block.BlockRailBase;
@@ -25,11 +29,8 @@ import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import com.stevekung.moreplanets.entity.EntitySpaceMinecartChest;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.planets.diona.entity.EntityInfectedPurloniteSpider;
-import com.stevekung.lib.utils.BlockStateProperty;
+
+import javax.annotation.Nullable;
 
 public class StructureDionaMineshaftPieces
 {

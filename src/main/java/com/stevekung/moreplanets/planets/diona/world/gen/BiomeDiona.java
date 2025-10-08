@@ -1,11 +1,12 @@
 package com.stevekung.moreplanets.planets.diona.world.gen;
 
-import net.minecraft.world.biome.Biome;
 import com.stevekung.moreplanets.planets.diona.entity.EntityAlienMiner;
 import com.stevekung.moreplanets.planets.diona.entity.EntityZeliusCreeper;
 import com.stevekung.moreplanets.planets.diona.entity.EntityZeliusSkeleton;
 import com.stevekung.moreplanets.planets.diona.entity.EntityZeliusZombie;
 import com.stevekung.moreplanets.utils.world.gen.biome.BiomeMP;
+
+import net.minecraft.world.biome.Biome;
 
 public class BiomeDiona extends BiomeMP
 {

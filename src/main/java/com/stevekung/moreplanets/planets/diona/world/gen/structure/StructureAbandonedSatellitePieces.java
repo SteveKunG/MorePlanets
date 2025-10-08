@@ -5,15 +5,11 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
-import micdoodle8.mods.galacticraft.core.GCBlocks;
-import micdoodle8.mods.galacticraft.core.blocks.BlockEnclosed;
-import micdoodle8.mods.galacticraft.core.blocks.BlockMachineBase;
-import micdoodle8.mods.galacticraft.core.blocks.BlockMachineTiered;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityEnergyStorageModule;
-import micdoodle8.mods.galacticraft.planets.venus.VenusBlocks;
-import micdoodle8.mods.galacticraft.planets.venus.VenusItems;
-import micdoodle8.mods.galacticraft.planets.venus.blocks.BlockLaserTurret;
-import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntityLaserTurret;
+import com.stevekung.lib.utils.enums.CachedEnum;
+import com.stevekung.moreplanets.init.MPLootTables;
+import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
+import com.stevekung.moreplanets.utils.world.gen.feature.ElectricFireBlockProcessor;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -29,10 +25,16 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import com.stevekung.moreplanets.init.MPLootTables;
-import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
-import com.stevekung.moreplanets.utils.world.gen.feature.ElectricFireBlockProcessor;
-import com.stevekung.lib.utils.enums.CachedEnum;
+
+import micdoodle8.mods.galacticraft.core.GCBlocks;
+import micdoodle8.mods.galacticraft.core.blocks.BlockEnclosed;
+import micdoodle8.mods.galacticraft.core.blocks.BlockMachineBase;
+import micdoodle8.mods.galacticraft.core.blocks.BlockMachineTiered;
+import micdoodle8.mods.galacticraft.core.tile.TileEntityEnergyStorageModule;
+import micdoodle8.mods.galacticraft.planets.venus.VenusBlocks;
+import micdoodle8.mods.galacticraft.planets.venus.VenusItems;
+import micdoodle8.mods.galacticraft.planets.venus.blocks.BlockLaserTurret;
+import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntityLaserTurret;
 
 public class StructureAbandonedSatellitePieces extends StructureComponent
 {

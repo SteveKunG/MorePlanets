@@ -1,9 +1,10 @@
 package com.stevekung.moreplanets.inventory;
 
+import com.stevekung.moreplanets.init.MPItems;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import com.stevekung.moreplanets.init.MPItems;
 
 public class SlotMachineUpgrade extends Slot
 {

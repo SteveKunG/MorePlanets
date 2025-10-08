@@ -2,12 +2,13 @@ package com.stevekung.moreplanets.planets.diona.world.gen.structure;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.utils.LoggerMP;
+
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureStart;
-import com.stevekung.moreplanets.utils.LoggerMP;
 
 public class MapGenCrashedAlienShipFeature extends MapGenStructure
 {

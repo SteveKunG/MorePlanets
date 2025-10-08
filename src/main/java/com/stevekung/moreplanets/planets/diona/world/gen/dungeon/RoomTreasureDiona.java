@@ -2,16 +2,17 @@ package com.stevekung.moreplanets.planets.diona.world.gen.dungeon;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.BlockStateProperty;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityDionaTreasureChest;
+import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
+import com.stevekung.moreplanets.utils.world.gen.dungeon.RoomTreasureMP;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityDionaTreasureChest;
-import com.stevekung.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
-import com.stevekung.moreplanets.utils.world.gen.dungeon.RoomTreasureMP;
-import com.stevekung.lib.utils.BlockStateProperty;
 
 public class RoomTreasureDiona extends RoomTreasureMP
 {

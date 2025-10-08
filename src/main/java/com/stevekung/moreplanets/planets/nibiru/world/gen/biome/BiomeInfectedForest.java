@@ -2,11 +2,12 @@ package com.stevekung.moreplanets.planets.nibiru.world.gen.biome;
 
 import java.util.Random;
 
+import com.stevekung.lib.utils.WorldDecorateUtils;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedRoofedTree;
+
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedRoofedTree;
-import com.stevekung.lib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedForest extends BiomeNibiru
 {

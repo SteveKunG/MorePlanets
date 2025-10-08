@@ -2,7 +2,11 @@ package com.stevekung.moreplanets.moons.koentus.blocks;
 
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
+import com.stevekung.moreplanets.entity.EntityAntiGravFallingBlock;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
+import com.stevekung.moreplanets.utils.blocks.BlockBasicMP;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
@@ -13,10 +17,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.entity.EntityAntiGravFallingBlock;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
-import com.stevekung.moreplanets.utils.blocks.BlockBasicMP;
+
+import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 
 public class BlockAntiGravityOre extends BlockBasicMP implements IDetectableResource
 {

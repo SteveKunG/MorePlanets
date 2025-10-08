@@ -1,6 +1,11 @@
 package com.stevekung.moreplanets.planets.fronos.world.gen;
 
 import com.google.common.collect.Sets;
+import com.stevekung.lib.world.gen.MapGenCavesBase;
+import com.stevekung.lib.world.gen.MapGenRavineBase;
+import com.stevekung.lib.world.gen.WorldGenLiquidLake;
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.world.gen.ChunkGeneratorBaseMP;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -11,11 +16,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenDungeons;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.world.gen.ChunkGeneratorBaseMP;
-import com.stevekung.lib.world.gen.MapGenCavesBase;
-import com.stevekung.lib.world.gen.MapGenRavineBase;
-import com.stevekung.lib.world.gen.WorldGenLiquidLake;
 
 public class ChunkGeneratorFronos extends ChunkGeneratorBaseMP
 {

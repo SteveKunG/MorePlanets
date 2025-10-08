@@ -1,12 +1,13 @@
 package com.stevekung.moreplanets.planets.diona.client.renderer.entity;
 
+import com.stevekung.moreplanets.planets.diona.client.renderer.FakeAlienBeamRenderer;
+import com.stevekung.moreplanets.planets.diona.entity.EntityAlienBeam;
+
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.diona.client.renderer.FakeAlienBeamRenderer;
-import com.stevekung.moreplanets.planets.diona.entity.EntityAlienBeam;
 
 @SideOnly(Side.CLIENT)
 public class RenderAlienBeam extends Render<EntityAlienBeam>

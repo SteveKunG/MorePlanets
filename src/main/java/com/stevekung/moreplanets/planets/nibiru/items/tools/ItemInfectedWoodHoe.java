@@ -1,13 +1,14 @@
 package com.stevekung.moreplanets.planets.nibiru.items.tools;
 
+import com.stevekung.moreplanets.init.MPBlocks;
+import com.stevekung.moreplanets.utils.items.tools.ItemHoeMP;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.items.tools.ItemHoeMP;
 
 public class ItemInfectedWoodHoe extends ItemHoeMP
 {

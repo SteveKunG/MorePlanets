@@ -2,13 +2,14 @@ package com.stevekung.moreplanets.planets.diona.client.renderer.tileentity;
 
 import java.util.Random;
 
+import com.stevekung.moreplanets.planets.diona.entity.EntityAlienMiner;
+import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityCrashedAlienProbe;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.stevekung.moreplanets.planets.diona.entity.EntityAlienMiner;
-import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityCrashedAlienProbe;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityCrashedAlienProbeRenderer extends TileEntitySpecialRenderer<TileEntityCrashedAlienProbe>
