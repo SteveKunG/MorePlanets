@@ -1,13 +1,34 @@
 package com.stevekung.moreplanets.core;
 
 import com.google.common.collect.Lists;
+import com.stevekung.lib.utils.CommonRegistryUtils;
+import com.stevekung.lib.utils.CommonUtils;
+import com.stevekung.lib.utils.VersionChecker;
+import com.stevekung.lib.utils.client.ClientRegistryUtils;
+import com.stevekung.lib.utils.client.ClientUtils;
+import com.stevekung.moreplanets.command.CommandOpenCelestialScreen;
+import com.stevekung.moreplanets.core.capability.CapabilityHandlerMP;
+import com.stevekung.moreplanets.core.config.ConfigManagerMP;
+import com.stevekung.moreplanets.core.event.ClientEventHandler;
+import com.stevekung.moreplanets.core.event.EntityEventHandler;
+import com.stevekung.moreplanets.core.event.GeneralEventHandler;
+import com.stevekung.moreplanets.core.event.WorldTickEventHandler;
+import com.stevekung.moreplanets.core.handler.DataFixersMP;
+import com.stevekung.moreplanets.core.handler.GuiHandlerMP;
+import com.stevekung.moreplanets.core.handler.MissingMappingHandler;
+import com.stevekung.moreplanets.init.*;
+import com.stevekung.moreplanets.network.PacketSimpleMP;
+import com.stevekung.moreplanets.proxy.ServerProxyMP;
+import com.stevekung.moreplanets.recipe.CraftingManagerMP;
+import com.stevekung.moreplanets.recipe.SmeltingManagerMP;
+import com.stevekung.moreplanets.utils.*;
 
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.config.Config;
@@ -24,30 +45,11 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import com.stevekung.moreplanets.command.CommandOpenCelestialScreen;
-import com.stevekung.moreplanets.core.capability.CapabilityHandlerMP;
-import com.stevekung.moreplanets.core.config.ConfigManagerMP;
-import com.stevekung.moreplanets.core.event.ClientEventHandler;
-import com.stevekung.moreplanets.core.event.EntityEventHandler;
-import com.stevekung.moreplanets.core.event.GeneralEventHandler;
-import com.stevekung.moreplanets.core.event.WorldTickEventHandler;
-import com.stevekung.moreplanets.core.handler.DataFixersMP;
-import com.stevekung.moreplanets.core.handler.GuiHandlerMP;
-import com.stevekung.moreplanets.core.handler.MissingMappingHandler;
-import com.stevekung.moreplanets.init.*;
 
-import com.stevekung.moreplanets.network.PacketSimpleMP;
-import com.stevekung.moreplanets.proxy.ServerProxyMP;
-import com.stevekung.moreplanets.recipe.CraftingManagerMP;
-import com.stevekung.moreplanets.recipe.SmeltingManagerMP;
-import com.stevekung.moreplanets.utils.*;
-
-import com.stevekung.lib.utils.CommonRegistryUtils;
-import com.stevekung.lib.utils.CommonUtils;
-import com.stevekung.lib.utils.VersionChecker;
-import com.stevekung.lib.utils.client.ClientRegistryUtils;
-import com.stevekung.lib.utils.client.ClientUtils;
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 
 @Mod(modid = Tags.MOD_ID, name = Tags.MOD_NAME, version = Tags.VERSION, dependencies = MorePlanetsMod.MAIN_DEPENDENCIES, updateJSON = MorePlanetsMod.JSON_URL)
 public class MorePlanetsMod
@@ -158,6 +160,16 @@ public class MorePlanetsMod
         SmeltingManagerMP.init();
         MPSchematics.init();
         MPDimensions.init();
+    }
+
+    @EventHandler
+    public void onServerStarted(FMLServerStartedEvent event)
+    {
+        if (SurvivalPlanetUtils.hasSurvivalPlanetDataForServer())
+        {
+            WorldProvider provider = WorldUtil.getProviderForNameServer(SurvivalPlanetUtils.getFormattedDimensionName());
+            LoggerMP.info(String.format("Server started with survival planet '%s' selected", WorldUtil.getDimensionName(provider)));
+        }
     }
 
     @SubscribeEvent

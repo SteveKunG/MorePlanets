@@ -1,11 +1,13 @@
 package com.stevekung.moreplanets.utils;
 
-import micdoodle8.mods.galacticraft.core.util.WorldUtil;
+import com.stevekung.moreplanets.core.config.ConfigManagerServerMP;
+import com.stevekung.moreplanets.core.event.WorldTickEventHandler;
+
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.WorldProvider;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import com.stevekung.moreplanets.core.config.ConfigManagerServerMP;
-import com.stevekung.moreplanets.core.event.WorldTickEventHandler;
+
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 
 public class SurvivalPlanetUtils
 {
@@ -16,8 +18,7 @@ public class SurvivalPlanetUtils
 
     public static boolean hasSurvivalPlanetDataForServer()
     {
-        String dimensionName = ConfigManagerServerMP.survivalPlanetDimensionName.replace("\"", "");
-        return FMLCommonHandler.instance().getSide().isServer() && !StringUtils.isNullOrEmpty(dimensionName);
+        return FMLCommonHandler.instance().getSide().isServer() && !StringUtils.isNullOrEmpty(getFormattedDimensionName());
     }
 
     public static WorldProvider getSurvivalPlanetProvider(String dimensionName)
@@ -33,9 +34,13 @@ public class SurvivalPlanetUtils
         }
         else if (SurvivalPlanetUtils.hasSurvivalPlanetDataForServer())
         {
-            String dimensionName = ConfigManagerServerMP.survivalPlanetDimensionName.replace("\"", "");
-            return SurvivalPlanetUtils.getSurvivalPlanetProvider(dimensionName).getDimension();
+            return SurvivalPlanetUtils.getSurvivalPlanetProvider(getFormattedDimensionName()).getDimension();
         }
         return defaultDim;
+    }
+
+    public static String getFormattedDimensionName()
+    {
+        return ConfigManagerServerMP.survivalPlanetDimensionName.replace("\"", "");
     }
 }

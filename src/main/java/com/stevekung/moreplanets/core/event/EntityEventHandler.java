@@ -2,13 +2,19 @@ package com.stevekung.moreplanets.core.event;
 
 import java.util.UUID;
 
-import micdoodle8.mods.galacticraft.api.event.oxygen.GCCoreOxygenSuffocationEvent;
-import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
-import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
-import micdoodle8.mods.galacticraft.core.util.WorldUtil;
-import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
+import com.stevekung.moreplanets.core.config.ConfigManagerMP;
+import com.stevekung.moreplanets.init.MPItems;
+import com.stevekung.moreplanets.init.MPPotions;
+import com.stevekung.moreplanets.moons.koentus.entity.EntityKoentusMeteor;
+import com.stevekung.moreplanets.planets.diona.entity.EntityZeliusZombie;
+import com.stevekung.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedZombie;
+import com.stevekung.moreplanets.planets.nibiru.entity.EntityShlime;
+import com.stevekung.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFields;
+import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
+import com.stevekung.moreplanets.utils.*;
+import com.stevekung.moreplanets.world.IMeteorType;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
@@ -35,27 +41,21 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
-import com.stevekung.moreplanets.core.config.ConfigManagerMP;
-import com.stevekung.moreplanets.core.config.ConfigManagerServerMP;
-import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.init.MPPotions;
-import com.stevekung.moreplanets.moons.koentus.entity.EntityKoentusMeteor;
-import com.stevekung.moreplanets.planets.diona.entity.EntityZeliusZombie;
-import com.stevekung.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedZombie;
-import com.stevekung.moreplanets.planets.nibiru.entity.EntityShlime;
-import com.stevekung.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFields;
-import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
-import com.stevekung.moreplanets.utils.*;
 
-import com.stevekung.moreplanets.world.IMeteorType;
+import micdoodle8.mods.galacticraft.api.event.oxygen.GCCoreOxygenSuffocationEvent;
+import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
+import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
+import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
 
 public class EntityEventHandler
 {
     @SubscribeEvent
     public void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event)
     {
-        String dimensionName = ConfigManagerServerMP.survivalPlanetDimensionName.replace("\"", "");
+        String dimensionName = SurvivalPlanetUtils.getFormattedDimensionName();
         EntityPlayer player = event.player;
 
         if (!SurvivalPlanetUtils.hasSurvivalPlanetDataForServer())
@@ -65,8 +65,9 @@ public class EntityEventHandler
 
         if (!player.hasSpawnDimension())
         {
-            player.setSpawnDimension(WorldUtil.getProviderForNameServer(dimensionName).getDimension());
-            TeleportUtils.teleportPlayerToPlanet((EntityPlayerMP)player, player.getServer(), 0, WorldUtil.getProviderForNameServer(dimensionName).getDimension());
+            int dimensionId = WorldUtil.getProviderForNameServer(dimensionName).getDimension();
+            player.setSpawnDimension(dimensionId);
+            TeleportUtils.teleportPlayerToPlanet((EntityPlayerMP)player, player.getServer(), 0, dimensionId);
         }
     }
 
