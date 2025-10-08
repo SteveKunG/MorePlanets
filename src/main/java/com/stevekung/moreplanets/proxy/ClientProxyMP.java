@@ -224,7 +224,7 @@ public class ClientProxyMP extends ServerProxyMP
             }
             else if (type == EnumParticleTypesMP.INFECTED_WATER_DRIP)
             {
-                mc.effectRenderer.addEffect(new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(133, 51, 31, 204), false));
+                mc.effectRenderer.addEffect(new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(133, 51, 31, 204), false, true, EnumParticleTypesMP.INFECTED_WATER_SPLASH));
             }
             else if (type == EnumParticleTypesMP.INFECTED_PURLONITE_WATER_DRIP)
             {
@@ -244,7 +244,7 @@ public class ClientProxyMP extends ServerProxyMP
             }
             else if (type == EnumParticleTypesMP.PURIFY_WATER_DRIP)
             {
-                mc.effectRenderer.addEffect(new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(147, 209, 255, 130), false));
+                mc.effectRenderer.addEffect(new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(147, 209, 255, 130), false, true, EnumParticleTypesMP.PURIFIED_WATER_SPLASH));
             }
             else if (type == EnumParticleTypesMP.KOENTUS_METEOR_SMOKE)
             {
@@ -265,6 +265,14 @@ public class ClientProxyMP extends ServerProxyMP
             else if (type == EnumParticleTypesMP.PURIFIED_RAIN)
             {
                 mc.effectRenderer.addEffect(new ParticleCustomRain(mc.world, x, y, z, "purified_rain"));
+            }
+            else if (type == EnumParticleTypesMP.INFECTED_WATER_SPLASH)
+            {
+                mc.effectRenderer.addEffect(new ParticleCustomSplash(mc.world, x, y, z, motionX, motionY, motionZ, "infected_rain"));
+            }
+            else if (type == EnumParticleTypesMP.PURIFIED_WATER_SPLASH)
+            {
+                mc.effectRenderer.addEffect(new ParticleCustomSplash(mc.world, x, y, z, motionX, motionY, motionZ, "purified_rain"));
             }
         }
     }

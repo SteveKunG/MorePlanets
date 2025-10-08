@@ -231,7 +231,20 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
             double d0 = pos.getX() + rand.nextFloat();
             double d1 = pos.getY() - 0.05D;
             double d2 = pos.getZ() + rand.nextFloat();
-            world.spawnParticle(EnumParticleTypes.DRIP_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+            Block block = state.getBlock();
+
+            if (block == MPBlocks.INFECTED_OAK_LEAVES || block == MPBlocks.INFECTED_JUNGLE_LEAVES || block == MPBlocks.INFECTED_SPRUCE_LEAVES)
+            {
+                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_WATER_DRIP, d0, d1, d2);
+            }
+            else if (block == MPBlocks.ALIEN_BERRY_OAK_LEAVES)
+            {
+                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.PURIFY_WATER_DRIP, d0, d1, d2);
+            }
+            else
+            {
+                world.spawnParticle(EnumParticleTypes.DRIP_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+            }
         }
         if (this.type == BlockType.ALIEN_BERRY_OAK_LEAVES)
         {

@@ -6,3 +6,4 @@
 * Fixed Terrasquid not spawning in the Green Veins biome
 * Fixed item duplication with Nuclear Waste Generator, closes #180
 * Fixed Koentus biome not registered
+* Fixed Nibiru leaves water dripping and splash particle color

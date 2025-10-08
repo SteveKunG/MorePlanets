@@ -1,6 +1,8 @@
 package com.stevekung.moreplanets.utils.client.particle;
 
 import com.stevekung.lib.utils.ColorUtils;
+import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
 
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
@@ -12,13 +14,23 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 @SideOnly(Side.CLIENT)
 public class ParticleLiquidDrip extends Particle
 {
     private int bobTimer;
     private final boolean isLavaDrip;
+    private final boolean hasSplash;
+    @Nullable
+    private final EnumParticleTypesMP splashParticle;
 
     public ParticleLiquidDrip(World world, double x, double y, double z, ColorUtils.RGB rgb, boolean isLavaDrip)
+    {
+        this(world, x, y, z, rgb, isLavaDrip, false, null);
+    }
+
+    public ParticleLiquidDrip(World world, double x, double y, double z, ColorUtils.RGB rgb, boolean isLavaDrip, boolean hasSplash, EnumParticleTypesMP splashParticle)
     {
         super(world, x, y, z);
         this.setParticleTextureIndex(113);
@@ -28,6 +40,8 @@ public class ParticleLiquidDrip extends Particle
         this.particleBlue = rgb.floatBlue();
         this.particleAlpha = rgb.floatAlpha();
         this.isLavaDrip = isLavaDrip;
+        this.hasSplash = hasSplash;
+        this.splashParticle = splashParticle;
         this.particleGravity = 0.06F;
         this.bobTimer = 40;
         this.particleMaxAge = (int) (64.0D / (Math.random() * 0.8D + 0.2D));
@@ -74,6 +88,11 @@ public class ParticleLiquidDrip extends Particle
             if (!this.isLavaDrip)
             {
                 this.setExpired();
+
+                if (this.hasSplash && this.splashParticle != null)
+                {
+                    MorePlanetsMod.PROXY.spawnParticle(this.splashParticle, this.posX, this.posY, this.posZ);
+                }
             }
             else
             {
