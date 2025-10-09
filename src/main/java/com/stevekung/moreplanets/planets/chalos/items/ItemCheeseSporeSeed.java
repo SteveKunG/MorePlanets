@@ -17,7 +17,7 @@ public class ItemCheeseSporeSeed extends ItemBaseMP
 {
     public ItemCheeseSporeSeed(String name)
     {
-        this.setTranslationKey(name);
+        super(name);
     }
 
     @Override

@@ -23,8 +23,8 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
 {
     public ItemAlienDefenderReinforcement(String name)
     {
+        super(name);
         this.setMaxStackSize(1);
-        this.setTranslationKey(name);
     }
 
     @Override

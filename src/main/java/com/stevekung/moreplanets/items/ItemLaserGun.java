@@ -40,10 +40,10 @@ public class ItemLaserGun extends ItemBaseMP implements MorePlanetsItem, IItemEl
 
     public ItemLaserGun(String name)
     {
+        super(name);
         this.setMaxStackSize(1);
         this.setMaxDamage(DAMAGE_RANGE);
         this.setNoRepair();
-        this.setTranslationKey(name);
         this.addPropertyOverride(new ResourceLocation("pull"), (itemStack, world, living) ->
         {
             if (living != null)

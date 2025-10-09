@@ -19,8 +19,8 @@ public class ItemDoorMP extends ItemBaseMP
 
     public ItemDoorMP(String name, Block door)
     {
+        super(name);
         this.door = door;
-        this.setTranslationKey(name);
     }
 
     @Override

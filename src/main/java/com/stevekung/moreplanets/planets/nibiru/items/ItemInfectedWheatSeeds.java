@@ -17,7 +17,7 @@ public class ItemInfectedWheatSeeds extends ItemBaseMP
 {
     public ItemInfectedWheatSeeds(String name)
     {
-        this.setTranslationKey(name);
+        super(name);
     }
 
     @Override

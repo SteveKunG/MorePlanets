@@ -25,7 +25,7 @@ public class ItemAllFood extends ItemFoodMP
 
     public ItemAllFood(String name, ItemType type)
     {
-        this.setTranslationKey(name);
+        super(name);
         this.type = type;
     }
 

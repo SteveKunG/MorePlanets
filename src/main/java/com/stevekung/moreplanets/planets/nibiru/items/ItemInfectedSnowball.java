@@ -18,8 +18,8 @@ public class ItemInfectedSnowball extends ItemBaseMP
 {
     public ItemInfectedSnowball(String name)
     {
+        super(name);
         this.setMaxStackSize(16);
-        this.setTranslationKey(name);
     }
 
     @Override

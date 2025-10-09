@@ -14,7 +14,7 @@ public class ItemDyeMP extends ItemBaseMP
 {
     public ItemDyeMP(String name)
     {
-        this.setTranslationKey(name);
+        super(name);
     }
 
     @Override

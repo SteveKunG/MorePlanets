@@ -13,32 +13,21 @@ import net.minecraft.item.ItemSword;
 
 public class ItemSwordMP extends ItemSword implements MorePlanetsItem
 {
-    private Item repairItem;
-    private String name;
-
-    public ItemSwordMP(String name, ToolMaterial material, Block block)
-    {
-        this(name, material, Item.getItemFromBlock(block));
-    }
+    private final Item repairItem;
+    private final String name;
 
     public ItemSwordMP(String name, ToolMaterial material, Item item)
     {
         super(material);
         this.repairItem = item;
+        this.name = name;
         this.setTranslationKey(name);
         MPJEIRecipes.collectAnvilList(name, this, item);
     }
 
-    public ItemSwordMP(ToolMaterial material)
+    public ItemSwordMP(String name, ToolMaterial material, Block block)
     {
-        super(material);
-    }
-
-    @Override
-    public Item setTranslationKey(String name)
-    {
-        this.name = name;
-        return super.setTranslationKey(name);
+        this(name, material, Item.getItemFromBlock(block));
     }
 
     @Override

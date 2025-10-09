@@ -28,8 +28,8 @@ public class ItemSpaceWarperCore extends ItemBaseMP
 {
     public ItemSpaceWarperCore(String name)
     {
+        super(name);
         this.setMaxStackSize(1);
-        this.setTranslationKey(name);
     }
 
     @Override

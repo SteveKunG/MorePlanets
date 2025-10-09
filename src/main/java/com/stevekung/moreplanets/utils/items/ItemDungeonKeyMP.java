@@ -4,8 +4,8 @@ public class ItemDungeonKeyMP extends ItemBaseMP implements IDungeonKey
 {
     public ItemDungeonKeyMP(String name)
     {
+        super(name);
         this.setMaxStackSize(1);
-        this.setTranslationKey(name);
     }
 
     @Override

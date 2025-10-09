@@ -15,8 +15,9 @@ import micdoodle8.mods.galacticraft.core.entities.EntityHangingSchematic;
 
 public class ItemSchematicMP extends ItemBaseMP implements ISchematicItem
 {
-    public ItemSchematicMP()
+    public ItemSchematicMP(String name)
     {
+        super(name);
         this.setMaxStackSize(1);
     }
 

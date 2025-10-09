@@ -28,7 +28,7 @@ public class ItemVeinEye extends ItemBaseMP
 
     public ItemVeinEye(String name)
     {
-        this.setTranslationKey(name);
+        super(name);
     }
 
     @Override

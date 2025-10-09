@@ -4,25 +4,19 @@ import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 
 public abstract class ItemFoodMP extends ItemFood implements MorePlanetsItem
 {
-    private String name;
+    private final String name;
     private ColorUtils.RGB rgb;
 
-    public ItemFoodMP()
+    public ItemFoodMP(String name)
     {
         super(0, false);
-    }
-
-    @Override
-    public Item setTranslationKey(String name)
-    {
         this.name = name;
-        return super.setTranslationKey(name);
+        this.setTranslationKey(name);
     }
 
     @Override

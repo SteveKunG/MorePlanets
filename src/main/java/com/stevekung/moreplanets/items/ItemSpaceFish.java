@@ -10,7 +10,7 @@ public class ItemSpaceFish extends ItemFoodMP
 
     public ItemSpaceFish(String name, ItemType type)
     {
-        this.setTranslationKey(name);
+        super(name);
         this.type = type;
     }
 

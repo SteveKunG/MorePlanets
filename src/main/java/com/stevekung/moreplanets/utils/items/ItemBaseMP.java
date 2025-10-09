@@ -11,20 +11,12 @@ public class ItemBaseMP extends Item implements MorePlanetsItem
 {
     private MPItemCategory category;
     private ColorUtils.RGB rgb;
-    private String name;
-
-    public ItemBaseMP() {}
+    private final String name;
 
     public ItemBaseMP(String name)
     {
-        this.setTranslationKey(name);
-    }
-
-    @Override
-    public Item setTranslationKey(String name)
-    {
         this.name = name;
-        return super.setTranslationKey(name);
+        this.setTranslationKey(name);
     }
 
     @Override

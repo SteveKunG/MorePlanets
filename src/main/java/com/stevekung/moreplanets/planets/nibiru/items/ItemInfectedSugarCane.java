@@ -24,7 +24,7 @@ public class ItemInfectedSugarCane extends ItemBaseMP
 {
     public ItemInfectedSugarCane(String name)
     {
-        this.setTranslationKey(name);
+        super(name);
     }
 
     @Override
