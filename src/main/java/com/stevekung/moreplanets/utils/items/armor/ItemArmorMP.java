@@ -2,7 +2,6 @@ package com.stevekung.moreplanets.utils.items.armor;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.integration.jei.MPJEIRecipes;
-import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
 import com.stevekung.moreplanets.utils.items.MorePlanetsItem;
 
@@ -64,7 +63,7 @@ public abstract class ItemArmorMP extends ItemArmor implements MorePlanetsItem
     @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
-        return this instanceof ItemRarity && ((ItemRarity)this).getRarityColor() != null ? ((ItemRarity)this).getRarityColor().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
+        return this.getRarityColor() != null ? this.getRarityColor().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
     }
 
     @Override

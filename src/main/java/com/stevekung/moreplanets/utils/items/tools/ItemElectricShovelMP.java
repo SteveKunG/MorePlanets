@@ -37,6 +37,7 @@ import javax.annotation.Nullable;
 
 public class ItemElectricShovelMP extends ItemSpade implements IItemElectric, MorePlanetsItem
 {
+    private final String name;
     private final float transferMax = 200;
     private final float maxPower;
 
@@ -46,6 +47,7 @@ public class ItemElectricShovelMP extends ItemSpade implements IItemElectric, Mo
         this.setMaxDamage(100);
         this.setNoRepair();
         this.setTranslationKey(name);
+        this.name = name;
         this.maxPower = maxPower;
     }
 
@@ -224,5 +226,11 @@ public class ItemElectricShovelMP extends ItemSpade implements IItemElectric, Mo
     public EnumSortCategoryItem getItemCategory()
     {
         return EnumSortCategoryItem.SHOVEL;
+    }
+
+    @Override
+    public String getModelName()
+    {
+        return this.name;
     }
 }

@@ -41,6 +41,7 @@ import javax.annotation.Nullable;
 
 public class ItemElectricSwordMP extends ItemSword implements IItemElectric, MorePlanetsItem
 {
+    private final String name;
     private final float transferMax = 200;
     private final float maxPower;
 
@@ -50,6 +51,7 @@ public class ItemElectricSwordMP extends ItemSword implements IItemElectric, Mor
         this.setMaxDamage(100);
         this.setNoRepair();
         this.setTranslationKey(name);
+        this.name = name;
         this.maxPower = maxPower;
     }
 
@@ -264,5 +266,11 @@ public class ItemElectricSwordMP extends ItemSword implements IItemElectric, Mor
     public EnumSortCategoryItem getItemCategory()
     {
         return EnumSortCategoryItem.SWORD;
+    }
+
+    @Override
+    public String getModelName()
+    {
+        return this.name;
     }
 }

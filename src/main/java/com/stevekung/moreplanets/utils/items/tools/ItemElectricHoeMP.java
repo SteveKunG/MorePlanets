@@ -42,6 +42,7 @@ import javax.annotation.Nullable;
 
 public class ItemElectricHoeMP extends ItemHoe implements IItemElectric, MorePlanetsItem
 {
+    private final String name;
     private final float transferMax = 200;
     private final float maxPower;
 
@@ -51,6 +52,7 @@ public class ItemElectricHoeMP extends ItemHoe implements IItemElectric, MorePla
         this.setMaxDamage(100);
         this.setNoRepair();
         this.setTranslationKey(name);
+        this.name = name;
         this.maxPower = maxPower;
     }
 
@@ -261,5 +263,11 @@ public class ItemElectricHoeMP extends ItemHoe implements IItemElectric, MorePla
     public EnumSortCategoryItem getItemCategory()
     {
         return EnumSortCategoryItem.HOE;
+    }
+
+    @Override
+    public String getModelName()
+    {
+        return this.name;
     }
 }

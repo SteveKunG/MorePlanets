@@ -37,6 +37,7 @@ import javax.annotation.Nullable;
 
 public class ItemElectricPickaxeMP extends ItemPickaxe implements IItemElectric, MorePlanetsItem
 {
+    private final String name;
     private final float transferMax = 200;
     private final float maxPower;
 
@@ -46,6 +47,7 @@ public class ItemElectricPickaxeMP extends ItemPickaxe implements IItemElectric,
         this.setMaxDamage(100);
         this.setNoRepair();
         this.setTranslationKey(name);
+        this.name = name;
         this.maxPower = maxPower;
     }
 
@@ -224,5 +226,11 @@ public class ItemElectricPickaxeMP extends ItemPickaxe implements IItemElectric,
     public EnumSortCategoryItem getItemCategory()
     {
         return EnumSortCategoryItem.PICKAXE;
+    }
+
+    @Override
+    public String getModelName()
+    {
+        return this.name;
     }
 }
