@@ -1,25 +1,27 @@
 {
-    "required": true,
-    "minVersion": "0.7.11",
-    "compatibilityLevel": "JAVA_8",
-    "package": "com.stevekung.moreplanets.core.mixin",
-    "plugin": "com.stevekung.moreplanets.core.MPMixinConfigPlugin",
-    "refmap": "mixins.more_planets.refmap.json",
-    "target": "@env(DEFAULT)",
-    "mixins": [
-        "MixinCommandLocate",
-        "MixinEntity",
-        "MixinEntityLivingBase",
-        
-        "magma.MixinEntity"
-    ],
-    "client": [
-    	"client.MixinEntityRenderer",
-    	"client.MixinParticleDigging",
-    	"client.MixinRenderPainting",
-    	"client.MixinRenderWolf"
-    ],
-    "injectors": {
-        "defaultRequire": 1
-    }
+  "required": true,
+  "minVersion": "0.7.11",
+  "compatibilityLevel": "JAVA_8",
+  "package": "com.stevekung.moreplanets.core.mixin",
+  "plugin": "com.stevekung.moreplanets.core.MPMixinConfigPlugin",
+  "refmap": "mixins.more_planets.refmap.json",
+  "target": "@env(DEFAULT)",
+  "mixins": [
+    "block.MixinBlockChest",
+
+    "MixinCommandLocate",
+    "MixinEntity",
+    "MixinEntityLivingBase",
+
+    "magma.MixinEntity"
+  ],
+  "client": [
+    "client.MixinEntityRenderer",
+    "client.MixinParticleDigging",
+    "client.MixinRenderPainting",
+    "client.MixinRenderWolf"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
 }

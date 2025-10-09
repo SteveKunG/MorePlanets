@@ -1,36 +1,17 @@
 package com.stevekung.moreplanets.planets.chalos.blocks;
 
-import com.stevekung.lib.utils.LangUtils;
 import com.stevekung.moreplanets.planets.chalos.tileentity.TileEntityChalosAncientChest;
 import com.stevekung.moreplanets.utils.blocks.BlockChestMP;
+import com.stevekung.moreplanets.utils.blocks.chest.CustomChestContainer;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.InventoryLargeChest;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ILockableContainer;
-import net.minecraft.world.World;
 
-public class BlockChalosAncientChest extends BlockChestMP
+public class BlockChalosAncientChest extends BlockChestMP implements CustomChestContainer
 {
     public BlockChalosAncientChest(String name)
     {
         super(name);
-    }
-
-    @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
-    {
-        TileEntity tile = world.getTileEntity(pos);
-
-        if (tile instanceof TileEntityChalosAncientChest)
-        {
-            tile.updateContainingBlockInfo();
-        }
     }
 
     @Override
@@ -40,59 +21,8 @@ public class BlockChalosAncientChest extends BlockChestMP
     }
 
     @Override
-    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
+    public String getCustomContainerName(Block block)
     {
-        return Container.calcRedstoneFromInventory(this.getLockableContainer(world, pos, false));
-    }
-
-    @Override
-    protected ILockableContainer getLockableContainer(World world, BlockPos pos, boolean allowBlocking)
-    {
-        TileEntity tile = world.getTileEntity(pos);
-
-        if (!(tile instanceof TileEntityChalosAncientChest))
-        {
-            return null;
-        }
-        else
-        {
-            ILockableContainer ilockablecontainer = (TileEntityChalosAncientChest)tile;
-
-            if (!allowBlocking && this.isBlocked(world, pos))
-            {
-                return null;
-            }
-            else
-            {
-                for (EnumFacing facing : EnumFacing.Plane.HORIZONTAL)
-                {
-                    BlockPos blockpos = pos.offset(facing);
-                    Block block = world.getBlockState(blockpos).getBlock();
-
-                    if (block == this)
-                    {
-                        if (!allowBlocking && this.isBlocked(world, blockpos))
-                        {
-                            return null;
-                        }
-
-                        TileEntity tileentity1 = world.getTileEntity(blockpos);
-
-                        if (tileentity1 instanceof TileEntityChalosAncientChest)
-                        {
-                            if (facing != EnumFacing.WEST && facing != EnumFacing.NORTH)
-                            {
-                                ilockablecontainer = new InventoryLargeChest(LangUtils.translate("container.chalos.ancientchest.name"), ilockablecontainer, (TileEntityChalosAncientChest)tileentity1);
-                            }
-                            else
-                            {
-                                ilockablecontainer = new InventoryLargeChest(LangUtils.translate("container.chalos.ancientchest.name"), (TileEntityChalosAncientChest)tileentity1, ilockablecontainer);
-                            }
-                        }
-                    }
-                }
-                return ilockablecontainer;
-            }
-        }
+        return "container.chalos.ancientchest.name";
     }
 }
