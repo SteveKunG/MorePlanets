@@ -3,7 +3,7 @@ package com.stevekung.moreplanets.blocks;
 import java.util.Random;
 
 import com.stevekung.moreplanets.utils.blocks.BlockBreakableMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 
 import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.SoundType;
@@ -102,9 +102,9 @@ public class BlockTintedGlass extends BlockBreakableMP implements IPartialSealab
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.BUILDING_BLOCK;
+        return MPBlockCategory.BUILDING_BLOCK;
     }
 
     @Override

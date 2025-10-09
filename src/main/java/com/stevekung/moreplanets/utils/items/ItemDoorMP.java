@@ -24,9 +24,9 @@ public class ItemDoorMP extends ItemBaseMP
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory()
+    public MPItemCategory getItemCategory()
     {
-        return EnumSortCategoryItem.DOOR;
+        return MPItemCategory.DOOR;
     }
 
     @Override

@@ -9,8 +9,8 @@ public class ItemDungeonKeyMP extends ItemBaseMP implements IDungeonKey
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory()
+    public MPItemCategory getItemCategory()
     {
-        return EnumSortCategoryItem.DUNGEON_KEY;
+        return MPItemCategory.DUNGEON_KEY;
     }
 }

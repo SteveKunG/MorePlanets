@@ -52,9 +52,9 @@ public class BlockFurnaceMP extends BlockContainerMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.DECORATION_BLOCK;
+        return MPBlockCategory.DECORATION_BLOCK;
     }
 
     @Override

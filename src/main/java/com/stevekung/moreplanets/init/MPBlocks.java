@@ -635,9 +635,9 @@ public class MPBlocks
         MPBlocks.SHIELD_GENERATOR = new BlockShieldGenerator("shield_generator");
 
         // Alien Ship
-        MPBlocks.ALIEN_SHIP_BOOSTER = new BlockCTMGlowingDirectional("alien_ship_booster", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(ItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
-        MPBlocks.ALIEN_SHIP_DECORATION_0 = new BlockBaseMP("alien_ship_decoration_0", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(ItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
-        MPBlocks.ALIEN_SHIP_DECORATION_1 = new BlockBaseMP("alien_ship_decoration_1", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(ItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
+        MPBlocks.ALIEN_SHIP_BOOSTER = new BlockCTMGlowingDirectional("alien_ship_booster", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(ItemRarity.ALIEN)).setSortCategory(MPBlockCategory.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
+        MPBlocks.ALIEN_SHIP_DECORATION_0 = new BlockBaseMP("alien_ship_decoration_0", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(ItemRarity.ALIEN)).setSortCategory(MPBlockCategory.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
+        MPBlocks.ALIEN_SHIP_DECORATION_1 = new BlockBaseMP("alien_ship_decoration_1", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(ItemRarity.ALIEN)).setSortCategory(MPBlockCategory.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
         MPBlocks.ALIEN_CHEST = new BlockAlienChest("alien_chest");
         MPBlocks.ALIEN_SHIP_DECORATION_STAIRS = new BlockStairsMP("alien_ship_decoration_stairs", EnumStairsType.ALIEN_SHIP);
 
@@ -707,7 +707,7 @@ public class MPBlocks
         MPBlocks.DIONA_ALUMINUM_ORE = new BlockMineableOre("diona_aluminum_ore").setHardness(3.0F);
         MPBlocks.SETRORIUM_BLOCK = new BlockCompressedMetal("setrorium_block").setSoundType(SoundType.METAL).setHardness(5.0F);
         MPBlocks.ILLENIUM_BLOCK = new BlockCompressedMetal("illenium_block").setSoundType(SoundType.METAL).setHardness(5.0F);
-        MPBlocks.DIONA_DUNGEON_BRICK = new BlockBaseMP("diona_dungeon_brick", Material.ROCK).setSortCategory(EnumSortCategoryBlock.DUNGEON_BRICK).setHardness(4.0F).setResistance(40.0F);
+        MPBlocks.DIONA_DUNGEON_BRICK = new BlockBaseMP("diona_dungeon_brick", Material.ROCK).setSortCategory(MPBlockCategory.DUNGEON_BRICK).setHardness(4.0F).setResistance(40.0F);
 
         // Purlonite Segment
         MPBlocks.INFECTED_PURLONITE_SEGMENT = new BlockInfectedPurloniteSegment("infected_purlonite_segment", BlockInfectedPurloniteSegment.BlockType.INFECTED_PURLONITE_SEGMENT);
@@ -728,7 +728,7 @@ public class MPBlocks
         MPBlocks.INFECTED_PURLONITE_SLIME_BLOCK = new BlockInfectedPurloniteSlime("infected_purlonite_slime_block");
         MPBlocks.DARK_ENERGY_CORE = new BlockDarkEnergyCore("dark_energy_core");
         MPBlocks.DIONA_COBBLESTONE_STAIRS = new BlockStairsMP("diona_cobblestone_stairs", EnumStairsType.COBBLESTONE);
-        MPBlocks.DIONA_DUNGEON_BRICK_STAIRS = new BlockStairsMP("diona_dungeon_brick_stairs", EnumStairsType.DUNGEON_BRICK).setSortCategory(EnumSortCategoryBlock.STAIRS_DUNGEON_BRICK);
+        MPBlocks.DIONA_DUNGEON_BRICK_STAIRS = new BlockStairsMP("diona_dungeon_brick_stairs", EnumStairsType.DUNGEON_BRICK).setSortCategory(MPBlockCategory.STAIRS_DUNGEON_BRICK);
         MPBlocks.DARK_ENERGY_GENERATOR = new BlockDarkEnergyGenerator("dark_energy_generator");
         MPBlocks.GLOWING_IRON_BLOCK = new BlockGlowingIronBlock("glowing_iron_block");
         MPBlocks.CRASHED_ALIEN_PROBE = new BlockCrashedAlienProbe("crashed_alien_probe");
@@ -748,7 +748,7 @@ public class MPBlocks
         MPBlocks.KOENTUS_IRON_ORE = new BlockMineableOre("koentus_iron_ore").setHardness(3.0F);
         MPBlocks.ANTI_GRAVITY_FRAGMENTS_BLOCK = new BlockCompressedMetal("anti_gravity_fragments_block").setSoundType(SoundType.METAL).setHardness(5.0F);
         MPBlocks.GOLDENITE_CRYSTALS_BLOCK = new BlockCompressedMetal("goldenite_crystals_block").setSoundType(SoundType.METAL).setHardness(5.0F);
-        MPBlocks.KOENTUS_DUNGEON_BRICK = new BlockBaseMP("koentus_dungeon_brick", Material.ROCK).setSortCategory(EnumSortCategoryBlock.DUNGEON_BRICK).setHardness(4.0F).setResistance(40.0F);
+        MPBlocks.KOENTUS_DUNGEON_BRICK = new BlockBaseMP("koentus_dungeon_brick", Material.ROCK).setSortCategory(MPBlockCategory.DUNGEON_BRICK).setHardness(4.0F).setResistance(40.0F);
         MPBlocks.FALLEN_KOENTUS_METEOR = new BlockFallenKoentusMeteor("fallen_koentus_meteor");
         MPBlocks.KOENTUS_ICE = new BlockKoentusIce("koentus_ice");
 
@@ -790,7 +790,7 @@ public class MPBlocks
         MPBlocks.CHALOS_ALUMINUM_ORE = new BlockMineableOre("chalos_aluminum_ore").setHardness(3.0F);
         MPBlocks.DIREMSIUM_BLOCK = new BlockCompressedMetal("diremsium_block").setSoundType(SoundType.METAL).setHardness(5.0F);
         MPBlocks.ZYPTORIUM_BLOCK = new BlockCompressedMetal("zyptorium_block").setSoundType(SoundType.METAL).setHardness(5.0F);
-        MPBlocks.CHALOS_DUNGEON_BRICK = new BlockBaseMP("chalos_dungeon_brick", Material.ROCK).setSortCategory(EnumSortCategoryBlock.DUNGEON_BRICK).setHardness(4.0F).setResistance(40.0F);
+        MPBlocks.CHALOS_DUNGEON_BRICK = new BlockBaseMP("chalos_dungeon_brick", Material.ROCK).setSortCategory(MPBlockCategory.DUNGEON_BRICK).setHardness(4.0F).setResistance(40.0F);
 
         // Others
         MPBlocks.CHEESE_DIRT = new BlockTerraformable("cheese_dirt", Material.GROUND).setSoundType(SoundType.GROUND).setHardness(0.55F);
@@ -811,8 +811,8 @@ public class MPBlocks
         MPBlocks.CHEESE_SPORE_CRAFTING_TABLE = new BlockCraftingTableMP("cheese_spore_crafting_table");
         MPBlocks.CHEESE_SPORE_CHEST = new BlockCheeseSporeChest("cheese_spore_chest");
         MPBlocks.CHALOS_COBBLESTONE_STAIRS = new BlockStairsMP("chalos_cobblestone_stairs", EnumStairsType.COBBLESTONE);
-        MPBlocks.CHALOS_DUNGEON_BRICK_STAIRS = new BlockStairsMP("chalos_dungeon_brick_stairs", EnumStairsType.DUNGEON_BRICK).setSortCategory(EnumSortCategoryBlock.STAIRS_DUNGEON_BRICK);
-        MPBlocks.CHEESE_SPORE_STAIRS = new BlockStairsMP("cheese_spore_stairs", EnumStairsType.WOODEN).setSortCategory(EnumSortCategoryBlock.STAIRS_WOODEN);
+        MPBlocks.CHALOS_DUNGEON_BRICK_STAIRS = new BlockStairsMP("chalos_dungeon_brick_stairs", EnumStairsType.DUNGEON_BRICK).setSortCategory(MPBlockCategory.STAIRS_DUNGEON_BRICK);
+        MPBlocks.CHEESE_SPORE_STAIRS = new BlockStairsMP("cheese_spore_stairs", EnumStairsType.WOODEN).setSortCategory(MPBlockCategory.STAIRS_WOODEN);
         MPBlocks.CHEESE_SPORE_FENCE = new BlockFenceMP("cheese_spore_fence");
         MPBlocks.CHEESE_SPORE_FENCE_GATE = new BlockFenceGateMP("cheese_spore_fence_gate");
         MPBlocks.CHEESE_SPORE_DOOR = new BlockDoorMP("cheese_spore_door");
@@ -843,8 +843,8 @@ public class MPBlocks
         MPBlocks.INFECTED_CRACKED_STONE_BRICKS = new BlockBaseMP("infected_cracked_stone_bricks", Material.ROCK).setHardness(1.5F);
         MPBlocks.INFECTED_CHISELED_STONE_BRICKS = new BlockBaseMP("infected_chiseled_stone_bricks", Material.ROCK).setHardness(1.5F);
         MPBlocks.INFERUMITE_BLOCK = new BlockCompressedMetal("inferumite_block").setSoundType(SoundType.METAL).setHardness(5.0F);
-        MPBlocks.NIBIRU_DUNGEON_BRICK = new BlockBaseMP("nibiru_dungeon_brick", Material.ROCK).setSortCategory(EnumSortCategoryBlock.DUNGEON_BRICK).setHardness(4.0F).setResistance(40.0F);
-        MPBlocks.MOSSY_NIBIRU_DUNGEON_BRICK = new BlockBaseMP("mossy_nibiru_dungeon_brick", Material.ROCK).setSortCategory(EnumSortCategoryBlock.DUNGEON_BRICK).setHardness(4.0F).setResistance(40.0F);
+        MPBlocks.NIBIRU_DUNGEON_BRICK = new BlockBaseMP("nibiru_dungeon_brick", Material.ROCK).setSortCategory(MPBlockCategory.DUNGEON_BRICK).setHardness(4.0F).setResistance(40.0F);
+        MPBlocks.MOSSY_NIBIRU_DUNGEON_BRICK = new BlockBaseMP("mossy_nibiru_dungeon_brick", Material.ROCK).setSortCategory(MPBlockCategory.DUNGEON_BRICK).setHardness(4.0F).setResistance(40.0F);
         MPBlocks.INFECTED_SANDSTONE = new BlockBaseMP("infected_sandstone", Material.ROCK).setHardness(0.8F);
         MPBlocks.INFECTED_CHISELED_SANDSTONE = new BlockBaseMP("infected_chiseled_sandstone", Material.ROCK).setHardness(0.8F);
         MPBlocks.INFECTED_CUT_SANDSTONE = new BlockBaseMP("infected_cut_sandstone", Material.ROCK).setHardness(0.8F);
@@ -972,9 +972,9 @@ public class MPBlocks
         MPBlocks.GREEN_VEIN_GRASS_PATH = new BlockNibiruGrassPath("green_vein_grass_path");
 
         // Stairs
-        MPBlocks.NIBIRU_DUNGEON_BRICK_STAIRS = new BlockStairsMP("nibiru_dungeon_brick_stairs", EnumStairsType.DUNGEON_BRICK).setSortCategory(EnumSortCategoryBlock.STAIRS_DUNGEON_BRICK);
-        MPBlocks.INFECTED_OAK_STAIRS = new BlockStairsMP("infected_oak_stairs", EnumStairsType.WOODEN).setSortCategory(EnumSortCategoryBlock.STAIRS_WOODEN);
-        MPBlocks.ALIEN_BERRY_OAK_STAIRS = new BlockStairsMP("alien_berry_oak_stairs", EnumStairsType.WOODEN).setSortCategory(EnumSortCategoryBlock.STAIRS_WOODEN);
+        MPBlocks.NIBIRU_DUNGEON_BRICK_STAIRS = new BlockStairsMP("nibiru_dungeon_brick_stairs", EnumStairsType.DUNGEON_BRICK).setSortCategory(MPBlockCategory.STAIRS_DUNGEON_BRICK);
+        MPBlocks.INFECTED_OAK_STAIRS = new BlockStairsMP("infected_oak_stairs", EnumStairsType.WOODEN).setSortCategory(MPBlockCategory.STAIRS_WOODEN);
+        MPBlocks.ALIEN_BERRY_OAK_STAIRS = new BlockStairsMP("alien_berry_oak_stairs", EnumStairsType.WOODEN).setSortCategory(MPBlockCategory.STAIRS_WOODEN);
         MPBlocks.INFECTED_PRISMARINE_STAIRS = new BlockStairsMP("infected_prismarine_stairs", EnumStairsType.STONE_BRICK);
         MPBlocks.INFECTED_PRISMARINE_BRICK_STAIRS = new BlockStairsMP("infected_prismarine_brick_stairs", EnumStairsType.STONE_BRICK);
         MPBlocks.INFECTED_DARK_PRISMARINE_STAIRS = new BlockStairsMP("infected_dark_prismarine_stairs", EnumStairsType.STONE_BRICK);
@@ -1016,14 +1016,14 @@ public class MPBlocks
         MPBlocks.FRONOS_MOSSY_STONE_BRICKS = new BlockBaseMP("fronos_mossy_stone_bricks", Material.ROCK).setHardness(1.5F);
         MPBlocks.FRONOS_CRACKED_STONE_BRICKS = new BlockBaseMP("fronos_cracked_stone_bricks", Material.ROCK).setHardness(1.5F);
         MPBlocks.FRONOS_CHISELED_STONE_BRICKS = new BlockBaseMP("fronos_chiseled_stone_bricks", Material.ROCK).setHardness(1.5F);
-        MPBlocks.FRONOS_DUNGEON_BRICK = new BlockBaseMP("fronos_dungeon_brick", Material.ROCK).setSortCategory(EnumSortCategoryBlock.DUNGEON_BRICK).setHardness(4.0F).setResistance(40.0F);
+        MPBlocks.FRONOS_DUNGEON_BRICK = new BlockBaseMP("fronos_dungeon_brick", Material.ROCK).setSortCategory(MPBlockCategory.DUNGEON_BRICK).setHardness(4.0F).setResistance(40.0F);
         MPBlocks.FRONOS_GRASS = new BlockPlaceableBushMP("fronos_grass", BlockPlaceableBushMP.BlockType.FRONOS_GRASS);
         MPBlocks.OSCALEA_LOG = new BlockLogMP("oscalea_log");
         MPBlocks.FROLIA_LOG = new BlockLogMP("frolia_log");
         MPBlocks.OSCALEA_PLANKS = new BlockBaseMP("oscalea_planks", Material.WOOD).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
         MPBlocks.FROLIA_PLANKS = new BlockBaseMP("frolia_planks", Material.WOOD).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
-        MPBlocks.OSCALEA_STAIRS = new BlockStairsMP("oscalea_stairs", EnumStairsType.WOODEN).setSortCategory(EnumSortCategoryBlock.STAIRS_WOODEN);
-        MPBlocks.FROLIA_STAIRS = new BlockStairsMP("frolia_stairs", EnumStairsType.WOODEN).setSortCategory(EnumSortCategoryBlock.STAIRS_WOODEN);
+        MPBlocks.OSCALEA_STAIRS = new BlockStairsMP("oscalea_stairs", EnumStairsType.WOODEN).setSortCategory(MPBlockCategory.STAIRS_WOODEN);
+        MPBlocks.FROLIA_STAIRS = new BlockStairsMP("frolia_stairs", EnumStairsType.WOODEN).setSortCategory(MPBlockCategory.STAIRS_WOODEN);
         MPBlocks.OSCALEA_FENCE = new BlockFenceMP("oscalea_fence");
         MPBlocks.FROLIA_FENCE = new BlockFenceMP("frolia_fence");
         MPBlocks.OSCALEA_FENCE_GATE = new BlockFenceGateMP("oscalea_fence_gate");

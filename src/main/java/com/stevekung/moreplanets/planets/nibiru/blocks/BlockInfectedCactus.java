@@ -7,7 +7,7 @@ import com.stevekung.lib.utils.BlockUtils;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.utils.DamageSourceMP;
 import com.stevekung.moreplanets.utils.blocks.BlockBushMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -140,9 +140,9 @@ public class BlockInfectedCactus extends BlockBushMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
+        return MPBlockCategory.DECORATION_NON_BLOCK;
     }
 
     @Override

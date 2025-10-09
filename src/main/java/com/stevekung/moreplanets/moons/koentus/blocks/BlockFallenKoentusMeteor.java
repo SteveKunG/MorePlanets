@@ -7,7 +7,7 @@ import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.moons.koentus.entity.EntityFallingKoentusMeteor;
 import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
 import com.stevekung.moreplanets.utils.blocks.BlockFallingMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.BlockFaceShape;
@@ -37,9 +37,9 @@ public class BlockFallenKoentusMeteor extends BlockFallingMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
+        return MPBlockCategory.DECORATION_NON_BLOCK;
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.stevekung.moreplanets.blocks.decoration;
 import java.util.Locale;
 
 import com.stevekung.moreplanets.utils.blocks.BlockSlabMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.SoundType;
@@ -91,9 +91,9 @@ public class BlockAllHalfSlab extends BlockSlabMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return this.type.isDungeonBrick() ? EnumSortCategoryBlock.SLAB_DUNGEON_BRICK : EnumSortCategoryBlock.SLAB_STONE;
+        return this.type.isDungeonBrick() ? MPBlockCategory.SLAB_DUNGEON_BRICK : MPBlockCategory.SLAB_STONE;
     }
 
     @Override

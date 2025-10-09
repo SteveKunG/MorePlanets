@@ -122,9 +122,9 @@ public abstract class BlockTreasureChestMP extends BlockContainerMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.TREASURE_CHEST;
+        return MPBlockCategory.TREASURE_CHEST;
     }
 
     @Override

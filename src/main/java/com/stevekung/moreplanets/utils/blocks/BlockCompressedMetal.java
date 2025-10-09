@@ -23,9 +23,9 @@ public class BlockCompressedMetal extends BlockBaseMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.INGOT_BLOCK;
+        return MPBlockCategory.INGOT_BLOCK;
     }
 
     @Override

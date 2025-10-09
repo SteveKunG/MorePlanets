@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.EnumPushReaction;
@@ -118,8 +118,8 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.ORE;
+        return MPBlockCategory.ORE;
     }
 }

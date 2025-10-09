@@ -5,5 +5,5 @@ import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 public interface MorePlanetsBlock extends ModelNameGatherer, ItemRarity
 {
-    EnumSortCategoryBlock getBlockCategory();
+    MPBlockCategory getBlockCategory();
 }

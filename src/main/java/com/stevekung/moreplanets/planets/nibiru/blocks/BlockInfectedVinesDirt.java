@@ -5,7 +5,7 @@ import java.util.Random;
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.Block;
@@ -89,9 +89,9 @@ public class BlockInfectedVinesDirt extends BlockBaseMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.DECORATION_BLOCK;
+        return MPBlockCategory.DECORATION_BLOCK;
     }
 
     @Override

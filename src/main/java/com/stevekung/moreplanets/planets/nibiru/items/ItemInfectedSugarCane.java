@@ -2,7 +2,7 @@ package com.stevekung.moreplanets.planets.nibiru.items;
 
 import com.stevekung.lib.utils.BlockStateProperty;
 import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
+import com.stevekung.moreplanets.utils.items.MPItemCategory;
 import com.stevekung.moreplanets.utils.items.ItemBaseMP;
 
 import net.minecraft.block.Block;
@@ -74,8 +74,8 @@ public class ItemInfectedSugarCane extends ItemBaseMP
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory()
+    public MPItemCategory getItemCategory()
     {
-        return EnumSortCategoryItem.PLACEABLE_PLANT;
+        return MPItemCategory.PLACEABLE_PLANT;
     }
 }

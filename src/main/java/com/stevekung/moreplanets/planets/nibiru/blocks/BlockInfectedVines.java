@@ -2,7 +2,7 @@ package com.stevekung.moreplanets.planets.nibiru.blocks;
 
 import com.stevekung.moreplanets.utils.DamageSourceMP;
 import com.stevekung.moreplanets.utils.blocks.BlockVinesMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 import com.stevekung.moreplanets.utils.entity.ISpaceMob;
 import com.stevekung.moreplanets.utils.entity.ISpaceMob.EnumMobType;
 
@@ -57,8 +57,8 @@ public class BlockInfectedVines extends BlockVinesMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
+        return MPBlockCategory.DECORATION_NON_BLOCK;
     }
 }

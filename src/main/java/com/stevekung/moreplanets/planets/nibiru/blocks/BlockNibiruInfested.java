@@ -6,7 +6,7 @@ import java.util.Random;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.planets.nibiru.entity.EntityInfectedWorm;
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -51,9 +51,9 @@ public class BlockNibiruInfested extends BlockBaseMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.DECORATION_BLOCK;
+        return MPBlockCategory.DECORATION_BLOCK;
     }
 
     @Override

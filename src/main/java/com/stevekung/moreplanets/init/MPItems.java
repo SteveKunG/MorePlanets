@@ -272,8 +272,8 @@ public class MPItems
         MPItems.DARK_ENERGY_PROTECTION_CAPSULE = new ItemCapsule("dark_energy_protection_capsule", ItemCapsule.CapsuleType.DARK_ENERGY);
 
         // Laser Bullet
-        MPItems.LASER_BULLET = new ItemBaseMP("laser_bullet").setSortCategory(EnumSortCategoryItem.PROJECTILE);
-        MPItems.INFECTED_PURLONITE_LASER_BULLET = new ItemBaseMP("infected_purlonite_laser_bullet").setSortCategory(EnumSortCategoryItem.PROJECTILE).setRarityRGB(ColorUtils.stringToRGB(ItemRarity.ALIEN));
+        MPItems.LASER_BULLET = new ItemBaseMP("laser_bullet").setSortCategory(MPItemCategory.PROJECTILE);
+        MPItems.INFECTED_PURLONITE_LASER_BULLET = new ItemBaseMP("infected_purlonite_laser_bullet").setSortCategory(MPItemCategory.PROJECTILE).setRarityRGB(ColorUtils.stringToRGB(ItemRarity.ALIEN));
 
         // Schematic
         MPItems.ION_CANNON_SCHEMATIC = new ItemIonCannonSchematic("ion_cannon_schematic").setRarityRGB(ColorUtils.stringToRGB(ItemRarity.SPECIAL));
@@ -300,23 +300,23 @@ public class MPItems
                 return null;
             }
         };
-        MPItems.UPGRADE_TEMPLATE = new ItemBaseMP("upgrade_template").setSortCategory(EnumSortCategoryItem.UPGRADE);
-        MPItems.SHIELD_DAMAGE_UPGRADE = new ItemBaseMP("shield_damage_upgrade").setSortCategory(EnumSortCategoryItem.UPGRADE);
-        MPItems.SHIELD_SIZE_UPGRADE = new ItemBaseMP("shield_size_upgrade").setSortCategory(EnumSortCategoryItem.UPGRADE);
-        MPItems.SHIELD_CAPACITY_UPGRADE = new ItemBaseMP("shield_capacity_upgrade").setSortCategory(EnumSortCategoryItem.UPGRADE);
-        MPItems.MACHINE_SPEED_UPGRADE = new ItemBaseMP("machine_speed_upgrade").setSortCategory(EnumSortCategoryItem.UPGRADE);
+        MPItems.UPGRADE_TEMPLATE = new ItemBaseMP("upgrade_template").setSortCategory(MPItemCategory.UPGRADE);
+        MPItems.SHIELD_DAMAGE_UPGRADE = new ItemBaseMP("shield_damage_upgrade").setSortCategory(MPItemCategory.UPGRADE);
+        MPItems.SHIELD_SIZE_UPGRADE = new ItemBaseMP("shield_size_upgrade").setSortCategory(MPItemCategory.UPGRADE);
+        MPItems.SHIELD_CAPACITY_UPGRADE = new ItemBaseMP("shield_capacity_upgrade").setSortCategory(MPItemCategory.UPGRADE);
+        MPItems.MACHINE_SPEED_UPGRADE = new ItemBaseMP("machine_speed_upgrade").setSortCategory(MPItemCategory.UPGRADE);
         MPItems.GRAVITY_AMULET = new ItemGravityAmulet("gravity_amulet").setRarityRGB(ColorUtils.stringToRGB(ItemRarity.SPECIAL));
 
         //////////////////////// DIONA STUFF ////////////////////////
 
         // Diona Item
-        MPItems.ILLENIUM_INGOT = new ItemBaseMP("illenium_ingot").setSortCategory(EnumSortCategoryItem.INGOT);
+        MPItems.ILLENIUM_INGOT = new ItemBaseMP("illenium_ingot").setSortCategory(MPItemCategory.INGOT);
         MPItems.SETRORIUM_SHARD = new ItemBaseMP("setrorium_shard");
-        MPItems.COMPRESSED_ILLENIUM = new ItemCompressedMetal("compressed_illenium").setSortCategory(EnumSortCategoryItem.PLATE);
-        MPItems.COMPRESSED_SETRORIUM = new ItemCompressedMetal("compressed_setrorium").setSortCategory(EnumSortCategoryItem.PLATE);
+        MPItems.COMPRESSED_ILLENIUM = new ItemCompressedMetal("compressed_illenium").setSortCategory(MPItemCategory.PLATE);
+        MPItems.COMPRESSED_SETRORIUM = new ItemCompressedMetal("compressed_setrorium").setSortCategory(MPItemCategory.PLATE);
         MPItems.INFECTED_PURLONITE_SHARD = new ItemBaseMP("infected_purlonite_shard").setRarityRGB(ColorUtils.stringToRGB(ItemRarity.ALIEN));
         MPItems.ALIEN_MINER_PART = new ItemBaseMP("alien_miner_part").setRarityRGB(ColorUtils.stringToRGB(ItemRarity.ALIEN));
-        MPItems.GLOWING_IRON_INGOT = new ItemBaseMP("glowing_iron_ingot").setSortCategory(EnumSortCategoryItem.INGOT).setRarityRGB(ColorUtils.stringToRGB(ItemRarity.ALIEN));
+        MPItems.GLOWING_IRON_INGOT = new ItemBaseMP("glowing_iron_ingot").setSortCategory(MPItemCategory.INGOT).setRarityRGB(ColorUtils.stringToRGB(ItemRarity.ALIEN));
         MPItems.BLACK_HOLE_FRAGMENTS = new ItemBaseMP("black_hole_fragments").setRarityRGB(ColorUtils.stringToRGB(ItemRarity.SPECIAL));
         MPItems.ANTI_GRAVITY_FRAGMENTS = new ItemAntiGravity("anti_gravity_fragments").setRarityRGB(ColorUtils.stringToRGB(ItemRarity.SPECIAL));
 
@@ -331,10 +331,10 @@ public class MPItems
         //////////////////////// CHALOS STUFF ////////////////////////
 
         // Chalos Item
-        MPItems.DIREMSIUM_INGOT = new ItemBaseMP("diremsium_ingot").setSortCategory(EnumSortCategoryItem.INGOT);
-        MPItems.ZYPTORIUM_INGOT = new ItemBaseMP("zyptorium_ingot").setSortCategory(EnumSortCategoryItem.INGOT);
-        MPItems.COMPRESSED_DIREMSIUM = new ItemCompressedMetal("compressed_diremsium").setSortCategory(EnumSortCategoryItem.PLATE);
-        MPItems.COMPRESSED_ZYPTORIUM = new ItemCompressedMetal("compressed_zyptorium").setSortCategory(EnumSortCategoryItem.PLATE);
+        MPItems.DIREMSIUM_INGOT = new ItemBaseMP("diremsium_ingot").setSortCategory(MPItemCategory.INGOT);
+        MPItems.ZYPTORIUM_INGOT = new ItemBaseMP("zyptorium_ingot").setSortCategory(MPItemCategory.INGOT);
+        MPItems.COMPRESSED_DIREMSIUM = new ItemCompressedMetal("compressed_diremsium").setSortCategory(MPItemCategory.PLATE);
+        MPItems.COMPRESSED_ZYPTORIUM = new ItemCompressedMetal("compressed_zyptorium").setSortCategory(MPItemCategory.PLATE);
 
         // Food
         MPItems.CHEESE_MILK_CURD = new ItemAllFood("cheese_milk_curd", ItemAllFood.ItemType.CHEESE_MILK_CURD);
@@ -380,14 +380,14 @@ public class MPItems
         MPItems.INFECTED_SNOWBALL = new ItemInfectedSnowball("infected_snowball");
         MPItems.PURIFIED_SNOWBALL = new ItemPurifiedSnowball("purified_snowball");
         MPItems.NIBIRU_DUNGEON_KEY = new ItemDungeonKeyMP("nibiru_dungeon_key");
-        MPItems.NIBIRU_DUNGEON_KEY_BOW = new ItemBaseMP("nibiru_dungeon_key_bow").setSortCategory(EnumSortCategoryItem.DUNGEON_KEY);
-        MPItems.NIBIRU_DUNGEON_KEY_BLADE = new ItemBaseMP("nibiru_dungeon_key_blade").setSortCategory(EnumSortCategoryItem.DUNGEON_KEY);
+        MPItems.NIBIRU_DUNGEON_KEY_BOW = new ItemBaseMP("nibiru_dungeon_key_bow").setSortCategory(MPItemCategory.DUNGEON_KEY);
+        MPItems.NIBIRU_DUNGEON_KEY_BLADE = new ItemBaseMP("nibiru_dungeon_key_blade").setSortCategory(MPItemCategory.DUNGEON_KEY);
         MPItems.INFECTED_SUGAR_CANE = new ItemInfectedSugarCane("infected_sugar_cane");
         MPItems.INFECTED_EGG = new ItemInfectedEgg("infected_egg");
         MPItems.INFECTED_ARROW = new ItemArrowMP("infected_arrow", ItemArrowMP.ArrowType.INFECTED);
         MPItems.INFECTED_MELON_SEEDS = new ItemInfectedMelonSeeds("infected_melon_seeds");
         MPItems.VEIN_EYE = new ItemVeinEye("vein_eye");
-        MPItems.WASTE_ROD_PICKER = new ItemBaseMP("waste_rod_picker").setSortCategory(EnumSortCategoryItem.OTHER_TOOL).setRarityRGB(ColorUtils.stringToRGB(ItemRarity.MACHINE)).setMaxStackSize(1).setMaxDamage(15);
+        MPItems.WASTE_ROD_PICKER = new ItemBaseMP("waste_rod_picker").setSortCategory(MPItemCategory.OTHER_TOOL).setRarityRGB(ColorUtils.stringToRGB(ItemRarity.MACHINE)).setMaxStackSize(1).setMaxDamage(15);
         MPItems.NUCLEAR_WASTE_ROD = new ItemBaseMP("nuclear_waste_rod");
 
         //////////////////////// KOENTUS STUFF ////////////////////////
@@ -397,8 +397,8 @@ public class MPItems
         //////////////////////// FRONOS STUFF ////////////////////////
 
         // Fronos Item
-        MPItems.EXTRAILONITE_INGOT = new ItemBaseMP("extrailonite_ingot").setSortCategory(EnumSortCategoryItem.INGOT);
-        MPItems.COMPRESSED_EXTRAILONITE = new ItemBaseMP("compressed_extrailonite").setSortCategory(EnumSortCategoryItem.PLATE);
+        MPItems.EXTRAILONITE_INGOT = new ItemBaseMP("extrailonite_ingot").setSortCategory(MPItemCategory.INGOT);
+        MPItems.COMPRESSED_EXTRAILONITE = new ItemBaseMP("compressed_extrailonite").setSortCategory(MPItemCategory.PLATE);
         MPItems.OSCALEA_DOOR = new ItemDoorMP("oscalea_door", MPBlocks.OSCALEA_DOOR);
         MPItems.FROLIA_DOOR = new ItemDoorMP("frolia_door", MPBlocks.FROLIA_DOOR);
 

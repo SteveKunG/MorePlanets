@@ -22,8 +22,8 @@ public abstract class BlockTorchMP extends BlockTorch implements MorePlanetsBloc
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.TORCH;
+        return MPBlockCategory.TORCH;
     }
 }

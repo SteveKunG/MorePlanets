@@ -3,7 +3,7 @@ package com.stevekung.moreplanets.planets.diona.blocks;
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.SoundType;
@@ -34,9 +34,9 @@ public class BlockGlowingIronBlock extends BlockBaseMP implements IDetectableRes
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.INGOT_BLOCK;
+        return MPBlockCategory.INGOT_BLOCK;
     }
 
     @Override

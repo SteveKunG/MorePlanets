@@ -1,7 +1,7 @@
 package com.stevekung.moreplanets.blocks;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 import com.stevekung.moreplanets.utils.blocks.MorePlanetsBlock;
 
 import net.minecraft.block.Block;
@@ -88,9 +88,9 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
+        return MPBlockCategory.DECORATION_NON_BLOCK;
     }
 
     @Override

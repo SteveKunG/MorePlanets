@@ -14,7 +14,7 @@ import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
 import com.stevekung.moreplanets.utils.IDescription;
 import com.stevekung.moreplanets.utils.ItemDescription;
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.Block;
@@ -266,9 +266,9 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.MACHINE_BLOCK;
+        return MPBlockCategory.MACHINE_BLOCK;
     }
 
     @Override

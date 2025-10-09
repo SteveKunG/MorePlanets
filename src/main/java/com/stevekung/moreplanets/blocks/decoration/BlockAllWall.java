@@ -3,7 +3,7 @@ package com.stevekung.moreplanets.blocks.decoration;
 import java.util.Locale;
 
 import com.stevekung.moreplanets.utils.blocks.BlockWallMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -41,9 +41,9 @@ public class BlockAllWall extends BlockWallMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.WALL;
+        return MPBlockCategory.WALL;
     }
 
     public enum BlockType

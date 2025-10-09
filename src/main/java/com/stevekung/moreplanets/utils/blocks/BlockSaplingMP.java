@@ -84,9 +84,9 @@ public class BlockSaplingMP extends BlockBushMP implements IGrowable
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.SAPLING;
+        return MPBlockCategory.SAPLING;
     }
 
     @Override

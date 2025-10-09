@@ -7,7 +7,7 @@ import com.stevekung.moreplanets.entity.projectile.EntityLaserBullet.LaserType;
 import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.init.MPSounds;
 import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
+import com.stevekung.moreplanets.utils.items.MPItemCategory;
 import com.stevekung.moreplanets.utils.items.ItemBaseMP;
 import com.stevekung.moreplanets.utils.items.MorePlanetsItem;
 
@@ -268,9 +268,9 @@ public class ItemLaserGun extends ItemBaseMP implements MorePlanetsItem, IItemEl
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory()
+    public MPItemCategory getItemCategory()
     {
-        return EnumSortCategoryItem.OTHER_TOOL;
+        return MPItemCategory.OTHER_TOOL;
     }
 
     @Override

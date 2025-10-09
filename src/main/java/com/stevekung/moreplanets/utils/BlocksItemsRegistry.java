@@ -9,10 +9,10 @@ import com.stevekung.lib.utils.client.ClientUtils;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.itemblocks.ItemBlockTESRMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 import com.stevekung.moreplanets.utils.blocks.MorePlanetsBlock;
 import com.stevekung.moreplanets.utils.itemblocks.ItemBlockMP;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
+import com.stevekung.moreplanets.utils.items.MPItemCategory;
 import com.stevekung.moreplanets.utils.items.MorePlanetsItem;
 
 import net.minecraft.block.Block;
@@ -25,12 +25,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import micdoodle8.mods.galacticraft.core.util.StackSorted;
+
 import javax.annotation.Nullable;
 
 public class BlocksItemsRegistry
 {
-    public static final Map<EnumSortCategoryBlock, List<StackSorted>> SORT_MAP_BLOCKS = new HashMap<>();
-    public static final Map<EnumSortCategoryItem, List<StackSorted>> SORT_MAP_ITEMS = new HashMap<>();
+    public static final Map<MPBlockCategory, List<StackSorted>> SORT_MAP_BLOCKS = new HashMap<>();
+    public static final Map<MPItemCategory, List<StackSorted>> SORT_MAP_ITEMS = new HashMap<>();
     public static final Map<Block, String> SINGLE_BLOCK_RENDER_LIST = new HashMap<>();
     public static final Map<Item, String> SINGLE_ITEM_RENDER_LIST = new HashMap<>();
     public static final List<Item> TESR_ITEM_RENDER = new ArrayList<>();
@@ -100,13 +102,13 @@ public class BlocksItemsRegistry
             }
 
             MorePlanetsBlock sortableBlock = (MorePlanetsBlock) block;
-            EnumSortCategoryBlock categoryBlock = sortableBlock.getBlockCategory();
+            MPBlockCategory categoryBlock = sortableBlock.getBlockCategory();
 
             if (!BlocksItemsRegistry.SORT_MAP_BLOCKS.containsKey(categoryBlock))
             {
                 BlocksItemsRegistry.SORT_MAP_BLOCKS.put(categoryBlock, new ArrayList<>());
             }
-            BlocksItemsRegistry.SORT_MAP_BLOCKS.get(categoryBlock).add(new StackSorted(block));
+            BlocksItemsRegistry.SORT_MAP_BLOCKS.get(categoryBlock).add(new StackSorted(block, 0));
         }
         else if (block.getCreativeTab() == MorePlanetsMod.BLOCK_TAB)
         {
@@ -118,7 +120,7 @@ public class BlocksItemsRegistry
     {
         List<StackSorted> itemOrderListBlocks = new ArrayList<>();
 
-        for (EnumSortCategoryBlock type : EnumSortCategoryBlock.VALUES)
+        for (MPBlockCategory type : MPBlockCategory.VALUES)
         {
             List<StackSorted> stackSorteds = BlocksItemsRegistry.SORT_MAP_BLOCKS.get(type);
 
@@ -127,7 +129,7 @@ public class BlocksItemsRegistry
                 itemOrderListBlocks.addAll(stackSorteds);
             }
         }
-        Comparator<ItemStack> tabSorterBlocks = Ordering.explicit(itemOrderListBlocks).onResultOf(input -> new StackSorted(input.getItem()));
+        Comparator<ItemStack> tabSorterBlocks = Ordering.explicit(itemOrderListBlocks).onResultOf(input -> new StackSorted(input.getItem(), 0));
         MorePlanetsMod.BLOCK_TAB.setTabSorter(tabSorterBlocks);
     }
 
@@ -136,13 +138,13 @@ public class BlocksItemsRegistry
         if (item instanceof MorePlanetsItem)
         {
             MorePlanetsItem sortableItem = (MorePlanetsItem) item;
-            EnumSortCategoryItem categoryItem = sortableItem.getItemCategory();
+            MPItemCategory categoryItem = sortableItem.getItemCategory();
 
             if (!BlocksItemsRegistry.SORT_MAP_ITEMS.containsKey(categoryItem))
             {
                 BlocksItemsRegistry.SORT_MAP_ITEMS.put(categoryItem, new ArrayList<>());
             }
-            BlocksItemsRegistry.SORT_MAP_ITEMS.get(categoryItem).add(new StackSorted(item));
+            BlocksItemsRegistry.SORT_MAP_ITEMS.get(categoryItem).add(new StackSorted(item, 0));
         }
         else if (item.getCreativeTab() == MorePlanetsMod.ITEM_TAB)
         {
@@ -154,7 +156,7 @@ public class BlocksItemsRegistry
     {
         List<StackSorted> itemOrderListItems = new ArrayList<>();
 
-        for (EnumSortCategoryItem type : EnumSortCategoryItem.VALUES)
+        for (MPItemCategory type : MPItemCategory.VALUES)
         {
             List<StackSorted> stackSorteds = BlocksItemsRegistry.SORT_MAP_ITEMS.get(type);
 
@@ -163,7 +165,7 @@ public class BlocksItemsRegistry
                 itemOrderListItems.addAll(stackSorteds);
             }
         }
-        Comparator<ItemStack> tabSorterItems = Ordering.explicit(itemOrderListItems).onResultOf(input -> new StackSorted(input.getItem()));
+        Comparator<ItemStack> tabSorterItems = Ordering.explicit(itemOrderListItems).onResultOf(input -> new StackSorted(input.getItem(), 0));
         MorePlanetsMod.ITEM_TAB.setTabSorter(tabSorterItems);
     }
 

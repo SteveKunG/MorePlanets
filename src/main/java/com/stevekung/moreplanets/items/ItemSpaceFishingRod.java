@@ -4,7 +4,7 @@ import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.entity.projectile.EntitySpaceFishHook;
 import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
+import com.stevekung.moreplanets.utils.items.MPItemCategory;
 import com.stevekung.moreplanets.utils.items.MorePlanetsItem;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -58,9 +58,9 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements MorePlanetsIt
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory()
+    public MPItemCategory getItemCategory()
     {
-        return EnumSortCategoryItem.FISHING_ROD;
+        return MPItemCategory.FISHING_ROD;
     }
 
     @Override

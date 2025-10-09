@@ -54,9 +54,9 @@ public class ItemSchematicMP extends ItemBaseMP implements ISchematicItem
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory()
+    public MPItemCategory getItemCategory()
     {
-        return EnumSortCategoryItem.SCHEMATIC;
+        return MPItemCategory.SCHEMATIC;
     }
 
     protected int getIndex(int damage)

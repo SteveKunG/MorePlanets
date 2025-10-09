@@ -37,9 +37,9 @@ public class BlockFenceMP extends BlockFence implements MorePlanetsBlock
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.FENCE;
+        return MPBlockCategory.FENCE;
     }
 
     @Override

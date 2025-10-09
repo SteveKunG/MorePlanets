@@ -47,9 +47,9 @@ public class ItemArrowMP extends ItemArrow implements MorePlanetsItem
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory()
+    public MPItemCategory getItemCategory()
     {
-        return EnumSortCategoryItem.ARROW;
+        return MPItemCategory.ARROW;
     }
 
     @Override

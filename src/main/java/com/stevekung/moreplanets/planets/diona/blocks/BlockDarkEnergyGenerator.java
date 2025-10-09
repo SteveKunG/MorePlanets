@@ -10,7 +10,7 @@ import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
 import com.stevekung.moreplanets.utils.IDescription;
 import com.stevekung.moreplanets.utils.ItemDescription;
 import com.stevekung.moreplanets.utils.blocks.BlockTileMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.Block;
@@ -230,9 +230,9 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IDescriptio
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.MACHINE_NON_BLOCK;
+        return MPBlockCategory.MACHINE_NON_BLOCK;
     }
 
     @Override

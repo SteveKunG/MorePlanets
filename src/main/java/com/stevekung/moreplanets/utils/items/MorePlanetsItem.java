@@ -7,5 +7,5 @@ import micdoodle8.mods.galacticraft.api.item.GCRarity;
 
 public interface MorePlanetsItem extends ModelNameGatherer, ItemRarity, GCRarity
 {
-    EnumSortCategoryItem getItemCategory();
+    MPItemCategory getItemCategory();
 }

@@ -1,6 +1,6 @@
 package com.stevekung.moreplanets.utils.items;
 
-public enum EnumSortCategoryItem
+public enum MPItemCategory
 {
     GENERAL,
     ARROW,
@@ -30,5 +30,5 @@ public enum EnumSortCategoryItem
     BOOTS,
     HELMET_BREATHABLE;
 
-    public static final EnumSortCategoryItem[] VALUES = EnumSortCategoryItem.values();
+    public static final MPItemCategory[] VALUES = MPItemCategory.values();
 }

@@ -2,7 +2,7 @@ package com.stevekung.moreplanets.planets.chalos.blocks;
 
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.utils.blocks.BlockBreakableMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 import com.stevekung.moreplanets.utils.blocks.MorePlanetsBlock;
 
 import net.minecraft.block.SoundType;
@@ -85,9 +85,9 @@ public class BlockCheeseSlime extends BlockBreakableMP implements MorePlanetsBlo
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.DECORATION_BLOCK;
+        return MPBlockCategory.DECORATION_BLOCK;
     }
 
     @Override

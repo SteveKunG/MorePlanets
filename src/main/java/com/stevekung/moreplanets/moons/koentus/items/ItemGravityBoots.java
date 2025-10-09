@@ -2,7 +2,7 @@ package com.stevekung.moreplanets.moons.koentus.items;
 
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
+import com.stevekung.moreplanets.utils.items.MPItemCategory;
 import com.stevekung.moreplanets.utils.items.armor.ItemArmorMP;
 
 import net.minecraft.entity.Entity;
@@ -46,9 +46,9 @@ public class ItemGravityBoots extends ItemArmorMP implements IArmorGravity
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory()
+    public MPItemCategory getItemCategory()
     {
-        return EnumSortCategoryItem.OTHER_TOOL;
+        return MPItemCategory.OTHER_TOOL;
     }
 
     @Override

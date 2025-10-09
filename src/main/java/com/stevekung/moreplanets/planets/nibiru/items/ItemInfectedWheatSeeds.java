@@ -1,7 +1,7 @@
 package com.stevekung.moreplanets.planets.nibiru.items;
 
 import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
+import com.stevekung.moreplanets.utils.items.MPItemCategory;
 import com.stevekung.moreplanets.utils.items.ItemBaseMP;
 
 import net.minecraft.block.state.IBlockState;
@@ -39,8 +39,8 @@ public class ItemInfectedWheatSeeds extends ItemBaseMP
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory()
+    public MPItemCategory getItemCategory()
     {
-        return EnumSortCategoryItem.PLANT_SEEDS;
+        return MPItemCategory.PLANT_SEEDS;
     }
 }

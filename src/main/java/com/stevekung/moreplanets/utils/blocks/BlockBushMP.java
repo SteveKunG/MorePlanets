@@ -100,9 +100,9 @@ public class BlockBushMP extends BlockBaseMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.FLOWER;
+        return MPBlockCategory.FLOWER;
     }
 
     @Override

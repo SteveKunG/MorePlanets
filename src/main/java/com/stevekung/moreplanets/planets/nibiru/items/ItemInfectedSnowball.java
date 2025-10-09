@@ -1,7 +1,7 @@
 package com.stevekung.moreplanets.planets.nibiru.items;
 
 import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityInfectedSnowball;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
+import com.stevekung.moreplanets.utils.items.MPItemCategory;
 import com.stevekung.moreplanets.utils.items.ItemBaseMP;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -46,8 +46,8 @@ public class ItemInfectedSnowball extends ItemBaseMP
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory()
+    public MPItemCategory getItemCategory()
     {
-        return EnumSortCategoryItem.PROJECTILE;
+        return MPItemCategory.PROJECTILE;
     }
 }

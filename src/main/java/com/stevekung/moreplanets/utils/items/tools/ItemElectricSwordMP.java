@@ -6,7 +6,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
+import com.stevekung.moreplanets.utils.items.MPItemCategory;
 import com.stevekung.moreplanets.utils.items.MorePlanetsItem;
 
 import net.minecraft.block.state.IBlockState;
@@ -263,9 +263,9 @@ public class ItemElectricSwordMP extends ItemSword implements IItemElectric, Mor
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory()
+    public MPItemCategory getItemCategory()
     {
-        return EnumSortCategoryItem.SWORD;
+        return MPItemCategory.SWORD;
     }
 
     @Override

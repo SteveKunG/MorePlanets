@@ -4,7 +4,7 @@ import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
+import com.stevekung.moreplanets.utils.items.MPItemCategory;
 import com.stevekung.moreplanets.utils.items.MorePlanetsItem;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -133,9 +133,9 @@ public class ItemSpaceBow extends ItemBow implements MorePlanetsItem
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory()
+    public MPItemCategory getItemCategory()
     {
-        return EnumSortCategoryItem.BOW;
+        return MPItemCategory.BOW;
     }
 
     @Override

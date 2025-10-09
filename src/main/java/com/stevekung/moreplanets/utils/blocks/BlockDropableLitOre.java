@@ -150,9 +150,9 @@ public class BlockDropableLitOre extends BlockBasicMP implements IDetectableReso
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.ORE;
+        return MPBlockCategory.ORE;
     }
 
     @Override

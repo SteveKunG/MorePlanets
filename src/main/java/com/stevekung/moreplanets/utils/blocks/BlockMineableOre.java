@@ -14,9 +14,9 @@ public class BlockMineableOre extends BlockBaseMP implements IDetectableResource
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.ORE;
+        return MPBlockCategory.ORE;
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.stevekung.moreplanets.utils.items.tools;
 import com.stevekung.lib.utils.enums.EnumToolSpeed;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.integration.jei.MPJEIRecipes;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
+import com.stevekung.moreplanets.utils.items.MPItemCategory;
 import com.stevekung.moreplanets.utils.items.MorePlanetsItem;
 
 import net.minecraft.block.Block;
@@ -50,9 +50,9 @@ public class ItemAxeMP extends ItemAxe implements MorePlanetsItem
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory()
+    public MPItemCategory getItemCategory()
     {
-        return EnumSortCategoryItem.AXE;
+        return MPItemCategory.AXE;
     }
 
     @Override

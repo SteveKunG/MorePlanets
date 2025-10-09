@@ -3,7 +3,7 @@ package com.stevekung.moreplanets.utils.items.armor;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.integration.jei.MPJEIRecipes;
 import com.stevekung.moreplanets.utils.ModelRegistryUtils;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
+import com.stevekung.moreplanets.utils.items.MPItemCategory;
 import com.stevekung.moreplanets.utils.items.MorePlanetsItem;
 
 import net.minecraft.client.model.ModelBiped;
@@ -72,9 +72,9 @@ public abstract class ItemBreathableArmor extends ItemArmor implements IBreathab
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory()
+    public MPItemCategory getItemCategory()
     {
-        return EnumSortCategoryItem.HELMET_BREATHABLE;
+        return MPItemCategory.HELMET_BREATHABLE;
     }
 
     @Override

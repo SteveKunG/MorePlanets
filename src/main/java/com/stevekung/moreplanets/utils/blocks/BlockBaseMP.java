@@ -10,7 +10,7 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class BlockBaseMP extends Block implements MorePlanetsBlock
 {
-    private EnumSortCategoryBlock category;
+    private MPBlockCategory category;
     private String name;
     private ColorUtils.RGB rgb;
 
@@ -46,9 +46,9 @@ public class BlockBaseMP extends Block implements MorePlanetsBlock
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return this.category == null ? EnumSortCategoryBlock.BUILDING_BLOCK : this.category;
+        return this.category == null ? MPBlockCategory.BUILDING_BLOCK : this.category;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class BlockBaseMP extends Block implements MorePlanetsBlock
         return this.rgb != null ? this.rgb : null;
     }
 
-    public BlockBaseMP setSortCategory(EnumSortCategoryBlock category)
+    public BlockBaseMP setSortCategory(MPBlockCategory category)
     {
         this.category = category;
         return this;

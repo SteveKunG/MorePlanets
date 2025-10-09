@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 
 public class ItemBaseMP extends Item implements MorePlanetsItem
 {
-    private EnumSortCategoryItem category;
+    private MPItemCategory category;
     private ColorUtils.RGB rgb;
     private String name;
 
@@ -34,9 +34,9 @@ public class ItemBaseMP extends Item implements MorePlanetsItem
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory()
+    public MPItemCategory getItemCategory()
     {
-        return this.category == null ? EnumSortCategoryItem.GENERAL : this.category;
+        return this.category == null ? MPItemCategory.GENERAL : this.category;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class ItemBaseMP extends Item implements MorePlanetsItem
         return this.getRarityColor() != null ? this.getRarityColor().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
     }
 
-    public ItemBaseMP setSortCategory(EnumSortCategoryItem category)
+    public ItemBaseMP setSortCategory(MPItemCategory category)
     {
         this.category = category;
         return this;

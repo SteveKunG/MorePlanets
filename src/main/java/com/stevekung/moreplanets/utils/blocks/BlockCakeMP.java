@@ -151,9 +151,9 @@ public abstract class BlockCakeMP extends BlockBaseMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.CAKE;
+        return MPBlockCategory.CAKE;
     }
 
     private void eatCake(World world, BlockPos pos, IBlockState state, EntityPlayer player)

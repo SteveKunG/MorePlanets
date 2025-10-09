@@ -34,9 +34,9 @@ public class BlockTrapdoorMP extends BlockTrapDoor implements MorePlanetsBlock
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.TRAPDOOR;
+        return MPBlockCategory.TRAPDOOR;
     }
 
     @Override

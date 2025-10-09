@@ -2,7 +2,7 @@ package com.stevekung.moreplanets.utils.items.armor;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.integration.jei.MPJEIRecipes;
-import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
+import com.stevekung.moreplanets.utils.items.MPItemCategory;
 import com.stevekung.moreplanets.utils.items.MorePlanetsItem;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -45,18 +45,18 @@ public abstract class ItemArmorMP extends ItemArmor implements MorePlanetsItem
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory()
+    public MPItemCategory getItemCategory()
     {
         switch (this.armorType)
         {
         case CHEST:
-            return EnumSortCategoryItem.CHESTPLATE;
+            return MPItemCategory.CHESTPLATE;
         case LEGS:
-            return EnumSortCategoryItem.LEGGINGS;
+            return MPItemCategory.LEGGINGS;
         case FEET:
-            return EnumSortCategoryItem.BOOTS;
+            return MPItemCategory.BOOTS;
             default:
-                return EnumSortCategoryItem.HELMET;
+                return MPItemCategory.HELMET;
         }
     }
 

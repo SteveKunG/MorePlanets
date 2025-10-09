@@ -9,7 +9,7 @@ import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.init.MPPotions;
 import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityInfectedPurloniteCrystal;
 import com.stevekung.moreplanets.utils.blocks.BlockDirectionalMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.Block;
@@ -219,9 +219,9 @@ public class BlockInfectedPurloniteCrystal extends BlockDirectionalMP implements
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
+        return MPBlockCategory.DECORATION_NON_BLOCK;
     }
 
     @Override

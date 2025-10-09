@@ -10,7 +10,7 @@ import net.minecraft.init.Blocks;
 
 public class BlockStairsMP extends BlockStairs implements MorePlanetsBlock
 {
-    private EnumSortCategoryBlock category;
+    private MPBlockCategory category;
     private String name;
 
     public BlockStairsMP(String name, EnumStairsType type)
@@ -48,12 +48,12 @@ public class BlockStairsMP extends BlockStairs implements MorePlanetsBlock
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return this.category == null ? EnumSortCategoryBlock.STAIRS_STONE : this.category;
+        return this.category == null ? MPBlockCategory.STAIRS_STONE : this.category;
     }
 
-    public BlockStairsMP setSortCategory(EnumSortCategoryBlock category)
+    public BlockStairsMP setSortCategory(MPBlockCategory category)
     {
         this.category = category;
         return this;

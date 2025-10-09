@@ -2,7 +2,7 @@ package com.stevekung.moreplanets.planets.nibiru.blocks;
 
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.utils.blocks.BlockBreakableMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -35,9 +35,9 @@ public class BlockMultalicCrystalBlock extends BlockBreakableMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.INGOT_BLOCK;
+        return MPBlockCategory.INGOT_BLOCK;
     }
 
     @Override

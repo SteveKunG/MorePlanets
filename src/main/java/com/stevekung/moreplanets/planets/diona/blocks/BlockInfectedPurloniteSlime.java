@@ -3,7 +3,7 @@ package com.stevekung.moreplanets.planets.diona.blocks;
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.init.MPSounds;
 import com.stevekung.moreplanets.utils.blocks.BlockBreakableMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.material.Material;
@@ -85,9 +85,9 @@ public class BlockInfectedPurloniteSlime extends BlockBreakableMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.DECORATION_BLOCK;
+        return MPBlockCategory.DECORATION_BLOCK;
     }
 
     @Override

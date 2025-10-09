@@ -5,7 +5,7 @@ import java.util.Random;
 import com.stevekung.moreplanets.planets.diona.entity.EntityAlbetiusWorm;
 import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -49,8 +49,8 @@ public class BlockAlbetiusWormEgg extends BlockBaseMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.DECORATION_BLOCK;
+        return MPBlockCategory.DECORATION_BLOCK;
     }
 }

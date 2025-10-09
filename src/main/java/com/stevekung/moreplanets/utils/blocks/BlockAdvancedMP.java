@@ -13,7 +13,7 @@ import micdoodle8.mods.galacticraft.core.blocks.BlockAdvanced;
 
 public abstract class BlockAdvancedMP extends BlockAdvanced implements ITileEntityProvider, MorePlanetsBlock
 {
-    private EnumSortCategoryBlock category;
+    private MPBlockCategory category;
     private String name;
     private ColorUtils.RGB rgb;
 
@@ -45,9 +45,9 @@ public abstract class BlockAdvancedMP extends BlockAdvanced implements ITileEnti
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return this.category == null ? EnumSortCategoryBlock.BUILDING_BLOCK : this.category;
+        return this.category == null ? MPBlockCategory.BUILDING_BLOCK : this.category;
     }
 
     @Override
@@ -62,7 +62,7 @@ public abstract class BlockAdvancedMP extends BlockAdvanced implements ITileEnti
         return this.rgb != null ? this.rgb : null;
     }
 
-    public BlockAdvancedMP setSortCategory(EnumSortCategoryBlock category)
+    public BlockAdvancedMP setSortCategory(MPBlockCategory category)
     {
         this.category = category;
         return this;

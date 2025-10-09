@@ -32,9 +32,9 @@ public abstract class ItemFoodMP extends ItemFood implements MorePlanetsItem
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory()
+    public MPItemCategory getItemCategory()
     {
-        return EnumSortCategoryItem.FOOD;
+        return MPItemCategory.FOOD;
     }
 
     @Override

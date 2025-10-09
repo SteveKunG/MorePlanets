@@ -8,7 +8,7 @@ import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityMultalicCrystal;
 import com.stevekung.moreplanets.utils.blocks.BlockDirectionalMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -176,9 +176,9 @@ public class BlockMultalicCrystal extends BlockDirectionalMP implements ITileEnt
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
+        return MPBlockCategory.DECORATION_NON_BLOCK;
     }
 
     private boolean canPlaceBlock(World world, BlockPos pos, EnumFacing facing)

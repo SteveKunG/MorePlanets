@@ -32,9 +32,9 @@ public abstract class BlockContainerMP extends BlockContainer implements MorePla
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.BUILDING_BLOCK;
+        return MPBlockCategory.BUILDING_BLOCK;
     }
 
     @Override

@@ -70,9 +70,9 @@ public class BlockFallingMP extends BlockFalling implements MorePlanetsBlock
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.BUILDING_BLOCK;
+        return MPBlockCategory.BUILDING_BLOCK;
     }
 
     @Override

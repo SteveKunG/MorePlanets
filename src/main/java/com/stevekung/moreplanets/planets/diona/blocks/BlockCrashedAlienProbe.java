@@ -6,7 +6,7 @@ import com.stevekung.moreplanets.planets.diona.entity.EntityAlienMiner;
 import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityCrashedAlienProbe;
 import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
 import com.stevekung.moreplanets.utils.blocks.BlockTileMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.SoundType;
@@ -74,9 +74,9 @@ public class BlockCrashedAlienProbe extends BlockTileMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.MACHINE_NON_BLOCK;
+        return MPBlockCategory.MACHINE_NON_BLOCK;
     }
 
     @Override

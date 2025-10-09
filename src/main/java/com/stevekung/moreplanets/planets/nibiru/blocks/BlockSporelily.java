@@ -5,7 +5,7 @@ import java.util.List;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPSounds;
 import com.stevekung.moreplanets.utils.blocks.BlockBushMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -82,8 +82,8 @@ public class BlockSporelily extends BlockBushMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
+        return MPBlockCategory.DECORATION_NON_BLOCK;
     }
 }

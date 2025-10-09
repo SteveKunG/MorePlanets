@@ -8,7 +8,7 @@ import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.init.MPSounds;
 import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityVeinFrame;
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.Block;
@@ -58,9 +58,9 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
+        return MPBlockCategory.DECORATION_NON_BLOCK;
     }
 
     @Override

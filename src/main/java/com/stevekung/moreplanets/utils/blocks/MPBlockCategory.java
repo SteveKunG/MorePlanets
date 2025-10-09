@@ -1,6 +1,6 @@
 package com.stevekung.moreplanets.utils.blocks;
 
-public enum EnumSortCategoryBlock
+public enum MPBlockCategory
 {
     MACHINE_BLOCK,
     MACHINE_NON_BLOCK,
@@ -28,5 +28,5 @@ public enum EnumSortCategoryBlock
     FLOWER,
     SAPLING;
 
-    public static final EnumSortCategoryBlock[] VALUES = EnumSortCategoryBlock.values();
+    public static final MPBlockCategory[] VALUES = MPBlockCategory.values();
 }

@@ -135,9 +135,9 @@ public class BlockDropableOre extends BlockBasicMP implements IDetectableResourc
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.ORE;
+        return MPBlockCategory.ORE;
     }
 
     public enum BlockType

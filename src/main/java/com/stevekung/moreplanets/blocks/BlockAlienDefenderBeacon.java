@@ -5,7 +5,7 @@ import java.util.Random;
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.ITileEntityProvider;
@@ -101,9 +101,9 @@ public class BlockAlienDefenderBeacon extends BlockBaseMP implements ITileEntity
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
+        return MPBlockCategory.DECORATION_NON_BLOCK;
     }
 
     @Override

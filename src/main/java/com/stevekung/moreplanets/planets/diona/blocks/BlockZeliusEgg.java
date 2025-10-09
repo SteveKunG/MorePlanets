@@ -6,7 +6,7 @@ import com.stevekung.moreplanets.planets.diona.entity.EntityZeliusCreeper;
 import com.stevekung.moreplanets.planets.diona.entity.EntityZeliusZombie;
 import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityZeliusEgg;
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
-import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.ITileEntityProvider;
@@ -139,9 +139,9 @@ public class BlockZeliusEgg extends BlockBaseMP implements ITileEntityProvider
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
+        return MPBlockCategory.DECORATION_NON_BLOCK;
     }
 
     @Override

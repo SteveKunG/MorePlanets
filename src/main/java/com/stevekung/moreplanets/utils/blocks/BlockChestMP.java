@@ -310,9 +310,9 @@ public abstract class BlockChestMP extends BlockContainerMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory()
+    public MPBlockCategory getBlockCategory()
     {
-        return this.getTranslationKey().contains("ancient_chest") ? EnumSortCategoryBlock.ANCIENT_CHEST : EnumSortCategoryBlock.CHEST;
+        return this.getTranslationKey().contains("ancient_chest") ? MPBlockCategory.ANCIENT_CHEST : MPBlockCategory.CHEST;
     }
 
     @Override
