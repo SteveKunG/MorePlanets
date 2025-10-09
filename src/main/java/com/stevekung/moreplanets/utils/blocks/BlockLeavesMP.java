@@ -12,6 +12,7 @@ import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -112,6 +113,34 @@ public class BlockLeavesMP extends BlockLeaves implements MorePlanetsBlock
             return Item.getItemFromBlock(MPBlocks.FROLIA_SAPLING);
         }
         return Item.getItemFromBlock(this);
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        return this.getDefaultState().withProperty(DECAYABLE, (meta & 4) == 0).withProperty(CHECK_DECAY, (meta & 8) > 0);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        int i = 0;
+
+        if (!state.getValue(DECAYABLE))
+        {
+            i |= 4;
+        }
+        if (state.getValue(CHECK_DECAY))
+        {
+            i |= 8;
+        }
+        return i;
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        return new BlockStateContainer(this, CHECK_DECAY, DECAYABLE);
     }
 
     @Override
