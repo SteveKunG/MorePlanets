@@ -1,6 +1,5 @@
 package com.stevekung.moreplanets.utils.blocks;
 
-import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 
 import net.minecraft.block.Block;
@@ -13,9 +12,7 @@ import micdoodle8.mods.galacticraft.core.blocks.BlockAdvanced;
 
 public abstract class BlockAdvancedMP extends BlockAdvanced implements ITileEntityProvider, MorePlanetsBlock
 {
-    private MPBlockCategory category;
     private final String name;
-    private ColorUtils.RGB rgb;
 
     public BlockAdvancedMP(String name, Material material)
     {
@@ -42,30 +39,12 @@ public abstract class BlockAdvancedMP extends BlockAdvanced implements ITileEnti
     @Override
     public MPBlockCategory getBlockCategory()
     {
-        return this.category == null ? MPBlockCategory.BUILDING_BLOCK : this.category;
+        return MPBlockCategory.BUILDING_BLOCK;
     }
 
     @Override
     public String getModelName()
     {
         return this.name;
-    }
-
-    @Override
-    public ColorUtils.RGB getRarityColor()
-    {
-        return this.rgb != null ? this.rgb : null;
-    }
-
-    public BlockAdvancedMP setSortCategory(MPBlockCategory category)
-    {
-        this.category = category;
-        return this;
-    }
-
-    public BlockAdvancedMP setRarityRGB(ColorUtils.RGB rgb)
-    {
-        this.rgb = rgb;
-        return this;
     }
 }
