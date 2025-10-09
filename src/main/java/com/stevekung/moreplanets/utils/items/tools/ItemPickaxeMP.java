@@ -13,8 +13,8 @@ import net.minecraft.item.ItemStack;
 
 public class ItemPickaxeMP extends ItemPickaxe implements MorePlanetsItem
 {
-    private Item repairItem;
-    private String name;
+    private final Item repairItem;
+    private final String name;
 
     public ItemPickaxeMP(String name, ToolMaterial material, Block block)
     {
@@ -25,20 +25,9 @@ public class ItemPickaxeMP extends ItemPickaxe implements MorePlanetsItem
     {
         super(material);
         this.repairItem = item;
+        this.name = name;
         this.setTranslationKey(name);
         MPJEIRecipes.collectAnvilList(name, this, item);
-    }
-
-    public ItemPickaxeMP(ToolMaterial material)
-    {
-        super(material);
-    }
-
-    @Override
-    public Item setTranslationKey(String name)
-    {
-        this.name = name;
-        return super.setTranslationKey(name);
     }
 
     @Override

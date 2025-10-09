@@ -12,8 +12,7 @@ public class ItemArmorDiremsium extends ItemArmorMP
 {
     public ItemArmorDiremsium(String name, ArmorMaterial material, EntityEquipmentSlot type)
     {
-        super(material, type);
-        this.setTranslationKey(name);
+        super(name, material, type);
     }
 
     @Override

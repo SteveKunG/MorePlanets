@@ -13,19 +13,13 @@ import net.minecraft.item.ItemStack;
 
 public abstract class ItemArmorMP extends ItemArmor implements MorePlanetsItem
 {
-    private String name;
+    private final String name;
 
-    public ItemArmorMP(ArmorMaterial material, EntityEquipmentSlot type)
+    public ItemArmorMP(String name, ArmorMaterial material, EntityEquipmentSlot type)
     {
         super(material, -1, type);
-    }
-
-    @Override
-    public Item setTranslationKey(String name)
-    {
         this.name = name;
         MPJEIRecipes.collectAnvilList(name, this, this.getRepairItem());
-        return super.setTranslationKey(name);
     }
 
     @Override

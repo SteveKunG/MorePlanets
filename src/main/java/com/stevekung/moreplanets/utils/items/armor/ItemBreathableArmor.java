@@ -21,19 +21,13 @@ import micdoodle8.mods.galacticraft.api.item.IBreathableArmor;
 
 public abstract class ItemBreathableArmor extends ItemArmor implements IBreathableArmor, MorePlanetsItem
 {
-    private String name;
+    private final String name;
 
-    public ItemBreathableArmor(ArmorMaterial material, EntityEquipmentSlot type)
+    public ItemBreathableArmor(String name, ArmorMaterial material, EntityEquipmentSlot type)
     {
         super(material, -1, type);
-    }
-
-    @Override
-    public Item setTranslationKey(String name)
-    {
         this.name = name;
         MPJEIRecipes.collectAnvilList(name, this, this.getRepairItem());
-        return super.setTranslationKey(name);
     }
 
     @Override

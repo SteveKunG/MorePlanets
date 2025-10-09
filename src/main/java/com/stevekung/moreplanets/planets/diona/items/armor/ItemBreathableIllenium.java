@@ -12,8 +12,7 @@ public class ItemBreathableIllenium extends ItemBreathableArmor
 {
     public ItemBreathableIllenium(String name, ArmorMaterial material, EntityEquipmentSlot type)
     {
-        super(material, type);
-        this.setTranslationKey(name);
+        super(name, material, type);
     }
 
     @Override

@@ -17,8 +17,7 @@ public class ItemArmorMultalicCrystal extends ItemArmorMP
 {
     public ItemArmorMultalicCrystal(String name, ArmorMaterial material, EntityEquipmentSlot type)
     {
-        super(material, type);
-        this.setTranslationKey(name);
+        super(name, material, type);
     }
 
     @Override

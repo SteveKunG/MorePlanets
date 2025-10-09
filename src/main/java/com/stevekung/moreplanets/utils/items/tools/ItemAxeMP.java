@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 public class ItemAxeMP extends ItemAxe implements MorePlanetsItem
 {
     private final Item repairItem;
-    private String name;
+    private final String name;
 
     public ItemAxeMP(String name, ToolMaterial material, Block block, EnumToolSpeed speed)
     {
@@ -26,15 +26,9 @@ public class ItemAxeMP extends ItemAxe implements MorePlanetsItem
     {
         super(material, material.getAttackDamage(), speed.getSpeed());
         this.repairItem = item;
+        this.name = name;
         this.setTranslationKey(name);
         MPJEIRecipes.collectAnvilList(name, this, item);
-    }
-
-    @Override
-    public Item setTranslationKey(String name)
-    {
-        this.name = name;
-        return super.setTranslationKey(name);
     }
 
     @Override

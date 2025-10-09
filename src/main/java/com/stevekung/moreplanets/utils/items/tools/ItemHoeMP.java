@@ -13,8 +13,8 @@ import net.minecraft.item.ItemStack;
 
 public class ItemHoeMP extends ItemHoe implements MorePlanetsItem
 {
-    private Item repairItem;
-    private String name;
+    private final Item repairItem;
+    private final String name;
 
     public ItemHoeMP(String name, ToolMaterial material, Block block)
     {
@@ -25,20 +25,9 @@ public class ItemHoeMP extends ItemHoe implements MorePlanetsItem
     {
         super(material);
         this.repairItem = item;
+        this.name = name;
         this.setTranslationKey(name);
         MPJEIRecipes.collectAnvilList(name, this, item);
-    }
-
-    @Override
-    public Item setTranslationKey(String name)
-    {
-        this.name = name;
-        return super.setTranslationKey(name);
-    }
-
-    public ItemHoeMP(ToolMaterial material)
-    {
-        super(material);
     }
 
     @Override
