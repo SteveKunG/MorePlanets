@@ -3,10 +3,9 @@ package com.stevekung.moreplanets.items;
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.init.MPItems;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
-import com.stevekung.moreplanets.utils.items.ISortableItem;
+import com.stevekung.moreplanets.utils.items.MorePlanetsItem;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -26,10 +25,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 
-import micdoodle8.mods.galacticraft.api.item.GCRarity;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 
-public class ItemSpaceBow extends ItemBow implements ISortableItem, IItemModelRender, IItemRarity, GCRarity
+public class ItemSpaceBow extends ItemBow implements MorePlanetsItem
 {
     private final String name;
 
@@ -141,13 +139,13 @@ public class ItemSpaceBow extends ItemBow implements ISortableItem, IItemModelRe
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
-        return ColorUtils.stringToRGB(IItemRarity.SPECIAL);
+        return ColorUtils.stringToRGB(ItemRarity.SPECIAL);
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }
@@ -167,7 +165,7 @@ public class ItemSpaceBow extends ItemBow implements ISortableItem, IItemModelRe
     @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
-        return this.getRarity() != null ? this.getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
+        return this.getRarityColor() != null ? this.getRarityColor().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
     }
 
     private static void spawnArrow(ItemStack itemStack, ItemStack arrowStack, World world, EntityPlayer player, EntityArrow arrow, Item arrowItem, int power, int punch, float duration, boolean flag)

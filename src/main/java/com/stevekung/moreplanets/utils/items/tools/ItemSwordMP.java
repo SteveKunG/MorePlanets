@@ -2,9 +2,8 @@ package com.stevekung.moreplanets.utils.items.tools;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.integration.jei.MPJEIRecipes;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
-import com.stevekung.moreplanets.utils.items.ISortableItem;
+import com.stevekung.moreplanets.utils.items.MorePlanetsItem;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -12,9 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 
-import micdoodle8.mods.galacticraft.api.item.GCRarity;
-
-public class ItemSwordMP extends ItemSword implements ISortableItem, IItemModelRender, GCRarity
+public class ItemSwordMP extends ItemSword implements MorePlanetsItem
 {
     private Item repairItem;
     private String name;
@@ -63,7 +60,7 @@ public class ItemSwordMP extends ItemSword implements ISortableItem, IItemModelR
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }

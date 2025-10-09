@@ -2,15 +2,13 @@ package com.stevekung.moreplanets.utils.blocks;
 
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 
-public class BlockBaseMP extends Block implements ISortableBlock, IItemModelRender, IItemRarity
+public class BlockBaseMP extends Block implements MorePlanetsBlock
 {
     private EnumSortCategoryBlock category;
     private String name;
@@ -54,13 +52,13 @@ public class BlockBaseMP extends Block implements ISortableBlock, IItemModelRend
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
         return this.rgb != null ? this.rgb : null;
     }

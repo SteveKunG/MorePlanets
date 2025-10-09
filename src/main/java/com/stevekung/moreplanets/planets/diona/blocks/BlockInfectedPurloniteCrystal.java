@@ -10,7 +10,7 @@ import com.stevekung.moreplanets.init.MPPotions;
 import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityInfectedPurloniteCrystal;
 import com.stevekung.moreplanets.utils.blocks.BlockDirectionalMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -225,9 +225,9 @@ public class BlockInfectedPurloniteCrystal extends BlockDirectionalMP implements
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
-        return ColorUtils.stringToRGB(IItemRarity.ALIEN);
+        return ColorUtils.stringToRGB(ItemRarity.ALIEN);
     }
 
     private boolean canPlaceBlock(World world, BlockPos pos, EnumFacing facing)

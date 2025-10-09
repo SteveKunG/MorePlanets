@@ -1,7 +1,7 @@
 package com.stevekung.moreplanets.moons.koentus.items;
 
 import com.stevekung.lib.utils.ColorUtils;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
 import com.stevekung.moreplanets.utils.items.armor.ItemArmorMP;
 
@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 
 import micdoodle8.mods.galacticraft.api.item.IArmorGravity;
 
-public class ItemGravityBoots extends ItemArmorMP implements IArmorGravity, IItemRarity
+public class ItemGravityBoots extends ItemArmorMP implements IArmorGravity
 {
     public ItemGravityBoots(String name, ArmorMaterial material)
     {
@@ -52,8 +52,8 @@ public class ItemGravityBoots extends ItemArmorMP implements IArmorGravity, IIte
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
-        return ColorUtils.stringToRGB(IItemRarity.SPECIAL);
+        return ColorUtils.stringToRGB(ItemRarity.SPECIAL);
     }
 }

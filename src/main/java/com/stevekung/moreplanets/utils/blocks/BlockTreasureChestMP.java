@@ -2,7 +2,7 @@ package com.stevekung.moreplanets.utils.blocks;
 
 import com.stevekung.lib.utils.BlockStateProperty;
 import com.stevekung.lib.utils.ColorUtils;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
@@ -18,7 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public abstract class BlockTreasureChestMP extends BlockContainerMP implements IItemRarity
+public abstract class BlockTreasureChestMP extends BlockContainerMP
 {
     private static final AxisAlignedBB CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
 
@@ -128,9 +128,9 @@ public abstract class BlockTreasureChestMP extends BlockContainerMP implements I
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
-        return ColorUtils.stringToRGB(IItemRarity.COMMON);
+        return ColorUtils.stringToRGB(ItemRarity.COMMON);
     }
 
     protected boolean cannotOpenChest(World world, BlockPos pos)

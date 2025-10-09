@@ -15,7 +15,7 @@ import com.stevekung.moreplanets.utils.IDescription;
 import com.stevekung.moreplanets.utils.ItemDescription;
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -278,8 +278,8 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
-        return ColorUtils.stringToRGB(IItemRarity.SPECIAL);
+        return ColorUtils.stringToRGB(ItemRarity.SPECIAL);
     }
 }

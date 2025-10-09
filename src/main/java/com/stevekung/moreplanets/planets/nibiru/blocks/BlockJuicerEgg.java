@@ -7,7 +7,7 @@ import com.stevekung.moreplanets.init.MPSounds;
 import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityJuicerEgg;
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -135,8 +135,8 @@ public class BlockJuicerEgg extends BlockBaseMP implements ITileEntityProvider
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
-        return ColorUtils.stringToRGB(IItemRarity.COMMON);
+        return ColorUtils.stringToRGB(ItemRarity.COMMON);
     }
 }

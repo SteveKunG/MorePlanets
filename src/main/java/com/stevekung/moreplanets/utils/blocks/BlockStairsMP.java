@@ -1,7 +1,6 @@
 package com.stevekung.moreplanets.utils.blocks;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
@@ -9,7 +8,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 
-public class BlockStairsMP extends BlockStairs implements ISortableBlock, IItemModelRender
+public class BlockStairsMP extends BlockStairs implements MorePlanetsBlock
 {
     private EnumSortCategoryBlock category;
     private String name;
@@ -61,7 +60,7 @@ public class BlockStairsMP extends BlockStairs implements ISortableBlock, IItemM
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }

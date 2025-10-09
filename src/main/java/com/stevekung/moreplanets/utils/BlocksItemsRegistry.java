@@ -10,11 +10,10 @@ import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.itemblocks.ItemBlockTESRMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.blocks.ISortableBlock;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
+import com.stevekung.moreplanets.utils.blocks.MorePlanetsBlock;
 import com.stevekung.moreplanets.utils.itemblocks.ItemBlockMP;
 import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
-import com.stevekung.moreplanets.utils.items.ISortableItem;
+import com.stevekung.moreplanets.utils.items.MorePlanetsItem;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -45,13 +44,13 @@ public class BlocksItemsRegistry
     {
         MorePlanetsMod.COMMON_REGISTRY.registerBlock(block, itemBlock);
 
-        if (block instanceof IItemModelRender)
+        if (block instanceof ModelNameGatherer)
         {
-            IItemModelRender blockRender = (IItemModelRender) block;
+            ModelNameGatherer blockRender = (ModelNameGatherer) block;
 
-            if (blockRender.getName() != null)
+            if (blockRender.getModelName() != null)
             {
-                BlocksItemsRegistry.SINGLE_BLOCK_RENDER_LIST.put(block, blockRender.getName());
+                BlocksItemsRegistry.SINGLE_BLOCK_RENDER_LIST.put(block, blockRender.getModelName());
             }
         }
         if (itemBlock != null)
@@ -73,13 +72,13 @@ public class BlocksItemsRegistry
     {
         MorePlanetsMod.COMMON_REGISTRY.registerItem(item);
 
-        if (item instanceof IItemModelRender)
+        if (item instanceof ModelNameGatherer)
         {
-            IItemModelRender itemRender = (IItemModelRender) item;
+            ModelNameGatherer itemRender = (ModelNameGatherer) item;
 
-            if (itemRender.getName() != null)
+            if (itemRender.getModelName() != null)
             {
-                BlocksItemsRegistry.SINGLE_ITEM_RENDER_LIST.put(item, itemRender.getName());
+                BlocksItemsRegistry.SINGLE_ITEM_RENDER_LIST.put(item, itemRender.getModelName());
             }
         }
         if (ClientUtils.isEffectiveClient())
@@ -91,7 +90,7 @@ public class BlocksItemsRegistry
 
     public static void registerSorted(Block block)
     {
-        if (block instanceof ISortableBlock)
+        if (block instanceof MorePlanetsBlock)
         {
             Item item = Item.getItemFromBlock(block);
 
@@ -100,7 +99,7 @@ public class BlocksItemsRegistry
                 return;
             }
 
-            ISortableBlock sortableBlock = (ISortableBlock) block;
+            MorePlanetsBlock sortableBlock = (MorePlanetsBlock) block;
             EnumSortCategoryBlock categoryBlock = sortableBlock.getBlockCategory();
 
             if (!BlocksItemsRegistry.SORT_MAP_BLOCKS.containsKey(categoryBlock))
@@ -111,7 +110,7 @@ public class BlocksItemsRegistry
         }
         else if (block.getCreativeTab() == MorePlanetsMod.BLOCK_TAB)
         {
-            throw new RuntimeException(block.getClass() + " must inherit " + ISortableBlock.class.getSimpleName() + "!");
+            throw new RuntimeException(block.getClass() + " must inherit " + MorePlanetsBlock.class.getSimpleName() + "!");
         }
     }
 
@@ -134,9 +133,9 @@ public class BlocksItemsRegistry
 
     public static void registerSorted(Item item)
     {
-        if (item instanceof ISortableItem)
+        if (item instanceof MorePlanetsItem)
         {
-            ISortableItem sortableItem = (ISortableItem) item;
+            MorePlanetsItem sortableItem = (MorePlanetsItem) item;
             EnumSortCategoryItem categoryItem = sortableItem.getItemCategory();
 
             if (!BlocksItemsRegistry.SORT_MAP_ITEMS.containsKey(categoryItem))
@@ -147,7 +146,7 @@ public class BlocksItemsRegistry
         }
         else if (item.getCreativeTab() == MorePlanetsMod.ITEM_TAB)
         {
-            throw new RuntimeException(item.getClass() + " must inherit " + ISortableItem.class.getSimpleName() + "!");
+            throw new RuntimeException(item.getClass() + " must inherit " + MorePlanetsItem.class.getSimpleName() + "!");
         }
     }
 

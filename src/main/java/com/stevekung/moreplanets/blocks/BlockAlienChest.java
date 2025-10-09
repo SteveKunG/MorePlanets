@@ -4,7 +4,7 @@ import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.lib.utils.LangUtils;
 import com.stevekung.moreplanets.tileentity.TileEntityAlienChest;
 import com.stevekung.moreplanets.utils.blocks.BlockChestMP;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
 
 import net.minecraft.block.Block;
@@ -18,7 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
 
-public class BlockAlienChest extends BlockChestMP implements IItemRarity
+public class BlockAlienChest extends BlockChestMP
 {
     public BlockAlienChest(String name)
     {
@@ -46,9 +46,9 @@ public class BlockAlienChest extends BlockChestMP implements IItemRarity
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
-        return ColorUtils.stringToRGB(IItemRarity.ALIEN);
+        return ColorUtils.stringToRGB(ItemRarity.ALIEN);
     }
 
     @Override

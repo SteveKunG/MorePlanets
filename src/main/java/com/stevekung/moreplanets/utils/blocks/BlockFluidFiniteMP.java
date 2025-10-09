@@ -1,7 +1,7 @@
 package com.stevekung.moreplanets.utils.blocks;
 
 import com.stevekung.moreplanets.utils.blocks.fluid.LiquidUtils;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
+import com.stevekung.moreplanets.utils.ModelNameGatherer;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements IItemModelRender
+public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements ModelNameGatherer
 {
     private String name;
 
@@ -64,7 +64,7 @@ public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements IIt
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }

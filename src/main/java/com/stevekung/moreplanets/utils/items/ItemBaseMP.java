@@ -2,16 +2,12 @@ package com.stevekung.moreplanets.utils.items;
 
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import micdoodle8.mods.galacticraft.api.item.GCRarity;
-
-public class ItemBaseMP extends Item implements ISortableItem, IItemModelRender, IItemRarity, GCRarity
+public class ItemBaseMP extends Item implements MorePlanetsItem
 {
     private EnumSortCategoryItem category;
     private ColorUtils.RGB rgb;
@@ -44,13 +40,13 @@ public class ItemBaseMP extends Item implements ISortableItem, IItemModelRender,
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
         return this.rgb != null ? this.rgb : null;
     }
@@ -58,7 +54,7 @@ public class ItemBaseMP extends Item implements ISortableItem, IItemModelRender,
     @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
-        return this.getRarity() != null ? this.getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
+        return this.getRarityColor() != null ? this.getRarityColor().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
     }
 
     public ItemBaseMP setSortCategory(EnumSortCategoryItem category)

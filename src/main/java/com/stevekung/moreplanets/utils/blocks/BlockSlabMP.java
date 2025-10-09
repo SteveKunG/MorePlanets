@@ -3,7 +3,6 @@ package com.stevekung.moreplanets.utils.blocks;
 import java.util.Random;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
@@ -17,7 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, ISlab, IItemModelRender
+public abstract class BlockSlabMP extends BlockSlab implements MorePlanetsBlock, ISlab
 {
     private String name;
 
@@ -76,7 +75,7 @@ public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, I
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }

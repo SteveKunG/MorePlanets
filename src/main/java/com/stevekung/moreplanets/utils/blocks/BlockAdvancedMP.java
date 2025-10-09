@@ -2,8 +2,6 @@ package com.stevekung.moreplanets.utils.blocks;
 
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -13,7 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 
 import micdoodle8.mods.galacticraft.core.blocks.BlockAdvanced;
 
-public abstract class BlockAdvancedMP extends BlockAdvanced implements ITileEntityProvider, ISortableBlock, IItemModelRender, IItemRarity
+public abstract class BlockAdvancedMP extends BlockAdvanced implements ITileEntityProvider, MorePlanetsBlock
 {
     private EnumSortCategoryBlock category;
     private String name;
@@ -53,13 +51,13 @@ public abstract class BlockAdvancedMP extends BlockAdvanced implements ITileEnti
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
         return this.rgb != null ? this.rgb : null;
     }

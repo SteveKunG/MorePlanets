@@ -57,7 +57,7 @@ public class BlockNibiruInfested extends BlockBaseMP
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.type.toString();
     }

@@ -6,7 +6,7 @@ import com.stevekung.lib.utils.LangUtils;
 import com.stevekung.lib.utils.client.ClientUtils;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 import com.stevekung.moreplanets.utils.items.ItemBaseMP;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -82,8 +82,8 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
-        return ColorUtils.stringToRGB(IItemRarity.ALIEN);
+        return ColorUtils.stringToRGB(ItemRarity.ALIEN);
     }
 }

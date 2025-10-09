@@ -4,7 +4,7 @@ import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.core.event.WorldTickEventHandler;
 import com.stevekung.moreplanets.network.PacketSimpleMP;
 import com.stevekung.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
@@ -49,7 +49,7 @@ public class CommandOpenCelestialScreen extends CommandBase
             if (!WorldTickEventHandler.survivalPlanetData.disableMessage)
             {
                 GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_SAVE_DISABLE_MESSAGE, GCCoreUtil.getDimensionID(player.world)));
-                sender.sendMessage(new TextComponentString(ColorUtils.stringToRGB(IItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(new TextComponentTranslation("command.mpcelestial.1").setStyle(new Style().setColor(TextFormatting.YELLOW))));
+                sender.sendMessage(new TextComponentString(ColorUtils.stringToRGB(ItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(new TextComponentTranslation("command.mpcelestial.1").setStyle(new Style().setColor(TextFormatting.YELLOW))));
             }
         }
         else
@@ -60,7 +60,7 @@ public class CommandOpenCelestialScreen extends CommandBase
             }
             else
             {
-                sender.sendMessage(new TextComponentString(ColorUtils.stringToRGB(IItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(new TextComponentTranslation("command.mpcelestial.2").setStyle(new Style().setColor(TextFormatting.RED))));
+                sender.sendMessage(new TextComponentString(ColorUtils.stringToRGB(ItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(new TextComponentTranslation("command.mpcelestial.2").setStyle(new Style().setColor(TextFormatting.RED))));
             }
         }
     }

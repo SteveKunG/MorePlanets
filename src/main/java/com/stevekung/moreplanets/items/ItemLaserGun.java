@@ -7,10 +7,9 @@ import com.stevekung.moreplanets.entity.projectile.EntityLaserBullet.LaserType;
 import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.init.MPSounds;
 import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
-import com.stevekung.moreplanets.utils.items.ISortableItem;
 import com.stevekung.moreplanets.utils.items.ItemBaseMP;
+import com.stevekung.moreplanets.utils.items.MorePlanetsItem;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -34,7 +33,7 @@ import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 
 import javax.annotation.Nullable;
 
-public class ItemLaserGun extends ItemBaseMP implements ISortableItem, IItemModelRender, IItemElectric
+public class ItemLaserGun extends ItemBaseMP implements MorePlanetsItem, IItemElectric
 {
     private final float transferMax = 200.0F;
     private static final int DAMAGE_RANGE = 100;

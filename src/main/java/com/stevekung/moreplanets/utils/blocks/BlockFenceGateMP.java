@@ -1,7 +1,6 @@
 package com.stevekung.moreplanets.utils.blocks;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
@@ -9,7 +8,7 @@ import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
 import net.minecraft.creativetab.CreativeTabs;
 
-public class BlockFenceGateMP extends BlockFenceGate implements ISortableBlock, IItemModelRender
+public class BlockFenceGateMP extends BlockFenceGate implements MorePlanetsBlock
 {
     private String name;
 
@@ -42,7 +41,7 @@ public class BlockFenceGateMP extends BlockFenceGate implements ISortableBlock, 
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }

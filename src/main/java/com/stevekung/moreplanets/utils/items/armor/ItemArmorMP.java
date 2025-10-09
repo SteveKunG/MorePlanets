@@ -2,10 +2,9 @@ package com.stevekung.moreplanets.utils.items.armor;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.integration.jei.MPJEIRecipes;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
-import com.stevekung.moreplanets.utils.items.ISortableItem;
+import com.stevekung.moreplanets.utils.items.MorePlanetsItem;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -13,9 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
-import micdoodle8.mods.galacticraft.api.item.GCRarity;
-
-public abstract class ItemArmorMP extends ItemArmor implements ISortableItem, IItemModelRender, GCRarity
+public abstract class ItemArmorMP extends ItemArmor implements MorePlanetsItem
 {
     private String name;
 
@@ -67,11 +64,11 @@ public abstract class ItemArmorMP extends ItemArmor implements ISortableItem, II
     @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
-        return this instanceof IItemRarity && ((IItemRarity)this).getRarity() != null ? ((IItemRarity)this).getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
+        return this instanceof ItemRarity && ((ItemRarity)this).getRarityColor() != null ? ((ItemRarity)this).getRarityColor().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }

@@ -16,6 +16,6 @@ public class ItemBlockMP extends ItemBlock implements GCRarity
     @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
-        return this.block instanceof IItemRarity && ((IItemRarity)this.block).getRarity() != null ? ((IItemRarity)this.block).getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
+        return this.block instanceof ItemRarity && ((ItemRarity)this.block).getRarityColor() != null ? ((ItemRarity)this.block).getRarityColor().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
     }
 }

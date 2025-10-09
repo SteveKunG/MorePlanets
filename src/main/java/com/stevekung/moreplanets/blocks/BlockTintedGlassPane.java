@@ -2,8 +2,7 @@ package com.stevekung.moreplanets.blocks;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.blocks.ISortableBlock;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
+import com.stevekung.moreplanets.utils.blocks.MorePlanetsBlock;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPane;
@@ -26,7 +25,7 @@ import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
 
 import javax.annotation.Nullable;
 
-public class BlockTintedGlassPane extends BlockPane implements IPartialSealableBlock, ISortableBlock, IItemModelRender
+public class BlockTintedGlassPane extends BlockPane implements IPartialSealableBlock, MorePlanetsBlock
 {
     private String name;
     private final EnumDyeColor type;
@@ -95,7 +94,7 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }

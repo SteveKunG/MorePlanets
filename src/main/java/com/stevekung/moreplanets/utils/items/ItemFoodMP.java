@@ -2,17 +2,13 @@ package com.stevekung.moreplanets.utils.items;
 
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 
-import micdoodle8.mods.galacticraft.api.item.GCRarity;
-
-public abstract class ItemFoodMP extends ItemFood implements ISortableItem, IItemModelRender, IItemRarity, GCRarity
+public abstract class ItemFoodMP extends ItemFood implements MorePlanetsItem
 {
     private String name;
     private ColorUtils.RGB rgb;
@@ -42,13 +38,13 @@ public abstract class ItemFoodMP extends ItemFood implements ISortableItem, IIte
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
         return this.rgb != null ? this.rgb : null;
     }
@@ -56,7 +52,7 @@ public abstract class ItemFoodMP extends ItemFood implements ISortableItem, IIte
     @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
-        return this.getRarity() != null ? this.getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
+        return this.getRarityColor() != null ? this.getRarityColor().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
     }
 
     public ItemFoodMP setRarityRGB(ColorUtils.RGB rgb)

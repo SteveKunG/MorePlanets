@@ -11,7 +11,7 @@ import com.stevekung.moreplanets.planets.diona.tileentity.TileEntityInfectedPurl
 import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -182,9 +182,9 @@ public class BlockInfectedPurloniteSegment extends BlockBaseMP implements ITileE
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
-        return ColorUtils.stringToRGB(IItemRarity.ALIEN);
+        return ColorUtils.stringToRGB(ItemRarity.ALIEN);
     }
 
     public enum BlockType

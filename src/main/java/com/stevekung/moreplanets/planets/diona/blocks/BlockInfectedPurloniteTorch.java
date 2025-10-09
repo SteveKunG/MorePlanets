@@ -48,7 +48,7 @@ public class BlockInfectedPurloniteTorch extends BlockTorchMP
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return ConfigManagerMP.moreplanets_general.use3DTorchItemModel ? "infected_purlonite_torch" : "infected_purlonite_torch_vanilla";
     }

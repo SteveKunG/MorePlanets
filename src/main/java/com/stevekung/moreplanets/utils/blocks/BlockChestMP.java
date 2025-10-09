@@ -2,7 +2,7 @@ package com.stevekung.moreplanets.utils.blocks;
 
 import com.stevekung.lib.utils.BlockStateProperty;
 import com.stevekung.lib.utils.ColorUtils;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 import com.stevekung.moreplanets.utils.tileentity.TileEntityChestMP;
 
 import net.minecraft.block.SoundType;
@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class BlockChestMP extends BlockContainerMP implements IItemRarity
+public abstract class BlockChestMP extends BlockContainerMP
 {
     private static final AxisAlignedBB NORTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0D, 0.9375D, 0.875D, 0.9375D);
     private static final AxisAlignedBB SOUTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 1.0D);
@@ -316,9 +316,9 @@ public abstract class BlockChestMP extends BlockContainerMP implements IItemRari
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
-        return this.getTranslationKey().contains("ancient_chest") ? ColorUtils.stringToRGB(IItemRarity.COMMON) : null;
+        return this.getTranslationKey().contains("ancient_chest") ? ColorUtils.stringToRGB(ItemRarity.COMMON) : null;
     }
 
     public IBlockState checkForSurroundingChests(World world, BlockPos pos, IBlockState state)

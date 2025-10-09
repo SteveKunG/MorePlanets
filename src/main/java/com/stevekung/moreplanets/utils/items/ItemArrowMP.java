@@ -11,8 +11,6 @@ import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityAntiGravi
 import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityInfectedPurloniteArrow;
 import com.stevekung.moreplanets.planets.nibiru.entity.projectile.EntityInfectedArrow;
 import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -25,12 +23,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import micdoodle8.mods.galacticraft.api.item.GCRarity;
 import micdoodle8.mods.galacticraft.core.TransformerHooks;
 
 import javax.annotation.Nullable;
 
-public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelRender, IItemRarity, GCRarity
+public class ItemArrowMP extends ItemArrow implements MorePlanetsItem
 {
     private final ArrowType type;
     private ColorUtils.RGB rgb;
@@ -99,13 +96,13 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelR
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
         return this.rgb != null ? this.rgb : null;
     }
@@ -113,7 +110,7 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelR
     @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
-        return this.getRarity() != null ? this.getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
+        return this.getRarityColor() != null ? this.getRarityColor().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
     }
 
     public ItemArrowMP setRarityRGB(ColorUtils.RGB rgb)

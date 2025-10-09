@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
+import com.stevekung.moreplanets.utils.ModelNameGatherer;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -22,7 +22,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class BlockFluidBaseMP extends BlockFluidClassic implements IItemModelRender
+public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ModelNameGatherer
 {
     private String name;
     protected boolean isWater;
@@ -156,7 +156,7 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements IIte
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }

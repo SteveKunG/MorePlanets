@@ -635,9 +635,9 @@ public class MPBlocks
         MPBlocks.SHIELD_GENERATOR = new BlockShieldGenerator("shield_generator");
 
         // Alien Ship
-        MPBlocks.ALIEN_SHIP_BOOSTER = new BlockCTMGlowingDirectional("alien_ship_booster", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
-        MPBlocks.ALIEN_SHIP_DECORATION_0 = new BlockBaseMP("alien_ship_decoration_0", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
-        MPBlocks.ALIEN_SHIP_DECORATION_1 = new BlockBaseMP("alien_ship_decoration_1", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
+        MPBlocks.ALIEN_SHIP_BOOSTER = new BlockCTMGlowingDirectional("alien_ship_booster", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(ItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
+        MPBlocks.ALIEN_SHIP_DECORATION_0 = new BlockBaseMP("alien_ship_decoration_0", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(ItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
+        MPBlocks.ALIEN_SHIP_DECORATION_1 = new BlockBaseMP("alien_ship_decoration_1", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(ItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
         MPBlocks.ALIEN_CHEST = new BlockAlienChest("alien_chest");
         MPBlocks.ALIEN_SHIP_DECORATION_STAIRS = new BlockStairsMP("alien_ship_decoration_stairs", EnumStairsType.ALIEN_SHIP);
 
@@ -683,7 +683,7 @@ public class MPBlocks
         MPBlocks.POLISHED_TIN_DECORATION_BLOCK = new BlockBaseMP("polished_tin_decoration_block", Material.ROCK).setHardness(1.5F);
         MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK = new BlockBaseMP("polished_aluminum_decoration_block", Material.ROCK).setHardness(1.5F);
         MPBlocks.DESH_FRAME = new BlockDeshFrame("desh_frame");
-        MPBlocks.DUNGEON_GLOWSTONE = new BlockBaseMP("dungeon_glowstone", Material.GLASS).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.COMMON)).setSoundType(SoundType.GLASS).setResistance(100.0F).setHardness(0.3F).setLightLevel(1.0F);
+        MPBlocks.DUNGEON_GLOWSTONE = new BlockBaseMP("dungeon_glowstone", Material.GLASS).setRarityRGB(ColorUtils.stringToRGB(ItemRarity.COMMON)).setSoundType(SoundType.GLASS).setResistance(100.0F).setHardness(0.3F).setLightLevel(1.0F);
 
         // Wall
         MPBlocks.DIONA_COBBLESTONE_WALL = new BlockAllWall("diona_cobblestone_wall", BlockAllWall.BlockType.DIONA_COBBLESTONE_WALL);
@@ -715,10 +715,10 @@ public class MPBlocks
         MPBlocks.INFECTED_PURLONITE_ENDER_CORE = new BlockInfectedPurloniteSegment("infected_purlonite_ender_core", BlockInfectedPurloniteSegment.BlockType.INFECTED_PURLONITE_ENDER_CORE);
 
         // Others
-        MPBlocks.ALBETIUS_WORM_EGG_ROCK = new BlockAlbetiusWormEgg("albetius_worm_egg_rock").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
+        MPBlocks.ALBETIUS_WORM_EGG_ROCK = new BlockAlbetiusWormEgg("albetius_worm_egg_rock").setRarityRGB(ColorUtils.stringToRGB(ItemRarity.ALIEN));
         MPBlocks.DIONA_ANCIENT_CHEST = new BlockDionaAncientChest("diona_ancient_chest");
         MPBlocks.DIONA_TREASURE_CHEST = new BlockDionaTreasureChest("diona_treasure_chest");
-        MPBlocks.INFECTED_PURLONITE_PLANKS = new BlockCTMGlowing("infected_purlonite_planks", Material.WOOD).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN)).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
+        MPBlocks.INFECTED_PURLONITE_PLANKS = new BlockCTMGlowing("infected_purlonite_planks", Material.WOOD).setRarityRGB(ColorUtils.stringToRGB(ItemRarity.ALIEN)).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
         MPBlocks.INFECTED_PURLONITE_FENCE = new BlockFenceMP("infected_purlonite_fence");
         MPBlocks.INFECTED_PURLONITE_COBWEB = new BlockInfectedPurloniteCobweb("infected_purlonite_cobweb");
         MPBlocks.INFECTED_PURLONITE_TORCH = new BlockInfectedPurloniteTorch("infected_purlonite_torch");

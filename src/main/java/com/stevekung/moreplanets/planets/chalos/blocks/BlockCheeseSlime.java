@@ -3,7 +3,7 @@ package com.stevekung.moreplanets.planets.chalos.blocks;
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.utils.blocks.BlockBreakableMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.blocks.ISortableBlock;
+import com.stevekung.moreplanets.utils.blocks.MorePlanetsBlock;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class BlockCheeseSlime extends BlockBreakableMP implements ISortableBlock
+public class BlockCheeseSlime extends BlockBreakableMP implements MorePlanetsBlock
 {
     public BlockCheeseSlime(String name)
     {

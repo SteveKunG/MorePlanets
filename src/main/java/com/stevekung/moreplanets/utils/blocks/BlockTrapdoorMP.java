@@ -1,7 +1,6 @@
 package com.stevekung.moreplanets.utils.blocks;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTrapDoor;
@@ -9,7 +8,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 
-public class BlockTrapdoorMP extends BlockTrapDoor implements ISortableBlock, IItemModelRender
+public class BlockTrapdoorMP extends BlockTrapDoor implements MorePlanetsBlock
 {
     private String name;
 
@@ -41,7 +40,7 @@ public class BlockTrapdoorMP extends BlockTrapDoor implements ISortableBlock, II
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }

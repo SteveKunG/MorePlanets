@@ -2,8 +2,7 @@ package com.stevekung.moreplanets.utils.blocks;
 
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
@@ -11,7 +10,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 
-public class BlockFenceMP extends BlockFence implements ISortableBlock, IItemModelRender, IItemRarity
+public class BlockFenceMP extends BlockFence implements MorePlanetsBlock
 {
     private String name;
 
@@ -44,14 +43,14 @@ public class BlockFenceMP extends BlockFence implements ISortableBlock, IItemMod
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
-        return this.name.equals("infected_purlonite_fence") ? ColorUtils.stringToRGB(IItemRarity.ALIEN) : null;
+        return this.name.equals("infected_purlonite_fence") ? ColorUtils.stringToRGB(ItemRarity.ALIEN) : null;
     }
 }

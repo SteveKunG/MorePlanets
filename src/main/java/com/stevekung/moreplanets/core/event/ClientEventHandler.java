@@ -30,7 +30,7 @@ import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
 import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
 import com.stevekung.moreplanets.utils.IMorePlanetsBoss;
 import com.stevekung.moreplanets.utils.blocks.fluid.LiquidUtils;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
@@ -106,7 +106,7 @@ public class ClientEventHandler
         }
         if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && event.getEntity() == this.mc.player && !this.firstWorldJoin && !WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData && !WorldTickEventHandler.survivalPlanetData.disableMessage)
         {
-            ITextComponent component = new TextComponentString(ColorUtils.stringToRGB(IItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(new TextComponentTranslation("message.survival_planet.1").appendText(" ").appendSibling(new TextComponentTranslation("message.survival_planet.2").setStyle(new Style().setColor(TextFormatting.AQUA))).appendText(" ").appendSibling(new TextComponentTranslation("message.survival_planet.3")).setStyle(new Style().setColor(TextFormatting.YELLOW)));
+            ITextComponent component = new TextComponentString(ColorUtils.stringToRGB(ItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(new TextComponentTranslation("message.survival_planet.1").appendText(" ").appendSibling(new TextComponentTranslation("message.survival_planet.2").setStyle(new Style().setColor(TextFormatting.AQUA))).appendText(" ").appendSibling(new TextComponentTranslation("message.survival_planet.3")).setStyle(new Style().setColor(TextFormatting.YELLOW)));
             component.getStyle().setClickEvent(new ClickEvent(Action.RUN_COMMAND, "/mpcelestial"));
             ClientUtils.printClientMessage(component);
             ITextComponent component2 = new TextComponentTranslation("message.survival_planet.4").appendText(" ").appendSibling(new TextComponentTranslation("message.survival_planet.5").setStyle(new Style().setColor(TextFormatting.RED))).setStyle(new Style().setColor(TextFormatting.YELLOW));

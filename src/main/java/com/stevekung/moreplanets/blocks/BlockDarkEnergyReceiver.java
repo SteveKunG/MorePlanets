@@ -16,7 +16,7 @@ import com.stevekung.moreplanets.utils.IDescription;
 import com.stevekung.moreplanets.utils.ItemDescription;
 import com.stevekung.moreplanets.utils.blocks.BlockTileMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -393,8 +393,8 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
-        return ColorUtils.stringToRGB(IItemRarity.SPECIAL);
+        return ColorUtils.stringToRGB(ItemRarity.SPECIAL);
     }
 }

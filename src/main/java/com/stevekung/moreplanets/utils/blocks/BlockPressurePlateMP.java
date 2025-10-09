@@ -3,7 +3,6 @@ package com.stevekung.moreplanets.utils.blocks;
 import java.util.List;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBasePressurePlate;
@@ -20,7 +19,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockPressurePlateMP extends BlockBasePressurePlate implements ISortableBlock, IItemModelRender
+public class BlockPressurePlateMP extends BlockBasePressurePlate implements MorePlanetsBlock
 {
     private String name;
     private static final PropertyBool POWERED = PropertyBool.create("powered");
@@ -115,7 +114,7 @@ public class BlockPressurePlateMP extends BlockBasePressurePlate implements ISor
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }

@@ -5,7 +5,7 @@ import java.util.Random;
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
@@ -118,8 +118,8 @@ public class BlockInfectedPurloniteCobweb extends BlockBaseMP
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
-        return ColorUtils.stringToRGB(IItemRarity.ALIEN);
+        return ColorUtils.stringToRGB(ItemRarity.ALIEN);
     }
 }

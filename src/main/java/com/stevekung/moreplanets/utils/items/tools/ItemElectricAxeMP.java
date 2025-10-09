@@ -7,7 +7,7 @@ import com.google.common.collect.Multimap;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
 import com.stevekung.moreplanets.utils.items.EnumSortCategoryItem;
-import com.stevekung.moreplanets.utils.items.ISortableItem;
+import com.stevekung.moreplanets.utils.items.MorePlanetsItem;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
@@ -35,7 +35,7 @@ import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 
 import javax.annotation.Nullable;
 
-public class ItemElectricAxeMP extends ItemAxe implements IItemElectric, ISortableItem
+public class ItemElectricAxeMP extends ItemAxe implements IItemElectric, MorePlanetsItem
 {
     private final float transferMax = 200;
     private final float maxPower;

@@ -9,7 +9,7 @@ import com.stevekung.moreplanets.init.MPSounds;
 import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityVeinFrame;
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -161,8 +161,8 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
-        return ColorUtils.stringToRGB(IItemRarity.COMMON);
+        return ColorUtils.stringToRGB(ItemRarity.COMMON);
     }
 }

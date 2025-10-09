@@ -5,7 +5,7 @@ import com.stevekung.moreplanets.utils.BlocksItemsRegistry;
 import com.stevekung.moreplanets.utils.IDescription;
 import com.stevekung.moreplanets.utils.ItemDescription;
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
-import com.stevekung.moreplanets.utils.blocks.ISortableBlock;
+import com.stevekung.moreplanets.utils.blocks.MorePlanetsBlock;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -28,7 +28,7 @@ import micdoodle8.mods.galacticraft.api.transmission.tile.INetworkConnection;
 import micdoodle8.mods.galacticraft.api.transmission.tile.ITransmitter;
 import micdoodle8.mods.galacticraft.core.energy.EnergyUtil;
 
-public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartialSealableBlock, ITileEntityProvider, IDescription, ISortableBlock
+public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartialSealableBlock, ITileEntityProvider, IDescription, MorePlanetsBlock
 {
     public static final PropertyBool UP = PropertyBool.create("up");
     public static final PropertyBool DOWN = PropertyBool.create("down");

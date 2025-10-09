@@ -5,7 +5,7 @@ import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
 import com.stevekung.moreplanets.utils.blocks.BlockBaseMP;
 import com.stevekung.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -206,8 +206,8 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
-        return ColorUtils.stringToRGB(IItemRarity.MACHINE);
+        return ColorUtils.stringToRGB(ItemRarity.MACHINE);
     }
 }

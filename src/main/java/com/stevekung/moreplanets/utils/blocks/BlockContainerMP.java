@@ -1,7 +1,6 @@
 package com.stevekung.moreplanets.utils.blocks;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -10,7 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.EnumBlockRenderType;
 
-public abstract class BlockContainerMP extends BlockContainer implements ISortableBlock, IItemModelRender
+public abstract class BlockContainerMP extends BlockContainer implements MorePlanetsBlock
 {
     private String name;
 
@@ -45,7 +44,7 @@ public abstract class BlockContainerMP extends BlockContainer implements ISortab
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }

@@ -3,7 +3,6 @@ package com.stevekung.moreplanets.utils.blocks;
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.init.MPBlocks;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
@@ -19,7 +18,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockFallingMP extends BlockFalling implements ISortableBlock, IItemModelRender
+public class BlockFallingMP extends BlockFalling implements MorePlanetsBlock
 {
     private String name;
 
@@ -77,7 +76,7 @@ public class BlockFallingMP extends BlockFalling implements ISortableBlock, IIte
     }
 
     @Override
-    public String getName()
+    public String getModelName()
     {
         return this.name;
     }

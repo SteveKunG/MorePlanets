@@ -10,7 +10,7 @@ import com.stevekung.moreplanets.moons.koentus.tileentity.TileEntityGravityExtra
 import com.stevekung.moreplanets.utils.CompatibilityManagerMP;
 import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
 import com.stevekung.moreplanets.utils.blocks.BlockFallingMP;
-import com.stevekung.moreplanets.utils.itemblocks.IItemRarity;
+import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.ITileEntityProvider;
@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockCreep extends BlockFallingMP implements ITileEntityProvider, IItemRarity
+public class BlockCreep extends BlockFallingMP implements ITileEntityProvider
 {
     private final BlockType type;
 
@@ -110,9 +110,9 @@ public class BlockCreep extends BlockFallingMP implements ITileEntityProvider, I
     }
 
     @Override
-    public ColorUtils.RGB getRarity()
+    public ColorUtils.RGB getRarityColor()
     {
-        return ColorUtils.stringToRGB(IItemRarity.ALIEN);
+        return ColorUtils.stringToRGB(ItemRarity.ALIEN);
     }
 
     private void checkFallable(World world, BlockPos pos)

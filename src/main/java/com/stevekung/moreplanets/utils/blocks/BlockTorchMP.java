@@ -1,13 +1,12 @@
 package com.stevekung.moreplanets.utils.blocks;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.utils.client.renderer.IItemModelRender;
 
 import net.minecraft.block.BlockTorch;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.EnumFacing;
 
-public abstract class BlockTorchMP extends BlockTorch implements ISortableBlock, IItemModelRender
+public abstract class BlockTorchMP extends BlockTorch implements MorePlanetsBlock
 {
     public BlockTorchMP()
     {
