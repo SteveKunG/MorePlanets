@@ -28,7 +28,7 @@ public class BlockFronosGrassBlock extends BlockGrassBlockMP implements IGrowabl
 
     public BlockFronosGrassBlock(String name)
     {
-        this.setTranslationKey(name);
+        super(name);
         this.setDefaultState(this.getDefaultState().withProperty(HAS_LAYER, BlockType.NONE));
     }
 

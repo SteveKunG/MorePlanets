@@ -19,17 +19,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockBushMP extends BlockBaseMP
 {
-    public BlockBushMP()
+    public BlockBushMP(String name)
     {
-        super(Material.PLANTS);
-        this.setHardness(0.0F);
-        this.setSoundType(SoundType.PLANT);
-        this.setTickRandomly(true);
+        this(name, Material.PLANTS);
     }
 
-    public BlockBushMP(Material material)
+    public BlockBushMP(String name, Material material)
     {
-        super(material);
+        super(name, material);
         this.setHardness(0.0F);
         this.setSoundType(SoundType.PLANT);
         this.setTickRandomly(true);

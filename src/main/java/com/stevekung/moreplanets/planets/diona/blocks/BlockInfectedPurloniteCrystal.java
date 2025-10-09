@@ -45,12 +45,11 @@ public class BlockInfectedPurloniteCrystal extends BlockDirectionalMP implements
 
     public BlockInfectedPurloniteCrystal(String name)
     {
-        super(Material.GLASS);
+        super(name, Material.GLASS);
         this.setLightLevel(0.4F);
         this.setResistance(1.0F);
         this.setHardness(0.4F);
         this.setSoundType(SoundType.GLASS);
-        this.setTranslationKey(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_ALL, EnumFacing.UP));
     }
 

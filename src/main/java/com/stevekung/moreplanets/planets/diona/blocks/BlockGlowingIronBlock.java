@@ -19,11 +19,10 @@ public class BlockGlowingIronBlock extends BlockBaseMP implements IDetectableRes
 {
     public BlockGlowingIronBlock(String name)
     {
-        super(Material.IRON);
+        super(name, Material.IRON);
         this.setHardness(5.0F);
         this.setResistance(10.0F);
         this.setSoundType(SoundType.METAL);
-        this.setTranslationKey(name);
     }
 
     @Override

@@ -49,9 +49,8 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription
 
     public BlockDarkEnergyReceiver(String name)
     {
-        super(Material.IRON);
+        super(name, Material.IRON);
         this.setSoundType(SoundType.METAL);
-        this.setTranslationKey(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH));
     }
 

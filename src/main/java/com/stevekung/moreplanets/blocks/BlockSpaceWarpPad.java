@@ -34,11 +34,10 @@ public class BlockSpaceWarpPad extends BlockAdvancedTileMP implements IPartialSe
 
     public BlockSpaceWarpPad(String name)
     {
-        super(Material.IRON);
+        super(name, Material.IRON);
         this.setHardness(3.0F);
         this.setResistance(10.0F);
         this.setSoundType(SoundType.METAL);
-        this.setTranslationKey(name);
     }
 
     @Override

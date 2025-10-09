@@ -40,9 +40,8 @@ public class BlockJelly extends BlockBreakableMP
 
     public BlockJelly(String name, BlockType type)
     {
-        super(Material.CLOTH);
+        super(name, Material.CLOTH);
         this.setSoundType(MPSounds.SMALL_SLIME);
-        this.setTranslationKey(name);
         this.type = type;
     }
 

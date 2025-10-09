@@ -32,11 +32,10 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntity
 
     public BlockSpaceDungeonSpawner(String name, DungeonType type)
     {
-        super(Material.AIR);
+        super(name, Material.AIR);
         this.setBlockUnbreakable();
         this.setResistance(6000001.0F);
         this.translucent = true;
-        this.setTranslationKey(name);
         this.type = type;
     }
 

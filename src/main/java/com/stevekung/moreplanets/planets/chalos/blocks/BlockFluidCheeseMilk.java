@@ -15,11 +15,10 @@ public class BlockFluidCheeseMilk extends BlockFluidBaseMP implements IFishableL
 {
     public BlockFluidCheeseMilk(String name)
     {
-        super(MPBlocks.CHEESE_MILK_FLUID);
+        super(name, MPBlocks.CHEESE_MILK_FLUID);
         this.isWater = true;
         this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
         this.setLightOpacity(3);
-        this.setTranslationKey(name);
     }
 
     @Override

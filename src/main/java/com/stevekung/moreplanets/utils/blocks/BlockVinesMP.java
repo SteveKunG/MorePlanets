@@ -36,17 +36,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
 
     public BlockVinesMP(String name)
     {
-        super(Material.VINE);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockVine.UP, false).withProperty(BlockVine.NORTH, false).withProperty(BlockVine.EAST, false).withProperty(BlockVine.SOUTH, false).withProperty(BlockVine.WEST, false));
-        this.setTickRandomly(true);
-        this.setSoundType(SoundType.PLANT);
-        this.setHardness(0.2F);
-        this.setTranslationKey(name);
-    }
-
-    public BlockVinesMP()
-    {
-        super(Material.VINE);
+        super(name, Material.VINE);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockVine.UP, false).withProperty(BlockVine.NORTH, false).withProperty(BlockVine.EAST, false).withProperty(BlockVine.SOUTH, false).withProperty(BlockVine.WEST, false));
         this.setTickRandomly(true);
         this.setSoundType(SoundType.PLANT);

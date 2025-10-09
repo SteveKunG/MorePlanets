@@ -42,11 +42,10 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTileMP implements IParti
 
     public BlockSpaceWarpPadFull(String name)
     {
-        super(Material.ROCK);
+        super(name, Material.ROCK);
         this.setHardness(3.0F);
         this.setResistance(10.0F);
         this.setSoundType(SoundType.METAL);
-        this.setTranslationKey(name);
     }
 
     @Override

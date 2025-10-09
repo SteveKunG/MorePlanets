@@ -19,11 +19,10 @@ public class BlockGasHelium extends BlockFluidFiniteMP
 {
     public BlockGasHelium(String name)
     {
-        super(MPBlocks.HELIUM_GAS, MaterialsBase.GAS);
+        super(name, MPBlocks.HELIUM_GAS, MaterialsBase.GAS);
         this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockFluidBase.LEVEL, 7));
         this.setLightOpacity(0);
-        this.setTranslationKey(name);
     }
 
     @Override

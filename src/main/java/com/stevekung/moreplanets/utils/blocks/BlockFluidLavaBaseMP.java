@@ -19,9 +19,9 @@ import micdoodle8.mods.galacticraft.core.blocks.BlockGrating;
 
 public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
 {
-    public BlockFluidLavaBaseMP(Fluid fluid)
+    public BlockFluidLavaBaseMP(String name, Fluid fluid)
     {
-        super(fluid, Material.LAVA);
+        super(name, fluid, Material.LAVA);
         this.setQuantaPerBlock(4);
         this.setResistance(100.0F);
         this.setTickRandomly(true);

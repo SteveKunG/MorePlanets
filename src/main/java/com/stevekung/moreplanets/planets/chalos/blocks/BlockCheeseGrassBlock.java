@@ -19,7 +19,7 @@ public class BlockCheeseGrassBlock extends BlockGrassBlockMP implements IGrowabl
 {
     public BlockCheeseGrassBlock(String name)
     {
-        this.setTranslationKey(name);
+        super(name);
     }
 
     @Override

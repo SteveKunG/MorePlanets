@@ -46,10 +46,9 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
 {
     public BlockBlackHoleStorage(String name)
     {
-        super(Material.IRON);
+        super(name, Material.IRON);
         this.setSoundType(SoundType.METAL);
         this.setHardness(2.0F);
-        this.setTranslationKey(name);
     }
 
     @Override

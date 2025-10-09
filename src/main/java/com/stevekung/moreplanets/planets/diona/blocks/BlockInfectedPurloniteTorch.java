@@ -20,9 +20,9 @@ public class BlockInfectedPurloniteTorch extends BlockTorchMP
 {
     public BlockInfectedPurloniteTorch(String name)
     {
+        super(name);
         this.setLightLevel(0.9375F);
         this.setSoundType(SoundType.WOOD);
-        this.setTranslationKey(name);
     }
 
     @Override

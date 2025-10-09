@@ -21,10 +21,9 @@ public class BlockCraftingTableMP extends BlockBaseMP
 {
     public BlockCraftingTableMP(String name)
     {
-        super(Material.WOOD);
+        super(name, Material.WOOD);
         this.setHardness(2.5F);
         this.setSoundType(SoundType.WOOD);
-        this.setTranslationKey(name);
     }
 
     @Override

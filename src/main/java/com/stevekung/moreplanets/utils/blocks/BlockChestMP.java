@@ -34,18 +34,18 @@ public abstract class BlockChestMP extends BlockContainerMP
     private static final AxisAlignedBB EAST_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1.0D, 0.875D, 0.9375D);
     private static final AxisAlignedBB NOT_CONNECTED_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
 
-    protected BlockChestMP()
+    protected BlockChestMP(String name, Material material)
     {
-        super(Material.WOOD);
+        super(name, material);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH));
+    }
+
+    protected BlockChestMP(String name)
+    {
+        this(name, Material.WOOD);
         this.setResistance(5.0F);
         this.setHardness(2.5F);
         this.setSoundType(SoundType.WOOD);
-    }
-
-    protected BlockChestMP(Material material)
-    {
-        super(material);
     }
 
     @Override

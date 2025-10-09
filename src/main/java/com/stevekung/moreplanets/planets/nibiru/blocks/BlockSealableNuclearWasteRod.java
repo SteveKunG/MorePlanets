@@ -39,10 +39,9 @@ public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartia
 
     public BlockSealableNuclearWasteRod(String name)
     {
-        super(Material.CLAY);
+        super(name, Material.CLAY);
         this.setResistance(0.2F);
         this.setHardness(0.4F);
-        this.setTranslationKey(name);
     }
 
     @Override

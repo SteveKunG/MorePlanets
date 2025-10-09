@@ -32,8 +32,7 @@ public class BlockInfectedCactus extends BlockBushMP
 
     public BlockInfectedCactus(String name)
     {
-        super(Material.CACTUS);
-        this.setTranslationKey(name);
+        super(name, Material.CACTUS);
         this.setHardness(0.4F);
         this.setSoundType(SoundType.CLOTH);
         this.setTickRandomly(true);

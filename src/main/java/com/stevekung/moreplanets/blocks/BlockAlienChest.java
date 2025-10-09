@@ -22,10 +22,9 @@ public class BlockAlienChest extends BlockChestMP
 {
     public BlockAlienChest(String name)
     {
-        super(Material.IRON);
+        super(name, Material.IRON);
         this.setHardness(2.0F);
         this.setSoundType(SoundType.METAL);
-        this.setTranslationKey(name);
     }
 
     @Override

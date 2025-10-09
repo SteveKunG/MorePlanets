@@ -24,8 +24,7 @@ public class BlockSidedFronosMushroom extends BlockBushMP
 {
     public BlockSidedFronosMushroom(String name)
     {
-        super(Material.PLANTS);
-        this.setTranslationKey(name);
+        super(name, Material.PLANTS);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH));
         this.setTickRandomly(true);
     }

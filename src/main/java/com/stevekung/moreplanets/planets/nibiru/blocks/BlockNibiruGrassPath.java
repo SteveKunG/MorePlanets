@@ -25,8 +25,7 @@ public class BlockNibiruGrassPath extends BlockBaseMP
 
     public BlockNibiruGrassPath(String name)
     {
-        super(Material.GROUND);
-        this.setTranslationKey(name);
+        super(name, Material.GROUND);
         this.setLightOpacity(255);
         this.setHardness(0.65F);
         this.setSoundType(SoundType.PLANT);

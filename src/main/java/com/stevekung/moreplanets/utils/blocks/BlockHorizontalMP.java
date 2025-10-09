@@ -12,12 +12,11 @@ public class BlockHorizontalMP extends BlockLogMP
 {
     public BlockHorizontalMP(String name, Material material)
     {
-        super(material);
+        super(name, material);
         this.setHardness(0.55F);
         this.setResistance(3.0F);
         this.setSoundType(SoundType.CLOTH);
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Y));
-        this.setTranslationKey(name);
     }
 
     @Override

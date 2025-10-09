@@ -21,7 +21,7 @@ public class BlockInfectedVines extends BlockVinesMP
 {
     public BlockInfectedVines(String name)
     {
-        this.setTranslationKey(name);
+        super(name);
     }
 
     @Override

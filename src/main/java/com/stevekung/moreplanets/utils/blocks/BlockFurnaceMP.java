@@ -38,9 +38,8 @@ public class BlockFurnaceMP extends BlockContainerMP
 
     public BlockFurnaceMP(String name, BlockType type)
     {
-        super(Material.ROCK);
+        super(name, Material.ROCK);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH).withProperty(LIT, false));
-        this.setTranslationKey(name);
         this.setHardness(3.5F);
         this.type = type;
     }

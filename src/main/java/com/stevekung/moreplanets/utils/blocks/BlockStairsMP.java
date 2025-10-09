@@ -11,7 +11,7 @@ import net.minecraft.init.Blocks;
 public class BlockStairsMP extends BlockStairs implements MorePlanetsBlock
 {
     private MPBlockCategory category;
-    private String name;
+    private final String name;
 
     public BlockStairsMP(String name, EnumStairsType type)
     {
@@ -31,14 +31,8 @@ public class BlockStairsMP extends BlockStairs implements MorePlanetsBlock
         {
             this.setResistance(40.0F);
         }
-        this.useNeighborBrightness = true;
-    }
-
-    @Override
-    public Block setTranslationKey(String name)
-    {
         this.name = name;
-        return super.setTranslationKey(name);
+        this.useNeighborBrightness = true;
     }
 
     @Override

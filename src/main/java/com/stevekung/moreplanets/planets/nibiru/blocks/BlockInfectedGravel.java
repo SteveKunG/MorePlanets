@@ -6,6 +6,7 @@ import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.utils.blocks.BlockFallingMP;
 
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -16,7 +17,7 @@ public class BlockInfectedGravel extends BlockFallingMP
 {
     public BlockInfectedGravel(String name)
     {
-        this.setTranslationKey(name);
+        super(name, Material.GROUND);
         this.setHardness(0.6F);
         this.setSoundType(SoundType.GROUND);
     }

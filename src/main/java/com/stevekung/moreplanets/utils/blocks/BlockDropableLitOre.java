@@ -31,11 +31,10 @@ public class BlockDropableLitOre extends BlockBasicMP implements IDetectableReso
 
     public BlockDropableLitOre(String name, BlockType type)
     {
-        super(Material.ROCK);
+        super(name, Material.ROCK);
         this.type = type;
         this.setTickRandomly(true);
         this.setDefaultState(this.blockState.getBaseState().withProperty(LIT, false));
-        this.setTranslationKey(name);
     }
 
     @Override

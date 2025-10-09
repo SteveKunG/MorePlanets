@@ -4,7 +4,6 @@ import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -12,7 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class BlockFenceMP extends BlockFence implements MorePlanetsBlock
 {
-    private String name;
+    private final String name;
 
     public BlockFenceMP(String name)
     {
@@ -21,13 +20,7 @@ public class BlockFenceMP extends BlockFence implements MorePlanetsBlock
         this.setResistance(5.0F);
         this.setSoundType(SoundType.WOOD);
         this.setTranslationKey(name);
-    }
-
-    @Override
-    public Block setTranslationKey(String name)
-    {
         this.name = name;
-        return super.setTranslationKey(name);
     }
 
     @Override

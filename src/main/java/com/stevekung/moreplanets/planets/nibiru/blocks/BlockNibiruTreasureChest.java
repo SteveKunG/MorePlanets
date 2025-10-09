@@ -17,7 +17,7 @@ public class BlockNibiruTreasureChest extends BlockTreasureChestMP
 {
     public BlockNibiruTreasureChest(String name)
     {
-        this.setTranslationKey(name);
+        super(name);
     }
 
     @Override

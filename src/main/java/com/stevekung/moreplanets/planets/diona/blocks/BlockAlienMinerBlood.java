@@ -23,10 +23,9 @@ public class BlockAlienMinerBlood extends BlockBaseMP
 {
     public BlockAlienMinerBlood(String name)
     {
-        super(Material.ROCK);
+        super(name, Material.ROCK);
         this.setTickRandomly(true);
         this.setHardness(1.25F);
-        this.setTranslationKey(name);
     }
 
     @Override

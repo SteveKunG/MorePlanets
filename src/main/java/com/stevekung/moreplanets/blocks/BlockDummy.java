@@ -52,10 +52,9 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
 
     public BlockDummy(String name, BlockType type)
     {
-        super(Material.IRON);
+        super(name, Material.IRON);
         this.setHardness(1.0F);
         this.setSoundType(SoundType.METAL);
-        this.setTranslationKey(name);
         this.type = type;
     }
 

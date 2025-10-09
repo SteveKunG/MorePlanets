@@ -18,11 +18,10 @@ public class BlockFluidPurifyWater extends BlockFluidBaseMP implements IFishable
 {
     public BlockFluidPurifyWater(String name)
     {
-        super(MPBlocks.PURIFIED_WATER_FLUID);
+        super(name, MPBlocks.PURIFIED_WATER_FLUID);
         this.isWater = true;
         this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
         this.setLightOpacity(3);
-        this.setTranslationKey(name);
     }
 
     @Override

@@ -9,7 +9,7 @@ public class BlockCheeseMilkCake extends BlockCakeMP implements IDescription
 {
     public BlockCheeseMilkCake(String name)
     {
-        this.setTranslationKey(name);
+        super(name);
     }
 
     @Override

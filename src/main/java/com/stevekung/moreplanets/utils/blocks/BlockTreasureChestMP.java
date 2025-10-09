@@ -22,9 +22,9 @@ public abstract class BlockTreasureChestMP extends BlockContainerMP
 {
     private static final AxisAlignedBB CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
 
-    public BlockTreasureChestMP()
+    public BlockTreasureChestMP(String name)
     {
-        super(Material.ROCK);
+        super(name, Material.ROCK);
         this.setResistance(10000000.0F);
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH));
         this.setHardness(-1.0F);

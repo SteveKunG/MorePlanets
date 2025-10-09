@@ -28,8 +28,7 @@ public class BlockInfectedSeaweed extends BlockBushMP
 
     public BlockInfectedSeaweed(String name)
     {
-        super(Material.WATER);
-        this.setTranslationKey(name);
+        super(name, Material.WATER);
     }
 
     @Override

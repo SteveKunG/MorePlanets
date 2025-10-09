@@ -40,11 +40,10 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IDescriptio
 
     public BlockDarkEnergyGenerator(String name)
     {
-        super(Material.IRON);
+        super(name, Material.IRON);
         this.setHardness(2.0F);
         this.setSoundType(SoundType.METAL);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH));
-        this.setTranslationKey(name);
     }
 
     @Override

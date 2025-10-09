@@ -19,6 +19,7 @@ public abstract class ItemArmorMP extends ItemArmor implements MorePlanetsItem
     {
         super(material, -1, type);
         this.name = name;
+        this.setTranslationKey(name);
         MPJEIRecipes.collectAnvilList(name, this, this.getRepairItem());
     }
 

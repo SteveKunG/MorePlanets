@@ -34,10 +34,9 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
 
     public BlockOilOre(String name)
     {
-        super(Material.ROCK);
+        super(name, Material.ROCK);
         this.setHardness(1.5F);
         this.setResistance(4.0F);
-        this.setTranslationKey(name);
     }
 
     @Override

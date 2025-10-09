@@ -26,11 +26,10 @@ public class BlockFluidInfectedWater extends BlockFluidBaseMP implements IFishab
 {
     public BlockFluidInfectedWater(String name)
     {
-        super(MPBlocks.INFECTED_WATER_FLUID);
+        super(name, MPBlocks.INFECTED_WATER_FLUID);
         this.isWater = true;
         this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
         this.setLightOpacity(3);
-        this.setTranslationKey(name);
     }
 
     @Override

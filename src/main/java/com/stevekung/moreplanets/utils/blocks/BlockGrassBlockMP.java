@@ -9,9 +9,9 @@ import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 
 public abstract class BlockGrassBlockMP extends BlockBaseMP implements ITerraformableBlock
 {
-    public BlockGrassBlockMP()
+    public BlockGrassBlockMP(String name)
     {
-        super(Material.GRASS);
+        super(name, Material.GRASS);
         this.setTickRandomly(true);
         this.setSoundType(SoundType.PLANT);
         this.setHardness(0.6F);

@@ -33,11 +33,10 @@ public class BlockVeinPortal extends BlockContainerMP
 {
     public BlockVeinPortal(String name)
     {
-        super(Material.BARRIER);
+        super(name, Material.BARRIER);
         this.setBlockUnbreakable();
         this.setLightLevel(1.0F);
         this.setResistance(6000000.0F);
-        this.setTranslationKey(name);
     }
 
     @Override

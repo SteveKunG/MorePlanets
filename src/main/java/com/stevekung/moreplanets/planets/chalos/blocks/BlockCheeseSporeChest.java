@@ -18,7 +18,7 @@ public class BlockCheeseSporeChest extends BlockChestMP
 {
     public BlockCheeseSporeChest(String name)
     {
-        this.setTranslationKey(name);
+        super(name);
     }
 
     @Override

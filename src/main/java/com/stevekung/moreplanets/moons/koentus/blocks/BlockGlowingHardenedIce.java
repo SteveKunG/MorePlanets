@@ -26,7 +26,7 @@ public class BlockGlowingHardenedIce extends BlockIceMP
 
     public BlockGlowingHardenedIce(String name, EnumDyeColor color)
     {
-        this.setTranslationKey(name);
+        super(name);
         this.setLightLevel(1.0F);
         this.color = color;
     }

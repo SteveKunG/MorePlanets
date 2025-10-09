@@ -11,9 +11,9 @@ import net.minecraft.util.Rotation;
 
 public class BlockDirectionalMP extends BlockBaseMP
 {
-    public BlockDirectionalMP(Material material)
+    public BlockDirectionalMP(String name, Material material)
     {
-        super(material);
+        super(name, material);
     }
 
     @Override

@@ -13,8 +13,7 @@ public class BlockCobblestoneDrop extends BlockBaseMP
 
     public BlockCobblestoneDrop(String name)
     {
-        super(Material.ROCK);
-        this.setTranslationKey(name);
+        super(name, Material.ROCK);
     }
 
     @Override

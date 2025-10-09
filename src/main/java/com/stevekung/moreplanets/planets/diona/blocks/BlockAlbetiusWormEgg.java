@@ -19,8 +19,7 @@ public class BlockAlbetiusWormEgg extends BlockBaseMP
 {
     public BlockAlbetiusWormEgg(String name)
     {
-        super(Material.ROCK);
-        this.setTranslationKey(name);
+        super(name, Material.ROCK);
     }
 
     @Override

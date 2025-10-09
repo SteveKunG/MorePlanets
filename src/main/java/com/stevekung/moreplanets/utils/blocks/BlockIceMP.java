@@ -12,9 +12,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockIceMP extends BlockBreakableMP
 {
-    public BlockIceMP()
+    public BlockIceMP(String name)
     {
-        super(Material.ICE);
+        super(name, Material.ICE);
         this.setDefaultSlipperiness(0.98F);
         this.setHardness(0.5F);
         this.setResistance(0.1F);

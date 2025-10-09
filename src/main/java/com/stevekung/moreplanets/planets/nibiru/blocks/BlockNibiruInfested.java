@@ -21,9 +21,8 @@ public class BlockNibiruInfested extends BlockBaseMP
 
     public BlockNibiruInfested(String name, BlockType type)
     {
-        super(Material.CLAY);
+        super(name, Material.CLAY);
         this.type = type;
-        this.setTranslationKey(name);
     }
 
     @Override

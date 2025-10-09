@@ -32,9 +32,9 @@ public class BlockSaplingMP extends BlockBushMP implements IGrowable
 
     public BlockSaplingMP(String name, BlockType type)
     {
+        super(name);
         this.type = type;
         this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, 0).withProperty(NATURAL_GEN, false));
-        this.setTranslationKey(name);
     }
 
     @Override

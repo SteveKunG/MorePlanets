@@ -31,10 +31,9 @@ public class BlockAlienDefenderBeacon extends BlockBaseMP implements ITileEntity
 
     public BlockAlienDefenderBeacon(String name)
     {
-        super(Material.ROCK);
+        super(name, Material.ROCK);
         this.setResistance(1000000.0F);
         this.setHardness(-1.0F);
-        this.setTranslationKey(name);
     }
 
     @Override

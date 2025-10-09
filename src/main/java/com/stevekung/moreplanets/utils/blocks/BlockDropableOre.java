@@ -23,9 +23,8 @@ public class BlockDropableOre extends BlockBasicMP implements IDetectableResourc
 
     public BlockDropableOre(String name, BlockType type)
     {
-        super(Material.ROCK);
+        super(name, Material.ROCK);
         this.type = type;
-        this.setTranslationKey(name);
     }
 
     @Override

@@ -34,10 +34,10 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
 
     public BlockStemMP(String name, Block crop)
     {
+        super(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.AGE_7, 0).withProperty(FACING, EnumFacing.UP));
         this.crop = crop;
         this.setTickRandomly(true);
-        this.setTranslationKey(name);
         this.setSoundType(SoundType.WOOD);
     }
 

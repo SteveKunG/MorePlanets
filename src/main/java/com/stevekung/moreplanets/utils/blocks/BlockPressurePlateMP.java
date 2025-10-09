@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockBasePressurePlate;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -21,7 +20,7 @@ import net.minecraft.world.World;
 
 public class BlockPressurePlateMP extends BlockBasePressurePlate implements MorePlanetsBlock
 {
-    private String name;
+    private final String name;
     private static final PropertyBool POWERED = PropertyBool.create("powered");
 
     public BlockPressurePlateMP(String name)
@@ -30,14 +29,8 @@ public class BlockPressurePlateMP extends BlockBasePressurePlate implements More
         this.setHardness(0.5F);
         this.setSoundType(SoundType.WOOD);
         this.setTranslationKey(name);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(POWERED, false));
-    }
-
-    @Override
-    public Block setTranslationKey(String name)
-    {
         this.name = name;
-        return super.setTranslationKey(name);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(POWERED, false));
     }
 
     @Override

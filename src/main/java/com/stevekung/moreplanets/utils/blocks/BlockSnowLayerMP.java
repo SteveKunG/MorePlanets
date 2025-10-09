@@ -31,12 +31,11 @@ public class BlockSnowLayerMP extends BlockBaseMP
 
     public BlockSnowLayerMP(String name)
     {
-        super(Material.SNOW);
+        super(name, Material.SNOW);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.LAYERS, 1));
         this.setTickRandomly(true);
         this.setSoundType(SoundType.SNOW);
         this.setHardness(0.1F);
-        this.setTranslationKey(name);
     }
 
     @Override

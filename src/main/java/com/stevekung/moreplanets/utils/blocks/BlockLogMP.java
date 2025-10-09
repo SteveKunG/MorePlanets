@@ -17,27 +17,12 @@ public class BlockLogMP extends BlockBaseMP
 {
     public BlockLogMP(String name)
     {
-        super(Material.WOOD);
-        this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Y));
-        this.setHardness(2.0F);
-        this.setResistance(5.0F);
-        this.setSoundType(SoundType.WOOD);
-        this.setTranslationKey(name);
+        this(name, Material.WOOD);
     }
 
     public BlockLogMP(String name, Material material)
     {
-        super(material);
-        this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Y));
-        this.setHardness(2.0F);
-        this.setResistance(5.0F);
-        this.setSoundType(SoundType.WOOD);
-        this.setTranslationKey(name);
-    }
-
-    public BlockLogMP(Material material)
-    {
-        super(material);
+        super(name, material);
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Y));
         this.setHardness(2.0F);
         this.setResistance(5.0F);

@@ -32,9 +32,8 @@ public class BlockNuclearWasteGenerator extends BlockTileMP implements IDescript
 {
     public BlockNuclearWasteGenerator(String name)
     {
-        super(Material.IRON);
+        super(name, Material.IRON);
         this.setHardness(5.0F);
-        this.setTranslationKey(name);
         this.setSoundType(SoundType.METAL);
     }
 

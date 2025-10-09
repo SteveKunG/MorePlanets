@@ -11,25 +11,14 @@ import net.minecraft.creativetab.CreativeTabs;
 public class BlockBaseMP extends Block implements MorePlanetsBlock
 {
     private MPBlockCategory category;
-    private String name;
+    private final String name;
     private ColorUtils.RGB rgb;
-
-    public BlockBaseMP(Material material)
-    {
-        super(material);
-    }
 
     public BlockBaseMP(String name, Material material)
     {
         super(material);
-        this.setTranslationKey(name);
-    }
-
-    @Override
-    public Block setTranslationKey(String name)
-    {
         this.name = name;
-        return super.setTranslationKey(name);
+        this.setTranslationKey(name);
     }
 
     @Override

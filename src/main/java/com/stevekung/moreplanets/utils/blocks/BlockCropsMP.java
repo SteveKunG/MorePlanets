@@ -23,8 +23,9 @@ import net.minecraft.world.World;
 
 public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
 {
-    public BlockCropsMP()
+    public BlockCropsMP(String name)
     {
+        super(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.AGE_7, 0));
     }
 

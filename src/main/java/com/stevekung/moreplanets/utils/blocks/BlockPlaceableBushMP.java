@@ -40,8 +40,7 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
 
     public BlockPlaceableBushMP(String name, BlockType type)
     {
-        super(Material.PLANTS);
-        this.setTranslationKey(name);
+        super(name, Material.PLANTS);
         this.type = type;
     }
 

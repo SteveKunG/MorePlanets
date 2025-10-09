@@ -26,10 +26,9 @@ public class BlockInfectedSponge extends BlockBaseMP
 
     public BlockInfectedSponge(String name, boolean isWet)
     {
-        super(Material.SPONGE);
+        super(name, Material.SPONGE);
         this.setHardness(0.6F);
         this.setSoundType(SoundType.PLANT);
-        this.setTranslationKey(name);
         this.isWet = isWet;
     }
 

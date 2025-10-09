@@ -19,9 +19,8 @@ public class BlockInfectedSnow extends BlockBaseMP
 
     public BlockInfectedSnow(String name, boolean isPurified)
     {
-        super(Material.CRAFTED_SNOW);
+        super(name, Material.CRAFTED_SNOW);
         this.setTickRandomly(true);
-        this.setTranslationKey(name);
         this.setHardness(0.2F);
         this.setSoundType(SoundType.SNOW);
         this.isPurified = isPurified;

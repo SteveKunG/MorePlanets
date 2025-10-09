@@ -13,9 +13,9 @@ import net.minecraft.world.World;
 
 public class BlockBasicMP extends BlockBaseMP
 {
-    public BlockBasicMP(Material material)
+    public BlockBasicMP(String name, Material material)
     {
-        super(material);
+        super(name, material);
     }
 
     @Override

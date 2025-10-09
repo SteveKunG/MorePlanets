@@ -14,21 +14,16 @@ import micdoodle8.mods.galacticraft.core.blocks.BlockAdvanced;
 public abstract class BlockAdvancedMP extends BlockAdvanced implements ITileEntityProvider, MorePlanetsBlock
 {
     private MPBlockCategory category;
-    private String name;
+    private final String name;
     private ColorUtils.RGB rgb;
 
-    public BlockAdvancedMP(Material material)
+    public BlockAdvancedMP(String name, Material material)
     {
         super(material);
         this.setHardness(0.6F);
         this.setResistance(2.5F);
-    }
-
-    @Override
-    public Block setTranslationKey(String name)
-    {
         this.name = name;
-        return super.setTranslationKey(name);
+        this.setTranslationKey(name);
     }
 
     @Override

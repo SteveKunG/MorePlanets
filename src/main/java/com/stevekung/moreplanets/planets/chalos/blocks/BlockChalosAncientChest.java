@@ -19,7 +19,7 @@ public class BlockChalosAncientChest extends BlockChestMP
 {
     public BlockChalosAncientChest(String name)
     {
-        this.setTranslationKey(name);
+        super(name);
     }
 
     @Override

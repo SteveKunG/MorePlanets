@@ -16,11 +16,10 @@ public class BlockGaseousCheeseMilk extends BlockFluidFiniteMP
 {
     public BlockGaseousCheeseMilk(String name)
     {
-        super(MPBlocks.GASEOUS_CHEESE_MILK, MaterialsBase.GAS);
+        super(name, MPBlocks.GASEOUS_CHEESE_MILK, MaterialsBase.GAS);
         this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockFluidBase.LEVEL, 7));
         this.setLightOpacity(0);
-        this.setTranslationKey(name);
     }
 
     @Override

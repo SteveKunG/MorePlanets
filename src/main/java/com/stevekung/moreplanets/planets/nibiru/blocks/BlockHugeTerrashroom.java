@@ -32,12 +32,11 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
 
     public BlockHugeTerrashroom(String name)
     {
-        super(Material.WOOD);
+        super(name, Material.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockType.ALL_OUTSIDE));
         this.setHardness(0.2F);
         this.setLightOpacity(3);
         this.setSoundType(SoundType.WOOD);
-        this.setTranslationKey(name);
     }
 
     @Override

@@ -26,8 +26,8 @@ public class BlockInfectedGrassBlock extends BlockGrassBlockMP implements IGrowa
 
     public BlockInfectedGrassBlock(String name)
     {
+        super(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, false));
-        this.setTranslationKey(name);
     }
 
     @Override

@@ -26,8 +26,7 @@ public class BlockInfectedVinesDirt extends BlockBaseMP
 {
     public BlockInfectedVinesDirt(String name)
     {
-        super(Material.GROUND);
-        this.setTranslationKey(name);
+        super(name, Material.GROUND);
         this.setHardness(0.55F);
         this.setSoundType(SoundType.GROUND);
         this.setLightOpacity(255);

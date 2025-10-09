@@ -24,9 +24,8 @@ public class BlockAntiGravityOre extends BlockBasicMP implements IDetectableReso
 {
     public BlockAntiGravityOre(String name)
     {
-        super(Material.ROCK);
+        super(name, Material.ROCK);
         this.setHardness(3.0F);
-        this.setTranslationKey(name);
     }
 
     @Override

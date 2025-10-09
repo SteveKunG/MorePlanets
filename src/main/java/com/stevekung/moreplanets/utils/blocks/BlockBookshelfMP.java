@@ -14,10 +14,9 @@ public class BlockBookshelfMP extends BlockBaseMP
 {
     public BlockBookshelfMP(String name)
     {
-        super(Material.WOOD);
+        super(name, Material.WOOD);
         this.setHardness(1.5F);
         this.setSoundType(SoundType.WOOD);
-        this.setTranslationKey(name);
     }
 
     @Override

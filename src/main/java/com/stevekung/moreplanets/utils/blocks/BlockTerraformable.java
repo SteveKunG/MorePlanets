@@ -10,14 +10,12 @@ public class BlockTerraformable extends BlockBaseMP implements ITerraformableBlo
 {
     public BlockTerraformable(String name)
     {
-        super(Material.ROCK);
-        this.setTranslationKey(name);
+        this(name, Material.ROCK);
     }
 
     public BlockTerraformable(String name, Material material)
     {
-        super(material);
-        this.setTranslationKey(name);
+        super(name, material);
     }
 
     @Override

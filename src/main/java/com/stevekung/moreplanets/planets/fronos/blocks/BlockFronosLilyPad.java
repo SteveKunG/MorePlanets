@@ -26,7 +26,7 @@ public class BlockFronosLilyPad extends BlockBushMP
 
     public BlockFronosLilyPad(String name)
     {
-        this.setTranslationKey(name);
+        super(name);
         this.setSoundType(MPSounds.LILYPAD);
     }
 

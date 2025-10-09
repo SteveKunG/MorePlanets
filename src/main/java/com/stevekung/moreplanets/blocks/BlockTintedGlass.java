@@ -31,11 +31,10 @@ public class BlockTintedGlass extends BlockBreakableMP implements IPartialSealab
 
     public BlockTintedGlass(String name, EnumDyeColor type)
     {
-        super(Material.GLASS);
+        super(name, Material.GLASS);
         this.setHardness(0.5F);
         this.setResistance(20.0F);
         this.setSoundType(SoundType.GLASS);
-        this.setTranslationKey(name);
         this.type = type;
     }
 

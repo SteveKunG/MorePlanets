@@ -22,8 +22,7 @@ public class BlockInfectedPurloniteSlime extends BlockBreakableMP
 {
     public BlockInfectedPurloniteSlime(String name)
     {
-        super(Material.CLAY);
-        this.setTranslationKey(name);
+        super(name, Material.CLAY);
         this.setDefaultSlipperiness(0.8F);
         this.setSoundType(MPSounds.ALIEN_EGG);
     }

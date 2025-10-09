@@ -38,12 +38,11 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
 
     public BlockLeavesMP(String name, BlockType type)
     {
-        super(Material.LEAVES);
+        super(name, Material.LEAVES);
         this.setTickRandomly(true);
         this.setHardness(0.2F);
         this.setLightOpacity(1);
         this.setSoundType(SoundType.PLANT);
-        this.setTranslationKey(name);
         this.type = type;
     }
 

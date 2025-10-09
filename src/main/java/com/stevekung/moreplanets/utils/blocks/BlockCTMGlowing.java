@@ -11,8 +11,7 @@ public class BlockCTMGlowing extends BlockBaseMP
 {
     public BlockCTMGlowing(String name, Material material)
     {
-        super(material);
-        this.setTranslationKey(name);
+        super(name, material);
     }
 
     @Override

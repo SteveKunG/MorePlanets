@@ -19,7 +19,7 @@ public class BlockInfectedTorch extends BlockTorchMP
 {
     public BlockInfectedTorch(String name)
     {
-        this.setTranslationKey(name);
+        super(name);
         this.setLightLevel(0.9375F);
         this.setSoundType(SoundType.WOOD);
     }

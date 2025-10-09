@@ -20,11 +20,10 @@ public class BlockMultalicCrystalBlock extends BlockBreakableMP
 {
     public BlockMultalicCrystalBlock(String name)
     {
-        super(Material.GLASS);
+        super(name, Material.GLASS);
         this.setHardness(3.0F);
         this.setLightOpacity(3);
         this.setSoundType(SoundType.GLASS);
-        this.setTranslationKey(name);
     }
 
     @Override

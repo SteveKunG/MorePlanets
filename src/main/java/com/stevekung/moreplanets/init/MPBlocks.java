@@ -914,7 +914,7 @@ public class MPBlocks
         MPBlocks.INFECTED_OAK_FENCE = new BlockFenceMP("infected_oak_fence");
         MPBlocks.ALIEN_BERRY_OAK_FENCE = new BlockFenceMP("alien_berry_oak_fence");
         MPBlocks.INFECTED_FARMLAND = new BlockInfectedFarmland("infected_farmland");
-        MPBlocks.INFECTED_SAND = new BlockFallingMP("infected_sand").setSoundType(SoundType.SAND).setHardness(0.5F);
+        MPBlocks.INFECTED_SAND = new BlockFallingMP("infected_sand", Material.SAND).setSoundType(SoundType.SAND).setHardness(0.5F);
         MPBlocks.INFECTED_CACTUS = new BlockInfectedCactus("infected_cactus");
         MPBlocks.INFECTED_VINES = new BlockInfectedVines("infected_vines");
         MPBlocks.SPORELILY = new BlockSporelily("sporelily");

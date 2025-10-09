@@ -18,10 +18,9 @@ public class BlockDeshFrame extends BlockBaseMP
 {
     public BlockDeshFrame(String name)
     {
-        super(Material.IRON);
+        super(name, Material.IRON);
         this.setSoundType(SoundType.METAL);
         this.setHardness(3.0F);
-        this.setTranslationKey(name);
     }
 
     @Override

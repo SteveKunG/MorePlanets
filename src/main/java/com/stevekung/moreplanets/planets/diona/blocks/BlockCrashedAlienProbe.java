@@ -30,12 +30,11 @@ public class BlockCrashedAlienProbe extends BlockTileMP
 
     public BlockCrashedAlienProbe(String name)
     {
-        super(Material.IRON);
+        super(name, Material.IRON);
         this.setDefaultState(this.blockState.getBaseState().withProperty(HAS_ALIEN, false));
         this.setSoundType(SoundType.METAL);
         this.setHardness(5.0F);
         this.setResistance(12.0F);
-        this.setTranslationKey(name);
     }
 
     @Override

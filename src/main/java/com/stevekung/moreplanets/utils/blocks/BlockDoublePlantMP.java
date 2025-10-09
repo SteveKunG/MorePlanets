@@ -33,9 +33,8 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
 
     public BlockDoublePlantMP(String name, BlockType type)
     {
-        super(Material.VINE);
+        super(name, Material.VINE);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockDoublePlant.HALF, BlockDoublePlant.EnumBlockHalf.LOWER));
-        this.setTranslationKey(name);
         this.type = type;
     }
 

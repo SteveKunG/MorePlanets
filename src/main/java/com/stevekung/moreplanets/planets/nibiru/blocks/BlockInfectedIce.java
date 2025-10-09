@@ -27,7 +27,7 @@ public class BlockInfectedIce extends BlockIceMP
 {
     public BlockInfectedIce(String name)
     {
-        this.setTranslationKey(name);
+        super(name);
     }
 
     @Override

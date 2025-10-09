@@ -10,9 +10,9 @@ import net.minecraft.world.World;
 
 public abstract class BlockAdvancedTileMP extends BlockAdvancedMP
 {
-    public BlockAdvancedTileMP(Material material)
+    public BlockAdvancedTileMP(String name, Material material)
     {
-        super(material);
+        super(name, material);
     }
 
     @Override

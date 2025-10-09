@@ -10,6 +10,7 @@ import com.stevekung.moreplanets.utils.blocks.BlockFallingMP;
 import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 
 import net.minecraft.block.BlockFalling;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,7 +32,7 @@ public class BlockFallenKoentusMeteor extends BlockFallingMP
 
     public BlockFallenKoentusMeteor(String name)
     {
-        super(name);
+        super(name, Material.ROCK);
         this.setHardness(50.0F);
         this.setResistance(25.0F);
     }

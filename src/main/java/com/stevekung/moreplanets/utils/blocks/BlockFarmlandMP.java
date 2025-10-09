@@ -30,9 +30,9 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
 {
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
 
-    public BlockFarmlandMP()
+    public BlockFarmlandMP(String name)
     {
-        super(Material.GROUND);
+        super(name, Material.GROUND);
         this.setTickRandomly(true);
         this.setHardness(0.6F);
         this.setSoundType(SoundType.GROUND);

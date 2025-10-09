@@ -20,18 +20,13 @@ import javax.annotation.Nullable;
 
 public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements ModelNameGatherer
 {
-    private String name;
+    private final String name;
 
-    public BlockFluidFiniteMP(Fluid fluid, Material material)
+    public BlockFluidFiniteMP(String name, Fluid fluid, Material material)
     {
         super(fluid, material);
-    }
-
-    @Override
-    public Block setTranslationKey(String name)
-    {
         this.name = name;
-        return super.setTranslationKey(name);
+        this.setTranslationKey(name);
     }
 
     @Override

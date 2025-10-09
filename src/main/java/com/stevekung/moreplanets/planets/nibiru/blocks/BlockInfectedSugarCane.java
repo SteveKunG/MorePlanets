@@ -31,9 +31,8 @@ public class BlockInfectedSugarCane extends BlockBushMP
 
     public BlockInfectedSugarCane(String name)
     {
-        super(Material.PLANTS);
+        super(name, Material.PLANTS);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.AGE_15, 0));
-        this.setTranslationKey(name);
     }
 
     @Override

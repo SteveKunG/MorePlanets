@@ -4,7 +4,6 @@ import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.init.MPBlocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -20,26 +19,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockFallingMP extends BlockFalling implements MorePlanetsBlock
 {
-    private String name;
-
-    public BlockFallingMP() {}
-
-    public BlockFallingMP(String name)
-    {
-        this.setTranslationKey(name);
-    }
+    private final String name;
 
     public BlockFallingMP(String name, Material material)
     {
         super(material);
-        this.setTranslationKey(name);
-    }
-
-    @Override
-    public Block setTranslationKey(String name)
-    {
         this.name = name;
-        return super.setTranslationKey(name);
+        this.setTranslationKey(name);
     }
 
     @Override

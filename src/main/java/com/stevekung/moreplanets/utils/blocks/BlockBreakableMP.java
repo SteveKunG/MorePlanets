@@ -11,9 +11,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BlockBreakableMP extends BlockBaseMP
 {
-    public BlockBreakableMP(Material material)
+    public BlockBreakableMP(String name, Material material)
     {
-        super(material);
+        super(name, material);
     }
 
     @Override

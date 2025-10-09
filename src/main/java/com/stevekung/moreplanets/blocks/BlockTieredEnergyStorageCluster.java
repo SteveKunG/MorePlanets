@@ -49,11 +49,10 @@ public class BlockTieredEnergyStorageCluster extends BlockTileMP implements IDes
 
     public BlockTieredEnergyStorageCluster(String name, BlockType type)
     {
-        super(Material.IRON);
+        super(name, Material.IRON);
         this.setHardness(2.0F);
         this.setSoundType(SoundType.METAL);
         this.setDefaultState(this.blockState.getBaseState().withProperty(VALUE, 0).withProperty(FACING, EnumFacing.NORTH));
-        this.setTranslationKey(name);
         this.type = type;
     }
 

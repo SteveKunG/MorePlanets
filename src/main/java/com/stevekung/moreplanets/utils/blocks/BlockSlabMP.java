@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -18,18 +17,13 @@ import net.minecraft.world.World;
 
 public abstract class BlockSlabMP extends BlockSlab implements MorePlanetsBlock, ISlab
 {
-    private String name;
+    private final String name;
 
-    public BlockSlabMP(Material material)
+    public BlockSlabMP(String name, Material material)
     {
         super(material);
-    }
-
-    @Override
-    public Block setTranslationKey(String name)
-    {
+        this.setTranslationKey(name);
         this.name = name;
-        return super.setTranslationKey(name);
     }
 
     @Override

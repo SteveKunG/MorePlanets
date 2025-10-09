@@ -22,9 +22,8 @@ public class BlockCheeseSlime extends BlockBreakableMP implements MorePlanetsBlo
 {
     public BlockCheeseSlime(String name)
     {
-        super(Material.GLASS);
+        super(name, Material.GLASS);
         this.setSoundType(SoundType.SLIME);
-        this.setTranslationKey(name);
         this.setDefaultSlipperiness(0.8F);
     }
 

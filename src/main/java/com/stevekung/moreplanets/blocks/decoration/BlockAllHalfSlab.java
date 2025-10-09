@@ -24,8 +24,7 @@ public class BlockAllHalfSlab extends BlockSlabMP
 
     public BlockAllHalfSlab(String name, BlockType type, Material material)
     {
-        super(material);
-        this.setTranslationKey(name);
+        super(name, material);
         this.useNeighborBrightness = true;
         this.type = type;
 
@@ -57,12 +56,11 @@ public class BlockAllHalfSlab extends BlockSlabMP
         {
             this.setHardness(2.0F);
         }
-        this.setDefaultState(this.blockState.getBaseState().withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM));
-    }
 
-    public BlockAllHalfSlab(Material material)
-    {
-        super(material);
+        if (!this.isDouble())
+        {
+            this.setDefaultState(this.blockState.getBaseState().withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+        }
     }
 
     @Override

@@ -17,9 +17,8 @@ public class BlockCTMGlowingDirectional extends BlockDirectionalMP
 {
     public BlockCTMGlowingDirectional(String name, Material material)
     {
-        super(material);
+        super(name, material);
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.FACING_ALL, EnumFacing.UP));
-        this.setTranslationKey(name);
     }
 
     @Override

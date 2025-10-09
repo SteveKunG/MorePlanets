@@ -4,7 +4,6 @@ import com.stevekung.moreplanets.core.MorePlanetsMod;
 import com.stevekung.moreplanets.utils.blocks.MPBlockCategory;
 import com.stevekung.moreplanets.utils.blocks.MorePlanetsBlock;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -27,7 +26,7 @@ import javax.annotation.Nullable;
 
 public class BlockTintedGlassPane extends BlockPane implements IPartialSealableBlock, MorePlanetsBlock
 {
-    private String name;
+    private final String name;
     private final EnumDyeColor type;
 
     public BlockTintedGlassPane(String name, EnumDyeColor type)
@@ -37,15 +36,9 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
         this.setHardness(0.5F);
         this.setResistance(20.0F);
         this.setSoundType(SoundType.GLASS);
-        this.setTranslationKey(name);
         this.type = type;
-    }
-
-    @Override
-    public Block setTranslationKey(String name)
-    {
         this.name = name;
-        return super.setTranslationKey(name);
+        this.setTranslationKey(name);
     }
 
     @Override

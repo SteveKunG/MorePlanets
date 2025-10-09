@@ -24,26 +24,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ModelNameGatherer
 {
-    private String name;
+    private final String name;
     protected boolean isWater;
 
-    public BlockFluidBaseMP(Fluid fluid)
+    public BlockFluidBaseMP(String name, Fluid fluid)
     {
-        super(fluid, Material.WATER);
-        this.setHardness(100.0F);
+        this(name, fluid, Material.WATER);
     }
 
-    public BlockFluidBaseMP(Fluid fluid, Material material)
+    public BlockFluidBaseMP(String name, Fluid fluid, Material material)
     {
         super(fluid, material);
-        this.setHardness(100.0F);
-    }
-
-    @Override
-    public Block setTranslationKey(String name)
-    {
         this.name = name;
-        return super.setTranslationKey(name);
+        this.setTranslationKey(name);
+        this.setHardness(100.0F);
     }
 
     @Override

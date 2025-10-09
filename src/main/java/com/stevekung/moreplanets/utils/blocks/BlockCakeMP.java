@@ -29,9 +29,9 @@ public abstract class BlockCakeMP extends BlockBaseMP
 {
     private static final AxisAlignedBB[] CAKE_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.1875D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.3125D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.4375D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.5625D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.6875D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.8125D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D)};
 
-    public BlockCakeMP()
+    public BlockCakeMP(String name)
     {
-        super(Material.CAKE);
+        super(name, Material.CAKE);
         this.setTickRandomly(true);
         this.setHardness(0.5F);
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.BITES, 0));

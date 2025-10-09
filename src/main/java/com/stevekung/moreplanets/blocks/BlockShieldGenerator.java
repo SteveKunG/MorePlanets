@@ -37,9 +37,8 @@ public class BlockShieldGenerator extends BlockAdvancedTileMP implements IDescri
 {
     public BlockShieldGenerator(String name)
     {
-        super(Material.IRON);
+        super(name, Material.IRON);
         this.setHardness(5.0F);
-        this.setTranslationKey(name);
         this.setSoundType(SoundType.METAL);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH));
     }

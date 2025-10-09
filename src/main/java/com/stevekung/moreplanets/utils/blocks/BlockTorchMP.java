@@ -8,11 +8,12 @@ import net.minecraft.util.EnumFacing;
 
 public abstract class BlockTorchMP extends BlockTorch implements MorePlanetsBlock
 {
-    public BlockTorchMP()
+    public BlockTorchMP(String name)
     {
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.UP));
         this.setHardness(0.0F);
         this.setTickRandomly(true);
+        this.setTranslationKey(name);
     }
 
     @Override

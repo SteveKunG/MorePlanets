@@ -18,7 +18,7 @@ public class BlockAlienBerryChest extends BlockChestMP
 {
     public BlockAlienBerryChest(String name)
     {
-        this.setTranslationKey(name);
+        super(name);
     }
 
     @Override

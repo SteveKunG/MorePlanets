@@ -22,7 +22,7 @@ public class BlockAllDoubleSlab extends BlockAllHalfSlab
 
     public BlockAllDoubleSlab(String name, BlockType type, Material material)
     {
-        super(material);
+        super(name, type, material);
         this.useNeighborBrightness = true;
         this.type = type;
 
@@ -41,7 +41,6 @@ public class BlockAllDoubleSlab extends BlockAllHalfSlab
         {
             this.setHardness(2.0F);
         }
-        this.setTranslationKey(name);
     }
 
     @Override

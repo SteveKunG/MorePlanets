@@ -20,11 +20,10 @@ public class BlockInfectedSeaLantern extends BlockBaseMP
 {
     public BlockInfectedSeaLantern(String name)
     {
-        super(Material.GLASS);
+        super(name, Material.GLASS);
         this.setSoundType(SoundType.GLASS);
         this.setHardness(0.3F);
         this.setLightLevel(1.0F);
-        this.setTranslationKey(name);
     }
 
     @Override

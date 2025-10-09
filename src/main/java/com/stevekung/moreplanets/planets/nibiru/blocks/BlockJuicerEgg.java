@@ -28,10 +28,9 @@ public class BlockJuicerEgg extends BlockBaseMP implements ITileEntityProvider
 {
     public BlockJuicerEgg(String name)
     {
-        super(Material.GROUND);
+        super(name, Material.GROUND);
         this.setResistance(0.0F);
         this.setHardness(0.5F);
-        this.setTranslationKey(name);
         this.setSoundType(MPSounds.ALIEN_EGG);
         this.setDefaultSlipperiness(0.8F);
     }

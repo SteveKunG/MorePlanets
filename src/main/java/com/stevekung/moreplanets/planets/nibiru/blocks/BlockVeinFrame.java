@@ -42,13 +42,12 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
 
     public BlockVeinFrame(String name)
     {
-        super(Material.ROCK);
+        super(name, Material.ROCK);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH).withProperty(EYE, false));
         this.setLightLevel(0.125F);
         this.setBlockUnbreakable();
         this.setResistance(6000000.0F);
         this.setSoundType(MPSounds.ALIEN_EGG);
-        this.setTranslationKey(name);
     }
 
     @Override

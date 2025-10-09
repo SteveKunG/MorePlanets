@@ -32,8 +32,7 @@ public class BlockInfectedPurloniteCobweb extends BlockBaseMP
 {
     public BlockInfectedPurloniteCobweb(String name)
     {
-        super(Material.WEB);
-        this.setTranslationKey(name);
+        super(name, Material.WEB);
         this.setLightOpacity(1);
         this.setHardness(4.0F);
     }

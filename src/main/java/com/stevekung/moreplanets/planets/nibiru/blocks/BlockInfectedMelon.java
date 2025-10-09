@@ -19,8 +19,7 @@ public class BlockInfectedMelon extends BlockBaseMP
 {
     public BlockInfectedMelon(String name)
     {
-        super(Material.GOURD);
-        this.setTranslationKey(name);
+        super(name, Material.GOURD);
         this.setHardness(1.0F);
         this.setSoundType(SoundType.WOOD);
     }
