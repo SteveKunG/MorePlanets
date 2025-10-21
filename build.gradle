@@ -179,7 +179,7 @@ dependencies {
     implementation(modUtils.deobfuscate("curse.maven:codechicken-lib-1-8-242818:2779848").toString())
     implementation "mezz.jei:jei_${minecraft_version}:${jei_version}"
     implementation "curse.maven:baubles-227083:2518667"
-    implementation "maven.modrinth:sound-device-options:1.0.4"
+    implementation "maven.modrinth:sound-device-options:1.5.0"
     api "curse.maven:mekanism-268560:2835176"
     api "com.mod-buildcraft:buildcraft-api:7.99.8.2"
     api "net.industrial-craft:industrialcraft-2:2.8.222-ex112:api"
