@@ -51,10 +51,6 @@ public class ConfigManagerMP
         @Config.RequiresMcRestart
         public boolean enableSurvivalPlanetSelection = false;
 
-        @Config.Name(value = "Use 3D Item Model for Torch")
-        @Config.RequiresMcRestart
-        public boolean use3DTorchItemModel = true;
-
         @Config.Name(value = "Use Colored Star in the Sky")
         @Config.RequiresWorldRestart
         public boolean useColoredStar = true;

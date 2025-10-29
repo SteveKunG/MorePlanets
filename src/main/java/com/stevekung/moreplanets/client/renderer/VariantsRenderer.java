@@ -1,7 +1,6 @@
 package com.stevekung.moreplanets.client.renderer;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.core.config.ConfigManagerMP;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPItems;
 
@@ -9,8 +8,6 @@ public class VariantsRenderer
 {
     public static void init()
     {
-        VariantsRenderer.init3DRendering();
-
         MorePlanetsMod.CLIENT_REGISTRY.registerVariantsName(MPBlocks.INFESTED_NIBIRU_ROCK, "nibiru_rock");
         MorePlanetsMod.CLIENT_REGISTRY.registerVariantsName(MPBlocks.INFESTED_NIBIRU_COBBLESTONE, "nibiru_cobblestone");
         MorePlanetsMod.CLIENT_REGISTRY.registerVariantsName(MPBlocks.INFESTED_NIBIRU_VEIN_COBBLESTONE, "nibiru_vein_cobblestone");
@@ -22,14 +19,5 @@ public class VariantsRenderer
         MorePlanetsMod.CLIENT_REGISTRY.registerVariantsName(MPItems.SPACE_BOW, "space_bow", "space_bow_pulling_0", "space_bow_pulling_1", "space_bow_pulling_2");
         MorePlanetsMod.CLIENT_REGISTRY.registerVariantsName(MPItems.SPACE_FISHING_ROD, "space_fishing_rod", "space_fishing_rod_cast");
         MorePlanetsMod.CLIENT_REGISTRY.registerVariantsName(MPItems.LASER_GUN, "laser_gun", "laser_gun_charged", "laser_gun_shoot");
-    }
-
-    private static void init3DRendering()
-    {
-        if (!ConfigManagerMP.moreplanets_general.use3DTorchItemModel)
-        {
-            MorePlanetsMod.CLIENT_REGISTRY.registerVariantsName(MPBlocks.INFECTED_PURLONITE_TORCH, "infected_purlonite_torch_vanilla");
-            MorePlanetsMod.CLIENT_REGISTRY.registerVariantsName(MPBlocks.INFECTED_TORCH, "infected_torch_vanilla");
-        }
     }
 }

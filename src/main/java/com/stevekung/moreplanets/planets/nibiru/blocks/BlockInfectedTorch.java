@@ -2,7 +2,6 @@ package com.stevekung.moreplanets.planets.nibiru.blocks;
 
 import java.util.Random;
 
-import com.stevekung.moreplanets.core.config.ConfigManagerMP;
 import com.stevekung.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
 import com.stevekung.moreplanets.utils.blocks.BlockTorchMP;
 
@@ -36,11 +35,5 @@ public class BlockInfectedTorch extends BlockTorchMP
         {
             world.setBlockState(pos, Blocks.TORCH.getStateFromMeta(this.getMetaFromState(state)));
         }
-    }
-
-    @Override
-    public String getModelName()
-    {
-        return ConfigManagerMP.moreplanets_general.use3DTorchItemModel ? "infected_torch" : "infected_torch_vanilla";
     }
 }

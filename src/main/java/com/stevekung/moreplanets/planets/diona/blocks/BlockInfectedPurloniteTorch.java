@@ -3,7 +3,6 @@ package com.stevekung.moreplanets.planets.diona.blocks;
 import java.util.Random;
 
 import com.stevekung.moreplanets.core.MorePlanetsMod;
-import com.stevekung.moreplanets.core.config.ConfigManagerMP;
 import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
 import com.stevekung.moreplanets.utils.blocks.BlockTorchMP;
 
@@ -45,11 +44,5 @@ public class BlockInfectedPurloniteTorch extends BlockTorchMP
             world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, 0.0D, 0.0D, 0.0D);
             MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_PURLONITE_FLAME, d0, d1, d2);
         }
-    }
-
-    @Override
-    public String getModelName()
-    {
-        return ConfigManagerMP.moreplanets_general.use3DTorchItemModel ? "infected_purlonite_torch" : "infected_purlonite_torch_vanilla";
     }
 }
