@@ -29,6 +29,7 @@ import com.stevekung.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import com.stevekung.moreplanets.tileentity.TileEntityShieldGenerator;
 import com.stevekung.moreplanets.utils.EnumParticleTypesMP;
 import com.stevekung.moreplanets.utils.IMorePlanetsBoss;
+import com.stevekung.moreplanets.utils.SurvivalPlanetUtils;
 import com.stevekung.moreplanets.utils.blocks.fluid.LiquidUtils;
 import com.stevekung.moreplanets.utils.itemblocks.ItemRarity;
 
@@ -77,14 +78,20 @@ import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore.EventSpecialRende
 
 public class ClientEventHandler
 {
-    private final Map<BlockPos, Integer> beamList = new HashMap<>();
+    private final Map<BlockPos, Integer> ionBeamMap = new HashMap<>();
     private final Minecraft mc;
     private boolean firstWorldJoin;
     private boolean initVersionCheck;
     public static final List<BlockPos> RECEIVER_RENDER_POS = new ArrayList<>();
     public static final List<BlockPos> WASTE_RENDER_POS = new ArrayList<>();
     public static final Set<IMorePlanetsBoss> BOSSES = Collections.newSetFromMap(new WeakHashMap<>());
+
     private static final ResourceLocation BOSS_BAR = new ResourceLocation("moreplanets:textures/gui/boss_bars.png");
+    private static final ResourceLocation INFECTED_PURLONITE_WATER_OVERLAY = new ResourceLocation("moreplanets:textures/misc/infected_purlonite_water.png");
+    private static final ResourceLocation CHEESE_MILK_OVERLAY = new ResourceLocation("moreplanets:textures/misc/cheese_milk.png");
+    private static final ResourceLocation INFECTED_WATER_OVERLAY = new ResourceLocation("moreplanets:textures/misc/infected_water.png");
+    private static final ResourceLocation GASEOUS_CHEESE_MILK_OVERLAY = new ResourceLocation("moreplanets:textures/misc/gaseous_cheese_milk.png");
+    private static final ResourceLocation HELIUM_GAS_OVERLAY = new ResourceLocation("moreplanets:textures/misc/helium_gas.png");
 
     public ClientEventHandler()
     {
@@ -100,19 +107,18 @@ public class ClientEventHandler
     @SubscribeEvent
     public void onEntityJoinWorld(EntityJoinWorldEvent event)
     {
-        if (WorldTickEventHandler.survivalPlanetData == null)
+        if (!SurvivalPlanetUtils.hasSurvivalPlanetData())
         {
-            return;
-        }
-        if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && event.getEntity() == this.mc.player && !this.firstWorldJoin && !WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData && !WorldTickEventHandler.survivalPlanetData.disableMessage)
-        {
-            ITextComponent component = new TextComponentString(ColorUtils.stringToRGB(ItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(new TextComponentTranslation("message.survival_planet.1").appendText(" ").appendSibling(new TextComponentTranslation("message.survival_planet.2").setStyle(new Style().setColor(TextFormatting.AQUA))).appendText(" ").appendSibling(new TextComponentTranslation("message.survival_planet.3")).setStyle(new Style().setColor(TextFormatting.YELLOW)));
-            component.getStyle().setClickEvent(new ClickEvent(Action.RUN_COMMAND, "/mpcelestial"));
-            ClientUtils.printClientMessage(component);
-            ITextComponent component2 = new TextComponentTranslation("message.survival_planet.4").appendText(" ").appendSibling(new TextComponentTranslation("message.survival_planet.5").setStyle(new Style().setColor(TextFormatting.RED))).setStyle(new Style().setColor(TextFormatting.YELLOW));
-            component2.getStyle().setClickEvent(new ClickEvent(Action.RUN_COMMAND, "/mpcelestial disable"));
-            ClientUtils.printClientMessage(component2);
-            this.firstWorldJoin = true;
+            if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && event.getEntity() == this.mc.player && !this.firstWorldJoin && !WorldTickEventHandler.survivalPlanetData.disableMessage)
+            {
+                ITextComponent component = new TextComponentString(ColorUtils.stringToRGB(ItemRarity.ALIEN).toColoredFont() + "[More Planets] ").appendSibling(new TextComponentTranslation("message.survival_planet.1").appendText(" ").appendSibling(new TextComponentTranslation("message.survival_planet.2").setStyle(new Style().setColor(TextFormatting.AQUA))).appendText(" ").appendSibling(new TextComponentTranslation("message.survival_planet.3")).setStyle(new Style().setColor(TextFormatting.YELLOW)));
+                component.getStyle().setClickEvent(new ClickEvent(Action.RUN_COMMAND, "/mpcelestial"));
+                ClientUtils.printClientMessage(component);
+                ITextComponent component2 = new TextComponentTranslation("message.survival_planet.4").appendText(" ").appendSibling(new TextComponentTranslation("message.survival_planet.5").setStyle(new Style().setColor(TextFormatting.RED))).setStyle(new Style().setColor(TextFormatting.YELLOW));
+                component2.getStyle().setClickEvent(new ClickEvent(Action.RUN_COMMAND, "/mpcelestial disable"));
+                ClientUtils.printClientMessage(component2);
+                this.firstWorldJoin = true;
+            }
         }
     }
 
@@ -161,6 +167,7 @@ public class ClientEventHandler
         }
     }
 
+    @SuppressWarnings("JavaReflectionInvocation")
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onClientTick(ClientTickEvent event)
@@ -237,9 +244,9 @@ public class ClientEventHandler
     {
         if (this.mc.player != null)
         {
-            for (Map.Entry<BlockPos, Integer> entry : this.beamList.entrySet())
+            for (BlockPos blockPos : this.ionBeamMap.keySet())
             {
-                FakeAlienBeamRenderer.INSTANCE.renderBeam(entry.getKey().getX() - ClientProxyCore.playerPosX, entry.getKey().getY() - ClientProxyCore.playerPosY, entry.getKey().getZ() - ClientProxyCore.playerPosZ, event.partialTicks);
+                FakeAlienBeamRenderer.INSTANCE.renderBeam(blockPos.getX() - ClientProxyCore.playerPosX, blockPos.getY() - ClientProxyCore.playerPosY, blockPos.getZ() - ClientProxyCore.playerPosZ, event.partialTicks);
             }
             ShieldRenderer.renderShields(this.mc.player, event.partialTicks);
         }
@@ -389,35 +396,40 @@ public class ClientEventHandler
     @SideOnly(Side.CLIENT)
     public void onRenderBlockOverlay(RenderBlockOverlayEvent event)
     {
-        float partialTicks = event.getRenderPartialTicks();
         EntityPlayer player = this.mc.player;
+        boolean insideFluid = false;
 
         if (event.getOverlayType() == OverlayType.WATER)
         {
             if (LiquidUtils.checkInsideBlock(player, MPBlocks.INFECTED_PURLONITE_WATER_FLUID_BLOCK))
             {
-                event.setCanceled(true);
-                this.renderOverlay("infected_purlonite_water", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.5D);
+                this.renderOverlay(INFECTED_PURLONITE_WATER_OVERLAY, this.mc.player.getBrightness(), 0.75F, -0.5D);
+                insideFluid = true;
             }
-            if (LiquidUtils.checkInsideBlock(player, MPBlocks.CHEESE_MILK_FLUID_BLOCK))
+            else if (LiquidUtils.checkInsideBlock(player, MPBlocks.CHEESE_MILK_FLUID_BLOCK))
+            {
+                this.renderOverlay(CHEESE_MILK_OVERLAY, this.mc.player.getBrightness(), 0.75F, -0.5D);
+                insideFluid = true;
+            }
+            else if (LiquidUtils.checkInsideBlock(player, MPBlocks.INFECTED_WATER_FLUID_BLOCK))
+            {
+                this.renderOverlay(INFECTED_WATER_OVERLAY, this.mc.player.getBrightness(), 0.5F, -0.5D);
+                insideFluid = true;
+            }
+            else if (LiquidUtils.checkInsideBlock(player, MPBlocks.GASEOUS_CHEESE_MILK_BLOCK))
+            {
+                this.renderOverlay(GASEOUS_CHEESE_MILK_OVERLAY, this.mc.player.getBrightness(), 0.75F, -0.25D);
+                insideFluid = true;
+            }
+            else if (LiquidUtils.checkInsideBlock(player, MPBlocks.HELIUM_GAS_BLOCK))
+            {
+                this.renderOverlay(HELIUM_GAS_OVERLAY, this.mc.player.getBrightness(), 0.75F, -0.25D);
+                insideFluid = true;
+            }
+
+            if (insideFluid)
             {
                 event.setCanceled(true);
-                this.renderOverlay("cheese_milk", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.5D);
-            }
-            if (LiquidUtils.checkInsideBlock(player, MPBlocks.INFECTED_WATER_FLUID_BLOCK))
-            {
-                event.setCanceled(true);
-                this.renderOverlay("infected_water", this.mc.player.getBrightness(), 0.5F, partialTicks, -0.5D);
-            }
-            if (LiquidUtils.checkInsideBlock(player, MPBlocks.GASEOUS_CHEESE_MILK_BLOCK))
-            {
-                event.setCanceled(true);
-                this.renderOverlay("gaseous_cheese_milk", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.25D);
-            }
-            if (LiquidUtils.checkInsideBlock(player, MPBlocks.HELIUM_GAS_BLOCK))
-            {
-                event.setCanceled(true);
-                this.renderOverlay("helium_gas", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.25D);
             }
         }
     }
@@ -434,31 +446,31 @@ public class ClientEventHandler
             event.setGreen(0.375F);
             event.setBlue(0.8F);
         }
-        if (LiquidUtils.checkInsideBlock(player, MPBlocks.INFECTED_PURLONITE_LAVA_FLUID_BLOCK))
+        else if (LiquidUtils.checkInsideBlock(player, MPBlocks.INFECTED_PURLONITE_LAVA_FLUID_BLOCK))
         {
             event.setRed(0.35F);
             event.setGreen(0.25F);
             event.setBlue(0.55F);
         }
-        if (LiquidUtils.checkInsideBlock(player, MPBlocks.CHEESE_MILK_FLUID_BLOCK))
+        else if (LiquidUtils.checkInsideBlock(player, MPBlocks.CHEESE_MILK_FLUID_BLOCK))
         {
             event.setRed(0.85F);
             event.setGreen(0.8F);
             event.setBlue(0.6F);
         }
-        if (LiquidUtils.checkInsideBlock(player, MPBlocks.INFECTED_WATER_FLUID_BLOCK))
+        else if (LiquidUtils.checkInsideBlock(player, MPBlocks.INFECTED_WATER_FLUID_BLOCK))
         {
             event.setRed(0.4F);
             event.setGreen(0.15F);
             event.setBlue(0.1F);
         }
-        if (LiquidUtils.checkInsideBlock(player, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK))
+        else if (LiquidUtils.checkInsideBlock(player, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK))
         {
             event.setRed(0.25F);
             event.setGreen(0.7F);
             event.setBlue(0.05F);
         }
-        if (LiquidUtils.checkInsideBlock(player, MPBlocks.PURIFIED_WATER_FLUID_BLOCK))
+        else if (LiquidUtils.checkInsideBlock(player, MPBlocks.PURIFIED_WATER_FLUID_BLOCK))
         {
             event.setRed(0.4F);
             event.setGreen(0.625F);
@@ -472,7 +484,7 @@ public class ClientEventHandler
         if (this.mc.currentScreen instanceof GuiCelestialSelection)
         {
             GuiCelestialSelection gui = (GuiCelestialSelection) this.mc.currentScreen;
-            boolean enable = true;
+            boolean enable = false; //TODO: Implement actual ion cannon
             float partialTicks = com.stevekung.lib.client.event.ClientEventHandler.renderPartialTicks;
 
             if (event.celestialBody == GalacticraftCore.planetOverworld && enable)
@@ -509,9 +521,9 @@ public class ClientEventHandler
         }
     }
 
-    private void renderOverlay(String texture, float brightness, float alpha, float partialTicks, double zoom)
+    private void renderOverlay(ResourceLocation texture, float brightness, float alpha, double zoom)
     {
-        this.mc.getTextureManager().bindTexture(new ResourceLocation("moreplanets:textures/misc/" + texture + ".png"));
+        this.mc.getTextureManager().bindTexture(texture);
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder worldrenderer = tessellator.getBuffer();
         GlStateManager.color(brightness, brightness, brightness, alpha);
@@ -533,16 +545,16 @@ public class ClientEventHandler
 
     private void runAlienBeamTick(EntityPlayer player)
     {
-        Iterator<Map.Entry<BlockPos, Integer>> it = this.beamList.entrySet().iterator();
+        Iterator<Map.Entry<BlockPos, Integer>> iterator = this.ionBeamMap.entrySet().iterator();
 
-        while (it.hasNext())
+        while (iterator.hasNext())
         {
-            Map.Entry<BlockPos, Integer> entry = it.next();
+            Map.Entry<BlockPos, Integer> entry = iterator.next();
             int val = entry.getValue();
 
             if (val - 1 <= 0)
             {
-                it.remove();
+                iterator.remove();
             }
             else
             {
@@ -562,7 +574,7 @@ public class ClientEventHandler
                 double posY = 48;
                 double posZ = player.posZ + dZ;
                 this.mc.world.playSound(player, posX, player.posY, posZ, MPSounds.ALIEN_BEAM, SoundCategory.WEATHER, 100.0F, 1.0F + player.getRNG().nextFloat() * 0.8F);
-                this.beamList.put(new BlockPos(posX, posY, posZ), 40);
+                this.ionBeamMap.put(new BlockPos(posX, posY, posZ), 40);
             }
         }
     }
