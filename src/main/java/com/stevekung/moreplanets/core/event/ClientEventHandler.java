@@ -6,6 +6,7 @@ import java.util.*;
 
 import org.lwjgl.input.Keyboard;
 
+import com.google.common.collect.Maps;
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.lib.utils.client.ClientUtils;
 import com.stevekung.lib.utils.client.GLConstants;
@@ -78,7 +79,7 @@ import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore.EventSpecialRende
 
 public class ClientEventHandler
 {
-    private final Map<BlockPos, Integer> ionBeamMap = new HashMap<>();
+    private final Map<BlockPos, Integer> ionBeamMap = Maps.newConcurrentMap();
     private final Minecraft mc;
     private boolean firstWorldJoin;
     private boolean initVersionCheck;
@@ -235,7 +236,10 @@ public class ClientEventHandler
     @SideOnly(Side.CLIENT)
     public void onPlayerTick(PlayerTickEvent event)
     {
-        this.runAlienBeamTick(event.player);
+        if (this.mc.world != null)
+        {
+            this.runAlienBeamTick(event.player);
+        }
     }
 
     @SubscribeEvent
@@ -567,14 +571,14 @@ public class ClientEventHandler
             if (player.world.getSunBrightness(1.0F) < 0.1F)
             {
                 double freq = player.getRNG().nextDouble() * Math.PI * 2.0F;
-                double dist = 64.0F;
+                double dist = 8d + player.getRNG().nextInt(64);
                 double dX = dist * Math.cos(freq);
                 double dZ = dist * Math.sin(freq);
                 double posX = player.posX + dX;
                 double posY = 48;
                 double posZ = player.posZ + dZ;
                 this.mc.world.playSound(player, posX, player.posY, posZ, MPSounds.ALIEN_BEAM, SoundCategory.WEATHER, 100.0F, 1.0F + player.getRNG().nextFloat() * 0.8F);
-                this.ionBeamMap.put(new BlockPos(posX, posY, posZ), 40);
+                this.ionBeamMap.put(new BlockPos(posX, posY, posZ), 40 + player.getRNG().nextInt(20));
             }
         }
     }
