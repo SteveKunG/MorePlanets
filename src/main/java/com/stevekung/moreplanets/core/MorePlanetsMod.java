@@ -160,6 +160,7 @@ public class MorePlanetsMod
         SmeltingManagerMP.init();
         MPSchematics.init();
         MPDimensions.init();
+        MPBlocks.gatherAllInfectedBlocks();
     }
 
     @EventHandler

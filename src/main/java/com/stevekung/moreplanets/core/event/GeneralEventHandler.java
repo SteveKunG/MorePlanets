@@ -1,8 +1,5 @@
 package com.stevekung.moreplanets.core.event;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.stevekung.lib.utils.enums.CachedEnum;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPItems;
@@ -43,21 +40,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class GeneralEventHandler
 {
-    private static final List<Block> INFECTED_BLOCK_LIST = new ArrayList<>();
-
-    static
-    {
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.PURE_HERB);
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.BATASIA_DANDELION);
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.PYOLONIA);
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.PHILIPY);
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.WHITE_TAIL);
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.VEALIUM_VINES);
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.JUICER_EGG);
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.OIL_ORE);
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.SPORELILY);
-    }
-
     @SubscribeEvent
     public void onFuelBurnTime(FurnaceFuelBurnTimeEvent event)
     {
@@ -204,33 +186,11 @@ public class GeneralEventHandler
             return;
         }
 
-        for (Block block : GeneralEventHandler.INFECTED_BLOCK_LIST)
+        if (MPBlocks.getInfectedBlocks().contains(sourceBlock) && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !player.capabilities.isCreativeMode)
         {
-            if (sourceBlock == block && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !player.capabilities.isCreativeMode)
-            {
-                player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 60));
-            }
+            player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 60));
         }
 
-        if (sourceBlock.getRegistryName().toString().startsWith("moreplanets"))
-        {
-            String sourceName = sourceBlock.getTranslationKey().substring(5);
-
-            if (sourceName.startsWith("infected_purlonite"))
-            {
-                return;
-            }
-            else
-            {
-                if (sourceName.contains("infected") || sourceName.contains("nibiru"))
-                {
-                    if (!player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !player.capabilities.isCreativeMode)
-                    {
-                        player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 60));
-                    }
-                }
-            }
-        }
         if (this.isShears(player))
         {
             if (sourceBlock == MPBlocks.RED_CANDY_CANE || sourceBlock == MPBlocks.GREEN_CANDY_CANE || sourceBlock == MPBlocks.BLUE_CANDY_CANE || sourceBlock == MPBlocks.ORANGE_CANDY_CANE || sourceBlock == MPBlocks.PINK_CANDY_CANE || sourceBlock == MPBlocks.YELLOW_CANDY_CANE || sourceBlock == MPBlocks.PURPLE_CANDY_CANE || sourceBlock == MPBlocks.RAINBOW_CANDY_CANE)
@@ -243,11 +203,6 @@ public class GeneralEventHandler
     @SubscribeEvent
     public void onUseHoe(UseHoeEvent event)
     {
-        if (event.getResult() != Result.DEFAULT || event.isCanceled())
-        {
-            return;
-        }
-
         World world = event.getWorld();
         BlockPos pos = event.getPos();
         IBlockState state = world.getBlockState(pos);

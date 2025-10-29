@@ -1,5 +1,11 @@
 package com.stevekung.moreplanets.init;
 
+import java.util.Collections;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import com.google.common.collect.Sets;
 import com.stevekung.lib.utils.BlockUtils;
 import com.stevekung.lib.utils.ColorUtils;
 import com.stevekung.lib.utils.enums.EnumHarvestLevel;
@@ -35,11 +41,14 @@ import net.minecraft.block.BlockFire;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
 public class MPBlocks
 {
+    private static final Set<Block> INFECTED_BLOCKS = Sets.newHashSet();
+
     // Dummy
     public static BlockDummy WARP_PAD_DUMMY;
     public static BlockDummy DER_SOLAR1_DUMMY;
@@ -2071,5 +2080,40 @@ public class MPBlocks
         MPBlocks.CHALOS_ROCK.setDrop(MPBlocks.CHALOS_COBBLESTONE);
         MPBlocks.NIBIRU_ROCK.setDrop(MPBlocks.NIBIRU_COBBLESTONE);
         MPBlocks.FRONOS_STONE.setDrop(MPBlocks.FRONOS_COBBLESTONE);
+    }
+
+    public static void gatherAllInfectedBlocks()
+    {
+        INFECTED_BLOCKS.add(MPBlocks.PURE_HERB);
+        INFECTED_BLOCKS.add(MPBlocks.BATASIA_DANDELION);
+        INFECTED_BLOCKS.add(MPBlocks.PYOLONIA);
+        INFECTED_BLOCKS.add(MPBlocks.PHILIPY);
+        INFECTED_BLOCKS.add(MPBlocks.WHITE_TAIL);
+        INFECTED_BLOCKS.add(MPBlocks.VEALIUM_VINES);
+        INFECTED_BLOCKS.add(MPBlocks.JUICER_EGG);
+        INFECTED_BLOCKS.add(MPBlocks.OIL_ORE);
+        INFECTED_BLOCKS.add(MPBlocks.SPORELILY);
+
+        INFECTED_BLOCKS.addAll(StreamSupport.stream(Block.REGISTRY.spliterator(), false).filter(block ->
+        {
+            ResourceLocation registryName = block.getRegistryName();
+            String blockName = registryName.getPath();
+
+            if (blockName.contains("infected_purlonite"))
+            {
+                return false;
+            }
+            else if (registryName.getNamespace().equals(MorePlanetsMod.MOD_ID))
+            {
+                return blockName.contains("infected") || blockName.contains("nibiru");
+            }
+            return false;
+        }).collect(Collectors.toSet()));
+        System.out.println(INFECTED_BLOCKS);
+    }
+
+    public static Set<Block> getInfectedBlocks()
+    {
+        return Collections.unmodifiableSet(INFECTED_BLOCKS);
     }
 }
