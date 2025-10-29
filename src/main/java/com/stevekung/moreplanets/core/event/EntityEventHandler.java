@@ -48,7 +48,6 @@ import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
-import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
 
 public class EntityEventHandler
 {
@@ -139,7 +138,7 @@ public class EntityEventHandler
                     {
                         player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 40));
                     }
-                    if (player.ticksExisted % 128 == 0 && !this.isInOxygen(world, player))
+                    else if (player.ticksExisted % 128 == 0 && !this.isInOxygen(world, player))
                     {
                         player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80));
                     }
@@ -150,91 +149,35 @@ public class EntityEventHandler
                 this.spawnMeteors(world, player, (IMeteorType)world.provider);
             }
         }
-        else
-        {
-            if (ConfigManagerMP.moreplanets_planet_settings.enableInfectedSporeForMobs && world.provider instanceof WorldProviderNibiru)
-            {
-                if (!EntityEffectUtils.isGalacticraftMob(living) && !(living instanceof EntityJuicer) && !(world.getBiome(living.getPosition()) instanceof BiomeGreenVeinFields))
-                {
-                    if (living.ticksExisted % 128 == 0)
-                    {
-                        living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80));
-                    }
-                    else if (world.isRainingAt(living.getPosition()))
-                    {
-                        living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 40));
-                    }
-                }
-            }
-        }
-
-        if (living instanceof IMob)
+        else if (living instanceof IMob)
         {
             for (BlockVec3Dim vec : TileEntityShieldGenerator.LOADED_GENERATORS)
             {
-                if (vec != null && vec.dim == GCCoreUtil.getDimensionID(world))
+                if (vec.dim == GCCoreUtil.getDimensionID(world))
                 {
                     TileEntity tile = vec.getTileEntity();
 
                     if (tile instanceof TileEntityShieldGenerator)
                     {
                         TileEntityShieldGenerator shield = (TileEntityShieldGenerator)tile;
-
-                        if (!living.world.isRemote && !living.isDead && shield.isInsideShield(living.getPosition()) && !shield.disabled && shield.enableShield && shield.shieldCapacity > 0)
-                        {
-                            if (!shield.enableDamage)
-                            {
-                                double d4 = living.getDistance(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ());
-                                double d6 = living.posX - tile.getPos().getX();
-                                double d8 = living.posY - tile.getPos().getY();
-                                double d10 = living.posZ - tile.getPos().getZ();
-                                double d11 = MathHelper.sqrt(d6 * d6 + d8 * d8 + d10 * d10);
-                                d6 /= d11;
-                                d8 /= d11;
-                                d10 /= d11;
-                                double d14 = (0.0D - d4) * 2.0D / 10.0D;
-                                double knockback = 10.0D;
-                                living.motionX -= d6 * d14 / knockback;
-                                living.motionY -= d8 * d14 / knockback;
-                                living.motionZ -= d10 * d14 / knockback;
-                            }
-
-                            UUID uuid;
-
-                            try
-                            {
-                                uuid = UUID.fromString(shield.ownerUUID);
-                            }
-                            catch (Exception e)
-                            {
-                                uuid = UUID.fromString("eef3a603-1c1b-4c98-8264-d2f04b231ef4"); // default uuid :)
-                            }
-
-                            if (living.world.getPlayerEntityByUUID(uuid) != null)
-                            {
-                                if (living.ticksExisted % 8 == 0)
-                                {
-                                    ((WorldServer)living.world).spawnParticle(EnumParticleTypes.CRIT_MAGIC, living.posX, living.posY, living.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
-                                }
-                                if (shield.enableDamage)
-                                {
-                                    living.attackEntityFrom(DamageSource.causePlayerDamage(living.world.getPlayerEntityByUUID(uuid)), shield.shieldDamage);
-                                }
-                            }
-                            else
-                            {
-                                if (living.ticksExisted % 8 == 0)
-                                {
-                                    ((WorldServer)living.world).spawnParticle(EnumParticleTypes.CRIT_MAGIC, living.posX, living.posY, living.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
-                                }
-                                if (shield.enableDamage)
-                                {
-                                    living.attackEntityFrom(DamageSource.GENERIC, shield.shieldDamage);
-                                }
-                            }
-                            float motion = MathHelper.sqrt(living.motionX * living.motionX + living.motionZ * living.motionZ);
-                            shield.shieldCapacity -= (int) (motion * 2);
-                        }
+                        this.updateShieldTickingForMobs(living, shield);
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (ConfigManagerMP.moreplanets_planet_settings.enableInfectedSporeForMobs && world.provider instanceof WorldProviderNibiru)
+            {
+                if (!EntityEffectUtils.isGalacticraftMob(living) && !(world.getBiome(living.getPosition()) instanceof BiomeGreenVeinFields))
+                {
+                    if (world.isRainingAt(living.getPosition()))
+                    {
+                        living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 40));
+                    }
+                    else if (living.ticksExisted % 128 == 0)
+                    {
+                        living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80));
                     }
                 }
             }
@@ -299,7 +242,7 @@ public class EntityEventHandler
 
         for (BlockVec3Dim vec : TileEntityShieldGenerator.LOADED_GENERATORS)
         {
-            if (vec != null && vec.dim == GCCoreUtil.getDimensionID(event.getWorld()))
+            if (vec.dim == GCCoreUtil.getDimensionID(event.getWorld()))
             {
                 TileEntity tile = vec.getTileEntity();
 
@@ -321,7 +264,7 @@ public class EntityEventHandler
     {
         for (BlockVec3Dim vec : TileEntityShieldGenerator.LOADED_GENERATORS)
         {
-            if (vec != null && vec.dim == GCCoreUtil.getDimensionID(event.getEntityLiving().getEntityWorld()))
+            if (vec.dim == GCCoreUtil.getDimensionID(event.getEntityLiving().getEntityWorld()))
             {
                 TileEntity tile = vec.getTileEntity();
 
@@ -399,5 +342,51 @@ public class EntityEventHandler
     private boolean isGodPlayer(EntityPlayer player)
     {
         return player.capabilities.isCreativeMode || player.isSpectator();
+    }
+
+    private void updateShieldTickingForMobs(EntityLivingBase living, TileEntityShieldGenerator shield)
+    {
+        if (!living.world.isRemote && !living.isDead && shield.isInsideShield(living.getPosition()) && !shield.disabled && shield.enableShield && shield.shieldCapacity > 0)
+        {
+            UUID uuid;
+
+            try
+            {
+                uuid = UUID.fromString(shield.ownerUUID);
+            }
+            catch (Exception e)
+            {
+                uuid = UUID.fromString("eef3a603-1c1b-4c98-8264-d2f04b231ef4"); // default uuid :)
+            }
+
+            if (living.ticksExisted % 8 == 0)
+            {
+                ((WorldServer)living.world).spawnParticle(EnumParticleTypes.CRIT_MAGIC, living.posX, living.posY, living.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
+            }
+
+            if (shield.enableDamage)
+            {
+                living.attackEntityFrom(living.world.getPlayerEntityByUUID(uuid) != null ? DamageSource.causePlayerDamage(living.world.getPlayerEntityByUUID(uuid)) : DamageSource.GENERIC, shield.shieldDamage);
+            }
+            else
+            {
+                double d4 = living.getDistance(shield.getPos().getX(), shield.getPos().getY(), shield.getPos().getZ());
+                double d6 = living.posX - shield.getPos().getX();
+                double d8 = living.posY - shield.getPos().getY();
+                double d10 = living.posZ - shield.getPos().getZ();
+                double d11 = MathHelper.sqrt(d6 * d6 + d8 * d8 + d10 * d10);
+                d6 /= d11;
+                d8 /= d11;
+                d10 /= d11;
+                double d14 = (0.0D - d4) * 2.0D / 10.0D;
+                double knockback = 10.0D;
+                living.motionX -= d6 * d14 / knockback;
+                living.motionY -= d8 * d14 / knockback;
+                living.motionZ -= d10 * d14 / knockback;
+            }
+
+            float motion = MathHelper.sqrt(living.motionX * living.motionX + living.motionZ * living.motionZ);
+            shield.shieldCapacity -= (int) (motion * 2);
+        }
     }
 }

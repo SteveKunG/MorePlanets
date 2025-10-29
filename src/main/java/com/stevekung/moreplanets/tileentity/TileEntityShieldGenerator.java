@@ -1,9 +1,9 @@
 package com.stevekung.moreplanets.tileentity;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import com.google.common.collect.Sets;
 import com.stevekung.lib.utils.BlockStateProperty;
@@ -82,7 +82,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     @NetworkedField(targetSide = Side.CLIENT)
     public String ownerUUID = "";
     private boolean initialize;
-    public static final HashSet<BlockVec3Dim> LOADED_GENERATORS = Sets.newHashSet();
+    public static final Set<BlockVec3Dim> LOADED_GENERATORS = Sets.newHashSet();
 
     public TileEntityShieldGenerator()
     {

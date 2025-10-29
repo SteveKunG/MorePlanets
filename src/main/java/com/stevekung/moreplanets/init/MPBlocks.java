@@ -2109,7 +2109,6 @@ public class MPBlocks
             }
             return false;
         }).collect(Collectors.toSet()));
-        System.out.println(INFECTED_BLOCKS);
     }
 
     public static Set<Block> getInfectedBlocks()
