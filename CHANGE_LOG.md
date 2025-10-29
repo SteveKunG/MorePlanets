@@ -1,9 +1,9 @@
-* Requires SteveKunG's Lib 1.4.0
-* Requires Mixin Booter 10.7+
-* Added config for Infected Purlonite data parameter ID
-* Added AsmodeusCore compatibility for Lazendus star, closes #176
-* Crashed Alien Ship on Diona, Display Screen block now displaying Lazendus system
-* Fixed Terrasquid not spawning in the Green Veins biome
-* Fixed item duplication with Nuclear Waste Generator, closes #180
-* Fixed Koentus biome not registered
-* Fixed Nibiru leaves water dripping and splash particle color
+* More backend cleanup and optimizations
+* Reduced all texture file size
+* Performance improvement by caching all nibiru infected blocks when breaking block
+* Better Shield Generator ticking
+* Adjusted alien beam on Diona to be appeared slightly longer and spawn near the player
+* Fixed nibiru stone tools repair items
+* Fixed item duplication in Dark Energy Generator
+* Fixed rare crash with alien beam on Diona
+* Removed 3D Torch Item config
