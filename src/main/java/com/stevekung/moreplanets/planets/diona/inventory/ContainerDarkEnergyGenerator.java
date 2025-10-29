@@ -94,7 +94,6 @@ public class ContainerDarkEnergyGenerator extends Container
                     {
                         return ItemStack.EMPTY;
                     }
-                    movedToMachineSlot = true;
                 }
             }
 
