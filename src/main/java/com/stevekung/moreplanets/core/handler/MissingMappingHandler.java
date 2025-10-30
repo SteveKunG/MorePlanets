@@ -3,6 +3,7 @@ package com.stevekung.moreplanets.core.handler;
 import com.stevekung.lib.utils.BlockItemRemapper;
 import com.stevekung.lib.utils.LoggerSL;
 import com.stevekung.moreplanets.core.MorePlanetsMod;
+import com.stevekung.moreplanets.init.MPBiomes;
 import com.stevekung.moreplanets.init.MPBlocks;
 import com.stevekung.moreplanets.init.MPItems;
 import com.stevekung.moreplanets.init.MPPotions;
@@ -12,10 +13,12 @@ import com.stevekung.moreplanets.planets.diona.entity.projectile.EntityInfectedP
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public class MissingMappingHandler
 {
@@ -66,41 +69,36 @@ public class MissingMappingHandler
     @SubscribeEvent
     public void onPotionMissingMappings(RegistryEvent.MissingMappings<Potion> event)
     {
-        MissingMappingHandler.remapPotion(event, MorePlanetsMod.MOD_ID, "infected_crystallized", MPPotions.INFECTED_PURLONITE);
+        remapObject(event, "infected_crystallized", MPPotions.INFECTED_PURLONITE);
     }
 
     @SubscribeEvent
     public void onEntityMissingMappings(RegistryEvent.MissingMappings<EntityEntry> event)
     {
-        MissingMappingHandler.remapEntity(event, MorePlanetsMod.MOD_ID, "infected_crystallized_spider", EntityRegistry.getEntry(EntityInfectedPurloniteSpider.class));
-        MissingMappingHandler.remapEntity(event, MorePlanetsMod.MOD_ID, "infected_crystallized_worm", EntityRegistry.getEntry(EntityInfectedPurloniteWorm.class));
-        MissingMappingHandler.remapEntity(event, MorePlanetsMod.MOD_ID, "infected_crystallized_slime_boss", EntityRegistry.getEntry(EntityInfectedPurloniteSlimeBoss.class));
-        MissingMappingHandler.remapEntity(event, MorePlanetsMod.MOD_ID, "infected_crystallized_slime_minion", EntityRegistry.getEntry(EntityInfectedPurloniteSlimeMinion.class));
-        MissingMappingHandler.remapEntity(event, MorePlanetsMod.MOD_ID, "infected_crystallized_tentacle", EntityRegistry.getEntry(EntityInfectedPurloniteTentacle.class));
-        MissingMappingHandler.remapEntity(event, MorePlanetsMod.MOD_ID, "infected_crystallized_bomb", EntityRegistry.getEntry(EntityInfectedPurloniteBomb.class));
-        MissingMappingHandler.remapEntity(event, MorePlanetsMod.MOD_ID, "infected_crystallized_arrow", EntityRegistry.getEntry(EntityInfectedPurloniteArrow.class));
+        remapObject(event, "infected_crystallized_spider", EntityRegistry.getEntry(EntityInfectedPurloniteSpider.class));
+        remapObject(event, "infected_crystallized_worm", EntityRegistry.getEntry(EntityInfectedPurloniteWorm.class));
+        remapObject(event, "infected_crystallized_slime_boss", EntityRegistry.getEntry(EntityInfectedPurloniteSlimeBoss.class));
+        remapObject(event, "infected_crystallized_slime_minion", EntityRegistry.getEntry(EntityInfectedPurloniteSlimeMinion.class));
+        remapObject(event, "infected_crystallized_tentacle", EntityRegistry.getEntry(EntityInfectedPurloniteTentacle.class));
+        remapObject(event, "infected_crystallized_bomb", EntityRegistry.getEntry(EntityInfectedPurloniteBomb.class));
+        remapObject(event, "infected_crystallized_arrow", EntityRegistry.getEntry(EntityInfectedPurloniteArrow.class));
     }
 
-    private static void remapPotion(RegistryEvent.MissingMappings<Potion> event, String modid, String oldName, Potion potion)
+    @SubscribeEvent
+    public void onBiomeMissingMappings(RegistryEvent.MissingMappings<Biome> event)
+    {
+        remapObject(event, "chalos_moutains", MPBiomes.CHALOS_MOUNTAINS);
+        remapObject(event, "cold_green_vein_moutains", MPBiomes.COLD_GREEN_VEIN_MOUNTAINS);
+    }
+
+    private static <T extends IForgeRegistryEntry<T>> void remapObject(RegistryEvent.MissingMappings<T> event, String oldName, T object)
     {
         event.getMappings().forEach(mappings ->
         {
-            if (mappings.key.getNamespace().equals(modid) && mappings.key.getPath().equals(oldName))
+            if (mappings.key.getNamespace().equals(MorePlanetsMod.MOD_ID) && mappings.key.getPath().equals(oldName))
             {
-                mappings.remap(potion);
-                LoggerSL.info("Remapping 'Potion' from {} to {}", mappings.key, potion.getRegistryName());
-            }
-        });
-    }
-
-    private static void remapEntity(RegistryEvent.MissingMappings<EntityEntry> event, String modid, String oldName, EntityEntry entity)
-    {
-        event.getMappings().forEach(mappings ->
-        {
-            if (mappings.key.getNamespace().equals(modid) && mappings.key.getPath().equals(oldName))
-            {
-                mappings.remap(entity);
-                LoggerSL.info("Remapping 'Entity' from {} to {}", mappings.key, entity.getRegistryName());
+                mappings.remap(object);
+                LoggerSL.info("Remapping from '{}' to '{}'", mappings.key, object.getRegistryName());
             }
         });
     }

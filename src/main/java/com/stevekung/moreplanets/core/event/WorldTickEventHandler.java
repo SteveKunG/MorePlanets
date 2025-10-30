@@ -96,7 +96,7 @@ public class WorldTickEventHandler
                     if (world.canSnowAt(blockpos1, true))
                     {
                         Biome biome = world.getBiome(blockpos1);
-                        world.setBlockState(blockpos1, biome == MPBiomes.COLD_GREEN_VEIN_MOUTAINS ? MPBlocks.PURIFIED_SNOW_LAYER.getDefaultState() : MPBlocks.INFECTED_SNOW_LAYER.getDefaultState());
+                        world.setBlockState(blockpos1, biome == MPBiomes.COLD_GREEN_VEIN_MOUNTAINS ? MPBlocks.PURIFIED_SNOW_LAYER.getDefaultState() : MPBlocks.INFECTED_SNOW_LAYER.getDefaultState());
                     }
                     if (world.getBiome(blockpos2).canRain())
                     {

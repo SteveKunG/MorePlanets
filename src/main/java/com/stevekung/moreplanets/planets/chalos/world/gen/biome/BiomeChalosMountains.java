@@ -7,9 +7,9 @@ import com.stevekung.moreplanets.init.MPBlocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 
-public class BiomeChalosMoutains extends BiomeChalos
+public class BiomeChalosMountains extends BiomeChalos
 {
-    public BiomeChalosMoutains(BiomeProperties prop)
+    public BiomeChalosMountains(BiomeProperties prop)
     {
         super(prop);
         this.decorator.treesPerChunk = 0;

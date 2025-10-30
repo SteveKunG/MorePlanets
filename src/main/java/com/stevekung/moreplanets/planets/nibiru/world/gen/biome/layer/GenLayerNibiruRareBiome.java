@@ -42,7 +42,7 @@ public class GenLayerNibiruRareBiome extends GenLayer
                 {
                     if (k == Biome.getIdForBiome(MPBiomes.GREEN_VEIN_FIELDS))
                     {
-                        aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.COLD_GREEN_VEIN_MOUTAINS);
+                        aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.COLD_GREEN_VEIN_MOUNTAINS);
                     }
                     else
                     {

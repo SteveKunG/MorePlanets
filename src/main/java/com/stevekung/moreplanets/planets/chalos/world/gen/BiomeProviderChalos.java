@@ -19,7 +19,7 @@ public class BiomeProviderChalos extends BiomeProvider
         this.biomeCache = new BiomeCache(this);
         this.getBiomesToSpawnIn().clear();
         this.getBiomesToSpawnIn().add(MPBiomes.CHALOS_PLAINS);
-        this.getBiomesToSpawnIn().add(MPBiomes.CHALOS_MOUTAINS);
+        this.getBiomesToSpawnIn().add(MPBiomes.CHALOS_MOUNTAINS);
         this.initLayers(seed);
     }
 

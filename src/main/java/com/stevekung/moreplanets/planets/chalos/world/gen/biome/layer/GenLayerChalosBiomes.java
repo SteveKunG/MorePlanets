@@ -61,7 +61,7 @@ public class GenLayerChalosBiomes extends GenLayer
         ArrayList<BiomeManager.BiomeEntry>[] currentBiomes = new ArrayList[CachedEnum.biomeValues.length];
         List<BiomeManager.BiomeEntry> list = new ArrayList<>();
         list.add(new BiomeManager.BiomeEntry(MPBiomes.CHALOS_PLAINS, 30));
-        list.add(new BiomeManager.BiomeEntry(MPBiomes.CHALOS_MOUTAINS, 20));
+        list.add(new BiomeManager.BiomeEntry(MPBiomes.CHALOS_MOUNTAINS, 20));
         currentBiomes[BiomeManager.BiomeType.WARM.ordinal()] = new ArrayList<>(list);
         return currentBiomes;
     }
