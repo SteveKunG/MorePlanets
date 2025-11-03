@@ -1,0 +1,16 @@
+{
+  "type": "crafting_shaped",
+  "group": "moreplanets:anti_gravity_fragments",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "moreplanets:anti_gravity_fragments_block"
+    }
+  },
+  "result": {
+    "item": "minecraft:iron_ingotmoreplanets:anti_gravity_fragments",
+    "count": 9
+  }
+}
