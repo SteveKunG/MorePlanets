@@ -4,7 +4,7 @@ import org.codehaus.groovy.runtime.MethodClosure
 import groovy.text.SimpleTemplateEngine
 
 plugins {
-    id "org.jetbrains.gradle.plugin.idea-ext" version "1.3"
+    id "org.jetbrains.gradle.plugin.idea-ext" version "1.4"
     id "com.gtnewhorizons.retrofuturagradle" version "1.4.6"
     id "io.github.CDAGaming.cursegradle" version "1.6.1"
     id "com.modrinth.minotaur" version "2.+"
