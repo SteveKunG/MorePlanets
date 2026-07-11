@@ -158,7 +158,7 @@ repositories {
 
 dependencies {
     if (project.hasProperty("use_mixin") && use_mixin.toBoolean()) {
-        String mixin = "zone.rong:mixinbooter:11.0"
+        String mixin = "zone.rong:mixinbooter:${mixin_booter_version}"
     
         implementation (mixin) {
             transitive = false
@@ -201,7 +201,6 @@ jar {
         manifest {
             attributes "FMLCorePlugin": "com.stevekung.moreplanets.core.MorePlanetsPlugin"
             attributes "FMLCorePluginContainsFMLMod": true
-            attributes "ForceLoadAsMod": true
             attributes "FMLAT": "moreplanets_at.cfg"
         }
     }
