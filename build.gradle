@@ -5,7 +5,7 @@ import groovy.text.SimpleTemplateEngine
 
 plugins {
     id "org.jetbrains.gradle.plugin.idea-ext" version "1.4.1"
-    id "com.gtnewhorizons.retrofuturagradle" version "1.4.6"
+    id "com.gtnewhorizons.retrofuturagradle" version "2.0.2"
     id "io.github.CDAGaming.cursegradle" version "1.6.1"
     id "com.modrinth.minotaur" version "2.+"
 }
@@ -158,16 +158,15 @@ repositories {
 
 dependencies {
     if (project.hasProperty("use_mixin") && use_mixin.toBoolean()) {
-        String mixin = modUtils.enableMixins("zone.rong:mixinbooter:${mixin_booter_version}", "mixins.more_planets.refmap.json")
-        api(mixin) {
+        String mixin = "zone.rong:mixinbooter:11.0"
+    
+        implementation (mixin) {
             transitive = false
         }
-        annotationProcessor "org.ow2.asm:asm-debug-all:5.2"
-        annotationProcessor "com.google.guava:guava:32.1.2-jre"
-        annotationProcessor "com.google.code.gson:gson:2.8.9"
-        annotationProcessor(mixin) {
-            transitive = false
-        }
+        annotationProcessor mixin
+
+        // RetroFuturaGradle for refmap generation:
+        modUtils.enableMixins(mixin)
     }
 
     implementation(":Galacticraft-${minecraft_version}-${galacticraft_version}-deobf")
