@@ -15,6 +15,7 @@ jobs:
             8
             17
             21
+            25
           distribution: 'zulu'
 
       - name: Cache Gradle packages
